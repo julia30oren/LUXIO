@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "luxio-gallery"
+  },
+  "targets": {
+    "luxio-gallery": {
+      "hosting": {
+        "Luxio-app": [
+          "luxio-gallery"
+        ]
+      }
+    }
+  }
+}

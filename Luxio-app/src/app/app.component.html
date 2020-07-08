@@ -1,0 +1,60 @@
+<div class="main-app">
+
+    <div class="navigation">
+        <img class="Akzentz-logo" src="https://i.pinimg.com/originals/75/eb/30/75eb30b3be5927ae70afd920b91e284d.png" alt="AKZENTZ">
+
+        <nav class="nav flex-column">
+            <a class="nav-link active" href="#">ПРОДУКЦИЯ</a>
+            <a class="nav-link" href="#">МАГАЗИН</a>
+            <a class="nav-link" href="#">КУРСЫ</a>
+            <a class="nav-link" href="#">ПРЕДСТАВИТЕЛЬСТВА</a>
+            <a class="nav-link" href="#">ПЕРСОНАЛЬНЫЙ ID</a>
+        </nav>
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+
+<style>
+    .main-app {
+        min-height: 920px;
+    }
+    
+    .navigation {
+        position: fixed;
+        background-color: rgb(0, 0, 0);
+        min-height: 950px;
+        width: 250px;
+        left: 15%;
+    }
+    
+    .Akzentz-logo {
+        margin-top: 50px;
+        margin-bottom: 30px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 95%;
+    }
+    
+    .nav-link {
+        color: rgb(255, 255, 255);
+        text-align: right;
+        font-size: larger;
+    }
+    
+    .nav-link:hover {
+        color: rgb(143, 0, 0);
+    }
+    
+    .content {
+        border: rgb(128, 35, 19) solid 2px;
+        position: absolute;
+        width: 50%;
+        left: 30%;
+        top: 65px;
+        margin-bottom: 65px;
+    }
+</style>

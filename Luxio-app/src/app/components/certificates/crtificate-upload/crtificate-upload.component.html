@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+            <!-- for test picter -->
+            <div class="text-center">
+                <img [src]="imgSrc" style="max-width: 300px; max-height: 400px;">
+            </div>
+            <!-- for picter -->
+            <div class="form-group">
+                <button title="Зачем нужно загружать сертификат?" type="button" class="btn button-question btn-outline-dark">?</button>
+                <label>Виберите сертификат:</label>
+                <div class="text-danger" *ngIf="isSubmitted && formControls.imageURL.errors?.required">This fird is required.</div>
+                <input (change)="showPreimg($event)" type="file" accept="image/*" class="form-control" formControlName="imageURL">
+            </div>
+            <!-- for text -->
+            <div class="form-group">
+                <button title="Зачем?" type="button" class="btn button-question btn-outline-dark">?</button>
+                <label>Text:</label>
+                <div class="text-danger" *ngIf="isSubmitted && formControls.name.errors?.required">This fird is required.</div>
+                <input type="text" class="form-control" formControlName="name" placeholder="text">
+            </div>
+            <!-- for options -->
+            <div class="form-group">
+                <button title="Зачем?" type="button" class="btn button-question btn-outline-dark">?</button>
+                <label>Category:</label>
+                <div class="text-danger" *ngIf="isSubmitted && formControls.category.errors?.required">This fird is required.</div>
+                <select type="text" class="form-control" formControlName="category" placeholder="category">
+                    <option value="частный предприниматель">Частный предприниматель</option>
+                    <option value="представитель салона">Представитель салона</option>
+                </select>
+            </div>
+            <!-- for buttons -->
+            <div class="form-group">
+                <button type="submit">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .button-question {
+        height: 40px;
+        width: 40px;
+        border: rgb(143, 143, 143) 2px solid;
+        border-radius: 50%;
+        margin: 10px
+    }
+</style>

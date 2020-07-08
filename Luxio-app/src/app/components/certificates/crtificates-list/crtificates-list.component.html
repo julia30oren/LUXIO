@@ -1,0 +1,47 @@
+<h1>Запросы на подтверждение :</h1>
+
+<!-- <div>
+    <p>{{ certificatesList | json}}</p>
+</div> -->
+
+
+<div class="requests-div" *ngIf="certificatesList">
+
+    <div *ngFor="let item of certificatesList" class="card mb-3" style="max-width: 100%;">
+        <div class="row no-gutters">
+            <div class="col-md-3">
+                <img src="{{item.imageURL}}" class="card-img" alt="...">
+            </div>
+            <div class="col-md-7">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <p class="card-text">{{item.category}}</p>
+                    <p class="card-text"><small class="text-muted">Дата подачи заявки</small></p>
+                </div>
+            </div>
+            <div class="col-md-2 buttons">
+                <button type="button" class="btn btn-success">Подтвердить</button>
+                <button type="button" class="btn btn-danger">Отказать</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .requests-div {
+        border: tomato 2px solid;
+    }
+    
+    .buttons {
+        margin-top: 50px;
+        margin-bottom: 30px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 95%;
+    }
+    
+    .btn {
+        margin-top: 10px;
+    }
+</style>
