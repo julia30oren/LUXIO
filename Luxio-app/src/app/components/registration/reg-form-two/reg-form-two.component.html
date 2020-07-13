@@ -1,5 +1,3 @@
-<!-- <div class="card">
-    <div class="card-body"> -->
 <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
     <!-- for test picter -->
     <div class="text-center">
@@ -12,13 +10,6 @@
         <div class="text-danger" *ngIf="isSubmitted && formControls.imageURL.errors?.required">This fird is required.</div>
         <input (change)="showPreimg($event)" type="file" accept="image/*" class="form-control" formControlName="imageURL">
     </div>
-    <!-- for text -->
-    <!-- <div class="form-group">
-                        <button title="Зачем?" type="button" class="btn button-question btn-outline-dark">?</button>
-                        <label>Text:</label>
-                        <div class="text-danger" *ngIf="isSubmitted && formControls.name.errors?.required">This fird is required.</div>
-                        <input type="text" class="form-control" formControlName="name" placeholder="text">
-                    </div> -->
     <!-- for options -->
     <div class="form-group">
         <button title="Зачем?" type="button" class="btn button-question btn-outline-dark">?</button>
@@ -32,10 +23,9 @@
     <!-- for buttons -->
     <div class="form-group">
         <button type="submit" class="btn btn-dark btn-lg btn-block" style="margin-top: 50px;">Сохранить</button>
+        <button type="button" class="btn btn-dark btn-lg btn-block" style="margin-top: 50px;" (click)="previousPage()"> Назад</button>
     </div>
 </form>
-<!-- </div>
-        </div> -->
 
 <style>
     .button-question {
