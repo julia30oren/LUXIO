@@ -20,6 +20,8 @@ import { PageNotFoundComponent } from './components/main/page-not-found/page-not
 import { RegFormOneComponent } from './components/registration/reg-form-one/reg-form-one.component';
 import { RegFormTwoComponent } from './components/registration/reg-form-two/reg-form-two.component';
 import { RegFormAgreementComponent } from './components/registration/reg-form-agreement/reg-form-agreement.component';
+import { LogFormComponent } from './components/registration/log-form/log-form.component';
+import { PasswordRestoreFormComponent } from './components/registration/password-restore-form/password-restore-form.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { RegFormAgreementComponent } from './components/registration/reg-form-ag
     RegFormOneComponent,
     RegFormTwoComponent,
     RegFormAgreementComponent,
+    LogFormComponent,
+    PasswordRestoreFormComponent,
   ],
   imports: [
     BrowserModule,

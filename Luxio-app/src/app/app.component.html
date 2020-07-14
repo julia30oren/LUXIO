@@ -17,17 +17,26 @@
             <a href="https://www.youtube.com/channel/UCIovV5TtXDx_0Enl_MJKB3g?view_as=subscriber"><i class="fab fa-youtube-square fa-2x"></i> </a>
         </div>
         <div class="icons">
-            <i class="fas fa-user-lock fa-2x" (click)="openForm()"></i>
+            <i class="fas fa-user-lock fa-2x" (click)="login_form()"></i>
             <i class="fas fa-shopping-cart fa-2x"></i>
         </div>
         <p class="rights">© МИТРА ГРУП ©</p>
     </div>
 
     <!-- REGISTRATION FORM -->
-    <div class="RegFormBackground" *ngIf="regForm_Open"></div>
+    <div class="RegFormBackground" *ngIf="regForm_Open" (click)="closeForm()"></div>
 
-    <div class="RegForm" *ngIf="regForm_Open">
-        <button (click)="closeForm()" type="button" style="border: none;"><i class="far fa-window-close fa-2x closeButton"></i></button>
+    <div class="RegForm" *ngIf="regForm_Open" style="padding: 1%;">
+        <div class="form-row">
+            <div class="col-sm-11">
+                <h1 *ngIf="formOne_Open || formTwo_Open">Форма регистрации:</h1>
+                <h1 *ngIf="formLogin_Open">Вход:</h1>
+                <h1 *ngIf="formPasswodRestore_Open">Восстановление пароля:</h1>
+            </div>
+            <div class="col-sm-1">
+                <button (click)="closeForm()" type="button" style="border: none;"><i class="far fa-window-close fa-2x closeButton"></i></button>
+            </div>
+        </div>
 
         <div class="formOne" *ngIf="formOne_Open && !formTwo_Open && !formAgreement_Open">
             <app-reg-form-one></app-reg-form-one>
@@ -39,6 +48,22 @@
 
         <div class="formAgreement" *ngIf="formAgreement_Open">
             <app-reg-form-agreement></app-reg-form-agreement>
+        </div>
+
+        <div class="formLogin" *ngIf="formLogin_Open">
+            <app-log-form></app-log-form>
+        </div>
+
+        <div class="formPasswordRest" *ngIf="formPasswodRestore_Open">
+            <app-password-restore-form></app-password-restore-form>
+        </div>
+
+        <div style="display: flex; justify-content: center; margin-top: 1%;">
+            <p>
+                <button *ngIf="!formOne_Open && !formTwo_Open" type="button" class="btn btn-link" (click)="registration_form()">Регистрация</button>
+                <button *ngIf="!formLogin_Open" type="button" class="btn btn-link" (click)="login_form()">Уже зарегистрирован</button>
+                <button *ngIf="!formPasswodRestore_Open" type="button" class="btn btn-link" (click)="passwordRest_form()">Забыли пароль?</button>
+            </p>
         </div>
     </div>
 

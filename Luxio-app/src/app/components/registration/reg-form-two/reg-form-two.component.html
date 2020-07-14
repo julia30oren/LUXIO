@@ -1,29 +1,37 @@
 <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
-    <!-- for test picter -->
-    <div class="text-center">
-        <img [src]="imgSrc" style="max-width: 300px; max-height: 400px;">
-    </div>
-    <!-- for picter -->
-    <div class="form-group">
-        <button title="Зачем нужно загружать сертификат?" type="button" class="btn button-question btn-outline-dark">?</button>
-        <label>Виберите сертификат:</label>
-        <div class="text-danger" *ngIf="isSubmitted && formControls.imageURL.errors?.required">This fird is required.</div>
-        <input (change)="showPreimg($event)" type="file" accept="image/*" class="form-control" formControlName="imageURL">
-    </div>
-    <!-- for options -->
-    <div class="form-group">
-        <button title="Зачем?" type="button" class="btn button-question btn-outline-dark">?</button>
-        <label>Category:</label>
-        <div class="text-danger" *ngIf="isSubmitted && formControls.category.errors?.required">This fird is required.</div>
-        <select type="text" class="form-control" formControlName="category" placeholder="category">
+
+    <div class="form-row">
+        <div class="col-sm-6">
+            <!-- for picter -->
+            <div class="form-group">
+                <button title="Зачем нужно загружать сертификат?" type="button" class="btn button-question btn-outline-dark">?</button>
+                <label>Виберите сертификат:</label>
+                <div class="text-danger" *ngIf="isSubmitted && formControls.imageURL.errors?.required">Это поле должно быть заполнено.</div>
+                <input (change)="showPreimg($event)" type="file" accept="image/*" class="form-control" formControlName="imageURL">
+            </div>
+            <!-- for options -->
+            <div class="form-group">
+                <button title="Зачем?" type="button" class="btn button-question btn-outline-dark">?</button>
+                <label>Категория:</label>
+                <div class="text-danger" *ngIf="isSubmitted && formControls.category.errors?.required">Это поле должно быть заполнено.</div>
+                <select type="text" class="form-control" formControlName="category" placeholder="category">
                             <option value="частный предприниматель">Частный предприниматель</option>
                             <option value="представитель салона">Представитель салона</option>
                         </select>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <!-- for test picter -->
+            <div class="text-center">
+                <img [src]="imgSrc" style="max-width: 300px; max-height: 400px;">
+            </div>
+        </div>
     </div>
+
     <!-- for buttons -->
     <div class="form-group">
-        <button type="submit" class="btn btn-dark btn-lg btn-block" style="margin-top: 50px;">Сохранить</button>
-        <button type="button" class="btn btn-dark btn-lg btn-block" style="margin-top: 50px;" (click)="previousPage()"> Назад</button>
+        <button type="submit" class="btn btn-dark btn-lg btn-block" style="margin-top: 1%;">Сохранить</button>
+        <button type="button" class="btn btn-dark btn-lg btn-block" style="margin-top: 1%;" (click)="previousPage()"> Назад</button>
     </div>
 </form>
 
