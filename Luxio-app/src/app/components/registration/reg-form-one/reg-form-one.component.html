@@ -1,49 +1,63 @@
-<form class="regF">
+<form class="regF" [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+
     <div class="form-row">
+        <div class="text-danger" *ngIf="isSubmitted && formControls.first_name.errors?.required">Это поле должно быть заполнено.</div>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.second_name.errors?.required">Это поле должно быть заполнено.</div>
         <div class="col">
-            <input type="text" class="form-control" placeholder="First name">
+            <input [ngClass]="{error: isSubmitted && formControls.first_name.errors?.required}" type="text" class="form-control" formControlName="first_name" placeholder="Имя">
         </div>
         <div class="col">
-            <input type="text" class="form-control" placeholder="Last name">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col">
-            <input type="text" class="form-control" placeholder="City">
+            <input [ngClass]="{error: isSubmitted && formControls.second_name.errors?.required}" type="text" class="form-control" formControlName="second_name" placeholder="Фамилия">
         </div>
     </div>
+
     <div class="form-row">
+        <div class="text-danger" *ngIf="isSubmitted && formControls.city.errors?.required">Это поле должно быть заполнено.</div>
         <div class="col">
-            <input type="text" class="form-control" placeholder="Email">
+            <input [ngClass]="{error: isSubmitted && formControls.city.errors?.required}" type="text" class="form-control" formControlName="city" placeholder="Город">
         </div>
     </div>
+
     <div class="form-row">
+        <div class="text-danger" *ngIf="isSubmitted && formControls.email.errors?.required">Это поле должно быть заполнено.</div>
         <div class="col">
-            <input type="text" class="form-control" placeholder="Phone N">
+            <input [ngClass]="{error: isSubmitted && formControls.email.errors?.required}" type="text" class="form-control" formControlName="email" placeholder="Электронная почта">
         </div>
     </div>
+
     <div class="form-row">
+        <div class="text-danger" *ngIf="isSubmitted && formControls.phoneN.errors?.required">Это поле должно быть заполнено.</div>
         <div class="col">
-            <input type="text" class="form-control" placeholder="Password">
+            <input [ngClass]="{error: isSubmitted && formControls.phoneN.errors?.required}" type="text" class="form-control" formControlName="phoneN" placeholder="Номер телефона">
         </div>
     </div>
+
     <div class="form-row">
+        <div class="text-danger" *ngIf="isSubmitted && formControls.password.errors?.required">Это поле должно быть заполнено.</div>
+        <div class="col">
+            <input [ngClass]="{error: isSubmitted && formControls.password.errors?.required}" type="text" class="form-control" formControlName="password" placeholder="Пароль">
+        </div>
+    </div>
+    <!-- <div class="form-row">
         <div class="col">
             <input type="text" class="form-control" placeholder="Password confirmation">
         </div>
-    </div>
+    </div> -->
     <div class="form-row">
+        <div class="text-danger col-sm-3" *ngIf="isSubmitted && formControls.agreement.errors?.required">Чтобы зарегестрироваться необходимо согласиться с условиями соглашения.</div>
+
         <div class="col-sm-3" style="height: 17px;"><button (click)="getTermsOfAgeement()" class="agreementButton">Условия соглашения</button></div>
         <div class="col-sm-4">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck1">
+                <input class="form-check-input" type="checkbox" id="gridCheck1" formControlName="agreement">
                 <label class="form-check-label" for="gridCheck1">
               согласен/согласна
             </label>
             </div>
         </div>
     </div>
-    <button (click)="nextPage()" type="button" class="btn btn-dark btn-lg btn-block" style="margin-top: 15px;">Дальше</button>
+    <button type="submit" class="btn btn-dark btn-lg btn-block" style="margin-top: 15px;">Дальше</button>
+    <!-- (click)="nextPage()" -->
 </form>
 
 <style>
@@ -57,5 +71,9 @@
     
     .agreementButton:hover {
         border: solid red 2px;
+    }
+    
+    .error {
+        border: red solid 1.5px;
     }
 </style>
