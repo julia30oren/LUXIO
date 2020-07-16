@@ -12,10 +12,10 @@
             <!-- for options -->
             <div class="form-group">
                 <button title="Зачем?" type="button" class="btn button-question btn-outline-dark">?</button>
-                <label>Категория:</label>
+                <label>Предприниматество:</label>
                 <div class="text-danger" *ngIf="isSubmitted && formControls.category.errors?.required">Это поле должно быть заполнено.</div>
                 <select type="text" class="form-control" formControlName="category" placeholder="category">
-                            <option value="частный предприниматель">Частный предприниматель</option>
+                            <option value="частный предприниматель">Частное</option>
                             <option value="представитель салона">Представитель салона</option>
                         </select>
             </div>

@@ -34,11 +34,11 @@
                 <h1 *ngIf="formPasswodRestore_Open">Восстановление пароля:</h1>
             </div>
             <div class="col-sm-1">
-                <button (click)="closeForm()" type="button" style="border: none;"><i class="far fa-window-close fa-2x closeButton"></i></button>
+                <button (click)="closeForm()" type="button" style="border: none; background-color: rgba(255, 255, 255, 0);"><i class="far fa-window-close fa-2x closeButton"></i></button>
             </div>
         </div>
 
-        <div class="formOne" *ngIf="formOne_Open && !formTwo_Open && !formAgreement_Open">
+        <div class="formOne" *ngIf="formOne_Open && !formTwo_Open">
             <app-reg-form-one></app-reg-form-one>
         </div>
 

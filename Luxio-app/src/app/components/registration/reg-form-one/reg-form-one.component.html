@@ -1,60 +1,65 @@
 <form class="regF" [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
 
     <div class="form-row">
-        <div class="text-danger" *ngIf="isSubmitted && formControls.first_name.errors?.required">Это поле должно быть заполнено.</div>
-        <div class="text-danger" *ngIf="isSubmitted && formControls.second_name.errors?.required">Это поле должно быть заполнено.</div>
         <div class="col">
-            <input [ngClass]="{error: isSubmitted && formControls.first_name.errors?.required}" type="text" class="form-control" formControlName="first_name" placeholder="Имя">
+            <input [ngClass]="{error: isSubmitted && formControls.first_name.errors?.required}" type="text" class="form-control" formControlName="first_name" placeholder="Имя" value="formControls.first_name">
         </div>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.first_name.errors?.required">Это поле должно быть заполнено.</div>
+
         <div class="col">
             <input [ngClass]="{error: isSubmitted && formControls.second_name.errors?.required}" type="text" class="form-control" formControlName="second_name" placeholder="Фамилия">
         </div>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.second_name.errors?.required">Это поле должно быть заполнено.</div>
+
     </div>
 
     <div class="form-row">
-        <div class="text-danger" *ngIf="isSubmitted && formControls.city.errors?.required">Это поле должно быть заполнено.</div>
         <div class="col">
             <input [ngClass]="{error: isSubmitted && formControls.city.errors?.required}" type="text" class="form-control" formControlName="city" placeholder="Город">
         </div>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.city.errors?.required">Это поле должно быть заполнено.</div>
     </div>
 
     <div class="form-row">
-        <div class="text-danger" *ngIf="isSubmitted && formControls.email.errors?.required">Это поле должно быть заполнено.</div>
         <div class="col">
             <input [ngClass]="{error: isSubmitted && formControls.email.errors?.required}" type="text" class="form-control" formControlName="email" placeholder="Электронная почта">
         </div>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.email.errors?.required">Это поле должно быть заполнено.</div>
     </div>
 
     <div class="form-row">
-        <div class="text-danger" *ngIf="isSubmitted && formControls.phoneN.errors?.required">Это поле должно быть заполнено.</div>
         <div class="col">
             <input [ngClass]="{error: isSubmitted && formControls.phoneN.errors?.required}" type="text" class="form-control" formControlName="phoneN" placeholder="Номер телефона">
         </div>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.phoneN.errors?.required">Это поле должно быть заполнено.</div>
     </div>
 
     <div class="form-row">
+        <div class="col">
+            <input [ngClass]="{error: isSubmitted && formControls.password.errors?.required}" (change)="password1_change($event.target.value)" type="password" class="form-control" formControlName="password" placeholder="Пароль">
+        </div>
         <div class="text-danger" *ngIf="isSubmitted && formControls.password.errors?.required">Это поле должно быть заполнено.</div>
-        <div class="col">
-            <input [ngClass]="{error: isSubmitted && formControls.password.errors?.required}" type="text" class="form-control" formControlName="password" placeholder="Пароль">
-        </div>
     </div>
-    <!-- <div class="form-row">
-        <div class="col">
-            <input type="text" class="form-control" placeholder="Password confirmation">
-        </div>
-    </div> -->
+
     <div class="form-row">
-        <div class="text-danger col-sm-3" *ngIf="isSubmitted && formControls.agreement.errors?.required">Чтобы зарегестрироваться необходимо согласиться с условиями соглашения.</div>
+        <div class="col">
+            <input type="password" [ngClass]="{error: isSubmitted && !password2}" (change)="password2_change($event.target.value)" class="form-control" placeholder="Password confirmation">
+        </div>
+        <div class="text-danger" *ngIf="password2 === false">Пароли не совпвдают.</div>
+    </div>
+
+    <div class="form-row">
 
         <div class="col-sm-3" style="height: 17px;"><button (click)="getTermsOfAgeement()" class="agreementButton">Условия соглашения</button></div>
         <div class="col-sm-4">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck1" formControlName="agreement">
+                <input class="form-check-input" [checked]="User_agreed" (change)="terms_check($event.target.checked)" type="checkbox" id="gridCheck1" formControlName="agreement">
                 <label class="form-check-label" for="gridCheck1">
               согласен/согласна
             </label>
             </div>
         </div>
+        <div class="text-danger col-sm-5" *ngIf="User_agreed === false">Чтобы зарегестрироваться необходимо согласиться с условиями соглашения.</div>
     </div>
     <button type="submit" class="btn btn-dark btn-lg btn-block" style="margin-top: 15px;">Дальше</button>
     <!-- (click)="nextPage()" -->
@@ -70,7 +75,7 @@
     }
     
     .agreementButton:hover {
-        border: solid red 2px;
+        border: green solid 2px;
     }
     
     .error {

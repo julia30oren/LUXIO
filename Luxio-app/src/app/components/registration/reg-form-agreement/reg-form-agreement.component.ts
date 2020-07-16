@@ -16,7 +16,7 @@ export class RegFormAgreementComponent implements OnInit {
   }
 
   agree() {
-    this.regSevice.close_AgreementPage();
+    this.regSevice.user_agree_with_terms(true);
   }
 
   disagree() {

@@ -6,8 +6,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class RegistrationService {
 
-  // private cart = localStorage.getItem('u_6946123_c') ? JSON.parse(localStorage.getItem('u_6946123_c')) : [];
-
   private regestrationForm = new BehaviorSubject<boolean>(false);
   public regestrationForm_from_service = this.regestrationForm.asObservable();
 
@@ -19,6 +17,9 @@ export class RegistrationService {
 
   private regestration_formAgreement = new BehaviorSubject<boolean>(false);
   public regestration_formAgreement_from_service = this.regestration_formAgreement.asObservable();
+
+  private conditions_of_use = new BehaviorSubject<boolean>(undefined);
+  public conditions_of_use_from_service = this.conditions_of_use.asObservable();
 
   private login_form = new BehaviorSubject<boolean>(false);
   public login_form_from_service = this.login_form.asObservable();
@@ -38,8 +39,8 @@ export class RegistrationService {
     this.login_form.next(false);
     this.regestration_formTwo.next(false);
     this.regestration_formOne.next(true);
-
   }
+
 
   Page2_RegistrationForm() {
     this.passwordRestore_form.next(false);
@@ -52,6 +53,11 @@ export class RegistrationService {
     this.regestration_formAgreement.next(true);
   }
 
+  user_agree_with_terms(yesORno: boolean) {
+    this.conditions_of_use.next(yesORno);
+    this.close_AgreementPage();
+  }
+
   close_AgreementPage() {
     this.regestration_formAgreement.next(false);
     this.Page1_RegistrationForm();
@@ -61,6 +67,7 @@ export class RegistrationService {
     this.regestrationForm.next(true);
     this.loginPage();
   }
+
   loginPage() {
     this.regestration_formOne.next(false);
     this.regestration_formTwo.next(false);

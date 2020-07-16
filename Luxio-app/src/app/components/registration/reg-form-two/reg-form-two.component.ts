@@ -17,7 +17,6 @@ export class RegFormTwoComponent implements OnInit {
   isSubmitted: boolean;
 
   formTemplate = new FormGroup({
-    name: new FormControl('', Validators.required),
     category: new FormControl(''),
     imageURL: new FormControl('', Validators.required)
 
@@ -49,7 +48,9 @@ export class RegFormTwoComponent implements OnInit {
   onSubmit(formValue) {
     console.log('submit');
     this.isSubmitted = true;
-    console.log(formValue);
+    var get_id = localStorage.getItem('temp_u');
+    formValue.id = JSON.parse(get_id).id;
+    // console.log(formValue);
 
     if (this.formTemplate.valid) {
       var filePath = `certificates/certificate:(${formValue.name})_${this.selectedImg.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`
@@ -76,7 +77,6 @@ export class RegFormTwoComponent implements OnInit {
   resetForm() {
     this.formTemplate.reset();
     this.formTemplate.setValue({
-      name: '',
       imageURL: '',
       category: ''
     });
