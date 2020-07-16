@@ -2,16 +2,24 @@ const express = require('express');
 const router = express.Router();
 // const passwordValidation = require('./validSchema');
 // const bcrypt = require('bcryptjs');
-// const pool = require('../DB/pool')
+const pool = require('../DB/pool')
 
 // router.use(passwordValidation);
 
-router.post("/registration", async(req, res, next) => {
-    console.log(req.body);
-    // const { users_email, password, users_first_name, users_last_name } = req.body;
-    // // console.log(users_email, password, users_first_name, users_last_name)
+router.get("/users", async(req, res, next) => {
+    // console.log('get')
+    const users_list = await pool.execute(getUsers());
+    const resoult = users_list[0];
+    res.json(resoult);
+})
 
-    // const ifUserExist_res = await pool.execute(ifUserExist(), [users_email]);
+router.post("/registration", async(req, res, next) => {
+    // console.log(req.body);
+    const { id, f_name, s_name, phone_number, city, email, cr_pass, category, certificate_link } = req.body;
+    // console.log(id, f_name, s_name, phone_number, city, email, cr_pass, category, certificate_link);
+
+    const save_user = await pool.execute(addUserTo_DB(), [id, f_name, s_name, phone_number, city, email, cr_pass, category, certificate_link]);
+    console.log(save_user);
     // if (ifUserExist_res[0][0]) {
     //     return res.json({ message: 'user allready exist' });
     // } else {
@@ -22,8 +30,8 @@ router.post("/registration", async(req, res, next) => {
     // }
 })
 
-function ifUserExist() {
-    return `SELECT * FROM vacations_project.users WHERE users_email = ?  ;`
+function getUsers() {
+    return `SELECT * FROM luxio_db.users_inf;`
 }
 
 function addUserTo_DB() {
