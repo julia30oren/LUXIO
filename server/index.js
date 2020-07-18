@@ -16,8 +16,6 @@ ifEnvVarieblesExist(["PORT", "HOST", "USER", "PASSWORD", "DATABASE", "DB_PORT"])
 
 
 app.use(cors());
-// app.use(express.json());
-
 app.use(bodyParser.json());
 
 // app.use(require('./routes/get'))
@@ -25,6 +23,7 @@ app.use(bodyParser.json());
 // app.use(require('./routes/login'))
 app.use('/register', require('./routes/register'));
 // app.use(require('./routes/vacations'))
+
 
 app.listen(process.env.PORT, (err) => {
     if (err) {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RegistrationService } from './services/registation/registration.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SaveUserService } from './services/saveUser/save-user.service';
-
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +25,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private regService: RegistrationService,
-    private usersServ: SaveUserService
+    private usersServ: SaveUserService,
+    private http_client: HttpClient
   ) { }
 
   ngOnInit() {
@@ -56,6 +57,7 @@ export class AppComponent implements OnInit {
   }
 
   getUsers() {
+    console.log('click from user');
     this.usersServ.getUsers_fromDB();
   }
 

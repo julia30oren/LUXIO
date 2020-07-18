@@ -19,17 +19,15 @@ export class ImageService {
 
   insertImageDetails(imageDetails) {
     // SAVING TO FIREBASE ---
+    // console.log(imageDetails);
     this.imageDetailList.push(imageDetails);
 
     // SAVING TO DB ---
     var temp_det = localStorage.getItem('temp_u');
     var user_det = JSON.parse(temp_det);
-    var temp_det2 = localStorage.getItem('temp_u2');
-    var user_det2 = JSON.parse(temp_det2);
-    // console.log(user_det2.category, user_det2.imageURL);
-    user_det.category = user_det2.category;
-    user_det.certificate_link = user_det2.imageURL;
-    // console.log(user_det);
+    user_det.category = imageDetails.category;
+    user_det.certificate_link = imageDetails.imageURL;
     this.db_Servise.saveUser_toDB(user_det);
+    localStorage.removeItem('temp_u');
   }
 }

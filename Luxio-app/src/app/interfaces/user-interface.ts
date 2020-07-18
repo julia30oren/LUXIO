@@ -1,14 +1,15 @@
 export interface User_Interface {
-    first_name: string,
-    second_name: string,
-    id: string,
-    email: string,
-    password: string,
-    city: string,
-    phoneN: string,
-    category: string,
-    certificate_link: string,
-    agreement: boolean
+    first_name: string;
+    second_name: string;
+    id: string;
+    email: string;
+    password: string;
+    city: string;
+    phoneN: string;
+    category: string;
+    certificate_link: string;
+    agreement: boolean;
+    handleError: any
 }
 
 // id, f_name, s_name, phone_number, city, email, cr_pass, category, certificate_link
