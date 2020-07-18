@@ -48,6 +48,7 @@ export class RegFormOneComponent implements OnInit {
     if (this.formTemplate.valid) {
       if (this.User_agreed) {
         formValue.id = UUID.UUID();
+        formValue.agreement = this.User_agreed;
         // console.log('can go', formValue);
         localStorage.setItem('temp_u', JSON.stringify(formValue));
         this.nextPage();

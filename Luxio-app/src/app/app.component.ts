@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistrationService } from './services/registation/registration.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { SaveUserService } from './services/saveUser/save-user.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class AppComponent implements OnInit {
   });
 
   constructor(
-    private regService: RegistrationService
+    private regService: RegistrationService,
+    private usersServ: SaveUserService
   ) { }
 
   ngOnInit() {
@@ -51,6 +53,10 @@ export class AppComponent implements OnInit {
       .subscribe(data => {
         this.formPasswodRestore_Open = data;
       });
+  }
+
+  getUsers() {
+    this.usersServ.getUsers_fromDB();
   }
 
   openForm() {

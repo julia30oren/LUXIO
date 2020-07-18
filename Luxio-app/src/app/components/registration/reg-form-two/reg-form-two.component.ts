@@ -62,6 +62,7 @@ export class RegFormTwoComponent implements OnInit {
           fileRef.getDownloadURL()
             .subscribe((url) => {
               formValue['imageURL'] = url;
+              localStorage.setItem('temp_u2', JSON.stringify(formValue));
               this.cert_service.insertImageDetails(formValue);
               this.resetForm();
             })

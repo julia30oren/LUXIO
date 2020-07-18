@@ -13,13 +13,14 @@ router.get("/users", async(req, res, next) => {
     res.json(resoult);
 })
 
-router.post("/registration", async(req, res, next) => {
-    // console.log(req.body);
-    const { id, f_name, s_name, phone_number, city, email, cr_pass, category, certificate_link } = req.body;
-    // console.log(id, f_name, s_name, phone_number, city, email, cr_pass, category, certificate_link);
+router.post("/save-new", async(req, res) => {
+    console.log('go')
+    console.log(req.body);
+    // const { id, first_name, second_name, phoneN, city, email, password, category, certificate_link } = req.body;
+    // console.log(id, first_name, second_name, phoneN, city, email, password, category, certificate_link);
 
-    const save_user = await pool.execute(addUserTo_DB(), [id, f_name, s_name, phone_number, city, email, cr_pass, category, certificate_link]);
-    console.log(save_user);
+    // const save_user = await pool.execute(addUserTo_DB(), [id, first_name, second_name, phone_number, city, email, password, category, certificate_link]);
+    // console.log(save_user);
     // if (ifUserExist_res[0][0]) {
     //     return res.json({ message: 'user allready exist' });
     // } else {

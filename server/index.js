@@ -12,16 +12,18 @@ function ifEnvVarieblesExist(params) {
         console.log(`${missingPart} --is missing in .env`)
     } else return;
 }
-ifEnvVarieblesExist(["PORT", "HOST", "USER", "PASSWORD", "DATABASE", "DB_PORT", "SECRET", "ADMIN_SECRET"]);
+ifEnvVarieblesExist(["PORT", "HOST", "USER", "PASSWORD", "DATABASE", "DB_PORT"]);
 
 
 app.use(cors());
+// app.use(express.json());
+
 app.use(bodyParser.json());
 
 // app.use(require('./routes/get'))
 // app.use(require('./routes/verification'))
 // app.use(require('./routes/login'))
-app.use(require('./routes/register'));
+app.use('/register', require('./routes/register'));
 // app.use(require('./routes/vacations'))
 
 app.listen(process.env.PORT, (err) => {

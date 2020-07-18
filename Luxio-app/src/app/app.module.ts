@@ -7,8 +7,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
-// import { CheckboxModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
-// import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CrtificatesListComponent } from './components/certificates/crtificates-list/crtificates-list.component';
@@ -49,12 +48,11 @@ import { PasswordRestoreFormComponent } from './components/registration/password
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    HttpClientModule,
     ReactiveFormsModule,
-    // MDBBootstrapModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
-  // schemas: [NO_ERRORS_SCHEMA]
 
 })
 export class AppModule { }
