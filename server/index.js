@@ -18,11 +18,11 @@ ifEnvVarieblesExist(["PORT", "HOST", "USER", "PASSWORD", "DATABASE", "DB_PORT"])
 app.use(cors());
 app.use(bodyParser.json());
 
-// app.use(require('./routes/get'))
-// app.use(require('./routes/verification'))
-// app.use(require('./routes/login'))
+// app.use(require('./routes/get'));
+// app.use(require('./routes/verification'));
+// app.use(require('./routes/login'));
 app.use('/register', require('./routes/register'));
-// app.use(require('./routes/vacations'))
+app.use('/shop', require('./routes/products'));
 
 
 app.listen(process.env.PORT, (err) => {
