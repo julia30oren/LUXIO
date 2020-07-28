@@ -15,6 +15,12 @@ export class ShopService {
   private shop_products_sorted = new BehaviorSubject<Array<any>>([]);
   public shop_products_sorted_from_service = this.shop_products_sorted.asObservable();
 
+  private prod_selected = new BehaviorSubject<Array<any>>([]);
+  public prod_selected_from_service = this.prod_selected.asObservable();
+
+  private responce_fromDB = new BehaviorSubject<Array<any>>([]);
+  public responce_fromDB_from_service = this.responce_fromDB.asObservable();
+
   constructor(
     private http: HttpClient
   ) { }
@@ -26,9 +32,21 @@ export class ShopService {
     });
   }
 
+  saveProduct_toDB(prod: object) {
+    return this.http.post(`${this.DB_url}/shop/save`, prod).subscribe(res => {
+      this.responce_fromDB.next([res]);
+      // console.log(this.shop_products);
+    });
+  }
+
   getProducts_sorted(sortedProds: Array<any>) {
     // console.log(sortedProds);
     this.shop_products_sorted.next([sortedProds]);
+  }
+
+  selectProd(prod: object) {
+    // console.log(prod);
+    this.prod_selected.next([prod]);
   }
 
 }

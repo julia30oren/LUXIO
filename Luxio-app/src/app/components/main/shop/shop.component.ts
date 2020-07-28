@@ -14,16 +14,25 @@ export class ShopComponent implements OnInit {
 
   public shop: any[];
   public sorted: any[];
+  public selectedProd: object;
 
   ngOnInit() {
     this.shop_service.getProducts_fromDB();
+
     this.shop_service.shop_products_from_service
       .subscribe(date => {
         this.shop = date[0];
         // this.shop_service.getProducts_sorted(this.shop);
       });
+
     this.shop_service.shop_products_sorted_from_service
       .subscribe(date => this.sorted = date[0]);
+
+    this.shop_service.prod_selected_from_service
+      .subscribe(date => {
+        this.selectedProd = date;
+        console.log(this.selectedProd);
+      });
   }
 
   getSorted(a, b, c, d) {
@@ -39,6 +48,15 @@ export class ShopComponent implements OnInit {
 
   getAll() {
     this.shop_service.getProducts_sorted(this.shop);
+  }
+
+  select(id: number) {
+    // console.log(id);
+    this.shop.forEach(element => {
+      if (element.burcode_id === id) {
+        this.shop_service.selectProd(element);
+      }
+    });
   }
 
 }

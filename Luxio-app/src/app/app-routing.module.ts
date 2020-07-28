@@ -8,6 +8,7 @@ import { ContactsComponent } from './components/main/contacts/contacts.component
 import { CoursesComponent } from './components/main/courses/courses.component';
 import { SignInComponent } from './components/main/sign-in/sign-in.component';
 import { ShopComponent } from './components/main/shop/shop.component';
+import { AdminShopComponent } from './components/admin/admin-shop/admin-shop.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'welcome', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
     { path: 'contacts', component: ContactsComponent },
 
     { path: "admin/certificates", component: CrtificatesListComponent },
+    { path: "admin/shop", component: AdminShopComponent },
 
     { path: '**', component: PageNotFoundComponent }
 ];
@@ -37,5 +39,7 @@ export const routingComponents = [
     CoursesComponent,
     ContactsComponent,
     CrtificatesListComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SignInComponent,
+    AdminShopComponent
 ]

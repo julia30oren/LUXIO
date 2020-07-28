@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
@@ -23,6 +23,7 @@ import { RegFormTwoComponent } from './components/registration/reg-form-two/reg-
 import { RegFormAgreementComponent } from './components/registration/reg-form-agreement/reg-form-agreement.component';
 import { LogFormComponent } from './components/registration/log-form/log-form.component';
 import { PasswordRestoreFormComponent } from './components/registration/password-restore-form/password-restore-form.component';
+import { AdminShopComponent } from './components/admin/admin-shop/admin-shop.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,8 @@ import { PasswordRestoreFormComponent } from './components/registration/password
     RegFormAgreementComponent,
     LogFormComponent,
     PasswordRestoreFormComponent,
+    AdminShopComponent,
+    routingComponents
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,10 @@
 const express = require('express');
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
+const mongoose = require('mongoose');
+
 const cors = require('cors');
-require('dotenv').config()
-    // const logger = require("./utils/logger");
+require('dotenv').config();
+// const logger = require("./utils/logger");
 const app = express();
 
 function ifEnvVarieblesExist(params) {
@@ -12,17 +14,30 @@ function ifEnvVarieblesExist(params) {
         console.log(`${missingPart} --is missing in .env`)
     } else return;
 }
-ifEnvVarieblesExist(["PORT", "HOST", "USER", "PASSWORD", "DATABASE", "DB_PORT"]);
+ifEnvVarieblesExist(["PORT", "HOST", "USER", "PASSWORD", "mongo_DATABASE", "mySgl_DATABASE", "DB_PORT"]);
 
 
-app.use(cors());
-app.use(bodyParser.json());
+mongoose.connect(process.env.mongo_DATABASE, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+        console.log(`DB conected to ${process.env.mongo_DATABASE}`)
+    })
+    .then(() => { console.log('all good') })
+    .catch(err => console.log(err));
+const db = mongoose.connection;
+db.on('error', (error) => {
+    console.log('!!!!!! ', error);
+    // logger.error(`${now} - ${error}`);
+})
+db.once('open', () => {
+    console.log('Connected to DB');
+    // logger.info(`${now} - Connected to MongoDB`);
+})
 
-// app.use(require('./routes/get'));
-// app.use(require('./routes/verification'));
-// app.use(require('./routes/login'));
+app.use(cors({ origin: 'http://localhost:4200' }));
+
+app.use(express.json());
+
 app.use('/register', require('./routes/register'));
-app.use('/shop', require('./routes/products'));
+app.use('/shop', require('./routes/products/products'));
 
 
 app.listen(process.env.PORT, (err) => {

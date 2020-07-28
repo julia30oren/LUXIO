@@ -1,0 +1,121 @@
+<div>
+    <div *ngIf="!new_form_open">
+        <button class="btn btn-secondary btn-lg btn-block" type="button" (click)="openForm()">create / modify product</button>
+    </div>
+    <div class="form" *ngIf="new_form_open">
+        <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+            <!-- <p>{{selectedProd | json}}</p> -->
+            <div class="col-auto my-1">
+                <button type="button" class="btn btn-primary" (click)="openForm()">Close</button>
+            </div>
+
+            <div class="form-row align-items-center">
+                <div class="col-sm-4 my-1">
+                    <label for="idInput">ID:</label>
+                    <input formControlName="burcode_id" [ngClass]="{error: isSubmitted && formControls.burcode_id.errors?.required}" placeholder="burcode_id" type="text" class="form-control" value={{this.selectedProd[0].burcode_id}} placeholder="Last 3 numbers on barcode">
+                </div>
+
+                <div class="col-sm-4 my-1">
+                    <label for="nameInput">Name:</label>
+                    <input formControlName="name" [ngClass]="{error: isSubmitted && formControls.name.errors?.required}" placeholder="name" type="text" #name class="form-control" value={{this.selectedProd[0].name}} id="nameInput" placeholder="Product name">
+                </div>
+
+                <div class="col-sm-4 my-1">
+                    <label for="classSelect">Class:</label>
+                    <select formControlName="prod_class" [ngClass]="{error: isSubmitted && formControls.prod_class.errors?.required}" placeholder="prod_class" value={{this.selectedProd[0].prod_class}} class="custom-select" id="classSelect" #prod_class>
+                        <option value='' selected>Not seleced...</option>
+                        <option value="basics">Bases / Tops / BUILD</option>
+                        <option value="Luxio">Luxio GEL</option>
+                        <option value="Options">Options</option>
+                        <option value="Gel Play">Gel Play</option>
+                        <option value="Hard GEL">Hard GEL</option>
+                        <option value="materials">Technical materials</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-row align-items-center">
+                <div class="col-sm-4 my-1">
+                    <label for="colorInput">Color:</label>
+                    <select formControlName="color" placeholder="color" value={{this.selectedProd[0].color}} class="custom-select" id="colorInput" #color>
+                  <option value="" selected>Not seleced...</option>
+                  <option value='{ "_eng":"white", "_iv":"לבן", "_rus":"белый"}'>white</option>
+                  <option value='{ "_eng":"black", "_iv":"שחןר", "_rus":"чёрный"}'>black</option>
+                  <option value='{ "_eng":"pink", "_iv":"ורוד", "_rus":"розовый"}' style="color:pink;">pink</option>
+                  <option value='{ "_eng":"red", "_iv":"אדום", "_rus":"красный"}' style="color:red;">red</option>
+                  <option value='{ "_eng":"оrange", "_iv":"כתום", "_rus":"оранжевый"}' style="color:orange;">оrange</option>
+                  <option value='{ "_eng":"yellow", "_iv":"צהוב", "_rus":"жёлтый"}' style="color: yellow;">yellow</option>
+                  <option value='{ "_eng":"green", "_iv":"ירוק", "_rus":"зелёный"}' style="color: green;">green</option>
+                  <option value='{ "_eng":"blue", "_iv":"כחול", "_rus":"синий"}' style="color: blue;">blue</option>
+                  <option value='{ "_eng":"violet", "_iv":"סגול", "_rus":"фиолетовый"}' style="color: rgb(139, 0, 139);">violet</option>
+                  <option value='{ "_eng":"brown", "_iv":"חום", "_rus":"коричневый"}' style="color: brown;">brown</option>
+                  <option value='{ "_eng":"gray", "_iv":"אפור", "_rus":"серый"}' style="color: gray;">gray</option>
+                </select>
+                </div>
+
+                <div class="col-sm-4 my-1">
+                    <label for="tintSelect">Tint:</label>
+                    <select formControlName="tint" placeholder="tint" value={{this.selectedProd[0].tint}} class="custom-select" id="tintSelect" #tint>
+                  <option value="" selected>Not seleced...</option>
+                  <option value='{ "_eng":"light", "_iv":"בהיר", "_rus":"светлый"}'>light</option>
+                  <option value='{ "_eng":"dark", "_iv":"כהה", "_rus":"темный"}'>dark</option>
+                  <option value='{ "_eng":"bright", "_iv":"בהיר", "_rus":"яркий"}'>bright</option>
+                </select>
+                </div>
+
+                <div class="col-sm-4 my-1">
+                    <label for="transparencySelect">Transparency:</label>
+                    <select formControlName="transparency" value={{this.selectedProd[0].transparency}} placeholder="transparency" class="custom-select" id="transparencySelect" #transparency>
+                  <option value="" selected>Select...</option>
+                  <option value='{ "_eng":"see-through", "_iv":"שקוף", "_rus":"прозрачный"}'>see-through</option>
+                  <option value='{ "_eng":"dense", "_iv":"אטום", "_rus":"непрозрачный"}'>dense</option>
+                </select>
+                </div>
+            </div>
+
+            <div class="form-row align-items-center">
+                <div class="col-sm-4 my-1">
+                    <label for="priceInput">Price:</label>
+                    <input formControlName="price" value={{this.selectedProd[0].price}} [ngClass]="{error: isSubmitted && formControls.price.errors?.required}" placeholder="price" type="text" class="form-control" id="priceInput" placeholder="&#8362;" #price>
+                </div>
+
+                <div class="col-sm-4 my-1">
+                    <label for="labelSelect">Label:</label>
+                    <select formControlName="label" value={{this.selectedProd[0].label}} placeholder="label" class="custom-select" id="labelSelect" #label>
+                  <option value="" selected>Not seleced...</option>
+                  <option value='{ "_eng":"New", "_iv":"חדש", "_rus":"Новый"}'>New</option>
+                  <option value='{ "_eng":"Special offer", "_iv":"הצעה מיוחדת", "_rus":"Специальное предложение"}'>Special offer</option>
+                  <option value='{ "_eng":"Best seller", "_iv":"רב מכר", "_rus":"Бестселлер"}'>Best seller</option>
+                  <option value='{ "_eng":"Out of stock", "_iv":"נגמר המלאי", "_rus":"Распродано"}'>Out of stock</option>
+                  <option value='{ "_eng":"Coming soon", "_iv":"בקרוב", "_rus":"Скоро будет"}'>Coming soon</option>
+                </select>
+                </div>
+
+                <div class="col-sm-4 my-1">
+                    <label>Image link:</label>
+                    <input formControlName="img_link" value={{this.selectedProd[0].img_link}} placeholder="Iamge link" type="text" class="form-control" #img_link>
+                </div>
+
+            </div>
+
+            <div class="col-auto my-1">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <app-shop></app-shop>
+</div>
+
+<style>
+    .form {
+        border: black solid 2px;
+        padding: 1%;
+    }
+    
+    .error {
+        border: red solid 1.5px;
+    }
+</style>

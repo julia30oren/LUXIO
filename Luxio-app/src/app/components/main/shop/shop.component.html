@@ -68,7 +68,7 @@
 </div>
 
 <div class="shopComp" *ngIf="shop && !sorted">
-    <div *ngFor="let item of shop" class="card" style="width: 18rem;" id={{item.id}}>
+    <div *ngFor="let item of shop" class="card" style="width: 18rem; height: 18rem;" id={{item.burcode_id}} (click)="select(item.burcode_id)">
         <div class="buttons">
             <button class="favButton"><i class="fas fa-heart fa-2x"></i></button>
             <button class="addButton"> Добывить <i class="fas fa-shopping-cart fa-1x"></i></button>
@@ -79,7 +79,7 @@
 </div>
 
 <div class="shopComp" *ngIf="sorted">
-    <div *ngFor="let item of sorted" class="card" style="width: 18rem; height: 18rem;" id={{item.id}}>
+    <div *ngFor="let item of sorted" class="card" style="width: 18rem; height: 18rem;" id={{item.burcode_id}} (click)="select(item.burcode_id)">
         <div class="buttons">
             <button class="favButton"><i class="fas fa-heart fa-2x"></i></button>
             <button class="addButton"> Добывить <i class="fas fa-shopping-cart fa-1x"></i></button>
