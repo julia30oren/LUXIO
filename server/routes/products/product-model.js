@@ -23,51 +23,26 @@ const ProductSchema = new Schema({
         require: true
     },
     color: {
-        _eng: {
-            type: String
-        },
-        _iv: {
-            type: String
-        },
-        _rus: {
-            type: String
-        }
+        type: String
     },
     tint: {
-        _eng: {
-            type: String
-        },
-        _iv: {
-            type: String
-        },
-        _rus: {
-            type: String
-        }
+        type: String
     },
     transparency: {
-        _eng: {
-            type: String
-        },
-        _iv: {
-            type: String
-        },
-        _rus: {
-            type: String
-        }
+        type: String
     },
     label: {
-        _eng: {
-            type: String
-        },
-        _iv: {
-            type: String
-        },
-        _rus: {
-            type: String
-        }
+        type: String
+    },
+    coment_eng: {
+        type: String
+    },
+    coment_iv: {
+        type: String
+    },
+    coment_rus: {
+        type: String
     }
 });
-
-
 
 module.exports = mongoose.model('products', ProductSchema);

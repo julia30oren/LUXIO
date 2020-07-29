@@ -35,6 +35,15 @@ export class ShopService {
   saveProduct_toDB(prod: object) {
     return this.http.post(`${this.DB_url}/shop/save`, prod).subscribe(res => {
       this.responce_fromDB.next([res]);
+      this.getProducts_fromDB();
+      // console.log(this.shop_products);
+    });
+  }
+
+  removeProduct_fromDB(id: number) {
+    return this.http.get(`${this.DB_url}/shop/remove/${id}`).subscribe(res => {
+      this.shop_products.next([res]);
+      this.getProducts_fromDB();
       // console.log(this.shop_products);
     });
   }

@@ -1,65 +1,62 @@
 <!-- <p>{{ shop | json}}</p> -->
 <!-- <p>{{ sorted| json}}</p> -->
+
 <div class="sort">
     <form>
         <div class="form-row">
-            <div class="col-auto my-1">
-                <button type="submit" class="btn btn-primary" (click)="getAll()">Всё</button>
+            <div class="my-1">
+                <button type="submit" class="btn btn-primary" (click)="getAll()">All</button>
             </div>
 
-            <div class="col-auto my-1">
-                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" #prod_class>
-              <option value='' selected>Категория...</option>
-              <option value="bases">БАЗЫ / ТОПЫ / BUILD</option>
-              <option value="Luxio">Luxio GEL</option>
-              <option value="Options">Options</option>
-              <option value="Gel Play">Gel Play</option>
-              <option value="Hard GEL">Hard GEL</option>
-              <option value="materials">Технические материалы</option>
-              <option value="accessories">Аксессуары</option>
+            <div class="my-1">
+                <select class="custom-select mr-sm-2" #prod_class>
+                    <option value='' selected>Not seleced...</option>
+                    <option value="basics">Bases / Tops / BUILD</option>
+                    <option value="Luxio">Luxio GEL</option>
+                    <option value="Options">Options</option>
+                    <option value="Gel Play">Gel Play</option>
+                    <option value="Hard GEL">Hard GEL</option>
+                    <option value="materials">Technical materials</option>
+                    <option value="accessories">Accessories</option>
             </select>
             </div>
 
-            <div class="col-auto my-1">
-                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" #color>
-              <option value="" selected>Цвет...</option>
-              <option value="белый">белый</option>
-              <option value="чёрный">чёрный</option>
-              <option value="розовый">розовый</option>
-              <option value="красный">красный</option>
-              <option value="оранжевый">оранжевый</option>
-              <option value="жёлтый">жёлтый</option>
-              <option value="зелёный">зелёный</option>
-              <option value="синий">синий</option>
-              <option value="фиолетовый">фиолетовый</option>
-              <option value="коричневый">коричневый</option>
-              <option value="серый">серый</option>
+            <div class="my-1">
+                <select class="custom-select mr-sm-2" #color>
+                    <option value='' selected>Not seleced...</option>
+                    <option value='white'>white</option>
+                    <option value='black'>black</option>
+                    <option value='pink'>pink</option>
+                    <option value='red'>red</option>
+                    <option value='оrange'>оrange</option>
+                    <option value='yellow'>yellow</option>
+                    <option value='green'>green</option>
+                    <option value='blue'>blue</option>
+                    <option value='violet'>violet</option>
+                    <option value='brown'>brown</option>
+                    <option value='gray'>gray</option>
             </select>
             </div>
 
-            <div class="col-auto my-1">
-                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" #tint>
-              <option value="" selected>Оттенок...</option>
-              <option value="светлый">светлый</option>
-              <option value="тёмный">тёмный</option>
-              <option value="яркий">яркий</option>
+            <div class="my-1">
+                <select class="custom-select mr-sm-2" #tint>
+                    <option value="" selected>Not seleced...</option>
+                    <option value='light'>light</option>
+                    <option value='dark'>dark</option>
+                    <option value='bright'>bright</option>
             </select>
             </div>
 
-            <div class="col-auto my-1">
-                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" #transparency>
-              <option value="" selected>Прозрачность...</option>
-              <option value="прозрачный">прозрачный</option>
-              <option value="непроглядный">непрозрачный</option>
+            <div class="my-1">
+                <select class="custom-select mr-sm-2" #transparency>
+                    <option value="" selected>Not seleced...</option>
+                    <option value='see-through'>see-through</option>
+                    <option value='dense'>dense</option>
             </select>
             </div>
 
-            <div class="col-auto my-1">
-                <button type="submit" class="btn btn-primary" (click)="getSorted(prod_class.value, color.value, tint.value, transparency.value)">Сортировать</button>
+            <div class="my-1">
+                <button type="submit" class="btn btn-primary" (click)="getSorted(prod_class.value, color.value, tint.value, transparency.value)">Sort</button>
             </div>
 
 
@@ -68,34 +65,34 @@
 </div>
 
 <div class="shopComp" *ngIf="shop && !sorted">
-    <div *ngFor="let item of shop" class="card" style="width: 18rem; height: 18rem;" id={{item.burcode_id}} (click)="select(item.burcode_id)">
+    <div *ngFor="let item of shop" class="card" style="width: 18rem; height: 18rem;" id={{item.burcode_id}}>
         <div class="buttons">
-            <button class="favButton"><i class="fas fa-heart fa-2x"></i></button>
-            <button class="addButton"> Добывить <i class="fas fa-shopping-cart fa-1x"></i></button>
+            <button class="bt" (click)="toCart(item._id)"><i class="fab fa-shopify fa-3x"></i></button>
+            <button class="bt" (click)="toFav(item._id)"><i class="fas fa-heart fa-2x"></i></button>
         </div>
-        <img src={{item.img_link}} class="card-img-top" alt="...">
-        <h5 class="card-title" style="text-align: center;">{{item.price}} &#8362;</h5>
+        <img src={{item.img_link}} class="card-img-top" alt="..." (click)="select(item.burcode_id)" />
+        <div class="cardInfo">
+            <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
+            <h5>{{item.prod_class}} {{item.name}}</h5>
+        </div>
     </div>
 </div>
 
 <div class="shopComp" *ngIf="sorted">
     <div *ngFor="let item of sorted" class="card" style="width: 18rem; height: 18rem;" id={{item.burcode_id}} (click)="select(item.burcode_id)">
         <div class="buttons">
-            <button class="favButton"><i class="fas fa-heart fa-2x"></i></button>
-            <button class="addButton"> Добывить <i class="fas fa-shopping-cart fa-1x"></i></button>
+            <button class="bt"><i class="fab fa-shopify fa-3x"></i></button>
+            <button class="bt"><i class="fas fa-heart fa-2x"></i></button>
         </div>
-        <img src={{item.img_link}} class="card-img-top" alt="...">
-        <h5 class="card-title" style="text-align: center;">{{item.price}} &#8362;</h5>
+        <img src={{item.img_link}} class="card-img-top" alt="..." />
+        <div class="cardInfo">
+            <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
+            <h5>{{item.prod_class}} {{item.name}}</h5>
+        </div>
     </div>
 </div>
 
 <style>
-    .sort {
-        width: 97%;
-        display: flex;
-        justify-content: center;
-    }
-    
     .shopComp {
         display: flex;
         height: 600px;
@@ -103,35 +100,43 @@
         align-content: space-between;
     }
     
+    .form-row {
+        border: black 2px solid;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        width: 100%;
+    }
+    
     .card {
         margin: 1%;
         background-color: rgba(0, 0, 0, 0);
+    }
+    
+    .cardInfo {
+        position: absolute;
+        bottom: 10px;
+        right: 15px;
+        z-index: 1;
     }
     
     .buttons {
         width: 100%;
         position: absolute;
         display: flex;
-        justify-content: center;
+        justify-content: left;
     }
     
-    .favButton {
-        width: 20%;
-        margin: 2%;
+    .bt {
+        margin-left: 1%;
+        margin-top: 2%;
         border: none;
-        color: gray;
+        color: rgba(128, 128, 128, 0.493);
         background-color: rgba(128, 128, 128, 0);
     }
     
-    .favButton :hover {
-        color: brown;
-    }
-    
-    .addButton {
-        width: 70%;
-        margin: 2%;
-        border: none;
-        background-color: gray;
+    .bt:hover {
+        color: rgba(126, 3, 3, 0.8);
     }
     
     .card-title {

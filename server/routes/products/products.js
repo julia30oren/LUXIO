@@ -12,29 +12,31 @@ router.get('/', async(req, res) => {
     }
 });
 
-router.post("/save", getByBurcode, async(req, res, next) => {
+router.post("/save", async(req, res, next) => {
     // console.log(req.body);
+    const newProduct = new ProductSchema({
+        burcode_id: req.body.burcode_id,
+        prod_class: req.body.prod_class,
+        name: req.body.name.toUpperCase(),
+        price: req.body.price,
+        img_link: req.body.img_link || 'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg',
+        color: req.body.color,
+        tint: req.body.tint,
+        transparency: req.body.transparency,
+        label: req.body.label,
+        coment_eng: req.body.coment_eng,
+        coment_iv: req.body.coment_iv,
+        coment_rus: req.body.coment_rus
+    });
 
     try {
         let thisItem = await ProductSchema.find({ "burcode_id": req.body.burcode_id });
         if (!thisItem[0]) {
-
-            const newProduct = new ProductSchema({
-                burcode_id: req.body.burcode_id,
-                prod_class: req.body.prod_class,
-                name: req.body.name.toUpperCase(),
-                price: req.body.price,
-                img_link: req.body.img_link || 'https://sciences.ucf.edu/psychology/wp-content/uploads/sites/63/2019/09/No-Image-Available.png',
-                color: req.body.color,
-                tint: req.body.tint,
-                transparency: req.body.transparency,
-                label: req.body.label
-            });
-            console.log(newProduct);
+            // console.log(newProduct);
             try {
                 const itemToSave = await newProduct.save();
                 if (itemToSave._id) {
-                    res.status(200).json({ message: `Product "${itemToSave.prod_class} ${itemToSave.name}" was added successfully.` });
+                    res.status(200).json({ state: 1, message: `Product "${itemToSave.prod_class} ${itemToSave.name}" was added successfully.` });
                     // logger.info(`${now} - New product posted "${itemToSave.name}"`);
                 } else {
                     res.status(406).json({ message: ` We have an error.` });
@@ -44,11 +46,24 @@ router.post("/save", getByBurcode, async(req, res, next) => {
                 logger.error(`${now} - We have an error with posting new product`);
                 res.status(406).json({ message: ` We have an error with data : ${err.message}` })
             }
-
-            // return res.status(404).send({ message: 'item not found' })
         } else {
             console.log('item already exist');
-            return res.send({ message: 'item already exist' })
+            const prodChange = await ProductSchema.update({ "burcode_id": req.body.burcode_id }, {
+                $set: {
+                    "prod_class": req.body.prod_class,
+                    "name": req.body.name.toUpperCase(),
+                    "price": req.body.price,
+                    "img_link": req.body.img_link,
+                    "color": req.body.color,
+                    "tint": req.body.tint,
+                    "transparency": req.body.transparency,
+                    "label": req.body.label,
+                    "coment_eng": req.body.coment_eng,
+                    "coment_iv": req.body.coment_iv,
+                    "coment_rus": req.body.coment_rus
+                }
+            });
+            return res.send({ state: 2, message: 'Item already exist. Changes has been saved successfully.' })
         }
     } catch (err) {
         return res.status(500).send({ message: err.message })
@@ -56,19 +71,18 @@ router.post("/save", getByBurcode, async(req, res, next) => {
     // res.json(thisItem);
 });
 
-
-async function getByBurcode(req, res, next) {
-    let thisItem;
+router.get('/remove/:id', async(req, res) => {
+    // console.log(req.params.id)
     try {
-        thisItem = await ProductSchema.find({ "burcode_id": req.params.id });
-        if (thisItem == null) {
-            return res.status(404).send({ message: 'category not found' })
+        let thisProduct = await ProductSchema.remove({ "_id": req.params.id })
+        if (thisProduct == null) {
+            return res.status(404).send({ message: 'prod not found' })
+        } else {
+            return res.send({ message: 'prod deleted' })
         }
     } catch (err) {
         return res.status(500).send({ message: err.message })
     }
-    res.thisItem = thisItem;
-    next();
-}
+});
 
 module.exports = router;
