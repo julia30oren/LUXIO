@@ -3,6 +3,8 @@ import { RegistrationService } from './services/registation/registration.service
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SaveUserService } from './services/saveUser/save-user.service';
 import { HttpClient } from '@angular/common/http';
+import { LanguageService } from './services/language.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -26,10 +28,20 @@ export class AppComponent implements OnInit {
   constructor(
     private regService: RegistrationService,
     private usersServ: SaveUserService,
-    private http_client: HttpClient
-  ) { }
+    // private http_client: HttpClient,
+    private languageService: LanguageService,
+    public translate: TranslateService
+  ) {
+    translate.addLangs(['en', 'ru', 'iv']);
+    translate.setDefaultLang('en');
+
+    let browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/en|ru|iv/) ? browserLang : 'en');
+  }
+
 
   ngOnInit() {
+    this.languageService.setInitialAppLanguage();
     this.regService.regestrationForm_from_service
       .subscribe(data => {
         this.regForm_Open = data;
@@ -54,6 +66,10 @@ export class AppComponent implements OnInit {
       .subscribe(data => {
         this.formPasswodRestore_Open = data;
       });
+  }
+
+  setLng(l) {
+    this.languageService.setLanguage(l);
   }
 
   getUsers() {

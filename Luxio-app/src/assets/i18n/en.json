@@ -1,0 +1,46 @@
+{
+    "NAVIGATION": {
+        "PRODUCTS": {
+            "title": "PRODUCTS"
+        },
+        "STORE": {
+            "title": "STORE"
+        },
+        "COURSES": {
+            "title": "COURSES"
+        },
+        "PERSONALid": {
+            "title": "PERSONAL ID"
+        },
+        "OFFICES": {
+            "title": "OFFICES"
+        },
+        "PAGEnotFOUND": {
+            "title": "PAGE NOT FOUND"
+        }
+    },
+    "PROD_DESCRIPTION": {
+        "LUXIO": {
+            "main": "LUXIO GEL is a 100% gel that provides a durable, long-lasting, beautiful finish, protects the nail from external damage and gives a bright glossy shine!",
+            "list-1": "Odorless",
+            "list-2": "Does not cause allergies",
+            "list-3": "Has no varnish component",
+            "list-4": "Safe and easy removal by dissolving with liquid Akzentz Soak Off"
+        },
+        "add_to_cart": "Add to cart",
+        "add_to_favorites": "Add to favorites",
+        "more-img": "More photos",
+        "ps": "Made in Canada"
+    },
+
+
+    "HOME": {
+        "TITLE": "Home",
+        "greeting": "Hello!",
+        "btn": "Show Alert"
+    },
+    "ALERT": {
+        "header": "Error",
+        "msg": "problem"
+    }
+}

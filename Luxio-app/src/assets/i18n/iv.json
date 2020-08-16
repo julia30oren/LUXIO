@@ -1,0 +1,47 @@
+{
+    "NAVIGATION": {
+        "PRODUCTS": {
+            "title": "מוצרים"
+        },
+        "STORE": {
+            "title": "חנות"
+        },
+        "COURSES": {
+            "title": "קורסים"
+        },
+        "PERSONALid": {
+            "title": "קוד אישי"
+        },
+        "OFFICES": {
+            "title": "ייצוגים רשמיים"
+        },
+        "PAGEnotFOUND": {
+            "title": "הדף לא נמצא"
+        }
+    },
+
+    "PROD_DESCRIPTION": {
+        "LUXIO": {
+            "main": "LUXIO GEL הוא ג'ל של 100% המספק גימור עמיד וארוך לאורך זמן, מגן על הציפורן מפני נזק חיצוני ומעניק ברק מבריק ומבריק!",
+            "list-1": "ללא ריח",
+            "list-2": "אינו גורם לאלרגיות",
+            "list-3": "אין לו מרכיב לכה",
+            "list-4": "הסרה בטוחה וקלה על ידי המסה עם אקזנץ Soak Off"
+        },
+        "add_to_cart": "הוסף לעגלה",
+        "add_to_favorites": "הוסף למועדפים",
+        "more-img": "תמונות נוספות",
+        "ps": "יוצר בקנדה"
+    },
+
+
+    "HOME": {
+        "TITLE": "בית",
+        "greeting": "שלום!",
+        "btn": "Show Alert"
+    },
+    "ALERT": {
+        "header": "Error",
+        "msg": "problem"
+    }
+}

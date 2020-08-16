@@ -4,21 +4,27 @@
     <div class="navigation">
         <img class="Akzentz-logo" src="https://www.luxio.ae/wordpress//wp-content/themes/aperture-child/images/luxio.png" alt="AKZENTZ">
         <nav class="nav flex-column">
-            <a class="nav-link active" href="welcome">ПРОДУКЦИЯ</a>
-            <a class="nav-link" href="shop">МАГАЗИН</a>
-            <a class="nav-link" href="courses">КУРСЫ</a>
-            <a class="nav-link" href="contacts">ПРЕДСТАВИТЕЛЬСТВА</a>
-            <a class="nav-link" href="registration">ПЕРСОНАЛЬНЫЙ ID</a>
+            <a class="nav-link active" href="welcome">{{ 'NAVIGATION.PRODUCTS.title' | translate }}</a>
+            <a class="nav-link" href="shop">{{ 'NAVIGATION.STORE.title' | translate }}</a>
+            <a class="nav-link" href="courses">{{ 'NAVIGATION.COURSES.title' | translate }}</a>
+            <a class="nav-link" href="contacts">{{ 'NAVIGATION.OFFICES.title' | translate }}</a>
+            <a class="nav-link" href="registration">{{ 'NAVIGATION.PERSONALid.title' | translate }}</a>
         </nav>
+        <div class="icons">
+            <i class="fas fa-user-lock fa-2x" (click)="login_form()"></i>
+            <i class="fas fa-shopping-cart fa-2x"></i>
+        </div>
         <div class="icons social-icons">
             <a href="https://www.facebook.com/luxioisrael"><i class="fab fa-facebook-square fa-2x"></i> </a>
             <a href="https://www.instagram.com/luxiogel_israel"><i class="fab fa-instagram fa-2x"></i> </a>
             <a href="https://www.pinterest.ru/luxiogelisrael/boards/"><i class="fab fa-pinterest fa-2x"></i> </a>
             <a href="https://www.youtube.com/channel/UCIovV5TtXDx_0Enl_MJKB3g?view_as=subscriber"><i class="fab fa-youtube-square fa-2x"></i> </a>
         </div>
-        <div class="icons">
-            <i class="fas fa-user-lock fa-2x" (click)="login_form()"></i>
-            <i class="fas fa-shopping-cart fa-2x"></i>
+
+        <div class="lang-selector">
+            <select #langSelect (change)="translate.use(langSelect.value); setLng(langSelect.value)">
+                  <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+                </select>
         </div>
         <p class="rights">© МИТРА ГРУП ©</p>
     </div>
@@ -78,6 +84,7 @@
             position: fixed;
         }
     </style>
+
     <!-- CONTENT -->
     <div class="content">
         <router-outlet></router-outlet>
@@ -112,7 +119,7 @@
     .nav-link {
         color: rgb(255, 255, 255);
         text-align: right;
-        font-size: larger;
+        font-size: 100%;
     }
     
     .nav-link:hover {
@@ -139,6 +146,23 @@
     
     .social-icons {
         bottom: 70px;
+    }
+    
+    .lang-selector {
+        position: absolute;
+        /* width: 100%; */
+        margin-top: 60px;
+        right: 10px;
+    }
+    
+    select {
+        background-color: rgb(0, 0, 0, 0);
+        color: white;
+        border: none;
+    }
+    
+    option {
+        background-color: rgb(0, 0, 0);
     }
     
     i {

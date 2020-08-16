@@ -1,15 +1,108 @@
 <!-- <p>{{ shop | json}}</p> -->
 <!-- <p>{{ sorted| json}}</p> -->
+<div class="Component">
+    <h5>{{ 'NAVIGATION.STORE.title' | translate }}</h5>
 
-<div class="sort">
-    <form>
-        <div class="form-row">
-            <div class="my-1">
-                <button type="submit" class="btn btn-primary" (click)="getAll()">All</button>
+    <div *ngIf="selectedProd" class="selected-prod">
+        <div class="inside">
+            <div class="img-col">
+                <img src={{selectedProd.img_link}} alt={{selectedProd.name}} />
+                <a *ngIf="selectedProd.prod_class==='Luxio'" class="img-link" href="https://www.instagram.com/explore/tags/{{selectedProd.prod_class}}_{{selectedProd.name}}/" target="_blank">
+                    {{ 'PROD_DESCRIPTION.more-img' | translate }}
+                </a>
             </div>
+            <div class="txt-col">
+                <p *ngIf="selectedProd.prod_class==='Luxio'"><small>&#8470;</small>{{selectedProd.burcode_id}}</p>
+                <h4>{{selectedProd.prod_class}} {{selectedProd.name}}</h4>
+                <br>
+                <p> {{selectedProd.price}} &#8362;</p>
+                <p>
+                    <button type="button" class="button" (click)="less(selectedProd.burcode_id)">-</button> 1
+                    <button type="button" class="button" (click)="more(selectedProd.burcode_id)">+</button>
+                    <button type="button">{{'PROD_DESCRIPTION.add_to_cart' | translate}}</button>
+                    <button type="button">{{'PROD_DESCRIPTION.add_to_favorites' | translate}}</button>
+                </p>
+                <div *ngIf="selectedProd.prod_class==='Luxio'">
+                    <p dir="rtl">{{ 'PROD_DESCRIPTION.LUXIO.main' | translate }}</p>
+                    <ul>
+                        <li>{{ 'PROD_DESCRIPTION.LUXIO.list-1' | translate }}</li>
+                        <li>{{ 'PROD_DESCRIPTION.LUXIO.list-2' | translate }}</li>
+                        <li>{{ 'PROD_DESCRIPTION.LUXIO.list-3' | translate }}</li>
+                        <li>{{ 'PROD_DESCRIPTION.LUXIO.list-4' | translate }}</li>
+                    </ul>
+                </div>
+                <!-- <div *ngIf="selectedProd.coment_eng.length>2">
+                    vfvrvrt
+                </div> -->
+                <p> {{ 'PROD_DESCRIPTION.ps' | translate }}</p>
 
-            <div class="my-1">
-                <select class="custom-select mr-sm-2" #prod_class>
+            </div>
+            <!-- <p>{{selectedProd | json}}</p> -->
+            <div><button type="button" (click)="closeSelected()" class="close-button"><i class="fas fa-times fa-2x"></i></button></div>
+        </div>
+
+    </div>
+    <style>
+        .selected-prod {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.5));
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .inside {
+            margin-left: 15%;
+            width: 60%;
+            height: 70%;
+            /* border: black 2px solid; */
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .img-col {
+            width: 50%;
+            padding: 1%;
+        }
+        
+        .img-link {
+            width: 100%;
+            margin-left: 47%
+        }
+        
+        .txt-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: right;
+            align-items: right;
+            width: 48%;
+            padding: 1%;
+        }
+        
+        .close-button {
+            color: brown;
+            background-color: rgb(0, 0, 0, 0);
+            border: none;
+        }
+        
+        .close-button:hover {
+            color: red;
+        }
+    </style>
+
+    <div class="sort" *ngIf="!selectedProd">
+        <form>
+            <div class="form-row">
+                <div class="my-1">
+                    <button type="submit" class="btn btn-primary" (click)="getAll()">All</button>
+                </div>
+
+                <div class="my-1">
+                    <select class="custom-select mr-sm-2" #prod_class>
                     <option value='' selected>Not seleced...</option>
                     <option value="basics">Bases / Tops / BUILD</option>
                     <option value="Luxio">Luxio GEL</option>
@@ -19,10 +112,10 @@
                     <option value="materials">Technical materials</option>
                     <option value="accessories">Accessories</option>
             </select>
-            </div>
+                </div>
 
-            <div class="my-1">
-                <select class="custom-select mr-sm-2" #color>
+                <div class="my-1">
+                    <select class="custom-select mr-sm-2" #color>
                     <option value='' selected>Not seleced...</option>
                     <option value='white'>white</option>
                     <option value='black'>black</option>
@@ -36,81 +129,92 @@
                     <option value='brown'>brown</option>
                     <option value='gray'>gray</option>
             </select>
-            </div>
+                </div>
 
-            <div class="my-1">
-                <select class="custom-select mr-sm-2" #tint>
+                <div class="my-1">
+                    <select class="custom-select mr-sm-2" #tint>
                     <option value="" selected>Not seleced...</option>
                     <option value='light'>light</option>
                     <option value='dark'>dark</option>
                     <option value='bright'>bright</option>
             </select>
-            </div>
+                </div>
 
-            <div class="my-1">
-                <select class="custom-select mr-sm-2" #transparency>
+                <div class="my-1">
+                    <select class="custom-select mr-sm-2" #transparency>
                     <option value="" selected>Not seleced...</option>
                     <option value='see-through'>see-through</option>
                     <option value='dense'>dense</option>
             </select>
+                </div>
+
+                <div class="my-1">
+                    <button type="submit" class="btn btn-primary" (click)="getSorted(prod_class.value, color.value, tint.value, transparency.value)">Sort</button>
+                </div>
+
+
             </div>
+        </form>
+    </div>
 
-            <div class="my-1">
-                <button type="submit" class="btn btn-primary" (click)="getSorted(prod_class.value, color.value, tint.value, transparency.value)">Sort</button>
+    <div *ngIf="!selectedProd">
+        <div class="shopComp" *ngIf="shop && !sorted">
+            <div *ngFor="let item of shop" class="card" style="width: 18rem; height: 18rem;" id={{item.burcode_id}}>
+                <div class="buttons">
+                    <button class="bt" (click)="toCart(item._id)"><i class="fab fa-shopify fa-3x"></i></button>
+                    <button class="bt" (click)="toFav(item._id)"><i class="fas fa-heart fa-2x"></i></button>
+                </div>
+                <img src={{item.img_link}} class="card-img-top" alt="..." (click)="select(item.burcode_id)" />
+                <div class="cardInfo" (click)="select(item.burcode_id)">
+                    <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
+                    <h5>{{item.prod_class}} {{item.name}}</h5>
+                </div>
             </div>
-
-
         </div>
-    </form>
-</div>
 
-<div class="shopComp" *ngIf="shop && !sorted">
-    <div *ngFor="let item of shop" class="card" style="width: 18rem; height: 18rem;" id={{item.burcode_id}}>
-        <div class="buttons">
-            <button class="bt" (click)="toCart(item._id)"><i class="fab fa-shopify fa-3x"></i></button>
-            <button class="bt" (click)="toFav(item._id)"><i class="fas fa-heart fa-2x"></i></button>
-        </div>
-        <img src={{item.img_link}} class="card-img-top" alt="..." (click)="select(item.burcode_id)" />
-        <div class="cardInfo">
-            <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
-            <h5>{{item.prod_class}} {{item.name}}</h5>
+        <div class="shopComp" *ngIf="sorted">
+            <div *ngFor="let item of sorted" class="card" style="width: 18rem; height: 18rem;" id={{item.burcode_id}}>
+                <div class="buttons">
+                    <button class="bt"><i class="fab fa-shopify fa-3x"></i></button>
+                    <button class="bt"><i class="fas fa-heart fa-2x"></i></button>
+                </div>
+                <img src={{item.img_link}} class="card-img-top" alt="..." (click)="select(item.burcode_id)" />
+                <div class="cardInfo" (click)="select(item.burcode_id)">
+                    <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
+                    <h5>{{item.prod_class}} {{item.name}}</h5>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="shopComp" *ngIf="sorted">
-    <div *ngFor="let item of sorted" class="card" style="width: 18rem; height: 18rem;" id={{item.burcode_id}} (click)="select(item.burcode_id)">
-        <div class="buttons">
-            <button class="bt"><i class="fab fa-shopify fa-3x"></i></button>
-            <button class="bt"><i class="fas fa-heart fa-2x"></i></button>
-        </div>
-        <img src={{item.img_link}} class="card-img-top" alt="..." />
-        <div class="cardInfo">
-            <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
-            <h5>{{item.prod_class}} {{item.name}}</h5>
-        </div>
-    </div>
-</div>
 
 <style>
+    /* .Component {
+        width: 100%;
+    } */
+    
     .shopComp {
         display: flex;
-        height: 600px;
         flex-wrap: wrap;
         align-content: space-between;
     }
     
     .form-row {
-        border: black 2px solid;
         display: flex;
         justify-content: center;
         flex-direction: row;
-        width: 100%;
+        min-width: 100%;
     }
     
     .card {
         margin: 1%;
         background-color: rgba(0, 0, 0, 0);
+    }
+    
+    .card:hover {
+        border: red 2px solid;
+        padding: 0.5%;
     }
     
     .cardInfo {

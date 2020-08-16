@@ -7,9 +7,16 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+
+import { IonicStorageModule } from '@ionic/storage';
+
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 
 import { AppComponent } from './app.component';
+
 import { CrtificatesListComponent } from './components/certificates/crtificates-list/crtificates-list.component';
 import { CrtificateUploadComponent } from './components/certificates/crtificate-upload/crtificate-upload.component';
 import { HomeComponent } from './components/main/home/home.component';
@@ -24,6 +31,12 @@ import { RegFormAgreementComponent } from './components/registration/reg-form-ag
 import { LogFormComponent } from './components/registration/log-form/log-form.component';
 import { PasswordRestoreFormComponent } from './components/registration/password-restore-form/password-restore-form.component';
 import { AdminShopComponent } from './components/admin/admin-shop/admin-shop.component';
+
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient, 'assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -51,8 +64,18 @@ import { AdminShopComponent } from './components/admin/admin-shop/admin-shop.com
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    HttpClientModule,
     ReactiveFormsModule,
+
+    IonicStorageModule.forRoot(),
+
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],
