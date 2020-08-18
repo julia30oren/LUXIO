@@ -33,6 +33,40 @@
         "ps": "Произведено в Канаде"
     },
 
+    "SEARCH": {
+        "all-button": "Все",
+        "not-selected": "Не выбран...",
+        "sort-button": "Сортировать",
+        "OPTIONS": {
+            "basics": "Базы / Топы / BUILD",
+            "Luxio": "Luxio GEL",
+            "Options": "Options",
+            "Gel-Play": "Gel Play",
+            "Hard-GEL": "Hard GEL",
+            "materials": "Технические материалы",
+            "accessories": "Аксессуары",
+
+            "white": "белый",
+            "black": "чёрный",
+            "pink": "розовый",
+            "red": "красный",
+            "оrange": "оранжевый",
+            "yellow": "жёлтый",
+            "green": "зелёный",
+            "blue": "синий",
+            "violet": "фиолетовый",
+            "brown": "коричневый",
+            "gray": "серый",
+
+            "light": "светлый",
+            "dark": "тёмный",
+            "bright": "яркий",
+
+            "see-through": "прозрачный",
+            "dense": "плотный"
+        }
+    },
+
     "HOME": {
         "TITLE": "Дом",
         "greeting": "Привет!",

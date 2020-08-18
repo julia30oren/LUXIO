@@ -1,7 +1,7 @@
 <!-- <p>{{ shop | json}}</p> -->
 <!-- <p>{{ sorted| json}}</p> -->
-<div class="Component">
-    <h5>{{ 'NAVIGATION.STORE.title' | translate }}</h5>
+<div [ngClass]="{Hebrew: langIv}" style="width: 100%;">
+    <h5 style="width: 100%;">{{ 'NAVIGATION.STORE.title' | translate }}</h5>
 
     <div *ngIf="selectedProd" class="selected-prod">
         <div class="inside">
@@ -22,8 +22,9 @@
                     <button type="button">{{'PROD_DESCRIPTION.add_to_cart' | translate}}</button>
                     <button type="button">{{'PROD_DESCRIPTION.add_to_favorites' | translate}}</button>
                 </p>
+                <!-- LUXIO option -->
                 <div *ngIf="selectedProd.prod_class==='Luxio'">
-                    <p dir="rtl">{{ 'PROD_DESCRIPTION.LUXIO.main' | translate }}</p>
+                    <p>{{ 'PROD_DESCRIPTION.LUXIO.main' | translate }}</p>
                     <ul>
                         <li>{{ 'PROD_DESCRIPTION.LUXIO.list-1' | translate }}</li>
                         <li>{{ 'PROD_DESCRIPTION.LUXIO.list-2' | translate }}</li>
@@ -42,127 +43,84 @@
         </div>
 
     </div>
-    <style>
-        .selected-prod {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.5));
-            position: fixed;
-            left: 0;
-            top: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .inside {
-            margin-left: 15%;
-            width: 60%;
-            height: 70%;
-            /* border: black 2px solid; */
-            display: flex;
-            flex-direction: row;
-        }
-        
-        .img-col {
-            width: 50%;
-            padding: 1%;
-        }
-        
-        .img-link {
-            width: 100%;
-            margin-left: 47%
-        }
-        
-        .txt-col {
-            display: flex;
-            flex-direction: column;
-            justify-content: right;
-            align-items: right;
-            width: 48%;
-            padding: 1%;
-        }
-        
-        .close-button {
-            color: brown;
-            background-color: rgb(0, 0, 0, 0);
-            border: none;
-        }
-        
-        .close-button:hover {
-            color: red;
-        }
-    </style>
 
+
+    <!-- SORT -->
     <div class="sort" *ngIf="!selectedProd">
         <form>
             <div class="form-row">
-                <div class="my-1">
-                    <button type="submit" class="btn btn-primary" (click)="getAll()">All</button>
+                <div>
+                    <button type="submit" class="btn btn-outline-dark" (click)="getAll()">
+                        {{ 'SEARCH.all-button' | translate }}
+                    </button>
                 </div>
-
-                <div class="my-1">
-                    <select class="custom-select mr-sm-2" #prod_class>
-                    <option value='' selected>Not seleced...</option>
-                    <option value="basics">Bases / Tops / BUILD</option>
-                    <option value="Luxio">Luxio GEL</option>
-                    <option value="Options">Options</option>
-                    <option value="Gel Play">Gel Play</option>
-                    <option value="Hard GEL">Hard GEL</option>
-                    <option value="materials">Technical materials</option>
-                    <option value="accessories">Accessories</option>
+                <div>
+                    <select class="custom-select" #prod_class>
+                    <option value='' selected>{{ 'SEARCH.not-selected' | translate }}</option>
+                    <option value="basics">{{ 'SEARCH.OPTIONS.basics' | translate }}</option>
+                    <option value="Luxio">{{ 'SEARCH.OPTIONS.Luxio' | translate }}</option>
+                    <option value="Options">{{ 'SEARCH.OPTIONS.Options' | translate }}</option>
+                    <option value="Gel Play">{{ 'SEARCH.OPTIONS.Gel-Play' | translate }}</option>
+                    <option value="Hard GEL">{{ 'SEARCH.OPTIONS.Hard-GEL' | translate }}</option>
+                    <option value="materials">{{ 'SEARCH.OPTIONS.materials' | translate }}</option>
+                    <option value="accessories">{{ 'SEARCH.OPTIONS.accessories' | translate }}</option>
             </select>
                 </div>
-
-                <div class="my-1">
-                    <select class="custom-select mr-sm-2" #color>
-                    <option value='' selected>Not seleced...</option>
-                    <option value='white'>white</option>
-                    <option value='black'>black</option>
-                    <option value='pink'>pink</option>
-                    <option value='red'>red</option>
-                    <option value='оrange'>оrange</option>
-                    <option value='yellow'>yellow</option>
-                    <option value='green'>green</option>
-                    <option value='blue'>blue</option>
-                    <option value='violet'>violet</option>
-                    <option value='brown'>brown</option>
-                    <option value='gray'>gray</option>
+                <div>
+                    <select class="custom-select" #color>
+                    <option value='' selected>{{ 'SEARCH.not-selected' | translate }}</option>
+                    <option value='white'>{{ 'SEARCH.OPTIONS.white' | translate }}</option>
+                    <option value='black'>{{ 'SEARCH.OPTIONS.black' | translate }}</option>
+                    <option value='pink'>{{ 'SEARCH.OPTIONS.pink' | translate }}</option>
+                    <option value='red'>{{ 'SEARCH.OPTIONS.red' | translate }}</option>
+                    <option value='оrange'>{{ 'SEARCH.OPTIONS.оrange' | translate }}</option>
+                    <option value='yellow'>{{ 'SEARCH.OPTIONS.yellow' | translate }}</option>
+                    <option value='green'>{{ 'SEARCH.OPTIONS.green' | translate }}</option>
+                    <option value='blue'>{{ 'SEARCH.OPTIONS.blue' | translate }}</option>
+                    <option value='violet'>{{ 'SEARCH.OPTIONS.violet' | translate }}</option>
+                    <option value='brown'>{{ 'SEARCH.OPTIONS.brown' | translate }}</option>
+                    <option value='gray'>{{ 'SEARCH.OPTIONS.gray' | translate }}</option>
             </select>
                 </div>
-
-                <div class="my-1">
-                    <select class="custom-select mr-sm-2" #tint>
-                    <option value="" selected>Not seleced...</option>
-                    <option value='light'>light</option>
-                    <option value='dark'>dark</option>
-                    <option value='bright'>bright</option>
+                <div>
+                    <select class="custom-select" #tint>
+                    <option value="" selected>{{ 'SEARCH.not-selected' | translate }}</option>
+                    <option value='light'>{{ 'SEARCH.OPTIONS.light' | translate }}</option>
+                    <option value='dark'>{{ 'SEARCH.OPTIONS.dark' | translate }}</option>
+                    <option value='bright'>{{ 'SEARCH.OPTIONS.bright' | translate }}</option>
             </select>
                 </div>
-
-                <div class="my-1">
-                    <select class="custom-select mr-sm-2" #transparency>
-                    <option value="" selected>Not seleced...</option>
-                    <option value='see-through'>see-through</option>
-                    <option value='dense'>dense</option>
+                <div>
+                    <select class="custom-select" #transparency>
+                    <option value="" selected>{{ 'SEARCH.not-selected' | translate }}</option>
+                    <option value='see-through'>{{ 'SEARCH.OPTIONS.see-through' | translate }}</option>
+                    <option value='dense'>{{ 'SEARCH.OPTIONS.dense' | translate }}</option>
             </select>
                 </div>
-
-                <div class="my-1">
-                    <button type="submit" class="btn btn-primary" (click)="getSorted(prod_class.value, color.value, tint.value, transparency.value)">Sort</button>
+                <div>
+                    <button type="submit" class="btn btn-outline-dark" (click)="getSorted(prod_class.value, color.value, tint.value, transparency.value)">
+                        {{ 'SEARCH.sort-button' | translate }}
+                    </button>
                 </div>
-
-
             </div>
         </form>
     </div>
+    <!-- SORT styles -->
+    <style>
+        .sort {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+    </style>
 
     <div *ngIf="!selectedProd">
         <div class="shopComp" *ngIf="shop && !sorted">
             <div *ngFor="let item of shop" class="card" style="width: 18rem; height: 18rem;" id={{item.burcode_id}}>
                 <div class="buttons">
-                    <button class="bt" (click)="toCart(item._id)"><i class="fab fa-shopify fa-3x"></i></button>
-                    <button class="bt" (click)="toFav(item._id)"><i class="fas fa-heart fa-2x"></i></button>
+                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
+                    <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
                 </div>
                 <img src={{item.img_link}} class="card-img-top" alt="..." (click)="select(item.burcode_id)" />
                 <div class="cardInfo" (click)="select(item.burcode_id)">
@@ -175,8 +133,8 @@
         <div class="shopComp" *ngIf="sorted">
             <div *ngFor="let item of sorted" class="card" style="width: 18rem; height: 18rem;" id={{item.burcode_id}}>
                 <div class="buttons">
-                    <button class="bt"><i class="fab fa-shopify fa-3x"></i></button>
-                    <button class="bt"><i class="fas fa-heart fa-2x"></i></button>
+                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
+                    <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
                 </div>
                 <img src={{item.img_link}} class="card-img-top" alt="..." (click)="select(item.burcode_id)" />
                 <div class="cardInfo" (click)="select(item.burcode_id)">
@@ -190,9 +148,94 @@
 
 
 <style>
-    /* .Component {
+    .Hebrew {
+        text-align: right;
+        direction: rtl;
+    }
+    
+    .selected-prod {
         width: 100%;
-    } */
+        height: 100%;
+        background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.5));
+        position: fixed;
+        left: 0;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .hart-button,
+    .cart-button {
+        margin-left: 1%;
+        margin-top: 2%;
+        border: none;
+        background-color: rgba(0, 0, 0, 0);
+    }
+    
+    .active {
+        color: green;
+    }
+    
+    .not-active {
+        color: rgba(128, 128, 128, 0.5);
+    }
+    
+    .red-hart {
+        color: rgb(194, 0, 0);
+    }
+    
+    .red-hart:hover {
+        color: rgba(128, 128, 128, 0.5);
+    }
+    
+    .grey-hart {
+        color: rgba(128, 128, 128, 0.5);
+    }
+    
+    .grey-hart:hover,
+    .cart-button:hover {
+        color: rgb(194, 0, 0);
+    }
+    
+    .hart-button:hover {
+        color: rgb(194, 0, 0);
+    }
+    
+    .inside {
+        margin-left: 15%;
+        width: 60%;
+        height: 70%;
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .img-col {
+        width: 50%;
+        padding: 1%;
+    }
+    
+    .img-link {
+        width: 100%;
+        margin-left: 47%
+    }
+    
+    .txt-col {
+        display: flex;
+        flex-direction: column;
+        width: 45%;
+        padding: 1%;
+    }
+    
+    .close-button {
+        color: brown;
+        background-color: rgb(0, 0, 0, 0);
+        border: none;
+    }
+    
+    .close-button:hover {
+        color: red;
+    }
     
     .shopComp {
         display: flex;
@@ -200,11 +243,9 @@
         align-content: space-between;
     }
     
-    .form-row {
-        display: flex;
-        justify-content: center;
-        flex-direction: row;
-        min-width: 100%;
+    .btn-outline-dark {
+        width: auto;
+        margin-left: 0;
     }
     
     .card {
@@ -229,18 +270,6 @@
         position: absolute;
         display: flex;
         justify-content: left;
-    }
-    
-    .bt {
-        margin-left: 1%;
-        margin-top: 2%;
-        border: none;
-        color: rgba(128, 128, 128, 0.493);
-        background-color: rgba(128, 128, 128, 0);
-    }
-    
-    .bt:hover {
-        color: rgba(126, 3, 3, 0.8);
     }
     
     .card-title {

@@ -34,6 +34,40 @@
         "ps": "יוצר בקנדה"
     },
 
+    "SEARCH": {
+        "all-button": "הכל",
+        "not-selected": "לא נבחר ...",
+        "sort-button": "לסוג",
+        "OPTIONS": {
+            "basics": "בסיסים / חלק עליון / BUILD",
+            "Luxio": "Luxio GEL",
+            "Options": "Options",
+            "Gel-Play": "Gel Play",
+            "Hard-GEL": "Hard GEL",
+            "materials": "חומרים טכניים",
+            "accessories": "אביזרים",
+
+            "white": "לבן",
+            "black": "שחור",
+            "pink": "ורוד",
+            "red": "אדום",
+            "оrange": "כתם",
+            "yellow": "צהוב",
+            "green": "ירוק",
+            "blue": "כחןל",
+            "violet": "סגול",
+            "brown": "חום",
+            "gray": "אפור",
+
+            "light": "בהיר",
+            "dark": "כהה",
+            "bright": "ססגוני",
+
+            "see-through": "שקוף",
+            "dense": "סמיך"
+        }
+    },
+
 
     "HOME": {
         "TITLE": "בית",

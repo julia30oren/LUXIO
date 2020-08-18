@@ -47,6 +47,8 @@ export class LanguageService {
     this.translate.use(lng);
     this._selected.next(lng);
     this.storage.set(LNG_KEY, lng);
+    this.selected = lng;
+    console.log(this.selected)
   }
 
 

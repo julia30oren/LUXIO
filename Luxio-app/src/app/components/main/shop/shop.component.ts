@@ -20,8 +20,10 @@ export class ShopComponent implements OnInit {
   public sorted: any[];
   public selectedProd: object;
   public fav: Array<any>;
-  public lang: string;
-
+  public langIv: boolean = false;
+  public my_cart: Array<any> = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
+  public my_favorites: Array<any> = JSON.parse(localStorage.getItem('my_764528_f')) || [];
+  // JSON.parse(localStorage.getItem('my_764528_f')) ||
   ngOnInit() {
     this.shop_service.getProducts_fromDB();
 
@@ -35,10 +37,16 @@ export class ShopComponent implements OnInit {
       .subscribe(date => this.sorted = date[0]);
 
     this.user_service.favorite_from_service
-      .subscribe(date => { this.fav = date; console.log(this.fav) });
+      .subscribe(date => { this.fav = date });
 
-    // this.lang_service._selected_from_service
-    //   .subscribe(date => { this.lang = date; console.log(this.lang) })
+    this.lang_service._selected_from_service
+      .subscribe(date => {
+        if (date === 'iv') {
+          this.langIv = true;
+        } else this.langIv = false;
+
+        // console.log(date)
+      })
 
     // this.shop_service.prod_selected_from_service
     //   .subscribe(date => {
@@ -54,9 +62,6 @@ export class ShopComponent implements OnInit {
       if (element.prod_class.includes(a) && element.color.includes(b) && element.tint.includes(c) && element.transparency.includes(d)) {
         newAr.push(element);
       }
-      // else if (newAr[0]) {
-      //   this.noMatchFound = true;
-      // }
       this.shop_service.getProducts_sorted(newAr);
     });
   }
@@ -66,7 +71,6 @@ export class ShopComponent implements OnInit {
   }
 
   select(id: number) {
-    // console.log(id);
     this.shop.forEach(element => {
       if (element.burcode_id === id) {
         this.selectedProd = element;
@@ -82,15 +86,40 @@ export class ShopComponent implements OnInit {
     console.log('to cart ', id)
   }
 
-  toFav(id) {
-    console.log('to favorites ', id);
-    this.shop.forEach(element => {
-      if (element._id.includes(id)) {
-        this.user_service.saveToFavorites(element, id)
-      }
-      // this.shop_service.getProducts_sorted(newAr);
-    });
+  addToFavorites(id) {
+    if (this.my_favorites.includes(id)) {
+      var filtered = this.my_favorites.filter((val) => { return val !== id; });
+      this.my_favorites = filtered;
+      localStorage.setItem('my_764528_f', JSON.stringify(filtered))
+    } else {
+      this.my_favorites.push(id);
+      localStorage.setItem('my_764528_f', JSON.stringify(this.my_favorites))
+    }
   }
+
+  addToCart(id) {
+    if (this.my_cart.includes(id)) {
+      var filtered = this.my_cart.filter((val) => { return val !== id; });
+      this.my_cart = filtered;
+      localStorage.setItem('my_764528_ct', JSON.stringify(filtered))
+    } else {
+      this.my_cart.push(id);
+      localStorage.setItem('my_764528_ct', JSON.stringify(this.my_cart))
+    }
+  }
+
+  getClasses(id) {
+    if (this.my_favorites.includes(id)) {
+      return 'hart-button red-hart';
+    } else return 'hart-button grey-hart';
+  }
+
+  getCartClasse(id) {
+    if (this.my_cart.includes(id)) {
+      return 'cart-button active';
+    } else return 'cart-button not-active';
+  }
+
 
   less(item_id) {
     console.log(item_id)
