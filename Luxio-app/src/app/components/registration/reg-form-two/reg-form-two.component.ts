@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { finalize } from 'rxjs/operators';
 import { ImageService } from 'src/app/services/imgService/img-searvice.service';
 import { RegistrationService } from 'src/app/services/registation/registration.service';
 
@@ -19,56 +17,42 @@ export class RegFormTwoComponent implements OnInit {
   formTemplate = new FormGroup({
     category: new FormControl(''),
     imageURL: new FormControl('', Validators.required)
-
   })
 
   constructor(
     private regService: RegistrationService,
-    private firestorage: AngularFireStorage,
-    private cert_service: ImageService
+    private cert_service: ImageService,
+
   ) { }
 
   ngOnInit() {
     this.resetForm();
-    this.cert_service.getImageDetailList();
   }
 
   showPreimg(event: any) {
     if (event.target.files && event.target.files[0]) {
+
+      // image prevue
       const reader = new FileReader();
       reader.onload = (e: any) => { this.imgSrc = e.target.result; };
       reader.readAsDataURL(event.target.files[0]);
-      this.selectedImg = event.target.files[0];
-    } else {
-      this.imgSrc = '../../../../assets/images.png';
-      this.selectedImg = null;
+      this.imgSrc = event.target.files[0];
+
+      // image file
+      let file = event.target.files[0];
+      let formData = new FormData();
+      formData.append('image', file);
+
+      this.selectedImg = formData;
     }
   }
 
   onSubmit(formValue) {
-    console.log('submit');
     this.isSubmitted = true;
-    var get_id = localStorage.getItem('temp_u');
-    formValue.id = JSON.parse(get_id).id;
-    // console.log(formValue);
+    this.cert_service.insertImageDetails(this.selectedImg, formValue);
 
-    if (this.formTemplate.valid) {
-      var filePath = `certificates/certificate:(${formValue.name})_${this.selectedImg.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`
-      const fileRef = this.firestorage.ref(filePath);
-      this.firestorage
-        .upload(filePath, this.selectedImg)
-        .snapshotChanges()
-        .pipe(finalize(() => {
-          fileRef.getDownloadURL()
-            .subscribe((url) => {
-              formValue['imageURL'] = url;
-              // localStorage.setItem('temp_u2', JSON.stringify(formValue));
-              this.cert_service.insertImageDetails(formValue);
-              this.resetForm();
-            })
-        }))
-        .subscribe();
-    }
+    this.resetForm();
+    this.regService.close_RegistrationForm();
   }
 
   get formControls() {

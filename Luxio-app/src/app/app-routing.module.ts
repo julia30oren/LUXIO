@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CrtificatesListComponent } from './components/certificates/crtificates-list/crtificates-list.component';
-import { CrtificateUploadComponent } from './components/certificates/crtificate-upload/crtificate-upload.component';
 import { HomeComponent } from './components/main/home/home.component';
 import { PageNotFoundComponent } from './components/main/page-not-found/page-not-found.component';
 import { ContactsComponent } from './components/main/contacts/contacts.component';
@@ -15,7 +14,6 @@ const routes: Routes = [
 
     { path: 'welcome', component: HomeComponent },
     { path: 'registration', component: SignInComponent },
-    { path: "certificate-upload", component: CrtificateUploadComponent },
     { path: 'shop', component: ShopComponent },
     { path: 'courses', component: CoursesComponent },
     { path: 'contacts', component: ContactsComponent },
@@ -33,13 +31,11 @@ const routes: Routes = [
 export class AppRoutingModule { };
 export const routingComponents = [
     HomeComponent,
-    ShopComponent,
-    CrtificateUploadComponent,
+    SignInComponent,
     ShopComponent,
     CoursesComponent,
     ContactsComponent,
     CrtificatesListComponent,
-    PageNotFoundComponent,
-    SignInComponent,
-    AdminShopComponent
+    AdminShopComponent,
+    PageNotFoundComponent
 ]

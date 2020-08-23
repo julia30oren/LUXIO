@@ -6,24 +6,24 @@
     <div *ngIf="selectedProd" class="selected-prod">
         <div class="inside">
             <div class="img-col">
-                <img src={{selectedProd.img_link}} alt={{selectedProd.name}} />
-                <a *ngIf="selectedProd.prod_class==='Luxio'" class="img-link" href="https://www.instagram.com/explore/tags/{{selectedProd.prod_class}}_{{selectedProd.name}}/" target="_blank">
+                <img src={{selectedProd.img_link}} alt={{selectedProd.name}} class="img" />
+                <a *ngIf=" selectedProd.prod_class==='Luxio' " class="img-link " href="https://www.instagram.com/explore/tags/{{selectedProd.prod_class}}_{{selectedProd.name}}/ " target="_blank ">
                     {{ 'PROD_DESCRIPTION.more-img' | translate }}
                 </a>
             </div>
-            <div class="txt-col">
-                <p *ngIf="selectedProd.prod_class==='Luxio'"><small>&#8470;</small>{{selectedProd.burcode_id}}</p>
+            <div class="txt-col ">
+                <p *ngIf="selectedProd.prod_class==='Luxio' "><small>&#8470;</small>{{selectedProd.burcode_id}}</p>
                 <h4>{{selectedProd.prod_class}} {{selectedProd.name}}</h4>
                 <br>
                 <p> {{selectedProd.price}} &#8362;</p>
                 <p>
-                    <button type="button" class="button" (click)="less(selectedProd.burcode_id)">-</button> 1
-                    <button type="button" class="button" (click)="more(selectedProd.burcode_id)">+</button>
-                    <button type="button">{{'PROD_DESCRIPTION.add_to_cart' | translate}}</button>
-                    <button type="button">{{'PROD_DESCRIPTION.add_to_favorites' | translate}}</button>
+                    <button type="button" class="button " (click)="less(selectedProd.burcode_id) ">-</button> 1
+                    <button type="button" class="button " (click)="more(selectedProd.burcode_id) ">+</button>
+                    <button type="button" (click)="addToCart(selectedProd._id)">{{'PROD_DESCRIPTION.add_to_cart' | translate}}</button>
+                    <button type="button" (click)="addToFavorites(selectedProd._id)">{{'PROD_DESCRIPTION.add_to_favorites' | translate}}</button>
                 </p>
                 <!-- LUXIO option -->
-                <div *ngIf="selectedProd.prod_class==='Luxio'">
+                <div *ngIf="selectedProd.prod_class==='Luxio' ">
                     <p>{{ 'PROD_DESCRIPTION.LUXIO.main' | translate }}</p>
                     <ul>
                         <li>{{ 'PROD_DESCRIPTION.LUXIO.list-1' | translate }}</li>
@@ -32,9 +32,8 @@
                         <li>{{ 'PROD_DESCRIPTION.LUXIO.list-4' | translate }}</li>
                     </ul>
                 </div>
-                <!-- <div *ngIf="selectedProd.coment_eng.length>2">
-                    vfvrvrt
-                </div> -->
+                <!-- <div *ngIf="selectedProd.coment_eng.length>2"> vfvrvrt
+            </div> -->
                 <p> {{ 'PROD_DESCRIPTION.ps' | translate }}</p>
 
             </div>
@@ -121,6 +120,9 @@
                 <div class="buttons">
                     <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
                     <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+                    <div *ngIf="item.label" class="lable-new">
+                        <p style="margin: auto;">{{item.label}}</p>
+                    </div>
                 </div>
                 <img src={{item.img_link}} class="card-img-top" alt="..." (click)="select(item.burcode_id)" />
                 <div class="cardInfo" (click)="select(item.burcode_id)">
@@ -135,6 +137,9 @@
                 <div class="buttons">
                     <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
                     <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+                    <div *ngIf="item.label" class="lable-new">
+                        <p style="margin: auto;">{{item.label}}</p>
+                    </div>
                 </div>
                 <img src={{item.img_link}} class="card-img-top" alt="..." (click)="select(item.burcode_id)" />
                 <div class="cardInfo" (click)="select(item.burcode_id)">
@@ -163,6 +168,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    
+    .lable-new {
+        min-width: 100px;
+        background-color: rgba(250, 119, 222, 0.5);
+        position: absolute;
+        right: 0;
+        top: 10px;
     }
     
     .hart-button,
@@ -213,6 +226,10 @@
     .img-col {
         width: 50%;
         padding: 1%;
+    }
+    
+    .img {
+        width: 100%;
     }
     
     .img-link {

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-// import { User_Interface } from '../../interfaces/user-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +24,18 @@ export class SaveUserService {
     return this.http.post(`${this.DB_url}/register/saveNew`, info).subscribe(res => console.log(res));
   }
 
-  sertConfirmation(user: object) {
-    return this.http.post(`${this.DB_url}/register/userST`, user).subscribe(res => console.log(res));
+  sertConfirmation(id, state) {
+    console.log(id, state);
+    return this.http.get(`${this.DB_url}/register/user-status/${id}/${state}`).subscribe(res => {
+      console.log(res);
+      if (res[0].nModified === 1) {
+        let newUsers = this.users.value[0];
+        newUsers.forEach(element => {
+          if (element._id === id) {
+            element.status = `${state}`;
+          }
+        });
+      }
+    });
   }
 }

@@ -1,31 +1,47 @@
-<div class="mainRequests">
-    <h1>Запросы на подтверждение :</h1>
+<div class="mainRequests" [ngClass]="{Hebrew: langIv}">
+    <h1>{{ 'ADMIN.CERTIFICATES.title' | translate }}:</h1>
 
     <div class="requests-div" *ngIf="certificatesList">
 
         <div *ngFor="let item of certificatesList" class="card mb-3" style="max-width: 100%;">
             <div class="row no-gutters">
                 <div class="col-md-3">
-                    <img src="{{item.certificate_link}}" class="card-img" alt="...">
+                    <img src="{{item.certificate_link}}" class="card-img" (click)="openCertificate(item.certificate_link)" alt="certificate">
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
-                        <h5 class="card-title">{{item.f_name}} {{item.s_name}}</h5>
-                        <p class="card-text">{{item.category}}</p>
-                        <p class="card-text">{{item.city}}</p>
-                        <p class="card-text">{{item.phone_number}}</p>
-                        <p class="card-text"><small class="text-muted">Дата подачи заявки: {{item.time | date}}</small></p>
+                        {{ 'ADMIN.CERTIFICATES.name' | translate }}:
+                        <h5 class="card-title"> {{item.first_name}} {{item.second_name}}</h5>
+                        <p class="card-text"> {{ 'ADMIN.CERTIFICATES.category' | translate }}: {{item.category}}</p>
+                        <p class="card-text">{{ 'ADMIN.CERTIFICATES.city' | translate }}: {{item.city}}</p>
+                        <p class="card-text">{{ 'ADMIN.CERTIFICATES.phone' | translate }}: {{item.phoneN}}</p>
+                        <p class="card-text"><small class="text-muted">
+                            {{ 'ADMIN.CERTIFICATES.date' | translate }}: {{item.date | date:'shortDate'}}</small>
+                        </p>
+                        <p class="card-text">
+                            <small class="text-muted" *ngIf="item.status==='considered'">{{ 'ADMIN.CERTIFICATES.state-undefined' | translate }}</small>
+                            <small class="text-muted" *ngIf="item.status==='true'">{{ 'ADMIN.CERTIFICATES.state-approved' | translate }}</small>
+                            <small class="text-muted" *ngIf="item.status==='false'">{{ 'ADMIN.CERTIFICATES.state-dened' | translate }}</small>
+                        </p>
+
                     </div>
                 </div>
                 <div class="col-md-2 buttons">
-                    <div> {{item.approved}} </div>
-                    <button type="button" class="btn btn-success" (click)="confirm(item.id)">Подтвердить</button>
-                    <button type="button" class="btn btn-danger" (click)="refuse(item.id)">Отказать</button>
+                    <button type="button" class="btn btn-outline-success" (click)="confirm(item._id, true)">
+                        {{ 'ADMIN.CERTIFICATES.button-approve' | translate }}</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="confirm(item._id, false)">
+                        {{ 'ADMIN.CERTIFICATES.button-deny' | translate }}</button>
+                    <button type="button" class="btn btn-outline-dark" (click)="delete(item._id)">
+                        {{ 'ADMIN.CERTIFICATES.button-delete' | translate }}</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <div *ngIf="certificateImg" class="selected-img-div">
+        <img src="{{certificateImg}}" class="selected-img" />
+        <button (click)="closeCertificate()" type="button" class="btn btn-outline-dark" style="width: auto;">X</button>
+    </div>
 </div>
 
 <!-- <div>
@@ -36,12 +52,36 @@
 
 
 <style>
+    .Hebrew {
+        text-align: right;
+        direction: rtl;
+    }
+    
     .mainRequests {
         width: 100%;
     }
     
-    .requests-div {
-        border: tomato 2px solid;
+    .card-img {
+        cursor: pointer;
+    }
+    
+    .selected-img-div {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.5));
+        position: fixed;
+        left: 0;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .selected-img {
+        max-width: 50%;
+        max-height: 80%;
+        margin: 1%;
+        border: solid 0.3px rgba(0, 0, 0, 0.5);
     }
     
     .buttons {
@@ -55,5 +95,6 @@
     
     .btn {
         margin-top: 10px;
+        width: 180px;
     }
 </style>

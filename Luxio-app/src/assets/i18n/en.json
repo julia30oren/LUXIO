@@ -17,8 +17,13 @@
         },
         "PAGEnotFOUND": {
             "title": "PAGE NOT FOUND"
-        }
+        },
+        "CLIENTS": {
+            "title": "CLIENTS"
+        },
+        "rights": "MITRA GROUP"
     },
+
     "PROD_DESCRIPTION": {
         "LUXIO": {
             "main": "LUXIO GEL is a 100% gel that provides a durable, long-lasting, beautiful finish, protects the nail from external damage and gives a bright glossy shine!",
@@ -65,6 +70,50 @@
             "see-through": "see through",
             "dense": "dense"
         }
+    },
+
+    "ADMIN": {
+        "CERTIFICATES": {
+            "title": "Confirmation requests",
+
+            "button-approve": "Approve",
+            "button-deny": "Deny",
+            "button-delete": "Delete",
+            "button-edit": "Edit",
+            "button-create-modify": "Create / Modify product",
+            "button-save": "Save",
+            "button-clear-form": "Clear form",
+
+            "name": "Name",
+            "category": "Business category",
+            "city": "City",
+            "phone": "Phone number",
+            "date": "Application date",
+            "state-undefined": "Status: Pending",
+            "state-approved": "Status: Approved",
+            "state-dened": "Status: Unapproved"
+        },
+        "PLACEHOLDER": {
+            "id": "Last 3 digits of the code",
+            "name": "Item name",
+            "img-link": "Image link"
+        },
+        "LABEL": {
+            "new": "New",
+            "special-offer": "Special offer",
+            "best-seler": "Best seler",
+            "out-of-stock": "Out of stock",
+            "coming-soon": "Coming soon"
+        },
+        "name": "Name",
+        "class": "Class",
+        "color": "Color",
+        "tint": "Tint",
+        "transparency": "Transparency",
+        "price": "Price",
+        "label": "Label",
+        "img-link": "Image",
+        "text-area": "Additional information field"
     },
 
 

@@ -17,7 +17,11 @@
         },
         "PAGEnotFOUND": {
             "title": "СТРАНИЦА НЕ НАЙДЕНА"
-        }
+        },
+        "CLIENTS": {
+            "title": "КЛИЕНТЫ"
+        },
+        "rights": "МИТРА ГРУП"
     },
     "PROD_DESCRIPTION": {
         "LUXIO": {
@@ -67,6 +71,57 @@
         }
     },
 
+    "ADMIN": {
+        "CERTIFICATES": {
+            "title": "Запросы на подтверждение",
+
+            "button-approve": "Утвердить",
+            "button-deny": "Отказать",
+            "button-delete": "Удалить",
+            "button-edit": "Изменить",
+            "button-create-modify": "Создать / Изменить товар",
+            "button-save": "Сохранить",
+            "button-clear-form": "Очистить форму",
+
+            "name": "Имя",
+            "category": "Категория бизнеса",
+            "city": "Город",
+            "phone": "Номер телефона",
+            "date": "Дата подачи заявки",
+            "state-undefined": "Статус: Pассматривается",
+            "state-approved": "Статус: Одобренно",
+            "state-dened": "Статус: Неодобренно"
+        },
+        "PLACEHOLDER": {
+            "id": "Последние 3 цифры кода",
+            "name": "Имя товара",
+            "img-link": "Ссылка на изображение"
+        },
+        "LABEL": {
+            "new": "Новое",
+            "special-offer": "Специальное предложение",
+            "best-seler": "Лидер продаж",
+            "out-of-stock": "Распродан",
+            "coming-soon": "Скоро в продаже"
+        },
+        "name": "Имя",
+        "class": "Класс",
+        "color": "Цвет",
+        "tint": "Оттенок",
+        "transparency": "Прозрачьность",
+        "price": "Цена",
+        "label": "Метка",
+        "img-link": "Изображение",
+        "text-area": "Поле для дополнительной информации"
+    },
+
+
+
+
+
+
+
+
     "HOME": {
         "TITLE": "Дом",
         "greeting": "Привет!",
@@ -76,4 +131,5 @@
         "header": "Ошибка",
         "msg": "проблема"
     }
+
 }

@@ -17,7 +17,11 @@
         },
         "PAGEnotFOUND": {
             "title": "הדף לא נמצא"
-        }
+        },
+        "CLIENTS": {
+            "title": "לקוחות"
+        },
+        "rights": "קבוצת מיטרה"
     },
 
     "PROD_DESCRIPTION": {
@@ -66,6 +70,50 @@
             "see-through": "שקוף",
             "dense": "סמיך"
         }
+    },
+
+    "ADMIN": {
+        "CERTIFICATES": {
+            "title": "בקשות אישור",
+
+            "button-approve": "לאשר",
+            "button-deny": "להכחיש",
+            "button-delete": "למחוק",
+            "button-edit": "לשנות",
+            "button-create-modify": "צור / שנה מוצר",
+            "button-save": "לשמור",
+            "button-clear-form": "טופס ריק",
+
+            "name": "שם",
+            "category": "קטגורית עסקים",
+            "city": "עיר",
+            "phone": "מספר טלפון",
+            "date": "תאריך הגשת בקשה",
+            "state-undefined": "סטטוס: ממתין",
+            "state-approved": "סטטוס: אושר",
+            "state-dened": "סטטוס: לא אושר"
+        },
+        "PLACEHOLDER": {
+            "id": "שלוש הספרות האחרונות של הקוד",
+            "name": "שם הפריט",
+            "img-link": "קישור תמונה"
+        },
+        "LABEL": {
+            "new": "חדש",
+            "special-offer": "הצעה מיוחדת",
+            "best-seler": "מובילת מכירות",
+            "out-of-stock": "נמכר",
+            "coming-soon": "בקרוב"
+        },
+        "name": "שם",
+        "class": "מעמד",
+        "color": "צבע",
+        "tint": "גון",
+        "transparency": "שקיפות",
+        "price": "מחיר",
+        "label": "סימן",
+        "img-link": "תמונה",
+        "text-area": "שדה מידע נוסף"
     },
 
 

@@ -26,7 +26,7 @@
                   <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
                 </select>
         </div>
-        <p class="rights">© МИТРА ГРУП ©</p>
+        <p class="rights">© {{'NAVIGATION.rights' | translate }} ©</p>
     </div>
 
     <!-- REGISTRATION FORM -->
@@ -75,8 +75,8 @@
 
     <div class="for_admin">
         <h1>Для админа*</h1>
-        <a class="nav-link" href="admin/shop">ПРОДУКЦИЯ</a>
-        <a class="nav-link active" href="admin/certificates">КЛИЕНТЫ</a>
+        <a class="nav-link" href="admin/shop">{{ 'NAVIGATION.PRODUCTS.title' | translate }}</a>
+        <a class="nav-link active" href="admin/certificates">{{ 'NAVIGATION.CLIENTS.title' | translate }}</a>
     </div>
 
     <style>

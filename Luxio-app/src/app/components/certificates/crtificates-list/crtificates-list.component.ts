@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageService } from 'src/app/services/imgService/img-searvice.service';
 import { SaveUserService } from 'src/app/services/saveUser/save-user.service';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-crtificates-list',
@@ -10,43 +10,42 @@ import { SaveUserService } from 'src/app/services/saveUser/save-user.service';
 export class CrtificatesListComponent implements OnInit {
 
   certificatesList: any[];
-  // rowIndexArray: any[];
+  public langIv: boolean = false;
+  public certificateImg: string;
 
   constructor(
-    private cert_service: ImageService,
-    private getUsersService: SaveUserService
+    private getUsersService: SaveUserService,
+    private lang_service: LanguageService
   ) { }
 
   ngOnInit() {
     this.getUsersService.getUsers_fromDB();
     this.getUsersService.users_from_service
       .subscribe(date => this.certificatesList = date[0]);
-    // this.getDate();
+
+    this.lang_service._selected_from_service
+      .subscribe(date => {
+        if (date === 'iv') {
+          this.langIv = true;
+        } else this.langIv = false;
+        // console.log(date)
+      })
   }
 
-  confirm(user_id) {
-    let user = {
-      id: user_id,
-      status: 1
-    };
-    this.getUsersService.sertConfirmation(user);
+  confirm(user_id, setState) {
+    this.getUsersService.sertConfirmation(user_id, setState);
   }
 
-  refuse(user_id) {
-    let user = {
-      id: user_id,
-      status: 2
-    };
-    this.getUsersService.sertConfirmation(user);
+  delete(user_id) {
+    console.log(user_id)
   }
 
-  // getDate() {
-  //   this.cert_service.imageDetailList
-  //     .snapshotChanges()
-  //     .subscribe(list => {
-  //       // this.certificatesList = list
-  //       this.certificatesList = list.map(item => { console.log(item); return item.payload.val(); });
-  //       // this.rowIndexArray = Array.from(Array(Math.ceil(this.certificatesList.length / 3)).keys())
-  //     })
-  // }
+  openCertificate(link) {
+    this.certificateImg = link;
+  }
+
+  closeCertificate() {
+    this.certificateImg = null;
+  }
+
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RegistrationService } from 'src/app/services/registation/registration.service';
 import { UUID } from 'angular2-uuid';
-import { LocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-reg-form-one',

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShopService } from 'src/app/services/shop/shop.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-admin-shop',
@@ -17,6 +18,7 @@ export class AdminShopComponent implements OnInit {
   public responce_from_DB: Array<any>;
   public searchText: any;
   public searchRes: Array<any>;
+  private langIv: boolean;
 
   formTemplate = new FormGroup({
     burcode_id: new FormControl(null, Validators.required),
@@ -34,7 +36,8 @@ export class AdminShopComponent implements OnInit {
   })
 
   constructor(
-    private shop_service: ShopService
+    private shop_service: ShopService,
+    private lang_service: LanguageService
   ) { }
 
   ngOnInit() {
@@ -45,6 +48,15 @@ export class AdminShopComponent implements OnInit {
         this.shop = date[0];
         // this.shop_service.getProducts_sorted(this.shop);
       });
+
+    this.lang_service._selected_from_service
+      .subscribe(date => {
+        if (date === 'iv') {
+          this.langIv = true;
+        } else this.langIv = false;
+        // console.log(date)
+      })
+
     this.shop_service.prod_selected_from_service
       .subscribe(date => {
         this.selectedProd = date;
@@ -87,31 +99,11 @@ export class AdminShopComponent implements OnInit {
     this.shop_service.removeProduct_fromDB(byId);
   }
 
-  // searchItem(value: any) {
-  //   console.log(value);
-  //   let newAr = [];
-
-
-  //   this.shop.forEach(element => {
-  //     if (isNaN(value)) {
-  //       if (element.name.includes(value.toUpperCase())) {
-  //         newAr.push(element);
-  //         this.searchRes = newAr;
-  //         console.log(this.searchRes);
-  //       } else this.searchRes = [];
-  //     } else {
-  //       if (element.burcode_id == value) {
-  //         newAr.push(element);
-  //         this.searchRes = newAr;
-  //         console.log(this.searchRes);
-
-  //       } else this.searchRes = [];
-  //     }
-  //   });
-  // }
-
-  openForm() {
-    this.new_form_open = !this.new_form_open;
+  openForm(state) {
+    this.new_form_open = state;
+    if (state) {
+      window.scrollTo(0, 0)
+    }
   }
 
   showImg(value) {
