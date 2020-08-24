@@ -22,6 +22,7 @@ import { RegFormTwoComponent } from './components/registration/reg-form-two/reg-
 import { RegFormAgreementComponent } from './components/registration/reg-form-agreement/reg-form-agreement.component';
 import { LogFormComponent } from './components/registration/log-form/log-form.component';
 import { PasswordRestoreFormComponent } from './components/registration/password-restore-form/password-restore-form.component';
+import { NewComponent } from './components/main/new/new/new.component';
 
 
 // AoT requires an exported function for factories
@@ -37,7 +38,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     RegFormAgreementComponent,
     LogFormComponent,
     PasswordRestoreFormComponent,
-    routingComponents
+    routingComponents,
+    NewComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,207 @@
+<div style="width: 100%; background-color: white;">
+
+    <img src="https://i.pinimg.com/originals/76/8d/0f/768d0f9635932751311f757099c3f743.png" />
+    <p [ngClass]="{Hebrew: langIv}" style="padding: 5%; color: gray;">{{ 'NEW.loz' | translate}}</p>
+
+    <hr/>
+
+    <div class="new-comp-row">
+        <div class="therd-row">
+            <img src="https://i.pinimg.com/originals/40/d8/4b/40d84bc50cdafe802160c267cbdf187c.jpg" />
+        </div>
+        <div class="therd-row" style="text-align: center; font-family: Century Gothic;">
+            <h3>NEW TRINITY</h3>
+            <h1>SADES</h1>
+            <h5>UV/LED PRO-FORMANCE LINE</h5>
+            <br>
+            <p [ngClass]="{Hebrew: langIv}" style="font-family: Calibri; color: gray; text-align: center;">{{ 'NEW.sades-m' | translate}}.</p>
+            <p style="font-family: Calibri;font-size: small;">{{ 'NEW.info-2' | translate}}</p>
+        </div>
+        <div class="therd-row">
+            <img src="https://i.pinimg.com/originals/5d/9a/77/5d9a77ed39c4c999f26376d6746fbf22.jpg" />
+        </div>
+    </div>
+
+    <button type="button" (click)="openShades_shop()" class="btn btn-light btn-block">
+        <p *ngIf="!shadesOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-shop' | translate}}</p>
+        <p *ngIf="shadesOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-close' | translate}}</p>
+    </button>
+
+    <div class="shopComp" *ngIf="shadesOpen">
+        <div *ngFor="let item of shaides" class="card" style="width: 18rem; height: 18rem;" id={{item.burcode_id}}>
+            <div class="buttons">
+                <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
+                <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+            </div>
+            <img src={{item.img_link}} class="card-img-top" alt="..." (click)="select(item.burcode_id)" />
+            <div class="cardInfo" (click)="select(item.burcode_id)">
+                <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
+                <h5>{{item.prod_class}} {{item.name}}</h5>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="new-comp-row">
+        <div class="half-row">
+            <img src="https://i.pinimg.com/originals/cb/77/93/cb7793a456fb21a86ebc482e481bc95a.png" />
+        </div>
+        <div class="half-row" style="text-align: center; font-family: Century Gothic; padding: 5%;">
+            <h3>NEW LUXIO</h3>
+            <h1>VOYAGE</h1>
+            <h5>UV/LED COLOUR COLLECTION</h5>
+            <br>
+            <p [ngClass]="{Hebrew: langIv}" style="font-family: Calibri; color: gray; text-align: center;">{{ 'NEW.voyage-m' | translate}}.</p>
+            <p style="font-family: Calibri;font-size: small;">{{ 'NEW.info-1' | translate}}</p>
+        </div>
+    </div>
+
+    <button type="button" (click)="openVoyage_shop()" class="btn btn-light btn-block">
+        <p *ngIf="!voyageOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-shop' | translate}}</p>
+        <p *ngIf="voyageOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-close' | translate}}</p>
+    </button>
+
+    <div class="shopComp" *ngIf="voyageOpen">
+        <div *ngFor="let item of voyage" class="card" style="width: 18rem; height: 18rem;" id={{item.burcode_id}}>
+            <div class="buttons">
+                <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
+                <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+            </div>
+            <img src={{item.img_link}} style="max-height: 100%; width: 70%;margin-left:10%" alt="..." (click)="select(item.burcode_id)" />
+            <div class="cardInfo" (click)="select(item.burcode_id)">
+                <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
+                <h5>{{item.prod_class}} {{item.name}}</h5>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="new-comp-row">
+        <div class="half-row " style="text-align: center; font-family: Century Gothic; padding: 5%; ">
+            <h3>NEW LUXIO</h3>
+            <h1>FASCINATION</h1>
+            <h5>UV/LED COLOUR COLLECTION</h5>
+            <br>
+            <p [ngClass]="{Hebrew: langIv}" style="font-family: Calibri; color: gray; text-align: center; ">{{ 'NEW.fascination-m' | translate}}.</p>
+            <p style="font-family: Calibri;font-size: small; ">{{ 'NEW.info-1' | translate}}</p>
+        </div>
+        <div class="half-row">
+            <img src="https://i.pinimg.com/originals/01/8d/2c/018d2c7bc949ddbe265d1b52132948bc.jpg" />
+        </div>
+    </div>
+
+    <button type="button " (click)="openFascination_shop() " class="btn btn-light btn-block ">
+        <p *ngIf="!fascinationOpen " style="color: rgb(117, 0, 0); ">{{ 'NEW.button-shop' | translate}}</p>
+        <p *ngIf="fascinationOpen " style="color: rgb(117, 0, 0); ">{{ 'NEW.button-close' | translate}}</p>
+    </button>
+
+    <div class="shopComp " *ngIf="fascinationOpen ">
+        <div *ngFor="let item of fascination " class="card " style="width: 18rem; height: 18rem; " id={{item.burcode_id}}>
+            <div class="buttons ">
+                <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item._id) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fab fa-shopify fa-3x "></i></button>
+                <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item._id) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart fa-2x "></i></button>
+            </div>
+            <img src={{item.img_link}} style="max-height: 100%; width: 80%;margin-left:10% " alt="... " (click)="select(item.burcode_id) " />
+            <div class="cardInfo " (click)="select(item.burcode_id) ">
+                <h5 style="text-align: right; ">{{item.price}} &#8362;</h5>
+                <h5>{{item.prod_class}} {{item.name}}</h5>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .Hebrew {
+        text-align: right;
+        direction: rtl;
+    }
+    
+    img,
+    .new-comp-row {
+        width: 100%;
+    }
+    
+    .new-comp-row {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .therd-row {
+        width: 33%;
+        margin: auto;
+    }
+    
+    .half-row {
+        width: 50%;
+        margin: auto;
+    }
+    
+    .shopComp {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    
+    .card {
+        margin: auto;
+        background-color: rgba(0, 0, 0, 0);
+        width: 32%;
+        margin-top: 15px;
+    }
+    
+    .buttons {
+        width: 100%;
+        position: absolute;
+        display: flex;
+        justify-content: left;
+    }
+    
+    .cardInfo {
+        position: absolute;
+        bottom: 10px;
+        right: 15px;
+        z-index: 1;
+        font-family: Century Gothic;
+    }
+    
+    .hart-button,
+    .cart-button {
+        margin-left: 1%;
+        margin-top: 2%;
+        border: none;
+        background-color: rgba(0, 0, 0, 0);
+    }
+    
+    .active {
+        color: green;
+    }
+    
+    .not-active {
+        color: rgba(128, 128, 128, 0.5);
+    }
+    
+    .red-hart {
+        color: rgb(194, 0, 0);
+    }
+    
+    .red-hart:hover {
+        color: rgba(128, 128, 128, 0.5);
+    }
+    
+    .grey-hart {
+        color: rgba(128, 128, 128, 0.5);
+    }
+    
+    .grey-hart:hover,
+    .cart-button:hover {
+        color: rgb(194, 0, 0);
+    }
+    
+    .hart-button:hover {
+        color: rgb(194, 0, 0);
+    }
+</style>

@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   public formAgreement_Open: boolean = false;
   public formLogin_Open: boolean = false;
   public formPasswodRestore_Open: boolean = false;
+  public prodOptionsOpen: boolean;
 
   formTemplate = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -66,6 +67,10 @@ export class AppComponent implements OnInit {
       .subscribe(data => {
         this.formPasswodRestore_Open = data;
       });
+  }
+
+  openProdOptions() {
+    this.prodOptionsOpen = !this.prodOptionsOpen;
   }
 
   setLng(l) {

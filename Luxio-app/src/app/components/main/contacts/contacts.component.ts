@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-contacts',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactsComponent implements OnInit {
 
-  constructor() { }
+  private langIv: boolean;
+
+  constructor(
+    private lang_service: LanguageService
+  ) { }
 
   ngOnInit() {
+    this.lang_service._selected_from_service
+      .subscribe(date => {
+        if (date === 'iv') {
+          this.langIv = true;
+        } else this.langIv = false;
+      })
   }
 
 }

@@ -1,5 +1,8 @@
 {
     "NAVIGATION": {
+        "NEW": {
+            "title": "WHAT'S NEW"
+        },
         "PRODUCTS": {
             "title": "PRODUCTS"
         },
@@ -22,6 +25,30 @@
             "title": "CLIENTS"
         },
         "rights": "MITRA GROUP"
+    },
+    "NEW": {
+        "loz": "Akzentz is always releasing new and featured nail products and they’re sure to impress! Inspired by the latest nail styles, our new products are designed to support your skills and creativity to help you create amazing nails.",
+        "sades-m": "Science and beauty combine to bring you the New Trinity Shades Collection, available In Trinity Shades Cool SC1 Natural SN1 and Warm SW1",
+        "voyage-m": "Introducing the Luxio Voyage collection. Escape to a luxurious destination with six new Luxio shades: Lustful, Glimpse, Jaded, Instinct , Persuasion and Virtue",
+        "fascination-m": "Introducing the Luxio Fascination collection. Escape to a luxurious destination with six new Luxio shades: Impulse, Storm, Beguiling, Tantauzing , Plush and Curiosity",
+        "info-1": "AVAILABLE NOW",
+        "info-2": "COMMING SOON",
+        "button-shop": "Shop",
+        "button-close": "Close"
+    },
+
+    "SIGN-IN": {
+        "RULES": {
+            "title": "GET YOUR PERSONAL ID",
+            "title2": "Important information for using the online store",
+            "rule-1": "LUXIO is for professional use only and is not available to individuals",
+            "rule-2": "To confirm your professional / business status and get an ID, please fill out an application form on our website",
+            "rule-2-li-1": "If you are the owner of a salon business, provide the details of the legal entity",
+            "rule-2-li-2": "If you are a master of nail service, please provide a diploma",
+            "rule-3": "Your application will be reviewed within one business day",
+            "rule-4": "The online store is available only for authorized users with a PERSONAL ID",
+            "button-get-id": "GET ID"
+        }
     },
 
     "PROD_DESCRIPTION": {
@@ -114,6 +141,17 @@
         "label": "Label",
         "img-link": "Image",
         "text-area": "Additional information field"
+    },
+
+    "CONTACT": {
+        "country": "Israel",
+        "city": "Ramat Gan",
+        "street": "Ahaliav St. 10",
+        "phone": "Phone",
+        "email": "Email",
+        "button-send": "Send",
+        "message-1": "Send us your comments, questions, or concerns",
+        "message-2": "Find us on your favorite social media platform"
     },
 
 

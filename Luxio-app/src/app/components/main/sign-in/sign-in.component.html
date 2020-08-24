@@ -1,36 +1,45 @@
-<div class="form-back-ground" *ngIf="applyForId">
-
+<div>
+    <img class="model-img" src="https://i.pinimg.com/originals/c6/cc/40/c6cc401385ab2c8b7f819f5f03ecd1a0.jpg" />
 </div>
 
-<div class="rules">
-    <h1>ПОЛУЧИТЕ СВОЙ ПЕРСОНАЛЬНЫЙ ID</h1>
-
+<div class="rules" [ngClass]="{Hebrew: langIv}">
+    <h1>{{ 'SIGN-IN.RULES.title' | translate }}</h1>
+    <!--  -->
     <div>
-        <h4>Важная информация использования интернет-магазина:</h4>
+        <h4>{{ 'SIGN-IN.RULES.title2' | translate }}:</h4>
         <p>
-            1. LUXIO предназначен только для профессионального использования и не доступен для частных лиц.
+            1. {{ 'SIGN-IN.RULES.rule-1' | translate }}.
         </p>
         <p>
-            2. Чтобы подтвердить профессиональный/бизнес статус и получить ID, пожалуйста заполните заявку на нашем сайте.
+            2. {{ 'SIGN-IN.RULES.rule-2' | translate }}.
         </p>
         <ul>
-            <li>Если Вы являетесь владельцем салонного бизнеса, предоставьте реквизиты юридического лица.</li>
-            <li>Если Вы являетесь мастером ногтевого сервиса, предоставьте диплом.</li>
+            <li> {{ 'SIGN-IN.RULES.rule-2-li-1' | translate }}.</li>
+            <li> {{ 'SIGN-IN.RULES.rule-2-li-2' | translate }}.</li>
         </ul>
 
         <p>
-            3. Ваша заявка будет рассмотрена в течении одного рабочего дня.
+            3. {{ 'SIGN-IN.RULES.rule-3' | translate }}.
         </p>
         <p>
-            4. Интернет магазин доступен только для авторизированных пользователей с ПЕРСОНАЛЬНЫМ ID.
+            4. {{ 'SIGN-IN.RULES.rule-4' | translate }}.
         </p>
-        <button type="button" class="btn btn-dark btn-lg btn-block" (click)="getID_regForm()">ПОЛУЧИТЬ ID</button>
+        <button type="button" class="btn btn-dark btn-lg btn-block" (click)="getID_regForm()">
+            {{ 'SIGN-IN.RULES.button-get-id' | translate }}
+        </button>
     </div>
 </div>
 
 
 
 <style>
+    /* .model-img {} */
+    
+    .Hebrew {
+        text-align: right;
+        direction: rtl;
+    }
+    
     .rules {
         margin: 1%;
         padding: 1%;

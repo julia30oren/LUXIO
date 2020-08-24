@@ -4,7 +4,16 @@
     <div class="navigation">
         <img class="Akzentz-logo" src="https://www.luxio.ae/wordpress//wp-content/themes/aperture-child/images/luxio.png" alt="AKZENTZ">
         <nav class="nav flex-column">
-            <a class="nav-link active" href="welcome">{{ 'NAVIGATION.PRODUCTS.title' | translate }}</a>
+            <a class="nav-link active" href="new">{{ 'NAVIGATION.NEW.title' | translate }}</a>
+            <a class="nav-link" (click)="openProdOptions()">{{ 'NAVIGATION.PRODUCTS.title' | translate }}</a>
+            <div class="prod-options" *ngIf="prodOptionsOpen">
+                <a class="prod-option-link" href="">LUXIO</a>
+                <a class="prod-option-link" href="">GEL PLAY</a>
+                <a class="prod-option-link" href="">OPTIONS</a>
+                <a class="prod-option-link" href="">PRO-FORMANCE</a>
+                <a class="prod-option-link" href="">Basics</a>
+                <a class="prod-option-link" href="">Tools</a>
+            </div>
             <a class="nav-link" href="shop">{{ 'NAVIGATION.STORE.title' | translate }}</a>
             <a class="nav-link" href="courses">{{ 'NAVIGATION.COURSES.title' | translate }}</a>
             <a class="nav-link" href="contacts">{{ 'NAVIGATION.OFFICES.title' | translate }}</a>
@@ -28,6 +37,20 @@
         </div>
         <p class="rights">© {{'NAVIGATION.rights' | translate }} ©</p>
     </div>
+    <style>
+        .prod-options {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            z-index: 2;
+        }
+        
+        .prod-option-link {
+            color: white;
+            padding: 4%;
+        }
+    </style>
 
     <!-- REGISTRATION FORM -->
     <div class="RegFormBackground" *ngIf="regForm_Open" (click)="closeForm()"></div>
@@ -128,6 +151,7 @@
     
     .content {
         position: absolute;
+        z-index: 0;
         display: flex;
         flex-direction: column;
         justify-content: center;
