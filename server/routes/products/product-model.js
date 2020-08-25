@@ -10,6 +10,9 @@ const ProductSchema = new Schema({
         type: String,
         require: true
     },
+    prod_collection: {
+        type: String
+    },
     name: {
         type: String,
         require: true

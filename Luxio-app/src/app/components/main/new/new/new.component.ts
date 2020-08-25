@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LanguageService } from 'src/app/services/language.service';
+import { ShopService } from 'src/app/services/shop/shop.service';
 
 @Component({
   selector: 'app-new',
@@ -12,110 +13,22 @@ export class NewComponent implements OnInit {
   private shadesOpen: boolean;
   private voyageOpen: boolean;
   private fascinationOpen: boolean;
+  public selectedProd: object;
+
   public my_cart: Array<any> = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
   public my_favorites: Array<any> = JSON.parse(localStorage.getItem('my_764528_f')) || [];
-  public shaides: Array<any> = [
-    {
-      img_link: "https://i.pinimg.com/originals/ae/39/20/ae3920e43086a631797af177426db115.jpg",
-      prod_class: "Hard GEL",
-      name: "TRINITY WARM",
-      price: 100
-    },
-    {
-      img_link: "https://i.pinimg.com/originals/7a/a5/04/7aa5044c0e08d7ad1b04cd9161337c06.jpg",
-      prod_class: "Hard GEL",
-      name: "TRINITY NATURAL",
-      price: 100
-    },
-    {
-      img_link: "https://i.pinimg.com/originals/64/61/7a/64617a0913932eba65ef3b730b8aff95.jpg",
-      prod_class: "Hard GEL",
-      name: "TRINITY WARM",
-      price: 100
-    }
-  ];
-  public voyage: Array<any> = [
-    {
-      img_link: "https://akzentz.com/wp-content/uploads/2020/01/luxio-lustful-1.jpg",
-      prod_class: "Luxio",
-      name: "LUSTFUL",
-      price: 117
-    },
-    {
-      img_link: "https://akzentz.com/wp-content/uploads/2020/01/luxio-instinct-1.jpg",
-      prod_class: "Luxio",
-      name: "INSTINCT",
-      price: 117
-    },
-    {
-      img_link: "https://akzentz.com/wp-content/uploads/2020/01/luxio-jaded-1.jpg",
-      prod_class: "Luxio",
-      name: "JADED",
-      price: 117
-    },
-    {
-      img_link: "https://akzentz.com/wp-content/uploads/2020/01/luxio-persuasion-1.jpg",
-      prod_class: "Luxio",
-      name: "PERSUASION",
-      price: 117
-    },
-    {
-      img_link: "https://akzentz.com/wp-content/uploads/2020/01/luxio-glimpse-1.jpg",
-      prod_class: "Luxio",
-      name: "GLIMPSE",
-      price: 117
-    },
-    {
-      img_link: "https://akzentz.com/wp-content/uploads/2020/01/luxio-virtue-1.jpg",
-      prod_class: "Luxio",
-      name: "VIRTUE",
-      price: 117
-    }
-  ];
-  public fascination: Array<any> = [
-    {
-      img_link: "https://akzentz.com/wp-content/uploads/2019/09/luxio-gel-impulse.jpg",
-      prod_class: "Luxio",
-      name: "IMPULSE",
-      price: 117
-    },
-    {
-      img_link: "https://akzentz.com/wp-content/uploads/2019/09/luxio-gel-curiosity.jpg",
-      prod_class: "Luxio",
-      name: "CUROSITY",
-      price: 117
-    },
-    {
-      img_link: "https://akzentz.com/wp-content/uploads/2019/09/luxio-gel-beguiling.jpg",
-      prod_class: "Luxio",
-      name: "BEGUILING",
-      price: 117
-    },
-    {
-      img_link: "https://akzentz.com/wp-content/uploads/2019/09/luxio-gel-tantalizing.jpg",
-      prod_class: "Luxio",
-      name: "TANTALIZING",
-      price: 117
-    },
-    {
-      img_link: "https://akzentz.com/wp-content/uploads/2019/09/luxio-gel-storm.jpg",
-      prod_class: "Luxio",
-      name: "STORM",
-      price: 117
-    },
-    {
-      img_link: "https://akzentz.com/wp-content/uploads/2019/09/luxio-gel-plush.jpg",
-      prod_class: "Luxio",
-      name: "PLUSH",
-      price: 117
-    }
-  ];
+  public shades: Array<any> = [];
+  public voyage: Array<any> = [];
+  public fascination: Array<any> = [];
 
   constructor(
-    private lang_service: LanguageService
+    private lang_service: LanguageService,
+    private shop_service: ShopService
   ) { }
 
   ngOnInit() {
+    this.shop_service.getProducts_fromDB();
+
     this.lang_service._selected_from_service
       .subscribe(date => {
         if (date === 'iv') {
@@ -123,6 +36,22 @@ export class NewComponent implements OnInit {
         } else this.langIv = false;
         // console.log(date)
       })
+
+
+    this.shop_service.shop_products_from_service
+      .subscribe(date => {
+        let shop = date[0] || [];
+        shop.forEach(element => {
+          if (element.prod_collection === 'shades') {
+            this.shades.push(element);
+          } else if (element.prod_collection === 'voyage') {
+            this.voyage.push(element);
+          }
+          else if (element.prod_collection === 'fascination') {
+            this.fascination.push(element);
+          }
+        });
+      });
   }
 
   openShades_shop() {
@@ -147,5 +76,49 @@ export class NewComponent implements OnInit {
     if (this.my_cart.includes(id)) {
       return 'cart-button active';
     } else return 'cart-button not-active';
+  }
+
+  addToFavorites(id) {
+    if (this.my_favorites.includes(id)) {
+      var filtered = this.my_favorites.filter((val) => { return val !== id; });
+      this.my_favorites = filtered;
+      localStorage.setItem('my_764528_f', JSON.stringify(filtered))
+    } else {
+      this.my_favorites.push(id);
+      localStorage.setItem('my_764528_f', JSON.stringify(this.my_favorites))
+    }
+  }
+
+  addToCart(id) {
+    if (this.my_cart.includes(id)) {
+      var filtered = this.my_cart.filter((val) => { return val !== id; });
+      this.my_cart = filtered;
+      localStorage.setItem('my_764528_ct', JSON.stringify(filtered))
+    } else {
+      this.my_cart.push(id);
+      localStorage.setItem('my_764528_ct', JSON.stringify(this.my_cart))
+    }
+  }
+
+  select(id: number) {
+    this.shades.forEach(element => {
+      if (element.burcode_id === id) {
+        this.selectedProd = element;
+      }
+    });
+    this.voyage.forEach(element => {
+      if (element.burcode_id === id) {
+        this.selectedProd = element;
+      }
+    });
+    this.fascination.forEach(element => {
+      if (element.burcode_id === id) {
+        this.selectedProd = element;
+      }
+    });
+  }
+
+  closeSelected() {
+    this.selectedProd = null;
   }
 }

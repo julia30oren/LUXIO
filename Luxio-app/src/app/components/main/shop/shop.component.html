@@ -116,7 +116,7 @@
 
     <div *ngIf="!selectedProd">
         <div class="shopComp" *ngIf="shop && !sorted">
-            <div *ngFor="let item of shop" class="card" style="width: 18rem; height: 18rem;" id={{item.burcode_id}}>
+            <div *ngFor="let item of shop" class="card" id={{item.burcode_id}}>
                 <div class="buttons">
                     <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
                     <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
@@ -133,7 +133,7 @@
         </div>
 
         <div class="shopComp" *ngIf="sorted">
-            <div *ngFor="let item of sorted" class="card" style="width: 18rem; height: 18rem;" id={{item.burcode_id}}>
+            <div *ngFor="let item of sorted" class="card" id={{item.burcode_id}}>
                 <div class="buttons">
                     <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
                     <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>

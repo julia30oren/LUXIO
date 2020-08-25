@@ -24,6 +24,7 @@ export class AdminShopComponent implements OnInit {
     burcode_id: new FormControl(null, Validators.required),
     name: new FormControl('', Validators.required),
     prod_class: new FormControl('', Validators.required),
+    prod_collection: new FormControl(''),
     img_link: new FormControl(''),
     price: new FormControl(null, Validators.required),
     color: new FormControl(''),
@@ -66,6 +67,7 @@ export class AdminShopComponent implements OnInit {
             burcode_id: this.selectedProd[0].burcode_id,
             name: this.selectedProd[0].name,
             prod_class: this.selectedProd[0].prod_class,
+            prod_collection: this.selectedProd[0].prod_collection || '',
             img_link: this.selectedProd[0].img_link,
             price: this.selectedProd[0].price,
             color: this.selectedProd[0].color || '',
@@ -114,7 +116,7 @@ export class AdminShopComponent implements OnInit {
   onSubmit(formValue) {
     this.isSubmitted = true;
     if (this.formTemplate.valid) {
-      // console.log(formValue);
+      console.log(formValue);
 
       this.shop_service.saveProduct_toDB(formValue);
     }
@@ -134,6 +136,7 @@ export class AdminShopComponent implements OnInit {
       price: null,
       color: '',
       tint: '',
+      prod_collection: '',
       transparency: '',
       label: '',
       coment_eng: '',

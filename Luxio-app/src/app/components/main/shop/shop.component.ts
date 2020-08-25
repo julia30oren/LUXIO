@@ -78,12 +78,9 @@ export class ShopComponent implements OnInit {
       }
     });
   }
+
   closeSelected() {
     this.selectedProd = null;
-  }
-
-  toCart(id) {
-    console.log('to cart ', id)
   }
 
   addToFavorites(id) {

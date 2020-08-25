@@ -124,7 +124,8 @@
         "PLACEHOLDER": {
             "id": "שלוש הספרות האחרונות של הקוד",
             "name": "שם הפריט",
-            "img-link": "קישור תמונה"
+            "img-link": "קישור תמונה",
+            "collection": "שם האוסף"
         },
         "LABEL": {
             "new": "חדש",
@@ -137,6 +138,7 @@
         "class": "מעמד",
         "color": "צבע",
         "tint": "גון",
+        "collection": "אוסף",
         "transparency": "שקיפות",
         "price": "מחיר",
         "label": "סימן",

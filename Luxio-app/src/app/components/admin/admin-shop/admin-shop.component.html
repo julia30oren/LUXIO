@@ -9,7 +9,7 @@
             <div class="form-row align-items-center">
                 <div class="col-sm-4 my-1">
                     <label for="idInput">ID:</label>
-                    <input value="selectedProd[0].burcode_id" formControlName="burcode_id" [ngClass]="{error: isSubmitted && formControls.burcode_id.errors?.required}" placeholder="{{ 'ADMIN.PLACEHOLDER.id' | translate}}" type="text" class="form-control" placeholder="Last 3 numbers on barcode">
+                    <input value="selectedProd[0].burcode_id" formControlName="burcode_id" [ngClass]="{error: isSubmitted && formControls.burcode_id.errors?.required}" placeholder="{{ 'ADMIN.PLACEHOLDER.id' | translate}}" type="text" class="form-control">
                 </div>
 
                 <div class="col-sm-4 my-1">
@@ -91,13 +91,16 @@
                 </div>
 
                 <div class="col-sm-4 my-1">
-                    <label>{{ 'ADMIN.img-link' | translate}}:</label>
-                    <input formControlName="img_link" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" (ngModelChange)="showImg($event)" type="text" class="form-control">
+                    <label for="idInput">{{ 'ADMIN.collection' | translate}}:</label>
+                    <input value="selectedProd[0].prod_collection" formControlName="prod_collection" placeholder="{{ 'ADMIN.PLACEHOLDER.collection' | translate}}" type="text" class="form-control">
                 </div>
-
             </div>
+
             <div class="form-row align-items-center">
                 <div class="col-sm-8 my-1">
+                    <label>{{ 'ADMIN.img-link' | translate}}:</label>
+                    <input formControlName="img_link" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" (ngModelChange)="showImg($event)" type="text" class="form-control">
+
                     <label for="Textarea">{{ 'ADMIN.text-area' | translate}} (english):</label>
                     <textarea class="form-control" id="Textarea" formControlName="coment_eng"></textarea>
 
@@ -143,7 +146,7 @@
                     <div class="card-body">
                         <p class="card-text"><small class="text-muted"># {{item.burcode_id}}</small></p>
                         <h5 class="card-title">{{item.prod_class}} {{item.name}}</h5>
-
+                        <p *ngIf="item.prod_collection">Collection: {{ item.prod_collection}}</p>
                         <p class="card-text">{{item.coment_eng}}</p>
                         <p class="card-text">{{item.coment_rus}}</p>
                         <p class="card-text Hebrew">{{item.coment_iv}}</p>

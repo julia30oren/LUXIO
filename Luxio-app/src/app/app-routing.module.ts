@@ -8,17 +8,28 @@ import { SignInComponent } from './components/main/sign-in/sign-in.component';
 import { ShopComponent } from './components/main/shop/shop.component';
 import { AdminShopComponent } from './components/admin/admin-shop/admin-shop.component';
 import { NewComponent } from './components/main/new/new/new.component';
+import { BasicsComponent } from './components/main/products/basics/basics.component';
+import { GelPlayComponent } from './components/main/products/gel-play/gel-play.component';
+import { LuxioComponent } from './components/main/products/luxio/luxio.component';
+import { OptionssComponent } from './components/main/products/optionss/optionss.component';
+import { ProFormanceComponent } from './components/main/products/pro-formance/pro-formance.component';
+import { ToolsComponent } from './components/main/products/tools/tools.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'new', pathMatch: 'full' },
 
     { path: 'new', component: NewComponent },
-
-
+    { path: 'products/luxio', component: LuxioComponent },
+    { path: 'products/options', component: OptionssComponent },
+    { path: 'products/gel-play', component: GelPlayComponent },
+    { path: 'products/pro-formance', component: ProFormanceComponent },
+    { path: 'products/basics', component: BasicsComponent },
+    { path: 'products/tools', component: ToolsComponent },
     { path: 'registration', component: SignInComponent },
     { path: 'shop', component: ShopComponent },
     { path: 'courses', component: CoursesComponent },
     { path: 'contacts', component: ContactsComponent },
+
     { path: "admin/certificates", component: CrtificatesListComponent },
     { path: "admin/shop", component: AdminShopComponent },
 
@@ -37,6 +48,12 @@ export const routingComponents = [
     ContactsComponent,
     NewComponent,
     CrtificatesListComponent,
+    GelPlayComponent,
+    OptionssComponent,
+    ToolsComponent,
+    LuxioComponent,
+    ProFormanceComponent,
+    BasicsComponent,
     AdminShopComponent,
     PageNotFoundComponent
 ]

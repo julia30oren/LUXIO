@@ -123,7 +123,8 @@
         "PLACEHOLDER": {
             "id": "Last 3 digits of the code",
             "name": "Item name",
-            "img-link": "Image link"
+            "img-link": "Image link",
+            "collection": "Collection name"
         },
         "LABEL": {
             "new": "New",
@@ -136,6 +137,7 @@
         "class": "Class",
         "color": "Color",
         "tint": "Tint",
+        "collection": "Collection",
         "transparency": "Transparency",
         "price": "Price",
         "label": "Label",

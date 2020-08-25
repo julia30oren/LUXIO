@@ -1,0 +1,64 @@
+.card {
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0);
+    width: 32%;
+    margin-top: 15px;
+}
+
+.card-buttons {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: left;
+}
+
+.card-img {
+    max-height: 100%;
+    width: 80%;
+    margin: 10%
+}
+
+.card-info {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    z-index: 1;
+    font-family: Century Gothic;
+}
+
+.hart-button,
+.cart-button {
+    margin-left: 1%;
+    margin-top: 2%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.active {
+    color: green;
+}
+
+.not-active {
+    color: rgba(128, 128, 128, 0.5);
+}
+
+.red-hart {
+    color: rgb(194, 0, 0);
+}
+
+.red-hart:hover {
+    color: rgba(128, 128, 128, 0.5);
+}
+
+.grey-hart {
+    color: rgba(128, 128, 128, 0.5);
+}
+
+.grey-hart:hover,
+.cart-button:hover {
+    color: rgb(194, 0, 0);
+}
+
+.hart-button:hover {
+    color: rgb(194, 0, 0);
+}

@@ -14,7 +14,6 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-
 import { AppComponent } from './app.component';
 
 import { RegFormOneComponent } from './components/registration/reg-form-one/reg-form-one.component';
@@ -22,7 +21,7 @@ import { RegFormTwoComponent } from './components/registration/reg-form-two/reg-
 import { RegFormAgreementComponent } from './components/registration/reg-form-agreement/reg-form-agreement.component';
 import { LogFormComponent } from './components/registration/log-form/log-form.component';
 import { PasswordRestoreFormComponent } from './components/registration/password-restore-form/password-restore-form.component';
-import { NewComponent } from './components/main/new/new/new.component';
+import { CardComponent } from './components/card/card.component';
 
 
 // AoT requires an exported function for factories
@@ -39,7 +38,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     LogFormComponent,
     PasswordRestoreFormComponent,
     routingComponents,
-    NewComponent
+    CardComponent
   ],
   imports: [
     BrowserModule,
