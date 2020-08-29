@@ -20,6 +20,8 @@ export class AppComponent implements OnInit {
   public formLogin_Open: boolean = false;
   public formPasswodRestore_Open: boolean = false;
   public prodOptionsOpen: boolean;
+  private location: string = "";
+  private langIv: boolean;
 
   formTemplate = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -31,7 +33,7 @@ export class AppComponent implements OnInit {
     private usersServ: SaveUserService,
     // private http_client: HttpClient,
     private languageService: LanguageService,
-    public translate: TranslateService
+    public translate: TranslateService,
   ) {
     translate.addLangs(['en', 'ru', 'iv']);
     translate.setDefaultLang('en');
@@ -67,8 +69,20 @@ export class AppComponent implements OnInit {
       .subscribe(data => {
         this.formPasswodRestore_Open = data;
       });
+
+    this.languageService._selected_from_service
+      .subscribe(date => {
+        if (date === 'iv') {
+          this.langIv = true;
+        } else this.langIv = false;
+      })
+
+    this.location = window.location.pathname.substring(1);
   }
 
+  setLocation(loc: string) {
+    this.location = loc;
+  }
   openProdOptions() {
     this.prodOptionsOpen = !this.prodOptionsOpen;
   }

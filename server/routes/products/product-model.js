@@ -21,9 +21,15 @@ const ProductSchema = new Schema({
         type: Number,
         require: true
     },
-    img_link: {
+    img_link_1: {
         type: String,
         require: true
+    },
+    img_link_2: {
+        type: String
+    },
+    img_link_3: {
+        type: String
     },
     color: {
         type: String

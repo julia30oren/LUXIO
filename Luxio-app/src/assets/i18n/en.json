@@ -24,13 +24,16 @@
         "CLIENTS": {
             "title": "CLIENTS"
         },
-        "rights": "MITRA GROUP"
+        "rights": "MITRA GROUP",
+        "welcome": "Hello"
     },
     "NEW": {
         "loz": "Akzentz is always releasing new and featured nail products and they’re sure to impress! Inspired by the latest nail styles, our new products are designed to support your skills and creativity to help you create amazing nails.",
         "sades-m": "Science and beauty combine to bring you the New Trinity Shades Collection, available In Trinity Shades Cool SC1 Natural SN1 and Warm SW1",
         "voyage-m": "Introducing the Luxio Voyage collection. Escape to a luxurious destination with six new Luxio shades: Lustful, Glimpse, Jaded, Instinct , Persuasion and Virtue",
         "fascination-m": "Introducing the Luxio Fascination collection. Escape to a luxurious destination with six new Luxio shades: Impulse, Storm, Beguiling, Tantauzing , Plush and Curiosity",
+        "rendezvous-m": "Introducing Luxio Rendezvous, a range of shades inspired by the excitement and allure of a romantic rendezvous. New Luxio Sentiment, Luxio Secret, Luxio Sultry, Luxio Provoke, Luxio Tryst and Luxio Cryptic",
+        "miami-m": "Introducing a new range of shimmering, shifting glitters inspired by the dreamy colours of retro Miami Beach. New Gel Play Miami Glitter Shifter collection: Heat, Night and Sunset",
         "info-1": "AVAILABLE NOW",
         "info-2": "COMMING SOON",
         "button-shop": "Shop",
@@ -148,7 +151,7 @@
     "CONTACT": {
         "country": "Israel",
         "city": "Ramat Gan",
-        "street": "Ahaliav St. 10",
+        "street": "Ahaliav St. 10 (5th floor)",
         "phone": "Phone",
         "email": "Email",
         "button-send": "Send",

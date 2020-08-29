@@ -24,7 +24,8 @@
         "CLIENTS": {
             "title": "КЛИЕНТЫ"
         },
-        "rights": "МИТРА ГРУП"
+        "rights": "МИТРА ГРУП",
+        "welcome": "Привет"
     },
 
     "NEW": {
@@ -32,6 +33,8 @@
         "sades-m": "Наука и красота объединяются, чтобы представить вам новую коллекцию оттенков Trinity, доступную в оттенках Trinity Shades Cool SC1 Natural SN1 и Warm SW1.",
         "voyage-m": "Представляем коллекцию Luxio Voyage. Отправляйтесь в роскошное место с шестью новыми оттенками Luxio: Lustful, Glimpse, Jaded, Instinct, Persuasion и Virtue.",
         "fascination-m": "Представляем коллекцию Luxio Fascination. Отправляйтесь в роскошное место с шестью новыми оттенками Luxio: Impulse, Storm, Beguiling, Tantauzing, Plush и Curiosity.",
+        "rendezvous-m": "Представляем Luxio Rendezvous, гамму оттенков, вдохновленных волнением и очарованием романтических свиданий. New Luxio Sentiment, Luxio Secret, Luxio Sultry, Luxio Provoke, Luxio Tryst и Luxio Cryptic.",
+        "miami-m": "Представляем вам новую линейку мерцающих переливающихся блесток, вдохновленных мечтательными цветами ретро-Майами-Бич. Новая коллекция Gel Play Miami Glitter Shifter: Heat, Night and Sunset",
         "info-1": "ДОСТУПНО СЕЙЧАС",
         "info-2": "СКОРО В ПРОДАЖЕ",
         "button-shop": "Купить",
@@ -149,7 +152,7 @@
     "CONTACT": {
         "country": "Израиль",
         "city": "Рамат-Ган",
-        "street": "Ахалиев ул. 10",
+        "street": "Ахалиев ул. 10 (5-ый этаж)",
         "phone": "Телефон",
         "email": "Эл. адрес",
         "button-send": "Послать",

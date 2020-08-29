@@ -1,0 +1,36 @@
+.Hebrew {
+    text-align: right;
+    direction: rtl;
+}
+
+.labels {
+    padding: 2%;
+}
+
+.btn {
+    margin: 1%;
+}
+
+.form {
+    border: black solid 2px;
+    padding: 1%;
+}
+
+.imgSelected {
+    max-height: 200px;
+    max-width: 200px;
+}
+
+.error {
+    border: red solid 1.5px;
+}
+
+.shopComp {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card-img {
+    cursor: pointer;
+}

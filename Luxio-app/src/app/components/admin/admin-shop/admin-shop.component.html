@@ -97,10 +97,26 @@
             </div>
 
             <div class="form-row align-items-center">
-                <div class="col-sm-8 my-1">
-                    <label>{{ 'ADMIN.img-link' | translate}}:</label>
-                    <input formControlName="img_link" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" (ngModelChange)="showImg($event)" type="text" class="form-control">
+                <div class="col-sm-6 my-1">
+                    <label>{{ 'ADMIN.img-link' | translate}} 1:</label>
+                    <input formControlName="img_link_1" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" (ngModelChange)="showImg1($event)" type="text" class="form-control">
 
+                    <label>{{ 'ADMIN.img-link' | translate}} 2:</label>
+                    <input formControlName="img_link_2" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" (ngModelChange)="showImg2($event)" type="text" class="form-control">
+
+                    <label>{{ 'ADMIN.img-link' | translate}} 3:</label>
+                    <input formControlName="img_link_3" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" (ngModelChange)="showImg3($event)" type="text" class="form-control">
+                </div>
+
+                <div class="col-sm-6 my-1">
+                    <img src={{imgSelected1}} *ngIf="imgSelected1" alt="No image" class="imgSelected">
+                    <img src={{imgSelected2}} *ngIf="imgSelected2" alt="No image" class="imgSelected">
+                    <img src={{imgSelected3}} *ngIf="imgSelected3" alt="No image" class="imgSelected">
+                </div>
+            </div>
+
+            <div class="form-row align-items-center">
+                <div class="col-sm-12 my-1">
                     <label for="Textarea">{{ 'ADMIN.text-area' | translate}} (english):</label>
                     <textarea class="form-control" id="Textarea" formControlName="coment_eng"></textarea>
 
@@ -109,10 +125,6 @@
 
                     <label for="Textarea">{{ 'ADMIN.text-area' | translate}} (עברית):</label>
                     <textarea class="form-control" id="Textarea" formControlName="coment_iv"></textarea>
-                </div>
-
-                <div class="col-sm-4 my-1" style="height: 300px; background-image: url('https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg'); background-size: 100% 100%; background-repeat: no-repeat;">
-                    <img src={{imgSelected}} *ngIf="imgSelected" alt="No image" style="height: 100%; width: 100%;">
                 </div>
             </div>
 
@@ -172,37 +184,3 @@
     </div>
 
 </div>
-
-<style>
-    .Hebrew {
-        text-align: right;
-        direction: rtl;
-    }
-    
-    .labels {
-        padding: 2%;
-    }
-    
-    .btn {
-        margin: 1%;
-    }
-    
-    .form {
-        border: black solid 2px;
-        padding: 1%;
-    }
-    
-    .error {
-        border: red solid 1.5px;
-    }
-    
-    .shopComp {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .card-img {
-        cursor: pointer;
-    }
-</style>

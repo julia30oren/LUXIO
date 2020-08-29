@@ -1,0 +1,124 @@
+.main-app {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Hebrew {
+    text-align: right;
+    direction: rtl;
+}
+
+
+/* NAVIGATION */
+
+.HEADER {
+    position: fixed;
+    top: 0;
+    background-color: rgb(0, 0, 0);
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-bottom: white 5px solid;
+    z-index: 1;
+}
+
+
+/* logo */
+
+.Akzentz-logo {
+    width: 14%;
+    height: 100px;
+    background-image: url('https://www.luxio.ae/wordpress//wp-content/themes/aperture-child/images/luxio.png');
+    background-size: 100% 90px;
+    background-repeat: no-repeat;
+    margin-left: 1%;
+    margin-top: 10px;
+}
+
+
+/* nav links */
+
+.nav {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-link {
+    color: rgb(255, 255, 255);
+    text-align: right;
+    font-size: 100%;
+}
+
+.nav-link:hover {
+    color: rgb(212, 99, 99);
+}
+
+.active {
+    color: rgb(212, 99, 99);
+}
+
+
+/* language selector */
+
+.lang-selector {
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.prod-options {
+    width: 50%;
+    background-color: rgb(0, 0, 0);
+    position: fixed;
+    top: 100px;
+    left: 25%;
+    display: flex;
+    flex-direction: row;
+    border: white 5px solid;
+    border-top: none;
+}
+
+.prod-option-link {
+    color: white;
+    padding: 5%;
+}
+
+
+/* user's navigation */
+
+.users-nav {
+    display: flex;
+    justify-content: center;
+    width: 20%;
+}
+
+.users-welcome {
+    width: 70%;
+    text-align: right;
+    margin-top: 10px;
+}
+
+.fa-user-lock,
+.users-welcome {
+    color: white;
+    padding: 5%;
+}
+
+.fa-user-lock:hover {
+    color: rgb(212, 99, 99);
+}
+
+
+/* CONTENT */
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 1300px;
+    margin-top: 120px;
+}

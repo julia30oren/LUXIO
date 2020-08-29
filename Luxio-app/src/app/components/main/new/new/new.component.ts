@@ -11,15 +11,19 @@ export class NewComponent implements OnInit {
 
   private langIv: boolean;
   private shadesOpen: boolean;
+  private miamiOpen: boolean;
   private voyageOpen: boolean;
   private fascinationOpen: boolean;
   public selectedProd: object;
+  public rendezvousOpen: boolean;
 
   public my_cart: Array<any> = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
   public my_favorites: Array<any> = JSON.parse(localStorage.getItem('my_764528_f')) || [];
   public shades: Array<any> = [];
   public voyage: Array<any> = [];
+  public miami: Array<any> = [];
   public fascination: Array<any> = [];
+  public rendezvous: Array<any> = [];
 
   constructor(
     private lang_service: LanguageService,
@@ -50,8 +54,18 @@ export class NewComponent implements OnInit {
           else if (element.prod_collection === 'fascination') {
             this.fascination.push(element);
           }
+          else if (element.prod_collection === 'miami') {
+            this.miami.push(element);
+          }
+          else if (element.prod_collection === 'rendezvous') {
+            this.rendezvous.push(element);
+          }
         });
       });
+  }
+
+  openRendezvous_shop() {
+    this.rendezvousOpen = !this.rendezvousOpen;
   }
 
   openShades_shop() {
@@ -64,6 +78,10 @@ export class NewComponent implements OnInit {
 
   openFascination_shop() {
     this.fascinationOpen = !this.fascinationOpen;
+  }
+
+  openMiami_shop() {
+    this.miamiOpen = !this.miamiOpen;
   }
 
   getClasses(id) {
@@ -112,6 +130,16 @@ export class NewComponent implements OnInit {
       }
     });
     this.fascination.forEach(element => {
+      if (element.burcode_id === id) {
+        this.selectedProd = element;
+      }
+    });
+    this.miami.forEach(element => {
+      if (element.burcode_id === id) {
+        this.selectedProd = element;
+      }
+    });
+    this.rendezvous.forEach(element => {
       if (element.burcode_id === id) {
         this.selectedProd = element;
       }

@@ -1,0 +1,42 @@
+.Hebrew {
+    text-align: right;
+    direction: rtl;
+}
+
+.CONTACTS {
+    width: 100%;
+}
+
+.line {
+    border-top: black 3px solid;
+}
+
+.facebook:hover {
+    color: rgb(212, 99, 99);
+}
+
+.contacts-main,
+.icons {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.contacts-col {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 2%;
+}
+
+.social-icons {
+    display: flex;
+    flex-direction: column;
+    margin: 2%;
+    width: 45%;
+}
+
+a {
+    padding: 5%;
+    color: black;
+}

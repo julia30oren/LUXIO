@@ -14,7 +14,9 @@ export class AdminShopComponent implements OnInit {
   public new_form_open: boolean;
   public selectedProd: Array<any>;
   public isSubmitted: boolean;
-  public imgSelected: string;
+  public imgSelected1: string;
+  public imgSelected2: string;
+  public imgSelected3: string;
   public responce_from_DB: Array<any>;
   public searchText: any;
   public searchRes: Array<any>;
@@ -25,7 +27,9 @@ export class AdminShopComponent implements OnInit {
     name: new FormControl('', Validators.required),
     prod_class: new FormControl('', Validators.required),
     prod_collection: new FormControl(''),
-    img_link: new FormControl(''),
+    img_link_1: new FormControl(''),
+    img_link_2: new FormControl(''),
+    img_link_3: new FormControl(''),
     price: new FormControl(null, Validators.required),
     color: new FormControl(''),
     tint: new FormControl(''),
@@ -68,7 +72,9 @@ export class AdminShopComponent implements OnInit {
             name: this.selectedProd[0].name,
             prod_class: this.selectedProd[0].prod_class,
             prod_collection: this.selectedProd[0].prod_collection || '',
-            img_link: this.selectedProd[0].img_link,
+            img_link_1: this.selectedProd[0].img_link_1,
+            img_link_2: this.selectedProd[0].img_link_2,
+            img_link_3: this.selectedProd[0].img_link_3,
             price: this.selectedProd[0].price,
             color: this.selectedProd[0].color || '',
             tint: this.selectedProd[0].tint || '',
@@ -108,9 +114,14 @@ export class AdminShopComponent implements OnInit {
     }
   }
 
-  showImg(value) {
-    // console.log(value);
-    this.imgSelected = value;
+  showImg1(value) {
+    this.imgSelected1 = value;
+  }
+  showImg2(value) {
+    this.imgSelected2 = value;
+  }
+  showImg3(value) {
+    this.imgSelected3 = value;
   }
 
   onSubmit(formValue) {
@@ -132,7 +143,9 @@ export class AdminShopComponent implements OnInit {
       burcode_id: null,
       name: '',
       prod_class: '',
-      img_link: '',
+      img_link_1: '',
+      img_link_2: '',
+      img_link_3: '',
       price: null,
       color: '',
       tint: '',
@@ -144,7 +157,7 @@ export class AdminShopComponent implements OnInit {
       coment_rus: ''
     });
     this.isSubmitted = false;
-    this.imgSelected = '';
+    this.imgSelected1 = '';
     this.selectedProd = [];
   }
 
@@ -152,7 +165,7 @@ export class AdminShopComponent implements OnInit {
     // console.log(id);
     this.shop.forEach(element => {
       if (element.burcode_id === id) {
-        this.imgSelected = element.img_link;
+        this.imgSelected1 = element.img_link;
         this.shop_service.selectProd(element);
       }
     });

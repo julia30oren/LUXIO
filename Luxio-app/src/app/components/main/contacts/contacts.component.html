@@ -1,4 +1,4 @@
-<div [ngClass]="{Hebrew: langIv}">
+<div class="CONTACTS" [ngClass]="{Hebrew: langIv}">
     <h5>{{ 'NAVIGATION.OFFICES.title' | translate }}</h5>
     <div class="contacts-main">
         <div class="contacts-col">
@@ -7,7 +7,7 @@
                 <p>{{ 'CONTACT.city' | translate}},</p>
                 <p>{{ 'CONTACT.street' | translate}}</p>
                 <p>{{ 'CONTACT.phone' | translate}}: 054-8785521 / 055-9519777</p>
-                <p>{{ 'CONTACT.email' | translate}}: contact.info@akzentz.com</p>
+                <p>{{ 'CONTACT.email' | translate}}: luxiogel.israel@gmail.com</p>
             </div>
             <br/>
             <div class="line"></div>
@@ -31,12 +31,12 @@
             <p>{{ 'CONTACT.message-2' | translate}}:</p>
             <div class="icons">
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/luxioisrael" class="facebook"><i class="fab fa-facebook-square fa-2x"></i>  Facebook</a>
-                    <a href="https://www.instagram.com/luxiogel_israel" class="facebook"><i class="fab fa-instagram fa-2x"></i>  Instagram</a>
+                    <a target="_blank" href="https://www.facebook.com/luxioisrael" class="facebook"><i class="fab fa-facebook-square fa-2x"></i>  Facebook</a>
+                    <a target="_blank" href="https://www.instagram.com/luxiogel_israel" class="facebook"><i class="fab fa-instagram fa-2x"></i>  Instagram</a>
                 </div>
                 <div class="social-icons">
-                    <a href="https://www.pinterest.ru/luxiogelisrael/boards/" class="facebook"><i class="fab fa-pinterest fa-2x"></i>  Pinterest</a>
-                    <a href="https://www.youtube.com/channel/UCIovV5TtXDx_0Enl_MJKB3g?view_as=subscriber" class="facebook"><i class="fab fa-youtube-square fa-2x"></i>  YouTube</a>
+                    <a target="_blank" href="https://www.pinterest.ru/luxiogelisrael/boards/" class="facebook"><i class="fab fa-pinterest fa-2x"></i>  Pinterest</a>
+                    <a target="_blank" href="https://www.youtube.com/channel/UCIovV5TtXDx_0Enl_MJKB3g?view_as=subscriber" class="facebook"><i class="fab fa-youtube-square fa-2x"></i>  YouTube</a>
                 </div>
             </div>
             <br/>
@@ -49,44 +49,5 @@
     </div>
 </div>
 
-
-<style>
-    .Hebrew {
-        text-align: right;
-        direction: rtl;
-    }
-    
-    .line {
-        border-top: black 3px solid;
-    }
-    
-    .facebook:hover {
-        color: rgb(255, 255, 255);
-    }
-    
-    .contacts-main,
-    .icons {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-    }
-    
-    .contacts-col {
-        display: flex;
-        flex-direction: column;
-        width: 50%;
-        padding: 2%;
-    }
-    
-    .social-icons {
-        display: flex;
-        flex-direction: column;
-        margin: 2%;
-        width: 45%;
-    }
-    
-    a {
-        padding: 5%;
-        color: black;
-    }
-</style>
+<!-- FOOTER -->
+<app-footer></app-footer>

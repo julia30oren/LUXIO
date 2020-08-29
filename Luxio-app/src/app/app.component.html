@@ -1,11 +1,12 @@
 <div class="main-app">
 
     <!-- NAVIGATION -->
-    <div class="navigation">
-        <img class="Akzentz-logo" src="https://www.luxio.ae/wordpress//wp-content/themes/aperture-child/images/luxio.png" alt="AKZENTZ">
-        <nav class="nav flex-column">
-            <a class="nav-link active" href="new">{{ 'NAVIGATION.NEW.title' | translate }}</a>
-            <a class="nav-link" (click)="openProdOptions()">{{ 'NAVIGATION.PRODUCTS.title' | translate }}</a>
+    <div class="HEADER">
+        <div class="Akzentz-logo"></div>
+
+        <nav class="nav" [ngClass]="{Hebrew: langIv}">
+            <a class="nav-link" [ngClass]="{active: location==='new'}" href="new">{{ 'NAVIGATION.NEW.title' | translate }}</a>
+            <a class="nav-link" [ngClass]="{active: location==='products/luxio' || location==='products/gel-play' || location==='products/options' || location==='products/pro-formance' || location==='products/basics' || location==='products/tools'}" (click)="openProdOptions();">{{ 'NAVIGATION.PRODUCTS.title' | translate }}</a>
             <div class="prod-options" *ngIf="prodOptionsOpen">
                 <a class="prod-option-link" href="products/luxio">LUXIO</a>
                 <a class="prod-option-link" href="products/gel-play">GEL PLAY</a>
@@ -14,42 +15,21 @@
                 <a class="prod-option-link" href="products/basics">Basics</a>
                 <a class="prod-option-link" href="products/tools">Tools</a>
             </div>
-            <a class="nav-link" href="shop">{{ 'NAVIGATION.STORE.title' | translate }}</a>
-            <a class="nav-link" href="courses">{{ 'NAVIGATION.COURSES.title' | translate }}</a>
-            <a class="nav-link" href="contacts">{{ 'NAVIGATION.OFFICES.title' | translate }}</a>
-            <a class="nav-link" href="registration">{{ 'NAVIGATION.PERSONALid.title' | translate }}</a>
+            <a class="nav-link" href="shop" [ngClass]="{active: location==='shop'}">{{ 'NAVIGATION.STORE.title' | translate }}</a>
+            <a class="nav-link" href="courses" [ngClass]="{active: location==='courses'}">{{ 'NAVIGATION.COURSES.title' | translate }}</a>
+            <a class="nav-link" href="contacts" [ngClass]="{active: location==='contacts'}">{{ 'NAVIGATION.OFFICES.title' | translate }}</a>
+            <a class="nav-link" href="registration" [ngClass]="{active: location==='registration'}">{{ 'NAVIGATION.PERSONALid.title' | translate }}</a>
+            <select class="lang-selector" #langSelect (change)="translate.use(langSelect.value); setLng(langSelect.value)">
+                <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+                </select>
         </nav>
-        <div class="icons">
+
+        <div class="users-nav">
+            <p class="users-welcome" [ngClass]="{Hebrew: langIv}">{{ 'NAVIGATION.welcome' | translate}}, User Name</p>
             <i class="fas fa-user-lock fa-2x" (click)="login_form()"></i>
-            <i class="fas fa-shopping-cart fa-2x"></i>
-        </div>
-        <div class="icons social-icons">
-            <a href="https://www.facebook.com/luxioisrael"><i class="fab fa-facebook-square fa-2x"></i> </a>
-            <a href="https://www.instagram.com/luxiogel_israel"><i class="fab fa-instagram fa-2x"></i> </a>
-            <a href="https://www.pinterest.ru/luxiogelisrael/boards/"><i class="fab fa-pinterest fa-2x"></i> </a>
-            <a href="https://www.youtube.com/channel/UCIovV5TtXDx_0Enl_MJKB3g?view_as=subscriber"><i class="fab fa-youtube-square fa-2x"></i> </a>
         </div>
 
-        <div class="lang-selector">
-            <select #langSelect (change)="translate.use(langSelect.value); setLng(langSelect.value)">
-                  <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
-                </select>
-        </div>
-        <p class="rights">© {{'NAVIGATION.rights' | translate }} ©</p>
     </div>
-    <style>
-        .prod-options {
-            position: absolute;
-            display: flex;
-            flex-direction: column;
-            width: 80%;
-        }
-        
-        .prod-option-link {
-            color: white;
-            padding: 4%;
-        }
-    </style>
 
     <!-- REGISTRATION FORM -->
     <div class="RegFormBackground" *ngIf="regForm_Open" (click)="closeForm()"></div>
@@ -104,6 +84,9 @@
     <style>
         .for_admin {
             position: fixed;
+            margin-top: 200px;
+            left: 10px;
+            background-color: gray;
         }
     </style>
 
@@ -111,70 +94,12 @@
     <div class="content">
         <router-outlet></router-outlet>
     </div>
-
 </div>
 
 
 <style>
     .main-app {
         min-height: 920px;
-    }
-    
-    .navigation {
-        position: fixed;
-        background-color: rgb(0, 0, 0);
-        min-height: 950px;
-        width: 13%;
-        left: 15%;
-    }
-    
-    .Akzentz-logo {
-        margin-top: 50px;
-        margin-bottom: 30px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 150px;
-        width: 95%;
-    }
-    
-    .nav-link {
-        color: rgb(255, 255, 255);
-        text-align: right;
-        font-size: 100%;
-    }
-    
-    .nav-link:hover {
-        color: rgb(184, 8, 8);
-    }
-    
-    .content {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 50%;
-        left: 30%;
-        margin-top: 50px;
-        margin-bottom: 65px;
-    }
-    
-    .icons {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        position: absolute;
-    }
-    
-    .social-icons {
-        bottom: 70px;
-    }
-    
-    .lang-selector {
-        position: absolute;
-        /* width: 100%; */
-        margin-top: 60px;
-        right: 10px;
     }
     
     select {
@@ -185,24 +110,6 @@
     
     option {
         background-color: rgb(0, 0, 0);
-    }
-    
-    i {
-        color: white;
-        margin: 10px;
-    }
-    
-    i:hover {
-        color: rgb(184, 8, 8);
-    }
-    
-    .rights {
-        text-align: center;
-        width: 100%;
-        color: rgb(129, 129, 129);
-        font-size: small;
-        position: absolute;
-        bottom: 25px;
     }
     
     .RegFormBackground {

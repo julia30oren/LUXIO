@@ -22,6 +22,7 @@ import { RegFormAgreementComponent } from './components/registration/reg-form-ag
 import { LogFormComponent } from './components/registration/log-form/log-form.component';
 import { PasswordRestoreFormComponent } from './components/registration/password-restore-form/password-restore-form.component';
 import { CardComponent } from './components/card/card.component';
+import { FooterComponent } from './components/main/footer/footer.component';
 
 
 // AoT requires an exported function for factories
@@ -38,7 +39,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     LogFormComponent,
     PasswordRestoreFormComponent,
     routingComponents,
-    CardComponent
+    CardComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

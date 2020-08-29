@@ -1,6 +1,6 @@
 <!-- <p>{{ shop | json}}</p> -->
 <!-- <p>{{ sorted| json}}</p> -->
-<div [ngClass]="{Hebrew: langIv}" style="width: 100%;">
+<div [ngClass]="{Hebrew: langIv}" class="SHOP">
     <h5 style="width: 100%;">{{ 'NAVIGATION.STORE.title' | translate }}</h5>
 
     <div *ngIf="selectedProd" class="selected-prod">
@@ -118,16 +118,17 @@
         <div class="shopComp" *ngIf="shop && !sorted">
             <div *ngFor="let item of shop" class="card" id={{item.burcode_id}}>
                 <div class="buttons">
-                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
+                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
                     <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
                     <div *ngIf="item.label" class="lable-new">
                         <p style="margin: auto;">{{item.label}}</p>
                     </div>
                 </div>
-                <img src={{item.img_link}} class="card-img-top" alt="..." (click)="select(item.burcode_id)" />
+                <img class="card-img" src={{item.img_link}} alt="..." (click)="select(item.burcode_id)" />
                 <div class="cardInfo" (click)="select(item.burcode_id)">
                     <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
-                    <h5>{{item.prod_class}} {{item.name}}</h5>
+                    <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
+                    <!-- <h5>{{item.prod_class}} {{item.name}}</h5> -->
                 </div>
             </div>
         </div>
@@ -135,13 +136,13 @@
         <div class="shopComp" *ngIf="sorted">
             <div *ngFor="let item of sorted" class="card" id={{item.burcode_id}}>
                 <div class="buttons">
-                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
+                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
                     <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
                     <div *ngIf="item.label" class="lable-new">
                         <p style="margin: auto;">{{item.label}}</p>
                     </div>
                 </div>
-                <img src={{item.img_link}} class="card-img-top" alt="..." (click)="select(item.burcode_id)" />
+                <img class="card-img" src={{item.img_link}} alt="..." (click)="select(item.burcode_id)" />
                 <div class="cardInfo" (click)="select(item.burcode_id)">
                     <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
                     <h5>{{item.prod_class}} {{item.name}}</h5>
@@ -151,11 +152,17 @@
     </div>
 </div>
 
+<!-- FOOTER -->
+<app-footer></app-footer>
 
 <style>
     .Hebrew {
         text-align: right;
         direction: rtl;
+    }
+    
+    .SHOP {
+        width: 100%;
     }
     
     .selected-prod {
@@ -266,8 +273,19 @@
     }
     
     .card {
-        margin: 1%;
-        background-color: rgba(0, 0, 0, 0);
+        background-color: white;
+        margin: auto;
+        margin-top: 1%;
+        width: 32%;
+        height: 300px;
+        cursor: pointer;
+        border: none;
+    }
+    
+    .card-img {
+        max-height: 300px;
+        width: 90%;
+        margin: 5%
     }
     
     .card:hover {
