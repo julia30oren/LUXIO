@@ -1,5 +1,5 @@
 <div [ngClass]="{Hebrew: langIv}">
-    <div *ngIf="!new_form_open">
+    <div *ngIf="!new_form_open" class="shopComp">
         <button class="btn btn-secondary btn-lg btn-block" type="button" (click)="openForm(true)">{{ 'ADMIN.CERTIFICATES.button-create-modify' | translate}}</button>
     </div>
     <div class="form" *ngIf="new_form_open">
@@ -149,7 +149,7 @@
     <br> <br>
 
     <div class="shopComp" *ngIf="shop">
-        <div *ngFor="let item of shop" id={{item.burcode_id}} class="card mb-3" style="width: 100%;">
+        <div *ngFor="let item of shop" id={{item.burcode_id}} class="card mb-3" style="width: 48%; margin: auto; margin-top:1%">
             <div class="row no-gutters">
                 <div class="col-md-4">
                     <img src={{item.img_link}} class="card-img" alt="..." (click)="select(item.burcode_id);openForm(true)">
@@ -184,3 +184,6 @@
     </div>
 
 </div>
+
+<!-- FOOTER -->
+<app-footer></app-footer>
