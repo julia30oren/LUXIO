@@ -73,6 +73,7 @@
         "all-button": "Все",
         "not-selected": "Не выбран...",
         "sort-button": "Сортировать",
+        "no-products": "Товар не найден!",
         "OPTIONS": {
             "basics": "Базы / Топы / BUILD",
             "Luxio": "Luxio GEL",
@@ -120,9 +121,11 @@
             "city": "Город",
             "phone": "Номер телефона",
             "date": "Дата подачи заявки",
-            "state-undefined": "Статус: Pассматривается",
-            "state-approved": "Статус: Одобренно",
-            "state-dened": "Статус: Неодобренно"
+            "all": "Все",
+            "state": "Статус:",
+            "state-undefined": "Pассматривается",
+            "state-approved": "Одобренно",
+            "state-dened": "Неодобренно"
         },
         "PLACEHOLDER": {
             "id": "Последние 3 цифры кода",

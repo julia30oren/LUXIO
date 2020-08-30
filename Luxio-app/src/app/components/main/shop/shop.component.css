@@ -1,0 +1,162 @@
+.Hebrew {
+    text-align: right;
+    direction: rtl;
+}
+
+.SHOP {
+    width: 100%;
+}
+
+.shopComp {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    margin-bottom: 150px;
+}
+
+.card {
+    margin: auto;
+    margin-top: 2%;
+    background-color: rgba(255, 255, 255, 0);
+    width: 300px;
+    height: 300px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    border: rgb(184, 73, 73) 2px solid;
+}
+
+.lable-new {
+    min-width: 100px;
+    height: 35px;
+    background-color: rgba(250, 119, 174, 0.726);
+    position: absolute;
+    right: 0;
+    top: 10px;
+}
+
+.card-buttons {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: left;
+}
+
+.card-img {
+    height: 250px;
+    width: 250px;
+    margin: 5%;
+}
+
+.img-cover {
+    background-color: rgba(255, 0, 0, 0);
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    z-index: 1;
+}
+
+.card-info {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+}
+
+
+/* button icons */
+
+.hart-button,
+.cart-button {
+    margin-left: 1%;
+    margin-top: 2%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.active {
+    color: green;
+}
+
+.not-active {
+    color: rgba(128, 128, 128, 0.5);
+}
+
+.red-hart {
+    color: rgb(194, 0, 0);
+}
+
+.red-hart:hover {
+    color: rgba(128, 128, 128, 0.5);
+}
+
+.grey-hart {
+    color: rgba(128, 128, 128, 0.5);
+}
+
+.grey-hart:hover,
+.cart-button:hover {
+    color: rgb(194, 0, 0);
+}
+
+.hart-button:hover {
+    color: rgb(194, 0, 0);
+}
+
+
+/* SELECTED-PRODUCT */
+
+.SELECTED-PRODUCT {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 150px;
+}
+
+.img-col {
+    width: 50%;
+}
+
+.txt-col {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+
+.button-col {
+    width: 5%;
+}
+
+.big-img,
+.thumbnail {
+    width: 100%;
+    margin: auto;
+    padding: 5%;
+}
+
+.newImages-link {
+    width: 100%;
+    margin-left: 47%
+}
+
+.close-button {
+    color: brown;
+    background-color: rgb(0, 0, 0, 0);
+    border: none;
+}
+
+.close-button:hover {
+    color: red;
+}
+
+
+/* NO PRODUCT MESSAGE */
+
+.no_products_message {
+    color: indigo;
+    width: 100%;
+    text-align: center;
+    margin-top: 200px;
+}

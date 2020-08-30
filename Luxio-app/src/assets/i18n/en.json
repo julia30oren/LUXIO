@@ -72,6 +72,7 @@
         "all-button": "All",
         "not-selected": "Not seleced...",
         "sort-button": "Sort",
+        "no-products": "No product found!",
         "OPTIONS": {
             "basics": "Bases / Tops / BUILD",
             "Luxio": "Luxio GEL",
@@ -119,9 +120,11 @@
             "city": "City",
             "phone": "Phone number",
             "date": "Application date",
-            "state-undefined": "Status: Pending",
-            "state-approved": "Status: Approved",
-            "state-dened": "Status: Unapproved"
+            "all": "All",
+            "state": "Status:",
+            "state-undefined": "Pending",
+            "state-approved": "Approved",
+            "state-dened": "Unapproved"
         },
         "PLACEHOLDER": {
             "id": "Last 3 digits of the code",

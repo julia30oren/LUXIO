@@ -9,7 +9,9 @@ import { LanguageService } from 'src/app/services/language.service';
 })
 export class CrtificatesListComponent implements OnInit {
 
-  certificatesList: any[];
+  public certificatesList: Array<any>;
+  public certificates_sorted: Array<any>;
+
   public langIv: boolean = false;
   public certificateImg: string;
 
@@ -21,7 +23,10 @@ export class CrtificatesListComponent implements OnInit {
   ngOnInit() {
     this.getUsersService.getUsers_fromDB();
     this.getUsersService.users_from_service
-      .subscribe(date => this.certificatesList = date[0]);
+      .subscribe(date => {
+        this.certificatesList = date[0];
+        this.certificates_sorted = date[0];
+      });
 
     this.lang_service._selected_from_service
       .subscribe(date => {
@@ -30,6 +35,21 @@ export class CrtificatesListComponent implements OnInit {
         } else this.langIv = false;
         // console.log(date)
       })
+
+
+  }
+
+  getSort(user_state) {
+    this.certificates_sorted = [];
+    this.certificatesList.forEach(element => {
+      if (element.status === user_state) {
+        this.certificates_sorted.push(element)
+      }
+    });
+  }
+
+  getAll() {
+    this.certificates_sorted = this.certificatesList;
   }
 
   confirm(user_id, setState) {

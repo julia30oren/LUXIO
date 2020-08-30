@@ -1,0 +1,55 @@
+.Hebrew {
+    text-align: right;
+    direction: rtl;
+}
+
+.USERS-LIST {
+    width: 100%;
+}
+
+.sort-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sort- {
+    margin: 10px;
+}
+
+.card-img {
+    cursor: pointer;
+}
+
+.selected-img-div {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.5));
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selected-img {
+    max-width: 50%;
+    max-height: 80%;
+    margin: 1%;
+    border: solid 0.3px rgba(0, 0, 0, 0.5);
+}
+
+.buttons {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+}
+
+.btn {
+    margin-top: 10px;
+    width: 180px;
+}

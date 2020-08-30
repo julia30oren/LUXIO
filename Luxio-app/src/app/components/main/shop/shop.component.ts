@@ -18,19 +18,21 @@ export class ShopComponent implements OnInit {
 
   public shop: any[];
   public sorted: any[];
+  private no_products: boolean;
   public selectedProd: object;
+  public selectedProd_Img: string;
+
   public fav: Array<any>;
   public langIv: boolean = false;
   public my_cart: Array<any> = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
   public my_favorites: Array<any> = JSON.parse(localStorage.getItem('my_764528_f')) || [];
-  // JSON.parse(localStorage.getItem('my_764528_f')) ||
+
   ngOnInit() {
     this.shop_service.getProducts_fromDB();
 
     this.shop_service.shop_products_from_service
       .subscribe(date => {
         this.shop = date[0];
-        // this.shop_service.getProducts_sorted(this.shop);
       });
 
     this.shop_service.shop_products_sorted_from_service
@@ -44,8 +46,6 @@ export class ShopComponent implements OnInit {
         if (date === 'iv') {
           this.langIv = true;
         } else this.langIv = false;
-
-        // console.log(date)
       })
 
     // this.shop_service.prod_selected_from_service
@@ -55,32 +55,43 @@ export class ShopComponent implements OnInit {
     //   });
   }
 
-  getSorted(a, b, c, d) {
-    // console.log(a, b, c, d);
+  checkSorted() {
+    if (this.sorted.length < 1) {
+      this.no_products = true;
+    } else this.no_products = false;
+  }
+
+  getSorted(by_class, by_color, by_tint, by_transparency) {
     let newAr = [];
     this.shop.forEach(element => {
-      if (element.prod_class.includes(a) && element.color.includes(b) && element.tint.includes(c) && element.transparency.includes(d)) {
+      if (element.prod_class.includes(by_class) && element.color.includes(by_color) && element.tint.includes(by_tint) && element.transparency.includes(by_transparency)) {
         newAr.push(element);
       }
       this.shop_service.getProducts_sorted(newAr);
+      this.checkSorted();
     });
   }
 
   getAll() {
     this.shop_service.getProducts_sorted(this.shop);
+    this.no_products = false;
   }
 
   select(id: number) {
     this.shop.forEach(element => {
       if (element.burcode_id === id) {
         this.selectedProd = element;
-        // console.log(this.selectedProd);
+        this.selectedProd_Img = element.img_link_1 || element.img_link;
       }
     });
+  }
+  selectImage(link: string) {
+    this.selectedProd_Img = link;
   }
 
   closeSelected() {
     this.selectedProd = null;
+    this.selectedProd_Img = null;
   }
 
   addToFavorites(id) {

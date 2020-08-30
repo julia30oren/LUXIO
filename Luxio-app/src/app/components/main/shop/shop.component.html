@@ -1,44 +1,52 @@
 <!-- <p>{{ shop | json}}</p> -->
 <!-- <p>{{ sorted| json}}</p> -->
 <div [ngClass]="{Hebrew: langIv}" class="SHOP">
-    <h5 style="width: 100%;">{{ 'NAVIGATION.STORE.title' | translate }}</h5>
 
-    <div *ngIf="selectedProd" class="selected-prod">
-        <div class="inside">
-            <div class="img-col">
-                <img src={{selectedProd.img_link}} alt={{selectedProd.name}} class="img" />
-                <a *ngIf=" selectedProd.prod_class==='Luxio' " class="img-link " href="https://www.instagram.com/explore/tags/{{selectedProd.prod_class}}_{{selectedProd.name}}/ " target="_blank ">
+    <div *ngIf="selectedProd" class="SELECTED-PRODUCT">
+
+        <div style="display: flex; flex-direction: row; width: 55%;">
+            <div style="display: flex; flex-direction: column; width: 20%;">
+                <img *ngIf="selectedProd.img_link_1" class="thumbnail" (click)="selectImage(selectedProd.img_link_1)" src={{selectedProd.img_link_1}} alt={{selectedProd.name}} />
+                <img *ngIf="selectedProd.img_link_2" class="thumbnail" (click)="selectImage(selectedProd.img_link_2)" src={{selectedProd.img_link_2}} alt={{selectedProd.name}} />
+                <img *ngIf="selectedProd.img_link_3" class="thumbnail" (click)="selectImage(selectedProd.img_link_3)" src={{selectedProd.img_link_3}} alt={{selectedProd.name}} />
+            </div>
+            <div style="display: flex; flex-direction: column; width: 80%;">
+                <img src={{selectedProd_Img}} alt={{selectedProd.name}} class="big-img" />
+                <a *ngIf=" selectedProd.prod_class==='Luxio' " class="newImages-link" href="https://www.instagram.com/explore/tags/{{selectedProd.prod_class}}_{{selectedProd.name}}/ " target="_blank ">
                     {{ 'PROD_DESCRIPTION.more-img' | translate }}
                 </a>
             </div>
-            <div class="txt-col ">
-                <p *ngIf="selectedProd.prod_class==='Luxio' "><small>&#8470;</small>{{selectedProd.burcode_id}}</p>
-                <h4>{{selectedProd.prod_class}} {{selectedProd.name}}</h4>
-                <br>
-                <p> {{selectedProd.price}} &#8362;</p>
-                <p>
-                    <button type="button" class="button " (click)="less(selectedProd.burcode_id) ">-</button> 1
-                    <button type="button" class="button " (click)="more(selectedProd.burcode_id) ">+</button>
-                    <button type="button" (click)="addToCart(selectedProd._id)">{{'PROD_DESCRIPTION.add_to_cart' | translate}}</button>
-                    <button type="button" (click)="addToFavorites(selectedProd._id)">{{'PROD_DESCRIPTION.add_to_favorites' | translate}}</button>
-                </p>
-                <!-- LUXIO option -->
-                <div *ngIf="selectedProd.prod_class==='Luxio' ">
-                    <p>{{ 'PROD_DESCRIPTION.LUXIO.main' | translate }}</p>
-                    <ul>
-                        <li>{{ 'PROD_DESCRIPTION.LUXIO.list-1' | translate }}</li>
-                        <li>{{ 'PROD_DESCRIPTION.LUXIO.list-2' | translate }}</li>
-                        <li>{{ 'PROD_DESCRIPTION.LUXIO.list-3' | translate }}</li>
-                        <li>{{ 'PROD_DESCRIPTION.LUXIO.list-4' | translate }}</li>
-                    </ul>
-                </div>
-                <!-- <div *ngIf="selectedProd.coment_eng.length>2"> vfvrvrt
-            </div> -->
-                <p> {{ 'PROD_DESCRIPTION.ps' | translate }}</p>
+        </div>
 
+        <div class="txt-col">
+            <p *ngIf="selectedProd.prod_class==='Luxio' "><small>&#8470;</small>{{selectedProd.burcode_id}}</p>
+            <h4>{{selectedProd.prod_class}} {{selectedProd.name}}</h4>
+            <br>
+            <p> {{selectedProd.price}} &#8362;</p>
+            <p>
+                <button type="button" class="button " (click)="less(selectedProd.burcode_id) ">-</button> 1
+                <button type="button" class="button " (click)="more(selectedProd.burcode_id) ">+</button>
+                <button type="button" (click)="addToCart(selectedProd._id)">{{'PROD_DESCRIPTION.add_to_cart' | translate}}</button>
+                <button type="button" (click)="addToFavorites(selectedProd._id)">{{'PROD_DESCRIPTION.add_to_favorites' | translate}}</button>
+            </p>
+            <!-- LUXIO option -->
+            <div *ngIf="selectedProd.prod_class==='Luxio' ">
+                <p>{{ 'PROD_DESCRIPTION.LUXIO.main' | translate }}</p>
+                <ul>
+                    <li>{{ 'PROD_DESCRIPTION.LUXIO.list-1' | translate }}</li>
+                    <li>{{ 'PROD_DESCRIPTION.LUXIO.list-2' | translate }}</li>
+                    <li>{{ 'PROD_DESCRIPTION.LUXIO.list-3' | translate }}</li>
+                    <li>{{ 'PROD_DESCRIPTION.LUXIO.list-4' | translate }}</li>
+                </ul>
             </div>
-            <!-- <p>{{selectedProd | json}}</p> -->
-            <div><button type="button" (click)="closeSelected()" class="close-button"><i class="fas fa-times fa-2x"></i></button></div>
+
+            <p> {{ 'PROD_DESCRIPTION.ps' | translate }}</p>
+        </div>
+
+        <div class="button-col">
+            <button type="button" (click)="closeSelected()" class="close-button">
+                <i class="fas fa-times fa-2x"></i>
+            </button>
         </div>
 
     </div>
@@ -112,204 +120,71 @@
             flex-direction: row;
             justify-content: center;
         }
+        
+        .btn-outline-dark {
+            width: auto;
+            margin-left: 0;
+        }
     </style>
 
     <div *ngIf="!selectedProd">
+
         <div class="shopComp" *ngIf="shop && !sorted">
-            <div *ngFor="let item of shop" class="card" id={{item.burcode_id}}>
-                <div class="buttons">
+
+            <div class="card" *ngFor="let item of shop" id={{item.burcode_id}} (click)="select(item.burcode_id)">
+                <div class="card-buttons">
                     <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
                     <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
                     <div *ngIf="item.label" class="lable-new">
-                        <p style="margin: auto;">{{item.label}}</p>
+                        <p style="padding: 5px; width: 100%;">{{item.label}}</p>
                     </div>
                 </div>
-                <img class="card-img" src={{item.img_link}} alt="..." (click)="select(item.burcode_id)" />
-                <div class="cardInfo" (click)="select(item.burcode_id)">
+                <div class="card-image-front">
+                    <div class="img-cover" (click)="select(item.burcode_id)"></div>
+                    <img class="card-img" src={{item.img_link}} alt="{{item.name}} image not evaluable" />
+                </div>
+                <!-- <div class="image-div-back">
+                    <div class="img-cover"></div>
+                    <img class="card-img" src={{item.img_link_2}} alt="..." (click)="select(item.burcode_id)" />
+                </div> -->
+                <div class="card-info" (click)="select(item.burcode_id)">
                     <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
                     <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
-                    <!-- <h5>{{item.prod_class}} {{item.name}}</h5> -->
                 </div>
             </div>
+
         </div>
 
         <div class="shopComp" *ngIf="sorted">
             <div *ngFor="let item of sorted" class="card" id={{item.burcode_id}}>
-                <div class="buttons">
+                <div class="card-buttons">
                     <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
                     <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
                     <div *ngIf="item.label" class="lable-new">
-                        <p style="margin: auto;">{{item.label}}</p>
+                        <p style="padding: 5px; width: 100%;">{{item.label}}</p>
                     </div>
                 </div>
-                <img class="card-img" src={{item.img_link}} alt="..." (click)="select(item.burcode_id)" />
-                <div class="cardInfo" (click)="select(item.burcode_id)">
+                <div class="card-image-front">
+                    <div class="img-cover" (click)="select(item.burcode_id)"></div>
+                    <img class="card-img" src={{item.img_link}} alt="{{item.name}} image not evaluable" />
+                </div>
+                <!-- <div class="image-div-back">
+                    <div class="img-cover"></div>
+                    <img class="card-img" src={{item.img_link_2}} alt="..." (click)="select(item.burcode_id)" />
+                </div> -->
+                <div class="card-info" (click)="select(item.burcode_id)">
                     <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
-                    <h5>{{item.prod_class}} {{item.name}}</h5>
+                    <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
                 </div>
             </div>
+
+            <div class="no_products_message" *ngIf="no_products">
+                <h3>{{'SEARCH.no-products' | translate}}</h3>
+            </div>
         </div>
+
     </div>
 </div>
 
 <!-- FOOTER -->
 <app-footer></app-footer>
-
-<style>
-    .Hebrew {
-        text-align: right;
-        direction: rtl;
-    }
-    
-    .SHOP {
-        width: 100%;
-    }
-    
-    .selected-prod {
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.5));
-        position: fixed;
-        left: 0;
-        top: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .lable-new {
-        min-width: 100px;
-        background-color: rgba(250, 119, 222, 0.5);
-        position: absolute;
-        right: 0;
-        top: 10px;
-    }
-    
-    .hart-button,
-    .cart-button {
-        margin-left: 1%;
-        margin-top: 2%;
-        border: none;
-        background-color: rgba(0, 0, 0, 0);
-    }
-    
-    .active {
-        color: green;
-    }
-    
-    .not-active {
-        color: rgba(128, 128, 128, 0.5);
-    }
-    
-    .red-hart {
-        color: rgb(194, 0, 0);
-    }
-    
-    .red-hart:hover {
-        color: rgba(128, 128, 128, 0.5);
-    }
-    
-    .grey-hart {
-        color: rgba(128, 128, 128, 0.5);
-    }
-    
-    .grey-hart:hover,
-    .cart-button:hover {
-        color: rgb(194, 0, 0);
-    }
-    
-    .hart-button:hover {
-        color: rgb(194, 0, 0);
-    }
-    
-    .inside {
-        margin-left: 15%;
-        width: 60%;
-        height: 70%;
-        display: flex;
-        flex-direction: row;
-    }
-    
-    .img-col {
-        width: 50%;
-        padding: 1%;
-    }
-    
-    .img {
-        width: 100%;
-    }
-    
-    .img-link {
-        width: 100%;
-        margin-left: 47%
-    }
-    
-    .txt-col {
-        display: flex;
-        flex-direction: column;
-        width: 45%;
-        padding: 1%;
-    }
-    
-    .close-button {
-        color: brown;
-        background-color: rgb(0, 0, 0, 0);
-        border: none;
-    }
-    
-    .close-button:hover {
-        color: red;
-    }
-    
-    .shopComp {
-        display: flex;
-        flex-wrap: wrap;
-        align-content: space-between;
-    }
-    
-    .btn-outline-dark {
-        width: auto;
-        margin-left: 0;
-    }
-    
-    .card {
-        background-color: white;
-        margin: auto;
-        margin-top: 1%;
-        width: 32%;
-        height: 300px;
-        cursor: pointer;
-        border: none;
-    }
-    
-    .card-img {
-        max-height: 300px;
-        width: 90%;
-        margin: 5%
-    }
-    
-    .card:hover {
-        border: red 2px solid;
-        padding: 0.5%;
-    }
-    
-    .cardInfo {
-        position: absolute;
-        bottom: 10px;
-        right: 15px;
-        z-index: 1;
-    }
-    
-    .buttons {
-        width: 100%;
-        position: absolute;
-        display: flex;
-        justify-content: left;
-    }
-    
-    .card-title {
-        position: absolute;
-        bottom: 5%;
-        right: 23%;
-    }
-</style>

@@ -73,6 +73,7 @@
         "all-button": "הכל",
         "not-selected": "לא נבחר ...",
         "sort-button": "לסוג",
+        "no-products": "לא נמצא מוצר!",
         "OPTIONS": {
             "basics": "בסיסים / חלק עליון / BUILD",
             "Luxio": "Luxio GEL",
@@ -120,9 +121,11 @@
             "city": "עיר",
             "phone": "מספר טלפון",
             "date": "תאריך הגשת בקשה",
-            "state-undefined": "סטטוס: ממתין",
-            "state-approved": "סטטוס: אושר",
-            "state-dened": "סטטוס: לא אושר"
+            "all": "את כל",
+            "state": "סטטוס:",
+            "state-undefined": "ממתין",
+            "state-approved": "אושר",
+            "state-dened": "לא אושר"
         },
         "PLACEHOLDER": {
             "id": "שלוש הספרות האחרונות של הקוד",

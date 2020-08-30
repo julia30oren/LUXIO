@@ -62,30 +62,30 @@ export class AdminShopComponent implements OnInit {
         // console.log(date)
       })
 
-    this.shop_service.prod_selected_from_service
-      .subscribe(date => {
-        this.selectedProd = date;
-        if (this.selectedProd[0]) {
-          // console.log(this.selectedProd[0].burcode_id);
-          this.formTemplate.setValue({
-            burcode_id: this.selectedProd[0].burcode_id,
-            name: this.selectedProd[0].name,
-            prod_class: this.selectedProd[0].prod_class,
-            prod_collection: this.selectedProd[0].prod_collection || '',
-            img_link_1: this.selectedProd[0].img_link_1,
-            img_link_2: this.selectedProd[0].img_link_2,
-            img_link_3: this.selectedProd[0].img_link_3,
-            price: this.selectedProd[0].price,
-            color: this.selectedProd[0].color || '',
-            tint: this.selectedProd[0].tint || '',
-            transparency: this.selectedProd[0].transparency || '',
-            label: this.selectedProd[0].label || '',
-            coment_eng: this.selectedProd[0].coment_eng || '',
-            coment_iv: this.selectedProd[0].coment_iv || '',
-            coment_rus: this.selectedProd[0].coment_rus || ''
-          });
-        }
-      });
+    // this.shop_service.prod_selected_from_service
+    //   .subscribe(date => {
+    //     this.selectedProd = date;
+    //     if (this.selectedProd[0]) {
+    //       // console.log(this.selectedProd[0].burcode_id);
+    //       this.formTemplate.setValue({
+    //         burcode_id: this.selectedProd[0].burcode_id,
+    //         name: this.selectedProd[0].name,
+    //         prod_class: this.selectedProd[0].prod_class,
+    //         prod_collection: this.selectedProd[0].prod_collection || '',
+    //         img_link_1: this.selectedProd[0].img_link_1,
+    //         img_link_2: this.selectedProd[0].img_link_2,
+    //         img_link_3: this.selectedProd[0].img_link_3,
+    //         price: this.selectedProd[0].price,
+    //         color: this.selectedProd[0].color || '',
+    //         tint: this.selectedProd[0].tint || '',
+    //         transparency: this.selectedProd[0].transparency || '',
+    //         label: this.selectedProd[0].label || '',
+    //         coment_eng: this.selectedProd[0].coment_eng || '',
+    //         coment_iv: this.selectedProd[0].coment_iv || '',
+    //         coment_rus: this.selectedProd[0].coment_rus || ''
+    //       });
+    //     }
+    //   });
     this.shop_service.responce_fromDB_from_service
       .subscribe(date => {
         this.responce_from_DB = date;
@@ -162,11 +162,33 @@ export class AdminShopComponent implements OnInit {
   }
 
   select(id: number) {
-    // console.log(id);
+    console.log(id);
     this.shop.forEach(element => {
       if (element.burcode_id === id) {
-        this.imgSelected1 = element.img_link;
-        this.shop_service.selectProd(element);
+        // console.log(element)
+        this.imgSelected1 = element.img_link || element.img_link_1;
+        this.imgSelected2 = element.img_link_2;
+        this.imgSelected3 = element.img_link_3;
+
+        this.formTemplate.setValue({
+          burcode_id: element.burcode_id,
+          name: element.name,
+          prod_class: element.prod_class,
+          prod_collection: element.prod_collection || '',
+          img_link_1: element.img_link_1 || element.img_link,
+          img_link_2: element.img_link_2 || '',
+          img_link_3: element.img_link_3 || '',
+          price: element.price,
+          color: element.color,
+          tint: element.tint,
+          transparency: element.transparency,
+          label: element.label,
+          coment_eng: element.coment_eng,
+          coment_iv: element.coment_iv,
+          coment_rus: element.coment_rus
+        });
+
+        // this.shop_service.selectProd(element);
       }
     });
   }
