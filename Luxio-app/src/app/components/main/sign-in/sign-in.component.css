@@ -1,0 +1,13 @@
+.model-img {
+    width: 100%;
+}
+
+.Hebrew {
+    text-align: right;
+    direction: rtl;
+}
+
+.rules {
+    margin: 1%;
+    padding: 1%;
+}

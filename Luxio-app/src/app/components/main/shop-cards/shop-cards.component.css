@@ -1,17 +1,11 @@
-.Hebrew {
-    text-align: right;
-    direction: rtl;
-}
-
 .SHOP {
     width: 100%;
-}
-
-.shopComp {
     display: flex;
     flex-wrap: wrap;
-    align-content: space-between;
-    margin-bottom: 150px;
+    justify-content: center;
+    margin: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 .card {
@@ -23,52 +17,37 @@
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    border: none;
 }
 
 .card:hover {
     border: rgb(184, 73, 73) 2px solid;
 }
 
-.card-buttons,
-.card-info {
-    z-index: 2;
-}
-
-.lable-new {
-    min-width: 100px;
-    height: 35px;
-    background-color: rgba(250, 119, 174, 0.726);
-    position: absolute;
-    right: 0;
-    top: 10px;
-}
-
-.card-buttons {
-    width: 100%;
-    position: absolute;
-    display: flex;
-    justify-content: left;
+.card-image-front {
+    width: 90%;
 }
 
 .card-img {
     height: 250px;
     max-width: 250px;
-    margin: 5%;
-    z-index: 0;
-}
-
-.img-cover {
-    background-color: rgba(255, 0, 0, 0);
-    height: 300px;
-    width: 300px;
-    position: absolute;
-    z-index: 1;
 }
 
 .card-info {
     position: absolute;
     bottom: 10px;
     right: 15px;
+}
+
+.img-cover {
+    background-color: rgba(255, 0, 0, 0);
+    position: absolute;
+    z-index: 1;
+}
+
+.img-cover {
+    height: 250px;
+    width: 300px;
 }
 
 
@@ -109,14 +88,4 @@
 
 .hart-button:hover {
     color: rgb(194, 0, 0);
-}
-
-
-/* NO PRODUCT MESSAGE */
-
-.no_products_message {
-    color: indigo;
-    width: 100%;
-    text-align: center;
-    margin-top: 200px;
 }

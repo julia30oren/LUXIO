@@ -10,22 +10,23 @@ import { LanguageService } from 'src/app/services/language.service';
 })
 export class ShopComponent implements OnInit {
 
+
+  public shop: any[];
+  public sorted: any[];
+  private no_products: boolean;
+  public selectedProd: boolean;
+
+  public fav: Array<any>;
+  public langIv: boolean = false;
+  public my_cart: Array<any> = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
+  public my_favorites: Array<any> = JSON.parse(localStorage.getItem('my_764528_f')) || [];
+
   constructor(
     private shop_service: ShopService,
     private user_service: UserService,
     private lang_service: LanguageService
   ) { }
 
-  public shop: any[];
-  public sorted: any[];
-  private no_products: boolean;
-  public selectedProd: object;
-  public selectedProd_Img: string;
-
-  public fav: Array<any>;
-  public langIv: boolean = false;
-  public my_cart: Array<any> = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
-  public my_favorites: Array<any> = JSON.parse(localStorage.getItem('my_764528_f')) || [];
 
   ngOnInit() {
     this.shop_service.getProducts_fromDB();
@@ -48,11 +49,8 @@ export class ShopComponent implements OnInit {
         } else this.langIv = false;
       })
 
-    // this.shop_service.prod_selected_from_service
-    //   .subscribe(date => {
-    //     this.selectedProd = date;
-    //     // console.log(this.selectedProd);
-    //   });
+    this.shop_service.select_one_from_service
+      .subscribe(date => this.selectedProd = date)
   }
 
   checkSorted() {
@@ -78,20 +76,12 @@ export class ShopComponent implements OnInit {
   }
 
   select(id: number) {
+    // console.log(id);
     this.shop.forEach(element => {
       if (element.burcode_id === id) {
-        this.selectedProd = element;
-        this.selectedProd_Img = element.img_link_1 || element.img_link;
+        this.shop_service.selectProd(element, true);
       }
     });
-  }
-  selectImage(link: string) {
-    this.selectedProd_Img = link;
-  }
-
-  closeSelected() {
-    this.selectedProd = null;
-    this.selectedProd_Img = null;
   }
 
   addToFavorites(id) {

@@ -1,3 +1,25 @@
 .buner {
     width: 100%;
 }
+
+.Hebrew {
+    text-align: right;
+    direction: rtl;
+}
+
+.title {
+    font-family: Century Gothic;
+    font-size: 25px;
+}
+
+.sm-text {
+    font-family: Calibri;
+    font-size: 15px;
+    color: gray;
+}
+
+.m-text {
+    font-family: Calibri;
+    font-size: 20px;
+    color: gray;
+}

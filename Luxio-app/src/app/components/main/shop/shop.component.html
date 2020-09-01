@@ -1,54 +1,7 @@
-<!-- <p>{{ shop | json}}</p> -->
-<!-- <p>{{ sorted| json}}</p> -->
 <div [ngClass]="{Hebrew: langIv}" class="SHOP">
 
-    <div *ngIf="selectedProd" class="SELECTED-PRODUCT">
-
-        <div style="display: flex; flex-direction: row; width: 55%;">
-            <div style="display: flex; flex-direction: column; width: 20%;">
-                <img *ngIf="selectedProd.img_link_1" class="thumbnail" (click)="selectImage(selectedProd.img_link_1)" src={{selectedProd.img_link_1}} alt={{selectedProd.name}} />
-                <img *ngIf="selectedProd.img_link_2" class="thumbnail" (click)="selectImage(selectedProd.img_link_2)" src={{selectedProd.img_link_2}} alt={{selectedProd.name}} />
-                <img *ngIf="selectedProd.img_link_3" class="thumbnail" (click)="selectImage(selectedProd.img_link_3)" src={{selectedProd.img_link_3}} alt={{selectedProd.name}} />
-            </div>
-            <div style="display: flex; flex-direction: column; width: 80%;">
-                <img src={{selectedProd_Img}} alt={{selectedProd.name}} class="big-img" />
-                <a *ngIf=" selectedProd.prod_class==='Luxio' " class="newImages-link" href="https://www.instagram.com/explore/tags/{{selectedProd.prod_class}}_{{selectedProd.name}}/ " target="_blank ">
-                    {{ 'PROD_DESCRIPTION.more-img' | translate }}
-                </a>
-            </div>
-        </div>
-
-        <div class="txt-col">
-            <p *ngIf="selectedProd.prod_class==='Luxio' "><small>&#8470;</small>{{selectedProd.burcode_id}}</p>
-            <h4>{{selectedProd.prod_class}} {{selectedProd.name}}</h4>
-            <br>
-            <p> {{selectedProd.price}} &#8362;</p>
-            <p>
-                <button type="button" class="button " (click)="less(selectedProd.burcode_id) ">-</button> 1
-                <button type="button" class="button " (click)="more(selectedProd.burcode_id) ">+</button>
-                <button type="button" (click)="addToCart(selectedProd._id)">{{'PROD_DESCRIPTION.add_to_cart' | translate}}</button>
-                <button type="button" (click)="addToFavorites(selectedProd._id)">{{'PROD_DESCRIPTION.add_to_favorites' | translate}}</button>
-            </p>
-            <!-- LUXIO option -->
-            <div *ngIf="selectedProd.prod_class==='Luxio' ">
-                <p>{{ 'PROD_DESCRIPTION.LUXIO.main' | translate }}</p>
-                <ul>
-                    <li>{{ 'PROD_DESCRIPTION.LUXIO.list-1' | translate }}</li>
-                    <li>{{ 'PROD_DESCRIPTION.LUXIO.list-2' | translate }}</li>
-                    <li>{{ 'PROD_DESCRIPTION.LUXIO.list-3' | translate }}</li>
-                    <li>{{ 'PROD_DESCRIPTION.LUXIO.list-4' | translate }}</li>
-                </ul>
-            </div>
-
-            <p> {{ 'PROD_DESCRIPTION.ps' | translate }}</p>
-        </div>
-
-        <div class="button-col">
-            <button type="button" (click)="closeSelected()" class="close-button">
-                <i class="fas fa-times fa-2x"></i>
-            </button>
-        </div>
-
+    <div *ngIf="selectedProd">
+        <app-big-image></app-big-image>
     </div>
 
 
@@ -131,7 +84,7 @@
 
         <div class="shopComp" *ngIf="shop && !sorted">
 
-            <div class="card" *ngFor="let item of shop" id={{item.burcode_id}} (click)="select(item.burcode_id)">
+            <div class="card" *ngFor="let item of shop" id={{item.burcode_id}}>
                 <div class="card-buttons">
                     <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
                     <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
@@ -139,14 +92,10 @@
                         <p style="padding: 5px; width: 100%;">{{item.label}}</p>
                     </div>
                 </div>
-                <div class="card-image-front">
-                    <div class="img-cover" (click)="select(item.burcode_id)"></div>
-                    <img class="card-img" src={{item.img_link}} alt="{{item.name}} image not evaluable" />
-                </div>
-                <!-- <div class="image-div-back">
-                    <div class="img-cover"></div>
-                    <img class="card-img" src={{item.img_link_2}} alt="..." (click)="select(item.burcode_id)" />
-                </div> -->
+
+                <div class="img-cover" (click)="select(item.burcode_id)"></div>
+                <img class="card-img" src={{item.img_link||item.img_link_1}} alt="{{item.name}} image not evaluable" />
+
                 <div class="card-info" (click)="select(item.burcode_id)">
                     <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
                     <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
@@ -154,8 +103,8 @@
             </div>
 
         </div>
-
-        <div class="shopComp" *ngIf="sorted">
+    </div>
+    <!-- <div class="shopComp" *ngIf="sorted">
             <div *ngFor="let item of sorted" class="card" id={{item.burcode_id}}>
                 <div class="card-buttons">
                     <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
@@ -166,25 +115,19 @@
                 </div>
                 <div class="card-image-front">
                     <div class="img-cover" (click)="select(item.burcode_id)"></div>
-                    <img class="card-img" src={{item.img_link}} alt="{{item.name}} image not evaluable" />
+                    <img class="card-img" src={{item.img_link||item.img_link_1}} alt="{{item.name}} image not evaluable" />
                 </div>
-                <!-- <div class="image-div-back">
-                    <div class="img-cover"></div>
-                    <img class="card-img" src={{item.img_link_2}} alt="..." (click)="select(item.burcode_id)" />
-                </div> -->
                 <div class="card-info" (click)="select(item.burcode_id)">
                     <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
                     <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
-                </div>
-            </div>
+                </div>-->
 
-            <div class="no_products_message" *ngIf="no_products">
-                <h3>{{'SEARCH.no-products' | translate}}</h3>
-            </div>
-        </div>
 
+    <div class="no_products_message" *ngIf="no_products">
+        <h3>{{'SEARCH.no-products' | translate}}</h3>
     </div>
 </div>
+
 
 <!-- FOOTER -->
 <app-footer></app-footer>

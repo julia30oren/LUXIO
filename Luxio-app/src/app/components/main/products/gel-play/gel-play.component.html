@@ -1,5 +1,33 @@
-<div>
+<div class="GEL-PLAY-shop" *ngIf="!selectedProd">
     <img class="buner" src="https://akzentz.com/wp-content/uploads/2018/06/gelplay-akzentz-header.png" alt="Gel Play buner" />
+
+    <div [ngClass]="{Hebrew: langueg==='iv'}" style="display: flex; flex-direction: row; border-bottom: solid 2px rgba(128, 128, 128, 0.5);">
+        <div style="display: flex; flex-direction: column; width: 45%; margin-top: 10%;">
+            <h5 class="title">{{ 'GEL-PLAY.paragraf-2.title' | translate}}</h5>
+            <p class="m-text">{{ 'GEL-PLAY.paragraf-2.text-1' | translate}}</p>
+            <img style="width: 100%;" src="https://i.pinimg.com/originals/42/c0/d6/42c0d6ca4bf96105a75ad01ebd7065ff.png" alt="AKZENTZ" />
+        </div>
+        <div style="display: flex; flex-direction: column; width: 55%; margin-bottom: 50px;">
+            <img style="width: 70%; margin: auto;" src="https://i.pinimg.com/originals/f7/3b/ba/f73bba3d8c274fd878b12756a8b55e0c.png" alt="AKZENTZ" />
+            <h5 class="title">{{ 'GEL-PLAY.paragraf-1.title' | translate}}</h5>
+            <p class="sm-text">{{ 'GEL-PLAY.paragraf-1.text-1' | translate}}</p>
+            <p class="sm-text">{{ 'GEL-PLAY.paragraf-1.text-2' | translate}}</p>
+            <p class="sm-text">{{ 'GEL-PLAY.paragraf-1.text-3' | translate}}</p>
+            <p class="sm-text">{{ 'GEL-PLAY.paragraf-1.text-4' | translate}}</p>
+            <p class="sm-text">{{ 'GEL-PLAY.paragraf-1.text-5' | translate}}</p>
+            <p class="sm-text">{{ 'GEL-PLAY.paragraf-1.text-6' | translate}}</p>
+            <p class="sm-text">{{ 'GEL-PLAY.paragraf-1.text-7' | translate}}</p>
+            <p class="sm-text">{{ 'GEL-PLAY.paragraf-1.text-8' | translate}}</p>
+            <p class="sm-text">{{ 'GEL-PLAY.paragraf-1.text-9' | translate}}</p>
+            <p class="sm-text">{{ 'GEL-PLAY.paragraf-1.text-10' | translate}}</p>
+        </div>
+    </div>
+
+    <app-shop-cards></app-shop-cards>
+</div>
+
+<div *ngIf="selectedProd">
+    <app-big-image></app-big-image>
 </div>
 
 <!-- FOOTER -->

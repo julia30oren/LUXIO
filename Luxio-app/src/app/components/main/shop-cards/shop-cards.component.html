@@ -1,0 +1,17 @@
+<div class="SHOP" *ngIf="itemsArray">
+    <div class="card" id={{item.burcode_id}} *ngFor="let item of itemsArray">
+        <!-- <p>{{item|json}}</p> -->
+        <div class="card-button">
+            <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
+            <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+        </div>
+        <div class="card-image-front">
+            <div class="img-cover" (click)="select(item.burcode_id)"></div>
+            <img class="card-img" src={{item.img_link||item.img_link_1}} alt="{{item.name}} image not evaluable" />
+        </div>
+        <div class="card-info" (click)="select(item.burcode_id)">
+            <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
+            <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
+        </div>
+    </div>
+</div>

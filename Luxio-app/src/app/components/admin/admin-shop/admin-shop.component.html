@@ -152,7 +152,7 @@
         <div *ngFor="let item of shop" id={{item.burcode_id}} class="card mb-3" style="width: 48%; margin: auto; margin-top:1%">
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <img src={{item.img_link}} class="card-img" alt="..." (click)="select(item.burcode_id);openForm(true)">
+                    <img src={{item.img_link||item.img_link_1}} class="card-img" alt="..." (click)="select(item.burcode_id);openForm(true)">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">

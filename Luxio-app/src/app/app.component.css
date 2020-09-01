@@ -24,7 +24,7 @@
     justify-content: center;
     align-items: center;
     border-bottom: white 5px solid;
-    z-index: 1;
+    z-index: 10;
 }
 
 
@@ -119,6 +119,6 @@
 .content {
     display: flex;
     flex-direction: column;
-    width: 1300px;
+    width: 1200px;
     margin-top: 120px;
 }

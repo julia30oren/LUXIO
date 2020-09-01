@@ -68,6 +68,44 @@
         "ps": "Made in Canada"
     },
 
+    "LUXIO": {
+        "paragraf-1": {
+            "title": "DISCOVER THE PERFECT MANICURE",
+            "text-1": "Luxio By Akzentz is pure luxury in a bottle – a creamy, lavishly pigmented formula ensures smooth, even coverage every time. Luxio is a pure gel formula, allowing for ease of application and unsurpassed durability all whilst maintaining the integrity of the natural nail health.",
+            "text-2": "LUXIO GEL is more than 180 luxurious shades, as well as professional products that ensure easy and comfortable use. Odorless. Does not cause allergies. Has no lacquer component. Safe and easy removal by dissolving with Akzentz Soak Off within 10 minutes.",
+            "pure-gel": "PURE GEL FORMULA"
+        },
+        "paragraf-2": {
+            "title": "CONTROLAT YOUR FINGERTIPS",
+            "text-1": "Luxio By Akzentz is pure luxury in a bottle – a creamy, lavishly pigmented formula ensures smooth, even coverage every time. Luxio is a pure gel formula, allowing for ease of application and unsurpassed durability all whilst maintaining the integrity of the natural nail health.",
+            "text-2": "LUXIO GEL perfection begins in the details - a perfectly finished brush with a unique flat shaft allows you to easily adjust the amount and distribution of the product, the four-sided handle grips perfectly in the hand, the gel does not drip or accumulate on the nail plate. This allows precise control of the coating process and makes working with LUXIO GEL easy and comfortable."
+        },
+        "coloures": "COLOURES"
+    },
+
+    "GEL-PLAY": {
+        "paragraf-1": {
+            "title": "6 UNIQUE DESIGNS",
+            "text-1": "GEL PLAY PAINTS – 18 shades of densely pigmented color gel. Ideal for nail art, including for drawing fine lines, small or voluminous details.",
+            "text-2": "GEL PLAY GLITTERS - 6 shades of iridescent gel with micro-glitter.",
+            "text-3": "GEL PLAY GLITTER SHIFTERS - 6 shades of iridescent gel with micro-gloss.",
+            "text-4": "GEL PLAY MERMAID – 6 iridescent gel shades that change their tone depending on the base color (3D effect, mermaid effect).",
+            "text-5": "GEL PLAY GLITZ - 9 shades of densely pigmented color shimmery gel with high gloss (foil effect). Suitable as a stand alone coating and for selective designs.",
+            "text-6": "GEL PLAY GLITTERS CRUSH – 6 shades of densely pigmented hexagonal sequins of different sizes.",
+            "text-7": "GEL PLAY DAZZLE - 6 shades of densely pigmented gel with very fine colored glitters. Suitable as a stand alone coating and for selective designs.",
+            "text-8": "GEL PLAY LACE – 3 flake effect gel shade.",
+            "text-9": "GEL PLAY GLITTER ME –  colorless transparent gel base for adding glitter and creating new shades.",
+            "text-10": "GEL PLAY BLING ON - gel of dense consistency and extra strong hold for rhinestones, stones and other details. It is applied after the top coat, directly under the design detail."
+        },
+        "paragraf-2": {
+            "title": "GIVE YOUR CREATIVITY WILL",
+            "text-1": "GEL PLAY – a 100% gel line designed specifically for nail art and design. The GEL PLAY line assortment consists of 10 collections of densely pigmented gels and glitters. All GEL PLAY gels dissolve easily and are removed with Akzentz Soak Off."
+        },
+        "paragraf-3": {
+            "title": "Mix, create and bring your wildest ideas to life with GEL PLAY!"
+        }
+    },
+
     "SEARCH": {
         "all-button": "All",
         "not-selected": "Not seleced...",

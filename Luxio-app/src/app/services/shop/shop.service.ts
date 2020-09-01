@@ -18,8 +18,17 @@ export class ShopService {
   private prod_selected = new BehaviorSubject<Array<any>>([]);
   public prod_selected_from_service = this.prod_selected.asObservable();
 
+  private select_one = new BehaviorSubject<boolean>(false);
+  public select_one_from_service = this.select_one.asObservable();
+
   private responce_fromDB = new BehaviorSubject<Array<any>>([]);
   public responce_fromDB_from_service = this.responce_fromDB.asObservable();
+
+  private my_favorites = new BehaviorSubject<Array<any>>(JSON.parse(localStorage.getItem('my_764528_f')) ? JSON.parse(localStorage.getItem('my_764528_f')) : []);
+  public my_favorites_from_service = this.my_favorites.asObservable();
+
+  private my_cart = new BehaviorSubject<Array<any>>(JSON.parse(localStorage.getItem('my_764528_ct')) ? JSON.parse(localStorage.getItem('my_764528_ct')) : []);
+  public my_cart_from_service = this.my_cart.asObservable();
 
   constructor(
     private http: HttpClient
@@ -28,7 +37,6 @@ export class ShopService {
   getProducts_fromDB() {
     return this.http.get(`${this.DB_url}/shop`).subscribe(res => {
       this.shop_products.next([res]);
-      // console.log(this.shop_products);
     });
   }
 
@@ -44,18 +52,23 @@ export class ShopService {
     return this.http.get(`${this.DB_url}/shop/remove/${id}`).subscribe(res => {
       this.shop_products.next([res]);
       this.getProducts_fromDB();
-      // console.log(this.shop_products);
     });
   }
 
   getProducts_sorted(sortedProds: Array<any>) {
-    // console.log(sortedProds);
-    this.shop_products_sorted.next([sortedProds]);
+    this.shop_products_sorted.next(sortedProds);
   }
 
-  selectProd(prod: object) {
-    // console.log(prod);
+  selectProd(prod: object, open_state: boolean) {
     this.prod_selected.next([prod]);
+    this.select_one.next(open_state);
   }
 
+  favorites(new_arr: Array<any>) {
+    this.my_favorites.next(new_arr);
+  }
+
+  cart(new_arr: Array<any>) {
+    this.my_cart.next(new_arr)
+  }
 }

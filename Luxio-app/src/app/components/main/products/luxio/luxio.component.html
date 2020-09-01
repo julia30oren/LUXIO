@@ -1,5 +1,69 @@
-<div>
+<div *ngIf="selectedProd">
+    <app-big-image></app-big-image>
+</div>
+
+<div *ngIf="!selectedProd">
     <img class="buner" src="https://akzentz.com/wp-content/uploads/2018/06/luxio-akzentz-gel-polish-header.png" alt="Luxio buner" />
+
+    <div [ngClass]="{Hebrew: langueg==='iv'}">
+
+        <div class="luxio-row">
+            <div style="width: 60%">
+                <h5 class="title">{{ 'LUXIO.paragraf-1.title' | translate}}</h5>
+                <p class="sm-text">{{ 'LUXIO.paragraf-1.text-1' | translate}}</p>
+                <p class="sm-text">{{ 'LUXIO.paragraf-1.text-2' | translate}}</p>
+                <div class="title darck-bg">100% {{ 'LUXIO.paragraf-1.pure-gel' | translate}}</div>
+            </div>
+            <div style="width: 40%">
+                <img class="luxio-images" src="https://akzentz.com/wp-content/uploads/2018/06/akzentz-luxio-gel-bossy.png" alt="AKZENTZ" />
+            </div>
+        </div>
+
+        <div class="luxio-row" style="border-bottom: rgba(128, 128, 128, 0.5) 2px solid;">
+            <div style="width: 45%">
+                <img class="luxio-images" src="https://akzentz.com/wp-content/uploads/2018/06/luxio-bossy-brush.png" alt="AKZENTZ" />
+            </div>
+            <div style="width: 55%">
+                <h5 class="title">{{ 'LUXIO.paragraf-2.title' | translate}}</h5>
+                <p class="sm-text">{{ 'LUXIO.paragraf-2.text-1' | translate}}</p>
+                <p class="sm-text">{{ 'LUXIO.paragraf-2.text-2' | translate}}</p>
+            </div>
+        </div>
+
+        <div class="luxio-shop" *ngIf="basesANDtops" style="border-bottom: rgba(128, 128, 128, 0.582) 2px solid;">
+            <div class="bases-card" *ngFor="let item of basesANDtops" id={{item.burcode_id}}>
+                <div class="card-img-div">
+                    <div class="bases-img-cover" (click)="select(item.burcode_id)"></div>
+                    <img class="card-img" src={{item.img_link_1}} alt="Product image" />
+                    <p class="sm-text" style="text-align: center;">15ml/0.5oz</p>
+                </div>
+                <div class="card-info-div">
+                    <div style="display: flex; flex-direction: row;">
+                        <button class="bases-card-button" [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
+                        <button class="bases-card-button" [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+                        <h5 style="font-family: Gadugi; margin-top: 10px; margin-left: 10px;">{{item.name}}</h5>
+                    </div>
+                    <div (click)="select(item.burcode_id)">
+                        <p class="xs-text" *ngIf="langueg==='en'">{{item.coment_eng}}</p>
+                        <p class="xs-text" *ngIf="langueg==='ru'">{{item.coment_rus}}</p>
+                        <p class="xs-text" *ngIf="langueg==='iv'">{{item.coment_iv}}</p>
+                        <h5>{{item.price}} &#8362;</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="!selectedProd" style="margin-top: 50px;">
+            <h5>LUXIO {{ 'LUXIO.coloures' | translate}} | 180+</h5>
+            <app-shop-cards></app-shop-cards>
+        </div>
+
+
+    </div>
+
+    <div *ngIf="selectedProd">
+        <app-big-image></app-big-image>
+    </div>
 </div>
 
 <!-- FOOTER -->

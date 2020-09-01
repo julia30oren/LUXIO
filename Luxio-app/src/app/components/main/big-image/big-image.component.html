@@ -1,0 +1,57 @@
+<div *ngIf="selectedProd" class="SELECTED-PRODUCT">
+
+    <div style="display: flex; flex-direction: row; width: 55%;" *ngFor="let item of selectedProd">
+        <div style="display: flex; flex-direction: column; width: 20%;">
+            <img *ngIf="item.img_link_1" class="thumbnail" src={{item.img_link_1}} alt={{item.name}} />
+            <img *ngIf="item.img_link_2" class="thumbnail" (click)="selectImage(item.img_link_2)" src={{item.img_link_2}} alt={{item.name}} />
+            <img *ngIf="item.img_link_3" class="thumbnail" (click)="selectImage(item.img_link_3)" src={{item.img_link_3}} alt={{item.name}} />
+        </div>
+        <div style="display: flex; flex-direction: column; width: 20%; height: 90%; position: absolute; margin-left: 0; z-index: 1;">
+            <div class="img-cover" (click)="selectImage(item.img_link_1)"></div>
+            <div class="img-cover" (click)="selectImage(item.img_link_2)"></div>
+            <div class="img-cover" (click)="selectImage(item.img_link_3)"></div>
+        </div>
+        <div style="display: flex; flex-direction: column; width: 80%;">
+            <div class="big-img-cover"></div>
+            <img src={{selectedProd_Img}} alt={{item.name}} class="big-img" />
+            <a *ngIf=" item.prod_class==='Luxio' " class="newImages-link" href="https://www.instagram.com/explore/tags/{{item.prod_class}}_{{item.name}}/ " target="_blank ">
+            {{ 'PROD_DESCRIPTION.more-img' | translate }}
+        </a>
+        </div>
+    </div>
+
+    <div class="txt-col" *ngFor="let item of selectedProd" [ngClass]="{Hebrew: langueg==='iv'}">
+        <p *ngIf="item.prod_class==='Luxio' "><small>&#8470;</small>{{item.burcode_id}}</p>
+        <h4>{{item.prod_class}} {{item.name}}</h4>
+        <br>
+        <p> {{item.price}} &#8362;</p>
+        <p>
+            <button type="button" class="button " (click)="less(item.burcode_id) ">-</button> 1
+            <button type="button" class="button " (click)="more(item.burcode_id) ">+</button>
+            <button type="button" (click)="addToCart(item._id)">{{'PROD_DESCRIPTION.add_to_cart' | translate}}</button>
+            <button type="button" (click)="addToFavorites(item._id)">{{'PROD_DESCRIPTION.add_to_favorites' | translate}}</button>
+        </p>
+        <p *ngIf="langueg==='en'">{{item.coment_eng}}</p>
+        <p *ngIf="langueg==='ru'">{{item.coment_rus}}</p>
+        <p *ngIf="langueg==='iv'">{{item.coment_iv}}</p>
+        <!-- LUXIO option -->
+        <div *ngIf="item.prod_class==='Luxio' ">
+            <p>{{ 'PROD_DESCRIPTION.LUXIO.main' | translate }}</p>
+            <ul>
+                <li>{{ 'PROD_DESCRIPTION.LUXIO.list-1' | translate }}</li>
+                <li>{{ 'PROD_DESCRIPTION.LUXIO.list-2' | translate }}</li>
+                <li>{{ 'PROD_DESCRIPTION.LUXIO.list-3' | translate }}</li>
+                <li>{{ 'PROD_DESCRIPTION.LUXIO.list-4' | translate }}</li>
+            </ul>
+        </div>
+
+        <p> {{ 'PROD_DESCRIPTION.ps' | translate }}</p>
+    </div>
+
+    <div class="button-col">
+        <button type="button" (click)="closeSelected()" class="close-button">
+        <i class="fas fa-times fa-2x"></i>
+    </button>
+    </div>
+
+</div>
