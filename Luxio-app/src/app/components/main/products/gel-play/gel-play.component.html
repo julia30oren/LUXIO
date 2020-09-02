@@ -1,4 +1,8 @@
-<div class="GEL-PLAY-shop" *ngIf="!selectedProd">
+<div *ngIf="selectedProd">
+    <app-big-image></app-big-image>
+</div>
+
+<div *ngIf="!selectedProd" class="GEL-PLAY-shop">
     <img class="buner" src="https://akzentz.com/wp-content/uploads/2018/06/gelplay-akzentz-header.png" alt="Gel Play buner" />
 
     <div [ngClass]="{Hebrew: langueg==='iv'}" style="display: flex; flex-direction: row; border-bottom: solid 2px rgba(128, 128, 128, 0.5);">
@@ -23,11 +27,9 @@
         </div>
     </div>
 
-    <app-shop-cards></app-shop-cards>
-</div>
-
-<div *ngIf="selectedProd">
-    <app-big-image></app-big-image>
+    <div style="margin-top: 50px;">
+        <app-shop-cards></app-shop-cards>
+    </div>
 </div>
 
 <!-- FOOTER -->

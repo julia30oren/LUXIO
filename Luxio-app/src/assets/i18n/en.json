@@ -106,6 +106,26 @@
         }
     },
 
+    "OPTIONS": {
+        "paragraf-1": {
+            "title": "OPTIONS",
+            "text-1": "OPTIONS line - consists of a rich palette of 100% gel and a strengthening and building system.",
+            "text-2": "All gels in the Options line are solvent free, odorless and keep the nail plate in perfect condition.",
+            "text-3": "OPTIONS SOAK OFF SYSTEMS - 100% strengthening and building gel. Provides extra firmness to brittle, soft and damaged nails. Strengthens, restores and improves the condition of the nail plate. Safe and easy removal by dissolving with Akzentz Soak Off. Provides a bright glossy shine and natural look."
+        },
+        "paragraf-2": {
+            "text-1": "OPTIONS COLORS - 100% gel for design and coverage. Dense, rich pigmented shades. Safe and easy removal by dissolving with Akzentz Soak Off. Ultra-thin coating that does not crack, does not shrink, does not chip. Compatible with Luxio base, top and colors."
+        }
+    },
+
+    "PRO-FORMANCE": {
+        "paragraf-1": {
+            "title": "DIAMOND STRENGTH TECHNOLOGY",
+            "text-1": "(DST) Pro-Formance is the perfect choice for creating beautiful nail enhancements. The high quality and strength is achieved through DST which utilizes superior molecular cross-linking. Pro-Formance will maintain its durability regardless of your client’s lifestyle.",
+            "text-2": "All Pro-Formance series gels are solvent free, odourless and preserve clients natural nail condition. Pro-Formance gels are custom crafted from only the highest grade of European & USA sourced ingredients, and offer a wide variety of choice in viscosity, colour, opacity and strength – allowing you to create the perfect enhancement for your individual clients needs."
+        }
+    },
+
     "SEARCH": {
         "all-button": "All",
         "not-selected": "Not seleced...",
@@ -186,7 +206,8 @@
         "price": "Price",
         "label": "Label",
         "img-link": "Image",
-        "text-area": "Additional information field"
+        "text-area": "Additional information field",
+        "amount": "Amount"
     },
 
     "CONTACT": {

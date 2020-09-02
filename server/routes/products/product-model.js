@@ -17,9 +17,19 @@ const ProductSchema = new Schema({
         type: String,
         require: true
     },
-    price: {
-        type: Number,
+    amount_1: {
+        type: String,
         require: true
+    },
+    price_1: {
+        type: Number,
+        required: true
+    },
+    amount_2: {
+        type: String
+    },
+    price_2: {
+        type: Number
     },
     img_link_1: {
         type: String,

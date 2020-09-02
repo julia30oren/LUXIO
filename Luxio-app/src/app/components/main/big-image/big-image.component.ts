@@ -21,6 +21,8 @@ export class BigImageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
+
     this.shop_service.prod_selected_from_service
       .subscribe(date => {
         this.selectedProd = date;

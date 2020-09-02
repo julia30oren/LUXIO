@@ -1,6 +1,42 @@
-<div>
-    <img class="buner" src="https://akzentz.com/wp-content/uploads/2018/06/proformance-hard-gel-banner.png" alt="Pro-Formance buner" />
+<div *ngIf="selectedProd">
+    <app-big-image></app-big-image>
 </div>
 
-<!-- FOOTER -->
-<app-footer></app-footer>
+<div *ngIf="!selectedProd">
+    <img class="buner" src="https://akzentz.com/wp-content/uploads/2018/06/proformance-hard-gel-banner.png" alt="Pro-Formance buner" />
+
+    <div>
+        <div class="PRO-FORMANCE-open" [ngClass]="{Hebrew: langueg==='iv'}">
+            <p class="sm-text">{{ 'PRO-FORMANCE.paragraf-1.title' | translate}}</p>
+            <p class="sm-text">{{ 'PRO-FORMANCE.paragraf-1.text-1' | translate}}</p>
+            <p class="sm-text">{{ 'PRO-FORMANCE.paragraf-1.text-2' | translate}}</p>
+        </div>
+
+        <!-- <p>{{ProFormance | json}}</p> -->
+        <div class="proForm-shop" *ngIf="ProFormance" [ngClass]="{Hebrew: langueg==='iv'}" style="border-bottom: rgba(128, 128, 128, 0.582) 2px solid;">
+            <div class="proForm-card" *ngFor="let item of ProFormance" id={{item.burcode_id}}>
+                <div class="card-img-div">
+                    <div class="proForm-img-cover" (click)="select(item.burcode_id)"></div>
+                    <img class="card-img" src={{item.img_link_1}} alt="Product image" />
+                </div>
+                <div class="card-info-div">
+                    <div style="display: flex; flex-direction: row;">
+                        <button class="options-card-button" [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
+                        <button class="options-card-button" [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+                        <h5 style="font-family: Gadugi; margin-top: 10px; margin-left: 10px;">{{item.name}}</h5>
+                    </div>
+                    <div (click)="select(item.burcode_id)">
+                        <p class="xs-text" *ngIf="langueg==='en'">{{item.coment_eng}}</p>
+                        <p class="xs-text" *ngIf="langueg==='ru'">{{item.coment_rus}}</p>
+                        <p class="xs-text" *ngIf="langueg==='iv'">{{item.coment_iv}}</p>
+                        <h5 style="text-align: right; direction: ltr;">{{item.price}} &#8362;</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div *ngIf="!selectedProd">
+        <app-footer></app-footer>
+    </div>

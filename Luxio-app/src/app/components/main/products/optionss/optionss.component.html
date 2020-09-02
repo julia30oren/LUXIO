@@ -1,5 +1,54 @@
-<div>
-    <img class="buner" src="https://akzentz.com/wp-content/uploads/2018/06/akzentz-options-gel-header-web.png" alt="Options buner" />
+<div *ngIf="selectedProd">
+    <app-big-image></app-big-image>
 </div>
-<!-- FOOTER -->
-<app-footer></app-footer>
+
+<div *ngIf="!selectedProd">
+    <img class="buner" src="https://akzentz.com/wp-content/uploads/2018/06/akzentz-options-gel-header-web.png" alt="Options buner" />
+
+    <div>
+        <div class="OPTIONS-open">
+            <div class="options-col">
+                <img class="options-images" src="https://i.pinimg.com/originals/1a/27/6d/1a276d809390fc8f836d3c5c698b69bf.png" alt="AKZENTZ" />
+                <p [ngClass]="{Hebrew: langueg==='iv'}" class="sm-text">{{ 'OPTIONS.paragraf-1.text-3' | translate}}</p>
+            </div>
+
+            <div class="options-col">
+                <p [ngClass]="{Hebrew: langueg==='iv'}" class="sm-text">{{ 'OPTIONS.paragraf-1.text-1' | translate}}</p>
+                <p [ngClass]="{Hebrew: langueg==='iv'}" class="sm-text">{{ 'OPTIONS.paragraf-1.text-2' | translate}}</p>
+                <p [ngClass]="{Hebrew: langueg==='iv'}" class="sm-text">{{ 'OPTIONS.paragraf-2.text-1' | translate}}</p>
+                <img class="options-images" src="https://i.pinimg.com/originals/b7/a3/9f/b7a39fb156ce24e553617ee7b98ab35a.png" alt="AKZENTZ" />
+            </div>
+        </div>
+
+        <!-- <p>{{Options | json}}</p> -->
+        <div class="options-shop" *ngIf="Options" [ngClass]="{Hebrew: langueg==='iv'}" style="border-bottom: rgba(128, 128, 128, 0.582) 2px solid;">
+            <div class="options-card" *ngFor="let item of Options" id={{item.burcode_id}}>
+                <div class="card-img-div">
+                    <div class="options-img-cover" (click)="select(item.burcode_id)"></div>
+                    <img class="card-img" src={{item.img_link_1}} alt="Product image" />
+                </div>
+                <div class="card-info-div">
+                    <div style="display: flex; flex-direction: row;">
+                        <button class="options-card-button" [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
+                        <button class="options-card-button" [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+                        <h5 style="font-family: Gadugi; margin-top: 10px; margin-left: 10px;">{{item.name}}</h5>
+                    </div>
+                    <div (click)="select(item.burcode_id)">
+                        <p class="xs-text" *ngIf="langueg==='en'">{{item.coment_eng}}</p>
+                        <p class="xs-text" *ngIf="langueg==='ru'">{{item.coment_rus}}</p>
+                        <p class="xs-text" *ngIf="langueg==='iv'">{{item.coment_iv}}</p>
+                        <h5 style="text-align: right; direction: ltr;">{{item.price}} &#8362;</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <app-shop-cards></app-shop-cards>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div *ngIf="!selectedProd">
+        <app-footer></app-footer>
+    </div>

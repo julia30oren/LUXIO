@@ -27,10 +27,13 @@ export class AdminShopComponent implements OnInit {
     name: new FormControl('', Validators.required),
     prod_class: new FormControl('', Validators.required),
     prod_collection: new FormControl(''),
-    img_link_1: new FormControl(''),
+    img_link_1: new FormControl('', Validators.required),
     img_link_2: new FormControl(''),
     img_link_3: new FormControl(''),
-    price: new FormControl(null, Validators.required),
+    amount_1: new FormControl('', Validators.required),
+    price_1: new FormControl(null, Validators.required),
+    amount_2: new FormControl(''),
+    price_2: new FormControl(null),
     color: new FormControl(''),
     tint: new FormControl(''),
     transparency: new FormControl(''),
@@ -62,30 +65,6 @@ export class AdminShopComponent implements OnInit {
         // console.log(date)
       })
 
-    // this.shop_service.prod_selected_from_service
-    //   .subscribe(date => {
-    //     this.selectedProd = date;
-    //     if (this.selectedProd[0]) {
-    //       // console.log(this.selectedProd[0].burcode_id);
-    //       this.formTemplate.setValue({
-    //         burcode_id: this.selectedProd[0].burcode_id,
-    //         name: this.selectedProd[0].name,
-    //         prod_class: this.selectedProd[0].prod_class,
-    //         prod_collection: this.selectedProd[0].prod_collection || '',
-    //         img_link_1: this.selectedProd[0].img_link_1,
-    //         img_link_2: this.selectedProd[0].img_link_2,
-    //         img_link_3: this.selectedProd[0].img_link_3,
-    //         price: this.selectedProd[0].price,
-    //         color: this.selectedProd[0].color || '',
-    //         tint: this.selectedProd[0].tint || '',
-    //         transparency: this.selectedProd[0].transparency || '',
-    //         label: this.selectedProd[0].label || '',
-    //         coment_eng: this.selectedProd[0].coment_eng || '',
-    //         coment_iv: this.selectedProd[0].coment_iv || '',
-    //         coment_rus: this.selectedProd[0].coment_rus || ''
-    //       });
-    //     }
-    //   });
     this.shop_service.responce_fromDB_from_service
       .subscribe(date => {
         this.responce_from_DB = date;
@@ -127,8 +106,7 @@ export class AdminShopComponent implements OnInit {
   onSubmit(formValue) {
     this.isSubmitted = true;
     if (this.formTemplate.valid) {
-      console.log(formValue);
-
+      // console.log(formValue);
       this.shop_service.saveProduct_toDB(formValue);
     }
   }
@@ -146,7 +124,10 @@ export class AdminShopComponent implements OnInit {
       img_link_1: '',
       img_link_2: '',
       img_link_3: '',
-      price: null,
+      amount_1: '',
+      price_1: null,
+      amount_2: '',
+      price_2: null,
       color: '',
       tint: '',
       prod_collection: '',
@@ -175,10 +156,13 @@ export class AdminShopComponent implements OnInit {
           name: element.name,
           prod_class: element.prod_class,
           prod_collection: element.prod_collection || '',
+          amount_1: element.amount_1,
+          price_1: element.price_1,
+          amount_2: element.amount_2,
+          price_2: element.price_2,
           img_link_1: element.img_link_1 || element.img_link,
           img_link_2: element.img_link_2 || '',
           img_link_3: element.img_link_3 || '',
-          price: element.price,
           color: element.color,
           tint: element.tint,
           transparency: element.transparency,

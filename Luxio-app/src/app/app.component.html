@@ -6,7 +6,9 @@
 
         <nav class="nav" [ngClass]="{Hebrew: langIv}">
             <a class="nav-link" [ngClass]="{active: location==='new'}" href="new">{{ 'NAVIGATION.NEW.title' | translate }}</a>
-            <a class="nav-link" [ngClass]="{active: location==='products/luxio' || location==='products/gel-play' || location==='products/options' || location==='products/pro-formance' || location==='products/basics' || location==='products/tools'}" (click)="openProdOptions();">{{ 'NAVIGATION.PRODUCTS.title' | translate }}</a>
+            <a class="nav-link" style="cursor: pointer;" [ngClass]="{active: location==='products/luxio' || location==='products/gel-play' || location==='products/options' || location==='products/pro-formance' || location==='products/basics' || location==='products/tools'}"
+                (click)="openProdOptions();">
+                {{ 'NAVIGATION.PRODUCTS.title' | translate }}</a>
             <div class="prod-options" *ngIf="prodOptionsOpen">
                 <a class="prod-option-link" href="products/luxio">LUXIO</a>
                 <a class="prod-option-link" href="products/gel-play">GEL PLAY</a>

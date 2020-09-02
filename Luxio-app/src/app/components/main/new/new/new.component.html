@@ -66,7 +66,7 @@
                 <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
                 <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
             </div>
-            <img class="card-img" src={{item.img_link}} (click)="select(item.burcode_id)" alt="Product image" />
+            <img class="card-img" src={{item.img_link_1}} (click)="select(item.burcode_id)" alt="Product image" />
             <div class="card-info" (click)="select(item.burcode_id)">
                 <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
                 <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
@@ -104,7 +104,7 @@
                 <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
                 <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
             </div>
-            <img class="card-img" src={{item.img_link}} (click)="select(item.burcode_id)" alt="Product image" />
+            <img class="card-img" src={{item.img_link_1}} (click)="select(item.burcode_id)" alt="Product image" />
             <div class="card-info" (click)="select(item.burcode_id)">
                 <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
                 <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
@@ -142,7 +142,7 @@
                 <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
                 <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
             </div>
-            <img class="card-img" src={{item.img_link}} (click)="select(item.burcode_id)" alt="Product image" />
+            <img class="card-img" src={{item.img_link_1}} (click)="select(item.burcode_id)" alt="Product image" />
             <div class="card-info" (click)="select(item.burcode_id)">
                 <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
                 <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
@@ -177,7 +177,7 @@
                 <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
                 <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
             </div>
-            <img class="card-img" src={{item.img_link}} (click)="select(item.burcode_id)" alt="Product image" />
+            <img class="card-img" src={{item.img_link_1}} (click)="select(item.burcode_id)" alt="Product image" />
             <div class="card-info" (click)="select(item.burcode_id)">
                 <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
                 <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
@@ -216,7 +216,7 @@
                     <i class="fas fa-heart fa-2x "></i>
                 </button>
             </div>
-            <img class="card-img" src={{item.img_link}} alt="Product image" (click)="select(item.burcode_id)" />
+            <img class="card-img" src={{item.img_link_1}} alt="Product image" (click)="select(item.burcode_id)" />
             <div class="card-info" (click)="select(item.burcode_id) ">
                 <h5 style="text-align: right; ">{{item.price}} &#8362;</h5>
                 <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>

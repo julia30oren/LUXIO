@@ -18,15 +18,23 @@ router.post("/save", async(req, res, next) => {
         burcode_id: req.body.burcode_id,
         prod_class: req.body.prod_class,
         name: req.body.name.toUpperCase(),
-        price: req.body.price,
         prod_collection: req.body.prod_collection,
-        img_link_1: req.body.img_link_1 || 'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg',
-        img_link_2: req.body.img_link_2,
-        img_link_3: req.body.img_link_3,
+
         color: req.body.color,
         tint: req.body.tint,
         transparency: req.body.transparency,
         label: req.body.label,
+
+        amount_1: req.body.amount_1,
+        price_1: req.body.price_1,
+        amount_2: req.body.amount_2,
+        price_2: req.body.price_2,
+        price: req.body.price,
+
+        img_link_1: req.body.img_link_1 || 'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg',
+        img_link_2: req.body.img_link_2,
+        img_link_3: req.body.img_link_3,
+
         coment_eng: req.body.coment_eng,
         coment_iv: req.body.coment_iv,
         coment_rus: req.body.coment_rus
@@ -55,15 +63,22 @@ router.post("/save", async(req, res, next) => {
                 $set: {
                     "prod_class": req.body.prod_class,
                     "name": req.body.name.toUpperCase(),
-                    "price": req.body.price,
+                    "prod_collection": req.body.prod_collection,
+
+                    "amount_1": req.body.amount_1,
+                    "price_1": req.body.price_1,
+                    "amount_2": req.body.amount_2,
+                    "price_2": req.body.price_2,
+
+                    "color": req.body.color,
+                    "tint": req.body.tint,
+                    "transparency": req.body.transparency,
+                    "label": req.body.label,
+
                     "img_link_1": req.body.img_link_1,
                     "img_link_2": req.body.img_link_2,
                     "img_link_3": req.body.img_link_3,
-                    "color": req.body.color,
-                    "tint": req.body.tint,
-                    "prod_collection": req.body.prod_collection,
-                    "transparency": req.body.transparency,
-                    "label": req.body.label,
+
                     "coment_eng": req.body.coment_eng,
                     "coment_iv": req.body.coment_iv,
                     "coment_rus": req.body.coment_rus
