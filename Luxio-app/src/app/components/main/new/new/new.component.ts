@@ -9,16 +9,17 @@ import { ShopService } from 'src/app/services/shop/shop.service';
 })
 export class NewComponent implements OnInit {
 
-  private langIv: boolean;
+  public langueg: string;
   private shadesOpen: boolean;
   private miamiOpen: boolean;
   private voyageOpen: boolean;
   private fascinationOpen: boolean;
-  public selectedProd: object;
+  public selectedProd: boolean;
   public rendezvousOpen: boolean;
 
   public my_cart: Array<any> = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
   public my_favorites: Array<any> = JSON.parse(localStorage.getItem('my_764528_f')) || [];
+  public shop: Array<any> = [];
   public shades: Array<any> = [];
   public voyage: Array<any> = [];
   public miami: Array<any> = [];
@@ -34,16 +35,14 @@ export class NewComponent implements OnInit {
     this.shop_service.getProducts_fromDB();
 
     this.lang_service._selected_from_service
-      .subscribe(date => {
-        if (date === 'iv') {
-          this.langIv = true;
-        } else this.langIv = false;
-        // console.log(date)
-      })
+      .subscribe(date => { this.langueg = date })
 
+    this.shop_service.select_one_from_service
+      .subscribe(date => this.selectedProd = date)
 
     this.shop_service.shop_products_from_service
       .subscribe(date => {
+        this.shop = date;
         let shop = date[0] || [];
         shop.forEach(element => {
           if (element.prod_collection === 'shades') {
@@ -119,29 +118,9 @@ export class NewComponent implements OnInit {
   }
 
   select(id: number) {
-    this.shades.forEach(element => {
+    this.shop.forEach(element => {
       if (element.burcode_id === id) {
-        this.selectedProd = element;
-      }
-    });
-    this.voyage.forEach(element => {
-      if (element.burcode_id === id) {
-        this.selectedProd = element;
-      }
-    });
-    this.fascination.forEach(element => {
-      if (element.burcode_id === id) {
-        this.selectedProd = element;
-      }
-    });
-    this.miami.forEach(element => {
-      if (element.burcode_id === id) {
-        this.selectedProd = element;
-      }
-    });
-    this.rendezvous.forEach(element => {
-      if (element.burcode_id === id) {
-        this.selectedProd = element;
+        this.shop_service.selectProd(element, true);
       }
     });
   }

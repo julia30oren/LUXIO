@@ -1,5 +1,4 @@
 <div class="SHOP" *ngIf="itemsArray">
-
     <div class="flip-box" id={{item.burcode_id}} *ngFor="let item of itemsArray">
         <div class="flip-box-inner">
             <div class="flip-box-front">
@@ -14,6 +13,5 @@
                 <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
             </div>
         </div>
-
     </div>
 </div>

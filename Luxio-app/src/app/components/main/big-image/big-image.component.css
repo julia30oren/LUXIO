@@ -39,19 +39,14 @@
 }
 
 .big-img-cover {
+    height: 500px;
+    width: 500px;
     background-color: rgba(0, 0, 0, 0);
+    /* background-image: url('https://si.pinimg.com/originals/49/7f/b2/497fb286a38d8824bf13a792bb967eff.png');
+    background-size: 500px 500px; */
     position: absolute;
     z-index: 2;
     margin-left: 0;
-    height: 500px;
-    width: 500px;
-}
-
-.img-cover {
-    background-color: rgba(0, 0, 0, 0);
-    height: 30%;
-    width: 150px;
-    padding: 1%;
 }
 
 .newImages-link {

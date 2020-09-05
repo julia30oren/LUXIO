@@ -1,40 +1,11 @@
+<div *ngIf="selectedProd">
+    <app-big-image></app-big-image>
+</div>
+
 <!-- NEW -->
 <div class="NEW" [ngClass]="{Hebrew: langIv}">
 
-    <div *ngIf="selectedProd" class="selected-prod">
-        <div class="inside">
-            <div class="img-col">
-                <img src={{selectedProd.img_link}} alt={{selectedProd.name}} class="img" />
-                <a *ngIf=" selectedProd.prod_class==='Luxio' " class="img-link " href="https://www.instagram.com/explore/tags/{{selectedProd.prod_class}}_{{selectedProd.name}}/ " target="_blank ">
-                    {{ 'PROD_DESCRIPTION.more-img' | translate }}
-                </a>
-            </div>
-            <div class="txt-col">
-                <p *ngIf="selectedProd.prod_class==='Luxio' "><small>&#8470;</small>{{selectedProd.burcode_id}}</p>
-                <h4>{{selectedProd.prod_class}} {{selectedProd.name}}</h4>
-                <br>
-                <p> {{selectedProd.price}} &#8362;</p>
-                <p>
-                    <button type="button" class="button " (click)="less(selectedProd.burcode_id) ">-</button> 1
-                    <button type="button" class="button " (click)="more(selectedProd.burcode_id) ">+</button>
-                    <button type="button" (click)="addToCart(selectedProd._id)">{{'PROD_DESCRIPTION.add_to_cart' | translate}}</button>
-                    <button type="button" (click)="addToFavorites(selectedProd._id)">{{'PROD_DESCRIPTION.add_to_favorites' | translate}}</button>
-                </p>
-                <!-- LUXIO option -->
-                <div *ngIf="selectedProd.prod_class==='Luxio' ">
-                    <p>{{ 'PROD_DESCRIPTION.LUXIO.main' | translate }}</p>
-                    <ul>
-                        <li>{{ 'PROD_DESCRIPTION.LUXIO.list-1' | translate }}</li>
-                        <li>{{ 'PROD_DESCRIPTION.LUXIO.list-2' | translate }}</li>
-                        <li>{{ 'PROD_DESCRIPTION.LUXIO.list-3' | translate }}</li>
-                        <li>{{ 'PROD_DESCRIPTION.LUXIO.list-4' | translate }}</li>
-                    </ul>
-                </div>
-                <p> {{ 'PROD_DESCRIPTION.ps' | translate }}</p>
-            </div>
-            <div><button type="button" (click)="closeSelected()" class="close-button"><i class="fas fa-times fa-2x"></i></button></div>
-        </div>
-    </div>
+
 
     <img src="https://i.pinimg.com/originals/76/8d/0f/768d0f9635932751311f757099c3f743.png" />
     <p [ngClass]="{Hebrew: langIv}" style="padding: 5%; color: gray;">{{ 'NEW.loz' | translate}}</p>
@@ -99,18 +70,23 @@
     </button>
 
     <div class="shopComp" *ngIf="shadesOpen">
-        <div *ngFor="let item of shades" class="card" id={{item.burcode_id}}>
-            <div class="card-buttons">
-                <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
-                <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
-            </div>
-            <img class="card-img" src={{item.img_link_1}} (click)="select(item.burcode_id)" alt="Product image" />
-            <div class="card-info" (click)="select(item.burcode_id)">
-                <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
-                <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
+        <div class="flip-box" id={{item.burcode_id}} *ngFor="let item of shades">
+            <div class="flip-box-inner">
+                <div class="flip-box-front">
+                    <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}} image not evaluable" />
+                    <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
+                </div>
+                <div class="flip-box-back">
+                    <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable" />
+                    <div (click)="select(item.burcode_id)" style="background-color: rgba(0, 0, 0, 0); width: 100%; height: 80%; position: absolute; top: 0;"></div>
+                    <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2"> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
+                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
+                    <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+                </div>
             </div>
         </div>
     </div>
+
 
     <hr/>
     <!-- MIAMI -->
