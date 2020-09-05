@@ -45,6 +45,7 @@
                         <option value='white'>{{ 'SEARCH.OPTIONS.white' | translate }}</option>
                         <option value='black'>{{ 'SEARCH.OPTIONS.black' | translate }}</option>
                         <option value='pink'>{{ 'SEARCH.OPTIONS.pink' | translate }}</option>
+                        <option value='beige'>{{ 'SEARCH.OPTIONS.beige' | translate }}</option>
                         <option value='red'>{{ 'SEARCH.OPTIONS.red' | translate }}</option>
                         <option value='оrange'>{{ 'SEARCH.OPTIONS.оrange' | translate }}</option>
                         <option value='yellow'>{{ 'SEARCH.OPTIONS.yellow' | translate }}</option>
@@ -185,7 +186,7 @@
         <div *ngFor="let item of shop" id={{item.burcode_id}} class="card mb-3" style="width: 48%; margin: auto; margin-top:1%">
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <img src={{item.img_link_1||item.img_link}} class="card-img" alt="..." (click)="select(item.burcode_id);openForm(true)">
+                    <img src={{item.img_link_1}} class="card-img" alt="..." (click)="select(item.burcode_id);openForm(true)">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -196,7 +197,10 @@
                         <p class="card-text">{{item.coment_rus}}</p>
                         <p class="card-text Hebrew">{{item.coment_iv}}</p>
 
-                        <p class="card-text"><small class="text-muted">{{item.price}} &#8362;</small></p>
+                        <p class="card-text">
+                            <small class="text-muted">{{item.amount_1}} {{item.price_1}} &#8362;</small>
+                            <small class="text-muted" *ngIf="item.amount_2"> / {{item.amount_2}} {{item.price_2}} &#8362;</small>
+                        </p>
                         <p class="card-text">
                             <small class="text-muted labels" *ngIf="item.label">{{item.label}}</small>
                             <small class="text-muted labels" *ngIf="item.color">{{item.color}}</small>

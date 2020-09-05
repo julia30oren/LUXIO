@@ -12,12 +12,10 @@ export class ShopComponent implements OnInit {
 
 
   public shop: any[];
-  public sorted: any[];
-  private no_products: boolean;
   public selectedProd: boolean;
 
   public fav: Array<any>;
-  public langIv: boolean = false;
+  public langueg: string;
   public my_cart: Array<any> = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
   public my_favorites: Array<any> = JSON.parse(localStorage.getItem('my_764528_f')) || [];
 
@@ -34,29 +32,17 @@ export class ShopComponent implements OnInit {
     this.shop_service.shop_products_from_service
       .subscribe(date => {
         this.shop = date[0];
+        this.shop_service.getProducts_sorted(this.shop);
       });
-
-    this.shop_service.shop_products_sorted_from_service
-      .subscribe(date => this.sorted = date[0]);
 
     this.user_service.favorite_from_service
       .subscribe(date => { this.fav = date });
 
     this.lang_service._selected_from_service
-      .subscribe(date => {
-        if (date === 'iv') {
-          this.langIv = true;
-        } else this.langIv = false;
-      })
+      .subscribe(date => { this.langueg = date })
 
     this.shop_service.select_one_from_service
       .subscribe(date => this.selectedProd = date)
-  }
-
-  checkSorted() {
-    if (this.sorted.length < 1) {
-      this.no_products = true;
-    } else this.no_products = false;
   }
 
   getSorted(by_class, by_color, by_tint, by_transparency) {
@@ -66,17 +52,14 @@ export class ShopComponent implements OnInit {
         newAr.push(element);
       }
       this.shop_service.getProducts_sorted(newAr);
-      this.checkSorted();
     });
   }
 
   getAll() {
     this.shop_service.getProducts_sorted(this.shop);
-    this.no_products = false;
   }
 
   select(id: number) {
-    // console.log(id);
     this.shop.forEach(element => {
       if (element.burcode_id === id) {
         this.shop_service.selectProd(element, true);

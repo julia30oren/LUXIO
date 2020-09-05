@@ -1,10 +1,8 @@
-<div [ngClass]="{Hebrew: langIv}" class="SHOP">
+<div *ngIf="selectedProd">
+    <app-big-image></app-big-image>
+</div>
 
-    <div *ngIf="selectedProd">
-        <app-big-image></app-big-image>
-    </div>
-
-
+<div [ngClass]="{Hebrew: langueg==='iv'}" class="SHOP">
     <!-- SORT -->
     <div class="sort" *ngIf="!selectedProd">
         <form>
@@ -32,6 +30,7 @@
                     <option value='white'>{{ 'SEARCH.OPTIONS.white' | translate }}</option>
                     <option value='black'>{{ 'SEARCH.OPTIONS.black' | translate }}</option>
                     <option value='pink'>{{ 'SEARCH.OPTIONS.pink' | translate }}</option>
+                    <option value='beige'>{{ 'SEARCH.OPTIONS.beige' | translate }}</option>
                     <option value='red'>{{ 'SEARCH.OPTIONS.red' | translate }}</option>
                     <option value='оrange'>{{ 'SEARCH.OPTIONS.оrange' | translate }}</option>
                     <option value='yellow'>{{ 'SEARCH.OPTIONS.yellow' | translate }}</option>
@@ -65,69 +64,14 @@
             </div>
         </form>
     </div>
-    <!-- SORT styles -->
-    <style>
-        .sort {
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-        }
-        
-        .btn-outline-dark {
-            width: auto;
-            margin-left: 0;
-        }
-    </style>
-
-    <div *ngIf="!selectedProd">
-
-        <div class="shopComp" *ngIf="shop && !sorted">
-
-            <div class="card" *ngFor="let item of shop" id={{item.burcode_id}}>
-                <div class="card-buttons">
-                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
-                    <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
-                    <div *ngIf="item.label" class="lable-new">
-                        <p style="padding: 5px; width: 100%;">{{item.label}}</p>
-                    </div>
-                </div>
-
-                <div class="img-cover" (click)="select(item.burcode_id)"></div>
-                <img class="card-img" src={{item.img_link||item.img_link_1}} alt="{{item.name}} image not evaluable" />
-
-                <div class="card-info" (click)="select(item.burcode_id)">
-                    <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
-                    <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <!-- <div class="shopComp" *ngIf="sorted">
-            <div *ngFor="let item of sorted" class="card" id={{item.burcode_id}}>
-                <div class="card-buttons">
-                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
-                    <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
-                    <div *ngIf="item.label" class="lable-new">
-                        <p style="padding: 5px; width: 100%;">{{item.label}}</p>
-                    </div>
-                </div>
-                <div class="card-image-front">
-                    <div class="img-cover" (click)="select(item.burcode_id)"></div>
-                    <img class="card-img" src={{item.img_link||item.img_link_1}} alt="{{item.name}} image not evaluable" />
-                </div>
-                <div class="card-info" (click)="select(item.burcode_id)">
-                    <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
-                    <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
-                </div>-->
-
-
-    <div class="no_products_message" *ngIf="no_products">
-        <h3>{{'SEARCH.no-products' | translate}}</h3>
-    </div>
 </div>
 
 
+<div *ngIf="!selectedProd">
+    <app-shop-cards></app-shop-cards>
+</div>
+
 <!-- FOOTER -->
-<app-footer></app-footer>
+<div *ngIf="!selectedProd">
+    <app-footer></app-footer>
+</div>

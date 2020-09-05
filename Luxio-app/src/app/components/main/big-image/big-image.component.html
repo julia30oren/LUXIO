@@ -24,7 +24,8 @@
         <p *ngIf="item.prod_class==='Luxio' "><small>&#8470;</small>{{item.burcode_id}}</p>
         <h4>{{item.prod_class}} {{item.name}}</h4>
         <br>
-        <p> {{item.price}} &#8362;</p>
+        <h5>{{item.amount_1}} {{item.price_1}} &#8362;</h5>
+        <h5 *ngIf="item.amount_2">{{item.amount_2}} {{item.price_2}} &#8362;</h5>
         <p>
             <button type="button" class="button " (click)="less(item.burcode_id) ">-</button> 1
             <button type="button" class="button " (click)="more(item.burcode_id) ">+</button>
