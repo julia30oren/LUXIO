@@ -1,4 +1,14 @@
-<h5>{{ 'NAVIGATION.COURSES.title' | translate }}</h5>
+<div [ngClass]="{Hebrew: langueg==='iv'}" class="SHOP">
+    <!-- <h5>{{ 'NAVIGATION.COURSES.title' | translate }}</h5> -->
+    <div class="courses-buner"></div>
+
+    <div style="text-align: center; padding:5%">
+        <h1 class="title">{{ 'COURSES.TEXT-1' | translate}}</h1>
+        <h1 class="title">{{ 'COURSES.TEXT-2' | translate}}</h1>
+        <p class="sm-text">{{ 'CONTACT.city' | translate}}, {{ 'CONTACT.street' | translate}}</p>
+    </div>
+</div>
+
 
 <!-- FOOTER -->
 <app-footer></app-footer>

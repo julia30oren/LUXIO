@@ -1,6 +1,18 @@
-<div>
+<div *ngIf="selectedProd">
+    <app-big-image></app-big-image>
+</div>
+
+<div *ngIf="!selectedProd">
     <img class="buner" src="https://i.pinimg.com/originals/09/7c/c8/097cc8835efe558ccc62ead0b2771ce2.jpg" alt="Tools buner" />
+    <div [ngClass]="{Hebrew: langueg==='iv'}" style="width: 100%; padding-top: 50px;; padding-bottom: 50px; border-bottom: rgba(128, 128, 128, 0.5) solid 2px ">
+        <h3>AKZENTZ {{'TOOLS.title' | translate}}</h3>
+        <p>{{'TOOLS.text' | translate}}</p>
+    </div>
+
+    <app-wide-cards></app-wide-cards>
 </div>
 
 <!-- FOOTER -->
-<app-footer></app-footer>
+<div *ngIf="!selectedProd">
+    <app-footer></app-footer>
+</div>

@@ -5,13 +5,12 @@
 <!-- NEW -->
 <div class="NEW" [ngClass]="{Hebrew: langIv}">
 
-
-
     <img src="https://i.pinimg.com/originals/76/8d/0f/768d0f9635932751311f757099c3f743.png" />
     <p [ngClass]="{Hebrew: langIv}" style="padding: 5%; color: gray;">{{ 'NEW.loz' | translate}}</p>
 
     <hr/>
-    <!-- RENDEZVOUS -->
+
+    <!-- RENDEZVOUS --------------------------------------------------------------------------->
     <div class="new-comp-row">
         <div class="half-row">
             <img src="https://i.pinimg.com/originals/59/b8/71/59b87175281fb4294ca9c2eee28d6d47.jpg" />
@@ -32,21 +31,26 @@
     </button>
 
     <div class="shopComp" *ngIf="rendezvousOpen">
-        <div *ngFor="let item of rendezvous" class="card" id={{item.burcode_id}}>
-            <div class="card-buttons">
-                <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
-                <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
-            </div>
-            <img class="card-img" src={{item.img_link_1}} (click)="select(item.burcode_id)" alt="Product image" />
-            <div class="card-info" (click)="select(item.burcode_id)">
-                <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
-                <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
+        <div class="flip-box" id={{item.burcode_id}} *ngFor="let item of rendezvous">
+            <div class="flip-box-inner">
+                <div class="flip-box-front">
+                    <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}} image not evaluable" />
+                    <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
+                </div>
+                <div class="flip-box-back">
+                    <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable" />
+                    <div (click)="select(item.burcode_id)" style="background-color: rgba(0, 0, 0, 0); width: 100%; height: 80%; position: absolute; top: 0;"></div>
+                    <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2"> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
+                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
+                    <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+                </div>
             </div>
         </div>
     </div>
 
     <hr/>
-    <!-- SHADES -->
+
+    <!-- SHADES --------------------------------------------------------------------------------->
     <div class="new-comp-row">
         <div class="therd-row">
             <img src="https://i.pinimg.com/originals/40/d8/4b/40d84bc50cdafe802160c267cbdf187c.jpg" />
@@ -87,9 +91,9 @@
         </div>
     </div>
 
-
     <hr/>
-    <!-- MIAMI -->
+
+    <!-- MIAMI------------------------------------------------------------------------------ -->
     <div class="new-comp-row">
         <div class="therd-row">
             <img src="https://i.pinimg.com/originals/11/8b/ea/118beaf09ea47067d85f59b7e0dcf825.jpg" />
@@ -112,22 +116,9 @@
         <p *ngIf="miamiOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-close' | translate}}</p>
     </button>
 
-    <div class="shopComp" *ngIf="miamiOpen">
-        <div *ngFor="let item of miami" class="card" id={{item.burcode_id}}>
-            <div class="card-buttons">
-                <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
-                <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
-            </div>
-            <img class="card-img" src={{item.img_link_1}} (click)="select(item.burcode_id)" alt="Product image" />
-            <div class="card-info" (click)="select(item.burcode_id)">
-                <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
-                <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
-            </div>
-        </div>
-    </div>
-
     <hr/>
-    <!-- VOYAGE -->
+
+    <!-- VOYAGE ------------------------------------------------------------------------------------->
     <div class="new-comp-row">
         <div class="half-row">
             <img src="https://i.pinimg.com/originals/cb/77/93/cb7793a456fb21a86ebc482e481bc95a.png" />
@@ -146,20 +137,6 @@
         <p *ngIf="!voyageOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-shop' | translate}}</p>
         <p *ngIf="voyageOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-close' | translate}}</p>
     </button>
-
-    <div class="shopComp" *ngIf="voyageOpen">
-        <div *ngFor="let item of voyage" class="card" id={{item.burcode_id}}>
-            <div class="card-buttons">
-                <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-3x"></i></button>
-                <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
-            </div>
-            <img class="card-img" src={{item.img_link_1}} (click)="select(item.burcode_id)" alt="Product image" />
-            <div class="card-info" (click)="select(item.burcode_id)">
-                <h5 style="text-align: right;">{{item.price}} &#8362;</h5>
-                <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
-            </div>
-        </div>
-    </div>
 
     <hr/>
 
@@ -181,24 +158,6 @@
         <p *ngIf="!fascinationOpen " style="color: rgb(117, 0, 0); ">{{ 'NEW.button-shop' | translate}}</p>
         <p *ngIf="fascinationOpen " style="color: rgb(117, 0, 0); ">{{ 'NEW.button-close' | translate}}</p>
     </button>
-
-    <div class="shopComp" *ngIf="fascinationOpen">
-        <div *ngFor="let item of fascination " class="card" id={{item.burcode_id}}>
-            <div class="card-buttons">
-                <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} ">
-                    <i class="fab fa-shopify fa-3x "></i>
-                </button>
-                <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} ">
-                    <i class="fas fa-heart fa-2x "></i>
-                </button>
-            </div>
-            <img class="card-img" src={{item.img_link_1}} alt="Product image" (click)="select(item.burcode_id)" />
-            <div class="card-info" (click)="select(item.burcode_id) ">
-                <h5 style="text-align: right; ">{{item.price}} &#8362;</h5>
-                <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
-            </div>
-        </div>
-    </div>
 
 </div>
 
@@ -282,19 +241,17 @@
     }
     
     .shopComp {
+        width: 100%;
         display: flex;
         flex-direction: row;
-        width: 80%;
         flex-wrap: wrap;
-        margin-left: 10%;
+        padding: 5%;
     }
     
-    .card {
+    .flip-box {
         margin: auto;
-        background-color: rgba(0, 0, 0, 0);
         width: 32%;
-        margin-top: 15px;
-        z-index: -1;
+        margin-top: 30px;
     }
     
     .card-buttons {

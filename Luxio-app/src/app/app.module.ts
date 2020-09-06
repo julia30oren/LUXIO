@@ -21,10 +21,10 @@ import { RegFormTwoComponent } from './components/registration/reg-form-two/reg-
 import { RegFormAgreementComponent } from './components/registration/reg-form-agreement/reg-form-agreement.component';
 import { LogFormComponent } from './components/registration/log-form/log-form.component';
 import { PasswordRestoreFormComponent } from './components/registration/password-restore-form/password-restore-form.component';
-import { CardComponent } from './components/card/card.component';
 import { FooterComponent } from './components/main/footer/footer.component';
-import { BigImageComponent } from './components/main/big-image/big-image.component';
-import { ShopCardsComponent } from './components/main/shop-cards/shop-cards.component';
+import { BigImageComponent } from './components/elements/big-image/big-image.component';
+import { ShopCardsComponent } from './components/elements/shop-cards/shop-cards.component';
+import { WideCardsComponent } from './components/elements/wide-cards/wide-cards.component';
 
 
 // AoT requires an exported function for factories
@@ -41,10 +41,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     LogFormComponent,
     PasswordRestoreFormComponent,
     routingComponents,
-    CardComponent,
     FooterComponent,
     BigImageComponent,
-    ShopCardsComponent
+    ShopCardsComponent,
+    WideCardsComponent
   ],
   imports: [
     BrowserModule,

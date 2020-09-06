@@ -222,6 +222,21 @@
         "message-2": "Find us on your favorite social media platform"
     },
 
+    "BASICS": {
+        "title": "Basics",
+        "text": "Essential products used in the application of Akzentz Gel systems. Our Basics line includes only the highest quality products made from the finest ingredients."
+    },
+
+    "TOOLS": {
+        "title": "Tools",
+        "text": "The finest quality tools of the trade specifically designed to give you ultimate results."
+    },
+
+    "COURSES": {
+        "TEXT-1": "Introductory workshops *free* with the various series of the AKZENTZ company are held on Mondays and Thursdays.",
+        "TEXT-2": "For details and registration for one of the workshops, contact us at 055-9519777 or 054-8785521"
+    },
+
 
     "HOME": {
         "TITLE": "Home",

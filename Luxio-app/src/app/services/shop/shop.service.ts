@@ -15,6 +15,9 @@ export class ShopService {
   private shop_products_sorted = new BehaviorSubject<Array<any>>([]);
   public shop_products_sorted_from_service = this.shop_products_sorted.asObservable();
 
+  private xtra_products_sorted = new BehaviorSubject<Array<any>>([]);
+  public xtra_products_sorted_from_service = this.xtra_products_sorted.asObservable();
+
   private prod_selected = new BehaviorSubject<Array<any>>([]);
   public prod_selected_from_service = this.prod_selected.asObservable();
 
@@ -57,6 +60,10 @@ export class ShopService {
 
   getProducts_sorted(sortedProds: Array<any>) {
     this.shop_products_sorted.next(sortedProds);
+  }
+
+  getXtra_sorted(sortedProds: Array<any>) {
+    this.xtra_products_sorted.next(sortedProds);
   }
 
   selectProd(prod: object, open_state: boolean) {

@@ -7,7 +7,7 @@ import { CoursesComponent } from './components/main/courses/courses.component';
 import { SignInComponent } from './components/main/sign-in/sign-in.component';
 import { ShopComponent } from './components/main/shop/shop.component';
 import { AdminShopComponent } from './components/admin/admin-shop/admin-shop.component';
-import { NewComponent } from './components/main/new/new/new.component';
+import { NewComponent } from './components/main/new/new.component';
 import { BasicsComponent } from './components/main/products/basics/basics.component';
 import { GelPlayComponent } from './components/main/products/gel-play/gel-play.component';
 import { LuxioComponent } from './components/main/products/luxio/luxio.component';

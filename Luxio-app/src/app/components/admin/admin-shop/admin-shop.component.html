@@ -112,7 +112,8 @@
                 <div class="col-sm-3 my-1">
                     <label for="amount2Input">{{ 'ADMIN.amount' | translate}} 2:</label>
                     <select formControlName="amount_2" class="custom-select" id="amount2Input" #amount_2>
-                        <option value="1 piece" selected>1 piece</option>
+                        <option value="" selected>{{ 'SEARCH.not-selected' | translate }}</option>
+                        <option value="1 piece">1 piece</option>
                         <option value='15 ml.'>15 ml.</option>
                         <option value='120 ml.'>120 ml.</option>
                         <option value='480 ml.'>480 ml.</option>

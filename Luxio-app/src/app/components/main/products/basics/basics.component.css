@@ -2,3 +2,8 @@
     width: 70%;
     margin-left: 29%;
 }
+
+.Hebrew {
+    text-align: right;
+    direction: rtl;
+}

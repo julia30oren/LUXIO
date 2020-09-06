@@ -3,10 +3,18 @@
     direction: rtl;
 }
 
+.shop-buner {
+    width: 100%;
+    height: 500px;
+    background-image: url('https://i.pinimg.com/originals/ee/9c/48/ee9c48b36e879ebf783f6246f0926ce6.png');
+    background-size: cover;
+}
+
 
 /* SORT styles */
 
 .sort {
+    margin-top: 50px;
     width: 100%;
     display: flex;
     flex-direction: row;

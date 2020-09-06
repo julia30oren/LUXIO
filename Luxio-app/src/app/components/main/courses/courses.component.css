@@ -1,0 +1,17 @@
+.title {
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+.sm-text {
+    font-family: Calibri;
+    font-size: 20px;
+    color: gray;
+}
+
+.courses-buner {
+    width: 100%;
+    height: 450px;
+    background-image: url('https://i.pinimg.com/originals/9f/e1/44/9fe144effeebd12675ddf36ab3a801d7.png');
+    background-size: cover;
+}

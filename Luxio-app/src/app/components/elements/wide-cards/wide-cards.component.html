@@ -1,0 +1,123 @@
+<!-- <p>{{shop | json}}</p> -->
+
+<div *ngIf="wideCardProductes" class="wide-card-comp">
+
+    <!-- <p>{{wideCardProductes | json}}</p> -->
+    <div class="wide-card" *ngFor="let item of wideCardProductes" id={{item.burcode_id}}>
+
+        <div class="card-img-div" (click)="select(item.burcode_id)">
+            <div class="img-cover" (click)="select(item.burcode_id)"></div>
+            <img class="card-img" src={{item.img_link_1}} alt="Product image" />
+            <p style="text-align: center;">
+            </p>
+        </div>
+        <div class="card-info-div">
+            <div style="display: flex; flex-direction: row;">
+                <button class="card-button" [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}">
+                    <i class="fab fa-shopify fa-2x"></i></button>
+                <button class="card-button" [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}">
+                    <i class="fas fa-heart fa-2x"></i></button>
+                <h5 style="font-family: Gadugi; margin-top: 10px; margin-left: 10px;">{{item.name}}</h5>
+            </div>
+            <div (click)="select(item.burcode_id)">
+                <p class="xs-text" *ngIf="langueg==='en'">{{item.coment_eng}}</p>
+                <p class="xs-text" *ngIf="langueg==='ru'">{{item.coment_rus}}</p>
+                <p class="xs-text" *ngIf="langueg==='iv'" [ngClass]="{Hebrew: langueg==='iv'}">{{item.coment_iv}}</p>
+                <p>
+                    <small>{{item.amount_1}}</small>
+                    <small *ngIf="item.amount_2">/{{item.amount_2}}</small>
+                </p>
+                <p>
+                    <small>{{item.price_1}} &#8362;</small>
+                    <small *ngIf="item.price_2">/{{item.price_2}} &#8362;</small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .Hebrew {
+        text-align: right;
+        direction: rtl;
+    }
+    
+    .wide-card-comp {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        border-bottom: rgba(128, 128, 128, 0.5) solid 2px;
+    }
+    
+    .wide-card {
+        width: 48%;
+        display: flex;
+        flex-direction: row;
+        margin: auto;
+    }
+    /* CARDS TOPS & BASES */
+    
+    .card-img-div {
+        width: 45%;
+    }
+    
+    .card-info-div {
+        width: 65%;
+    }
+    
+    .xs-text {
+        font-size: 15px;
+        font-family: Calibri;
+        color: gray
+    }
+    
+    .bases-img-cover {
+        background-color: rgba(255, 0, 0, 0);
+        position: absolute;
+        z-index: 1;
+        height: 250px;
+        width: 120px;
+    }
+    /* button icons */
+    
+    .hart-button,
+    .cart-button {
+        margin-left: 1%;
+        margin-top: 2%;
+        border: none;
+        background-color: rgba(0, 0, 0, 0);
+    }
+    
+    .active {
+        color: green;
+    }
+    
+    .not-active {
+        color: rgba(128, 128, 128, 0.5);
+    }
+    
+    .red-hart {
+        color: rgb(194, 0, 0);
+    }
+    
+    .red-hart:hover {
+        color: rgba(128, 128, 128, 0.5);
+    }
+    
+    .grey-hart {
+        color: rgba(128, 128, 128, 0.5);
+    }
+    
+    .grey-hart:hover,
+    .cart-button:hover {
+        color: rgb(194, 0, 0);
+    }
+    
+    .hart-button:hover {
+        color: rgb(194, 0, 0);
+    }
+</style>
