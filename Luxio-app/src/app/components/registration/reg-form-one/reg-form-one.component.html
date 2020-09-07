@@ -2,83 +2,112 @@
 
     <div class="form-row">
         <div class="col">
-            <input [ngClass]="{error: isSubmitted && formControls.first_name.errors?.required}" type="text" class="form-control" formControlName="first_name" placeholder="Имя" value="formControls.first_name">
+            <input [ngClass]="{error: isSubmitted && formControls.first_name.errors?.required}" type="text" class="form-control" formControlName="first_name" value="formControls.first_name" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.name' | translate}}">
         </div>
-        <div class="text-danger" *ngIf="isSubmitted && formControls.first_name.errors?.required">Это поле должно быть заполнено.</div>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.first_name.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
 
         <div class="col">
-            <input [ngClass]="{error: isSubmitted && formControls.second_name.errors?.required}" type="text" class="form-control" formControlName="second_name" placeholder="Фамилия">
+            <input [ngClass]="{error: isSubmitted && formControls.second_name.errors?.required}" type="text" class="form-control" formControlName="second_name" value="formControls.second_name" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.second-name' | translate}}">
         </div>
-        <div class="text-danger" *ngIf="isSubmitted && formControls.second_name.errors?.required">Это поле должно быть заполнено.</div>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.second_name.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
 
     </div>
 
     <div class="form-row">
         <div class="col">
-            <input [ngClass]="{error: isSubmitted && formControls.city.errors?.required}" type="text" class="form-control" formControlName="city" placeholder="Город">
+            <input [ngClass]="{error: isSubmitted && formControls.city.errors?.required}" type="text" class="form-control" formControlName="city" value="formControls.city" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.city' | translate}}">
         </div>
-        <div class="text-danger" *ngIf="isSubmitted && formControls.city.errors?.required">Это поле должно быть заполнено.</div>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.city.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
     </div>
 
     <div class="form-row">
         <div class="col">
-            <input [ngClass]="{error: isSubmitted && formControls.email.errors?.required}" type="text" class="form-control" formControlName="email" placeholder="Электронная почта">
+            <input [ngClass]="{error: isSubmitted && formControls.email.errors?.required}" type="text" class="form-control" formControlName="email" value="formControls.email" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.email' | translate}}">
         </div>
-        <div class="text-danger" *ngIf="isSubmitted && formControls.email.errors?.required">Это поле должно быть заполнено.</div>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.email.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
     </div>
 
     <div class="form-row">
         <div class="col">
-            <input [ngClass]="{error: isSubmitted && formControls.phoneN.errors?.required}" type="text" class="form-control" formControlName="phoneN" placeholder="Номер телефона">
+            <input [ngClass]="{error: isSubmitted && formControls.phoneN.errors?.required}" type="text" class="form-control" formControlName="phoneN" value="formControls.email" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.phoneN' | translate}}">
         </div>
-        <div class="text-danger" *ngIf="isSubmitted && formControls.phoneN.errors?.required">Это поле должно быть заполнено.</div>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.phoneN.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
     </div>
 
     <div class="form-row">
         <div class="col">
-            <input [ngClass]="{error: isSubmitted && formControls.password.errors?.required}" (change)="password1_change($event.target.value)" type="password" class="form-control" formControlName="password" placeholder="Пароль">
+            <input [ngClass]="{error: isSubmitted && formControls.password.errors?.required}" (change)="password1_change($event.target.value)" type="password" class="form-control" formControlName="password" value="formControls.password" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.password' | translate}}">
         </div>
-        <div class="text-danger" *ngIf="isSubmitted && formControls.password.errors?.required">Это поле должно быть заполнено.</div>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.password.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
+        <div class="col">
+            <input type="password" [ngClass]="{error: isSubmitted && !password2}" (change)="password2_change($event.target.value)" class="form-control" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.password-conf' | translate}}">
+        </div>
+        <div class="text-danger" *ngIf="password2 === false">{{ 'SIGN-IN.REGISTRATION-FORM.password-doesnt-match' | translate}}</div>
     </div>
+
+    <div class="form-row" style="align-items: center;">
+        <div class="col">
+            <button title="?" type="button" class="btn button-question btn-outline-dark">?</button>
+            <label for="category" class="category-label">{{ 'SIGN-IN.REGISTRATION-FORM.entrepreneurship' | translate}}</label>
+        </div>
+        <div class="col">
+            <select id="category" type="text" class="form-control" [ngClass]="{error: isSubmitted && formControls.category.errors?.required}" formControlName="category" (change)="category_check($event.target.value)">
+                <option value="self employed">{{ 'SIGN-IN.REGISTRATION-FORM.self-employed' | translate}}</option>
+                <option value="salon representative">{{ 'SIGN-IN.REGISTRATION-FORM.salon-representative' | translate}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="text-danger" *ngIf="isSubmitted && formControls.category.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
+
+    <!-- for self employed ------------------------------------------------------------------------------------>
+    <div class="form-row" style="align-items: center;" *ngIf="category==='self employed'">
+        <div class="col">
+            <button title="?" type="button" class="btn button-question btn-outline-dark">?</button>
+            <label for="image">{{ 'SIGN-IN.REGISTRATION-FORM.sert' | translate}}</label>
+        </div>
+        <div class="col">
+            <input (change)="showPreimg($event)" type="file" accept="image/*" class="form-control" id="image" [ngClass]="{error: isSubmitted && !imgSrc}">
+        </div>
+    </div>
+    <div class="text-danger" *ngIf="category==='self employed' && isSubmitted && !imgSrc">{{ 'SIGN-IN.rule-1' | translate}}</div>
+    <img *ngIf="imgSrc" [src]="imgSrc" style="max-width: 300px; max-height: 400px;">
+
+    <!-- --------------------------------------------------------------------------------------------------------------- -->
+
+
+    <!-- for salon representative --------------------------------------------------------------------------------------- -->
+    <div class="form-row" style="align-items: center;" *ngIf="category==='salon representative'">
+        <div class="col">
+            <input (change)="set_businessName($event.target.value)" [ngClass]="{error: isSubmitted && !business_name}" type="text" class="form-control" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.business-name' | translate}}">
+        </div>
+        <div class="text-danger" *ngIf="isSubmitted && !business_name">{{ 'SIGN-IN.rule-1' | translate}}</div>
+
+        <div class="col">
+            <input (change)="set_businessId($event.target.value)" [ngClass]="{error: isSubmitted && !business_id}" type="text" class="form-control" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.business-id' | translate}}">
+        </div>
+        <div class="text-danger" *ngIf="isSubmitted && !business_id">{{ 'SIGN-IN.rule-1' | translate}}</div>
+
+    </div>
+
+    <!-- ---------------------------------------------------------------------------------------------------------------- -->
 
     <div class="form-row">
         <div class="col">
-            <input type="password" [ngClass]="{error: isSubmitted && !password2}" (change)="password2_change($event.target.value)" class="form-control" placeholder="Password confirmation">
+            <button [ngClass]="{error: User_agreed === false}" (click)="getTermsOfAgeement()" class="agreementButton btn btn-outline-secondary">
+                {{ 'SIGN-IN.REGISTRATION-FORM.agreement' | translate}}
+            </button>
         </div>
-        <div class="text-danger" *ngIf="password2 === false">Пароли не совпвдают.</div>
-    </div>
-
-    <div class="form-row">
-
-        <div class="col-sm-3" style="height: 17px;"><button (click)="getTermsOfAgeement()" class="agreementButton">Условия соглашения</button></div>
-        <div class="col-sm-4">
-            <div class="form-check">
-                <input class="form-check-input" [checked]="User_agreed" (change)="terms_check($event.target.checked)" type="checkbox" id="gridCheck1" formControlName="agreement">
-                <label class="form-check-label" for="gridCheck1">
-              согласен/согласна
-            </label>
+        <div class="col">
+            <div style="display: flex; flex-direction: row;align-items: center;">
+                <input class="form-control check-b" [checked]="User_agreed" (change)="terms_check($event.target.checked)" type="checkbox" id="gridCheck1" formControlName="agreement">
+                <label for="gridCheck1">
+                    {{ 'SIGN-IN.REGISTRATION-FORM.i-agree' | translate}}
+                </label>
             </div>
         </div>
-        <div class="text-danger col-sm-5" *ngIf="User_agreed === false">Чтобы зарегестрироваться необходимо согласиться с условиями соглашения.</div>
+        <div class="text-danger col-sm-12" *ngIf="User_agreed === false">{{ 'SIGN-IN.rule-2' | translate}}</div>
     </div>
-    <button type="submit" class="btn btn-dark btn-lg btn-block" style="margin-top: 15px;">Дальше</button>
-    <!-- (click)="nextPage()" -->
-</form>
 
-<style>
-    .form-row {
-        margin-top: 1%;
-    }
-    
-    .agreementButton {
-        border: solid grey 1px;
-    }
-    
-    .agreementButton:hover {
-        border: green solid 2px;
-    }
-    
-    .error {
-        border: red solid 1.5px;
-    }
-</style>
+
+    <button type="submit" class="btn btn-dark btn-lg btn-block" style="margin-top: 15px;">{{ 'SIGN-IN.sign-in' | translate}}</button>
+</form>

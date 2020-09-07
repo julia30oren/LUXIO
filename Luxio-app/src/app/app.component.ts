@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   public formPasswodRestore_Open: boolean = false;
   public prodOptionsOpen: boolean;
   private location: string = "";
-  private langIv: boolean;
+  public langueg: string;
 
   formTemplate = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -71,11 +71,7 @@ export class AppComponent implements OnInit {
       });
 
     this.languageService._selected_from_service
-      .subscribe(date => {
-        if (date === 'iv') {
-          this.langIv = true;
-        } else this.langIv = false;
-      })
+      .subscribe(date => this.langueg = date)
 
     this.location = window.location.pathname.substring(1);
   }

@@ -34,8 +34,10 @@ const UserSchema = new Schema({
         require: true
     },
     certificate_link: {
-        type: String,
-        require: true
+        type: String
+    },
+    business: {
+        type: Object
     },
     status: {
         type: String,
@@ -50,6 +52,10 @@ const UserSchema = new Schema({
     favorites: {
         type: Array,
         default: [],
+        require: true
+    },
+    langueg: {
+        type: String,
         require: true
     },
     date: {

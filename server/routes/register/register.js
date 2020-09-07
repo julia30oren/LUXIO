@@ -13,7 +13,7 @@ const fs = require('fs');
 
 router.post("/upload-images", upload.array('image'), async(req, res) => {
     const files = req.files;
-    console.log(files);
+    // console.log(files);
 
     for (const file of files) {
         const { path } = file;
@@ -55,7 +55,11 @@ router.post("/saveNew", async(req, res) => {
         email: req.body.email,
         password: req.body.password,
         category: req.body.category,
-        certificate_link: req.body.certificate_link || 'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg',
+        certificate_link: req.body.certificate_link,
+        cart: req.body.cart,
+        favorites: req.body.favorites,
+        business: req.body.business,
+        langueg: req.body.langueg
     });
     // console.log(newUser);
     // emailToAdmin(newUser.first_name, newUser.second_name, newUser.phoneN, newUser.city, newUser.category, newUser.certificate_link);
@@ -64,7 +68,8 @@ router.post("/saveNew", async(req, res) => {
         const userToSave = await newUser.save();
         if (userToSave._id) {
             emailToAdmin(userToSave._id, userToSave.first_name, userToSave.second_name, userToSave.phoneN, userToSave.city, userToSave.category, userToSave.certificate_link);
-
+            // Send message in different languages----------------------
+            emailToUser_Info(req.body.langueg);
             res.status(200).json([{ state: 1, message: `User was added successfully.` }]);
             // logger.info(`${now} - New product posted "${itemToSave.name}"`);
         } else {
@@ -97,7 +102,7 @@ router.get("/user-status/:id/:name", async(req, res) => {
 
 });
 
-
+// Send message to admin ----------------------------------------------------
 function emailToAdmin(first_name, second_name, phoneN, city, category, certificate_link) {
     const main = async() => {
         // create reusable transporter object using the default SMTP transport
@@ -133,6 +138,71 @@ function emailToAdmin(first_name, second_name, phoneN, city, category, certifica
     main().catch(console.error);
 };
 
+// Send message to user in different languages-------------------------------
+function emailToUser_Info(langueg) {
+    const main = async() => {
+        // create reusable transporter object using the default SMTP transport
+        let transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+                user: process.env.SMTPHOSTEMAILUSER,
+                pass: process.env.SMTPHOSTEMAILPASSWORD,
+            }
+        });
+        if (langueg === 'ru') { // RUSSIAN
+            // send mail with defined transport object
+            let info = await transporter.sendMail({
+                from: process.env.SMTPHOSTEMAILUSER, // sender address
+                to: process.env.DESIGNATEDSUPPORTEMAIL, // list of receivers
+                subject: `Идеальные ногти только от AKZENTZ`, // Subject line
+                html: `
+            <div style="padding: 5%;">
+                <p> Спасибо, что подали заявку на открытие личного акаунта. </p>
+                <p> За дополнительной информацией обращайтесь к представителю компании по номеру: </p>
+                <p> 054-8785521 / 055-9519777 </p>
+                <img src="https://i.pinimg.com/originals/ee/9c/48/ee9c48b36e879ebf783f6246f0926ce6.png" alt="AKZENTZ"/>
+            </div>
+          `
+            });
+        } else if (langueg === 'iv') { // HEBREW
+            // send mail with defined transport object
+            let info = await transporter.sendMail({
+                from: process.env.SMTPHOSTEMAILUSER, // sender address
+                to: process.env.DESIGNATEDSUPPORTEMAIL, // list of receivers
+                subject: `ציפורניים מושלמות רק מבית AKZENTZ`, // Subject line
+                html: `
+            <div style="padding: 5%; text-align: right; direction: rtl;">
+                <p> תודה שביקשתם חשבון אישי. </p>
+                <p> לקבלת מידע נוסף, צרו קשר עם נציג החברה במספר:</p>
+                <p> 054-8785521 / 055-9519777 </p>
+                <img src="https://i.pinimg.com/originals/ee/9c/48/ee9c48b36e879ebf783f6246f0926ce6.png" alt="AKZENTZ"/>
+            </div>
+          `
+            });
+        } else if (langueg === 'en') { // ENGLISH
+            // send mail with defined transport object
+            let info = await transporter.sendMail({
+                from: process.env.SMTPHOSTEMAILUSER, // sender address
+                to: process.env.DESIGNATEDSUPPORTEMAIL, // list of receivers
+                subject: `Nails perfect only from AKZENTZ`, // Subject line
+                html: `
+            <div style="padding: 5%">
+                <p> Thank you for submitting an application for a personal account. </p>
+                <p> For any additional information, contact the company representative by number:</p>
+                <p> 054-8785521 / 055-9519777 </p>
+                <img src="https://i.pinimg.com/originals/ee/9c/48/ee9c48b36e879ebf783f6246f0926ce6.png" alt="AKZENTZ"/>
+            </div>
+          `
+            });
+        }
+
+
+    }
+    main().catch(console.error);
+};
+
 function emailToUser_Deny(user) {
     // console.log(user[0]);
     const main = async() => {
@@ -147,19 +217,48 @@ function emailToUser_Deny(user) {
             }
         });
 
-        // send mail with defined transport object
-        let info = await transporter.sendMail({
-            from: process.env.SMTPHOSTEMAILUSER, // sender address
-            to: process.env.DESIGNATEDSUPPORTEMAIL, // list of receivers
-            subject: `👻 Request for confirmation ${user[0].first_name} ${user[0].second_name} was rejected`, // Subject line
-            html: `
+        if (user[0].langueg === 'en') { // ENGLISH
+            let info = await transporter.sendMail({
+                from: process.env.SMTPHOSTEMAILUSER, // sender address
+                to: process.env.DESIGNATEDSUPPORTEMAIL, // list of receivers
+                subject: ` Request was rejected`, // Subject line
+                html: `
             <div style="border: red 1px solid; padding: 5%">
-                <p> Your request to get a personal account for online purchases from <a href="http://localhost:4200">Luxio website</a> site was rejected.</p>
+                <p> Your request to get a personal account for online purchases from <a href="http://localhost:4200">Luxio website</a> was rejected.</p>
                 <p> To change this status or get additional information, contact the company representative by number:</p>
                 <p> 054-8785521 / 055-9519777 </p>
             </div>
           `
-        });
+            });
+        } else if (user[0].langueg === 'iv') { // HEBREW
+            let info = await transporter.sendMail({
+                from: process.env.SMTPHOSTEMAILUSER, // sender address
+                to: process.env.DESIGNATEDSUPPORTEMAIL, // list of receivers
+                subject: ` בקשה נדחה.`, // Subject line
+                html: `
+            <div style="border: red 1px solid; padding: 5%; text-align: right; direction: rtl;">
+                <p> בקשתך לקבל חשבון אישי לרכישות מקוונות מ<a href="http://localhost:4200">Luxio</a> נדחה.</p>
+                <p> לקבלת מידע נוסף, צרו קשר עם נציג החברה במספר:</p>
+                <p> 054-8785521 / 055-9519777 </p>
+            </div>
+          `
+            });
+        } else if (user[0].langueg === 'ru') { // RUSSIAN
+            let info = await transporter.sendMail({
+                from: process.env.SMTPHOSTEMAILUSER, // sender address
+                to: process.env.DESIGNATEDSUPPORTEMAIL, // list of receivers
+                subject: `В запросе было отказано.`, // Subject line
+                html: `
+            <div style="border: red 1px solid; padding: 5%">
+                <p> Ваш запрос на получение личного аккаунта для покупок в Интернете с сайта <a href="http://localhost:4200">Luxio</a> был отклонен.</p>
+                <p> За дополнительной информацией обращайтесь к представителю компании по номеру: </p>
+                <p> 054-8785521 / 055-9519777 </p>
+            </div>
+          `
+            });
+        }
+
+
     }
     main().catch(console.error);
 };
@@ -178,21 +277,52 @@ function emailToUser_Confirm(user) {
                 pass: process.env.SMTPHOSTEMAILPASSWORD,
             }
         });
-
-        // send mail with defined transport object
-        let info = await transporter.sendMail({
-            from: process.env.SMTPHOSTEMAILUSER, // sender address
-            to: process.env.DESIGNATEDSUPPORTEMAIL, // list of receivers
-            subject: `👻 Request for confirmation ${user[0].first_name} ${user[0].second_name} was approved`, // Subject line
-            html: `
+        if (user[0].langueg === 'en') { // ENGLISH
+            // send mail with defined transport object
+            let info = await transporter.sendMail({
+                from: process.env.SMTPHOSTEMAILUSER, // sender address
+                to: process.env.DESIGNATEDSUPPORTEMAIL, // list of receivers
+                subject: `Request was approved`, // Subject line
+                html: `
             <div style="border: green 1px solid; padding: 5%">
-                <p> Your request to get a personal account for online purchases from <a href="http://localhost:4200">Luxio website</a> site was approved.</p>
+                <p> Your request to get a personal account for online purchases from <a href="http://localhost:4200">Luxio website</a> was approved.</p>
                 <p> Now you can order any goods directly from our website. </p>
                 <p> For any additional information, contact the company representative by number:</p>
                 <p> 054-8785521 / 055-9519777 </p>
             </div>
           `
-        });
+            });
+        } else if (user[0].langueg === 'iv') { // HEBREW
+            // send mail with defined transport object
+            let info = await transporter.sendMail({
+                from: process.env.SMTPHOSTEMAILUSER, // sender address
+                to: process.env.DESIGNATEDSUPPORTEMAIL, // list of receivers
+                subject: `הבקשה אושרה`, // Subject line
+                html: `
+            <div style="border: green 1px solid; padding: 5%; text-align: right; direction: rtl;">
+                <p> בקשתך לקבל חשבון אישי לרכישות מקוונות מ <a href="http://localhost:4200">Luxio</a> אושרה.</p>
+                <p> עכשיו אתה יכול להזמין כל סחורה ישירות מהאתר שלנו. </p>
+                <p> לקבלת מידע נוסף, צרו קשר עם נציג החברה במספר:</p>
+                <p> 054-8785521 / 055-9519777 </p>
+            </div>
+          `
+            });
+        } else if (user[0].langueg === 'ru') { // RUSSIAN
+            // send mail with defined transport object
+            let info = await transporter.sendMail({
+                from: process.env.SMTPHOSTEMAILUSER, // sender address
+                to: process.env.DESIGNATEDSUPPORTEMAIL, // list of receivers
+                subject: `Запрос был одобрен`, // Subject line
+                html: `
+            <div style="border: green 1px solid; padding: 5%">
+                <p> Ваш запрос на получение личного кабинета для покупок в Интернете от <a href="http://localhost:4200">Luxio</a> был одобрен.</p>
+                <p> Теперь Вы можете заказывать любые товары прямо с нашего сайта. </p>
+                <p> За дополнительной информацией обращайтесь к представителю компании по номеру: </p>
+                <p> 054-8785521 / 055-9519777 </p>
+            </div>
+          `
+            });
+        }
     }
     main().catch(console.error);
 };

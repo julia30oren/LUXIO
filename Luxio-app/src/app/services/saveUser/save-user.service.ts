@@ -21,7 +21,16 @@ export class SaveUserService {
   }
 
   saveUser_toDB(info: object) {
-    return this.http.post(`${this.DB_url}/register/saveNew`, info).subscribe(res => console.log(res));
+    return this.http.post(`${this.DB_url}/register/saveNew`, info).subscribe(res => {
+      if (res[0]) {
+        alert(res[0].message);
+        if (res[0].state === 1) {
+          localStorage.removeItem('my_764528_ct');
+          localStorage.removeItem('my_764528_f');
+        }
+      }
+
+    });
   }
 
   sertConfirmation(id, state) {

@@ -1,0 +1,38 @@
+.Hebrew {
+    text-align: right;
+    direction: rtl;
+}
+
+.form-row {
+    margin-top: 1%;
+    display: flex;
+    flex-direction: row;
+}
+
+.agreementButton {
+    border: solid grey 1px;
+}
+
+.agreementButton:hover {
+    border: green solid 2px;
+}
+
+.error {
+    border: red solid 1.5px;
+}
+
+.check-b {
+    width: 50px;
+}
+
+.button-question {
+    height: 40px;
+    width: 40px;
+    border: rgb(143, 143, 143) 2px solid;
+    border-radius: 50%;
+    margin: 10px
+}
+
+.category-label {
+    width: 30%;
+}

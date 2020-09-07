@@ -17,7 +17,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 
 import { RegFormOneComponent } from './components/registration/reg-form-one/reg-form-one.component';
-import { RegFormTwoComponent } from './components/registration/reg-form-two/reg-form-two.component';
 import { RegFormAgreementComponent } from './components/registration/reg-form-agreement/reg-form-agreement.component';
 import { LogFormComponent } from './components/registration/log-form/log-form.component';
 import { PasswordRestoreFormComponent } from './components/registration/password-restore-form/password-restore-form.component';
@@ -36,7 +35,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   declarations: [
     AppComponent,
     RegFormOneComponent,
-    RegFormTwoComponent,
     RegFormAgreementComponent,
     LogFormComponent,
     PasswordRestoreFormComponent,

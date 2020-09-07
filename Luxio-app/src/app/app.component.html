@@ -1,10 +1,10 @@
 <div class="main-app">
-
+    <!-- [ngClass]="{Hebrew: langIv}" -->
     <!-- NAVIGATION -->
     <div class="HEADER">
         <div class="Akzentz-logo"></div>
 
-        <nav class="nav" [ngClass]="{Hebrew: langIv}">
+        <nav class="nav">
             <a class="nav-link" [ngClass]="{active: location==='new'}" href="new">{{ 'NAVIGATION.NEW.title' | translate }}</a>
             <a class="nav-link" style="cursor: pointer;" [ngClass]="{active: location==='products/luxio' || location==='products/gel-play' || location==='products/options' || location==='products/pro-formance' || location==='products/basics' || location==='products/tools'}"
                 (click)="openProdOptions();">
@@ -36,24 +36,20 @@
     <!-- REGISTRATION FORM -->
     <div class="RegFormBackground" *ngIf="regForm_Open" (click)="closeForm()"></div>
 
-    <div class="RegForm" *ngIf="regForm_Open" style="padding: 1%;">
+    <div class="RegForm" *ngIf="regForm_Open" style="padding: 1%;" [ngClass]="{Hebrew: langueg==='iv'}">
         <div class="form-row">
             <div class="col-sm-11">
-                <h1 *ngIf="formOne_Open || formTwo_Open">Форма регистрации:</h1>
-                <h1 *ngIf="formLogin_Open">Вход:</h1>
-                <h1 *ngIf="formPasswodRestore_Open">Восстановление пароля:</h1>
+                <h1 *ngIf="formOne_Open || formTwo_Open">{{ 'SIGN-IN.REGISTRATION-FORM.title' | translate}}</h1>
+                <h1 *ngIf="formLogin_Open">{{ 'SIGN-IN.LOGIN-FORM.title' | translate}}</h1>
+                <h1 *ngIf="formPasswodRestore_Open">{{ 'SIGN-IN.PASSWORD-RESTORE-FORM.title' | translate}}</h1>
             </div>
             <div class="col-sm-1">
                 <button (click)="closeForm()" type="button" style="border: none; background-color: rgba(255, 255, 255, 0);"><i class="far fa-window-close fa-2x closeButton"></i></button>
             </div>
         </div>
 
-        <div class="formOne" *ngIf="formOne_Open && !formTwo_Open">
+        <div class="formOne" *ngIf="formOne_Open && !formTwo_Open" [ngClass]="{Hebrew: langueg==='iv'}">
             <app-reg-form-one></app-reg-form-one>
-        </div>
-
-        <div class="formTwo" *ngIf="formTwo_Open && !formOne_Open && !formAgreement_Open">
-            <app-reg-form-two></app-reg-form-two>
         </div>
 
         <div class="formAgreement" *ngIf="formAgreement_Open">
@@ -70,9 +66,15 @@
 
         <div style="display: flex; justify-content: center; margin-top: 1%;">
             <p>
-                <button *ngIf="!formOne_Open && !formTwo_Open" type="button" class="btn btn-link" (click)="registration_form()">Регистрация</button>
-                <button *ngIf="!formLogin_Open" type="button" class="btn btn-link" (click)="login_form()">Уже зарегистрирован</button>
-                <button *ngIf="!formPasswodRestore_Open" type="button" class="btn btn-link" (click)="passwordRest_form()">Забыли пароль?</button>
+                <button *ngIf="!formOne_Open && !formTwo_Open" type="button" class="btn btn-link" (click)="registration_form()">
+                    {{ 'SIGN-IN.link-1' | translate}}
+                </button>
+                <button *ngIf="!formPasswodRestore_Open" type="button" class="btn btn-link" (click)="passwordRest_form()">
+                    {{ 'SIGN-IN.link-3' | translate}}
+                </button>
+                <button *ngIf="!formLogin_Open" type="button" class="btn btn-link" (click)="login_form()">
+                    {{ 'SIGN-IN.link-2' | translate}}
+                </button>
             </p>
         </div>
     </div>

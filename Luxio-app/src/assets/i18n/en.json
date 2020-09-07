@@ -51,8 +51,44 @@
             "rule-3": "Your application will be reviewed within one business day",
             "rule-4": "The online store is available only for authorized users with a PERSONAL ID",
             "button-get-id": "GET ID"
-        }
+        },
+
+        "REGISTRATION-FORM": {
+            "title": "Registration form:",
+            "name": "Name",
+            "second-name": "Surname",
+            "city": "City",
+            "email": "Email",
+            "phoneN": "Phone number",
+            "password": "Password",
+            "password-conf": "Password confirmation",
+            "password-doesnt-match": "The passwords do not match.",
+            "agreement": "Terms of agreement",
+            "i-agree": "I agree with the terms of the agreement",
+            "entrepreneurship": "Entrepreneurship:",
+            "self-employed": "Self employed",
+            "salon-representative": "Salon representative",
+            "sert": "Choose a certificate:",
+            "business-name": "Company name",
+            "business-id": "Registration company number"
+        },
+        "LOGIN-FORM": {
+            "title": "Log-in"
+        },
+        "PASSWORD-RESTORE-FORM": {
+            "title": "Password recovery:"
+        },
+        "link-1": "Check in",
+        "link-2": "I am already registered",
+        "link-3": "Forgot your password?",
+        "rule-1": "This field must be filled.",
+        "rule-2": "To register, you must agree to the terms of the agreement.",
+        "sign-in": "Register now",
+        "log-in": "Sign in",
+        "password-change": "Change Password"
     },
+
+
 
     "PROD_DESCRIPTION": {
         "LUXIO": {

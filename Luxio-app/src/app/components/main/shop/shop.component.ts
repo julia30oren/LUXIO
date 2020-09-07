@@ -39,10 +39,10 @@ export class ShopComponent implements OnInit {
       .subscribe(date => { this.fav = date });
 
     this.lang_service._selected_from_service
-      .subscribe(date => { this.langueg = date })
+      .subscribe(date => { this.langueg = date });
 
     this.shop_service.select_one_from_service
-      .subscribe(date => this.selectedProd = date)
+      .subscribe(date => this.selectedProd = date);
   }
 
   getSorted(by_class, by_color, by_tint, by_transparency) {

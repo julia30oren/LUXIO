@@ -52,8 +52,45 @@
             "rule-3": "בקשתך תיבדק תוך יום עסקים אחד",
             "rule-4": "החנות המקוונת זמינה רק למשתמשים מורשים עם ID פרטי",
             "button-get-id": "לקבל ID"
-        }
+        },
+
+        "REGISTRATION-FORM": {
+            "title": "טופס הרשמה:",
+            "name": "שם פרטי",
+            "second-name": "שם משפחה",
+            "city": "העיר",
+            "email": "אימייל",
+            "phoneN": "מספר טלפון",
+            "password": "סיסמה",
+            "password-conf": "אימות סיסמה",
+            "password-doesnt-match": "הסיסמאות לא תואמות.",
+            "agreement": "תנאי ההסכם",
+            "i-agree": "אני מסכים / מסכים עם תנאי ההסכם",
+            "entrepreneurship": "יזמות:",
+            "self-employed": "עצמאי",
+            "salon-representative": "נציג הסלון",
+            "sert": "בחר תעודה:",
+            "business-name": "שם החברה",
+            "business-id": "מספר רישום החברה"
+        },
+        "LOGIN-FORM": {
+            "title": "כניסה:"
+        },
+        "PASSWORD-RESTORE-FORM": {
+            "title": "שחזור סיסמה:"
+        },
+        "link-1": "הרשמה",
+        "link-2": "אני כבר רשום",
+        "link-3": "שכחת ססמה?",
+        "rule-1": "יש למלא שדה זה.",
+        "rule-2": "כדי להירשם, עליך להסכים לתנאי ההסכם.",
+        "sign-in": "הירשם עכשיו",
+        "log-in": "להיכנס",
+        "password-change": "שנה סיסמא"
+
     },
+
+
 
     "PROD_DESCRIPTION": {
         "LUXIO": {
