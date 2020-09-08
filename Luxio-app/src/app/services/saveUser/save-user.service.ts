@@ -34,7 +34,7 @@ export class SaveUserService {
   }
 
   sertConfirmation(id, state) {
-    console.log(id, state);
+    // console.log(id, state);
     return this.http.get(`${this.DB_url}/register/user-status/${id}/${state}`).subscribe(res => {
       console.log(res);
       if (res[0].nModified === 1) {
@@ -46,5 +46,9 @@ export class SaveUserService {
         });
       }
     });
+  }
+
+  deleteUser(user_id) {
+    return this.http.get(`${this.DB_url}/register/remove-user/${user_id}`).subscribe(res => { console.log(res); this.getUsers_fromDB(); });
   }
 }

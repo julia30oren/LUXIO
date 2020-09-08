@@ -200,6 +200,22 @@
 
     "ADMIN": {
         "CERTIFICATES": {
+            "WARNINGS": {
+                "message-1": {
+                    "part-1": "Are you sure you want to remove user",
+                    "part-2": "from the database? After this action you will not be able to restore it!"
+                },
+                "message-2": {
+                    "part-1": "Do you want to approve",
+                    "part-2": "user's request?"
+                },
+                "message-3": {
+                    "part-1": "Do you want to deny",
+                    "part-2": "user's request?"
+                },
+                "button-yes": "Yes",
+                "button-no": "No"
+            },
             "title": "Confirmation requests",
 
             "button-approve": "Approve",

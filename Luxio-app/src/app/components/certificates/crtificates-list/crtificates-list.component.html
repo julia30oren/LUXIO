@@ -1,4 +1,56 @@
-<div class="USERS-LIST" [ngClass]="{Hebrew: langIv}">
+<!-- IF ADMIN WANT TO DELETE USER HE GET THIS MESSAGE  ----------------------------------------------------- -->
+<div *ngIf="user_toDelete" class="warn-mes message-to-admin">
+    <div *ngFor="let user of user_toDelete" class="inner-message" [ngClass]="{Hebrew1: language === 'iv'}">
+        <p>
+            {{ 'ADMIN.CERTIFICATES.WARNINGS.message-1.part-1' | translate }} &laquo; {{user.first_name}} {{user.second_name}} &raquo; {{ 'ADMIN.CERTIFICATES.WARNINGS.message-1.part-2' | translate }}
+        </p>
+        <div style="display: flex; flex-direction: row;">
+            <button class="btn btn-outline-dark" type="button" (click)="deleteState(true)" style="margin: 1%;">
+                {{ 'ADMIN.CERTIFICATES.WARNINGS.button-yes' | translate }}
+            </button>
+            <button class="btn btn-outline-dark" type="button" (click)="deleteState(false)" style="margin: 1%;">
+                {{ 'ADMIN.CERTIFICATES.WARNINGS.button-no' | translate }}
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- IF ADMIN WANT TO APPROVE USER HE GET THIS MESSAGE  ----------------------------------------------------- -->
+<div *ngIf="user_toConfirm" class="approve-mes message-to-admin">
+    <div *ngFor="let user of user_toConfirm" class="inner-message" [ngClass]="{Hebrew1: language === 'iv'}">
+        <p>
+            {{ 'ADMIN.CERTIFICATES.WARNINGS.message-2.part-1' | translate }} &laquo; {{user.first_name}} {{user.second_name}} &raquo; {{ 'ADMIN.CERTIFICATES.WARNINGS.message-2.part-2' | translate }}
+        </p>
+        <div style="display: flex; flex-direction: row;">
+            <button class="btn btn-outline-dark" type="button" (click)="confirmState(true)" style="margin: 1%;">
+                {{ 'ADMIN.CERTIFICATES.WARNINGS.button-yes' | translate }}
+            </button>
+            <button class="btn btn-outline-dark" type="button" (click)="confirmState(false)" style="margin: 1%;">
+                {{ 'ADMIN.CERTIFICATES.WARNINGS.button-no' | translate }}
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- IF ADMIN WANT TO DENY USER HE GET THIS MESSAGE  ----------------------------------------------------- -->
+<div *ngIf="user_toDeny" class="deny-mes message-to-admin">
+    <div *ngFor="let user of user_toDeny" class="inner-message" [ngClass]="{Hebrew1: language === 'iv'}">
+        <p>
+            {{ 'ADMIN.CERTIFICATES.WARNINGS.message-3.part-1' | translate }} &laquo; {{user.first_name}} {{user.second_name}} &raquo; {{ 'ADMIN.CERTIFICATES.WARNINGS.message-3.part-2' | translate }}
+        </p>
+        <div style="display: flex; flex-direction: row;">
+            <button class="btn btn-outline-dark" type="button" (click)="denyState(true)" style="margin: 1%;">
+                {{ 'ADMIN.CERTIFICATES.WARNINGS.button-yes' | translate }}
+            </button>
+            <button class="btn btn-outline-dark" type="button" (click)="denyState(false)" style="margin: 1%;">
+                {{ 'ADMIN.CERTIFICATES.WARNINGS.button-no' | translate }}
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div class="USERS-LIST" [ngClass]="{Hebrew: language === 'iv'}">
     <div class="sort-buttons">
         <button type="button" class="btn btn-outline-dark sort-" (click)="getAll()">{{ 'ADMIN.CERTIFICATES.all' | translate }}</button>
         <button type="button" class="btn btn-outline-dark sort-" (click)="getSort('considered')">{{ 'ADMIN.CERTIFICATES.state-undefined' | translate }}</button>
@@ -14,13 +66,16 @@
         <div *ngFor="let item of certificates_sorted" class="card mb-3" style="max-width: 100%;">
             <div class="row no-gutters">
                 <div class="col-md-3">
-                    <img src="{{item.certificate_link}}" class="card-img" (click)="openCertificate(item.certificate_link)" alt="certificate">
+                    <img *ngIf="item.certificate_link" src="{{item.certificate_link}}" class="card-img" (click)="openCertificate(item.certificate_link)" alt="certificate">
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
                         {{ 'ADMIN.CERTIFICATES.name' | translate }}:
                         <h5 class="card-title"> {{item.first_name}} {{item.second_name}}</h5>
-                        <p class="card-text"> {{ 'ADMIN.CERTIFICATES.category' | translate }}: {{item.category}}</p>
+
+                        <p class="card-text" *ngIf="item.certificate_link"> {{ 'ADMIN.CERTIFICATES.category' | translate }}: {{item.category}}</p>
+                        <p class="card-text" *ngIf="item.business"> {{ 'ADMIN.CERTIFICATES.category' | translate }}: {{item.category}} &laquo; {{item.business.name}} &raquo; {{item.business.id}}</p>
+
                         <p class="card-text">{{ 'ADMIN.CERTIFICATES.city' | translate }}: {{item.city}}</p>
                         <p class="card-text">{{ 'ADMIN.CERTIFICATES.phone' | translate }}: {{item.phoneN}}</p>
                         <p class="card-text"><small class="text-muted">
@@ -35,11 +90,11 @@
                     </div>
                 </div>
                 <div class="col-md-2 buttons">
-                    <button type="button" class="btn btn-outline-success" (click)="confirm(item._id, true)">
+                    <button type="button" class="btn btn-outline-primary" (click)="confirm(item._id)">
                         {{ 'ADMIN.CERTIFICATES.button-approve' | translate }}</button>
-                    <button type="button" class="btn btn-outline-danger" (click)="confirm(item._id, false)">
+                    <button type="button" class="btn btn-outline-warning" (click)="deny(item._id)">
                         {{ 'ADMIN.CERTIFICATES.button-deny' | translate }}</button>
-                    <button type="button" class="btn btn-outline-dark" (click)="delete(item._id)">
+                    <button type="button" class="btn btn-outline-danger" (click)="delete(item._id)">
                         {{ 'ADMIN.CERTIFICATES.button-delete' | translate }}</button>
                 </div>
             </div>
@@ -58,3 +113,50 @@
 
 <!-- FOOTER -->
 <app-footer></app-footer>
+
+<style>
+    .message-to-admin {
+        width: 100%;
+        position: fixed;
+        top: 45%;
+        left: 0;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        font-size: 20px;
+        text-align: center;
+    }
+    
+    .inner-message {
+        background-color: white;
+        border: black 2px solid;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .warn-mes {
+        background: #CE5937;
+        background: -moz-linear-gradient(left, #CE5937 0%, #A40000 50%, #CE5937 100%);
+        background: -webkit-linear-gradient(left, #CE5937 0%, #A40000 50%, #CE5937 100%);
+        background: linear-gradient(to right, #CE5937 0%, #A40000 50%, #CE5937 100%);
+        color: brown;
+    }
+    
+    .approve-mes {
+        background: #009CCE;
+        background: -moz-linear-gradient(left, #009CCE 0%, #0800A4 50%, #009CCE 100%);
+        background: -webkit-linear-gradient(left, #009CCE 0%, #0800A4 50%, #009CCE 100%);
+        background: linear-gradient(to right, #009CCE 0%, #0800A4 50%, #009CCE 100%);
+        color: rgb(42, 44, 165);
+    }
+    
+    .deny-mes {
+        color: orange;
+        background: #DBD60B;
+        background: -moz-linear-gradient(left, #DBD60B 0%, #CC6200 50%, #DBD60B 100%);
+        background: -webkit-linear-gradient(left, #DBD60B 0%, #CC6200 50%, #DBD60B 100%);
+        background: linear-gradient(to right, #DBD60B 0%, #CC6200 50%, #DBD60B 100%);
+    }
+</style>

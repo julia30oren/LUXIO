@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-// const passwordValidation = require('./validSchema');
-// const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
+const JWT = require('jsonwebtoken');
 const pool = require('../../DB/pool');
 const UserSchema = require('./register-model');
-// router.use(passwordValidation);
 const nodemailer = require("nodemailer");
-
 const upload = require('../../multer');
 const cloudinary = require('../../cloudinary');
 const fs = require('fs');
+// const passwordValidation = require('./validSchema');
+// router.use(passwordValidation);
 
 router.post("/upload-images", upload.array('image'), async(req, res) => {
     const files = req.files;
@@ -46,6 +46,8 @@ router.get("/users", async(req, res, next) => {
 });
 
 router.post("/saveNew", async(req, res) => {
+    const salt = bcrypt.genSaltSync(10);
+    const passwordHash = bcrypt.hashSync(req.body.password, salt);
     // console.log(req.body);
     const newUser = new UserSchema({
         first_name: req.body.first_name.charAt(0).toUpperCase() + req.body.first_name.slice(1),
@@ -53,7 +55,7 @@ router.post("/saveNew", async(req, res) => {
         phoneN: req.body.phoneN,
         city: req.body.city.charAt(0).toUpperCase() + req.body.city.slice(1),
         email: req.body.email,
-        password: req.body.password,
+        password: passwordHash,
         category: req.body.category,
         certificate_link: req.body.certificate_link,
         cart: req.body.cart,
@@ -62,7 +64,6 @@ router.post("/saveNew", async(req, res) => {
         langueg: req.body.langueg
     });
     // console.log(newUser);
-    // emailToAdmin(newUser.first_name, newUser.second_name, newUser.phoneN, newUser.city, newUser.category, newUser.certificate_link);
 
     try {
         const userToSave = await newUser.save();
@@ -82,6 +83,42 @@ router.post("/saveNew", async(req, res) => {
     }
 });
 
+router.post('/user-login', async(req, res) => {
+    const { email, password } = req.body;
+    // if (email === 'admin') {
+    //     const result = await pool.execute(adminCheck_Query(), [email, password]);
+    //     const exist = result[0];
+    //     if (exist) {
+    //         const adminToken = JWT.sign({ email }, process.env.ADMIN_SECRET, { expiresIn: '12h' });
+    //         res.status(200).json({ status: 4, token: adminToken })
+    //     }
+    // } else {
+    try {
+        const loginU = await UsersSchema.find({ "email": email });
+        const User = loginU[0];
+        if (User) {
+            const hush = User.password;
+            const cryptoPassChek = bcrypt.compareSync(password, hush);
+            if (cryptoPassChek) {
+                const userToken = JWT.sign({ email }, process.env.SECRET, { expiresIn: '24h' });
+                res.status(202).json({
+                    status: 3,
+                    token: userToken,
+                    _id: User._id,
+                    first_name: User.first_name,
+                    second_name: User.second_name,
+                    favorites: User.favorites,
+                    cart: User.cart
+                });
+            } else res.status(304).json({ status: 2 });
+        } else res.status(404).json({ status: 1 });
+    } catch (err) {
+        console.log(err.message)
+        return res.status(500).send({ message: err.message })
+    }
+    // }
+});
+
 router.get("/user-status/:id/:name", async(req, res) => {
     // console.log(req.params.id);
     const statusChange = await UserSchema.update({ "_id": req.params.id }, {
@@ -99,7 +136,20 @@ router.get("/user-status/:id/:name", async(req, res) => {
         }
         res.status(200).json([statusChange]);
     }
+});
 
+router.get('/remove-user/:id', async(req, res) => {
+    // console.log(req.params.id)
+    try {
+        let user_toDelete = await UserSchema.remove({ "_id": req.params.id })
+        if (user_toDelete == null) {
+            return res.status(404).send({ message: 'prod not found' })
+        } else {
+            return res.send({ message: 'prod deleted' })
+        }
+    } catch (err) {
+        return res.status(500).send({ message: err.message })
+    }
 });
 
 // Send message to admin ----------------------------------------------------

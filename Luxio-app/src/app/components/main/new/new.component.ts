@@ -10,20 +10,20 @@ import { ShopService } from 'src/app/services/shop/shop.service';
 export class NewComponent implements OnInit {
 
   public langueg: string;
-  private shadesOpen: boolean;
-  private miamiOpen: boolean;
-  private voyageOpen: boolean;
-  private fascinationOpen: boolean;
-  public selectedProd: boolean;
-  public rendezvousOpen: boolean;
-
   public my_cart: Array<any> = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
   public my_favorites: Array<any> = JSON.parse(localStorage.getItem('my_764528_f')) || [];
   public shop: Array<any> = [];
+  public selectedProd: boolean;
+
+
+  private shadesOpen: boolean;
+  private miamiOpen: boolean;
+  private voyageOpen: boolean;
+  public rendezvousOpen: boolean;
+
   public shades: Array<any> = [];
   public voyage: Array<any> = [];
   public miami: Array<any> = [];
-  public fascination: Array<any> = [];
   public rendezvous: Array<any> = [];
 
   constructor(
@@ -50,9 +50,7 @@ export class NewComponent implements OnInit {
           } else if (element.prod_collection === 'voyage') {
             this.voyage.push(element);
           }
-          else if (element.prod_collection === 'fascination') {
-            this.fascination.push(element);
-          }
+
           else if (element.prod_collection === 'miami') {
             this.miami.push(element);
           }
@@ -75,9 +73,6 @@ export class NewComponent implements OnInit {
     this.voyageOpen = !this.voyageOpen;
   }
 
-  openFascination_shop() {
-    this.fascinationOpen = !this.fascinationOpen;
-  }
 
   openMiami_shop() {
     this.miamiOpen = !this.miamiOpen;
@@ -118,7 +113,8 @@ export class NewComponent implements OnInit {
   }
 
   select(id: number) {
-    this.shop.forEach(element => {
+    let shop = this.shop[0]
+    shop.forEach(element => {
       if (element.burcode_id === id) {
         this.shop_service.selectProd(element, true);
       }
