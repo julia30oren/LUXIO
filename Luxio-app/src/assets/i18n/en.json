@@ -213,6 +213,10 @@
                     "part-1": "Do you want to deny",
                     "part-2": "user's request?"
                 },
+                "message-4": {
+                    "part-1": "You want to delete an item",
+                    "part-2": "?"
+                },
                 "button-yes": "Yes",
                 "button-no": "No"
             },

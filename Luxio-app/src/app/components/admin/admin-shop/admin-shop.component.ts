@@ -20,7 +20,8 @@ export class AdminShopComponent implements OnInit {
   public responce_from_DB: Array<any>;
   public searchText: any;
   public searchRes: Array<any>;
-  private langIv: boolean;
+  public language: string;
+  private prod_toDelete: Array<any>;
 
   formTemplate = new FormGroup({
     burcode_id: new FormControl(null, Validators.required),
@@ -58,12 +59,7 @@ export class AdminShopComponent implements OnInit {
       });
 
     this.lang_service._selected_from_service
-      .subscribe(date => {
-        if (date === 'iv') {
-          this.langIv = true;
-        } else this.langIv = false;
-        // console.log(date)
-      })
+      .subscribe(date => { this.language = date })
 
     this.shop_service.responce_fromDB_from_service
       .subscribe(date => {
@@ -81,10 +77,7 @@ export class AdminShopComponent implements OnInit {
       })
   }
 
-  delete(byId) {
-    // console.log(byId);
-    this.shop_service.removeProduct_fromDB(byId);
-  }
+
 
   openForm(state) {
     this.new_form_open = state;
@@ -113,6 +106,22 @@ export class AdminShopComponent implements OnInit {
 
   get formControls() {
     return this.formTemplate['controls'];
+  }
+
+  delete(user_id) {
+    this.prod_toDelete = [];
+    this.shop.forEach(element => {
+      if (element._id === user_id) {
+        this.prod_toDelete.push(element);
+      }
+    });
+  }
+
+  deleteState(st: boolean) {
+    if (st) {
+      this.shop_service.removeProduct_fromDB(this.prod_toDelete[0]._id);
+      this.prod_toDelete = null;
+    } else this.prod_toDelete = null;
   }
 
   clearForm() {

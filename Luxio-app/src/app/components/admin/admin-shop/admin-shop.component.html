@@ -1,4 +1,21 @@
-<div [ngClass]="{Hebrew: langIv}">
+<!-- IF ADMIN WANT TO DELETE PRODUCT HE GET THIS MESSAGE  ----------------------------------------------------- -->
+<div *ngIf="prod_toDelete" class="warn-mes message-to-admin">
+    <div *ngFor="let item of prod_toDelete" class="inner-message" [ngClass]="{Hebrew1: language === 'iv'}">
+        <p>
+            {{ 'ADMIN.CERTIFICATES.WARNINGS.message-4.part-1' | translate }} &laquo; {{item.prod_class}} {{item.name}} &raquo; {{ 'ADMIN.CERTIFICATES.WARNINGS.message-4.part-2' | translate }}
+        </p>
+        <div style="display: flex; flex-direction: row;">
+            <button class="btn btn-outline-dark" type="button" (click)="deleteState(true)" style="margin: 1%;">
+                {{ 'ADMIN.CERTIFICATES.WARNINGS.button-yes' | translate }}
+            </button>
+            <button class="btn btn-outline-dark" type="button" (click)="deleteState(false)" style="margin: 1%;">
+                {{ 'ADMIN.CERTIFICATES.WARNINGS.button-no' | translate }}
+            </button>
+        </div>
+    </div>
+</div>
+
+<div [ngClass]="{Hebrew: language==='iv'}">
     <div *ngIf="!new_form_open" class="shopComp">
         <button class="btn btn-secondary btn-lg btn-block" type="button" (click)="openForm(true)">{{ 'ADMIN.CERTIFICATES.button-create-modify' | translate}}</button>
     </div>
