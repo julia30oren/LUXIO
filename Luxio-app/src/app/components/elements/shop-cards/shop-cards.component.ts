@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShopService } from 'src/app/services/shop/shop.service';
+import { UserService } from 'src/app/services/user-servise/user.service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-shop-cards',
@@ -14,7 +16,8 @@ export class ShopCardsComponent implements OnInit {
   public itemsArray: Array<any>;
 
   constructor(
-    private shop_service: ShopService
+    private shop_service: ShopService,
+    private user_service: UserService
   ) { }
 
   ngOnInit() {
@@ -49,10 +52,12 @@ export class ShopCardsComponent implements OnInit {
       this.my_favorites = filtered;
       localStorage.setItem('my_764528_f', JSON.stringify(filtered));
       this.shop_service.favorites(filtered);
+      this.user_service.saveToFavorites(filtered);
     } else {
       this.my_favorites.push(id);
       localStorage.setItem('my_764528_f', JSON.stringify(this.my_favorites));
-      this.shop_service.cart(this.my_favorites);
+      this.shop_service.favorites(this.my_favorites);
+      this.user_service.saveToFavorites(this.my_favorites);
     }
   }
 
@@ -63,9 +68,25 @@ export class ShopCardsComponent implements OnInit {
       localStorage.setItem('my_764528_ct', JSON.stringify(filtered));
       this.shop_service.cart(filtered);
     } else {
-      this.my_cart.push(id);
-      localStorage.setItem('my_764528_ct', JSON.stringify(this.my_cart));
-      this.shop_service.cart(this.my_cart);
+      // this.my_cart.push(id);
+      // localStorage.setItem('my_764528_ct', JSON.stringify(this.my_cart));
+      // this.shop_service.cart(this.my_cart);
+      let newCart = [];
+      this.itemsArray.forEach(element1 => {
+        this.my_cart.forEach(element2 => {
+          if (element1._id === element2) {
+            element1.total_amount = 1;
+            element1.total_price = element1.total_amount * element1.price_1;
+            newCart.push(element1);
+          }
+        });
+        // if (element._id === id) {
+        //   newCart.push(element);
+        // console.log(newCart);
+        // }
+        localStorage.setItem('my_764528_ct_999_full', JSON.stringify(newCart));
+      });
+
     }
   }
 

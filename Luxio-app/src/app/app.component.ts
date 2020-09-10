@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { RegistrationService } from './services/registation/registration.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SaveUserService } from './services/saveUser/save-user.service';
-import { HttpClient } from '@angular/common/http';
 import { LanguageService } from './services/language.service';
 import { TranslateService } from '@ngx-translate/core';
+import { UserService } from './services/user-servise/user.service';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   public prodOptionsOpen: boolean;
   private location: string = "";
   public langueg: string;
+  public user: string;
 
   formTemplate = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -31,9 +32,9 @@ export class AppComponent implements OnInit {
   constructor(
     private regService: RegistrationService,
     private usersServ: SaveUserService,
-    // private http_client: HttpClient,
     private languageService: LanguageService,
     public translate: TranslateService,
+    private user_serv: UserService
   ) {
     translate.addLangs(['en', 'ru', 'iv']);
     translate.setDefaultLang('en');
@@ -69,6 +70,11 @@ export class AppComponent implements OnInit {
       .subscribe(data => {
         this.formPasswodRestore_Open = data;
       });
+
+    this.user_serv.user_name_from_service
+      .subscribe(date => {
+        this.user = date
+      })
 
     this.languageService._selected_from_service
       .subscribe(date => this.langueg = date)

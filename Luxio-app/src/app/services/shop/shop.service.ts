@@ -27,10 +27,10 @@ export class ShopService {
   private responce_fromDB = new BehaviorSubject<Array<any>>([]);
   public responce_fromDB_from_service = this.responce_fromDB.asObservable();
 
-  private my_favorites = new BehaviorSubject<Array<any>>(JSON.parse(localStorage.getItem('my_764528_f')) ? JSON.parse(localStorage.getItem('my_764528_f')) : []);
+  private my_favorites = new BehaviorSubject<Array<any>>(localStorage.getItem('my_764528_f') ? JSON.parse(localStorage.getItem('my_764528_f')) : []);
   public my_favorites_from_service = this.my_favorites.asObservable();
 
-  private my_cart = new BehaviorSubject<Array<any>>(JSON.parse(localStorage.getItem('my_764528_ct')) ? JSON.parse(localStorage.getItem('my_764528_ct')) : []);
+  private my_cart = new BehaviorSubject<Array<any>>(localStorage.getItem('my_764528_ct') ? JSON.parse(localStorage.getItem('my_764528_ct')) : []);
   public my_cart_from_service = this.my_cart.asObservable();
 
   constructor(
@@ -72,6 +72,7 @@ export class ShopService {
   }
 
   favorites(new_arr: Array<any>) {
+    // console.log(new_arr);
     this.my_favorites.next(new_arr);
   }
 

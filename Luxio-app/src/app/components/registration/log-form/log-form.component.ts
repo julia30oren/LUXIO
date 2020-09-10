@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user-servise/user.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-log-form',
@@ -7,9 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogFormComponent implements OnInit {
 
-  constructor() { }
+  public isSubmitted: boolean;
+  public formTemplate = new FormGroup({
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
+  })
+
+  constructor(
+    private user_service: UserService
+  ) { }
 
   ngOnInit() {
+  }
+
+  get formControls() {
+    return this.formTemplate['controls'];
+  }
+
+  onSubmit(formValue) {
+    this.isSubmitted = true;
+    if (this.formTemplate.valid) {
+      this.user_service.userToLogin(formValue)
+    } else {
+      console.log('denied');
+    }
   }
 
 }

@@ -51,4 +51,6 @@ export class SaveUserService {
   deleteUser(user_id) {
     return this.http.get(`${this.DB_url}/register/remove-user/${user_id}`).subscribe(res => { console.log(res); this.getUsers_fromDB(); });
   }
+
+
 }

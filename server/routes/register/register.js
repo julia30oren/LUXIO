@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const JWT = require('jsonwebtoken');
-const pool = require('../../DB/pool');
+// const pool = require('../../DB/pool');
 const UserSchema = require('./register-model');
 const nodemailer = require("nodemailer");
 const upload = require('../../multer');
@@ -85,6 +85,7 @@ router.post("/saveNew", async(req, res) => {
 
 router.post('/user-login', async(req, res) => {
     const { email, password } = req.body;
+    // console.log(req.body)
     // if (email === 'admin') {
     //     const result = await pool.execute(adminCheck_Query(), [email, password]);
     //     const exist = result[0];
@@ -94,7 +95,7 @@ router.post('/user-login', async(req, res) => {
     //     }
     // } else {
     try {
-        const loginU = await UsersSchema.find({ "email": email });
+        const loginU = await UserSchema.find({ "email": email });
         const User = loginU[0];
         if (User) {
             const hush = User.password;

@@ -1,19 +1,27 @@
-<form class="regF">
+<form class="regF" [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
     <div class="form-row">
         <div class="col">
-            <input type="text" class="form-control" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.email' | translate}}">
+            <input [ngClass]="{error: isSubmitted && formControls.email.errors?.required}" formControlName="email" type="text" value="formControls.email" class="form-control" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.email' | translate}}">
         </div>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.email.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
+
     </div>
     <div class="form-row">
         <div class="col">
-            <input type="text" class="form-control" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.password' | translate}}">
+            <input [ngClass]="{error: isSubmitted && formControls.password.errors?.required}" formControlName="password" type="text" value="formControls.password" class="form-control" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.password' | translate}}">
         </div>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.password.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
+
     </div>
-    <button type="button" class="btn btn-dark btn-lg btn-block" style="margin-top: 15px;">{{ 'SIGN-IN.log-in' | translate}}</button>
+    <button type="submit" class="btn btn-dark btn-lg btn-block" style="margin-top: 15px;">{{ 'SIGN-IN.log-in' | translate}}</button>
 </form>
 
 <style>
     .form-row {
         margin-top: 1%;
+    }
+    
+    .error {
+        border: red solid 1.5px;
     }
 </style>

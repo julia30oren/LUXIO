@@ -38,6 +38,7 @@ app.use(express.json());
 
 app.use('/register', require('./routes/register/register'));
 app.use('/shop', require('./routes/products/products'));
+app.use('/user', require('./routes/user'));
 
 
 app.listen(process.env.PORT, (err) => {
