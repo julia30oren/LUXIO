@@ -5,6 +5,7 @@ import { SaveUserService } from './services/saveUser/save-user.service';
 import { LanguageService } from './services/language.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from './services/user-servise/user.service';
+import { ShopService } from './services/shop/shop.service';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit {
   private location: string = "";
   public langueg: string;
   public user: string;
+  public users_props: boolean;
 
   formTemplate = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -34,7 +36,8 @@ export class AppComponent implements OnInit {
     private usersServ: SaveUserService,
     private languageService: LanguageService,
     public translate: TranslateService,
-    private user_serv: UserService
+    private user_serv: UserService,
+    private shop_service: ShopService,
   ) {
     translate.addLangs(['en', 'ru', 'iv']);
     translate.setDefaultLang('en');
@@ -82,9 +85,14 @@ export class AppComponent implements OnInit {
     this.location = window.location.pathname.substring(1);
   }
 
+  usersPropertise() {
+    this.users_props = !this.users_props;
+  }
+
   setLocation(loc: string) {
     this.location = loc;
   }
+
   openProdOptions() {
     this.prodOptionsOpen = !this.prodOptionsOpen;
   }
@@ -114,11 +122,26 @@ export class AppComponent implements OnInit {
     if (this.regForm_Open) {
       this.regService.loginPage();
     } else this.regService.loginForm();
-
   }
 
   passwordRest_form() {
     this.regService.passwordRestorePage();
+  }
+
+  getMyCart() {
+    let cart = JSON.parse(localStorage.getItem('my_764528_ct'));
+    this.shop_service.getProducts_sorted(cart);
+    console.log(cart)
+
+    this.user_serv.set_showForUser('cart');
+  }
+
+  getMyWishlist() {
+    let wishlist = JSON.parse(localStorage.getItem('my_764528_f'));
+    this.shop_service.getProducts_sorted(wishlist);
+    console.log(wishlist)
+
+    this.user_serv.set_showForUser('wishlist');
   }
 
 }

@@ -20,6 +20,12 @@ export class UserService {
   private cart = new BehaviorSubject<Array<any>>([]);
   public cart_from_service = this.cart.asObservable();
 
+  private user_to_show = new BehaviorSubject<string>('');
+  public user_to_show_from_service = this.user_to_show.asObservable();
+
+  private comments = new BehaviorSubject<Array<any>>([]);
+  public comments_from_service = this.comments.asObservable();
+
   constructor(
     private http: HttpClient,
     private register_service: RegistrationService,
@@ -32,29 +38,110 @@ export class UserService {
       let thisUser = [];
       thisUser.push(res);
       if (thisUser[0].status) {
-        console.log(res);
+        // console.log(res);
         this.user_name.next(thisUser[0].first_name + ' ' + thisUser[0].second_name);
         localStorage.setItem('u324_3i_25d', thisUser[0]._id);
-
         localStorage.setItem('u324_n4325e', thisUser[0].first_name + ' ' + thisUser[0].second_name);
-        localStorage.setItem('my_764528_f', thisUser[0].favorites || []);
+
+        localStorage.setItem('my_764528_f', JSON.stringify(thisUser[0].favorites) || JSON.stringify([]));
         this.shop_service.favorites(thisUser[0].favorites);
-        localStorage.setItem('my_764528_ct', thisUser[0].cart || []);
+        localStorage.setItem('my_764528_ct', JSON.stringify(thisUser[0].cart) || JSON.stringify([]));
         this.shop_service.cart(thisUser[0].cart);
+
         this.register_service.close_RegistrationForm();
       }
     });
   }
 
-  saveToFavorites(newFavorites: Array<any>) {
-    let toSend = { _id: localStorage.getItem('u324_3i_25d'), favorites: newFavorites };
+  saveToFavorites(newToFavorites: object) {
+    let localWishlist = JSON.parse(localStorage.getItem('my_764528_f'));
+
+    if (localWishlist.length < 1) {
+      localWishlist.push(newToFavorites);
+      localStorage.setItem('my_764528_f', JSON.stringify(localWishlist));
+      this.saveWishlist_toDB(localWishlist);
+
+    } else {
+      let itemAr = [];
+      itemAr.push(newToFavorites);
+
+      var index = localWishlist.findIndex(x => x._id === itemAr[0]._id);
+
+      if (index === -1) {
+        localWishlist.push(newToFavorites);
+        localStorage.setItem('my_764528_f', JSON.stringify(localWishlist));
+        this.saveWishlist_toDB(localWishlist);
+      }
+      else {
+        localWishlist.splice(index, 1);
+        localStorage.setItem('my_764528_f', JSON.stringify(localWishlist));
+        this.saveWishlist_toDB(localWishlist);
+      }
+    }
+  }
+
+  saveWishlist_toDB(newWishlist: Array<any>) {
+    let userLog = localStorage.getItem('u324_3i_25d');
+    let toSend = { _id: userLog, favorites: newWishlist };
+
+    this.shop_service.favorites(newWishlist);
+
     return this.http.post(`${this.DB_url}/user/new-favorites`, toSend)
       .subscribe(res => { console.log(res) });
   }
 
-  saveToCart(newCart: Array<any>) {
-    let toSend = { _id: localStorage.getItem('u324_3i_25d'), favorites: newCart };
+  saveToCart(newToCart: object) {
+    let localCart = JSON.parse(localStorage.getItem('my_764528_ct'));
+
+    if (localCart.length < 1) {
+      localCart.push(newToCart);
+      localStorage.setItem('my_764528_ct', JSON.stringify(localCart));
+      this.saveCart_toDB(localCart);
+
+    } else {
+      let itemAr = [];
+      itemAr.push(newToCart);
+
+      var index = localCart.findIndex(x => x._id === itemAr[0]._id);
+
+      if (index === -1) {
+        localCart.push(newToCart);
+        localStorage.setItem('my_764528_ct', JSON.stringify(localCart));
+        this.saveCart_toDB(localCart);
+      }
+      else {
+        localCart.splice(index, 1);
+        localStorage.setItem('my_764528_ct', JSON.stringify(localCart));
+        this.saveCart_toDB(localCart);
+      }
+    }
+  }
+
+  saveCart_toDB(newCart: Array<any>) {
+    let userLog = localStorage.getItem('u324_3i_25d');
+    let toSend = { _id: userLog, cart: newCart };
+
+    this.shop_service.cart(newCart);
+
     return this.http.post(`${this.DB_url}/user/new-cart`, toSend)
       .subscribe(res => { console.log(res) });
+  }
+
+  set_showForUser(anyState: string) {
+    this.user_to_show.next(anyState);
+    console.log(anyState, 'jhg')
+  }
+
+  leaveAcomment(comment: object) {
+    return this.http.post(`${this.DB_url}/comments/save`, comment)
+      .subscribe(res => { console.log(res) });
+  }
+
+  getAllComments() {
+    return this.http.get(`${this.DB_url}/comments/get`)
+      .subscribe(res => {
+        console.log(res);
+        this.comments.next([res]);
+      });
   }
 }

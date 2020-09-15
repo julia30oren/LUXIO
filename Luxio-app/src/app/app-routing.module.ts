@@ -14,6 +14,8 @@ import { LuxioComponent } from './components/main/products/luxio/luxio.component
 import { OptionssComponent } from './components/main/products/optionss/optionss.component';
 import { ProFormanceComponent } from './components/main/products/pro-formance/pro-formance.component';
 import { ToolsComponent } from './components/main/products/tools/tools.component';
+import { PersonalAreaComponent } from './components/personal-area/personal-area.component';
+import { CommentsComponent } from './components/admin/comments/comments.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'new', pathMatch: 'full' },
@@ -29,8 +31,10 @@ const routes: Routes = [
     { path: 'shop', component: ShopComponent },
     { path: 'courses', component: CoursesComponent },
     { path: 'contacts', component: ContactsComponent },
+    { path: 'personal-area', component: PersonalAreaComponent },
 
     { path: "admin/certificates", component: CrtificatesListComponent },
+    { path: "admin/comments", component: CommentsComponent },
     { path: "admin/shop", component: AdminShopComponent },
 
     { path: '**', component: PageNotFoundComponent }
@@ -55,5 +59,6 @@ export const routingComponents = [
     ProFormanceComponent,
     BasicsComponent,
     AdminShopComponent,
+    CommentsComponent,
     PageNotFoundComponent
 ]

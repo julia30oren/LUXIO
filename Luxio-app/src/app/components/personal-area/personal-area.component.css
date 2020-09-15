@@ -1,0 +1,11 @@
+.personal-content {
+    width: 800px;
+}
+
+.AKZENTZ-model {
+    width: 400px;
+    height: 800px;
+    background-image: url('https://i.pinimg.com/originals/18/58/32/185832b4320525c080a8cb1ee5b66413.jpg');
+    background-size: cover;
+    margin: 20px;
+}

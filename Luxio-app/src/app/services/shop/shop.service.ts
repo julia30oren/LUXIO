@@ -72,7 +72,6 @@ export class ShopService {
   }
 
   favorites(new_arr: Array<any>) {
-    // console.log(new_arr);
     this.my_favorites.next(new_arr);
   }
 

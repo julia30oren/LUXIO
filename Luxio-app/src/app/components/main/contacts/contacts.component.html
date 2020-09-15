@@ -1,4 +1,4 @@
-<div class="CONTACTS" [ngClass]="{Hebrew: langIv}">
+<div class="CONTACTS" [ngClass]="{Hebrew: languege==='iv'}">
     <h5>{{ 'NAVIGATION.OFFICES.title' | translate }}</h5>
     <div class="contacts-main">
         <div class="contacts-col">
@@ -14,9 +14,9 @@
             <br/><br/>
             <div>
                 <p>{{ 'CONTACT.message-1' | translate}}.</p>
-                <form>
+                <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
                     <div class="form-group">
-                        <textarea class="form-control" rows="5"></textarea>
+                        <textarea [ngClass]="{error: isSubmitted && formControls.comment.errors?.required}" formControlName="comment" class="form-control" rows="5"></textarea>
                     </div>
                     <div>
                         <button type="submit" class="btn btn-outline-dark btn-sm btn-block">

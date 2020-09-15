@@ -24,9 +24,13 @@
         "CLIENTS": {
             "title": "CLIENTS"
         },
+        "COMMENTS": {
+            "title": "COMMENTS"
+        },
         "rights": "MITRA GROUP",
         "welcome": "Hello"
     },
+
     "NEW": {
         "loz": "Akzentz is always releasing new and featured nail products and they’re sure to impress! Inspired by the latest nail styles, our new products are designed to support your skills and creativity to help you create amazing nails.",
         "sades-m": "Science and beauty combine to bring you the New Trinity Shades Collection, available In Trinity Shades Cool SC1 Natural SN1 and Warm SW1",
@@ -87,8 +91,6 @@
         "log-in": "Sign in",
         "password-change": "Change Password"
     },
-
-
 
     "PROD_DESCRIPTION": {
         "LUXIO": {
@@ -291,6 +293,24 @@
     "COURSES": {
         "TEXT-1": "Introductory workshops *free* with the various series of the AKZENTZ company are held on Mondays and Thursdays.",
         "TEXT-2": "For details and registration for one of the workshops, contact us at 055-9519777 or 054-8785521"
+    },
+
+    "PERSONAL-AREA": {
+        "wishlist": "Wishlist",
+        "cart": "Cart",
+        "purchase-history": "Purchase history",
+        "personal-information": "Personal information",
+        "to-checkout": "Go to checkout",
+        "CARD": {
+            "total-price": "Total price:",
+            "remove": "Remove",
+            "from-cart": "from cart",
+            "add": "Add",
+            "to-cart": "to cart",
+            "from-wishlist": "from wishlist",
+            "pay-only": "Pay only for",
+            "shipping-details": "Delivery details"
+        }
     },
 
 

@@ -35,59 +35,25 @@ export class ShopCardsComponent implements OnInit {
   }
 
   getClasses(id) {
-    if (this.my_favorites.includes(id)) {
-      return 'hart-button red-hart';
-    } else return 'hart-button grey-hart';
+    var index = this.my_favorites.findIndex(x => x._id === id);
+    if (index === -1) {
+      return 'hart-button grey-hart';
+    } else return 'hart-button red-hart';
   }
 
   getCartClasse(id) {
-    if (this.my_cart.includes(id)) {
-      return 'cart-button active';
-    } else return 'cart-button not-active';
+    var index = this.my_cart.findIndex(x => x._id === id);
+    if (index === -1) {
+      return 'cart-button not-active';
+    } else return 'cart-button active';
   }
 
-  addToFavorites(id) {
-    if (this.my_favorites.includes(id)) {
-      var filtered = this.my_favorites.filter((val) => { return val !== id; });
-      this.my_favorites = filtered;
-      localStorage.setItem('my_764528_f', JSON.stringify(filtered));
-      this.shop_service.favorites(filtered);
-      this.user_service.saveToFavorites(filtered);
-    } else {
-      this.my_favorites.push(id);
-      localStorage.setItem('my_764528_f', JSON.stringify(this.my_favorites));
-      this.shop_service.favorites(this.my_favorites);
-      this.user_service.saveToFavorites(this.my_favorites);
-    }
+  addToFavorites(obj) {
+    this.user_service.saveToFavorites(obj);
   }
 
-  addToCart(id) {
-    if (this.my_cart.includes(id)) {
-      var filtered = this.my_cart.filter((val) => { return val !== id; });
-      this.my_cart = filtered;
-      localStorage.setItem('my_764528_ct', JSON.stringify(filtered));
-      this.shop_service.cart(filtered);
-    } else {
-      // this.my_cart.push(id);
-      // localStorage.setItem('my_764528_ct', JSON.stringify(this.my_cart));
-      // this.shop_service.cart(this.my_cart);
-      let newCart = [];
-      this.itemsArray.forEach(element1 => {
-        this.my_cart.forEach(element2 => {
-          if (element1._id === element2) {
-            element1.total_amount = 1;
-            element1.total_price = element1.total_amount * element1.price_1;
-            newCart.push(element1);
-          }
-        });
-        // if (element._id === id) {
-        //   newCart.push(element);
-        // console.log(newCart);
-        // }
-        localStorage.setItem('my_764528_ct_999_full', JSON.stringify(newCart));
-      });
-
-    }
+  addToCart(obj) {
+    this.user_service.saveToCart(obj);
   }
 
   select(id: number) {

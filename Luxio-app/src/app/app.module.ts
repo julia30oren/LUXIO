@@ -24,6 +24,9 @@ import { FooterComponent } from './components/main/footer/footer.component';
 import { BigImageComponent } from './components/elements/big-image/big-image.component';
 import { ShopCardsComponent } from './components/elements/shop-cards/shop-cards.component';
 import { WideCardsComponent } from './components/elements/wide-cards/wide-cards.component';
+import { PersonalAreaComponent } from './components/personal-area/personal-area.component';
+import { PersonalACardComponent } from './components/elements/personal-a-card/personal-a-card.component';
+import { CommentsComponent } from './components/admin/comments/comments.component';
 
 
 // AoT requires an exported function for factories
@@ -42,7 +45,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FooterComponent,
     BigImageComponent,
     ShopCardsComponent,
-    WideCardsComponent
+    WideCardsComponent,
+    PersonalAreaComponent,
+    PersonalACardComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,

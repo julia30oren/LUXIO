@@ -1,0 +1,143 @@
+<div *ngIf="personalArea_products" class="personal-areaCards">
+
+    <div *ngFor="let item of personalArea_products" id={{item.burcode_id}} style="margin-bottom: 30px;">
+        <hr/>
+
+        <div class="personal-card">
+            <div class="personal-card-img-div" (click)="select(item.burcode_id)">
+                <div class="img-cover" (click)="select(item.burcode_id)"></div>
+                <img class="card-img" src={{item.img_link_1}} alt="Product image" />
+                <p style="text-align: center;"> {{item.amount_1}} </p>
+            </div>
+            <div class="personal-card-info-div" style="margin-left: 50px;" [ngClass]="{Hebrew: langueg==='iv'}">
+                <div style="display: flex; flex-direction: row;">
+                    <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
+                </div>
+                <div (click)="select(item.burcode_id)">
+                    <h3> {{item.price_1}} &#8362;</h3>
+                    <p class="xs-text" *ngIf="langueg==='en'">{{item.coment_eng}}</p>
+                    <p class="xs-text" *ngIf="langueg==='ru'">{{item.coment_rus}}</p>
+                    <p class="xs-text" *ngIf="langueg==='iv'" [ngClass]="{Hebrew: langueg==='iv'}">{{item.coment_iv}}</p>
+                    <h4 *ngIf="what_to_show === 'cart'">
+                        <small class="option-buttons" style="padding: 5px;"> - </small> 2
+                        <small class="option-buttons" style="padding: 5px;"> + </small>
+                    </h4>
+                    <p *ngIf="what_to_show === 'cart'">{{ 'PERSONAL-AREA.CARD.total-price' | translate}} {{item.price_1}} &#8362;</p>
+                </div>
+            </div>
+            <div class="card-top-bottom" *ngIf="what_to_show === 'cart'" [ngClass]="{Hebrew: langueg==='iv'}">
+                <p (click)="delete_fromCart(item)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.remove' | translate}} {{item.name}} {{ 'PERSONAL-AREA.CARD.from-cart' | translate}}</small></p>
+                <p (click)="pay_onlyThis(item)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.pay-only' | translate}} {{item.name}}</small></p>
+                <p class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.shipping-details' | translate}}</small></p>
+            </div>
+            <div class="card-top-bottom" *ngIf="what_to_show === 'wishlist'" [ngClass]="{Hebrew: langueg==='iv'}">
+                <p (click)="add_toCart(item)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.add' | translate}} {{item.name}} {{ 'PERSONAL-AREA.CARD.to-cart' | translate}}</small></p>
+                <p (click)="remove_fromWishlist(item)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.remove' | translate}} {{item.name}} {{ 'PERSONAL-AREA.CARD.from-wishlist' | translate}}</small></p>
+                <p class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.shipping-details' | translate}}</small></p>
+            </div>
+        </div>
+
+        <hr/>
+    </div>
+
+</div>
+
+<style>
+    .Hebrew {
+        text-align: right;
+        direction: rtl;
+    }
+    
+    .personal-areaCards {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    
+    .personal-card {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        margin: auto;
+    }
+    
+    .card-top-bottom {
+        width: 200px;
+        margin-left: 200px;
+    }
+    
+    .option-buttons {
+        cursor: pointer;
+        width: 100%;
+        text-align: right;
+    }
+    
+    .option-buttons:hover {
+        color: brown;
+    }
+    /* CARDS TOPS & BASES */
+    
+    .personal-card-img-div {
+        width: 25%;
+    }
+    
+    .personal-card-info-div {
+        width: 55%;
+    }
+    
+    .xs-text {
+        font-size: 15px;
+        font-family: Calibri;
+        color: gray
+    }
+    
+    .bases-img-cover {
+        background-color: rgba(255, 0, 0, 0);
+        position: absolute;
+        z-index: 1;
+        height: 250px;
+        width: 120px;
+    }
+    /* button icons */
+    
+    .hart-button,
+    .cart-button {
+        margin-left: 1%;
+        margin-top: 2%;
+        border: none;
+        background-color: rgba(0, 0, 0, 0);
+    }
+    
+    .active {
+        color: green;
+    }
+    
+    .not-active {
+        color: rgba(128, 128, 128, 0.5);
+    }
+    
+    .red-hart {
+        color: rgb(194, 0, 0);
+    }
+    
+    .red-hart:hover {
+        color: rgba(128, 128, 128, 0.5);
+    }
+    
+    .grey-hart {
+        color: rgba(128, 128, 128, 0.5);
+    }
+    
+    .grey-hart:hover,
+    .cart-button:hover {
+        color: rgb(194, 0, 0);
+    }
+    
+    .hart-button:hover {
+        color: rgb(194, 0, 0);
+    }
+</style>

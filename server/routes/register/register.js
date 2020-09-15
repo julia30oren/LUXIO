@@ -102,6 +102,7 @@ router.post('/user-login', async(req, res) => {
             const cryptoPassChek = bcrypt.compareSync(password, hush);
             if (cryptoPassChek) {
                 const userToken = JWT.sign({ email }, process.env.SECRET, { expiresIn: '24h' });
+                // console.log(User.favorites)
                 res.status(202).json({
                     status: 3,
                     token: userToken,

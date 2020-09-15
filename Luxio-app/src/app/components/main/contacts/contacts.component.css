@@ -40,3 +40,7 @@ a {
     padding: 5%;
     color: black;
 }
+
+.error {
+    border: red solid 1.5px;
+}

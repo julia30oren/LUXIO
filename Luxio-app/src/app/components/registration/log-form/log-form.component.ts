@@ -20,6 +20,7 @@ export class LogFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0)
   }
 
   get formControls() {
