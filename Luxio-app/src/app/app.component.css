@@ -10,6 +10,10 @@
     direction: rtl;
 }
 
+.H {
+    direction: rtl;
+}
+
 .main-app {
     min-height: 920px;
 }
@@ -27,7 +31,7 @@ option {
 .RegFormBackground {
     height: 100%;
     width: 100%;
-    position: absolute;
+    position: fixed;
     background-color: rgba(255, 255, 255, 0.459);
     filter: blur(18px);
     -webkit-filter: blur(18px);
@@ -39,7 +43,7 @@ option {
     width: 50%;
     background-color: white;
     border: black solid 2px;
-    position: absolute;
+    position: fixed;
     top: 25%;
     left: 25%;
     z-index: 2;
@@ -169,4 +173,34 @@ option {
     flex-direction: column;
     width: 1200px;
     margin-top: 120px;
+}
+
+
+/* MESSAGE TO USER FOR REGISTRATION */
+
+.sign-in-div {
+    position: fixed;
+    margin-top: 200px;
+    background-color: rgb(255, 255, 255);
+    border: rgb(58, 58, 58) 0.5px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-box-shadow: 2px 5px 16px 0px #000000, 0px 2px 25px 29px rgba(0, 0, 0, 0.19);
+    box-shadow: 2px 5px 16px 0px #505050, 0px 2px 25px 29px rgba(0, 0, 0, 0.19);
+    z-index: 12;
+}
+
+.message-link {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: arial, sans-serif;
+    color: rgb(36, 138, 255);
+    cursor: pointer;
+    margin: auto;
+}
+
+.message-link:hover {
+    color: rgb(0, 90, 192);
 }

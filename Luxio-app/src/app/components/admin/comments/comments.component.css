@@ -1,0 +1,14 @@
+.Hebrew {
+    direction: rtl;
+}
+
+.comment-group {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: auto;
+}

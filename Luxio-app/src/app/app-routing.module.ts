@@ -16,6 +16,7 @@ import { ProFormanceComponent } from './components/main/products/pro-formance/pr
 import { ToolsComponent } from './components/main/products/tools/tools.component';
 import { PersonalAreaComponent } from './components/personal-area/personal-area.component';
 import { CommentsComponent } from './components/admin/comments/comments.component';
+import { CookiesComponent } from './components/cookies/cookies.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'new', pathMatch: 'full' },
@@ -37,6 +38,7 @@ const routes: Routes = [
     { path: "admin/comments", component: CommentsComponent },
     { path: "admin/shop", component: AdminShopComponent },
 
+    { path: 'cookies', component: CookiesComponent },
     { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -60,5 +62,6 @@ export const routingComponents = [
     BasicsComponent,
     AdminShopComponent,
     CommentsComponent,
+    CookiesComponent,
     PageNotFoundComponent
 ]

@@ -25,6 +25,8 @@ export class AppComponent implements OnInit {
   public langueg: string;
   public user: string;
   public users_props: boolean;
+  public cookies: boolean = true;
+  public advertisement: boolean;
 
   formTemplate = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -48,6 +50,12 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
+    window.setTimeout(() => {
+      if (!this.user) {
+        this.advertisement = true;
+      }
+    }, 10000)
+
     this.languageService.setInitialAppLanguage();
     this.regService.regestrationForm_from_service
       .subscribe(data => {
@@ -102,7 +110,7 @@ export class AppComponent implements OnInit {
   }
 
   getUsers() {
-    console.log('click from user');
+    // console.log('click from user');
     this.usersServ.getUsers_fromDB();
   }
 
@@ -142,6 +150,15 @@ export class AppComponent implements OnInit {
     console.log(wishlist)
 
     this.user_serv.set_showForUser('wishlist');
+  }
+
+  close_advertisementCookies() {
+    this.cookies = false;
+  }
+
+  close_advertisement() {
+    this.advertisement = false;
+
   }
 
 }

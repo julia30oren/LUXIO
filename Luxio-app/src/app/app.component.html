@@ -118,12 +118,78 @@
         <a class="nav-link" href="admin/comments">{{ 'NAVIGATION.COMMENTS.title' | translate }}</a>
     </div>
 
+    <div class="cookies" *ngIf="cookies">
+        <div style="width: 30%; margin-left: 35% ; text-align: center; color: white; display: flex; flex-direction: row; justify-content: center; align-items: center;">
+            <a class="bbb" href="/cookies">More details.</a>
+            <p class="xx">This website is using cookies.</p>
+            <button class="bbb" (click)="close_advertisementCookies()">I Understand.</button>
+        </div>
+    </div>
+
+    <div class="sign-in-div" style="padding: 25px;" *ngIf="advertisement" [ngClass]="{H: langueg==='iv'}">
+        <h1 style="
+            font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+            font-size: 25px;
+            letter-spacing: 2px;
+            word-spacing: 2px;
+            color: #000000;
+            font-weight: 400;
+            text-decoration: none solid rgb(68, 68, 68);
+            font-style: normal;
+            font-variant: small-caps;
+            text-transform: none;
+        "> {{ 'SIGN-IN.OPEN-FORM.line-1' | translate }}</h1>
+        <img style="border: white 15px solid;" src="https://i.pinimg.com/originals/8a/c6/19/8ac619815ba0e122065b704e46781e72.jpg">
+        <small>{{ 'SIGN-IN.OPEN-FORM.line-2' | translate }}</small>
+        <div style="width: 100%;  display: flex; justify-content: center;">
+            <button class="message-link" (click)="registration_form();close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-1' | translate }}</button>
+            <button class="message-link" (click)="login_form();close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-2' | translate }}</button>
+            <button class="message-link" (click)="close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-3' | translate }}</button>
+        </div>
+
+        <!-- <p>Acrylic nails were introduced in 1978 (and they were invented by a dentist Frederick Slack).</p>
+        <p>The first modern manicure was known as the “moon manicure”.</p>
+        <p>The invention of the car spurred the creation of the first modern-day nail polish.</p>
+        <p>Nail polish originated in China as early as 3000 BC.</p>
+        <p>The most expensive nail polish costs $250,000. The color is made with 267 carats worth of black diamonds.</p>
+        <p>The French manicure really did come from France.</p>
+        <p>It is a common notion that Cleopatra and Nefertiti were trendsetters in their time, and it is believed that it was Queen Nefertiti who first dyed her nails red as a symbol of her royal status.</p>
+        <p>The first commercial nail salons opened in Paris during the 19th century.</p> -->
+    </div>
+
     <style>
         .for_admin {
             position: fixed;
             margin-top: 200px;
             left: 10px;
             background-color: gray;
+        }
+        
+        .cookies {
+            background-color: rgba(0, 0, 0, 0.8);
+            width: 100%;
+            position: fixed;
+            bottom: 10px;
+            z-index: 12;
+        }
+        
+        .bbb {
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: arial, sans-serif;
+            color: rgb(36, 138, 255);
+            cursor: pointer;
+        }
+        
+        .bbb:hover {
+            color: rgb(160, 209, 255);
+            text-decoration: underline;
+        }
+        
+        .xx,
+        .bbb {
+            margin: auto;
         }
     </style>
 

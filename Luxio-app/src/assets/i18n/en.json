@@ -45,6 +45,13 @@
     },
 
     "SIGN-IN": {
+        "OPEN-FORM": {
+            "line-1": "Not registered yet?",
+            "line-2": "Please register to be able to shop in our online store.",
+            "link-1": "Register now",
+            "link-2": "Already registered?",
+            "link-3": "Later"
+        },
         "RULES": {
             "title": "GET YOUR PERSONAL ID",
             "title2": "Important information for using the online store",
@@ -277,7 +284,9 @@
         "email": "Email",
         "button-send": "Send",
         "message-1": "Send us your comments, questions, or concerns",
-        "message-2": "Find us on your favorite social media platform"
+        "message-2": "Find us on your favorite social media platform",
+        "days-1": "Sun-Thu",
+        "days-2": "Friday-Saturday closed"
     },
 
     "BASICS": {

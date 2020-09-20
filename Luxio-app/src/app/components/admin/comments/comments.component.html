@@ -1,32 +1,13 @@
 <!-- <p>{{Comments|json}}</p> -->
 
-<div *ngFor="let item of Comments[0]" class="comment-group">
+<div class="comment-group">
 
-    <div id="item._id" class="comment-card">
-        <div style="padding: 20px;">
-            <i class="fas fa-quote-left"></i>
-            <h3>{{item.comment}}</h3>
-            <h5 style="width: 100%; text-align: right; margin-top: 20px">{{item.user_name}}</h5>
+    <div class="card bg-light mb-3" style="width: 18rem; text-align: center;" *ngFor="let item of Comments[0]">
+        <div class="card-header">{{item.date | date:'mediumDate'}}</div>
+        <div class="card-body">
+            <h5 class="card-title" [ngClass]="{Hebrew: item.user_languege === 'iv'}">{{item.user_name}}</h5>
+            <p class="card-text" [ngClass]="{Hebrew: item.user_languege === 'iv'}">{{item.comment}}</p>
         </div>
     </div>
 
 </div>
-
-<style>
-    .comment-group {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        background-color: powderblue;
-    }
-    
-    .comment-card {
-        height: 300px;
-        width: 300px;
-        background: #FFFFFF;
-        background: -moz-linear-gradient(-45deg, #FFFFFF 0%, #F5F5F5 64%, #D99EA1 100%);
-        background: -webkit-linear-gradient(-45deg, #FFFFFF 0%, #F5F5F5 64%, #D99EA1 100%);
-        background: linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 64%, #D99EA1 100%);
-        margin: 10px;
-    }
-</style>

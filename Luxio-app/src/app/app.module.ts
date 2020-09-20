@@ -27,6 +27,7 @@ import { WideCardsComponent } from './components/elements/wide-cards/wide-cards.
 import { PersonalAreaComponent } from './components/personal-area/personal-area.component';
 import { PersonalACardComponent } from './components/elements/personal-a-card/personal-a-card.component';
 import { CommentsComponent } from './components/admin/comments/comments.component';
+import { CookiesComponent } from './components/cookies/cookies.component';
 
 
 // AoT requires an exported function for factories
@@ -48,7 +49,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     WideCardsComponent,
     PersonalAreaComponent,
     PersonalACardComponent,
-    CommentsComponent
+    CommentsComponent,
+    CookiesComponent
   ],
   imports: [
     BrowserModule,
