@@ -1,43 +1,18 @@
 <div class="sort-buttons-div">
     <button type="button" class="btn btn-outline-dark s-button" (click)="getMyWishlist()" [ngClass]="{butve: what_to_show==='wishlist'}">{{ 'PERSONAL-AREA.wishlist' | translate }}</button>
     <button type="button" class="btn btn-outline-dark s-button" (click)="getMyCart()" [ngClass]="{butve: what_to_show==='cart'}">{{ 'PERSONAL-AREA.cart' | translate }}</button>
-    <button type="button" class="btn btn-outline-dark s-button">{{ 'PERSONAL-AREA.purchase-history' | translate }}</button>
-    <button type="button" class="btn btn-outline-dark s-button">{{ 'PERSONAL-AREA.personal-information' | translate }}</button>
+    <button type="button" class="btn btn-outline-dark s-button" (click)="getPurchaseHistory()" [ngClass]="{butve: what_to_show==='purchase-history'}">{{ 'PERSONAL-AREA.purchase-history' | translate }}</button>
+    <button type="button" class="btn btn-outline-dark s-button" (click)="getPrivateInfo()" [ngClass]="{butve: what_to_show==='private-info'}">{{ 'PERSONAL-AREA.personal-information' | translate }}</button>
 </div>
-
-<style>
-    .sort-buttons-div {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
-    
-    .s-button {
-        margin: auto;
-        width: 23%;
-    }
-    
-    .butve {
-        background-color: rgb(212, 99, 99, 0.5);
-        color: white;
-    }
-    
-    .butve:hover {
-        background-color: rgb(212, 99, 99);
-    }
-</style>
 
 <div style="display: flex; flex-direction: row;">
     <div class="personal-content">
         <app-personal-a-card *ngIf="what_to_show==='wishlist' || what_to_show==='cart'"></app-personal-a-card>
-        <button type="button" *ngIf="what_to_show==='cart'" class="btn btn-outline-dark btn-block" style="margin-bottom: 20px;">
-            {{ 'PERSONAL-AREA.to-checkout' | translate }}
-        </button>
+        <app-private-info *ngIf="what_to_show==='private-info'"></app-private-info>
+        <app-purchase-history *ngIf="what_to_show==='purchase-history'"></app-purchase-history>
     </div>
 
     <div class="AKZENTZ-model"></div>
-
 </div>
 
 <app-footer></app-footer>

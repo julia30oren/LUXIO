@@ -1,29 +1,46 @@
+<!-- {{personalArea_products|json}} -->
+<h2 *ngIf="!personalArea_products[0] && what_to_show === 'cart'" style="width: 100%; color: brown; text-align: center; margin-top: 200px;" [ngClass]="{Hebrew: langueg==='iv'}">
+    {{ 'PERSONAL-AREA.CARD.empty-cart' | translate}}</h2>
+<h2 *ngIf="!personalArea_products[0] && what_to_show === 'wishlist'" style="width: 100%; color: brown; text-align: center; margin-top: 200px;" [ngClass]="{Hebrew: langueg==='iv'}">
+    {{ 'PERSONAL-AREA.CARD.empty-wishlist' | translate}}</h2>
+
 <div *ngIf="personalArea_products" class="personal-areaCards">
 
-    <div *ngFor="let item of personalArea_products" id={{item.burcode_id}} style="margin-bottom: 30px;">
+    <div *ngFor="let item of personalArea_products" id={{item.burcode_id}}>
+
         <hr/>
 
         <div class="personal-card">
             <div class="personal-card-img-div" (click)="select(item.burcode_id)">
                 <div class="img-cover" (click)="select(item.burcode_id)"></div>
                 <img class="card-img" src={{item.img_link_1}} alt="Product image" />
-                <p style="text-align: center;"> {{item.amount_1}} </p>
+                <!-- <p style="text-align: center;"> {{item.amount}} </p> -->
             </div>
             <div class="personal-card-info-div" style="margin-left: 50px;" [ngClass]="{Hebrew: langueg==='iv'}">
                 <div style="display: flex; flex-direction: row;">
                     <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
                 </div>
-                <div (click)="select(item.burcode_id)">
-                    <h3> {{item.price_1}} &#8362;</h3>
-                    <p class="xs-text" *ngIf="langueg==='en'">{{item.coment_eng}}</p>
-                    <p class="xs-text" *ngIf="langueg==='ru'">{{item.coment_rus}}</p>
-                    <p class="xs-text" *ngIf="langueg==='iv'" [ngClass]="{Hebrew: langueg==='iv'}">{{item.coment_iv}}</p>
-                    <h4 *ngIf="what_to_show === 'cart'">
-                        <small class="option-buttons" style="padding: 5px;"> - </small> 2
-                        <small class="option-buttons" style="padding: 5px;"> + </small>
-                    </h4>
-                    <p *ngIf="what_to_show === 'cart'">{{ 'PERSONAL-AREA.CARD.total-price' | translate}} {{item.price_1}} &#8362;</p>
-                </div>
+
+                <form style="display: flex; flex-direction: row;">
+                    <div class="form-group" style="width: 50%; margin:auto;">
+                        <select class="form-control" (change)="amount_change(item,$event.target.value)">
+                        <option value="{{item.amount_1}}" *ngIf="item.amount===item.amount_1">{{item.amount_1}} {{item.price_1}}&#8362;</option>
+                        <option value="{{item.amount_2}}" *ngIf="item.amount_2 && item.amount===item.amount_1" >{{item.amount_2}} {{item.price_2}}&#8362;</option>
+
+                        <option value="{{item.amount_2}}" *ngIf="item.amount===item.amount_2" >{{item.amount_2}} {{item.price_2}}&#8362;</option>
+                        <option value="{{item.amount_1}}" *ngIf="item.amount===item.amount_2">{{item.amount_1}} {{item.price_1}}&#8362;</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group" style="width: 35%; margin:auto;" #hkh>
+                        <input type="number" class="form-control" value="{{item.quantity}}" min="1" (change)="quantity_change(item,$event.target.value)">
+                    </div>
+                </form>
+
+                <br/>
+
+                <p *ngIf="what_to_show === 'cart'">{{ 'PERSONAL-AREA.CARD.total-price' | translate}} {{item.total_price}} &#8362;</p>
+
             </div>
             <div class="card-top-bottom" *ngIf="what_to_show === 'cart'" [ngClass]="{Hebrew: langueg==='iv'}">
                 <p (click)="delete_fromCart(item)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.remove' | translate}} {{item.name}} {{ 'PERSONAL-AREA.CARD.from-cart' | translate}}</small></p>
@@ -42,102 +59,9 @@
 
 </div>
 
-<style>
-    .Hebrew {
-        text-align: right;
-        direction: rtl;
-    }
-    
-    .personal-areaCards {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding-top: 50px;
-        padding-bottom: 50px;
-    }
-    
-    .personal-card {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        margin: auto;
-    }
-    
-    .card-top-bottom {
-        width: 200px;
-        margin-left: 200px;
-    }
-    
-    .option-buttons {
-        cursor: pointer;
-        width: 100%;
-        text-align: right;
-    }
-    
-    .option-buttons:hover {
-        color: brown;
-    }
-    /* CARDS TOPS & BASES */
-    
-    .personal-card-img-div {
-        width: 25%;
-    }
-    
-    .personal-card-info-div {
-        width: 55%;
-    }
-    
-    .xs-text {
-        font-size: 15px;
-        font-family: Calibri;
-        color: gray
-    }
-    
-    .bases-img-cover {
-        background-color: rgba(255, 0, 0, 0);
-        position: absolute;
-        z-index: 1;
-        height: 250px;
-        width: 120px;
-    }
-    /* button icons */
-    
-    .hart-button,
-    .cart-button {
-        margin-left: 1%;
-        margin-top: 2%;
-        border: none;
-        background-color: rgba(0, 0, 0, 0);
-    }
-    
-    .active {
-        color: green;
-    }
-    
-    .not-active {
-        color: rgba(128, 128, 128, 0.5);
-    }
-    
-    .red-hart {
-        color: rgb(194, 0, 0);
-    }
-    
-    .red-hart:hover {
-        color: rgba(128, 128, 128, 0.5);
-    }
-    
-    .grey-hart {
-        color: rgba(128, 128, 128, 0.5);
-    }
-    
-    .grey-hart:hover,
-    .cart-button:hover {
-        color: rgb(194, 0, 0);
-    }
-    
-    .hart-button:hover {
-        color: rgb(194, 0, 0);
-    }
-</style>
+<h2 *ngIf="TOTAL_PRICE>1 && what_to_show === 'cart'" style="width: 100%; color: brown; text-align: center; margin-top: 50px;" [ngClass]="{Hebrew: langueg==='iv'}">
+    {{ TOTAL_PRICE }} &#8362;</h2>
+
+<button type="button" *ngIf="personalArea_products[0] && what_to_show === 'cart'" class="btn btn-outline-dark btn-block" style="margin-bottom: 20px;">
+        {{ 'PERSONAL-AREA.to-checkout' | translate }}
+    </button>

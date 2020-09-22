@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
       if (!this.user) {
         this.advertisement = true;
       }
-    }, 10000)
+    }, 30000)
 
     this.languageService.setInitialAppLanguage();
     this.regService.regestrationForm_from_service

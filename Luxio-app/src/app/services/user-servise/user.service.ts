@@ -14,6 +14,9 @@ export class UserService {
   private user = new BehaviorSubject<Array<any>>([]);
   public user_from_service = this.user.asObservable();
 
+  private user_full = new BehaviorSubject<Array<any>>([]);
+  public user_full_from_service = this.user_full.asObservable();
+
   private user_name = new BehaviorSubject<string>(localStorage.getItem('u324_n4325e') ? localStorage.getItem('u324_n4325e') : '');
   public user_name_from_service = this.user_name.asObservable();
 
@@ -31,6 +34,10 @@ export class UserService {
     private register_service: RegistrationService,
     private shop_service: ShopService
   ) { }
+
+  getUser(id) {
+    return this.http.get(`${this.DB_url}/user/${id}`).subscribe(res => this.user_full.next([res]))
+  }
 
   userToLogin(params) {
     return this.http.post(`${this.DB_url}/register/user-login`, params).subscribe(res => {
@@ -129,7 +136,6 @@ export class UserService {
 
   set_showForUser(anyState: string) {
     this.user_to_show.next(anyState);
-    console.log(anyState, 'jhg')
   }
 
   leaveAcomment(comment: object) {

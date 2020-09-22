@@ -9,3 +9,24 @@
     background-size: cover;
     margin: 20px;
 }
+
+.sort-buttons-div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.s-button {
+    margin: auto;
+    width: 23%;
+}
+
+.butve {
+    background-color: rgb(212, 99, 99, 0.5);
+    color: white;
+}
+
+.butve:hover {
+    background-color: rgb(212, 99, 99);
+}

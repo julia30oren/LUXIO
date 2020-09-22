@@ -53,7 +53,25 @@ export class ShopCardsComponent implements OnInit {
   }
 
   addToCart(obj) {
-    this.user_service.saveToCart(obj);
+    console.log(obj)
+    // this.user_service.saveToCart(obj);
+    let item_toCart = {
+      _id: obj._id,
+      burcode_id: obj.burcode_id,
+      name: obj.name,
+      prod_class: obj.prod_class,
+      img_link_1: obj.img_link_1,
+      amount: obj.amount_1,
+      amount_1: obj.amount_1,
+      amount_2: obj.amount_2,
+
+      quantity: 1,
+      price_1: obj.price_1,
+      price_2: obj.price_2,
+      price: obj.price_1,
+      total_price: obj.price_1
+    };
+    this.user_service.saveToCart(item_toCart);
   }
 
   select(id: number) {

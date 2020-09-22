@@ -34,8 +34,12 @@
     z-index: 1;
 }
 
+.thumbnail {
+    cursor: pointer;
+}
+
 .big-img {
-    max-height: 700px;
+    max-height: 750px;
 }
 
 .big-img-cover {
@@ -51,7 +55,7 @@
 
 .newImages-link {
     width: 100%;
-    margin-left: 47%
+    margin: auto;
 }
 
 .close-button {
@@ -62,4 +66,25 @@
 
 .close-button:hover {
     color: red;
+}
+
+.button-link {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: arial, sans-serif;
+    color: rgb(36, 138, 255);
+    cursor: pointer;
+}
+
+.button-link:hover {
+    color: rgb(160, 209, 255);
+    text-decoration: underline;
+}
+
+.box {
+    border-top: rgba(59, 59, 59, 0.3) solid 0.5px;
+    width: 100%;
+    margin-top: 25px;
+    padding-top: 10px;
 }

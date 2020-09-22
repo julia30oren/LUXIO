@@ -105,12 +105,28 @@
             "list-1": "Odorless",
             "list-2": "Does not cause allergies",
             "list-3": "Has no varnish component",
-            "list-4": "Safe and easy removal by dissolving with liquid Akzentz Soak Off"
+            "list-4": "Safe and easy removal by dissolving with liquid Akzentz Soak Off",
+            "list-5": "Be sure to remix the color before first use!"
+        },
+        "GEL-PLAY": {
+            "list-1": "Line designed specifically for nail art and design.",
+            "list-2": "GEL PLAY gels dissolve easily and are removed with Akzentz Soak Off."
+        },
+        "OPTIONS": {
+            "main": "All gels in the Options line are solvent free, odorless and keep the nail plate in perfect condition. OPTIONS SOAK OFF SYSTEMS - 100% strengthening and building gel."
+        },
+        "PRO-FORMANCE": {
+            "main": "All Pro-Formance series gels are solvent free, odourless and preserve clients natural nail condition. Pro-Formance gels are custom crafted from only the highest grade of European & USA sourced ingredients, and offer a wide variety of choice in viscosity, colour, opacity and strength – allowing you to create the perfect enhancement for your individual clients needs."
         },
         "add_to_cart": "Add to cart",
         "add_to_favorites": "Add to favorites",
         "more-img": "More photos",
-        "ps": "Made in Canada"
+        "ps": "Made in Canada",
+        "extra-1": "Delivery all over the country.",
+        "extra-2": "For buying goods for 1170",
+        "extra-3": "and more, delivery is free!",
+        "extra-4": "The product can only be replaced if it is defective.",
+        "extra-5": "Due to the color difference of screens on different devices, the colors in the photos may be slightly different."
     },
 
     "LUXIO": {
@@ -318,7 +334,9 @@
             "to-cart": "to cart",
             "from-wishlist": "from wishlist",
             "pay-only": "Pay only for",
-            "shipping-details": "Delivery details"
+            "shipping-details": "Delivery details",
+            "empty-cart": "There is nothing in your cart.",
+            "empty-wishlist": "There is nothing in your wishlist."
         }
     },
 

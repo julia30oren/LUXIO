@@ -58,6 +58,12 @@ export class PersonalAreaComponent implements OnInit {
     this.shop_service.getProducts_sorted(wishlist);
   }
 
+  getPrivateInfo() {
+    this.user_service.set_showForUser('private-info');
+  }
 
+  getPurchaseHistory() {
+    this.user_service.set_showForUser('purchase-history');
+  }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { element } from 'protractor';
 import { LanguageService } from 'src/app/services/language.service';
 import { ShopService } from 'src/app/services/shop/shop.service';
 import { UserService } from 'src/app/services/user-servise/user.service';
@@ -19,6 +20,8 @@ export class PersonalACardComponent implements OnInit {
   public langueg: string;
   public personalArea_products: Array<any>;
   public what_to_show: string;
+  public message: string;
+  public TOTAL_PRICE: number = 0;
 
   ngOnInit() {
     this.shop_service.getProducts_fromDB();
@@ -32,17 +35,25 @@ export class PersonalACardComponent implements OnInit {
         console.log(this.what_to_show)
         if (this.what_to_show === 'cart') {
           this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_ct'));
-          // this.shop_service.getProducts_sorted(cart);
-        } else if (this.what_to_show === 'wishlist') {
+          this.getTotalPrice();
+        }
+        else if (this.what_to_show === 'wishlist') {
           this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_f'));
-          // this.shop_service.getProducts_sorted(wishlist);
-        } else this.personalArea_products = null;
+        }
+        else this.personalArea_products = null;
       })
+  }
+  getTotalPrice() {
+    this.TOTAL_PRICE = 0;
+    this.personalArea_products.forEach(element => {
+      this.TOTAL_PRICE = this.TOTAL_PRICE + element.total_price;
+    });
   }
 
   delete_fromCart(item) {
     this.user_service.saveToCart(item);
     this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_ct'));
+    this.getTotalPrice();
   }
 
   pay_onlyThis(item) {
@@ -56,6 +67,30 @@ export class PersonalACardComponent implements OnInit {
   remove_fromWishlist(item) {
     this.user_service.saveToFavorites(item);
     this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_f'));
+  }
+
+  quantity_change(item, val) {
+    this.user_service.saveToCart(item);
+    item.quantity = val;
+    item.total_price = item.quantity * item.price;
+    this.user_service.saveToCart(item);
+    this.getTotalPrice();
+  }
+
+  amount_change(item, val) {
+    this.user_service.saveToCart(item);
+    item.amount = val;
+    if (item.amount === item.amount_1) {
+      item.price = item.price_1;
+      item.total_price = item.quantity * item.price;
+      this.user_service.saveToCart(item);
+    } else if (item.amount === item.amount_2) {
+      item.price = item.price_2;
+      item.total_price = item.quantity * item.price;
+      this.user_service.saveToCart(item);
+    }
+    this.getTotalPrice();
+
   }
 
 }

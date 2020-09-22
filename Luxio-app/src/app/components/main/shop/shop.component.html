@@ -2,10 +2,10 @@
     <app-big-image></app-big-image>
 </div>
 
-<div [ngClass]="{Hebrew: langueg==='iv'}" class="SHOP">
+<div [ngClass]="{Hebrew: langueg==='iv'}" class="SHOP" *ngIf="!selectedProd">
     <div class="shop-buner"></div>
     <!-- SORT -->
-    <div class="sort" *ngIf="!selectedProd">
+    <div class="sort">
         <form>
             <div class="form-row">
                 <div>

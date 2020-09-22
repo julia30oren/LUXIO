@@ -28,6 +28,8 @@ import { PersonalAreaComponent } from './components/personal-area/personal-area.
 import { PersonalACardComponent } from './components/elements/personal-a-card/personal-a-card.component';
 import { CommentsComponent } from './components/admin/comments/comments.component';
 import { CookiesComponent } from './components/cookies/cookies.component';
+import { PrivateInfoComponent } from './components/elements/private-info/private-info.component';
+import { PurchaseHistoryComponent } from './components/elements/purchase-history/purchase-history.component';
 
 
 // AoT requires an exported function for factories
@@ -50,7 +52,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PersonalAreaComponent,
     PersonalACardComponent,
     CommentsComponent,
-    CookiesComponent
+    CookiesComponent,
+    PrivateInfoComponent,
+    PurchaseHistoryComponent
   ],
   imports: [
     BrowserModule,
