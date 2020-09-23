@@ -36,7 +36,14 @@ export class UserService {
   ) { }
 
   getUser(id) {
-    return this.http.get(`${this.DB_url}/user/${id}`).subscribe(res => this.user_full.next([res]))
+    return this.http.get(`${this.DB_url}/user/${id}`).subscribe(res => this.user_full.next([res]));
+  }
+
+  saveUserChanges_toDB(user_props: object) {
+    console.log(user_props);
+    return this.http.post(`${this.DB_url}/user/user-props`, user_props).subscribe(res => {
+      console.log(res);
+    })
   }
 
   userToLogin(params) {

@@ -9,7 +9,30 @@ router.get("/:id", async(req, res) => {
     } catch (err) {
         return res.status(500).send({ message: err.message })
     }
-})
+});
+
+router.post("/user-props", async(req, res) => {
+    console.log(req.body)
+    try {
+        const user = await UserSchema.updateMany({ "_id": req.body._id }, {
+            $set: {
+                "email": req.body.email,
+                "first_name": req.body.first_name,
+                "second_name": req.body.second_name,
+                "phoneN": req.body.phoneN,
+
+                "city": req.body.city,
+                "state": req.body.state,
+                "street": req.body.street,
+                "home": req.body.home,
+                "apartment": req.body.apartment,
+                "zip": req.body.zip
+            }
+        });
+    } catch (err) {
+        return res.status(500).send({ message: err.message })
+    }
+});
 
 router.post("/new-favorites", async(req, res) => {
     try {
@@ -21,7 +44,7 @@ router.post("/new-favorites", async(req, res) => {
     } catch (err) {
         return res.status(500).send({ message: err.message })
     }
-})
+});
 
 router.post("/new-cart", async(req, res) => {
     // console.log(req.body._id, req.body.cart)
@@ -35,6 +58,6 @@ router.post("/new-cart", async(req, res) => {
     } catch (err) {
         return res.status(500).send({ message: err.message })
     }
-})
+});
 
 module.exports = router;

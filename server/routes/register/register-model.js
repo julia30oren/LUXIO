@@ -11,12 +11,30 @@ const UserSchema = new Schema({
         require: true
     },
     phoneN: {
-        type: Number,
+        type: String,
         require: true
     },
     city: {
         type: String,
         require: true
+    },
+    state: {
+        type: String
+    },
+    street: {
+        type: String
+    },
+    zip: {
+        type: String
+    },
+    city: {
+        type: String
+    },
+    home: {
+        type: String
+    },
+    apartment: {
+        type: String
     },
     email: {
         type: String,

@@ -1,1 +1,71 @@
-<p>{{user|json}}</p>
+<!-- <p>{{user|json}}</p> -->
+<!-- <div *ngFor="let item of user" style="width: 100%; display: flex; align-items: center; justify-content: center; height: 200px;">
+    <img src="{{item.certificate_link}}" style="border-radius: 50%; height: 200px; width: 200px;" />
+    <div style=" height: 200px; width: 200px;background-image: url('{item.certificate_link}'); background-size: cover;"></div>
+</div> -->
+
+<form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+    <p style="margin-top: 50px;">Here you can add or change your personal information:</p>
+    <div class="form-row">
+        <div class="col">
+            <input type="text" class="form-control" value="formControls.first_name?formControls.first_name:null" formControlName="first_name" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.name' | translate}}">
+        </div>
+
+        <div class="col">
+            <input type="text" class="form-control" value="formControls.second_name?formControls.second_name:null" formControlName="second_name" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.second-name' | translate}}">
+        </div>
+
+    </div>
+
+    <div class="form-row">
+        <div class="col">
+            <input type="text" class="form-control" value="formControls.email?formControls.email:null" formControlName="email" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.email' | translate}}">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col">
+            <input type="text" class="form-control" value="formControls.phoneN?formControls.phoneN:null" formControlName="phoneN" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.phoneN' | translate}}">
+        </div>
+    </div>
+
+    <p style="margin-top: 50px;">Address:</p>
+    <div class="form-row">
+        <div class="col">
+            <select id="inputState" class="form-control" value="formControls.state?formControls.state:null" formControlName="state" placeholder="State...">
+              <option selected>...</option>
+              <option>...</option>
+            </select>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" value="formControls.city?formControls.city:null" formControlName="city" value="formControls.city" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.city' | translate}}">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col">
+            <input type="text" class="form-control" value="formControls.street?formControls.street:null" formControlName="street" placeholder="Sreet..">
+        </div>
+
+        <div class="col">
+            <input type="text" class="form-control" value="formControls.zip?formControls.zip:null" formControlName="zip" placeholder="Zip code..">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col">
+            <input type="text" class="form-control" value="formControls.home?formControls.home:null" formControlName="home" placeholder="Home..">
+        </div>
+
+        <div class="col">
+            <input type="text" class="form-control" value="formControls.apartment?formControls.apartment:null" formControlName="apartment" placeholder="Apartment..">
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-outline-dark btn-block" style="margin-top: 15px;">Save</button>
+</form>
+
+<app-comment-form></app-comment-form>
+
+<br>
