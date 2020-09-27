@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistrationService } from './services/registation/registration.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from "@angular/router"
 import { SaveUserService } from './services/saveUser/save-user.service';
 import { LanguageService } from './services/language.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -40,6 +41,7 @@ export class AppComponent implements OnInit {
     public translate: TranslateService,
     private user_serv: UserService,
     private shop_service: ShopService,
+    private router: Router
   ) {
     translate.addLangs(['en', 'ru', 'iv']);
     translate.setDefaultLang('en');
@@ -158,6 +160,29 @@ export class AppComponent implements OnInit {
 
   close_advertisement() {
     this.advertisement = false;
+  }
+
+  doSearch(search_txt) {
+    if (search_txt !== '') {
+      // console.log(search_txt)
+      this.shop_service.getProducts_fromDB();
+
+      this.shop_service.shop_products_from_service
+        .subscribe(date => {
+          let shop = date[0];
+          // 
+          if (shop) {
+
+            shop.forEach(element => {
+              if (element.name.includes(search_txt)) {
+                console.log(element)
+                this.shop_service.selectProd(element, true);
+                this.router.navigate(['/search', search_txt]);
+              }
+            });
+          }
+        });
+    }
 
   }
 

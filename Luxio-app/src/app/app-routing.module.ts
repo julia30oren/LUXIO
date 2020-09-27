@@ -17,6 +17,7 @@ import { ToolsComponent } from './components/main/products/tools/tools.component
 import { PersonalAreaComponent } from './components/personal-area/personal-area.component';
 import { CommentsComponent } from './components/admin/comments/comments.component';
 import { CookiesComponent } from './components/cookies/cookies.component';
+import { SearchComponent } from './components/search/search.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'new', pathMatch: 'full' },
@@ -33,6 +34,7 @@ const routes: Routes = [
     { path: 'courses', component: CoursesComponent },
     { path: 'contacts', component: ContactsComponent },
     { path: 'personal-area', component: PersonalAreaComponent },
+    { path: 'search/:name', component: SearchComponent },
 
     { path: "admin/certificates", component: CrtificatesListComponent },
     { path: "admin/comments", component: CommentsComponent },
@@ -58,6 +60,7 @@ export const routingComponents = [
     OptionssComponent,
     ToolsComponent,
     LuxioComponent,
+    SearchComponent,
     ProFormanceComponent,
     BasicsComponent,
     AdminShopComponent,

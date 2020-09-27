@@ -56,7 +56,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CookiesComponent,
     PrivateInfoComponent,
     PurchaseHistoryComponent,
-    CommentFormComponent
+    CommentFormComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,14 @@
     <div class="HEADER">
         <div class="Akzentz-logo"></div>
 
-        <nav class="nav">
+        <nav class="nav" style="margin-left: 90px;">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="doSearch(search_text.value)"><i class="fas fa-search"></i></button>
+                </div>
+                <input type="text" class="form-control" placeholder="Search.." #search_text>
+            </div>
+
             <a class="nav-link" [ngClass]="{active: location==='new'}" href="new">{{ 'NAVIGATION.NEW.title' | translate }}</a>
             <a class="nav-link" style="cursor: pointer;" [ngClass]="{active: location==='products/luxio' || location==='products/gel-play' || location==='products/options' || location==='products/pro-formance' || location==='products/basics' || location==='products/tools'}"
                 (click)="openProdOptions();">
