@@ -43,6 +43,8 @@ export class PersonalACardComponent implements OnInit {
         else this.personalArea_products = null;
       })
   }
+
+
   getTotalPrice() {
     this.TOTAL_PRICE = 0;
     this.personalArea_products.forEach(element => {
@@ -91,6 +93,15 @@ export class PersonalACardComponent implements OnInit {
     }
     this.getTotalPrice();
 
+  }
+
+  select(id: number) {
+    this.personalArea_products.forEach(element => {
+      if (element.burcode_id === id) {
+        // console.log(element);
+        this.shop_service.selectProd(element, true);
+      }
+    });
   }
 
 }

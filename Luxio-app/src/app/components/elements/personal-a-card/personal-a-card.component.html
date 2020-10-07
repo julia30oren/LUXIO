@@ -1,4 +1,6 @@
 <!-- {{personalArea_products|json}} -->
+<!-- {{what_to_show|json}} -->
+
 <h2 *ngIf="!personalArea_products[0] && what_to_show === 'cart'" style="width: 100%; color: brown; text-align: center; margin-top: 200px;" [ngClass]="{Hebrew: langueg==='iv'}">
     {{ 'PERSONAL-AREA.CARD.empty-cart' | translate}}</h2>
 <h2 *ngIf="!personalArea_products[0] && what_to_show === 'wishlist'" style="width: 100%; color: brown; text-align: center; margin-top: 200px;" [ngClass]="{Hebrew: langueg==='iv'}">
@@ -14,32 +16,40 @@
             <div class="personal-card-img-div" (click)="select(item.burcode_id)">
                 <div class="img-cover" (click)="select(item.burcode_id)"></div>
                 <img class="card-img" src={{item.img_link_1}} alt="Product image" />
-                <!-- <p style="text-align: center;"> {{item.amount}} </p> -->
             </div>
             <div class="personal-card-info-div" style="margin-left: 50px;" [ngClass]="{Hebrew: langueg==='iv'}">
                 <div style="display: flex; flex-direction: row;">
                     <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
                 </div>
 
-                <form style="display: flex; flex-direction: row;">
-                    <div class="form-group" style="width: 50%; margin:auto;">
-                        <select class="form-control" (change)="amount_change(item,$event.target.value)">
+
+                <div *ngIf="what_to_show === 'wishlist'">
+                    <p>{{item.amount_1}} {{item.price_1}}&#8362;</p>
+                    <p *ngIf="item.amount_2">{{item.amount_2}} {{item.price_2}}&#8362;</p>
+                </div>
+
+                <div *ngIf="what_to_show === 'cart'">
+                    <form style="display: flex; flex-direction: row;">
+                        <div class="form-group" style="width: 50%; margin:auto;">
+                            <select class="form-control" (change)="amount_change(item,$event.target.value)">
                         <option value="{{item.amount_1}}" *ngIf="item.amount===item.amount_1">{{item.amount_1}} {{item.price_1}}&#8362;</option>
                         <option value="{{item.amount_2}}" *ngIf="item.amount_2 && item.amount===item.amount_1" >{{item.amount_2}} {{item.price_2}}&#8362;</option>
 
                         <option value="{{item.amount_2}}" *ngIf="item.amount===item.amount_2" >{{item.amount_2}} {{item.price_2}}&#8362;</option>
                         <option value="{{item.amount_1}}" *ngIf="item.amount===item.amount_2">{{item.amount_1}} {{item.price_1}}&#8362;</option>
                       </select>
-                    </div>
+                        </div>
 
-                    <div class="form-group" style="width: 35%; margin:auto;" #hkh>
-                        <input type="number" class="form-control" value="{{item.quantity}}" min="1" (change)="quantity_change(item,$event.target.value)">
-                    </div>
-                </form>
+                        <div class="form-group" style="width: 35%; margin:auto;" #hkh>
+                            <input type="number" class="form-control" value="{{item.quantity}}" min="1" (change)="quantity_change(item,$event.target.value)">
+                        </div>
+                    </form>
 
-                <br/>
+                    <br/>
 
-                <p *ngIf="what_to_show === 'cart'">{{ 'PERSONAL-AREA.CARD.total-price' | translate}} {{item.total_price}} &#8362;</p>
+                    <p>{{ 'PERSONAL-AREA.CARD.total-price' | translate}} {{item.total_price}} &#8362;</p>
+                </div>
+
 
             </div>
             <div class="card-top-bottom" *ngIf="what_to_show === 'cart'" [ngClass]="{Hebrew: langueg==='iv'}">

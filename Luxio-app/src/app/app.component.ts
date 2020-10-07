@@ -138,20 +138,8 @@ export class AppComponent implements OnInit {
     this.regService.passwordRestorePage();
   }
 
-  getMyCart() {
-    let cart = JSON.parse(localStorage.getItem('my_764528_ct'));
-    this.shop_service.getProducts_sorted(cart);
-    console.log(cart)
-
-    this.user_serv.set_showForUser('cart');
-  }
-
-  getMyWishlist() {
-    let wishlist = JSON.parse(localStorage.getItem('my_764528_f'));
-    this.shop_service.getProducts_sorted(wishlist);
-    console.log(wishlist)
-
-    this.user_serv.set_showForUser('wishlist');
+  logOut() {
+    localStorage.clear();
   }
 
   close_advertisementCookies() {

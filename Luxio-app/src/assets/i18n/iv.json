@@ -1,5 +1,6 @@
 {
     "NAVIGATION": {
+        "for-admin": "לאדמין",
         "NEW": {
             "title": "מה חדש"
         },
@@ -28,7 +29,8 @@
             "title": "הערות"
         },
         "rights": "קבוצת מיטרה",
-        "welcome": "שלום"
+        "welcome": "שלום",
+        "sign-out": "להתנתק"
     },
 
     "NEW": {

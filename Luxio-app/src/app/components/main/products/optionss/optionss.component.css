@@ -1,5 +1,8 @@
-.buner {
+.buner-Options {
     width: 100%;
+    height: 410px;
+    background-image: url('https://akzentz.com/wp-content/uploads/2018/06/akzentz-options-gel-header-web.png');
+    background-size: cover;
 }
 
 .Hebrew {

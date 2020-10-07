@@ -1,5 +1,6 @@
 {
     "NAVIGATION": {
+        "for-admin": "For admin",
         "NEW": {
             "title": "WHAT'S NEW"
         },
@@ -28,7 +29,8 @@
             "title": "COMMENTS"
         },
         "rights": "MITRA GROUP",
-        "welcome": "Hello"
+        "welcome": "Hello",
+        "sign-out": "Log Out"
     },
 
     "NEW": {
@@ -45,6 +47,15 @@
     },
 
     "SIGN-IN": {
+        "link-1": "Check in",
+        "link-2": "I am already registered",
+        "link-3": "Forgot your password?",
+        "rule-1": "This field must be filled.",
+        "rule-2": "To register, you must agree to the terms of the agreement.",
+        "sign-in": "Register now",
+        "log-in": "Sign in",
+        "password-change": "Change Password",
+
         "OPEN-FORM": {
             "line-1": "Not registered yet?",
             "line-2": "Please register to be able to shop in our online store.",
@@ -88,15 +99,8 @@
         },
         "PASSWORD-RESTORE-FORM": {
             "title": "Password recovery:"
-        },
-        "link-1": "Check in",
-        "link-2": "I am already registered",
-        "link-3": "Forgot your password?",
-        "rule-1": "This field must be filled.",
-        "rule-2": "To register, you must agree to the terms of the agreement.",
-        "sign-in": "Register now",
-        "log-in": "Sign in",
-        "password-change": "Change Password"
+        }
+
     },
 
     "PROD_DESCRIPTION": {

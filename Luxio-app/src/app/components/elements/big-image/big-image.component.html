@@ -2,9 +2,18 @@
 
     <div style="display: flex; flex-direction: row; width: 55%;" *ngFor="let item of selectedProd">
         <div style="display: flex; flex-direction: column; width: 20%; height: 400px;">
-            <img *ngIf="item.img_link_1" class="thumbnail" src={{item.img_link_1}} alt={{item.name}} (click)="selectImage(item.img_link_1)" />
-            <img *ngIf="item.img_link_2" class="thumbnail" (click)="selectImage(item.img_link_2)" src={{item.img_link_2}} alt={{item.name}} (click)="selectImage(item.img_link_2)" />
-            <img *ngIf="item.img_link_3" class="thumbnail" (click)="selectImage(item.img_link_3)" src={{item.img_link_3}} alt={{item.name}} (click)="selectImage(item.img_link_3)" />
+            <div *ngIf="item.img_link_1">
+                <img class="thumbnail" src={{item.img_link_1}} alt={{item.name}} />
+                <div class="cover" (click)="selectImage(item.img_link_1)"></div>
+            </div>
+            <div *ngIf="item.img_link_2">
+                <img class="thumbnail" src={{item.img_link_2}} alt={{item.name}} />
+                <div class="cover" (click)="selectImage(item.img_link_2)"></div>
+            </div>
+            <div *ngIf="item.img_link_3">
+                <img class="thumbnail" src={{item.img_link_3}} alt={{item.name}} />
+                <div class="cover" (click)="selectImage(item.img_link_3)"></div>
+            </div>
         </div>
         <div style="display: flex; flex-direction: column; width: 80%; height: 400px;">
             <div class="big-img-cover"></div>

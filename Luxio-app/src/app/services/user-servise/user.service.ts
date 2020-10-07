@@ -23,7 +23,7 @@ export class UserService {
   private cart = new BehaviorSubject<Array<any>>([]);
   public cart_from_service = this.cart.asObservable();
 
-  private user_to_show = new BehaviorSubject<string>('');
+  private user_to_show = new BehaviorSubject<string>('cart');
   public user_to_show_from_service = this.user_to_show.asObservable();
 
   private comments = new BehaviorSubject<Array<any>>([]);

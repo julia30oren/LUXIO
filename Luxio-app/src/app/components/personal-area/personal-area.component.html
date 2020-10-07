@@ -1,18 +1,28 @@
-<div class="sort-buttons-div">
-    <button type="button" class="btn btn-outline-dark s-button" (click)="getMyWishlist()" [ngClass]="{butve: what_to_show==='wishlist'}">{{ 'PERSONAL-AREA.wishlist' | translate }}</button>
-    <button type="button" class="btn btn-outline-dark s-button" (click)="getMyCart()" [ngClass]="{butve: what_to_show==='cart'}">{{ 'PERSONAL-AREA.cart' | translate }}</button>
-    <button type="button" class="btn btn-outline-dark s-button" (click)="getPurchaseHistory()" [ngClass]="{butve: what_to_show==='purchase-history'}">{{ 'PERSONAL-AREA.purchase-history' | translate }}</button>
-    <button type="button" class="btn btn-outline-dark s-button" (click)="getPrivateInfo()" [ngClass]="{butve: what_to_show==='private-info'}">{{ 'PERSONAL-AREA.personal-information' | translate }}</button>
+<!-- <p>{{what_to_show|json}}</p> -->
+
+<div *ngIf="selectedProd">
+    <app-big-image></app-big-image>
 </div>
 
-<div style="display: flex; flex-direction: row;">
-    <div class="personal-content">
-        <app-personal-a-card *ngIf="what_to_show==='wishlist' || what_to_show==='cart'"></app-personal-a-card>
-        <app-private-info *ngIf="what_to_show==='private-info'"></app-private-info>
-        <app-purchase-history *ngIf="what_to_show==='purchase-history'"></app-purchase-history>
+<div *ngIf="!selectedProd">
+    <div class="sort-buttons-div">
+        <button type="button" class="btn btn-outline-dark s-button" (click)="getMyWishlist()" [ngClass]="{butve: what_to_show==='wishlist'}">{{ 'PERSONAL-AREA.wishlist' | translate }}</button>
+        <button type="button" class="btn btn-outline-dark s-button" (click)="getMyCart()" [ngClass]="{butve: what_to_show==='cart'}">{{ 'PERSONAL-AREA.cart' | translate }}</button>
+        <button type="button" class="btn btn-outline-dark s-button" (click)="getPurchaseHistory()" [ngClass]="{butve: what_to_show==='purchase-history'}">{{ 'PERSONAL-AREA.purchase-history' | translate }}</button>
+        <button type="button" class="btn btn-outline-dark s-button" (click)="getPrivateInfo()" [ngClass]="{butve: what_to_show==='private-info'}">{{ 'PERSONAL-AREA.personal-information' | translate }}</button>
     </div>
 
-    <div class="AKZENTZ-model"></div>
+    <div style="display: flex; flex-direction: row;">
+        <div class="personal-content">
+            <app-personal-a-card *ngIf="what_to_show==='wishlist' || what_to_show==='cart'"></app-personal-a-card>
+            <app-private-info *ngIf="what_to_show==='private-info'"></app-private-info>
+            <app-purchase-history *ngIf="what_to_show==='purchase-history'"></app-purchase-history>
+        </div>
+
+        <div class="AKZENTZ-model"></div>
+    </div>
 </div>
+
+
 
 <app-footer></app-footer>

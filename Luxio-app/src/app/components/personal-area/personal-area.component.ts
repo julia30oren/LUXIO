@@ -19,6 +19,7 @@ export class PersonalAreaComponent implements OnInit {
   public langueg: string;
   public shop: any[];
   public what_to_show: string;
+  public selectedProd: boolean;
 
   ngOnInit() {
     this.shop_service.getProducts_fromDB();
@@ -33,16 +34,13 @@ export class PersonalAreaComponent implements OnInit {
 
     this.user_service.user_to_show_from_service
       .subscribe(date => {
-        this.what_to_show = date;
-        console.log(this.what_to_show)
-        if (this.what_to_show === 'cart') {
-          let cart = JSON.parse(localStorage.getItem('my_764528_ct'));
-          this.shop_service.getProducts_sorted(cart);
-        } else if (this.what_to_show === 'wishlist') {
-          let wishlist = JSON.parse(localStorage.getItem('my_764528_f'));
-          this.shop_service.getProducts_sorted(wishlist);
-        }
-      })
+        this.what_to_show = date || 'cart';
+        let cart = JSON.parse(localStorage.getItem('my_764528_ct'));
+        this.shop_service.getProducts_sorted(cart);
+      });
+
+    this.shop_service.select_one_from_service
+      .subscribe(date => this.selectedProd = date);
 
   }
 

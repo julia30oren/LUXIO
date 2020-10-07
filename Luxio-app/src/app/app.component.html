@@ -34,16 +34,14 @@
         </nav>
 
         <div class="users-nav">
-            <p *ngIf="user" class="users-welcome" [ngClass]="{Hebrew: langIv}">{{ 'NAVIGATION.welcome' | translate}}, {{user}}</p>
+            <p *ngIf="user" class="users-welcome" [ngClass]="{Hebrew: langIv}">{{ 'NAVIGATION.welcome' | translate}} , {{user}}</p>
             <i *ngIf="user" class="fas fa-user fa-2x user-icon" (click)="usersPropertise()"></i>
             <i *ngIf="!user" class="fas fa-user-lock fa-2x user-icon" (click)="login_form()"></i>
         </div>
 
         <div class="user-proertise" *ngIf="users_props">
-            <a (click)="getMyWishlist()" href="personal-area" class="u-p">{{ 'PERSONAL-AREA.wishlist' | translate }}</a>
-            <a (click)="getMyCart()" href="personal-area" class="u-p">{{ 'PERSONAL-AREA.cart' | translate }}</a>
-            <a href="personal-area" class="u-p">{{ 'PERSONAL-AREA.purchase-history' | translate }}</a>
             <a href="personal-area" class="u-p">{{ 'PERSONAL-AREA.personal-information' | translate }}</a>
+            <a href="/{{location}}" class="u-p" (click)="logOut()">{{'NAVIGATION.sign-out'| translate}}</a>
         </div>
 
         <style>
@@ -103,10 +101,19 @@
             <app-password-restore-form></app-password-restore-form>
         </div>
 
+        <style>
+            .formOne,
+            .formAgreement,
+            .formLogin,
+            .formPasswordRest {
+                z-index: 3;
+            }
+        </style>
+
         <div style="display: flex; justify-content: center; margin-top: 1%;">
             <p>
                 <button *ngIf="!formOne_Open && !formTwo_Open" type="button" class="btn btn-link" (click)="registration_form()">
-                    {{ 'SIGN-IN.link-1' | translate}}
+                    {{ 'SIGN-IN.sign-in' | translate}}
                 </button>
                 <button *ngIf="!formPasswodRestore_Open" type="button" class="btn btn-link" (click)="passwordRest_form()">
                     {{ 'SIGN-IN.link-3' | translate}}
@@ -119,7 +126,7 @@
     </div>
 
     <div class="for_admin">
-        <h1>Для админа*</h1>
+        <h1>{{'NAVIGATION.for-admin' | translate}}*</h1>
         <a class="nav-link" href="admin/shop">{{ 'NAVIGATION.PRODUCTS.title' | translate }}</a>
         <a class="nav-link" href="admin/certificates">{{ 'NAVIGATION.CLIENTS.title' | translate }}</a>
         <a class="nav-link" href="admin/comments">{{ 'NAVIGATION.COMMENTS.title' | translate }}</a>
