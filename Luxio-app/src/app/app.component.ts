@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
 
   public regForm_Open: boolean = false;
   public formOne_Open: boolean = false;
-  public formTwo_Open: boolean = false;
   public formAgreement_Open: boolean = false;
   public formLogin_Open: boolean = false;
   public formPasswodRestore_Open: boolean = false;
@@ -53,7 +52,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     window.setTimeout(() => {
-      if (!this.user) {
+      if (!this.user && !this.regForm_Open) {
         this.advertisement = true;
       }
     }, 30000)
@@ -67,10 +66,7 @@ export class AppComponent implements OnInit {
       .subscribe(data => {
         this.formOne_Open = data;
       });
-    this.regService.regestration_formTwo_from_service
-      .subscribe(data => {
-        this.formTwo_Open = data;
-      });
+
     this.regService.regestration_formAgreement_from_service
       .subscribe(data => {
         this.formAgreement_Open = data;

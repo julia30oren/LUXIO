@@ -33,7 +33,7 @@
     <div class="form-row">
         <div class="col">
             <select id="inputState" class="form-control" value="formControls.state?formControls.state:null" formControlName="state" placeholder="State...">
-              <option selected>...</option>
+              <option selected>State...</option>
               <option>...</option>
             </select>
         </div>
@@ -62,8 +62,26 @@
         </div>
     </div>
 
+    <button type="submit" class="btn btn-outline-dark btn-block" style="margin-top: 15px;">Save new info</button>
+</form>
 
-    <button type="submit" class="btn btn-outline-dark btn-block" style="margin-top: 15px;">Save</button>
+<form [formGroup]="formTemplate2" (submit)="onSubmit2(formTemplate2.value)">
+
+    <p style="margin-top: 50px;">Password:</p>
+    <div class="form-row">
+        <div class="col">
+            <input type="password" class="form-control" formControlName="old_password" placeholder="Old password">
+        </div>
+
+    </div>
+    <div class="form-row">
+        <div class="col">
+            <input type="password" class="form-control" formControlName="new_password" placeholder="New password">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-outline-dark btn-block" style="margin-top: 15px;">Save new password</button>
+
 </form>
 
 <app-comment-form></app-comment-form>

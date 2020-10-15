@@ -14,13 +14,15 @@ router.get("/:id", async(req, res) => {
 router.post("/user-props", async(req, res) => {
     console.log(req.body)
     try {
+        const salt = bcrypt.genSaltSync(10);
+        let newPass = bcrypt.hashSync(req.body.password, salt);
         const user = await UserSchema.updateMany({ "_id": req.body._id }, {
             $set: {
                 "email": req.body.email,
                 "first_name": req.body.first_name,
                 "second_name": req.body.second_name,
                 "phoneN": req.body.phoneN,
-
+                "password": newPass,
                 "city": req.body.city,
                 "state": req.body.state,
                 "street": req.body.street,

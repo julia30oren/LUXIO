@@ -48,23 +48,27 @@ export class UserService {
 
   userToLogin(params) {
     return this.http.post(`${this.DB_url}/register/user-login`, params).subscribe(res => {
-      this.user.next([res]);
-      let thisUser = [];
-      thisUser.push(res);
-      if (thisUser[0].status) {
-        // console.log(res);
-        this.user_name.next(thisUser[0].first_name + ' ' + thisUser[0].second_name);
-        localStorage.setItem('u324_3i_25d', thisUser[0]._id);
-        localStorage.setItem('u324_n4325e', thisUser[0].first_name + ' ' + thisUser[0].second_name);
-
-        localStorage.setItem('my_764528_f', JSON.stringify(thisUser[0].favorites) || JSON.stringify([]));
-        this.shop_service.favorites(thisUser[0].favorites);
-        localStorage.setItem('my_764528_ct', JSON.stringify(thisUser[0].cart) || JSON.stringify([]));
-        this.shop_service.cart(thisUser[0].cart);
-
-        this.register_service.close_RegistrationForm();
-      }
+      this.seveUser_onService(res)
     });
+  }
+
+  seveUser_onService(res) {
+    this.user.next([res]);
+    let thisUser = [];
+    thisUser.push(res);
+    if (thisUser[0].status) {
+      // console.log(res);
+      this.user_name.next(thisUser[0].first_name + ' ' + thisUser[0].second_name);
+      localStorage.setItem('u324_3i_25d', thisUser[0]._id);
+      localStorage.setItem('u324_n4325e', thisUser[0].first_name + ' ' + thisUser[0].second_name);
+
+      localStorage.setItem('my_764528_f', JSON.stringify(thisUser[0].favorites) || JSON.stringify([]));
+      this.shop_service.favorites(thisUser[0].favorites);
+      localStorage.setItem('my_764528_ct', JSON.stringify(thisUser[0].cart) || JSON.stringify([]));
+      this.shop_service.cart(thisUser[0].cart);
+
+      this.register_service.close_RegistrationForm();
+    }
   }
 
   saveToFavorites(newToFavorites: object) {

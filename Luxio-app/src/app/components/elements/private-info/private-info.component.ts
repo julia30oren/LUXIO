@@ -12,7 +12,7 @@ export class PrivateInfoComponent implements OnInit {
 
   private languege: string;
   private user: Array<any>;
-  public formTemplate = new FormGroup({
+  private formTemplate = new FormGroup({
     _id: new FormControl('', Validators.required),
     first_name: new FormControl('', Validators.required),
     second_name: new FormControl('', Validators.required),
@@ -24,8 +24,14 @@ export class PrivateInfoComponent implements OnInit {
     zip: new FormControl(null),
     home: new FormControl(''),
     apartment: new FormControl(''),
+    password: new FormControl(''),
   });
   public isSubmitted: boolean;
+
+  private formTemplate2 = new FormGroup({
+    old_password: new FormControl('', Validators.required),
+    new_password: new FormControl('', Validators.required)
+  })
 
   constructor(
     private lang_service: LanguageService,
@@ -48,7 +54,7 @@ export class PrivateInfoComponent implements OnInit {
             second_name: date[0][0].second_name || '',
             email: date[0][0].email || '',
             phoneN: date[0][0].phoneN || '',
-
+            password: date[0][0].password,
             city: date[0][0].city || '',
             state: date[0][0].street || '',
             street: date[0][0].street || '',
@@ -74,6 +80,14 @@ export class PrivateInfoComponent implements OnInit {
     return this.formTemplate['controls'];
   }
 
-
+  onSubmit2(formValue) {
+    console.log(formValue);
+    // this.isSubmitted = true;
+    // if (this.formTemplate.valid) {
+    //   this.user_service.saveUserChanges_toDB(formValue);
+    // } else {
+    //   console.log('denied');
+    // }
+  }
 
 }

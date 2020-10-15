@@ -115,8 +115,8 @@ router.post('/user-login', async(req, res) => {
             } else res.status(304).json({ status: 2 });
         } else res.status(404).json({ status: 1 });
     } catch (err) {
-        console.log(err.message)
-        return res.status(500).send({ message: err.message })
+        // console.log(err.message)
+        return res.status(500).json({ message: err.message })
     }
     // }
 });
@@ -145,14 +145,103 @@ router.get('/remove-user/:id', async(req, res) => {
     try {
         let user_toDelete = await UserSchema.remove({ "_id": req.params.id })
         if (user_toDelete == null) {
-            return res.status(404).send({ message: 'prod not found' })
+            return res.status(404).json({ message: 'prod not found' })
         } else {
-            return res.send({ message: 'prod deleted' })
+            return res.json({ message: 'prod deleted' })
         }
     } catch (err) {
-        return res.status(500).send({ message: err.message })
+        return res.status(500).json({ message: err.message })
     }
 });
+
+router.get('/user/:name', async(req, res) => {
+    // console.log(req.params.name)
+    try {
+        let user = await UserSchema.find({ "email": req.params.name });
+        let userExist = user[0];
+        if (userExist) {
+
+            var randomPass = Math.random().toString(36).slice(-8);
+            console.log(randomPass)
+            const salt = bcrypt.genSaltSync(10);
+            const passwordHash = bcrypt.hashSync(randomPass, salt);
+            const passwordChange = await UserSchema.update({ "email": req.params.name }, {
+                $set: {
+                    "password": passwordHash
+                }
+            });
+
+            newPassEmail(req.params.name, randomPass);
+            return res.json('ok')
+        } else {
+            return res.json('not found')
+        }
+    } catch (err) {
+        return res.json(err)
+    }
+});
+
+
+router.post('/user-new-password/:name', async(req, res) => {
+    console.log(req.params.name, req.body)
+    let email = req.params.name;
+    try {
+        let user = await UserSchema.find({ "email": email });
+        let userExist = user[0];
+
+        const hush = userExist.password;
+        const cryptoPassChek = bcrypt.compareSync(req.body.tempPass, hush);
+        if (cryptoPassChek) {
+            const salt = bcrypt.genSaltSync(10);
+            const passwordHash = bcrypt.hashSync(req.body.newPass, salt);
+            const passwordChange = await UserSchema.update({ "email": email }, {
+                $set: {
+                    "password": passwordHash
+                }
+            });
+            const userToken = JWT.sign({ email }, process.env.SECRET, { expiresIn: '24h' });
+            // console.log(User.favorites)
+            res.status(202).json({
+                status: 3,
+                token: userToken,
+                _id: userExist._id,
+                first_name: userExist.first_name,
+                second_name: userExist.second_name,
+                favorites: userExist.favorites,
+                cart: userExist.cart
+            });
+        }
+    } catch (err) {
+        return res.json(err)
+    }
+});
+
+
+
+// Password restore  ---------------------------------------------------------
+function newPassEmail(email, randomPass) {
+    const main = async() => {
+        let transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+                user: process.env.SMTPHOSTEMAILUSER,
+                pass: process.env.SMTPHOSTEMAILPASSWORD,
+            }
+        });
+
+        // send mail with defined transport object
+        let info = await transporter.sendMail({
+            from: process.env.SMTPHOSTEMAILUSER, // sender address
+            to: email, // list of receivers
+            subject: `Temporary password for Luxio website`, // Subject line
+            html: ` <p>${randomPass}</p> `
+        });
+    }
+    main().catch(console.error);
+
+}
 
 // Send message to admin ----------------------------------------------------
 function emailToAdmin(first_name, second_name, phoneN, city, category, certificate_link) {
@@ -249,8 +338,6 @@ function emailToUser_Info(langueg) {
           `
             });
         }
-
-
     }
     main().catch(console.error);
 };
