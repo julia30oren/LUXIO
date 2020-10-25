@@ -13,7 +13,7 @@ export class BigImageComponent implements OnInit {
 
   public selectedProd: Array<any> = [];
   public selectedProd_Img: string;
-  private langueg: string;
+  private languege: string;
   public my_cart: Array<any>;
   public my_favorites: Array<any>;
   private amount: string;
@@ -41,7 +41,7 @@ export class BigImageComponent implements OnInit {
 
     this.lang_service._selected_from_service
       .subscribe(date => {
-        this.langueg = date;
+        this.languege = date;
       });
 
     this.shop_service.my_favorites_from_service

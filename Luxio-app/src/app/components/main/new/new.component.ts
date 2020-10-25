@@ -9,7 +9,7 @@ import { ShopService } from 'src/app/services/shop/shop.service';
 })
 export class NewComponent implements OnInit {
 
-  public langueg: string;
+  public languege: string;
   public my_cart: Array<any> = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
   public my_favorites: Array<any> = JSON.parse(localStorage.getItem('my_764528_f')) || [];
   public shop: Array<any> = [];
@@ -35,7 +35,7 @@ export class NewComponent implements OnInit {
     this.shop_service.getProducts_fromDB();
 
     this.lang_service._selected_from_service
-      .subscribe(date => { this.langueg = date })
+      .subscribe(date => { this.languege = date })
 
     this.shop_service.select_one_from_service
       .subscribe(date => this.selectedProd = date)

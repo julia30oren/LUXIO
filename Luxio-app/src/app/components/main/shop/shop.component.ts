@@ -10,7 +10,7 @@ import { LanguageService } from 'src/app/services/language.service';
 })
 export class ShopComponent implements OnInit {
 
-  public langueg: string;
+  public languege: string;
   public shop: any[];
   public selectedProd: boolean;
 
@@ -30,7 +30,7 @@ export class ShopComponent implements OnInit {
       });
 
     this.lang_service._selected_from_service
-      .subscribe(date => { this.langueg = date });
+      .subscribe(date => { this.languege = date });
 
     this.shop_service.select_one_from_service
       .subscribe(date => this.selectedProd = date);

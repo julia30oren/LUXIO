@@ -92,7 +92,11 @@
             "salon-representative": "Salon representative",
             "sert": "Choose a certificate:",
             "business-name": "Company name",
-            "business-id": "Registration company number"
+            "business-id": "Registration company number",
+            "street": "Sreet",
+            "zip": "Zip code",
+            "home": "Home",
+            "apartment": "Apartment"
         },
         "LOGIN-FORM": {
             "title": "Log-in"
@@ -341,6 +345,21 @@
             "shipping-details": "Delivery details",
             "empty-cart": "There is nothing in your cart.",
             "empty-wishlist": "There is nothing in your wishlist."
+        },
+        "FORM": {
+            "p-1": "Here you can add or change your personal information:",
+            "p-2": "Address:",
+            "button-saveNewInfo": "Save new info",
+            "p-3": "Password:",
+            "old-pass": "Old password",
+            "new-pass": "New password",
+            "repeat-new-pass": "Repeat new password",
+            "button-saveNewPass": "Save new password"
+        },
+        "SHIPPING-D": {
+            "p-1": "Home delivery cost 40₪.",
+            "p-2": "For orders over 1000₪, delivery is free.",
+            "p-3": "The order will be delivered within 5 business days."
         }
     },
 

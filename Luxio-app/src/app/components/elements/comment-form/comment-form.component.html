@@ -1,12 +1,15 @@
-<p style="margin-top: 50px;">{{ 'CONTACT.message-1' | translate}}:</p>
+<div [ngClass]="{Hebrew: languege==='iv'}">
+    <p style="margin-top: 50px;">
+        {{ 'CONTACT.message-1' | translate}}:</p>
 
-<form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
-    <div class="form-group">
-        <textarea [ngClass]="{error: isSubmitted && formControls.comment.errors?.required}" formControlName="comment" class="form-control" rows="5"></textarea>
-    </div>
-    <div>
-        <button type="submit" class="btn btn-outline-dark btn-block">
+    <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+        <div class="form-group">
+            <textarea [ngClass]="{error: isSubmitted && formControls.comment.errors?.required}" formControlName="comment" class="form-control" rows="5"></textarea>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-outline-dark btn-block">
             {{ 'CONTACT.button-send' | translate}}
         </button>
-    </div>
-</form>
+        </div>
+    </form>
+</div>

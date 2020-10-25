@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   public formPasswodRestore_Open: boolean = false;
   public prodOptionsOpen: boolean;
   private location: string = "";
-  public langueg: string;
+  public languege: string;
   public user: string;
   public users_props: boolean;
   public cookies: boolean = true;
@@ -86,7 +86,7 @@ export class AppComponent implements OnInit {
       })
 
     this.languageService._selected_from_service
-      .subscribe(date => this.langueg = date)
+      .subscribe(date => this.languege = date)
 
     this.location = window.location.pathname.substring(1);
   }

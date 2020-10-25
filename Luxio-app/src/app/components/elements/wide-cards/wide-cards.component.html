@@ -20,9 +20,9 @@
                 <h5 style="font-family: Gadugi; margin-top: 10px; margin-left: 10px;">{{item.name}}</h5>
             </div>
             <div (click)="select(item.burcode_id)">
-                <p class="xs-text" *ngIf="langueg==='en'">{{item.coment_eng}}</p>
-                <p class="xs-text" *ngIf="langueg==='ru'">{{item.coment_rus}}</p>
-                <p class="xs-text" *ngIf="langueg==='iv'" [ngClass]="{Hebrew: langueg==='iv'}">{{item.coment_iv}}</p>
+                <p class="xs-text" *ngIf="languege==='en'">{{item.coment_eng}}</p>
+                <p class="xs-text" *ngIf="languege==='ru'">{{item.coment_rus}}</p>
+                <p class="xs-text" *ngIf="languege==='iv'" [ngClass]="{Hebrew: languege==='iv'}">{{item.coment_iv}}</p>
                 <p>
                     <small>{{item.amount_1}}</small>
                     <small *ngIf="item.amount_2">/{{item.amount_2}}</small>

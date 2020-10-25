@@ -24,14 +24,15 @@ export class PrivateInfoComponent implements OnInit {
     zip: new FormControl(null),
     home: new FormControl(''),
     apartment: new FormControl(''),
-    password: new FormControl(''),
   });
   public isSubmitted: boolean;
-
-  private formTemplate2 = new FormGroup({
-    old_password: new FormControl('', Validators.required),
-    new_password: new FormControl('', Validators.required)
-  })
+  private formTemplate_password = new FormGroup({
+    old_pass: new FormControl('', Validators.required),
+    new_pass: new FormControl('', Validators.required),
+    conf_new: new FormControl('', Validators.required),
+  });
+  public isSubmittedPass: boolean;
+  public conf_new: boolean = true;
 
   constructor(
     private lang_service: LanguageService,
@@ -54,7 +55,6 @@ export class PrivateInfoComponent implements OnInit {
             second_name: date[0][0].second_name || '',
             email: date[0][0].email || '',
             phoneN: date[0][0].phoneN || '',
-            password: date[0][0].password,
             city: date[0][0].city || '',
             state: date[0][0].street || '',
             street: date[0][0].street || '',
@@ -63,7 +63,7 @@ export class PrivateInfoComponent implements OnInit {
             apartment: date[0][0].apartment || ''
           });
         }
-      })
+      });
   }
 
   onSubmit(formValue) {
@@ -80,14 +80,21 @@ export class PrivateInfoComponent implements OnInit {
     return this.formTemplate['controls'];
   }
 
-  onSubmit2(formValue) {
-    console.log(formValue);
-    // this.isSubmitted = true;
-    // if (this.formTemplate.valid) {
-    //   this.user_service.saveUserChanges_toDB(formValue);
-    // } else {
-    //   console.log('denied');
-    // }
+  onSubmit_newPass(formValue) {
+
+    this.isSubmittedPass = true;
+    if (this.formTemplate.valid && formValue.new_pass === formValue.conf_new) {
+      this.conf_new = true;
+      // console.log(formValue);
+      // console.log(this.user[0].email);
+      this.user_service.saveNewPassword(this.user[0].email, formValue);
+    } else {
+      this.conf_new = false;
+      console.log('denied');
+    }
   }
 
+  get formControlsPassword() {
+    return this.formTemplate_password['controls'];
+  }
 }

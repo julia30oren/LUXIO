@@ -10,7 +10,7 @@ import { ShopService } from 'src/app/services/shop/shop.service';
 export class ProFormanceComponent implements OnInit {
 
   public shop: Array<any>;
-  public langueg: string;
+  public languege: string;
   public selectedProd: boolean;
 
   constructor(
@@ -23,7 +23,7 @@ export class ProFormanceComponent implements OnInit {
 
     this.lang_service._selected_from_service
       .subscribe(date => {
-        this.langueg = date;
+        this.languege = date;
       });
 
     this.shop_service.shop_products_from_service

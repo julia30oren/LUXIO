@@ -73,7 +73,7 @@
     <!-- REGISTRATION FORM -->
     <div class="RegFormBackground" *ngIf="regForm_Open" (click)="closeForm()"></div>
 
-    <div class="RegForm" *ngIf="regForm_Open" style="padding: 1%;" [ngClass]="{Hebrew: langueg==='iv'}">
+    <div class="RegForm" *ngIf="regForm_Open" style="padding: 1%;" [ngClass]="{Hebrew: languege==='iv'}">
         <div class="form-row">
             <div class="col-sm-11">
                 <h1 *ngIf="formOne_Open || formTwo_Open">{{ 'SIGN-IN.REGISTRATION-FORM.title' | translate}}</h1>
@@ -85,7 +85,7 @@
             </div>
         </div>
 
-        <div class="formOne" *ngIf="formOne_Open" [ngClass]="{Hebrew: langueg==='iv'}">
+        <div class="formOne" *ngIf="formOne_Open" [ngClass]="{Hebrew: languege==='iv'}">
             <app-reg-form-one></app-reg-form-one>
         </div>
 
@@ -140,7 +140,7 @@
         </div>
     </div>
 
-    <div class="sign-in-div" style="padding: 25px;" *ngIf="advertisement" [ngClass]="{H: langueg==='iv'}">
+    <div class="sign-in-div" style="padding: 25px;" *ngIf="advertisement" [ngClass]="{H: languege==='iv'}">
         <h1 style="
             font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
             font-size: 25px;

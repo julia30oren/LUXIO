@@ -29,6 +29,9 @@ export class UserService {
   private comments = new BehaviorSubject<Array<any>>([]);
   public comments_from_service = this.comments.asObservable();
 
+  private message_to_user = new BehaviorSubject<any>(null);
+  public message_to_user_from_service = this.message_to_user.asObservable();
+
   constructor(
     private http: HttpClient,
     private register_service: RegistrationService,
@@ -154,11 +157,29 @@ export class UserService {
       .subscribe(res => { console.log(res) });
   }
 
+
+  // ------------------------------------------------------------------------- GET COMMENTS ------------------------------
   getAllComments() {
     return this.http.get(`${this.DB_url}/comments/get`)
       .subscribe(res => {
-        console.log(res);
+        // ------------------------------------------------- saving responce on service----
         this.comments.next([res]);
       });
   }
+
+
+  // ------------------------------------------------------------------------- USER CHANGING PASSWORD ------------------------------
+  saveNewPassword(email: string, new_pass: object) {
+    return this.http.post(`${this.DB_url}/user/${email}/new-password`, new_pass)
+      .subscribe(res => {
+        // --------------------------------------------------------------------- MESSAGE TO USER ------------------
+        this.message_to_user.next(res);
+      });
+  };
+
+  // ------------------------------------------------------------------------- CLEAN MESSAGE TO USER ------------------------------
+  cleanMessage_toUser() {
+    this.message_to_user.next(null);
+  };
+
 }

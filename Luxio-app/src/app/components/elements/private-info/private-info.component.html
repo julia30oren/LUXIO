@@ -1,89 +1,92 @@
-<!-- <p>{{user|json}}</p> -->
-<!-- <div *ngFor="let item of user" style="width: 100%; display: flex; align-items: center; justify-content: center; height: 200px;">
-    <img src="{{item.certificate_link}}" style="border-radius: 50%; height: 200px; width: 200px;" />
-    <div style=" height: 200px; width: 200px;background-image: url('{item.certificate_link}'); background-size: cover;"></div>
-</div> -->
+<app-messages></app-messages>
 
-<form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
-    <p style="margin-top: 50px;">Here you can add or change your personal information:</p>
-    <div class="form-row">
-        <div class="col">
-            <input type="text" class="form-control" value="formControls.first_name?formControls.first_name:null" formControlName="first_name" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.name' | translate}}">
+<div id="Privat-info-component" [ngClass]="{Hebrew: languege==='iv'}">
+    <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+        <!-- ---------------------------------------------------------------------------CHANGING NAME--------------------------- -->
+        <p style="margin-top: 50px;">{{ 'PERSONAL-AREA.FORM.p-1' | translate}}</p>
+        <div class="form-row">
+            <div class="col">
+                <input type="text" class="form-control" value="formControls.first_name?formControls.first_name:null" formControlName="first_name" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.name' | translate}}">
+            </div>
+
+            <div class="col">
+                <input type="text" class="form-control" value="formControls.second_name?formControls.second_name:null" formControlName="second_name" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.second-name' | translate}}">
+            </div>
         </div>
-
-        <div class="col">
-            <input type="text" class="form-control" value="formControls.second_name?formControls.second_name:null" formControlName="second_name" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.second-name' | translate}}">
+        <!-- ---------------------------------------------------------------------------CHANGING EMAIL--------------------------- -->
+        <div class="form-row">
+            <div class="col">
+                <input type="text" class="form-control" value="formControls.email?formControls.email:null" formControlName="email" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.email' | translate}}">
+            </div>
         </div>
-
-    </div>
-
-    <div class="form-row">
-        <div class="col">
-            <input type="text" class="form-control" value="formControls.email?formControls.email:null" formControlName="email" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.email' | translate}}">
+        <!-- ---------------------------------------------------------------------------CHANGING EMAIL--------------------------- -->
+        <div class="form-row">
+            <div class="col">
+                <input type="text" class="form-control" value="formControls.phoneN?formControls.phoneN:null" formControlName="phoneN" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.phoneN' | translate}}">
+            </div>
         </div>
-    </div>
-
-    <div class="form-row">
-        <div class="col">
-            <input type="text" class="form-control" value="formControls.phoneN?formControls.phoneN:null" formControlName="phoneN" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.phoneN' | translate}}">
-        </div>
-    </div>
-
-    <p style="margin-top: 50px;">Address:</p>
-    <div class="form-row">
-        <div class="col">
-            <select id="inputState" class="form-control" value="formControls.state?formControls.state:null" formControlName="state" placeholder="State...">
+        <!-- ---------------------------------------------------------------------------ADDRESS--------------------------- -->
+        <p style="margin-top: 50px;">{{ 'PERSONAL-AREA.FORM.p-2' | translate}}</p>
+        <div class="form-row">
+            <div class="col">
+                <select id="inputState" class="form-control" value="formControls.state?formControls.state:null" formControlName="state" placeholder="State...">
               <option selected>State...</option>
               <option>...</option>
             </select>
-        </div>
-        <div class="col">
-            <input type="text" class="form-control" value="formControls.city?formControls.city:null" formControlName="city" value="formControls.city" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.city' | translate}}">
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="col">
-            <input type="text" class="form-control" value="formControls.street?formControls.street:null" formControlName="street" placeholder="Sreet..">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" value="formControls.city?formControls.city:null" formControlName="city" value="formControls.city" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.city' | translate}}">
+            </div>
         </div>
 
-        <div class="col">
-            <input type="text" class="form-control" value="formControls.zip?formControls.zip:null" formControlName="zip" placeholder="Zip code..">
-        </div>
-    </div>
+        <div class="form-row">
+            <div class="col">
+                <input type="text" class="form-control" value="formControls.street?formControls.street:null" formControlName="street" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.street' | translate}}">
+            </div>
 
-    <div class="form-row">
-        <div class="col">
-            <input type="text" class="form-control" value="formControls.home?formControls.home:null" formControlName="home" placeholder="Home..">
-        </div>
-
-        <div class="col">
-            <input type="text" class="form-control" value="formControls.apartment?formControls.apartment:null" formControlName="apartment" placeholder="Apartment..">
-        </div>
-    </div>
-
-    <button type="submit" class="btn btn-outline-dark btn-block" style="margin-top: 15px;">Save new info</button>
-</form>
-
-<form [formGroup]="formTemplate2" (submit)="onSubmit2(formTemplate2.value)">
-
-    <p style="margin-top: 50px;">Password:</p>
-    <div class="form-row">
-        <div class="col">
-            <input type="password" class="form-control" formControlName="old_password" placeholder="Old password">
+            <div class="col">
+                <input type="text" class="form-control" value="formControls.zip?formControls.zip:null" formControlName="zip" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.zip' | translate}}">
+            </div>
         </div>
 
-    </div>
-    <div class="form-row">
-        <div class="col">
-            <input type="password" class="form-control" formControlName="new_password" placeholder="New password">
+        <div class="form-row">
+            <div class="col">
+                <input type="text" class="form-control" value="formControls.home?formControls.home:null" formControlName="home" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.home' | translate}}">
+            </div>
+
+            <div class="col">
+                <input type="text" class="form-control" value="formControls.apartment?formControls.apartment:null" formControlName="apartment" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.apartment' | translate}}">
+            </div>
         </div>
-    </div>
+        <!-- ---------------------------------------------------------------------------BUTTON--------------------------------------------- -->
+        <button type="submit" class="btn btn-outline-dark btn-block" style="margin-top: 15px;">{{ 'PERSONAL-AREA.FORM.button-saveNewInfo' | translate}}</button>
+    </form>
 
-    <button type="submit" class="btn btn-outline-dark btn-block" style="margin-top: 15px;">Save new password</button>
 
-</form>
+    <form [formGroup]="formTemplate_password" (submit)="onSubmit_newPass(formTemplate_password.value)" [ngClass]="{Hebrew: languege==='iv'}">
+        <p style="margin-top: 50px;">{{ 'PERSONAL-AREA.FORM.p-3' | translate}}</p>
 
-<app-comment-form></app-comment-form>
+        <div class="form-row">
+            <div class="col">
+                <input [ngClass]="{error: isSubmittedPass && formControlsPassword.old_pass.errors?.required}" type="password" class="form-control" value="formControlsPassword.old_pass" formControlName="old_pass" placeholder="{{ 'PERSONAL-AREA.FORM.old-pass' | translate}}">
+            </div>
+        </div>
 
-<br>
+        <div class="form-row">
+            <div class="col">
+                <input [ngClass]="{error: isSubmittedPass && formControlsPassword.new_pass.errors?.required}" type="password" class="form-control" value="formControlsPassword.new_pass" formControlName="new_pass" placeholder="{{ 'PERSONAL-AREA.FORM.new-pass' | translate}}">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                <input [ngClass]="{error: isSubmittedPass && formControlsPassword.conf_new.errors?.required || !conf_new}" type="password" class="form-control" value="formControlsPassword.conf_new" formControlName="conf_new" placeholder="{{ 'PERSONAL-AREA.FORM.repeat-new-pass' | translate}}">
+            </div>
+            <div class="text-danger" *ngIf="isSubmittedPass && !conf_new">{{ 'SIGN-IN.REGISTRATION-FORM.password-doesnt-match' | translate}}</div>
+        </div>
+
+        <button type="submit" class="btn btn-outline-dark btn-block" style="margin-top: 15px;">{{ 'PERSONAL-AREA.FORM.button-saveNewPass' | translate}}</button>
+    </form>
+
+    <app-comment-form></app-comment-form>
+</div>

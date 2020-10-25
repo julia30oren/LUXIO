@@ -11,7 +11,7 @@ import { LanguageService } from 'src/app/services/language.service';
 export class OptionssComponent implements OnInit {
 
   public shop: Array<any>;
-  public langueg: string;
+  public languege: string;
   public selectedProd: boolean;
 
 
@@ -25,7 +25,7 @@ export class OptionssComponent implements OnInit {
 
     this.lang_service._selected_from_service
       .subscribe(date => {
-        this.langueg = date;
+        this.languege = date;
       });
 
     this.shop_service.shop_products_from_service

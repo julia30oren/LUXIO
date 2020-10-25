@@ -1,9 +1,9 @@
 <!-- {{personalArea_products|json}} -->
 <!-- {{what_to_show|json}} -->
 
-<h2 *ngIf="!personalArea_products[0] && what_to_show === 'cart'" style="width: 100%; color: brown; text-align: center; margin-top: 200px;" [ngClass]="{Hebrew: langueg==='iv'}">
+<h2 *ngIf="!personalArea_products[0] && what_to_show === 'cart'" style="width: 100%; color: brown; text-align: center; margin-top: 200px;" [ngClass]="{Hebrew: languege==='iv'}">
     {{ 'PERSONAL-AREA.CARD.empty-cart' | translate}}</h2>
-<h2 *ngIf="!personalArea_products[0] && what_to_show === 'wishlist'" style="width: 100%; color: brown; text-align: center; margin-top: 200px;" [ngClass]="{Hebrew: langueg==='iv'}">
+<h2 *ngIf="!personalArea_products[0] && what_to_show === 'wishlist'" style="width: 100%; color: brown; text-align: center; margin-top: 200px;" [ngClass]="{Hebrew: languege==='iv'}">
     {{ 'PERSONAL-AREA.CARD.empty-wishlist' | translate}}</h2>
 
 <div *ngIf="personalArea_products" class="personal-areaCards">
@@ -17,7 +17,7 @@
                 <div class="img-cover" (click)="select(item.burcode_id)"></div>
                 <img class="card-img" src={{item.img_link_1}} alt="Product image" />
             </div>
-            <div class="personal-card-info-div" style="margin-left: 50px;" [ngClass]="{Hebrew: langueg==='iv'}">
+            <div class="personal-card-info-div" style="margin-left: 50px;" [ngClass]="{Hebrew: languege==='iv'}">
                 <div style="display: flex; flex-direction: row;">
                     <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
                 </div>
@@ -52,15 +52,13 @@
 
 
             </div>
-            <div class="card-top-bottom" *ngIf="what_to_show === 'cart'" [ngClass]="{Hebrew: langueg==='iv'}">
+            <div class="card-top-bottom" *ngIf="what_to_show === 'cart'" [ngClass]="{Hebrew: languege==='iv'}">
                 <p (click)="delete_fromCart(item)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.remove' | translate}} {{item.name}} {{ 'PERSONAL-AREA.CARD.from-cart' | translate}}</small></p>
                 <p (click)="pay_onlyThis(item)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.pay-only' | translate}} {{item.name}}</small></p>
-                <p class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.shipping-details' | translate}}</small></p>
             </div>
-            <div class="card-top-bottom" *ngIf="what_to_show === 'wishlist'" [ngClass]="{Hebrew: langueg==='iv'}">
+            <div class="card-top-bottom" *ngIf="what_to_show === 'wishlist'" [ngClass]="{Hebrew: languege==='iv'}">
                 <p (click)="add_toCart(item)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.add' | translate}} {{item.name}} {{ 'PERSONAL-AREA.CARD.to-cart' | translate}}</small></p>
                 <p (click)="remove_fromWishlist(item)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.remove' | translate}} {{item.name}} {{ 'PERSONAL-AREA.CARD.from-wishlist' | translate}}</small></p>
-                <p class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.shipping-details' | translate}}</small></p>
             </div>
         </div>
 
@@ -69,7 +67,7 @@
 
 </div>
 
-<h2 *ngIf="TOTAL_PRICE>1 && what_to_show === 'cart'" style="width: 100%; color: brown; text-align: center; margin-top: 50px;" [ngClass]="{Hebrew: langueg==='iv'}">
+<h2 *ngIf="TOTAL_PRICE>1 && what_to_show === 'cart'" style="width: 100%; color: brown; text-align: center; margin-top: 50px;" [ngClass]="{Hebrew: languege==='iv'}">
     {{ TOTAL_PRICE }} &#8362;</h2>
 
 <button type="button" *ngIf="personalArea_products[0] && what_to_show === 'cart'" class="btn btn-outline-dark btn-block" style="margin-bottom: 20px;">

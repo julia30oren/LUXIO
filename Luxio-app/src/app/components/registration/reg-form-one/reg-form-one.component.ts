@@ -12,7 +12,7 @@ import { LanguageService } from 'src/app/services/language.service';
 })
 export class RegFormOneComponent implements OnInit {
 
-  public langueg: string;
+  public languege: string;
 
   public formTemplate = new FormGroup({
     first_name: new FormControl('', Validators.required),
@@ -47,7 +47,7 @@ export class RegFormOneComponent implements OnInit {
       .subscribe(date => this.User_agreed = date);
 
     this.lang_service._selected_from_service
-      .subscribe(date => { this.langueg = date });
+      .subscribe(date => { this.languege = date });
   }
 
   getTermsOfAgeement() {
@@ -100,7 +100,7 @@ export class RegFormOneComponent implements OnInit {
       this.regService.close_RegistrationForm();
     } else if (this.category === 'salon representative') {
       formValue.business = { name: this.business_name, id: this.business_id };
-      formValue.langueg = this.langueg;
+      formValue.languege = this.languege;
       this.users_db.saveUser_toDB(formValue);
       this.resetForm();
       this.regService.close_RegistrationForm();

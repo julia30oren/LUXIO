@@ -17,7 +17,7 @@ export class PersonalACardComponent implements OnInit {
     private user_service: UserService
   ) { }
 
-  public langueg: string;
+  public languege: string;
   public personalArea_products: Array<any>;
   public what_to_show: string;
   public message: string;
@@ -27,7 +27,7 @@ export class PersonalACardComponent implements OnInit {
     this.shop_service.getProducts_fromDB();
 
     this.lang_service._selected_from_service
-      .subscribe(date => { this.langueg = date });
+      .subscribe(date => { this.languege = date });
 
     this.user_service.user_to_show_from_service
       .subscribe(date => {

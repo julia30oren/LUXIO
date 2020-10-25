@@ -3,6 +3,10 @@
     direction: rtl;
 }
 
+#Privat-info-component {
+    margin-bottom: 100px;
+}
+
 .form-row {
     margin-top: 1%;
     display: flex;

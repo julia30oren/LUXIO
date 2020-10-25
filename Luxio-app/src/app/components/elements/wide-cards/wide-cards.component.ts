@@ -13,7 +13,7 @@ export class WideCardsComponent implements OnInit {
   public wideCardProductes: Array<any> = [];
   public shop: Array<any>;
   public selectedProd: boolean;
-  public langueg: string;
+  public languege: string;
   public my_cart: Array<any>;
   public my_favorites: Array<any>;
 
@@ -27,7 +27,7 @@ export class WideCardsComponent implements OnInit {
     this.shop_service.getProducts_fromDB();
 
     this.lang_service._selected_from_service
-      .subscribe(date => { this.langueg = date });
+      .subscribe(date => { this.languege = date });
 
     this.shop_service.xtra_products_sorted_from_service
       .subscribe(date => this.wideCardProductes = date)

@@ -5,7 +5,7 @@ const ProductSchema = require('./product-model');
 
 router.get('/', async(req, res) => {
     try {
-        const allProductes = await ProductSchema.find();
+        const allProductes = await ProductSchema.find().sort({ 'prod_class': -1 });
         res.json(allProductes);
     } catch (err) {
         res.status(404).json({ message: ` We have an error on server : ${err.message}` })

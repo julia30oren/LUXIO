@@ -16,7 +16,7 @@ export class PersonalAreaComponent implements OnInit {
     private user_service: UserService
   ) { }
 
-  public langueg: string;
+  public languege: string;
   public shop: any[];
   public what_to_show: string;
   public selectedProd: boolean;
@@ -25,7 +25,7 @@ export class PersonalAreaComponent implements OnInit {
     this.shop_service.getProducts_fromDB();
 
     this.lang_service._selected_from_service
-      .subscribe(date => { this.langueg = date });
+      .subscribe(date => { this.languege = date });
 
     this.shop_service.shop_products_from_service
       .subscribe(date => {
