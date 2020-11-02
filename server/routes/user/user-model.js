@@ -69,10 +69,6 @@ const UserSchema = new Schema({
         default: [],
         require: true
     },
-    langueg: {
-        type: String,
-        require: true
-    },
     date: {
         type: Date,
         default: Date.now(),

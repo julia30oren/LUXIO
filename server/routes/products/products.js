@@ -1,109 +1,196 @@
 const express = require('express');
 const router = express.Router();
 const ProductSchema = require('./product-model');
+// need to be done ------------- soon-----------------------
+// create          logger.error(``)         and          logger.info(``)
+// edd .status( )
+let responseMessage;
 
 
+// ---------------------------------------------------GET ALL PRODUCTS-----------------------------
 router.get('/', async(req, res) => {
     try {
-        const allProductes = await ProductSchema.find().sort({ 'prod_class': -1 });
-        res.json(allProductes);
+        const allProductes = await ProductSchema.find().sort({ 'prod_class': -1 }); //get them sorted by name
+        res.json([{ status: true, allProductes }]);
     } catch (err) {
-        res.status(404).json({ message: ` We have an error on server : ${err.message}` })
+        res.json([{ status: false, message: err.message }]);
+        // logger.error(``);
     }
 });
 
-router.post("/save", async(req, res, next) => {
-    // console.log(req.body);
-    const newProduct = new ProductSchema({
-        burcode_id: req.body.burcode_id,
-        prod_class: req.body.prod_class,
-        name: req.body.name.toUpperCase(),
-        prod_collection: req.body.prod_collection,
 
-        color: req.body.color,
-        tint: req.body.tint,
-        transparency: req.body.transparency,
-        label: req.body.label,
-
-        amount_1: req.body.amount_1,
-        price_1: req.body.price_1,
-        amount_2: req.body.amount_2,
-        price_2: req.body.price_2,
-        price: req.body.price,
-
-        img_link_1: req.body.img_link_1 || 'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg',
-        img_link_2: req.body.img_link_2,
-        img_link_3: req.body.img_link_3,
-
-        coment_eng: req.body.coment_eng,
-        coment_iv: req.body.coment_iv,
-        coment_rus: req.body.coment_rus
-    });
-
+// ------------------------------------------------------SAVE NEW PRODUCT OR CHANGE OLD ONE-------------------------------
+router.post("/:lang/save", async(req, res, next) => {
+    const language = req.params.lang;
+    const { burcode_id, prod_class, name, prod_collection, color, tint, transparency, label, amount_1, price_1, amount_2, price_2, price, img_link_1, img_link_2, img_link_3, coment_eng, coment_iv, coment_rus } = req.body;
+    // creating new product-----------------------
     try {
-        let thisItem = await ProductSchema.find({ "burcode_id": req.body.burcode_id });
-        if (!thisItem[0]) {
-            // console.log(newProduct);
+        // ---------------------------------------------------CHECK if item already exist BY BURCODE--------
+        let thisItem = await ProductSchema.findOne({ "burcode_id": burcode_id });
+        // ----------------------------IF NOT we are creating new:
+        if (!thisItem) {
+            const newProduct = new ProductSchema({
+                burcode_id: burcode_id,
+                prod_class: prod_class,
+                name: name.toUpperCase(),
+                prod_collection: prod_collection,
+                color: color,
+                tint: tint,
+                transparency: transparency,
+                label: label,
+                amount_1: amount_1,
+                price_1: price_1,
+                amount_2: amount_2,
+                price_2: price_2,
+                price: price,
+                img_link_1: img_link_1,
+                img_link_2: img_link_2,
+                img_link_3: img_link_3,
+                coment_eng: coment_eng,
+                coment_iv: coment_iv,
+                coment_rus: coment_rus
+            });
+            // ---------------------------SAVING NEW---------------------
             try {
                 const itemToSave = await newProduct.save();
                 if (itemToSave._id) {
-                    res.status(200).json({ state: 1, message: `Product "${itemToSave.prod_class} ${itemToSave.name}" was added successfully.` });
-                    // logger.info(`${now} - New product posted "${itemToSave.name}"`);
-                } else {
-                    res.status(406).json({ message: ` We have an error.` });
-                    // logger.error(`${now} - We have an error with posting new product`);
+                    // ----------------------depending on language -  different response:
+                    switch (language) {
+                        case 'en':
+                            responseMessage = `Product <<${prod_class} ${name}>> was added successfully.`
+                            break;
+                        case 'ru':
+                            responseMessage = `Товар <<${prod_class} ${name}>> был успешно добавлен.`
+                            break;
+                        default:
+                            responseMessage = `המוצר <<${prod_class} ${name}>> נוסף בהצלחה.`
+                    }
+                    res.json([{ state: true, message: responseMessage }]);
+                    // logger.info(``);
+                }
+                //-------------------------------ERRORS-------
+                else {
+                    switch (language) {
+                        case 'en':
+                            responseMessage = `Product <<${prod_class} ${name}>> wasn't added.`
+                            break;
+                        case 'ru':
+                            responseMessage = `Товар <<${prod_class} ${name}>> не был добавлен.`
+                            break;
+                        default:
+                            responseMessage = `המוצר <<${prod_class} ${name}>> לא נוסף.`
+                    }
+                    res.json([{ state: false, message: responseMessage }]);
+                    // logger.error(``);
                 }
             } catch (err) {
-                logger.error(`${now} - We have an error with posting new product`);
-                res.status(406).json({ message: ` We have an error with data : ${err.message}` })
+                res.json([{ state: false, message: err.message }]);
+                // logger.error(``);
             }
-        } else {
-            console.log('item already exist');
-            const prodChange = await ProductSchema.update({ "burcode_id": req.body.burcode_id }, {
+        }
+        // -------------------------------SAVING CHANGES TO PRODUCT----------
+        else {
+            const produstToChange = await ProductSchema.updateOne({ "burcode_id": burcode_id }, {
                 $set: {
-                    "prod_class": req.body.prod_class,
-                    "name": req.body.name.toUpperCase(),
-                    "prod_collection": req.body.prod_collection,
-
-                    "amount_1": req.body.amount_1,
-                    "price_1": req.body.price_1,
-                    "amount_2": req.body.amount_2,
-                    "price_2": req.body.price_2,
-
-                    "color": req.body.color,
-                    "tint": req.body.tint,
-                    "transparency": req.body.transparency,
-                    "label": req.body.label,
-
-                    "img_link_1": req.body.img_link_1,
-                    "img_link_2": req.body.img_link_2,
-                    "img_link_3": req.body.img_link_3,
-
-                    "coment_eng": req.body.coment_eng,
-                    "coment_iv": req.body.coment_iv,
-                    "coment_rus": req.body.coment_rus
+                    "prod_class": prod_class,
+                    "name": name.toUpperCase(),
+                    "prod_collection": prod_collection,
+                    "amount_1": amount_1,
+                    "price_1": price_1,
+                    "amount_2": amount_2,
+                    "price_2": price_2,
+                    "color": color,
+                    "tint": tint,
+                    "transparency": transparency,
+                    "label": label,
+                    "img_link_1": img_link_1,
+                    "img_link_2": img_link_2,
+                    "img_link_3": img_link_3,
+                    "coment_eng": coment_eng,
+                    "coment_iv": coment_iv,
+                    "coment_rus": coment_rus
                 }
             });
-            return res.send({ state: 2, message: 'Item already exist. Changes has been saved successfully.' })
+            if (produstToChange) {
+                // ----------------------depending on language -  different response:
+                switch (language) {
+                    case 'en':
+                        responseMessage = `Changes to <<${prod_class} ${name}>> has been saved successfully.`
+                        break;
+                    case 'ru':
+                        responseMessage = `Изменения в <<${prod_class} ${name}>> успешно сохранены.`
+                        break;
+                    default:
+                        responseMessage = `שינויים ב- <<${prod_class} ${name}>> נשמרו בהצלחה.`
+                }
+                return res.json([{ state: true, message: responseMessage }]);
+                // logger.info(``);
+            }
+            //-------------------------------ERRORS-------
+            else {
+                // ----------------------depending on language -  different response:
+                switch (language) {
+                    case 'en':
+                        responseMessage = `Changes to <<${prod_class} ${name}>> hasn't been saved. Please, try again.`
+                        break;
+                    case 'ru':
+                        responseMessage = `Изменения в <<${prod_class} ${name}>> не были сохранены. Пожалуйста, попробуйте еще раз.`
+                        break;
+                    default:
+                        responseMessage = `שינויים ב- <<${prod_class} ${name}>> לא נשמרו. בבקשה נסה שוב.`
+                }
+                return res.json([{ state: false, message: responseMessage }]);
+                // logger.error(``);
+            }
         }
     } catch (err) {
-        return res.status(500).send({ message: err.message })
+        return res.json([{ state: false, message: err.message }]);
+        // logger.error(``);
     }
-    // res.json(thisItem);
 });
 
-router.get('/remove/:id', async(req, res) => {
-    // console.log(req.params.id)
+
+// ------------------------------------------------------DELETE PRODUCT BY ID-------------------------------
+router.get('/:lang/remove/:id', async(req, res) => {
+    const id = req.params.id;
+    const language = req.params.lang;
     try {
-        let thisProduct = await ProductSchema.remove({ "_id": req.params.id })
-        if (thisProduct == null) {
-            return res.status(404).send({ message: 'prod not found' })
-        } else {
-            return res.send({ message: 'prod deleted' })
+        let thisProduct = await ProductSchema.remove({ "_id": id });
+        if (thisProduct !== null) {
+            // ----------------------depending on language -  different response:
+            switch (language) {
+                case 'en':
+                    responseMessage = `Product was deleted.`
+                    break;
+                case 'ru':
+                    responseMessage = `Товар был удален.`
+                    break;
+                default:
+                    responseMessage = `המוצר נמחק.`
+            }
+            return res.json([{ status: true, massage: responseMessage }]);
+            // logger.info(``);
+        }
+        // -------------------------ERRORS--------------
+        else {
+            switch (language) {
+                case 'en':
+                    responseMessage = `Product wasn't found.`
+                    break;
+                case 'ru':
+                    responseMessage = `Товар не найден.`
+                    break;
+                default:
+                    responseMessage = `המוצר לא נמצא.`
+            }
+            return res.json([{ status: false, massage: responseMessage }]);
+            // logger.error(``);
         }
     } catch (err) {
-        return res.status(500).send({ message: err.message })
+        return res.json([{ status: false, message: err.message }]);
+        // logger.error(``);
     }
 });
+
 
 module.exports = router;
