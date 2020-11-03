@@ -1,13 +1,11 @@
-<!-- <p>{{Comments|json}}</p> -->
-
+<!-- <p>{{comments|json}}</p> -->
+<!-- ------------------------------------COMMENT CARD-------------------------- -->
 <div class="comment-group">
-
-    <div class="card bg-light mb-3" style="width: 18rem; text-align: center;" *ngFor="let item of Comments[0]">
+    <div class="card bg-light mb-3" style="width: 18rem; text-align: center;" *ngFor="let item of comments[0]">
         <div class="card-header">{{item.date | date:'mediumDate'}}</div>
         <div class="card-body">
             <h5 class="card-title" [ngClass]="{Hebrew: item.user_languege === 'iv'}">{{item.user_name}}</h5>
             <p class="card-text" [ngClass]="{Hebrew: item.user_languege === 'iv'}">{{item.comment}}</p>
         </div>
     </div>
-
 </div>

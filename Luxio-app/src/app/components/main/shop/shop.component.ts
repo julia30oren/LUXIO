@@ -12,7 +12,6 @@ export class ShopComponent implements OnInit {
 
   public languege: string;
   public shop: any[];
-  public selectedProd: boolean;
 
   constructor(
     private shop_service: ShopService,
@@ -31,9 +30,6 @@ export class ShopComponent implements OnInit {
 
     this.lang_service._selected_from_service
       .subscribe(date => { this.languege = date });
-
-    this.shop_service.select_one_from_service
-      .subscribe(date => this.selectedProd = date);
   }
 
   getSorted(by_class, by_color, by_tint, by_transparency) {

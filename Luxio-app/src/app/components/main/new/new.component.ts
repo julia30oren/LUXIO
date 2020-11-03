@@ -32,8 +32,6 @@ export class NewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.shop_service.getProducts_fromDB();
-
     this.lang_service._selected_from_service
       .subscribe(date => { this.languege = date })
 

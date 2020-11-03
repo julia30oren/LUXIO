@@ -77,9 +77,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 15px;
 }
 
-.warn-mes {
+.red {
     background: #CE5937;
     background: -moz-linear-gradient(left, #CE5937 0%, #A40000 50%, #CE5937 100%);
     background: -webkit-linear-gradient(left, #CE5937 0%, #A40000 50%, #CE5937 100%);
@@ -87,7 +88,7 @@
     color: brown;
 }
 
-.approve-mes {
+.blue {
     background: #009CCE;
     background: -moz-linear-gradient(left, #009CCE 0%, #0800A4 50%, #009CCE 100%);
     background: -webkit-linear-gradient(left, #009CCE 0%, #0800A4 50%, #009CCE 100%);
@@ -95,7 +96,7 @@
     color: rgb(42, 44, 165);
 }
 
-.deny-mes {
+.yellow {
     color: orange;
     background: #DBD60B;
     background: -moz-linear-gradient(left, #DBD60B 0%, #CC6200 50%, #DBD60B 100%);

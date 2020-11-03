@@ -1,7 +1,22 @@
-<app-messages></app-messages>
-
-<div id="Privat-info-component" [ngClass]="{Hebrew: languege==='iv'}">
-    <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+<!-- ---------------------------------------LOADER------------ -->
+<div class="lds-default" *ngIf="loader">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+<!-- ---------------------------------- -->
+<!-- -------------------------------------------------------------PERSONAL INFO FORM---------------- -->
+<div *ngIf="!loader" id="Privat-info-component" [ngClass]="{Hebrew: languege==='iv'}">
+    <form [formGroup]="infoTemplate" (submit)="newInfoSave(infoTemplate.value)">
         <!-- ---------------------------------------------------------------------------CHANGING NAME--------------------------- -->
         <p style="margin-top: 50px;">{{ 'PERSONAL-AREA.FORM.p-1' | translate}}</p>
         <div class="form-row">
@@ -62,8 +77,8 @@
         <button type="submit" class="btn btn-outline-dark btn-block" style="margin-top: 15px;">{{ 'PERSONAL-AREA.FORM.button-saveNewInfo' | translate}}</button>
     </form>
 
-
-    <form [formGroup]="formTemplate_password" (submit)="onSubmit_newPass(formTemplate_password.value)" [ngClass]="{Hebrew: languege==='iv'}">
+    <!-- ---------------------------------------NAW PASSWORD FORM------------------------- -->
+    <form [formGroup]="formTemplate_password" (submit)="newPassSave(formTemplate_password.value)" [ngClass]="{Hebrew: languege==='iv'}">
         <p style="margin-top: 50px;">{{ 'PERSONAL-AREA.FORM.p-3' | translate}}</p>
 
         <div class="form-row">
@@ -87,6 +102,6 @@
 
         <button type="submit" class="btn btn-outline-dark btn-block" style="margin-top: 15px;">{{ 'PERSONAL-AREA.FORM.button-saveNewPass' | translate}}</button>
     </form>
-
+    <!-- ------------------------------------------COMMENT FORM--------- -->
     <app-comment-form></app-comment-form>
 </div>

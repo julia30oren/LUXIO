@@ -199,10 +199,12 @@ router.post("/:lang/newpass/:email", async(req, res) => {
     //--------------------------------------------------- find user and compare old password ---
     try {
         const loginU = await UserSchema.find({ "email": email });
-        const User = loginU[0];
+        const User = loginU[0]; //object
         if (User) {
             const hush = User.password;
             const cryptoPassChek = bcrypt.compareSync(oldPassword, hush);
+            console.log(cryptoPassChek)
+
             if (cryptoPassChek) {
                 // -------------------------------------- cripting new password and saving it --
                 const salt = bcrypt.genSaltSync(10);

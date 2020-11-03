@@ -100,7 +100,7 @@ export class AdminShopComponent implements OnInit {
     this.isSubmitted = true;
     if (this.formTemplate.valid) {
       // console.log(formValue);
-      this.shop_service.saveProduct_toDB(formValue);
+      this.shop_service.saveProduct_toDB(formValue, this.language);
     }
   }
 
@@ -119,7 +119,7 @@ export class AdminShopComponent implements OnInit {
 
   deleteState(st: boolean) {
     if (st) {
-      this.shop_service.removeProduct_fromDB(this.prod_toDelete[0]._id);
+      this.shop_service.removeProduct_fromDB(this.prod_toDelete[0]._id, this.language);
       this.prod_toDelete = null;
     } else this.prod_toDelete = null;
   }

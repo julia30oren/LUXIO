@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SaveUserService } from 'src/app/services/saveUser/save-user.service';
 import { LanguageService } from 'src/app/services/language.service';
+import { UserService } from 'src/app/services/user-servise/user.service';
 
 @Component({
   selector: 'app-crtificates-list',
@@ -11,31 +12,30 @@ export class CrtificatesListComponent implements OnInit {
 
   public certificatesList: Array<any>;
   public certificates_sorted: Array<any>;
-
   public language: string;
   public certificateImg: string;
-  public user_toDelete: Array<any>;
-  public user_toConfirm: Array<any>;
-  public user_toDeny: Array<any>
+  public user_toConsider: Array<any>;
+  public status: string;
 
   constructor(
-    private getUsersService: SaveUserService,
-    private lang_service: LanguageService
+    private user_Service: UserService,
+    private language_Service: LanguageService,
+    private registration_Service: SaveUserService
   ) { }
 
   ngOnInit() {
-    this.getUsersService.getUsers_fromDB();
-    this.getUsersService.users_from_service
+    this.user_Service.getUsers_fromDB();
+    this.user_Service.users_from_service // geting users from db
       .subscribe(date => {
-        this.certificatesList = date[0];
-        this.certificates_sorted = date[0];
+        this.certificatesList = date;
+        this.certificates_sorted = date;
       });
 
-    this.lang_service._selected_from_service
+    this.language_Service._selected_from_service ///language subscribe
       .subscribe(date => this.language = date)
-
   }
 
+  // -----------------------------------------SORT------------
   getSort(user_state) {
     this.certificates_sorted = [];
     this.certificatesList.forEach(element => {
@@ -44,57 +44,68 @@ export class CrtificatesListComponent implements OnInit {
       }
     });
   }
-
+  // -----------------------------------SORT--------GET ALL-----------------
   getAll() {
     this.certificates_sorted = this.certificatesList;
   }
 
-  confirm(user_id) {
-    this.user_toConfirm = [];
-    this.certificatesList.forEach(element => {
-      if (element._id === user_id) {
-        this.user_toConfirm.push(element);
-      }
-    });
-    // this.getUsersService.sertConfirmation(user_id, setState);
+
+  // -----------------------------------CHANGE USERS STATUSE----------------------
+  // first step step----------------------------
+  changeStatus(userId, toDo) {
+    this.user_toConsider = [];
+    this.status = toDo;
+    switch (this.status) {
+      case 'confirm':
+        this.certificatesList.forEach(element => {
+          if (element._id === userId) {
+            this.user_toConsider.push(element);
+          }
+        });
+        break;
+      case 'deny':
+        this.certificatesList.forEach(element => {
+          if (element._id === userId) {
+            this.user_toConsider.push(element);
+          }
+        });
+        break;
+      case 'delete':
+        this.certificatesList.forEach(element => {
+          if (element._id === userId) {
+            this.user_toConsider.push(element);
+          }
+        });
+        break;
+      default:
+        this.close();
+        break;
+    }
   }
-  confirmState(st: boolean) {
-    if (st) {
-      this.getUsersService.sertConfirmation(this.user_toConfirm[0]._id, st);
-      this.user_toConfirm = null;
-    } else this.user_toConfirm = null;
+  // second step to confirm decisions------------
+  userStatuse(userId: string, status: string) {
+    switch (status) {
+      case 'confirm':
+        this.registration_Service.sertConfirmation(userId, true, this.language);
+        this.close();
+        break;
+      case 'deny':
+        this.registration_Service.sertConfirmation(userId, false, this.language);
+        this.close();
+        break;
+      case 'delete':
+        this.registration_Service.deleteUser(userId, this.language);
+        window.location.reload()
+        this.close();
+        break;
+      default:
+        this.close();
+        break;
+    }
   }
 
-  deny(user_id) {
-    this.user_toDeny = [];
-    this.certificatesList.forEach(element => {
-      if (element._id === user_id) {
-        this.user_toDeny.push(element);
-      }
-    });
-  }
-
-  denyState(st: boolean) {
-    if (st) {
-      this.getUsersService.sertConfirmation(this.user_toDeny[0]._id, !st);
-      this.user_toDeny = null;
-    } else this.user_toDeny = null;
-  }
-
-  delete(user_id) {
-    this.user_toDelete = [];
-    this.certificatesList.forEach(element => {
-      if (element._id === user_id) {
-        this.user_toDelete.push(element);
-      }
-    });
-  }
-
-  deleteState(st: boolean) {
-    if (st) {
-      this.getUsersService.deleteUser(this.user_toDelete[0]._id);
-      this.user_toDelete = null;
-    } else this.user_toDelete = null;
+  close() {
+    this.user_toConsider = null;
   }
 
   openCertificate(link) {
@@ -104,5 +115,4 @@ export class CrtificatesListComponent implements OnInit {
   closeCertificate() {
     this.certificateImg = null;
   }
-
 }

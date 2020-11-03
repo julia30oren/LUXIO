@@ -1,53 +1,32 @@
-<!-- IF ADMIN WANT TO DELETE USER HE GET THIS MESSAGE  ----------------------------------------------------- -->
-<div *ngIf="user_toDelete" class="warn-mes message-to-admin">
-    <div *ngFor="let user of user_toDelete" class="inner-message" [ngClass]="{Hebrew1: language === 'iv'}">
-        <p>
+<!-- IF ADMIN WANT TO DELETE (DENY or APPROVE) USER HE GET THIS MESSAGE  ----------------------------------------------------- -->
+<div *ngIf="user_toConsider" class="message-to-admin" [ngClass]="{red: status==='delete', blue:status==='confirm', yellow:status==='deny'}">
+    <div *ngFor="let user of user_toConsider" class="inner-message" [ngClass]="{Hebrew1: language === 'iv'}">
+        <p *ngIf="status==='delete'">
             {{ 'ADMIN.CERTIFICATES.WARNINGS.message-1.part-1' | translate }} &laquo; {{user.first_name}} {{user.second_name}} &raquo; {{ 'ADMIN.CERTIFICATES.WARNINGS.message-1.part-2' | translate }}
         </p>
-        <div style="display: flex; flex-direction: row;">
-            <button class="btn btn-outline-dark" type="button" (click)="deleteState(true)" style="margin: 1%;">
-                {{ 'ADMIN.CERTIFICATES.WARNINGS.button-yes' | translate }}
-            </button>
-            <button class="btn btn-outline-dark" type="button" (click)="deleteState(false)" style="margin: 1%;">
-                {{ 'ADMIN.CERTIFICATES.WARNINGS.button-no' | translate }}
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- IF ADMIN WANT TO APPROVE USER HE GET THIS MESSAGE  ----------------------------------------------------- -->
-<div *ngIf="user_toConfirm" class="approve-mes message-to-admin">
-    <div *ngFor="let user of user_toConfirm" class="inner-message" [ngClass]="{Hebrew1: language === 'iv'}">
-        <p>
+        <p *ngIf="status==='confirm'">
             {{ 'ADMIN.CERTIFICATES.WARNINGS.message-2.part-1' | translate }} &laquo; {{user.first_name}} {{user.second_name}} &raquo; {{ 'ADMIN.CERTIFICATES.WARNINGS.message-2.part-2' | translate }}
         </p>
-        <div style="display: flex; flex-direction: row;">
-            <button class="btn btn-outline-dark" type="button" (click)="confirmState(true)" style="margin: 1%;">
-                {{ 'ADMIN.CERTIFICATES.WARNINGS.button-yes' | translate }}
-            </button>
-            <button class="btn btn-outline-dark" type="button" (click)="confirmState(false)" style="margin: 1%;">
-                {{ 'ADMIN.CERTIFICATES.WARNINGS.button-no' | translate }}
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- IF ADMIN WANT TO DENY USER HE GET THIS MESSAGE  ----------------------------------------------------- -->
-<div *ngIf="user_toDeny" class="deny-mes message-to-admin">
-    <div *ngFor="let user of user_toDeny" class="inner-message" [ngClass]="{Hebrew1: language === 'iv'}">
-        <p>
+        <p *ngIf="status==='deny'">
             {{ 'ADMIN.CERTIFICATES.WARNINGS.message-3.part-1' | translate }} &laquo; {{user.first_name}} {{user.second_name}} &raquo; {{ 'ADMIN.CERTIFICATES.WARNINGS.message-3.part-2' | translate }}
         </p>
         <div style="display: flex; flex-direction: row;">
-            <button class="btn btn-outline-dark" type="button" (click)="denyState(true)" style="margin: 1%;">
+            <button *ngIf="status==='delete'" class="btn btn-outline-dark" type="button" (click)="userStatuse(user._id,'delete')" style="margin: 1%;">
                 {{ 'ADMIN.CERTIFICATES.WARNINGS.button-yes' | translate }}
             </button>
-            <button class="btn btn-outline-dark" type="button" (click)="denyState(false)" style="margin: 1%;">
+            <button *ngIf="status==='confirm'" class="btn btn-outline-dark" type="button" (click)="userStatuse(user._id,'confirm')" style="margin: 1%;">
+                {{ 'ADMIN.CERTIFICATES.WARNINGS.button-yes' | translate }}
+            </button>
+            <button *ngIf="status==='deny'" class="btn btn-outline-dark" type="button" (click)="userStatuse(user._id,'deny')" style="margin: 1%;">
+                {{ 'ADMIN.CERTIFICATES.WARNINGS.button-yes' | translate }}
+            </button>
+            <button class="btn btn-outline-dark" type="button" (click)="close()" style="margin: 1%;">
                 {{ 'ADMIN.CERTIFICATES.WARNINGS.button-no' | translate }}
             </button>
         </div>
     </div>
 </div>
+<!--  -->
 
 
 <div class="USERS-LIST" [ngClass]="{Hebrew: language === 'iv'}">
@@ -90,11 +69,11 @@
                     </div>
                 </div>
                 <div class="col-md-2 buttons">
-                    <button type="button" class="btn btn-outline-primary" (click)="confirm(item._id)">
+                    <button type="button" class="btn btn-outline-primary" (click)="changeStatus(item._id,'confirm')">
                         {{ 'ADMIN.CERTIFICATES.button-approve' | translate }}</button>
-                    <button type="button" class="btn btn-outline-warning" (click)="deny(item._id)">
+                    <button type="button" class="btn btn-outline-warning" (click)="changeStatus(item._id,'deny')">
                         {{ 'ADMIN.CERTIFICATES.button-deny' | translate }}</button>
-                    <button type="button" class="btn btn-outline-danger" (click)="delete(item._id)">
+                    <button type="button" class="btn btn-outline-danger" (click)="changeStatus(item._id,'delete')">
                         {{ 'ADMIN.CERTIFICATES.button-delete' | translate }}</button>
                 </div>
             </div>
@@ -106,10 +85,3 @@
         <button (click)="closeCertificate()" type="button" class="btn btn-outline-dark" style="width: auto;">X</button>
     </div>
 </div>
-
-<!-- <div>
-    <p>{{ certificatesList | json}}</p>
-</div> -->
-
-<!-- FOOTER -->
-<app-footer></app-footer>

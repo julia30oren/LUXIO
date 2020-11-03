@@ -14,18 +14,19 @@ export class CommentsComponent implements OnInit {
     private lang_service: LanguageService
   ) { }
 
-  private languege: string;
-  private Comments: Array<any>;
+  public languege: string;
+  public comments: Array<any>;
 
   ngOnInit() {
-    this.user_service.getAllComments();
-
+    // -------------------------------------------subscribing for languege 
     this.lang_service._selected_from_service
       .subscribe(date => this.languege = date);
-
+    // ------------------------------------------subscribing for comments
+    this.user_service.getAllComments();
     this.user_service.comments_from_service
-      .subscribe(date => this.Comments = date)
-
+      .subscribe(date => this.comments = date)
   }
+
+  // need a function to delete comments by ID
 
 }

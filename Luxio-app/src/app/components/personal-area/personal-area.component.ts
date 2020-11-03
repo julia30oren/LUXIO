@@ -11,9 +11,9 @@ import { UserService } from 'src/app/services/user-servise/user.service';
 export class PersonalAreaComponent implements OnInit {
 
   constructor(
-    private shop_service: ShopService,
-    private lang_service: LanguageService,
-    private user_service: UserService
+    private language_Service: LanguageService,
+    private shop_Service: ShopService,
+    private user_Service: UserService
   ) { }
 
   public languege: string;
@@ -22,46 +22,43 @@ export class PersonalAreaComponent implements OnInit {
   public selectedProd: boolean;
 
   ngOnInit() {
-    this.shop_service.getProducts_fromDB();
-
-    this.lang_service._selected_from_service
+    this.language_Service._selected_from_service
       .subscribe(date => { this.languege = date });
 
-    this.shop_service.shop_products_from_service
+    this.shop_Service.shop_products_from_service
       .subscribe(date => {
         this.shop = date[0];
       });
 
-    this.user_service.user_to_show_from_service
+    this.user_Service.user_to_show_from_service
       .subscribe(date => {
         this.what_to_show = date || 'cart';
         let cart = JSON.parse(localStorage.getItem('my_764528_ct'));
-        this.shop_service.getProducts_sorted(cart);
+        this.shop_Service.getProducts_sorted(cart);
       });
 
-    this.shop_service.select_one_from_service
+    this.shop_Service.select_one_from_service
       .subscribe(date => this.selectedProd = date);
-
   }
 
   getMyCart() {
-    this.user_service.set_showForUser('cart');
+    this.user_Service.set_showForUser('cart');
     let cart = JSON.parse(localStorage.getItem('my_764528_ct'));
-    this.shop_service.getProducts_sorted(cart);
+    this.shop_Service.getProducts_sorted(cart);
   }
 
   getMyWishlist() {
-    this.user_service.set_showForUser('wishlist');
+    this.user_Service.set_showForUser('wishlist');
     let wishlist = JSON.parse(localStorage.getItem('my_764528_f'));
-    this.shop_service.getProducts_sorted(wishlist);
+    this.shop_Service.getProducts_sorted(wishlist);
   }
 
   getPrivateInfo() {
-    this.user_service.set_showForUser('private-info');
+    this.user_Service.set_showForUser('private-info');
   }
 
   getPurchaseHistory() {
-    this.user_service.set_showForUser('purchase-history');
+    this.user_Service.set_showForUser('purchase-history');
   }
 
 }

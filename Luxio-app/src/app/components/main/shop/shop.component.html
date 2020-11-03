@@ -1,7 +1,3 @@
-<div *ngIf="selectedProd">
-    <app-big-image></app-big-image>
-</div>
-
 <div [ngClass]="{Hebrew: languege==='iv'}" class="SHOP" *ngIf="!selectedProd">
     <div class="shop-buner"></div>
     <!-- SORT -->
@@ -70,9 +66,4 @@
 
 <div *ngIf="!selectedProd">
     <app-shop-cards></app-shop-cards>
-</div>
-
-<!-- FOOTER -->
-<div *ngIf="!selectedProd">
-    <app-footer></app-footer>
 </div>

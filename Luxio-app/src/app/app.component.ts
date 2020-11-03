@@ -7,6 +7,7 @@ import { LanguageService } from './services/language.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from './services/user-servise/user.service';
 import { ShopService } from './services/shop/shop.service';
+import { RespondService } from './services/respond/respond.service';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,9 @@ export class AppComponent implements OnInit {
   public users_props: boolean;
   public cookies: boolean = true;
   public advertisement: boolean;
+  public respond: Array<any> = [];
+  public selectedProd: boolean;
+
 
   formTemplate = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -34,82 +38,108 @@ export class AppComponent implements OnInit {
   });
 
   constructor(
-    private regService: RegistrationService,
-    private usersServ: SaveUserService,
-    private languageService: LanguageService,
-    public translate: TranslateService,
-    private user_serv: UserService,
-    private shop_service: ShopService,
-    private router: Router
+    private router: Router,
+    private respond_Service: RespondService,
+    private translate: TranslateService,
+    private language_Service: LanguageService,
+    private regestration_Service: RegistrationService,
+    private shop_Service: ShopService,
+    private user_Service: UserService
+
   ) {
     translate.addLangs(['en', 'ru', 'iv']);
     translate.setDefaultLang('en');
-
     let browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/en|ru|iv/) ? browserLang : 'en');
   }
 
 
   ngOnInit() {
+    // ------------------------------
+    this.shop_Service.getProducts_fromDB();
+    // ------------------------------timer for advertisement (after 30 sec.)-----
     window.setTimeout(() => {
       if (!this.user && !this.regForm_Open) {
         this.advertisement = true;
       }
-    }, 30000)
+    }, 30000);
+    //------------------------------------detecting location for navbar--------
+    this.location = window.location.pathname.substring(1);
+    // ----------------------------------------language setings----
+    this.language_Service.setInitialAppLanguage();
+    this.language_Service._selected_from_service
+      .subscribe(date => this.languege = date);//subscribing for languege
+    // -------------------------------------------------------------------------------------
+    this.respond_Service.respond_fromServer_service
+      .subscribe(date => {
+        console.log(date)
+        this.respond = date; // [ { "status": true, "message": "Спасибо за ваш комментарий. Он был успешно сохранен." } ]
+        window.setTimeout(() => {
+          this.respond = [];
+        }, 5000);
+      })
 
-    this.languageService.setInitialAppLanguage();
-    this.regService.regestrationForm_from_service
+
+    // -------------------------------------------REGISTRATION SETINGS-----------
+    this.regestration_Service.regestrationForm_from_service
       .subscribe(data => {
         this.regForm_Open = data;
       });
-    this.regService.regestration_formOne_from_service
+    this.regestration_Service.regestration_formOne_from_service
       .subscribe(data => {
         this.formOne_Open = data;
       });
-
-    this.regService.regestration_formAgreement_from_service
+    this.regestration_Service.regestration_formAgreement_from_service
       .subscribe(data => {
         this.formAgreement_Open = data;
       });
-    this.regService.login_form_from_service
+    this.regestration_Service.login_form_from_service
       .subscribe(data => {
         this.formLogin_Open = data;
       });
-    this.regService.passwordRestore_form_from_service
+    this.regestration_Service.passwordRestore_form_from_service
       .subscribe(data => {
         this.formPasswodRestore_Open = data;
       });
-
-    this.user_serv.user_name_from_service
+    // -----------------------------
+    this.user_Service.user_name_from_service
       .subscribe(date => {
         this.user = date
-      })
+      });
 
-    this.languageService._selected_from_service
-      .subscribe(date => this.languege = date)
 
-    this.location = window.location.pathname.substring(1);
+    // -------------------------------------
+    this.shop_Service.select_one_from_service
+      .subscribe(date => this.selectedProd = date);
   }
+
+  // --------------------seting chosen languega--------------
+  setLng(languege) {
+    this.language_Service.setLanguage(languege);
+  }
+  // ----------------------seting new location for navbar-----------
+  setLocation(location: string) {
+    this.location = location;
+  }
+  // ----------------------------------------
+
+
+
+
+
+
 
   usersPropertise() {
     this.users_props = !this.users_props;
-  }
-
-  setLocation(loc: string) {
-    this.location = loc;
   }
 
   openProdOptions() {
     this.prodOptionsOpen = !this.prodOptionsOpen;
   }
 
-  setLng(l) {
-    this.languageService.setLanguage(l);
-  }
-
   getUsers() {
     // console.log('click from user');
-    this.usersServ.getUsers_fromDB();
+    // this.usersServ.getUsers_fromDB();
   }
 
   openForm() {
@@ -117,24 +147,25 @@ export class AppComponent implements OnInit {
   }
 
   closeForm() {
-    this.regService.close_RegistrationForm();
+    this.regestration_Service.close_RegistrationForm();
   }
 
   registration_form() {
-    this.regService.open_RegistrationForm();
+    this.regestration_Service.open_RegistrationForm();
   }
 
   login_form() {
     if (this.regForm_Open) {
-      this.regService.loginPage();
-    } else this.regService.loginForm();
+      this.regestration_Service.loginPage();
+    } else this.regestration_Service.loginForm();
   }
 
   passwordRest_form() {
-    this.regService.passwordRestorePage();
+    this.regestration_Service.passwordRestorePage();
   }
 
   logOut() {
+    this.router.navigate(['/new']);
     localStorage.clear();
   }
 
@@ -146,27 +177,28 @@ export class AppComponent implements OnInit {
     this.advertisement = false;
   }
 
+  // -----------------------------------
   doSearch(search_txt) {
-    if (search_txt !== '') {
-      // console.log(search_txt)
-      this.shop_service.getProducts_fromDB();
+    // if (search_txt !== '') {
+    //   // console.log(search_txt)
+    //   this.shop_Service.getProducts_fromDB();
 
-      this.shop_service.shop_products_from_service
-        .subscribe(date => {
-          let shop = date[0];
-          // 
-          if (shop) {
+    //   this.shop_Service.shop_products_from_service
+    //     .subscribe(date => {
+    //       let shop = date[0];
+    //       // 
+    //       if (shop) {
 
-            shop.forEach(element => {
-              if (element.name.includes(search_txt)) {
-                console.log(element)
-                this.shop_service.selectProd(element, true);
-                this.router.navigate(['/search', search_txt]);
-              }
-            });
-          }
-        });
-    }
+    //         shop.forEach(element => {
+    //           if (element.name.includes(search_txt)) {
+    //             console.log(element)
+    //             this.shop_Service.selectProd(element, true);
+    //             this.router.navigate(['/search', search_txt]);
+    //           }
+    //         });
+    //       }
+    //     });
+    // }
 
   }
 

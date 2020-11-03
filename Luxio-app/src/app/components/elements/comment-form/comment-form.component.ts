@@ -13,17 +13,17 @@ export class CommentFormComponent implements OnInit {
   public formTemplate = new FormGroup({
     comment: new FormControl('', Validators.required),
   });
-  public languege: string;
+  public language: string;
   public isSubmitted: boolean;
 
   constructor(
-    private lang_service: LanguageService,
-    private user_service: UserService
+    private language_Service: LanguageService,
+    private user_Service: UserService
   ) { }
 
   ngOnInit() {
-    this.lang_service._selected_from_service
-      .subscribe(date => { this.languege = date });
+    this.language_Service._selected_from_service
+      .subscribe(date => { this.language = date });
   }
 
   onSubmit(formValue) {
@@ -32,8 +32,7 @@ export class CommentFormComponent implements OnInit {
     if (this.formTemplate.valid) {
       formValue.user_id = localStorage.getItem('u324_3i_25d');
       formValue.user_name = localStorage.getItem('u324_n4325e');
-      formValue.user_languege = this.languege;
-      this.user_service.leaveAcomment(formValue);
+      this.user_Service.leaveAcomment(formValue, this.language);
       this.resetForm();
     } else {
       console.log('denied');

@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { RespondService } from '../respond/respond.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShopService {
 
-  private DB_url: string = 'http://localhost:5000';
+  private prod_url: string = 'http://localhost:5000/products';
 
   private shop_products = new BehaviorSubject<Array<any>>([]);
   public shop_products_from_service = this.shop_products.asObservable();
@@ -34,48 +35,61 @@ export class ShopService {
   public my_cart_from_service = this.my_cart.asObservable();
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private respond_Service: RespondService
   ) { }
 
+  // -----------------------------GET ALL PRODUCTS FROM DB------------------------
   getProducts_fromDB() {
-    return this.http.get(`${this.DB_url}/shop`).subscribe(res => {
-      this.shop_products.next([res]);
+    return this.http.get(`${this.prod_url}`).subscribe(res => {
+      let products = res[0].allProductes;
+      if (products) {
+        this.shop_products.next([products]);
+      } else console.error('no products came from server');
     });
   }
-
-  saveProduct_toDB(prod: object) {
-    return this.http.post(`${this.DB_url}/shop/save`, prod).subscribe(res => {
-      this.responce_fromDB.next([res]);
-      this.getProducts_fromDB();
-      // console.log(this.shop_products);
-    });
-  }
-
-  removeProduct_fromDB(id: number) {
-    return this.http.get(`${this.DB_url}/shop/remove/${id}`).subscribe(res => {
-      this.shop_products.next([res]);
+  // ----------------------------------SAVE NEW PRODUCT TO DB or UPDATE------------------------
+  saveProduct_toDB(prod: object, language: string) {
+    return this.http.post(`${this.prod_url}/${language}/save`, prod).subscribe(res => {
+      // console.log(res);
+      this.respond_Service.saveRespond(res);
       this.getProducts_fromDB();
     });
   }
+  // ----------------------------------DELETE PRODUCT FROM DB BY ID ------------------------
+  removeProduct_fromDB(id: number, language: string) {
+    return this.http.get(`${this.prod_url}/${language}/remove/${id}`).subscribe(res => {
+      // console.log(res);
+      this.respond_Service.saveRespond(res);
+      this.getProducts_fromDB();
+    });
+  }
 
+  // ----------------------------------------------FUNCTIONS-----------------------
+  // -------------------save products sorted ----------
   getProducts_sorted(sortedProds: Array<any>) {
     this.shop_products_sorted.next(sortedProds);
   }
 
+  // -------------------save products extra sorted ----------
   getXtra_sorted(sortedProds: Array<any>) {
     this.xtra_products_sorted.next(sortedProds);
   }
 
+  // -------------------get product selected and save ----------
   selectProd(prod: object, open_state: boolean) {
     this.prod_selected.next([prod]);
     this.select_one.next(open_state);
   }
 
+  //--------------------new favorites on service-----------
   favorites(new_arr: Array<any>) {
     this.my_favorites.next(new_arr);
   }
 
+  //--------------------new cart on service-----------
   cart(new_arr: Array<any>) {
     this.my_cart.next(new_arr)
   }
+
 }

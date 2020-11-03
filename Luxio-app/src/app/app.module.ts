@@ -31,7 +31,6 @@ import { CookiesComponent } from './components/cookies/cookies.component';
 import { PrivateInfoComponent } from './components/elements/private-info/private-info.component';
 import { PurchaseHistoryComponent } from './components/elements/purchase-history/purchase-history.component';
 import { CommentFormComponent } from './components/elements/comment-form/comment-form.component';
-import { MessagesComponent } from './components/elements/messages/messages.component';
 
 
 // AoT requires an exported function for factories
@@ -58,7 +57,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PrivateInfoComponent,
     PurchaseHistoryComponent,
     CommentFormComponent,
-    MessagesComponent,
   ],
   imports: [
     BrowserModule,

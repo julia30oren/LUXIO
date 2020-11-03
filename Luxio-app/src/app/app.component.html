@@ -1,6 +1,18 @@
 <div class="main-app">
-    <!-- [ngClass]="{Hebrew: langIv}" -->
-    <!-- NAVIGATION -->
+    <!-- ----------------------------------------------------------------- -->
+    <div *ngIf="selectedProd" id="selected-prod">
+        <app-big-image></app-big-image>
+    </div>
+    <!-- ----------------------------------------RESPOND FROM DB message--------------->
+    <!-- changing background color depending on respond status -->
+    <div *ngIf="respond[0]" class="respond-bg" [ngClass]="{infoMessage: respond[0].status===true, errorMessage:respond[0].status===false}">
+        <div class="respond" [ngClass]="{H: languege==='iv'}">
+            <h3>{{respond[0].message}}</h3>
+            <!-- <p>{{respond|json}}</p> -->
+        </div>
+    </div>
+    <!--  -->
+    <!-------------------------------------------------- NAVIGATION ---------------------->
     <div class="HEADER">
         <div class="Akzentz-logo"></div>
 
@@ -40,34 +52,9 @@
         </div>
 
         <div class="user-proertise" *ngIf="users_props">
-            <a href="personal-area" class="u-p">{{ 'PERSONAL-AREA.personal-information' | translate }}</a>
-            <a href="/{{location}}" class="u-p" (click)="logOut()">{{'NAVIGATION.sign-out'| translate}}</a>
+            <a href="personal-area" class="user-props">{{ 'PERSONAL-AREA.personal-information' | translate }}</a>
+            <a href="/{{location}}" class="user-props" (click)="logOut()">{{'NAVIGATION.sign-out'| translate}}</a>
         </div>
-
-        <style>
-            .user-proertise {
-                width: 200px;
-                background-color: rgb(0, 0, 0);
-                position: absolute;
-                top: 100px;
-                right: 50px;
-                display: flex;
-                flex-direction: column;
-                align-content: space-between;
-            }
-            
-            .user-icon {
-                cursor: pointer;
-            }
-            
-            .u-p {
-                margin: 1%;
-                width: 98%;
-                text-align: center;
-                color: white;
-            }
-        </style>
-
     </div>
 
     <!-- REGISTRATION FORM -->
@@ -208,7 +195,11 @@
     </style>
 
     <!-- CONTENT -->
-    <div class="content">
+    <div class="content" *ngIf="!selectedProd">
         <router-outlet></router-outlet>
     </div>
+
+
+    <!-------------------------------------------- FOOTER -->
+    <app-footer id="footer"></app-footer>
 </div>

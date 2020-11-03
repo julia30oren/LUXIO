@@ -1,3 +1,60 @@
+/* ---------------------RESPOND FROM DB message--------- */
+
+.respond {
+    background-color: white;
+    border: black 2px solid;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    color: brown;
+}
+
+.respond-bg {
+    width: 100%;
+    position: fixed;
+    top: 45%;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    text-align: center;
+}
+
+.infoMessage {
+    background: #ABC7CE;
+    background: -moz-linear-gradient(left, #ABC7CE 0%, #D45959 50%, #ABC7CE 100%);
+    background: -webkit-linear-gradient(left, #ABC7CE 0%, #D45959 50%, #ABC7CE 100%);
+    background: linear-gradient(to right, #ABC7CE 0%, #D45959 50%, #ABC7CE 100%);
+}
+
+.errorMessage {
+    background: #D45959;
+    background: -moz-linear-gradient(left, #D45959 0%, #CE3636 50%, #D45959 100%);
+    background: -webkit-linear-gradient(left, #D45959 0%, #CE3636 50%, #D45959 100%);
+    background: linear-gradient(to right, #D45959 0%, #CE3636 50%, #D45959 100%);
+}
+
+
+/* --------------SELECTED PRODUCT------- */
+
+#selected-prod {
+    width: 70%;
+    margin-top: 200px;
+}
+
+
+/* ---------------------FOOTER------ */
+
+#footer {
+    width: 100%;
+}
+
+
+/* ------------------------------------------------- */
+
 .main-app {
     width: 100%;
     display: flex;
@@ -141,6 +198,28 @@ option {
 
 
 /* user's navigation */
+
+.user-proertise {
+    width: 200px;
+    background-color: rgb(0, 0, 0);
+    position: absolute;
+    top: 100px;
+    right: 50px;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.user-icon {
+    cursor: pointer;
+}
+
+.user-props {
+    margin: 1%;
+    width: 98%;
+    text-align: center;
+    color: white;
+}
 
 .users-nav {
     display: flex;

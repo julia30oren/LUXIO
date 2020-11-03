@@ -23,13 +23,13 @@ router.get("/", async(req, res) => {
 // ---------------------------------------------------------------------can be done only by user-------------------------
 router.post("/:lang/save", async(req, res) => {
     const language = req.params.lang;
-    const { comment, user_id, user_name, user_languege } = req.body;
+    const { comment, user_id, user_name } = req.body;
     // creating new comment-----------------------
     const newComment = new CommentSchema({
         comment: comment,
         user_id: user_id,
         user_name: user_name,
-        user_languege: user_languege
+        user_languege: language
     });
     // ------------------------------------------SAVING------------------
     try {
@@ -46,7 +46,7 @@ router.post("/:lang/save", async(req, res) => {
                 default:
                     responseMessage = `תודה לך על תגובתך. הוא נשמר בהצלחה.`
             }
-            res.json([{ status: true, massage: responseMessage }]);
+            res.json([{ status: true, message: responseMessage }]);
         }
         // -------------------------ERRORS--------------
         else {
@@ -60,11 +60,11 @@ router.post("/:lang/save", async(req, res) => {
                 default:
                     responseMessage = `התגובה שלך לא נשמרה. בבקשה נסה שוב.`
             }
-            res.json([{ status: false, massage: responseMessage }]);
+            res.json([{ status: false, message: responseMessage }]);
             // logger.error(``);
         }
     } catch (err) {
-        res.json([{ status: false, massage: err.message }]);
+        res.json([{ status: false, message: err.message }]);
         // logger.error(``);
     }
 })
@@ -89,7 +89,7 @@ router.get("/:lang/remove/:id", async(req, res) => {
                 default:
                     responseMessage = `התגובה נמחקה.`
             }
-            res.json([{ status: true, massage: responseMessage }]);
+            res.json([{ status: true, message: responseMessage }]);
         }
         // -------------------------ERRORS--------------
         else {
@@ -103,11 +103,11 @@ router.get("/:lang/remove/:id", async(req, res) => {
                 default:
                     responseMessage = `התגובה לא נמצאה.`
             }
-            return res.json([{ status: false, massage: responseMessage }]);
+            return res.json([{ status: false, message: responseMessage }]);
             // logger.error(``);
         }
     } catch (err) {
-        return res.json([{ status: false, massage: err.message }]);
+        return res.json([{ status: false, message: err.message }]);
         // logger.error(``);
     }
 })

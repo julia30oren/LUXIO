@@ -73,7 +73,7 @@ router.post("/:lang/save", async(req, res) => {
             emailToAdmin(userToSave);
             // Send message in different languages----------------------
             emailToUser_Info(language);
-            res.json([{ state: true, message: responseMessage }]);
+            res.json([{ status: true, message: responseMessage }]);
             // logger.info(``);
         }
         // ---------------------------ERRORS------------
@@ -89,20 +89,20 @@ router.post("/:lang/save", async(req, res) => {
                     responseMessage = `יש לנו שגיאה. בקשתך לא הוגשה..`
                     break;
             }
-            res.json([{ state: false, message: responseMessage }]);
+            res.json([{ status: false, message: responseMessage }]);
             // logger.error(``);
         }
     } catch (err) {
-        res.json([{ state: false, message: err.message }]);
+        res.json([{ status: false, message: err.message }]);
         // logger.error(``);
     }
 });
 
 // ------------------------------------------------------USER STATUSE CHANGE------------------------
-router.get("/:lang/status/:id/:name", async(req, res) => {
+router.get("/:lang/status/:id/:status", async(req, res) => {
     const language = req.params.lang;
     const id = req.params.id;
-    const status = req.params.name;
+    const status = req.params.status;
     try {
         const user = await UserSchema.findOne({ "_id": id });
         const statusChange = await UserSchema.updateOne({ "_id": id }, { $set: { "status": status } });
@@ -122,7 +122,7 @@ router.get("/:lang/status/:id/:name", async(req, res) => {
                         break;
                 }
                 emailToUser_Deny(language);
-                res.json([{ state: true, message: responseMessage }]);
+                res.json([{ status: true, message: responseMessage }]);
                 // logger.info(``);
             } else if (status === "true") {
                 switch (language) {
@@ -137,7 +137,7 @@ router.get("/:lang/status/:id/:name", async(req, res) => {
                         break;
                 }
                 emailToUser_Confirm(language);
-                res.json([{ state: true, message: responseMessage }]);
+                res.json([{ status: true, message: responseMessage }]);
                 // logger.info(``);
             }
             // ---------------------------ERRORS------------------
@@ -153,7 +153,7 @@ router.get("/:lang/status/:id/:name", async(req, res) => {
                         responseMessage = `סטטוס המשתמשים לא השתנה.`
                         break;
                 }
-                res.json([{ state: false, message: responseMessage }]);
+                res.json([{ status: false, message: responseMessage }]);
                 // logger.error(``);
             }
         } else {
@@ -168,11 +168,11 @@ router.get("/:lang/status/:id/:name", async(req, res) => {
                     responseMessage = `סטטוס המשתמשים לא השתנה.`
                     break;
             }
-            res.json([{ state: false, message: responseMessage }]);
+            res.json([{ status: false, message: responseMessage }]);
             // logger.error(``);
         }
     } catch (err) {
-        res.json([{ state: false, message: err.message }]);
+        res.json([{ status: false, message: err.message }]);
         // logger.error(``);
     }
 });
@@ -197,7 +197,7 @@ router.get('/:lang/delete/user/:id', async(req, res) => {
                     responseMessage = `המשתמש נמחק.`
                     break;
             }
-            res.json([{ state: true, message: responseMessage }]);
+            res.json([{ status: true, message: responseMessage }]);
             // logger.info(``);
         }
         // ---------------------------ERRORS------------
@@ -213,11 +213,11 @@ router.get('/:lang/delete/user/:id', async(req, res) => {
                     responseMessage = `User not found.`
                     break;
             }
-            return res.json([{ state: false, message: responseMessage }]);
+            return res.json([{ status: false, message: responseMessage }]);
             // logger.error(``);
         }
     } catch (err) {
-        return res.json([{ state: false, message: err.message }]);
+        return res.json([{ status: false, message: err.message }]);
         // logger.error(``);
     }
 });
@@ -248,7 +248,7 @@ router.get('/:lang/password/restore/:email', async(req, res) => {
                         responseMessage = `הסיסמה שונתה. סיסמה זמנית נשלחה אל <<${email}>>.`
                         break;
                 }
-                return res.json([{ state: true, message: responseMessage }]);
+                return res.json([{ status: true, message: responseMessage }]);
                 // logger.info(``);
             }
             // ---------------------------ERRORS------------
@@ -264,7 +264,7 @@ router.get('/:lang/password/restore/:email', async(req, res) => {
                         responseMessage = `הסיסמה לא שונתה. בבקשה נסה שוב.`
                         break;
                 }
-                return res.json([{ state: false, message: responseMessage }]);
+                return res.json([{ status: false, message: responseMessage }]);
                 // logger.error(``);
             }
         } else {
@@ -279,11 +279,11 @@ router.get('/:lang/password/restore/:email', async(req, res) => {
                     responseMessage = `משתמש עם דוא"ל זה <<${email}>> לא קיים.`
                     break;
             }
-            return res.json([{ state: false, message: responseMessage }]);
+            return res.json([{ status: false, message: responseMessage }]);
             // logger.error(``);
         }
     } catch (err) {
-        return res.json([{ state: false, message: err.message }]);
+        return res.json([{ status: false, message: err.message }]);
         // logger.error(``);
     }
 });

@@ -12,8 +12,8 @@ import { UserService } from 'src/app/services/user-servise/user.service';
 export class PersonalACardComponent implements OnInit {
 
   constructor(
+    private language_Service: LanguageService,
     private shop_service: ShopService,
-    private lang_service: LanguageService,
     private user_service: UserService
   ) { }
 
@@ -24,13 +24,12 @@ export class PersonalACardComponent implements OnInit {
   public TOTAL_PRICE: number = 0;
 
   ngOnInit() {
-    this.shop_service.getProducts_fromDB();
-
-    this.lang_service._selected_from_service
+    this.language_Service._selected_from_service
       .subscribe(date => { this.languege = date });
 
     this.user_service.user_to_show_from_service
       .subscribe(date => {
+        console.log(date)
         this.what_to_show = date;
         console.log(this.what_to_show)
         if (this.what_to_show === 'cart') {

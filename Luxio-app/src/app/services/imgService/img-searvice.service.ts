@@ -21,7 +21,7 @@ export class ImageService {
     // console.log('imageDetails : ', imageDetails, 'formValue : ', formValue);
 
     // CLOUDINARY ----
-    return this.http.post('http://localhost:5000/register/upload-images',
+    return this.http.post('http://localhost:5000/user/registeration/upload-certificate',
       imageDetails)
       .subscribe(res => {
         // console.log(res)
