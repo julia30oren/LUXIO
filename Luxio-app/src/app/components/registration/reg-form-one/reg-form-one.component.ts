@@ -95,13 +95,12 @@ export class RegFormOneComponent implements OnInit {
 
   Save(formValue) {
     if (this.category === 'self employed' && this.imgSrc) {
-      this.cert_service.insertImageDetails(this.selectedImg, formValue);
+      this.cert_service.insertImageDetails(this.selectedImg, formValue, this.languege);
       this.resetForm();
       this.regService.close_RegistrationForm();
     } else if (this.category === 'salon representative') {
       formValue.business = { name: this.business_name, id: this.business_id };
-      formValue.languege = this.languege;
-      this.users_db.saveUser_toDB(formValue);
+      this.users_db.saveUser_toDB(formValue, this.languege);
       this.resetForm();
       this.regService.close_RegistrationForm();
     }

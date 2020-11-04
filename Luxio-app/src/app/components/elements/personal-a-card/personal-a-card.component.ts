@@ -29,9 +29,7 @@ export class PersonalACardComponent implements OnInit {
 
     this.user_service.user_to_show_from_service
       .subscribe(date => {
-        console.log(date)
         this.what_to_show = date;
-        console.log(this.what_to_show)
         if (this.what_to_show === 'cart') {
           this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_ct'));
           this.getTotalPrice();

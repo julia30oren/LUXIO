@@ -72,7 +72,6 @@ export class AppComponent implements OnInit {
     // -------------------------------------------------------------------------------------
     this.respond_Service.respond_fromServer_service
       .subscribe(date => {
-        console.log(date)
         this.respond = date; // [ { "status": true, "message": "Спасибо за ваш комментарий. Он был успешно сохранен." } ]
         window.setTimeout(() => {
           this.respond = [];
@@ -165,7 +164,6 @@ export class AppComponent implements OnInit {
   }
 
   logOut() {
-    this.router.navigate(['/new']);
     localStorage.clear();
   }
 

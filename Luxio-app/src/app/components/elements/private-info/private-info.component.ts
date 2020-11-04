@@ -84,9 +84,10 @@ export class PrivateInfoComponent implements OnInit {
 
   newPassSave(formValue) {
     this.isSubmittedPass = true;
+    let email = this.user[0].email
     if (this.formTemplate_password.valid && formValue.new_pass === formValue.conf_new) {
       this.conf_new = true;
-      this.user_Service.saveNewPassword(this.user[0].email, formValue, this.languege);
+      this.user_Service.saveNewPassword(email, formValue, this.languege);
     } else {
       this.conf_new = false;
       console.log('denied');

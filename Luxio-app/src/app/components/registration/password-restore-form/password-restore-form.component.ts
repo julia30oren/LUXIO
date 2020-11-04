@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { LanguageService } from 'src/app/services/language.service';
+import { RegistrationService } from 'src/app/services/registation/registration.service';
+import { RespondService } from 'src/app/services/respond/respond.service';
 import { SaveUserService } from 'src/app/services/saveUser/save-user.service';
 
 
@@ -10,30 +13,41 @@ import { SaveUserService } from 'src/app/services/saveUser/save-user.service';
 })
 export class PasswordRestoreFormComponent implements OnInit {
 
-  private step_2: boolean = false;
-  private denied: boolean = false;
-  private response: string;
-  public isSubmitted: boolean;
-  public isSubmitted2: boolean;
+  public language: string;
+  public openForm: boolean;
   public formTemplate = new FormGroup({
     email: new FormControl('', Validators.required)
   });
-  private passValid: boolean;
+  public isSubmitted: boolean;
+  public denied: boolean = false;
+  public passValid: boolean;
   public formTemplate2 = new FormGroup({
     tempPass: new FormControl('', Validators.required),
     newPass: new FormControl('', Validators.required),
     repeatPass: new FormControl('', Validators.required)
   });
+  public isSubmitted2: boolean;
 
   constructor(
-    private saveUser_service: SaveUserService
+    private language_Service: LanguageService,
+    private respond_Service: RespondService,
+    // private regestration_Service: RegistrationService,
+    private saveUser_Service: SaveUserService
   ) { }
 
   ngOnInit() {
+    this.language_Service._selected_from_service
+      .subscribe(date => this.language = date);
 
-    this.saveUser_service.newPas_from_service
+    // this.respond_Service.respond_fromServer_service
+    //   .subscribe(date => {
+    //     console.log(date)
+    //   });
+
+    this.saveUser_Service.stateForm_from_service
       .subscribe(date => {
-        this.response = date;
+        console.log(date);
+        this.openForm = date;
       })
   }
 
@@ -45,9 +59,9 @@ export class PasswordRestoreFormComponent implements OnInit {
     this.isSubmitted = true;
     if (this.formTemplate.valid) {
       console.log(formValue.email)
-      this.saveUser_service.generateNewPass(formValue.email);
+      this.saveUser_Service.generateNewPass(formValue.email, this.language);
+
     } else {
-      // console.log('denied');
       this.denied = true;
     }
   }
@@ -58,12 +72,9 @@ export class PasswordRestoreFormComponent implements OnInit {
 
   onSubmit2(formValue, email) {
     this.isSubmitted2 = true;
-
     if (formValue.newPass && formValue.newPass === formValue.repeatPass) {
       this.passValid = true;
-      // console.log(email)
-      // console.log(formValue)
-      this.saveUser_service.setNewPassword(formValue, email.email)
+      this.saveUser_Service.setNewPassword(formValue, email.email, this.language);
     } else {
       this.passValid = false;
     }

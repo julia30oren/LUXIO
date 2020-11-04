@@ -3,7 +3,6 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { RegistrationService } from '../registation/registration.service';
 import { ShopService } from '../shop/shop.service';
-import { TranslateService } from '@ngx-translate/core';
 import { RespondService } from '../respond/respond.service';
 
 
@@ -36,16 +35,12 @@ export class UserService {
   private comments = new BehaviorSubject<Array<any>>([]);
   public comments_from_service = this.comments.asObservable();
 
-  // private message_to_user = new BehaviorSubject<any>(null);
-  // public message_to_user_from_service = this.message_to_user.asObservable();
-
 
   constructor(
     private http: HttpClient,
     private respond_Service: RespondService,
-    private translate: TranslateService,
-    private register_service: RegistrationService,
-    private shop_service: ShopService
+    private register_Service: RegistrationService,
+    private shop_Service: ShopService
   ) { }
 
 
@@ -66,12 +61,15 @@ export class UserService {
     });
   }
 
-  // ---------------LOG IN USER------------
-  userToLogin(params) {
-    // return this.http.post(`${this.user_URL}/${this.lang}/login`, params).subscribe(res => {
-    //   console.log(res);
-    //   // this.seveUser_onService(res);
-    // });
+  // ---------------LOG IN USER------------/:lang/login
+  userToLogin(params: object, languege: string) {
+    return this.http.post(`${this.user_URL}/${languege}/login`, params).subscribe(res => {
+      console.log(res);
+      this.respond_Service.saveRespond(res);
+      if (res[0].status) {
+        this.seveUser_onService(res);
+      }
+    });
   }
 
   // ---------------update user by id------------
@@ -85,7 +83,7 @@ export class UserService {
   saveNewPassword(email: string, new_pass: object, languege: string) {
     return this.http.post(`${this.user_URL}/${languege}/newpass/${email}`, new_pass)
       .subscribe(res => {
-        console.log(res)
+        // console.log(res)
         this.respond_Service.saveRespond(res);
       });
   };
@@ -95,7 +93,7 @@ export class UserService {
     let userLog = localStorage.getItem('u324_3i_25d'); //geting users id
     let toSend = { _id: userLog, favorites: newWishlist };
     // ----------------------------------------saving new favorites to service----------------
-    this.shop_service.favorites(newWishlist);
+    this.shop_Service.favorites(newWishlist);
     // -----------------------------------------saving new favorites to DB----------------
     return this.http.post(`${this.user_URL}/new-favorites`, toSend)
       .subscribe(res => {
@@ -108,7 +106,7 @@ export class UserService {
     let userLog = localStorage.getItem('u324_3i_25d');
     let toSend = { _id: userLog, cart: newCart };
     // ----------------------------------------saving new cart to service----------------
-    this.shop_service.cart(newCart);
+    this.shop_Service.cart(newCart);
     // -----------------------------------------saving new cart to DB----------------
     return this.http.post(`${this.user_URL}/new-cart`, toSend)
       .subscribe(res => {
@@ -147,25 +145,25 @@ export class UserService {
 
   // --------------------------------------------------------------------------------FUNCTIONS-----------------
   // ----to save user on service----------
-  seveUser_onService(user) {
-    console.log(user);
-    // this.user.next([res]);
-    // let thisUser = [];
-    // thisUser.push(res);
-    // if (thisUser[0].status) {
-    //   // console.log(res);
-    //   this.user_name.next(thisUser[0].first_name + ' ' + thisUser[0].second_name);
-    //   localStorage.setItem('u324_3i_25d', thisUser[0]._id);
-    //   localStorage.setItem('u324_n4325e', thisUser[0].first_name + ' ' + thisUser[0].second_name);
+  seveUser_onService(userFullInfo) {
+    // geting user and token:
+    let user = userFullInfo[0].user;
+    let token = userFullInfo[0].token;
+    this.user.next([user]); //saving user on server
+    this.user_name.next(user.first_name + ' ' + user.second_name);// saving user name on serner
+    // saving users info to localStorage
+    localStorage.setItem('u324_3i_25d', user._id);
+    localStorage.setItem('u324_n4325e', user.first_name + ' ' + user.second_name);
+    localStorage.setItem('token', token);
+    localStorage.setItem('my_764528_f', JSON.stringify(user.favorites) || JSON.stringify([]));
+    this.shop_Service.favorites(user.favorites);
+    localStorage.setItem('my_764528_ct', JSON.stringify(user.cart) || JSON.stringify([]));
+    this.shop_Service.cart(user.cart);
 
-    //   localStorage.setItem('my_764528_f', JSON.stringify(thisUser[0].favorites) || JSON.stringify([]));
-    //   this.shop_service.favorites(thisUser[0].favorites);
-    //   localStorage.setItem('my_764528_ct', JSON.stringify(thisUser[0].cart) || JSON.stringify([]));
-    //   this.shop_service.cart(thisUser[0].cart);
-
-    //   this.register_service.close_RegistrationForm();
-    // }
+    this.register_Service.close_RegistrationForm();   // closing log-in form
   }
+
+
 
   saveToFavorites(newToFavorites: object) {
     let localWishlist = JSON.parse(localStorage.getItem('my_764528_f'));

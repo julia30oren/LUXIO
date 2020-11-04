@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { UserService } from '../user-servise/user.service';
 import { RespondService } from '../respond/respond.service';
+import { RegistrationService } from '../registation/registration.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,25 +13,24 @@ export class SaveUserService {
   // private DB_url: string = 'http://localhost:5000';
   private registeration_URL: string = 'http://localhost:5000/user/registeration';
 
-  private newPas = new BehaviorSubject<string>('');
-  public newPas_from_service = this.newPas.asObservable();
+  private stateForm = new BehaviorSubject<boolean>(false);
+  public stateForm_from_service = this.stateForm.asObservable();
 
   constructor(
     private http: HttpClient,
     private respond_Service: RespondService,
+    private register_Service: RegistrationService,
     private user_Service: UserService
   ) { }
 
 
 
-  saveUser_toDB(info: object) {
-    return this.http.post(`${this.registeration_URL}/save`, info).subscribe(res => {
-      if (res[0]) {
-        alert(res[0].message);
-        if (res[0].state === 1) {
-          localStorage.removeItem('my_764528_ct');
-          localStorage.removeItem('my_764528_f');
-        }
+  saveUser_toDB(info: object, language: string) {
+    return this.http.post(`${this.registeration_URL}/${language}/save`, info).subscribe(res => {
+      this.respond_Service.saveRespond(res);
+      if (res[0].statuse) {
+        localStorage.removeItem('my_764528_ct');
+        localStorage.removeItem('my_764528_f');
       }
     });
   }
@@ -51,32 +51,23 @@ export class SaveUserService {
     });
   }
 
-  generateNewPass(email: string) {
-    return this.http.get(`${this.registeration_URL}/user/${email}`).subscribe(res => {
-      // console.log(res)
-      if (res === 'ok') {
-        // console.log('email with new password has been sent to your email');
-        this.newPas.next('ok')
-      } else if (res === 'not found') {
-        // console.log('user not found')
-        this.newPas.next('user not found')
-
+  generateNewPass(email: string, language: string) {
+    return this.http.get(`${this.registeration_URL}/${language}/password/restore/${email}`).subscribe(res => {
+      this.respond_Service.saveRespond(res);
+      if (res[0].status) {
+        this.stateForm.next(true);
       }
     });
   }
 
-  setNewPassword(info, email) {
-    console.log(info, email)
-    return this.http.post(`${this.registeration_URL}/user-new-password/${email}`, info).subscribe(res => {
-      // console.log(res)
-      this.user_Service.seveUser_onService(res);
-      // if (res === 'ok') {
-      //   // console.log('email with new password has been sent to your email');
-      //   this.newPas.next('ok')
-      // } else if (res === 'not found') {
-      //   // console.log('user not found')
-      //   this.newPas.next('user not found')
-      // }
+  setNewPassword(info, email: string, language: string) {
+    return this.http.post(`${this.registeration_URL}/${language}/password/restore/new/${email}`, info).subscribe(res => {
+      this.respond_Service.saveRespond(res);
+      console.log(res);
+      if (res[0].status) {
+        this.register_Service.close_RegistrationForm();
+      }
+
     });
   }
 

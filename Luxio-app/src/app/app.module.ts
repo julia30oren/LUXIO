@@ -31,6 +31,7 @@ import { CookiesComponent } from './components/cookies/cookies.component';
 import { PrivateInfoComponent } from './components/elements/private-info/private-info.component';
 import { PurchaseHistoryComponent } from './components/elements/purchase-history/purchase-history.component';
 import { CommentFormComponent } from './components/elements/comment-form/comment-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 // AoT requires an exported function for factories
@@ -76,7 +77,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -287,7 +287,91 @@ router.get('/:lang/password/restore/:email', async(req, res) => {
         // logger.error(``);
     }
 });
-
+// --------------------------------------------NEW PASSWORD SAVE------AFTER RESTORE-----------------------
+router.post('/:lang/password/restore/new/:email', async(req, res) => {
+    const language = req.params.lang;
+    const email = req.params.email;
+    const { tempPass, newPass } = req.body;
+    try {
+        let user = await UserSchema.find({ "email": email });
+        let password = user[0].password;
+        // check if password right
+        if (password) {
+            const cryptoPassChek = bcrypt.compareSync(tempPass, password);
+            if (cryptoPassChek) {
+                // -------------------------------------- cripting new password and saving it --
+                const salt = bcrypt.genSaltSync(10);
+                const passwordHash = bcrypt.hashSync(newPass, salt);
+                // -----------------------------------------------------SAVING---------------
+                const save_newPassword = await UserSchema.updateOne({ "email": email }, { $set: { "password": passwordHash } });
+                // ------------------------------------------------------------ if success -----
+                if (save_newPassword.nModified === 1) {
+                    // ------------------------------------------------------CHOOSING LANGUAGE for response-------------------------
+                    switch (language) {
+                        case 'en':
+                            responseMessage = `<<New password>> has been saved successfully.`
+                            break;
+                        case 'ru':
+                            responseMessage = `<<Новый пароль>> Сохранено успешно.`
+                            break;
+                        default:
+                            responseMessage = `<< סיסמה חדשה >> נשמרה בהצלחה.`
+                            break;
+                    }
+                    res.json([{ status: true, message: responseMessage }]);
+                    // logger.info(``);
+                }
+                // ---------------------------------------------------------------------------- ERRORS -----
+                else {
+                    switch (language) {
+                        case 'en':
+                            responseMessage = `Something went wrong. <<Password>> wasn't changed.`
+                            break;
+                        case 'ru':
+                            responseMessage = `Что-то пошло не так. <<Пароль>> не был изменен.`
+                            break;
+                        default:
+                            responseMessage = `משהו השתבש. <<סיסמה>> לא שונה.`
+                            break;
+                    }
+                    res.json([{ status: false, message: responseMessage }]);
+                    // logger.error(``);
+                }
+            } else {
+                switch (language) {
+                    case 'en':
+                        responseMessage = `<<Temporary password>> don't match.`
+                        break;
+                    case 'ru':
+                        responseMessage = `<<Временный пароль>> не совпадает.`
+                        break;
+                    default:
+                        responseMessage = `<< סיסמא זמנית >> אינן תואמות.`
+                        break;
+                }
+                res.json([{ status: false, message: responseMessage }]);
+                // logger.error(``);
+            }
+        } else {
+            switch (language) {
+                case 'en':
+                    responseMessage = `User with this email <<${email}>> do not exist.`
+                    break;
+                case 'ru':
+                    responseMessage = `Пользователь с этим адресом электронной почты <<${email}>> не существует.`
+                    break;
+                default:
+                    responseMessage = `משתמש עם דוא"ל זה <<${email}>> לא קיים.`
+                    break;
+            }
+            return res.json([{ status: false, message: responseMessage }]);
+            // logger.error(``);
+        }
+    } catch (err) {
+        return res.json([{ status: false, message: err.message }]);
+        // logger.error(``);
+    }
+});
 
 // -------------------------------------------------------------EMAILS-------------------------
 // create reusable transporter object using the default SMTP transport
@@ -467,12 +551,12 @@ function newPassEmail(email, randomPass, language) {
                 mainText = `<p>Temporary password: ${randomPass}</p>`;
                 break;
             case 'ru':
-                subject = `מאתר Luxio`;
-                mainText = `<p>סיסמא זמנית: ${randomPass}</p>`;
-                break;
-            default:
                 subject = `С сайта Luxio`;
                 mainText = `<p>Временный пароль: ${randomPass}`;
+                break;
+            default:
+                subject = `מאתר Luxio`;
+                mainText = `<p>סיסמא זמנית: ${randomPass}</p>`;
                 break;
         }
         // ------------------------------------------------sending------------

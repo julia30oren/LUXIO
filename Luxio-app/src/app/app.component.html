@@ -8,10 +8,16 @@
     <div *ngIf="respond[0]" class="respond-bg" [ngClass]="{infoMessage: respond[0].status===true, errorMessage:respond[0].status===false}">
         <div class="respond" [ngClass]="{H: languege==='iv'}">
             <h3>{{respond[0].message}}</h3>
-            <!-- <p>{{respond|json}}</p> -->
         </div>
     </div>
     <!--  -->
+    <!-- ------------------------------------------COOKIES------ -->
+    <div *ngIf="cookies" id="cookies">
+        <a class="cookies-button" href="/cookies">More details.</a>
+        <p>This website is using cookies.</p>
+        <button class="cookies-button" (click)="close_advertisementCookies()">I Understand.</button>
+    </div>
+    <!-- ------------------ -->
     <!-------------------------------------------------- NAVIGATION ---------------------->
     <div class="HEADER">
         <div class="Akzentz-logo"></div>
@@ -53,11 +59,11 @@
 
         <div class="user-proertise" *ngIf="users_props">
             <a href="personal-area" class="user-props">{{ 'PERSONAL-AREA.personal-information' | translate }}</a>
-            <a href="/{{location}}" class="user-props" (click)="logOut()">{{'NAVIGATION.sign-out'| translate}}</a>
+            <a href="new" class="user-props" (click)="logOut()">{{'NAVIGATION.sign-out'| translate}}</a>
         </div>
     </div>
-
-    <!-- REGISTRATION FORM -->
+    <!-- --------------------------------------- -->
+    <!---------------------------------------------------------------- REGISTRATION FORM -->
     <div class="RegFormBackground" *ngIf="regForm_Open" (click)="closeForm()"></div>
 
     <div class="RegForm" *ngIf="regForm_Open" style="padding: 1%;" [ngClass]="{Hebrew: languege==='iv'}">
@@ -88,15 +94,6 @@
             <app-password-restore-form></app-password-restore-form>
         </div>
 
-        <style>
-            .formOne,
-            .formAgreement,
-            .formLogin,
-            .formPasswordRest {
-                z-index: 3;
-            }
-        </style>
-
         <div style="display: flex; justify-content: center; margin-top: 1%;">
             <p>
                 <button *ngIf="!formOne_Open && !formTwo_Open" type="button" class="btn btn-link" (click)="registration_form()">
@@ -111,22 +108,23 @@
             </p>
         </div>
     </div>
-
+    <!-- -------------------------------------------for admin -->
     <div class="for_admin">
         <h1>{{'NAVIGATION.for-admin' | translate}}*</h1>
         <a class="nav-link" href="admin/shop">{{ 'NAVIGATION.PRODUCTS.title' | translate }}</a>
         <a class="nav-link" href="admin/certificates">{{ 'NAVIGATION.CLIENTS.title' | translate }}</a>
         <a class="nav-link" href="admin/comments">{{ 'NAVIGATION.COMMENTS.title' | translate }}</a>
     </div>
-
-    <div class="cookies" *ngIf="cookies">
-        <div style="width: 30%; margin-left: 35% ; text-align: center; color: white; display: flex; flex-direction: row; justify-content: center; align-items: center;">
-            <a class="bbb" href="/cookies">More details.</a>
-            <p class="xx">This website is using cookies.</p>
-            <button class="bbb" (click)="close_advertisementCookies()">I Understand.</button>
-        </div>
-    </div>
-
+    <style>
+        .for_admin {
+            position: fixed;
+            margin-top: 200px;
+            left: 10px;
+            background-color: gray;
+        }
+    </style>
+    <!-- -------------------------------------- -->
+    <!-- --------------------------------------------------ADVERTISEMENT-------------- -->
     <div class="sign-in-div" style="padding: 25px;" *ngIf="advertisement" [ngClass]="{H: languege==='iv'}">
         <h1 style="
             font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
@@ -147,7 +145,6 @@
             <button class="message-link" (click)="login_form();close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-2' | translate }}</button>
             <button class="message-link" (click)="close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-3' | translate }}</button>
         </div>
-
         <!-- <p>Acrylic nails were introduced in 1978 (and they were invented by a dentist Frederick Slack).</p>
         <p>The first modern manicure was known as the “moon manicure”.</p>
         <p>The invention of the car spurred the creation of the first modern-day nail polish.</p>
@@ -157,49 +154,11 @@
         <p>It is a common notion that Cleopatra and Nefertiti were trendsetters in their time, and it is believed that it was Queen Nefertiti who first dyed her nails red as a symbol of her royal status.</p>
         <p>The first commercial nail salons opened in Paris during the 19th century.</p> -->
     </div>
-
-    <style>
-        .for_admin {
-            position: fixed;
-            margin-top: 200px;
-            left: 10px;
-            background-color: gray;
-        }
-        
-        .cookies {
-            background-color: rgba(0, 0, 0, 0.8);
-            width: 100%;
-            position: fixed;
-            bottom: 10px;
-            z-index: 12;
-        }
-        
-        .bbb {
-            background: none;
-            border: none;
-            padding: 0;
-            font-family: arial, sans-serif;
-            color: rgb(36, 138, 255);
-            cursor: pointer;
-        }
-        
-        .bbb:hover {
-            color: rgb(160, 209, 255);
-            text-decoration: underline;
-        }
-        
-        .xx,
-        .bbb {
-            margin: auto;
-        }
-    </style>
-
+    <!-- -------------------------------------------------- -->
     <!-- CONTENT -->
     <div class="content" *ngIf="!selectedProd">
         <router-outlet></router-outlet>
     </div>
-
-
     <!-------------------------------------------- FOOTER -->
     <app-footer id="footer"></app-footer>
 </div>

@@ -79,7 +79,14 @@
             "title": "Registration form:",
             "name": "Name",
             "second-name": "Surname",
-            "city": "City",
+            "location": "Location..",
+            "loc1": "Center of Israel (close to Tel Aviv)",
+            "loc2": "Center of Israel (close to Jerusalem)",
+            "loc3": "North of Israel (close to Haifa)",
+            "loc4": "North of Israel (close to Nazareth)",
+            "loc5": "North of Israel (close to Qiryat Shemona)",
+            "loc6": "Western Israel (close to Be'er Sheva)",
+            "loc7": "Western Israel (close to Eilat)",
             "email": "Email",
             "phoneN": "Phone number",
             "password": "Password",
@@ -88,6 +95,7 @@
             "agreement": "Terms of agreement",
             "i-agree": "I agree with the terms of the agreement",
             "entrepreneurship": "Entrepreneurship:",
+            "business": "Business category..",
             "self-employed": "Self employed",
             "salon-representative": "Salon representative",
             "sert": "Choose a certificate:",
@@ -99,10 +107,18 @@
             "apartment": "Apartment"
         },
         "LOGIN-FORM": {
-            "title": "Log-in"
+            "title": "Log-in:"
         },
         "PASSWORD-RESTORE-FORM": {
-            "title": "Password recovery:"
+            "title": "Password recovery:",
+            "error-1": "No address specified",
+            "button-1": "Get a temporary password",
+            "temp-pass": "Temporary password",
+            "new-pass": "New password",
+            "repeat-pass": "Repeat new password",
+            "warning": "Please check your mail. We have sent you a temporary password and for security reasons, change it as soon as possible.",
+            "error-2": "Passwords do not match",
+            "button-2": "Change password and save"
         }
 
     },

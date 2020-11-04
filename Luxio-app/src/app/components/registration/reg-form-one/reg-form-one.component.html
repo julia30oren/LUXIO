@@ -10,14 +10,6 @@
             <input [ngClass]="{error: isSubmitted && formControls.second_name.errors?.required}" type="text" class="form-control" formControlName="second_name" value="formControls.second_name" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.second-name' | translate}}">
         </div>
         <div class="text-danger" *ngIf="isSubmitted && formControls.second_name.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
-
-    </div>
-
-    <div class="form-row">
-        <div class="col">
-            <input [ngClass]="{error: isSubmitted && formControls.city.errors?.required}" type="text" class="form-control" formControlName="city" value="formControls.city" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.city' | translate}}">
-        </div>
-        <div class="text-danger" *ngIf="isSubmitted && formControls.city.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
     </div>
 
     <div class="form-row">
@@ -52,6 +44,7 @@
         </div>
         <div class="col">
             <select id="category" type="text" class="form-control" [ngClass]="{error: isSubmitted && formControls.category.errors?.required}" formControlName="category" (change)="category_check($event.target.value)">
+                <option value="" disabled>{{ 'SIGN-IN.REGISTRATION-FORM.business' | translate}}</option>
                 <option value="self employed">{{ 'SIGN-IN.REGISTRATION-FORM.self-employed' | translate}}</option>
                 <option value="salon representative">{{ 'SIGN-IN.REGISTRATION-FORM.salon-representative' | translate}}</option>
             </select>
@@ -68,9 +61,12 @@
         <div class="col">
             <input (change)="showPreimg($event)" type="file" accept="image/*" class="form-control" id="image" [ngClass]="{error: isSubmitted && !imgSrc}">
         </div>
+        <div *ngIf="imgSrc" class="col">
+            <img [src]="imgSrc" style="max-width: 300px; max-height: 100px;">
+        </div>
     </div>
     <div class="text-danger" *ngIf="category==='self employed' && isSubmitted && !imgSrc">{{ 'SIGN-IN.rule-1' | translate}}</div>
-    <img *ngIf="imgSrc" [src]="imgSrc" style="max-width: 300px; max-height: 400px;">
+
 
     <!-- --------------------------------------------------------------------------------------------------------------- -->
 
@@ -86,11 +82,24 @@
             <input (change)="set_businessId($event.target.value)" [ngClass]="{error: isSubmitted && !business_id}" type="text" class="form-control" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.business-id' | translate}}">
         </div>
         <div class="text-danger" *ngIf="isSubmitted && !business_id">{{ 'SIGN-IN.rule-1' | translate}}</div>
-
     </div>
-
+    <div class="form-row">
+        <div class="col">
+            <select [ngClass]="{error: isSubmitted && formControls.city.errors?.required}" type="text" class="form-control" formControlName="city">
+                <option value="" disabled>{{ 'SIGN-IN.REGISTRATION-FORM.location' | translate}}</option>
+                <option value="Center of Israel (close to Tel Aviv)">{{ 'SIGN-IN.REGISTRATION-FORM.loc1' | translate}}</option>
+                <option value="Center of Israel (close to Jerusalem)">{{ 'SIGN-IN.REGISTRATION-FORM.loc2' | translate}}</option>
+                <option value="North of Israel (close to Haifa)">{{ 'SIGN-IN.REGISTRATION-FORM.loc3' | translate}}</option>
+                <option value="North of Israel (close to Nazareth)">{{ 'SIGN-IN.REGISTRATION-FORM.loc4' | translate}}</option>
+                <option value="North of Israel (close to Qiryat Shemona)">{{ 'SIGN-IN.REGISTRATION-FORM.loc5' | translate}}</option>
+                <option value="Western Israel (close to Be'er Sheva)">{{ 'SIGN-IN.REGISTRATION-FORM.loc6' | translate}}</option>
+                <option value="Western Israel (close to Be'er Sheva)">{{ 'SIGN-IN.REGISTRATION-FORM.loc7' | translate}}</option>
+            </select>
+        </div>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.city.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
+    </div>
     <!-- ---------------------------------------------------------------------------------------------------------------- -->
-
+    <br>
     <div class="form-row">
         <div class="col">
             <button [ngClass]="{error: User_agreed === false}" (click)="getTermsOfAgeement()" class="agreementButton btn btn-outline-secondary">
@@ -100,7 +109,7 @@
         <div class="col">
             <div style="display: flex; flex-direction: row;align-items: center;">
                 <input class="form-control check-b" [checked]="User_agreed" (change)="terms_check($event.target.checked)" type="checkbox" id="gridCheck1" formControlName="agreement">
-                <label for="gridCheck1">
+                <label for="gridCheck1" style="text-align:center">
                     {{ 'SIGN-IN.REGISTRATION-FORM.i-agree' | translate}}
                 </label>
             </div>

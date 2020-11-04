@@ -8,7 +8,6 @@ const UserSchema = require('./user-model');
 // edd .status( )
 let responseMessage;
 
-
 // -----------------------------------GET ALL USERS---------------
 // ----------------------------------------------------only for admin---------
 router.get("/", async(req, res, next) => {
@@ -60,43 +59,68 @@ router.post('/:lang/login', async(req, res) => {
     const language = req.params.lang;
     // ----------------------if user exist----------------
     try {
-        const loginUser = await UserSchema.find({ "email": email });
+        const loginUser = await UserSchema.find({ "email": email }); //serching for user
         const User = loginUser[0];
-        if (User) {
+        if (User) { //user exist
             // ----checking password----
             const hush = User.password;
             const cryptoPassChek = bcrypt.compareSync(password, hush);
-            if (cryptoPassChek) {
+            if (cryptoPassChek && User.status === 'true') {
                 const userToken = JWT.sign({ email }, process.env.SECRET, { expiresIn: '24h' }); // creating token
                 // ------------------------------------------------------CHOOSING LANGUAGE for response-------------------------
                 switch (language) {
                     case 'en':
-                        responseMessage = `User <<${email}>> logged in.`
+                        responseMessage = `User <<${User.first_name} ${User.second_name}>> logged in.`
                         break;
                     case 'ru':
-                        responseMessage = `Пользователь <<${email}>> вошел в систему.`
+                        responseMessage = `Пользователь <<${User.first_name} ${User.second_name}>> вошел/a в систему.`
                         break;
                     default:
-                        responseMessage = `המשתמש <<${email}>> התחבר.`
+                        responseMessage = `המשתמש <<${User.first_name} ${User.second_name}>> התחבר.`
                         break;
                 }
-                res.json(
-                    [{
-                        state: true,
-                        token: userToken,
-                        message: responseMessage,
-                        user: {
-                            _id: User._id,
-                            first_name: User.first_name,
-                            second_name: User.second_name,
-                            favorites: User.favorites,
-                            cart: User.cart
-                        }
-                    }]
-                );
+                res.json([{
+                    status: true,
+                    token: userToken,
+                    message: responseMessage,
+                    user: {
+                        _id: User._id,
+                        first_name: User.first_name,
+                        second_name: User.second_name,
+                        favorites: User.favorites,
+                        cart: User.cart
+                    }
+                }]);
             }
             // ---------------------------ERRORS------------
-            else {
+            else if (User.status === 'false') {
+                // ------------------------------------------------------CHOOSING LANGUAGE for response-------------------------
+                switch (language) {
+                    case 'en':
+                        responseMessage = `Your request has been rejected. For more detailed information, contact a representative of the company.`
+                        break;
+                    case 'ru':
+                        responseMessage = `Ваш запрос был откланён. Для более детальной информации свяжитесь с представителем фирмы.`
+                        break;
+                    default:
+                        responseMessage = `בקשתך נדחתה. למידע מפורט יותר, צרו קשר עם נציג החברה.`
+                        break;
+                }
+                res.json([{ status: false, message: responseMessage }]);
+            } else if (User.status === 'considered') {
+                switch (language) {
+                    case 'en':
+                        responseMessage = `Your request is still pending. For more detailed information, contact a representative of the company.`
+                        break;
+                    case 'ru':
+                        responseMessage = `Ваш запрос ещё находится на рассмотрении. Для более детальной информации свяжитесь с представителем фирмы.`
+                        break;
+                    default:
+                        responseMessage = `בקשתך עדיין ממתינה. למידע מפורט יותר, צרו קשר עם נציג החברה.`
+                        break;
+                }
+                res.json([{ status: false, message: responseMessage }]);
+            } else if (!cryptoPassChek) {
                 switch (language) {
                     case 'en':
                         responseMessage = `<<Password>> don't match.`
@@ -108,7 +132,7 @@ router.post('/:lang/login', async(req, res) => {
                         responseMessage = `<<סיסמה>> אינם תואמים.`
                         break;
                 }
-                res.json([{ state: false, message: responseMessage }]);
+                res.json([{ status: false, message: responseMessage }]);
                 // logger.error(``);
             }
         } else {
@@ -123,13 +147,14 @@ router.post('/:lang/login', async(req, res) => {
                     responseMessage = `משתמש <<${email}>> לא קיים.`
                     break;
             }
-            res.json([{ state: false, message: responseMessage }]);
+            res.json([{ status: false, message: responseMessage }]);
             // logger.error(``);
         }
     } catch (err) {
-        return res.json([{ state: false, message: err.message }]);
+        return res.json([{ status: false, message: err.message }]);
         // logger.error(``);
     }
+
 });
 
 // ------------------------------------------------------------------------- USER UPDATING personal information ------------------------------
@@ -195,22 +220,22 @@ router.post("/:lang/update/:id", async(req, res) => {
 router.post("/:lang/newpass/:email", async(req, res) => {
     const email = req.params.email;
     const language = req.params.lang;
-    const { oldPassword, newPassword } = req.body;
+    const { old_pass, new_pass } = req.body;
+    // console.log(email, language, oldPassword, newPassword)
     //--------------------------------------------------- find user and compare old password ---
     try {
         const loginU = await UserSchema.find({ "email": email });
         const User = loginU[0]; //object
         if (User) {
             const hush = User.password;
-            const cryptoPassChek = bcrypt.compareSync(oldPassword, hush);
-            console.log(cryptoPassChek)
-
+            const cryptoPassChek = bcrypt.compareSync(old_pass, hush);
+            // -----------------------------checking
             if (cryptoPassChek) {
                 // -------------------------------------- cripting new password and saving it --
                 const salt = bcrypt.genSaltSync(10);
-                const passwordHash = bcrypt.hashSync(newPassword, salt);
+                const passwordHash = bcrypt.hashSync(new_pass, salt);
                 // -----------------------------------------------------SAVING---------------
-                const save_newPassword = await UserSchema.update({ "email": email }, { $set: { "password": passwordHash } });
+                const save_newPassword = await UserSchema.updateOne({ "email": email }, { $set: { "password": passwordHash } });
                 // ------------------------------------------------------------ if success -----
                 if (save_newPassword.nModified === 1) {
                     // ------------------------------------------------------CHOOSING LANGUAGE for response-------------------------
@@ -280,7 +305,6 @@ router.post("/:lang/newpass/:email", async(req, res) => {
     }
 });
 
-
 // ------------------------------------------------------------------------- USER UPDATING CART ------------------------------
 router.post("/new-cart", async(req, res) => {
     // -------------------------------------------------- requested parameters -----
@@ -302,7 +326,6 @@ router.post("/new-cart", async(req, res) => {
     }
 });
 
-
 // ------------------------------------------------------------------------- USER UPDATING FAVORITES ------------------------------
 router.post("/new-favorites", async(req, res) => {
     const { _id, favorites } = req.body;
@@ -322,5 +345,6 @@ router.post("/new-favorites", async(req, res) => {
         // logger.error(``);
     }
 });
+
 
 module.exports = router;

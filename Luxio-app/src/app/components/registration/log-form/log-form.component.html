@@ -8,7 +8,7 @@
     </div>
     <div class="form-row">
         <div class="col">
-            <input [ngClass]="{error: isSubmitted && formControls.password.errors?.required}" formControlName="password" type="text" value="formControls.password" class="form-control" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.password' | translate}}">
+            <input [ngClass]="{error: isSubmitted && formControls.password.errors?.required}" formControlName="password" type="password" value="formControls.password" class="form-control" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.password' | translate}}">
         </div>
         <div class="text-danger" *ngIf="isSubmitted && formControls.password.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
 
