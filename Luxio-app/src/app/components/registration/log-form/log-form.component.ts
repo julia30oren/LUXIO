@@ -16,16 +16,38 @@ export class LogFormComponent implements OnInit {
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   })
+  private asAdmin: boolean;
+  public isSubmitted2: boolean;
+  public formTemplate2 = new FormGroup({
+    email: new FormControl('', Validators.required),
+    main_password: new FormControl('', Validators.required),
+    admin_name: new FormControl('', Validators.required),
+    admin_password: new FormControl('', Validators.required)
+  })
+
 
   constructor(
     private language_Service: LanguageService,
-    private user_service: UserService
+    private user_Service: UserService
   ) { }
 
   ngOnInit() {
     // window.scrollTo(0, 0);
     this.language_Service._selected_from_service
       .subscribe(date => { this.languege = date });
+
+    this.user_Service.asAdmin_from_service
+      .subscribe(date => {
+        if (date) { //log in as admin
+          this.asAdmin = date;
+          this.formTemplate2.setValue({ //email, main_password, admin_name, admin_password
+            email: '',
+            main_password: '',
+            admin_name: this.formTemplate.value.email, //seting email(as Admin name) from formTemplate for users
+            admin_password: this.formTemplate.value.password //seting password(as admin password) from formTemplate for users
+          });
+        }
+      })
   }
 
   get formControls() {
@@ -35,7 +57,21 @@ export class LogFormComponent implements OnInit {
   onSubmit(formValue) {
     this.isSubmitted = true;
     if (this.formTemplate.valid) {
-      this.user_service.userToLogin(formValue, this.languege)
+      this.user_Service.userToLogin(formValue, this.languege)
+    } else {
+      console.log('denied');
+    }
+  }
+
+  get formControls2() {
+    return this.formTemplate2['controls'];
+  }
+
+  onSubmit2(formValue) {
+    this.isSubmitted2 = true;
+    console.log(formValue)
+    if (this.formTemplate2.valid) {
+      this.user_Service.logInadmin(formValue, this.languege)
     } else {
       console.log('denied');
     }

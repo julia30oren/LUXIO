@@ -141,6 +141,7 @@ export class AppComponent implements OnInit {
 
   closeForm() {
     this.regestration_Service.close_RegistrationForm();
+    this.user_Service.denyAdminEntrance();
   }
 
   registration_form() {

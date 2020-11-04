@@ -11,8 +11,11 @@ import { RespondService } from '../respond/respond.service';
 })
 export class UserService {
   private user_URL: string = 'http://localhost:5000/user';
-  private comment_URL: string = 'http://localhost:5000/comments'
+  private comment_URL: string = 'http://localhost:5000/comments';
+  private admin_url: string = 'http://localhost:5000/admin'
 
+  private asAdmin = new BehaviorSubject<boolean>(false);
+  public asAdmin_from_service = this.asAdmin.asObservable();
 
   private user = new BehaviorSubject<Array<any>>([]);
   public user_from_service = this.user.asObservable();
@@ -23,7 +26,7 @@ export class UserService {
   private user_full = new BehaviorSubject<Array<any>>([]);
   public user_full_from_service = this.user_full.asObservable();
 
-  private user_name = new BehaviorSubject<string>(localStorage.getItem('u324_n4325e') ? localStorage.getItem('u324_n4325e') : '');
+  private user_name = new BehaviorSubject<string>(localStorage.getItem('u324_n4325e') ? localStorage.getItem('u324_n4325e') : localStorage.getItem('ad34_n746773e'));
   public user_name_from_service = this.user_name.asObservable();
 
   private cart = new BehaviorSubject<Array<any>>([]);
@@ -64,12 +67,48 @@ export class UserService {
   // ---------------LOG IN USER------------/:lang/login
   userToLogin(params: object, languege: string) {
     return this.http.post(`${this.user_URL}/${languege}/login`, params).subscribe(res => {
-      console.log(res);
-      this.respond_Service.saveRespond(res);
-      if (res[0].status) {
-        this.seveUser_onService(res);
+
+      if (res[0].message === 'admin' && res[0].status) {// if admin
+        this.asAdmin.next(true);
+      } else { //if user
+        this.respond_Service.saveRespond(res);
+        if (res[0].status) {
+          localStorage.clear();
+          this.seveUser_onService(res);
+        }
       }
     });
+  }
+  // -----------------LOG IN AS ADMIN------------------
+  logInadmin(params: object, languege: string) {
+    return this.http.post(`${this.admin_url}/${languege}/login`, params).subscribe(res => {
+      console.log(res);
+      this.respond_Service.saveRespond(res);
+      this.register_Service.close_RegistrationForm();
+      if (res[0].status) {
+        localStorage.clear();
+        this.seveAdmin_onService(res);
+      }
+    });
+  }
+  // -----------------------
+  denyAdminEntrance() {
+    this.asAdmin.next(false);
+  }
+  // ---------------save admin on lochal host
+  seveAdmin_onService(adminInfo) {
+    //status: true, message: responseMessage, token: adminToken, admin: adminName
+    // geting user and token:
+    let admin = adminInfo[0].admin;
+    let token = adminInfo[0].token;
+    console.log(admin, token)
+    this.user_name.next(admin);// saving admin name on serner
+    // saving users info to localStorage
+    localStorage.setItem('ad34_n746773e', admin);
+    localStorage.setItem('token', token);
+
+    this.register_Service.close_RegistrationForm();   // closing log-in form
+    this.denyAdminEntrance();
   }
 
   // ---------------update user by id------------
@@ -225,11 +264,5 @@ export class UserService {
   set_showForUser(anyState: string) {
     this.user_to_show.next(anyState);
   }
-
-
-  // ------------------------------------------------------------------------- CLEAN MESSAGE TO USER ------------------------------
-  // cleanMessage_toUser() {
-  //   this.message_to_user.next(null);
-  // };
 
 }

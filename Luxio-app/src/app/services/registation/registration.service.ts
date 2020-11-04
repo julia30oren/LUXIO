@@ -41,14 +41,6 @@ export class RegistrationService {
     this.regestration_formOne.next(true);
   }
 
-
-  Page2_RegistrationForm() {
-    this.passwordRestore_form.next(false);
-    this.login_form.next(false);
-    this.regestration_formOne.next(false);
-    this.regestration_formTwo.next(true);
-  }
-
   AgreementPage() {
     this.regestration_formAgreement.next(true);
   }

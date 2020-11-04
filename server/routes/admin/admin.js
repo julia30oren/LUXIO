@@ -146,30 +146,34 @@ router.get('/:lang/remove/:id', async(req, res) => {
 router.post('/:lang/login', async(req, res) => {
     const language = req.params.lang;
     const { email, main_password, admin_name, admin_password } = req.body;
-    // check for main email match--------------
+    let adminName = admin_name.charAt(0).toUpperCase() + admin_name.slice(1)
+        // check for main email match--------------
     if (email === process.env.LuxioEmail) {
-        const adminExist = await AdminSchema.findOne({ "admin_name": admin_name.charAt(0).toUpperCase() + admin_name.slice(1) });
+        const adminExist = await AdminSchema.findOne({ "admin_name": adminName, "email": email });
         if (adminExist) {
             // cheking main password--------------------
+            const hush1 = adminExist.main_password;
+            const cryptoPassChek1 = bcrypt.compareSync(main_password, hush1);
             // and private password--------------------
-            const hush = adminExist.admin_password;
-            const cryptoPassChek = bcrypt.compareSync(admin_password, hush);
-            if (cryptoPassChek && main_password === process.env.secretPASSWORD) {
+            const hush2 = adminExist.admin_password;
+            const cryptoPassChek2 = bcrypt.compareSync(admin_password, hush2);
+
+            if (cryptoPassChek1 && cryptoPassChek2 && main_password === process.env.secretPASSWORD) {
                 // -----------------------------------------------------------If SUCCESS-------------------
                 const adminToken = JWT.sign({ email }, process.env.ADMIN_SECRET, { expiresIn: '6h' });
                 // ---------------------CHOOSING LANGUAGE for response-------------------------
                 switch (language) {
                     case 'en':
-                        responseMessage = `Admin <<${admin_name}>> loged in.`
+                        responseMessage = `Admin <<${adminName}>> loged in.`
                         break;
                     case 'ru':
-                        responseMessage = `Админ <<${admin_name}>> авторизовался.`
+                        responseMessage = `Админ <<${adminName}>> авторизовался.`
                         break;
                     default:
-                        responseMessage = `מנהל מערכת <<${admin_name}>> התחבר.`
+                        responseMessage = `מנהל מערכת <<${adminName}>> התחבר.`
                         break;
                 }
-                res.json([{ status: true, message: responseMessage, token: adminToken, admin: adminExist }]);
+                res.json([{ status: true, message: responseMessage, token: adminToken, admin: adminName }]);
                 // logger.info(``);
             }
             // -------------------------ERRORS--------------

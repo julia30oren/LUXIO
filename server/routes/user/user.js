@@ -57,103 +57,110 @@ router.get("/:lang/:id", async(req, res) => {
 router.post('/:lang/login', async(req, res) => {
     const { email, password } = req.body;
     const language = req.params.lang;
-    // ----------------------if user exist----------------
-    try {
-        const loginUser = await UserSchema.find({ "email": email }); //serching for user
-        const User = loginUser[0];
-        if (User) { //user exist
-            // ----checking password----
-            const hush = User.password;
-            const cryptoPassChek = bcrypt.compareSync(password, hush);
-            if (cryptoPassChek && User.status === 'true') {
-                const userToken = JWT.sign({ email }, process.env.SECRET, { expiresIn: '24h' }); // creating token
-                // ------------------------------------------------------CHOOSING LANGUAGE for response-------------------------
-                switch (language) {
-                    case 'en':
-                        responseMessage = `User <<${User.first_name} ${User.second_name}>> logged in.`
-                        break;
-                    case 'ru':
-                        responseMessage = `Пользователь <<${User.first_name} ${User.second_name}>> вошел/a в систему.`
-                        break;
-                    default:
-                        responseMessage = `המשתמש <<${User.first_name} ${User.second_name}>> התחבר.`
-                        break;
-                }
-                res.json([{
-                    status: true,
-                    token: userToken,
-                    message: responseMessage,
-                    user: {
-                        _id: User._id,
-                        first_name: User.first_name,
-                        second_name: User.second_name,
-                        favorites: User.favorites,
-                        cart: User.cart
+    // -------------------------------if admin----------------
+    if (email.toLowerCase() === process.env.mainAdmin) {
+        console.log(email);
+        res.json([{ status: true, message: `admin` }]);
+    } else {
+        // ----------------------if user----------------
+        try {
+            const loginUser = await UserSchema.find({ "email": email }); //serching for user
+            const User = loginUser[0];
+            if (User) { //user exist
+                // ----checking password----
+                const hush = User.password;
+                const cryptoPassChek = bcrypt.compareSync(password, hush);
+                if (cryptoPassChek && User.status === 'true') {
+                    const userToken = JWT.sign({ email }, process.env.SECRET, { expiresIn: '24h' }); // creating token
+                    // ------------------------------------------------------CHOOSING LANGUAGE for response-------------------------
+                    switch (language) {
+                        case 'en':
+                            responseMessage = `User <<${User.first_name} ${User.second_name}>> logged in.`
+                            break;
+                        case 'ru':
+                            responseMessage = `Пользователь <<${User.first_name} ${User.second_name}>> вошел/a в систему.`
+                            break;
+                        default:
+                            responseMessage = `המשתמש <<${User.first_name} ${User.second_name}>> התחבר.`
+                            break;
                     }
-                }]);
-            }
-            // ---------------------------ERRORS------------
-            else if (User.status === 'false') {
-                // ------------------------------------------------------CHOOSING LANGUAGE for response-------------------------
-                switch (language) {
-                    case 'en':
-                        responseMessage = `Your request has been rejected. For more detailed information, contact a representative of the company.`
-                        break;
-                    case 'ru':
-                        responseMessage = `Ваш запрос был откланён. Для более детальной информации свяжитесь с представителем фирмы.`
-                        break;
-                    default:
-                        responseMessage = `בקשתך נדחתה. למידע מפורט יותר, צרו קשר עם נציג החברה.`
-                        break;
+                    res.json([{
+                        status: true,
+                        token: userToken,
+                        message: responseMessage,
+                        user: {
+                            _id: User._id,
+                            first_name: User.first_name,
+                            second_name: User.second_name,
+                            favorites: User.favorites,
+                            cart: User.cart
+                        }
+                    }]);
                 }
-                res.json([{ status: false, message: responseMessage }]);
-            } else if (User.status === 'considered') {
-                switch (language) {
-                    case 'en':
-                        responseMessage = `Your request is still pending. For more detailed information, contact a representative of the company.`
-                        break;
-                    case 'ru':
-                        responseMessage = `Ваш запрос ещё находится на рассмотрении. Для более детальной информации свяжитесь с представителем фирмы.`
-                        break;
-                    default:
-                        responseMessage = `בקשתך עדיין ממתינה. למידע מפורט יותר, צרו קשר עם נציג החברה.`
-                        break;
+                // ---------------------------ERRORS------------
+                else if (User.status === 'false') {
+                    // ------------------------------------------------------CHOOSING LANGUAGE for response-------------------------
+                    switch (language) {
+                        case 'en':
+                            responseMessage = `Your request has been rejected. For more detailed information, contact a representative of the company.`
+                            break;
+                        case 'ru':
+                            responseMessage = `Ваш запрос был откланён. Для более детальной информации свяжитесь с представителем фирмы.`
+                            break;
+                        default:
+                            responseMessage = `בקשתך נדחתה. למידע מפורט יותר, צרו קשר עם נציג החברה.`
+                            break;
+                    }
+                    res.json([{ status: false, message: responseMessage }]);
+                } else if (User.status === 'considered') {
+                    switch (language) {
+                        case 'en':
+                            responseMessage = `Your request is still pending. For more detailed information, contact a representative of the company.`
+                            break;
+                        case 'ru':
+                            responseMessage = `Ваш запрос ещё находится на рассмотрении. Для более детальной информации свяжитесь с представителем фирмы.`
+                            break;
+                        default:
+                            responseMessage = `בקשתך עדיין ממתינה. למידע מפורט יותר, צרו קשר עם נציג החברה.`
+                            break;
+                    }
+                    res.json([{ status: false, message: responseMessage }]);
+                } else if (!cryptoPassChek) {
+                    switch (language) {
+                        case 'en':
+                            responseMessage = `<<Password>> don't match.`
+                            break;
+                        case 'ru':
+                            responseMessage = `<<Пароль>> не совпадает.`
+                            break;
+                        default:
+                            responseMessage = `<<סיסמה>> אינם תואמים.`
+                            break;
+                    }
+                    res.json([{ status: false, message: responseMessage }]);
+                    // logger.error(``);
                 }
-                res.json([{ status: false, message: responseMessage }]);
-            } else if (!cryptoPassChek) {
+            } else {
                 switch (language) {
                     case 'en':
-                        responseMessage = `<<Password>> don't match.`
+                        responseMessage = `User <<${email}>> don't exist.`
                         break;
                     case 'ru':
-                        responseMessage = `<<Пароль>> не совпадает.`
+                        responseMessage = `Пользователь <<${email}>> не существует.`
                         break;
                     default:
-                        responseMessage = `<<סיסמה>> אינם תואמים.`
+                        responseMessage = `משתמש <<${email}>> לא קיים.`
                         break;
                 }
                 res.json([{ status: false, message: responseMessage }]);
                 // logger.error(``);
             }
-        } else {
-            switch (language) {
-                case 'en':
-                    responseMessage = `User <<${email}>> don't exist.`
-                    break;
-                case 'ru':
-                    responseMessage = `Пользователь <<${email}>> не существует.`
-                    break;
-                default:
-                    responseMessage = `משתמש <<${email}>> לא קיים.`
-                    break;
-            }
-            res.json([{ status: false, message: responseMessage }]);
+        } catch (err) {
+            return res.json([{ status: false, message: err.message }]);
             // logger.error(``);
         }
-    } catch (err) {
-        return res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
     }
+
 
 });
 
