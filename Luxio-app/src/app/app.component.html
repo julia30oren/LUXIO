@@ -27,7 +27,7 @@
                 <div class="input-group-prepend">
                     <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="doSearch(search_text.value)"><i class="fas fa-search"></i></button>
                 </div>
-                <input type="text" class="form-control" placeholder="Search.." #search_text>
+                <input type="text" class="form-control" placeholder="Search.." #search_text (keyup.enter)="doSearch(search_text.value)">
             </div>
 
             <a class="nav-link" [ngClass]="{active: location==='new'}" href="new">{{ 'NAVIGATION.NEW.title' | translate }}</a>

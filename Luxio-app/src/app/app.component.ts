@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   public advertisement: boolean;
   public respond: Array<any> = [];
   public selectedProd: boolean;
-
+  public shop: Array<any>;
 
   formTemplate = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -57,6 +57,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     // ------------------------------
     this.shop_Service.getProducts_fromDB();
+    this.shop_Service.shop_products_from_service
+      .subscribe(date => { this.shop = date })
     // ------------------------------timer for advertisement (after 30 sec.)-----
     window.setTimeout(() => {
       if (!this.user && !this.regForm_Open) {
@@ -125,20 +127,12 @@ export class AppComponent implements OnInit {
 
 
 
-
-
-
   usersPropertise() {
     this.users_props = !this.users_props;
   }
 
   openProdOptions() {
     this.prodOptionsOpen = !this.prodOptionsOpen;
-  }
-
-  getUsers() {
-    // console.log('click from user');
-    // this.usersServ.getUsers_fromDB();
   }
 
   openForm() {
@@ -175,29 +169,53 @@ export class AppComponent implements OnInit {
     this.advertisement = false;
   }
 
-  // -----------------------------------
+  // -----------------------------SEARCH FUNCTION------
   doSearch(search_txt) {
-    // if (search_txt !== '') {
-    //   // console.log(search_txt)
-    //   this.shop_Service.getProducts_fromDB();
-
-    //   this.shop_Service.shop_products_from_service
-    //     .subscribe(date => {
-    //       let shop = date[0];
-    //       // 
-    //       if (shop) {
-
-    //         shop.forEach(element => {
-    //           if (element.name.includes(search_txt)) {
-    //             console.log(element)
-    //             this.shop_Service.selectProd(element, true);
-    //             this.router.navigate(['/search', search_txt]);
-    //           }
-    //         });
-    //       }
-    //     });
-    // }
-
+    if (search_txt !== '') {
+      // console.log(search_txt);
+      switch (search_txt.toLowerCase()) {
+        case 'luxio':
+          this.router.navigate(['products/luxio']);
+          window.scrollTo(0, 0)
+          break;
+        case 'options':
+          this.router.navigate(['products/options']);
+          window.scrollTo(0, 0)
+          break;
+        case 'hard gel':
+          this.router.navigate(['products/pro-formance']);
+          window.scrollTo(0, 0)
+          break;
+        case 'pro formance':
+          this.router.navigate(['products/pro-formance']);
+          window.scrollTo(0, 0)
+          break;
+        case 'proformance':
+          this.router.navigate(['products/pro-formance']);
+          window.scrollTo(0, 0)
+          break;
+        case 'pro-formance':
+          this.router.navigate(['products/pro-formance']);
+          window.scrollTo(0, 0)
+          break;
+        case 'gel play':
+          this.router.navigate(['products/gel-play']);
+          window.scrollTo(0, 0)
+          break;
+        case 'gelplay':
+          this.router.navigate(['products/gel-play']);
+          window.scrollTo(0, 0)
+          break;
+        default:
+          this.shop[0].forEach(element => {
+            if (element.name.toLowerCase().includes(search_txt)) {
+              console.log(element)
+              this.shop_Service.selectProd(element, true);
+            }
+          });
+          break;
+      }
+    }
   }
 
 }
