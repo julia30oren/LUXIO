@@ -1,9 +1,42 @@
 <div [ngClass]="{Hebrew: languege==='iv'}" class="SHOP">
-    <div class="courses-buner"></div>
+    <!-- <div class="courses-buner"></div> -->
 
-    <div style="text-align: center; padding:5%">
-        <h1 class="title">{{ 'COURSES.TEXT-1' | translate}}</h1>
-        <h1 class="title">{{ 'COURSES.TEXT-2' | translate}}</h1>
-        <p class="sm-text">{{ 'CONTACT.city' | translate}}, {{ 'CONTACT.street' | translate}}</p>
+    <div style="width: 100%; display: flex; flex-direction: row;">
+        <div class="text-block">
+            <h1>{{ 'COURSES.TEXT-1' | translate}}</h1>
+            <p>{{ 'COURSES.TEXT-2' | translate}}</p>
+            <p style="font-family: Calibri;font-size: medium; color: black;">{{ 'CONTACT.city' | translate}}, {{ 'CONTACT.street' | translate}}</p>
+        </div>
+        <div style="width: 50%;"><img style="width: 100%;" src="https://i.pinimg.com/originals/3b/58/84/3b5884b50b3175eaf8f17ad738fabe7a.png" /></div>
     </div>
+
+    <div style="width: 100%; display: flex; flex-direction: row;">
+        <div style="width: 50%;"><img style="width: 100%" src="https://i.pinimg.com/originals/04/70/a2/0470a2f453d61ce9270d1990b514f302.jpg" /></div>
+
+        <div class="text-block">
+            <h1>Курс *Маникюр-Комби для начинающих* или для тех, кто хочет научиться работать с аппаратом.</h1>
+            <p>С нуля в комбинированной технике (одна фреза и ножницы). Практический курс из 4 занятий, с 10:00 до 18:00. Мы предоставляем все инструменты, материалы и моделей! </p>
+            <p>А также По окончании курса выдается сертификат.</p>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="contactMe1(contartPhone.value)">Пожалуйста, свяжитесь со мной :</button>
+                </div>
+                <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" [ngClass]="{error: phone1 === false}" placeholder="Номер телефона" #contartPhone>
+            </div>
+            <div *ngIf="phone1 === false">
+                <p style="color: red;">номер телефона должен содержать от 10 до 11 цифер</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="width: 100%; display: flex; flex-direction: row;">
+        <div class="text-block">
+            <h1>Курс *Маникюр Комби - Повышение уровня*</h1>
+            <p>Курс рассчитан на мастеров со знаниями и опытом работы с шлифовальным аппаратом (более 6 месяцев). Техника - одна фреза и ножницы. Практический курс 1 день, с 10:00 до 18:00. Мы предоставляем все инструменты, материалы и моделей!</p>
+            <p>А также По окончании курса выдается сертификат.</p>
+        </div>
+
+        <div style="width: 50%;"><img style="width: 100%" src="https://i.pinimg.com/originals/ae/36/93/ae3693cf137e5e1066140e5d71acc54b.jpg" /></div>
+    </div>
+
 </div>

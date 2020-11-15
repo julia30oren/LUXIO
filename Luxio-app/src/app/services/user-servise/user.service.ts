@@ -73,8 +73,9 @@ export class UserService {
       } else { //if user
         this.respond_Service.saveRespond(res);
         if (res[0].status) {
-          localStorage.clear();
+          // localStorage.clear();
           this.seveUser_onService(res);
+          this.register_Service.close_RegistrationForm();
         }
       }
     });
@@ -194,73 +195,113 @@ export class UserService {
     localStorage.setItem('u324_3i_25d', user._id);
     localStorage.setItem('u324_n4325e', user.first_name + ' ' + user.second_name);
     localStorage.setItem('token', token);
-    localStorage.setItem('my_764528_f', JSON.stringify(user.favorites) || JSON.stringify([]));
-    this.shop_Service.favorites(user.favorites);
-    localStorage.setItem('my_764528_ct', JSON.stringify(user.cart) || JSON.stringify([]));
-    this.shop_Service.cart(user.cart);
+
+    user.favorites.forEach(element => {
+      this.usersFavorites(element); // to mix favorites from DB and from localStorage
+    });
+
+    user.cart.forEach(element => {
+      this.usersCart(element); // to mix cart from DB and from localStorage
+    });
 
     this.register_Service.close_RegistrationForm();   // closing log-in form
   }
 
 
-
+  // ----------------------------------------------------NEW WISHLIST---------
   saveToFavorites(newToFavorites: object) {
-    let localWishlist = JSON.parse(localStorage.getItem('my_764528_f'));
+    // ----geting wishlist from localStorage
+    let localWishlist = JSON.parse(localStorage.getItem('my_764528_f')) || [];
 
-    if (localWishlist.length < 1) {
+    if (localWishlist.length < 1) { //---------if wishlist is EMPTY:
       localWishlist.push(newToFavorites);
-      localStorage.setItem('my_764528_f', JSON.stringify(localWishlist));
-      this.saveWishlist_toDB(localWishlist);
-
-    } else {
-      let itemAr = [];
+    } else { //-------------------------------if wishlist NOT EMPTY:
+      // ------------remove from favorites or add:
+      let itemAr = [];// creating temporary array
       itemAr.push(newToFavorites);
+      var index = localWishlist.findIndex(x => x._id === itemAr[0]._id);// find index of item
 
-      var index = localWishlist.findIndex(x => x._id === itemAr[0]._id);
+      if (index === -1) { //if item don't exist in wishlist:
+        localWishlist.push(newToFavorites);  // add item
+      } else localWishlist.splice(index, 1); // delete item
 
-      if (index === -1) {
-        localWishlist.push(newToFavorites);
-        localStorage.setItem('my_764528_f', JSON.stringify(localWishlist));
-        this.saveWishlist_toDB(localWishlist);
-      }
-      else {
-        localWishlist.splice(index, 1);
-        localStorage.setItem('my_764528_f', JSON.stringify(localWishlist));
-        this.saveWishlist_toDB(localWishlist);
-      }
     }
+
+    setTimeout(() => {
+      this.saveWishlist_toDB(localWishlist);  // save new wishlist to DB
+      localStorage.setItem('my_764528_f', JSON.stringify(localWishlist));  // save new wishlist to localStorage
+    }, 1000);
+  }
+  // ---------------------------after user logd in
+  usersFavorites(newToFavorites) {
+    // ----geting wishlist from localStorage
+    let localWishlist = JSON.parse(localStorage.getItem('my_764528_f')) || [];
+
+    if (localWishlist.length < 1) { //---------if wishlist is EMPTY:
+      localWishlist.push(newToFavorites);
+    } else { //-------------------------------if wishlist NOT EMPTY:
+      // ------------ add:
+      let itemAr = [];// creating temporary array
+      itemAr.push(newToFavorites);
+      var index = localWishlist.findIndex(x => x._id === itemAr[0]._id);// find index of item
+      if (index === -1) {
+        localWishlist.push(newToFavorites);  // add item
+      } else return;
+    }
+
+    setTimeout(() => {
+      this.saveWishlist_toDB(localWishlist);  // save new wishlist to DB
+      localStorage.setItem('my_764528_f', JSON.stringify(localWishlist));  // save new wishlist to localStorage
+    }, 1000);
   }
 
 
-
+  // ----------------------------------------------------NEW CART---------
   saveToCart(newToCart: object) {
-    let localCart = JSON.parse(localStorage.getItem('my_764528_ct'));
+    // ----geting cart from localStorage
+    let localCart = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
 
-    if (localCart.length < 1) {
+    if (localCart.length < 1) { //---------if cart is EMPTY:
       localCart.push(newToCart);
-      localStorage.setItem('my_764528_ct', JSON.stringify(localCart));
-      this.saveCart_toDB(localCart);
-
-    } else {
-      let itemAr = [];
+    } else { //-------------------------------if cart NOT EMPTY:
+      let itemAr = []; // creating temporary array
       itemAr.push(newToCart);
-
-      var index = localCart.findIndex(x => x._id === itemAr[0]._id);
+      var index = localCart.findIndex(x => x._id === itemAr[0]._id); // find index of item
 
       if (index === -1) {
-        localCart.push(newToCart);
-        localStorage.setItem('my_764528_ct', JSON.stringify(localCart));
-        this.saveCart_toDB(localCart);
-      }
-      else {
-        localCart.splice(index, 1);
-        localStorage.setItem('my_764528_ct', JSON.stringify(localCart));
-        this.saveCart_toDB(localCart);
-      }
+        localCart.push(newToCart); // add item
+      } else localCart.splice(index, 1);
     }
+
+    setTimeout(() => {
+      this.saveCart_toDB(localCart);  // save new cart to DB
+      localStorage.setItem('my_764528_ct', JSON.stringify(localCart));  // save new cart to localStorage
+    }, 1000);
+  }
+  // ---------------------------after user logd in
+  usersCart(newToCart) {
+    // ----geting cart from localStorage
+    let localCart = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
+
+    if (localCart.length < 1) { //---------if cart is EMPTY:
+      localCart.push(newToCart);
+    } else { //-------------------------------if cart NOT EMPTY:
+      // ------------ add:
+      let itemAr = [];// creating temporary array
+      itemAr.push(newToCart);
+      var index = localCart.findIndex(x => x._id === itemAr[0]._id);// find index of item
+      if (index === -1) {
+        localCart.push(newToCart);  // add item
+      } else return;
+    }
+
+    setTimeout(() => {
+      this.saveCart_toDB(localCart);  // save new cart to DB
+      localStorage.setItem('my_764528_ct', JSON.stringify(localCart));  // save new cart to localStorage
+    }, 1000);
   }
 
-
+  // ----------------------------------------------
   set_showForUser(anyState: string) {
     this.user_to_show.next(anyState);
   }

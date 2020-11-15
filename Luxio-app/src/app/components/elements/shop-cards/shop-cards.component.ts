@@ -48,30 +48,27 @@ export class ShopCardsComponent implements OnInit {
     } else return 'cart-button active';
   }
 
-  addToFavorites(obj) {
-    this.user_service.saveToFavorites(obj);
+  addToFavorites(item) {
+    this.user_service.saveToFavorites(item);
   }
 
-  addToCart(obj) {
-    console.log(obj)
-    // this.user_service.saveToCart(obj);
-    let item_toCart = {
-      _id: obj._id,
-      burcode_id: obj.burcode_id,
-      name: obj.name,
-      prod_class: obj.prod_class,
-      img_link_1: obj.img_link_1,
-      amount: obj.amount_1,
-      amount_1: obj.amount_1,
-      amount_2: obj.amount_2,
-
+  addToCart(item) {
+    let item_toCart = {  // creating item with needed properties:
+      _id: item._id,
+      burcode_id: item.burcode_id,
+      name: item.name,
+      prod_class: item.prod_class,
+      img_link_1: item.img_link_1,
+      amount: item.amount_1,
+      amount_1: item.amount_1,
+      amount_2: item.amount_2,
       quantity: 1,
-      price_1: obj.price_1,
-      price_2: obj.price_2,
-      price: obj.price_1,
-      total_price: obj.price_1
+      price_1: item.price_1,
+      price_2: item.price_2,
+      price: item.price_1,
+      total_price: item.price_1
     };
-    this.user_service.saveToCart(item_toCart);
+    this.user_service.saveToCart(item_toCart); //sending on service to save
   }
 
   select(id: number) {

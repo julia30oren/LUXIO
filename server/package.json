@@ -20,12 +20,14 @@
         "express": "^4.17.1",
         "express-session": "^1.17.0",
         "jsonwebtoken": "^8.5.1",
-        "multer": "^1.4.2",
         "moment": "^2.24.0",
         "mongoose": "^5.9.2",
+        "multer": "^1.4.2",
         "mysql2": "^2.1.0",
-        "nodemon": "^2.0.2",
         "nodemailer": "^6.4.10",
+        "nodemon": "^2.0.2",
+        "twilio": "^3.51.0",
+        "wbm": "^1.1.12",
         "winston": "^3.2.1"
     }
 }

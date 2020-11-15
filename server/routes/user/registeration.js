@@ -420,7 +420,8 @@ function emailToUser_Info(langueg) {
             case 'en':
                 subject = `Nails perfect only from AKZENTZ`;
                 mainText = `<div style="padding: 5%">
-                            <p> Thank you for submitting an application for a personal account. </p>
+                            <h3> Thank you for submitting an application for a personal account.</h3>
+                            <h3>We are nothing without customers! Your presence is our motivation to do better!</h3>
                             <p> For any additional information, contact the company representative by number:</p>
                             <p> 054-8785521 / 055-9519777 </p>
                             <img src="https://i.pinimg.com/originals/ee/9c/48/ee9c48b36e879ebf783f6246f0926ce6.png" alt="AKZENTZ"/>
@@ -429,7 +430,8 @@ function emailToUser_Info(langueg) {
             case 'ru':
                 subject = `Идеальные ногти только от AKZENTZ`;
                 mainText = `<div style="padding: 5%;">
-                            <p> Спасибо, что подали заявку на открытие личного акаунта. </p>
+                            <h3> Спасибо, что подали заявку на открытие личного акаунта.</h3>
+                            <h3>Мы ничто без клиентов! Ваше присутствие - наша мотивация работать лучше!</h3>
                             <p> За дополнительной информацией обращайтесь к представителю компании по номеру: </p>
                             <p> 054-8785521 / 055-9519777 </p>
                             <img src="https://i.pinimg.com/originals/ee/9c/48/ee9c48b36e879ebf783f6246f0926ce6.png" alt="AKZENTZ"/>
@@ -438,7 +440,8 @@ function emailToUser_Info(langueg) {
             default:
                 subject = `ציפורניים מושלמות רק מבית AKZENTZ`;
                 mainText = `<div style="padding: 5%; text-align: right; direction: rtl;">
-                            <p> תודה שביקשתם חשבון אישי. </p>
+                            <h3> תודה שביקשתם חשבון אישי. </h3>
+                            <h3>אנחנו כלום בלי לקוחות! הנוכחות שלך היא המוטיבציה שלנו לעשות טוב יותר!</h3>
                             <p> לקבלת מידע נוסף, צרו קשר עם נציג החברה במספר:</p>
                             <p> 054-8785521 / 055-9519777 </p>
                             <img src="https://i.pinimg.com/originals/ee/9c/48/ee9c48b36e879ebf783f6246f0926ce6.png" alt="AKZENTZ"/>

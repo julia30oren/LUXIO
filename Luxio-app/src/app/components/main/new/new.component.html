@@ -44,10 +44,10 @@
                         <small>{{item.amount_1}} {{item.price_1}} &#8362;</small>
                         <small *ngIf="item.amount_2"> / {{item.amount_2}} {{item.price_2}} &#8362;</small>
                     </p>
-                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}">
+                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}">
                         <i class="fab fa-shopify fa-2x"></i>
                     </button>
-                    <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}">
+                    <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}">
                         <i class="fas fa-heart fa-2x"></i>
                     </button>
                 </div>
@@ -91,8 +91,8 @@
                     <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable" />
                     <div (click)="select(item.burcode_id)" style="background-color: rgba(0, 0, 0, 0); width: 100%; height: 80%; position: absolute; top: 0;"></div>
                     <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2"> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
-                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
-                    <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
+                    <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
                 </div>
             </div>
         </div>
@@ -132,8 +132,8 @@
                     <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable" />
                     <div (click)="select(item.burcode_id)" style="background-color: rgba(0, 0, 0, 0); width: 100%; height: 80%; position: absolute; top: 0;"></div>
                     <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2"> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
-                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
-                    <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
+                    <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
                 </div>
             </div>
         </div>
@@ -172,8 +172,8 @@
                     <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable" />
                     <div (click)="select(item.burcode_id)" style="background-color: rgba(0, 0, 0, 0); width: 100%; height: 80%; position: absolute; top: 0;"></div>
                     <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2"> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
-                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
-                    <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+                    <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fab fa-shopify fa-2x"></i></button>
+                    <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
                 </div>
             </div>
         </div>

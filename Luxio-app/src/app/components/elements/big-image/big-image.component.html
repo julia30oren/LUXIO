@@ -38,13 +38,19 @@
               </select>
             </div>
 
-            <div class="form-group" style="width: 15%; margin:auto;" #hkh>
+            <div class="form-group" style="width: 15%; margin:auto;">
                 <input type="number" class="form-control" value="1" min="1" (change)="quantity_change($event.target.value)">
             </div>
 
-            <div style="width: 50%; margin:auto;">
-                <button type="button" class="button-link" (click)="addToCart(item)">{{'PROD_DESCRIPTION.add_to_cart' | translate}}</button>
-                <button type="button" class="button-link" (click)="addToFavorites(item)">{{'PROD_DESCRIPTION.add_to_favorites' | translate}}</button>
+            <div style="width: 50%; margin:auto; display: flex; flex-direction: column;">
+                <button type="button" class="button-link" (click)="addToCart(item)">
+                    <p *ngIf="!selectedProd_inCart">{{'PROD_DESCRIPTION.add_to_cart' | translate}}</p>
+                    <p *ngIf="selectedProd_inCart" style="color: rgb(212, 99, 99);">{{'PROD_DESCRIPTION.remove_from_cart' | translate}}</p>
+                </button>
+                <button type="button" class="button-link" (click)="addToFavorites(item)">
+                    <p *ngIf="!selectedProd_inFavorites">{{'PROD_DESCRIPTION.add_to_favorites' | translate}}</p>
+                    <p *ngIf="selectedProd_inFavorites" style="color: rgb(212, 99, 99);">{{'PROD_DESCRIPTION.remove_from_favorites' | translate}}</p>
+                </button>
             </div>
         </form>
 

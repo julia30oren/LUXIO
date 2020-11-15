@@ -144,6 +144,8 @@
         },
         "add_to_cart": "Add to cart",
         "add_to_favorites": "Add to favorites",
+        "remove_from_cart": "Remove from cart",
+        "remove_from_favorites": "Remove from favorites",
         "more-img": "More photos",
         "ps": "Made in Canada",
         "extra-1": "Delivery all over the country.",

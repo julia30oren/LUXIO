@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LanguageService } from 'src/app/services/language.service';
 import { ShopService } from 'src/app/services/shop/shop.service';
+import { UserService } from 'src/app/services/user-servise/user.service';
 
 @Component({
   selector: 'app-new',
@@ -15,7 +16,6 @@ export class NewComponent implements OnInit {
   public shop: Array<any> = [];
   public selectedProd: boolean;
 
-
   private shadesOpen: boolean;
   private miamiOpen: boolean;
   private voyageOpen: boolean;
@@ -28,7 +28,8 @@ export class NewComponent implements OnInit {
 
   constructor(
     private lang_service: LanguageService,
-    private shop_service: ShopService
+    private shop_service: ShopService,
+    private user_service: UserService
   ) { }
 
   ngOnInit() {
@@ -88,26 +89,27 @@ export class NewComponent implements OnInit {
     } else return 'cart-button not-active';
   }
 
-  addToFavorites(id) {
-    if (this.my_favorites.includes(id)) {
-      var filtered = this.my_favorites.filter((val) => { return val !== id; });
-      this.my_favorites = filtered;
-      localStorage.setItem('my_764528_f', JSON.stringify(filtered))
-    } else {
-      this.my_favorites.push(id);
-      localStorage.setItem('my_764528_f', JSON.stringify(this.my_favorites))
-    }
+  addToFavorites(item) {
+    this.user_service.saveToFavorites(item);
   }
 
-  addToCart(id) {
-    if (this.my_cart.includes(id)) {
-      var filtered = this.my_cart.filter((val) => { return val !== id; });
-      this.my_cart = filtered;
-      localStorage.setItem('my_764528_ct', JSON.stringify(filtered))
-    } else {
-      this.my_cart.push(id);
-      localStorage.setItem('my_764528_ct', JSON.stringify(this.my_cart))
-    }
+  addToCart(item) {
+    let item_toCart = {  // creating item with needed properties:
+      _id: item._id,
+      burcode_id: item.burcode_id,
+      name: item.name,
+      prod_class: item.prod_class,
+      img_link_1: item.img_link_1,
+      amount: item.amount_1,
+      amount_1: item.amount_1,
+      amount_2: item.amount_2,
+      quantity: 1,
+      price_1: item.price_1,
+      price_2: item.price_2,
+      price: item.price_1,
+      total_price: item.price_1
+    };
+    this.user_service.saveToCart(item_toCart); //sending on service to save
   }
 
   select(id: number) {
