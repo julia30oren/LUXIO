@@ -1,0 +1,34 @@
+<div style="min-height: 750px;">
+
+    <!-- -------------------------------------------------------------------------------------------------------------------------- -->
+    <form class="regF" [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+        <div class="form-row">
+            <div class="col">
+                <input [ngClass]="{error: isSubmitted && formControls.admin_name.errors?.required}" formControlName="admin_name" type="text" class="form-control" placeholder="admin_name">
+            </div>
+            <div class="text-danger" *ngIf="isSubmitted && formControls.admin_name.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                <input [ngClass]="{error: isSubmitted && formControls.admin_password.errors?.required}" formControlName="admin_password" type="password" class="form-control" placeholder="admin_password">
+            </div>
+            <div class="text-danger" *ngIf="isSubmitted && formControls.admin_password.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                <input [ngClass]="{error: isSubmitted && formControls.email.errors?.required}" formControlName="email" type="text" class="form-control" placeholder="main email">
+            </div>
+            <div class="text-danger" *ngIf="isSubmitted && formControls.email.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                <input [ngClass]="{error: isSubmitted && formControls.main_password.errors?.required}" formControlName="main_password" type="password" class="form-control" placeholder="main password">
+            </div>
+            <div class="text-danger" *ngIf="isSubmitted && formControls.main_password.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
+        </div>
+        <button type="submit" class="btn btn-dark btn-lg btn-block" style="margin-top: 15px;">{{ 'SIGN-IN.log-in' | translate}}</button>
+    </form>
+</div>

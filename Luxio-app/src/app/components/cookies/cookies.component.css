@@ -1,0 +1,29 @@
+.coocies-policy {
+    margin: 5%;
+    padding-bottom: 30px;
+    font-size: smaller;
+    border-bottom: rgba(128, 128, 128, 0.555) 2px solid;
+}
+
+.bold {
+    font-weight: 700;
+    margin-top: -10px;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+.buttons>button {
+    margin: auto;
+    width: 300px;
+}
+
+.Hebrew {
+    direction: rtl;
+    text-align: right;
+}

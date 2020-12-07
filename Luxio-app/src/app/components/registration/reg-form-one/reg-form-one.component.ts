@@ -4,6 +4,7 @@ import { RegistrationService } from 'src/app/services/registation/registration.s
 import { ImageService } from 'src/app/services/imgService/img-searvice.service';
 import { SaveUserService } from 'src/app/services/saveUser/save-user.service';
 import { LanguageService } from 'src/app/services/language.service';
+import { RespondService } from 'src/app/services/respond/respond.service';
 
 @Component({
   selector: 'app-reg-form-one',
@@ -29,7 +30,7 @@ export class RegFormOneComponent implements OnInit {
   selectedImg: any = null;
   public password1: string = '';
   public password2: boolean;
-  public User_agreed: boolean;
+  public cookies: boolean;
   public isSubmitted: boolean;
   public category: string;
   public business_name: string;
@@ -38,13 +39,18 @@ export class RegFormOneComponent implements OnInit {
   constructor(
     private regService: RegistrationService,
     private cert_service: ImageService,
+    private respond_Service: RespondService,
     private users_db: SaveUserService,
     private lang_service: LanguageService
   ) { }
 
   ngOnInit() {
-    this.regService.conditions_of_use_from_service
-      .subscribe(date => this.User_agreed = date);
+    // --------checking cookies agreement--------
+    this.respond_Service.agreementCheck();
+    this.respond_Service.userAgreementPolicy_service
+      .subscribe(date => {
+        this.cookies = date;
+      });
 
     this.lang_service._selected_from_service
       .subscribe(date => { this.languege = date });
@@ -82,8 +88,8 @@ export class RegFormOneComponent implements OnInit {
   onSubmit(formValue) {
     this.isSubmitted = true;
     if (this.formTemplate.valid && this.password2) {
-      if (this.User_agreed) {
-        formValue.agreement = this.User_agreed;
+      if (this.cookies) {
+        formValue.agreement = this.cookies;
         formValue.cart = JSON.parse(localStorage.getItem('my_764528_ct')) ? JSON.parse(localStorage.getItem('my_764528_ct')) : [];
         formValue.favorites = JSON.parse(localStorage.getItem('my_764528_f')) ? JSON.parse(localStorage.getItem('my_764528_f')) : []
         this.Save(formValue);
@@ -122,9 +128,8 @@ export class RegFormOneComponent implements OnInit {
     } else this.password2 = false;
   }
 
-  terms_check(val) {
-    // console.log(val);
-    this.regService.user_agree_with_terms(val);
+  agreementPolicy_check(st: boolean) {
+    this.respond_Service.agreementToCookiesPolicy(st);
   }
 
   category_check(category) {

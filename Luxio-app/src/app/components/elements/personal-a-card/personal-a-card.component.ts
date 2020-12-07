@@ -51,8 +51,11 @@ export class PersonalACardComponent implements OnInit {
 
   delete_fromCart(item) {
     this.user_service.saveToCart(item);
-    this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_ct'));
-    this.getTotalPrice();
+
+    setTimeout(() => {
+      this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_ct'));
+      this.getTotalPrice();
+    }, 1000);
   }
 
   pay_onlyThis(item) {
@@ -65,7 +68,11 @@ export class PersonalACardComponent implements OnInit {
 
   remove_fromWishlist(item) {
     this.user_service.saveToFavorites(item);
-    this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_f'));
+
+    setTimeout(() => {
+      this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_f'));
+    }, 1000);
+
   }
 
   quantity_change(item, val) {

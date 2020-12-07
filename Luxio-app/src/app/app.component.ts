@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { RegistrationService } from './services/registation/registration.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from "@angular/router"
-import { SaveUserService } from './services/saveUser/save-user.service';
 import { LanguageService } from './services/language.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from './services/user-servise/user.service';
 import { ShopService } from './services/shop/shop.service';
 import { RespondService } from './services/respond/respond.service';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +16,7 @@ import { RespondService } from './services/respond/respond.service';
 })
 export class AppComponent implements OnInit {
 
+  private salt = bcrypt.genSaltSync(10);
   public regForm_Open: boolean = false;
   public formOne_Open: boolean = false;
   public formAgreement_Open: boolean = false;
@@ -26,7 +27,7 @@ export class AppComponent implements OnInit {
   public languege: string;
   public user: string;
   public users_props: boolean;
-  public cookies: boolean = true;
+  public cookies: boolean;
   public advertisement: boolean;
   public respond: Array<any> = [];
   public selectedProd: boolean;
@@ -55,6 +56,12 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
+    // --------checking cookies agreement--------
+    this.respond_Service.agreementCheck();
+    this.respond_Service.userAgreementPolicy_service
+      .subscribe(date => {
+        this.cookies = date;
+      });
     // ------------------------------
     this.shop_Service.getProducts_fromDB();
     this.shop_Service.shop_products_from_service
@@ -162,8 +169,8 @@ export class AppComponent implements OnInit {
     localStorage.clear();
   }
 
-  close_advertisementCookies() {
-    this.cookies = false;
+  agreeToCookiesPolicy() {
+    this.respond_Service.agreementToCookiesPolicy(true);
   }
 
   close_advertisement() {

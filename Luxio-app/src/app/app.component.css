@@ -94,6 +94,7 @@
 
 .main-app {
     width: 100%;
+    min-height: 920px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -106,10 +107,6 @@
 
 .H {
     direction: rtl;
-}
-
-.main-app {
-    min-height: 920px;
 }
 
 select {
@@ -135,13 +132,6 @@ option {
     align-items: center;
 }
 
-.formOne,
-.formAgreement,
-.formLogin,
-.formPasswordRest {
-    z-index: 3;
-}
-
 .RegForm {
     min-height: 200px;
     width: 800px;
@@ -150,6 +140,24 @@ option {
     margin-top: 180px;
     z-index: 2;
     position: fixed;
+}
+
+.formOne,
+.formLogin,
+.formPasswordRest {
+    z-index: 3;
+}
+
+.formAgreement {
+    position: fixed;
+    background-color: white;
+    border: black solid 2px;
+    z-index: 4;
+    top: 15%;
+    left: 25%;
+    height: 80%;
+    width: 50%;
+    overflow: auto;
 }
 
 .closeButton {
@@ -166,17 +174,16 @@ option {
 }
 
 
-/* NAVIGATION */
+/*------------------------------------------ NAVIGATION */
 
 .HEADER {
     position: fixed;
     top: 0;
-    background-color: rgb(0, 0, 0);
+    background-color: #ffffff;
     height: 100px;
-    width: 100%;
+    width: 1200px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
     border-bottom: white 5px solid;
     z-index: 10;
@@ -186,27 +193,26 @@ option {
 /* logo */
 
 .Akzentz-logo {
-    width: 14%;
-    height: 100px;
-    background-image: url('https://www.luxio.ae/wordpress//wp-content/themes/aperture-child/images/luxio.png');
-    background-size: 100% 90px;
+    width: 250px;
+    height: 90px;
+    background-image: url('https://i.pinimg.com/564x/f6/ca/90/f6ca90ea17192d2d652e2c0ba1559ddb.jpg');
+    background-size: cover;
     background-repeat: no-repeat;
-    margin-left: 1%;
-    margin-top: 10px;
+    margin: auto;
 }
 
 
 /* nav links */
 
-.nav {
-    width: 70%;
+.HEADER>nav {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: right;
+    margin: auto;
 }
 
 .nav-link {
-    color: rgb(255, 255, 255);
-    text-align: right;
+    color: rgb(0, 0, 0);
     font-size: 100%;
 }
 
@@ -224,14 +230,15 @@ option {
 .lang-selector {
     margin-left: 15px;
     cursor: pointer;
+    color: black;
 }
 
 .prod-options {
-    width: 50%;
-    background-color: rgb(0, 0, 0);
+    width: 100%;
+    background-color: rgb(255, 255, 255);
     position: fixed;
     top: 100px;
-    left: 25%;
+    left: 0;
     display: flex;
     flex-direction: row;
     border: white 5px solid;
@@ -239,7 +246,7 @@ option {
 }
 
 .prod-option-link {
-    color: white;
+    color: rgb(0, 0, 0);
     padding: 5%;
 }
 
@@ -248,6 +255,7 @@ option {
 
 .user-proertise {
     width: 200px;
+    color: rgb(0, 0, 0);
     background-color: rgb(0, 0, 0);
     position: absolute;
     top: 100px;
@@ -259,32 +267,34 @@ option {
 
 .user-icon {
     cursor: pointer;
+    color: black;
 }
 
 .user-props {
     margin: 1%;
     width: 98%;
     text-align: center;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .users-nav {
     display: flex;
     justify-content: center;
-    width: 20%;
+    width: 400px;
+    align-items: center;
 }
 
 .users-welcome {
-    width: 70%;
+    width: 800px;
     text-align: right;
     margin-top: 10px;
 }
 
 .fa-user-lock,
-.fa-user,
+.user-icon,
 .users-welcome {
-    color: white;
-    padding: 5%;
+    color: rgb(0, 0, 0);
+    padding: 10px;
 }
 
 .fa-user-lock:hover {
@@ -298,7 +308,7 @@ option {
     display: flex;
     flex-direction: column;
     width: 1200px;
-    margin-top: 120px;
+    margin-top: 30px;
 }
 
 

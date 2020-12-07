@@ -102,19 +102,19 @@
     <br>
     <div class="form-row">
         <div class="col">
-            <button [ngClass]="{error: User_agreed === false}" (click)="getTermsOfAgeement()" class="agreementButton btn btn-outline-secondary">
+            <button [ngClass]="{error: cookies === false}" (click)="getTermsOfAgeement()" class="agreementButton btn btn-outline-secondary">
                 {{ 'SIGN-IN.REGISTRATION-FORM.agreement' | translate}}
             </button>
         </div>
         <div class="col">
             <div style="display: flex; flex-direction: row;align-items: center;">
-                <input class="form-control check-b" [checked]="User_agreed" (change)="terms_check($event.target.checked)" type="checkbox" id="gridCheck1" formControlName="agreement">
+                <input class="form-control check-b" [checked]="cookies" (change)="agreementPolicy_check($event.target.checked)" type="checkbox" id="gridCheck1" formControlName="agreement">
                 <label for="gridCheck1" style="text-align:center">
                     {{ 'SIGN-IN.REGISTRATION-FORM.i-agree' | translate}}
                 </label>
             </div>
         </div>
-        <div class="text-danger col-sm-12" *ngIf="User_agreed === false">{{ 'SIGN-IN.rule-2' | translate}}</div>
+        <div class="text-danger col-sm-12" *ngIf="cookies === false">{{ 'SIGN-IN.rule-2' | translate}}</div>
     </div>
 
 

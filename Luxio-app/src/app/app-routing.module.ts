@@ -17,6 +17,8 @@ import { ToolsComponent } from './components/main/products/tools/tools.component
 import { PersonalAreaComponent } from './components/personal-area/personal-area.component';
 import { CommentsComponent } from './components/admin/comments/comments.component';
 import { CookiesComponent } from './components/cookies/cookies.component';
+import { RegistrationComponent } from './components/admin/registration/registration.component';
+import { RemoveComponent } from './components/admin/remove/remove.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'new', pathMatch: 'full' },
@@ -37,6 +39,8 @@ const routes: Routes = [
     { path: "admin/certificates", component: CrtificatesListComponent },
     { path: "admin/comments", component: CommentsComponent },
     { path: "admin/shop", component: AdminShopComponent },
+    { path: "admin/registration", component: RegistrationComponent },
+    { path: "admin/remove", component: RemoveComponent },
 
     { path: 'cookies', component: CookiesComponent },
     { path: '**', component: PageNotFoundComponent }
@@ -61,7 +65,9 @@ export const routingComponents = [
     ProFormanceComponent,
     BasicsComponent,
     AdminShopComponent,
+    RemoveComponent,
     CommentsComponent,
+    RegistrationComponent,
     CookiesComponent,
     PageNotFoundComponent
 ]

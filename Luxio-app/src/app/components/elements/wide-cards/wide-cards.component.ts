@@ -56,41 +56,40 @@ export class WideCardsComponent implements OnInit {
   }
 
   getClasses(id) {
-    if (this.my_favorites.includes(id)) {
-      return 'hart-button red-hart';
-    } else return 'hart-button grey-hart';
+    var index = this.my_favorites.findIndex(x => x._id === id);
+    if (index === -1) {
+      return 'hart-button grey-hart';
+    } else return 'hart-button red-hart';
   }
 
   getCartClasse(id) {
-    if (this.my_cart.includes(id)) {
-      return 'cart-button active';
-    } else return 'cart-button not-active';
+    var index = this.my_cart.findIndex(x => x._id === id);
+    if (index === -1) {
+      return 'cart-button not-active';
+    } else return 'cart-button active';
   }
 
-  addToFavorites(id) {
-    if (this.my_favorites.includes(id)) {
-      var filtered = this.my_favorites.filter((val) => { return val !== id; });
-      this.my_favorites = filtered;
-      localStorage.setItem('my_764528_f', JSON.stringify(filtered));
-      this.shop_service.favorites(filtered);
-    } else {
-      this.my_favorites.push(id);
-      localStorage.setItem('my_764528_f', JSON.stringify(this.my_favorites));
-      this.shop_service.cart(this.my_favorites);
-    }
+  addToFavorites(item) {
+    this.user_service.saveToFavorites(item);
   }
 
-  addToCart(id) {
-    if (this.my_cart.includes(id)) {
-      var filtered = this.my_cart.filter((val) => { return val !== id; });
-      this.my_cart = filtered;
-      localStorage.setItem('my_764528_ct', JSON.stringify(filtered));
-      this.shop_service.cart(filtered);
-    } else {
-      this.my_cart.push(id);
-      localStorage.setItem('my_764528_ct', JSON.stringify(this.my_cart));
-      this.shop_service.cart(this.my_cart);
-    }
+  addToCart(item) {
+    let item_toCart = {  // creating item with needed properties:
+      _id: item._id,
+      burcode_id: item.burcode_id,
+      name: item.name,
+      prod_class: item.prod_class,
+      img_link_1: item.img_link_1,
+      amount: item.amount_1,
+      amount_1: item.amount_1,
+      amount_2: item.amount_2,
+      quantity: 1,
+      price_1: item.price_1,
+      price_2: item.price_2,
+      price: item.price_1,
+      total_price: item.price_1
+    };
+    this.user_service.saveToCart(item_toCart); //sending on service to save
   }
 
 }

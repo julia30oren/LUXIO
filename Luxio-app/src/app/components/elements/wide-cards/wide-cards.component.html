@@ -13,9 +13,9 @@
         </div>
         <div class="card-info-div">
             <div style="display: flex; flex-direction: row;">
-                <button class="card-button" [ngClass]="getCartClasse(item._id)" (click)="addToCart(item._id)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}">
+                <button class="card-button" [ngClass]="getCartClasse(item._id)" (click)="addToCart(item)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}">
                     <i class="fab fa-shopify fa-2x"></i></button>
-                <button class="card-button" [ngClass]="getClasses(item._id)" (click)="addToFavorites(item._id)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}">
+                <button class="card-button" [ngClass]="getClasses(item._id)" (click)="addToFavorites(item)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}">
                     <i class="fas fa-heart fa-2x"></i></button>
                 <h5 style="font-family: Gadugi; margin-top: 10px; margin-left: 10px;">{{item.name}}</h5>
             </div>

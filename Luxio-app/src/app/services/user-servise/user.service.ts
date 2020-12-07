@@ -53,7 +53,6 @@ export class UserService {
       let users = res[0].allUsers;
       this.users.next(users)
     });
-
   }
 
   // ---------------get user by id------------
@@ -270,7 +269,7 @@ export class UserService {
 
       if (index === -1) {
         localCart.push(newToCart); // add item
-      } else localCart.splice(index, 1);
+      } else localCart.splice(index, 1); // remove item
     }
 
     setTimeout(() => {

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegFormAgreementComponent } from './reg-form-agreement.component';
+import { RemoveComponent } from './remove.component';
 
-describe('RegFormAgreementComponent', () => {
-  let component: RegFormAgreementComponent;
-  let fixture: ComponentFixture<RegFormAgreementComponent>;
+describe('RemoveComponent', () => {
+  let component: RemoveComponent;
+  let fixture: ComponentFixture<RemoveComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegFormAgreementComponent ]
+      declarations: [ RemoveComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegFormAgreementComponent);
+    fixture = TestBed.createComponent(RemoveComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

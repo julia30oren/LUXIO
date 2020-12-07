@@ -17,7 +17,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 
 import { RegFormOneComponent } from './components/registration/reg-form-one/reg-form-one.component';
-import { RegFormAgreementComponent } from './components/registration/reg-form-agreement/reg-form-agreement.component';
 import { LogFormComponent } from './components/registration/log-form/log-form.component';
 import { PasswordRestoreFormComponent } from './components/registration/password-restore-form/password-restore-form.component';
 import { FooterComponent } from './components/main/footer/footer.component';
@@ -32,6 +31,8 @@ import { PrivateInfoComponent } from './components/elements/private-info/private
 import { PurchaseHistoryComponent } from './components/elements/purchase-history/purchase-history.component';
 import { CommentFormComponent } from './components/elements/comment-form/comment-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RegistrationComponent } from './components/admin/registration/registration.component';
+import { RemoveComponent } from './components/admin/remove/remove.component';
 
 
 // AoT requires an exported function for factories
@@ -43,7 +44,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   declarations: [
     AppComponent,
     RegFormOneComponent,
-    RegFormAgreementComponent,
     LogFormComponent,
     PasswordRestoreFormComponent,
     routingComponents,
@@ -58,6 +58,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PrivateInfoComponent,
     PurchaseHistoryComponent,
     CommentFormComponent,
+    RegistrationComponent,
+    RemoveComponent,
   ],
   imports: [
     BrowserModule,

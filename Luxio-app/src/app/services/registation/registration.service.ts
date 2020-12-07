@@ -18,9 +18,6 @@ export class RegistrationService {
   private regestration_formAgreement = new BehaviorSubject<boolean>(false);
   public regestration_formAgreement_from_service = this.regestration_formAgreement.asObservable();
 
-  private conditions_of_use = new BehaviorSubject<boolean>(undefined);
-  public conditions_of_use_from_service = this.conditions_of_use.asObservable();
-
   private login_form = new BehaviorSubject<boolean>(false);
   public login_form_from_service = this.login_form.asObservable();
 
@@ -43,11 +40,6 @@ export class RegistrationService {
 
   AgreementPage() {
     this.regestration_formAgreement.next(true);
-  }
-
-  user_agree_with_terms(yesORno: boolean) {
-    this.conditions_of_use.next(yesORno);
-    this.close_AgreementPage();
   }
 
   close_AgreementPage() {

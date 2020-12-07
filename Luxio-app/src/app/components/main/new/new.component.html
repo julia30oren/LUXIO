@@ -3,11 +3,10 @@
 </div>
 
 <!-- NEW -->
-<div *ngIf="!selectedProd" class="NEW" [ngClass]="{Hebrew: langIv}">
+<div *ngIf="!selectedProd" class="NEW">
 
     <div class="buner-New"></div>
-    <p [ngClass]="{Hebrew: langIv}" style="padding: 5%; color: gray;">{{ 'NEW.loz' | translate}}</p>
-
+    <p class="introduction" [ngClass]="{Hebrew: languege==='iv'}"><span style="color: brown;">Akzentz</span>{{ 'NEW.loz' | translate}}</p>
     <hr/>
 
     <!-- RENDEZVOUS --------------------------------------------------------------------------->
@@ -20,7 +19,15 @@
             <h1>RENDEZVOUS</h1>
             <h5>UV/LED COLOUR COLLECTION</h5>
             <br>
-            <p [ngClass]="{Hebrew: langIv}" style="font-family: Calibri; color: gray; text-align: center;">{{ 'NEW.rendezvous-m' | translate}}.</p>
+            <p [ngClass]="{Hebrew: languege==='iv'}" class="description">{{ 'NEW.rendezvous-m' | translate}}</p>
+            <p class="description" style="margin-top: -15px;">
+                <span style="color: brown;"> Sentiment</span>,
+                <span style="color: brown;"> Secret</span>,
+                <span style="color: brown;"> Sultry</span>,
+                <span style="color: brown;"> Provoke</span>,
+                <span style="color: brown;"> Tryst</span>,
+                <span style="color: brown;"> Cryptic</span>.
+            </p>
             <p style="font-family: Calibri;font-size: small;">{{ 'NEW.info-2' | translate}}</p>
         </div>
     </div>
@@ -67,7 +74,12 @@
             <h1>SHADES</h1>
             <h5>UV/LED PRO-FORMANCE LINE</h5>
             <br>
-            <p [ngClass]="{Hebrew: langIv}" style="font-family: Calibri; color: gray; text-align: center;">{{ 'NEW.sades-m' | translate}}.</p>
+            <p [ngClass]="{Hebrew: langIv}" class="description">{{ 'NEW.sades-m' | translate}}</p>
+            <p class="description" style="margin-top: -15px;">Trinity Shades
+                <span style="color: brown;"> Cool</span>,
+                <span style="color: brown;"> Natural</span>,
+                <span style="color: brown;"> Warm</span>.
+            </p>
             <p style="font-family: Calibri;font-size: small;">{{ 'NEW.info-2' | translate}}</p>
         </div>
         <div class="therd-row">
@@ -108,7 +120,12 @@
             <h1>MIAMI</h1>
             <h5>GLITTER SHIFTERS COLLECTION</h5>
             <br>
-            <p [ngClass]="{Hebrew: langIv}" style="font-family: Calibri; color: gray; text-align: center;">{{ 'NEW.miami-m' | translate}}.</p>
+            <p [ngClass]="{Hebrew: languege==='iv'}" class="description">{{ 'NEW.miami-m' | translate}}</p>
+            <p class="description" style="margin-top: -15px;">Gel Play Miami Glitter Shifter:
+                <span style="color: brown;"> Heat</span>,
+                <span style="color: brown;"> Night</span>,
+                <span style="color: brown;"> Sunset</span>.
+            </p>
             <p style="font-family: Calibri;font-size: small;">{{ 'NEW.info-2' | translate}}</p>
         </div>
         <div class="half-row">
@@ -151,7 +168,15 @@
             <h1>VOYAGE</h1>
             <h5>UV/LED COLOUR COLLECTION</h5>
             <br>
-            <p [ngClass]="{Hebrew: langIv}" style="font-family: Calibri; color: gray; text-align: center;">{{ 'NEW.voyage-m' | translate}}</p>
+            <p [ngClass]="{Hebrew: languege==='iv'}" class="description">{{ 'NEW.voyage-m' | translate}}</p>
+            <p class="description" style="margin-top: -15px;">
+                <span style="color: brown;"> Lustful</span>,
+                <span style="color: brown;"> Glimpse</span>,
+                <span style="color: brown;"> Jaded</span>,
+                <span style="color: brown;"> Instinct</span>,
+                <span style="color: brown;"> Persuasion</span>,
+                <span style="color: brown;"> Virtue</span>.
+            </p>
             <p style="font-family: Calibri;font-size: small;">{{ 'NEW.info-1' | translate}}</p>
         </div>
     </div>
