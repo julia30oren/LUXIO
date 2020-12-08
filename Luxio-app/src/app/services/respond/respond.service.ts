@@ -26,15 +26,20 @@ export class RespondService {
   }
 
   agreementCheck() {
-    let hush = JSON.stringify(localStorage.getItem('cookies_rep_hash'));
-    const cryptoAgreementChek = bcrypt.compareSync('true', hush);
-    if (cryptoAgreementChek) {
-      this.userAgreementPolicy.next(true);
+    let hush = localStorage.getItem('cookies_rep_hash');
+    if (hush) {
+      const cryptoAgreementChek = bcrypt.compareSync('true', hush);
+
+      if (cryptoAgreementChek) {
+        this.userAgreementPolicy.next(true);
+      } else this.userAgreementPolicy.next(false);
     } else this.userAgreementPolicy.next(false);
+
   }
 
   agreementToCookiesPolicy(state: boolean) {
     const agreementHash = bcrypt.hashSync(JSON.stringify(state), this.salt);
+    console.log(state)
     localStorage.setItem('cookies_rep_hash', agreementHash);
     this.userAgreementPolicy.next(state);
     this.regestration_Service.close_AgreementPage();

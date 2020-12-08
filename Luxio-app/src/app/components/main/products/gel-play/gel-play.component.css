@@ -16,13 +16,21 @@
 }
 
 .sm-text {
-    font-family: Calibri;
-    font-size: 15px;
+    font-family: Georgia, serif;
+    font-size: 20px;
     color: gray;
 }
 
 .m-text {
-    font-family: Calibri;
-    font-size: 20px;
     color: gray;
+    padding: 2%;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    letter-spacing: 3px;
+    word-spacing: 6px;
+    font-weight: 400;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
 }

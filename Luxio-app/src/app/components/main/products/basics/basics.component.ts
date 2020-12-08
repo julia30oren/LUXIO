@@ -11,8 +11,6 @@ export class BasicsComponent implements OnInit {
 
   public shop: Array<any>;
   public languege: string;
-  public selectedProd: boolean;
-
 
   constructor(
     private lang_service: LanguageService,
@@ -42,9 +40,6 @@ export class BasicsComponent implements OnInit {
           });
         };
       });
-
-    this.shop_service.select_one_from_service
-      .subscribe(date => this.selectedProd = date);
   }
 
 }

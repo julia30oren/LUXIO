@@ -175,7 +175,7 @@
                     <textarea class="form-control" id="Textarea" formControlName="coment_rus"></textarea>
 
                     <label for="Textarea">{{ 'ADMIN.text-area' | translate}} (עברית):</label>
-                    <textarea class="form-control" id="Textarea" formControlName="coment_iv"></textarea>
+                    <textarea class="form-control Hebrew" id="Textarea" formControlName="coment_iv"></textarea>
                 </div>
             </div>
 
@@ -201,41 +201,57 @@
     <br> <br>
 
     <div class="shopComp" *ngIf="shop">
-        <div *ngFor="let item of shop" id={{item.burcode_id}} class="card mb-3" style="width: 48%; margin: auto; margin-top:1%">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <img src={{item.img_link_1}} class="card-img" alt="..." (click)="select(item.burcode_id);openForm(true)">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <p class="card-text"><small class="text-muted"># {{item.burcode_id}}</small></p>
-                        <h5 class="card-title">{{item.prod_class}} {{item.name}}</h5>
-                        <p *ngIf="item.prod_collection">Collection: {{ item.prod_collection}}</p>
-                        <p class="card-text">{{item.coment_eng}}</p>
-                        <p class="card-text">{{item.coment_rus}}</p>
-                        <p class="card-text Hebrew">{{item.coment_iv}}</p>
-
-                        <p class="card-text">
-                            <small class="text-muted">{{item.amount_1}} {{item.price_1}} &#8362;</small>
-                            <small class="text-muted" *ngIf="item.amount_2"> / {{item.amount_2}} {{item.price_2}} &#8362;</small>
-                        </p>
-                        <p class="card-text">
-                            <small class="text-muted labels" *ngIf="item.label">{{item.label}}</small>
-                            <small class="text-muted labels" *ngIf="item.color">{{item.color}}</small>
-                            <small class="text-muted labels" *ngIf="item.tint">{{item.tint}}</small>
-                            <small class="text-muted labels" *ngIf="item.label">{{item.transparency}}</small></p>
-                        <div>
-                            <button type="button" class="btn btn-outline-warning" (click)="select(item.burcode_id);openForm(true)">
-                                {{ 'ADMIN.CERTIFICATES.button-edit' | translate }}
-                            </button>
-                            <button type="button" class="btn btn-outline-danger" (click)="delete(item._id)" style="margin-left: 15px;">
-                                {{ 'ADMIN.CERTIFICATES.button-delete' | translate }}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Class</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Collection</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Colour</th>
+                    <th scope="col">Label</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of shop" (click)="select(item.burcode_id);openForm(true)">
+                    <th scope="row">{{item.burcode_id}}</th>
+                    <td><img src={{item.img_link_1}} class="card-img" alt={{item.name}}></td>
+                    <td>{{item.prod_class}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{ item.prod_collection}}</td>
+                    <td>
+                        <p>{{item.amount_1}}</p>
+                        <p>{{item.amount_2}}</p>
+                    </td>
+                    <td>
+                        <p>{{item.price_1}} &#8362;</p>
+                        <p *ngIf="item.price_2">{{item.price_2}} &#8362;</p>
+                    </td>
+                    <td>
+                        <small class="text-muted">{{item.color}}</small>
+                        <small class="text-muted">{{item.tint}}</small>
+                        <small class="text-muted">{{item.transparency}}</small>
+                    </td>
+                    <td>
+                        <small class="text-muted" *ngIf="item.label">{{item.label}}</small>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-warning" (click)="select(item.burcode_id);openForm(true)">
+                            {{ 'ADMIN.CERTIFICATES.button-edit' | translate }}
+                        </button>
+                        <button type="button" class="btn btn-outline-danger" (click)="delete(item._id)" style="margin-left: 15px;">
+                            {{ 'ADMIN.CERTIFICATES.button-delete' | translate }}
+                        </button> </td>
+                </tr>
+            </tbody>
+        </table>
+        <!--<p class="card-text">{{item.coment_eng}}</p>
+            <p class="card-text">{{item.coment_rus}}</p>
+            <p class="card-text Hebrew">{{item.coment_iv}}</p> -->
     </div>
 
 </div>

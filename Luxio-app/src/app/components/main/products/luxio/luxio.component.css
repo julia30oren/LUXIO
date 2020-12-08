@@ -18,11 +18,12 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    padding: 5%;
+    padding: 2%;
 }
 
 .title {
-    font-size: 22px;
+    font-family: Century Gothic;
+    font-size: 25px;
     margin-top: 10px;
 }
 
@@ -37,7 +38,15 @@
 }
 
 .sm-text {
-    font-family: Calibri;
-    font-size: 20px;
     color: gray;
+    padding: 2%;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    letter-spacing: 3px;
+    word-spacing: 6px;
+    font-weight: 400;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
 }

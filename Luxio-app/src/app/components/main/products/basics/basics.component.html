@@ -1,13 +1,8 @@
-<div *ngIf="selectedProd">
-    <app-big-image></app-big-image>
+<img class="buner" src="https://i.pinimg.com/originals/08/5a/41/085a4163327ec176b85c75902e143d73.jpg" alt="Basics buner" />
+
+<div [ngClass]="{Hebrew: languege==='iv'}" style="width: 100%; padding-top: 50px;; padding-bottom: 50px; border-bottom: rgba(128, 128, 128, 0.5) solid 2px ">
+    <h5 class="title">AKZENTZ {{'BASICS.title' | translate}}</h5>
+    <p class="sm-text">{{'BASICS.text' | translate}}</p>
 </div>
 
-<div *ngIf="!selectedProd">
-    <img class="buner" src="https://i.pinimg.com/originals/08/5a/41/085a4163327ec176b85c75902e143d73.jpg" alt="Basics buner" />
-    <div [ngClass]="{Hebrew: languege==='iv'}" style="width: 100%; padding-top: 50px;; padding-bottom: 50px; border-bottom: rgba(128, 128, 128, 0.5) solid 2px ">
-        <h3>AKZENTZ {{'BASICS.title' | translate}}</h3>
-        <p>{{'BASICS.text' | translate}}</p>
-    </div>
-
-    <app-wide-cards></app-wide-cards>
-</div>
+<app-wide-cards></app-wide-cards>

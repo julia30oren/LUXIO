@@ -7,8 +7,8 @@
     direction: rtl;
 }
 
-.labels {
-    padding: 2%;
+.text-muted {
+    margin-right: 10px;
 }
 
 .btn {
@@ -38,6 +38,8 @@
 
 .card-img {
     cursor: pointer;
+    height: 70px;
+    width: 70px;
 }
 
 .message-to-admin {

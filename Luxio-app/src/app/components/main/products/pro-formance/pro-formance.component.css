@@ -10,6 +10,17 @@
     direction: rtl;
 }
 
+.sm-text {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    color: gray;
+}
+
+.title {
+    font-family: Century Gothic;
+    font-size: 25px;
+}
+
 
 /* CARD */
 

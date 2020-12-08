@@ -66,6 +66,12 @@
     color: gray
 }
 
+.sm-text {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    color: gray;
+}
+
 .options-img-cover {
     background-color: rgba(255, 0, 0, 0);
     position: absolute;

@@ -7,3 +7,14 @@
     text-align: right;
     direction: rtl;
 }
+
+.title {
+    font-family: Century Gothic;
+    font-size: 25px;
+}
+
+.sm-text {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    color: gray;
+}

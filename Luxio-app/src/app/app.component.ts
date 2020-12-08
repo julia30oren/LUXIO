@@ -56,11 +56,24 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+      var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        document.getElementById("Header").style.top = "0";
+        // document.getElementById("prodOptionsDiv").style.top = "100";
+      } else {
+        document.getElementById("Header").style.top = "-100px";
+        // document.getElementById("prodOptionsDiv").style.top = "-50px";
+      }
+      prevScrollpos = currentScrollPos;
+    }
     // --------checking cookies agreement--------
     this.respond_Service.agreementCheck();
     this.respond_Service.userAgreementPolicy_service
       .subscribe(date => {
         this.cookies = date;
+        // console.log(this.cookies)
       });
     // ------------------------------
     this.shop_Service.getProducts_fromDB();
@@ -132,8 +145,6 @@ export class AppComponent implements OnInit {
   // ----------------------------------------
 
 
-
-
   usersPropertise() {
     this.users_props = !this.users_props;
   }
@@ -156,6 +167,7 @@ export class AppComponent implements OnInit {
   }
 
   login_form() {
+    console.log('click')
     if (this.regForm_Open) {
       this.regestration_Service.loginPage();
     } else this.regestration_Service.loginForm();
@@ -166,7 +178,9 @@ export class AppComponent implements OnInit {
   }
 
   logOut() {
+    let hush = localStorage.getItem('cookies_rep_hash');
     localStorage.clear();
+    localStorage.setItem('cookies_rep_hash', hush);
   }
 
   agreeToCookiesPolicy() {
