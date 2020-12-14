@@ -44,10 +44,16 @@
         <p style="margin-top: 50px;">{{ 'PERSONAL-AREA.FORM.p-2' | translate}}</p>
         <div class="form-row">
             <div class="col">
-                <select id="inputState" class="form-control" value="formControls.state?formControls.state:null" formControlName="state" placeholder="State...">
-              <option selected>State...</option>
-              <option>...</option>
-            </select>
+                <select id="inputState" [ngClass]="{error: isSubmitted && formControls.state.errors?.required}" class="form-control" formControlName="state">
+                        <option value="" disabled selected>{{ 'SIGN-IN.REGISTRATION-FORM.location' | translate}}</option>
+                        <option value="Center of Israel (close to Tel Aviv)" >{{ 'SIGN-IN.REGISTRATION-FORM.loc1' | translate}}</option>
+                        <option value="Center of Israel (close to Jerusalem)">{{ 'SIGN-IN.REGISTRATION-FORM.loc2' | translate}}</option>
+                        <option value="North of Israel (close to Haifa)">{{ 'SIGN-IN.REGISTRATION-FORM.loc3' | translate}}</option>
+                        <option value="North of Israel (close to Nazareth)">{{ 'SIGN-IN.REGISTRATION-FORM.loc4' | translate}}</option>
+                        <option value="North of Israel (close to Qiryat Shemona)">{{ 'SIGN-IN.REGISTRATION-FORM.loc5' | translate}}</option>
+                        <option value="Western Israel (close to Be'er Sheva)">{{ 'SIGN-IN.REGISTRATION-FORM.loc6' | translate}}</option>
+                        <option value="Western Israel (close to Be'er Sheva)">{{ 'SIGN-IN.REGISTRATION-FORM.loc7' | translate}}</option>
+                    </select>
             </div>
             <div class="col">
                 <input type="text" class="form-control" value="formControls.city?formControls.city:null" formControlName="city" value="formControls.city" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.city' | translate}}">

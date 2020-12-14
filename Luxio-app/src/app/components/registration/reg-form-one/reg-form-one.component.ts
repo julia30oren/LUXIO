@@ -18,7 +18,7 @@ export class RegFormOneComponent implements OnInit {
   public formTemplate = new FormGroup({
     first_name: new FormControl('', Validators.required),
     second_name: new FormControl('', Validators.required),
-    city: new FormControl('', Validators.required),
+    state: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     phoneN: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
@@ -145,7 +145,7 @@ export class RegFormOneComponent implements OnInit {
     this.formTemplate.setValue({
       first_name: '',
       second_name: '',
-      city: '',
+      state: '',
       email: '',
       phoneN: '',
       password: '',

@@ -15,11 +15,12 @@
     </div>
 </div>
 
-<div [ngClass]="{Hebrew: language==='iv'}">
-    <div *ngIf="!new_form_open" class="shopComp">
+<div>
+    <div *ngIf="!new_form_open" class="shopComp" [ngClass]="{Hebrew: language==='iv'}">
         <button class="btn btn-secondary btn-lg btn-block" type="button" (click)="openForm(true)">{{ 'ADMIN.CERTIFICATES.button-create-modify' | translate}}</button>
     </div>
-    <div class="form" *ngIf="new_form_open">
+
+    <div class="form" *ngIf="new_form_open" [ngClass]="{Hebrew: language==='iv'}">
         <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
             <!-- <p>{{selectedProd | json}}</p> -->
 

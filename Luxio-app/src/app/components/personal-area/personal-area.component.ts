@@ -19,7 +19,6 @@ export class PersonalAreaComponent implements OnInit {
   public languege: string;
   public shop: any[];
   public what_to_show: string;
-  public selectedProd: boolean;
 
   ngOnInit() {
     this.language_Service._selected_from_service
@@ -37,8 +36,6 @@ export class PersonalAreaComponent implements OnInit {
         this.shop_Service.getProducts_sorted(cart);
       });
 
-    this.shop_Service.select_one_from_service
-      .subscribe(date => this.selectedProd = date);
   }
 
   getMyCart() {

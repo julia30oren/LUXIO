@@ -51,6 +51,7 @@ app.use('/user', require('./routes/user/user')); //check  by postmane (exept car
 app.use('/admin', require('./routes/admin/admin')); //check by postmane
 app.use('/comments', require('./routes/comments/comments')); //check by postmane
 app.use('/products', require('./routes/products/products')); //check by postmane
+app.use('/order', require('./routes/orders/orders'));
 app.use('/whatsapp', require('./routes/whatsapp/whatsapp'))
 
 app.listen(process.env.PORT, (err) => {

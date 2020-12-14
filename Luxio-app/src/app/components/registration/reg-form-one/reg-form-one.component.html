@@ -85,7 +85,7 @@
     </div>
     <div class="form-row">
         <div class="col">
-            <select [ngClass]="{error: isSubmitted && formControls.city.errors?.required}" type="text" class="form-control" formControlName="city">
+            <select [ngClass]="{error: isSubmitted && formControls.state.errors?.required}" type="text" class="form-control" formControlName="state">
                 <option value="" disabled>{{ 'SIGN-IN.REGISTRATION-FORM.location' | translate}}</option>
                 <option value="Center of Israel (close to Tel Aviv)">{{ 'SIGN-IN.REGISTRATION-FORM.loc1' | translate}}</option>
                 <option value="Center of Israel (close to Jerusalem)">{{ 'SIGN-IN.REGISTRATION-FORM.loc2' | translate}}</option>
@@ -96,7 +96,7 @@
                 <option value="Western Israel (close to Be'er Sheva)">{{ 'SIGN-IN.REGISTRATION-FORM.loc7' | translate}}</option>
             </select>
         </div>
-        <div class="text-danger" *ngIf="isSubmitted && formControls.city.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.state.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
     </div>
     <!-- ---------------------------------------------------------------------------------------------------------------- -->
     <br>

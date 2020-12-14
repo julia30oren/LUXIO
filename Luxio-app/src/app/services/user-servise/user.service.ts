@@ -82,7 +82,7 @@ export class UserService {
   // -----------------LOG IN AS ADMIN------------------
   logInadmin(params: object, languege: string) {
     return this.http.post(`${this.admin_url}/${languege}/login`, params).subscribe(res => {
-      console.log(res);
+      // console.log(res);
       this.respond_Service.saveRespond(res);
       this.register_Service.close_RegistrationForm();
       if (res[0].status) {
@@ -146,11 +146,14 @@ export class UserService {
     let toSend = { _id: userLog, cart: newCart };
     // ----------------------------------------saving new cart to service----------------
     this.shop_Service.cart(newCart);
+    // -----save on localStorage
+    localStorage.setItem('my_764528_ct', JSON.stringify(newCart));
     // -----------------------------------------saving new cart to DB----------------
     return this.http.post(`${this.user_URL}/new-cart`, toSend)
       .subscribe(res => {
         console.log(res);
       });
+
   }
 
 
@@ -277,7 +280,7 @@ export class UserService {
       localStorage.setItem('my_764528_ct', JSON.stringify(localCart));  // save new cart to localStorage
     }, 1000);
   }
-  // ---------------------------after user logd in
+  // ---------------------------after user loged in
   usersCart(newToCart) {
     // ----geting cart from localStorage
     let localCart = JSON.parse(localStorage.getItem('my_764528_ct')) || [];

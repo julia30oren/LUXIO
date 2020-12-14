@@ -35,7 +35,7 @@ router.post("/upload-certificate", upload.array('image'), async(req, res) => {
 // ---------------------------------------------CREATE A NEW USER-------------------------
 router.post("/:lang/save", async(req, res) => {
     const language = req.params.lang;
-    const { first_name, second_name, phoneN, city, email, password, category, certificate_link, cart, favorites, business } = req.body;
+    const { first_name, second_name, phoneN, state, email, password, category, certificate_link, cart, favorites, business } = req.body;
     // -------------------------------------- cripting password-------------------------
     const salt = bcrypt.genSaltSync(10);
     const passwordHash = bcrypt.hashSync(password, salt);
@@ -44,7 +44,7 @@ router.post("/:lang/save", async(req, res) => {
         first_name: first_name.charAt(0).toUpperCase() + first_name.slice(1),
         second_name: second_name.charAt(0).toUpperCase() + second_name.slice(1),
         phoneN: phoneN,
-        city: city.charAt(0).toUpperCase() + city.slice(1),
+        state: state.charAt(0).toUpperCase() + state.slice(1),
         email: email,
         password: passwordHash,
         category: category,
@@ -210,7 +210,7 @@ router.get('/:lang/delete/user/:id', async(req, res) => {
                     responseMessage = `Пользователь не найден.`
                     break;
                 default:
-                    responseMessage = `User not found.`
+                    responseMessage = `המשתמש לא נמצא.`
                     break;
             }
             return res.json([{ status: false, message: responseMessage }]);

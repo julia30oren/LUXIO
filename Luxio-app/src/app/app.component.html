@@ -1,4 +1,13 @@
 <div class="main-app">
+    <!-- ------------------------------------------ COMMERCIAL -->
+    <div id="commertial1">
+        <img style="width: 100%;" src="https://i.pinimg.com/originals/6b/d9/35/6bd935ae92d592ce2bba697127a4a655.png" alt="Commertial Luxio" />
+        <h3>Buy any 5 bottles from the <span style="color: brown;">Luxio</span>, <span style="color: brown;">Options</span>, <span style="color: brown;">Gel Play</span> lines and get 1 for <span style="text-decoration: underline solid rgb(68, 68, 68);">free</span>!!!</h3>
+    </div>
+    <div id="commertial2">
+        <!-- <h3>Buy any 5 bottles from the <span style="color: brown;">Luxio</span>, <span style="color: brown;">Options</span>, <span style="color: brown;">Gel Play</span> lines and get 1 for <span style="text-decoration: underline solid rgb(68, 68, 68);">free</span>!!!</h3> -->
+        <img style="width: 100%;" src="https://i.pinimg.com/originals/5b/30/e8/5b30e846b9ec269f4661d6ef30b9d11c.png" alt="Commertial Luxio" />
+    </div>
     <!-- ----------------------------------------------------------------- -->
     <div *ngIf="selectedProd" id="selected-prod">
         <app-big-image></app-big-image>
@@ -23,7 +32,6 @@
     <!-------------------------------------------------- NAVIGATION ---------------------->
     <div id="Header">
 
-
         <div id="header-top" [ngClass]="{borderbottom: !prodOptionsOpen}">
             <div id="header-left-side">
 
@@ -38,7 +46,7 @@
                     <div id="user-info-bar">
 
                         <i *ngIf="user" class="fas fa-user fa-2x nav-icon" (click)="usersPropertise()"></i>
-                        <a href="personal-area"><i *ngIf="user" class="fas fa-shopping-cart fa-2x nav-icon"></i></a>
+                        <a href="personal-area"><i *ngIf="user" class="fas fa-shopping-basket  fa-2x nav-icon"></i></a>
                         <p *ngIf="user" style="height: 20%;">{{ 'NAVIGATION.welcome' | translate}} , {{user}}</p>
 
                         <i *ngIf="!user" class="fas fa-user-lock fa-2x nav-icon" (click)="login_form()"></i>
@@ -158,7 +166,7 @@
     <style>
         .for_admin {
             position: fixed;
-            margin-top: 200px;
+            margin-top: 100px;
             left: 10px;
             background-color: gray;
         }

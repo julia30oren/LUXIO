@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
   selector: 'app-purchase-history',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PurchaseHistoryComponent implements OnInit {
 
-  constructor() { }
+  public orders: Array<any>;
+  constructor(
+    private order_service: OrderService
+  ) { }
 
   ngOnInit() {
+    let userID = localStorage.getItem('u324_3i_25d');
+    this.order_service.getUserOrders(userID);
+
+    this.order_service.userOrders_fromService
+      .subscribe(date => {
+        this.orders = date;
+      })
+
   }
 
 }

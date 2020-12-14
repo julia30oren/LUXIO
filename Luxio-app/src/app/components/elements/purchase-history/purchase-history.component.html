@@ -1,1 +1,27 @@
-<p>purchase-history works!</p>
+<!-- <p *ngFor="let item of orders">{{item|json}}</p> -->
+
+<div *ngFor="let order of orders" style="margin-top: 20px; border-bottom: gray 2px solid;">
+    <p style="color: brown;">{{order.order_date | date}}</p>
+    <div>
+        <!-- {{order.order | json}} -->
+        <table class="table">
+            <tbody>
+                <tr *ngFor="let item of order.order">
+                    <th scope="row"><img src={{item.img_link_1}} alt={{item.name}} style="height: 40px;" /></th>
+                    <td>{{item.amount}}</td>
+                    <td>{{item.prod_class}} {{item.name}}</td>
+                    <td>{{item.price}} &#8362;</td>
+                    <td>{{item.quantity}}</td>
+                    <td>{{item.total_price}} &#8362;</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="margin-left: 70%;">
+        <p>Shipping: {{order.payments.shipping}} &#8362;</p>
+        <p>Discount: -{{order.payments.discount}} &#8362;</p>
+        <p>Total: {{order.payments.total}} &#8362;</p>
+        <!-- <button type="button" class="btn btn-info">Resived</button> -->
+    </div>
+
+</div>
