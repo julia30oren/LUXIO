@@ -10,7 +10,7 @@ import { RegistrationService } from '../registation/registration.service';
 })
 export class SaveUserService {
 
-  // private DB_url: string = 'http://localhost:5000';
+  private DB_url: string = 'http://localhost:5000/user';
   private registeration_URL: string = 'http://localhost:5000/user/registeration';
 
   private stateForm = new BehaviorSubject<boolean>(false);
@@ -35,6 +35,11 @@ export class SaveUserService {
     });
   }
 
+  saveUserPhoto(info: object) {
+    return this.http.post(`${this.DB_url}/new-image`, info).subscribe(res => {
+      this.respond_Service.saveRespond(res);
+    });
+  }
 
   sertConfirmation(id: string, state: boolean, language: string) {
     return this.http.get(`${this.registeration_URL}/${language}/status/${id}/${state}`).subscribe(res => {

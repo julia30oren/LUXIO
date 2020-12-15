@@ -51,6 +51,9 @@ const UserSchema = new Schema({
     certificate_link: {
         type: String
     },
+    photo_link: {
+        type: String
+    },
     business: {
         type: Object
     },

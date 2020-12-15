@@ -1,119 +1,125 @@
 <div *ngIf="selectedProd" class="SELECTED-PRODUCT">
-
-    <div style="display: flex; flex-direction: row; width: 55%;" *ngFor="let item of selectedProd">
-        <div style="display: flex; flex-direction: column; width: 20%; height: 400px;">
-            <div *ngIf="item.img_link_1">
-                <img class="thumbnail" src={{item.img_link_1}} alt={{item.name}} />
-                <div class="cover" (click)="selectImage(item.img_link_1)"></div>
+    <div style="width: 1200px; display: flex; flex-direction: row;">
+        <!--------------------------------------------------- images -->
+        <div style="display: flex; flex-direction: row; width: 55%;" *ngFor="let item of selectedProd">
+            <div style="display: flex; flex-direction: column; width: 20%; height: 400px;">
+                <div *ngIf="item.img_link_1">
+                    <img class="thumbnail" src={{item.img_link_1}} alt={{item.name}} />
+                    <div class="cover" (click)="selectImage(item.img_link_1)"></div>
+                </div>
+                <div *ngIf="item.img_link_2">
+                    <img class="thumbnail" src={{item.img_link_2}} alt={{item.name}} />
+                    <div class="cover" (click)="selectImage(item.img_link_2)"></div>
+                </div>
+                <div *ngIf="item.img_link_3">
+                    <img class="thumbnail" src={{item.img_link_3}} alt={{item.name}} />
+                    <div class="cover" (click)="selectImage(item.img_link_3)"></div>
+                </div>
             </div>
-            <div *ngIf="item.img_link_2">
-                <img class="thumbnail" src={{item.img_link_2}} alt={{item.name}} />
-                <div class="cover" (click)="selectImage(item.img_link_2)"></div>
-            </div>
-            <div *ngIf="item.img_link_3">
-                <img class="thumbnail" src={{item.img_link_3}} alt={{item.name}} />
-                <div class="cover" (click)="selectImage(item.img_link_3)"></div>
-            </div>
-        </div>
-        <div style="display: flex; flex-direction: column; width: 80%; height: 400px;">
-            <div class="big-img-cover"></div>
-            <img src={{selectedProd_Img}} alt={{item.name}} class="big-img" />
-            <a *ngIf=" item.prod_class==='Luxio' " class="newImages-link" href="https://www.instagram.com/explore/tags/{{item.prod_class}}_{{item.name}}/ " target="_blank ">
+            <!-- ------------------------------------big image -->
+            <div style="display: flex; flex-direction: column; width: 80%; height: 400px;">
+                <div class="big-img-cover"></div>
+                <img src={{selectedProd_Img}} alt={{item.name}} class="big-img" />
+                <a *ngIf=" item.prod_class==='Luxio' " class="newImages-link" href="https://www.instagram.com/explore/tags/{{item.prod_class}}_{{item.name}}/ " target="_blank ">
             {{ 'PROD_DESCRIPTION.more-img' | translate }}
         </a>
+            </div>
+        </div>
+        <!-- --------------------------------PRODUCT INFO ------------->
+        <!-- ----------------------------------product name---------- -->
+        <div class="txt-col" *ngFor="let item of selectedProd" [ngClass]="{Hebrew: languege==='iv'}">
+            <p *ngIf="item.prod_class==='Luxio' "><small>&#8470;</small>{{item.burcode_id}}</p>
+            <h4>{{item.prod_class}} {{item.name}}</h4>
+
+            <br>
+
+            <form style="display: flex; flex-direction: row;">
+                <!-- amount can be changed -->
+                <div class="form-group" style="width: 30%; margin:auto;">
+                    <select class="form-control" (change)="amount_change($event.target.value)">
+                        <option value="{{item.amount_1}}">{{item.amount_1}} {{item.price_1}}&#8362;</option>
+                        <option value="{{item.amount_2}}" *ngIf="item.amount_2" >{{item.amount_2}} {{item.price_2}}&#8362;</option>
+                    </select>
+                </div>
+                <!-- quantity can be changed -->
+                <div class="form-group" style="width: 15%; margin:auto;">
+                    <input type="number" class="form-control" value="1" min="1" (change)="quantity_change($event.target.value)">
+                </div>
+                <!-- ----------------------------BUTTONS -->
+                <div style="width: 50%; margin:auto; display: flex; flex-direction: column;">
+                    <!-- "ADD TO CART" & "REMOVE FROM CART" buttons,
+                        text and colour depends on if item already in  -->
+                    <button type="button" class="button-link" (click)="addToCart(item)">
+                        <p *ngIf="!selectedProd_inCart">{{'PROD_DESCRIPTION.add_to_cart' | translate}}</p>
+                        <p *ngIf="selectedProd_inCart" style="color: rgb(212, 99, 99);">{{'PROD_DESCRIPTION.remove_from_cart' | translate}}</p>
+                    </button>
+                    <!-- "ADD TO FAVORITES" & "REMOVE FROM FAVORITES" buttons,
+                        text and colour depends on if item already in  -->
+                    <button type="button" class="button-link" (click)="addToFavorites(item)">
+                        <p *ngIf="!selectedProd_inFavorites">{{'PROD_DESCRIPTION.add_to_favorites' | translate}}</p>
+                        <p *ngIf="selectedProd_inFavorites" style="color: rgb(212, 99, 99);">{{'PROD_DESCRIPTION.remove_from_favorites' | translate}}</p>
+                    </button>
+                </div>
+            </form>
+            <br>
+            <!--------------------------------------------------- INFORMATION -->
+            <!-- special information , left by admin -->
+            <p *ngIf="languege==='en'">{{item.coment_eng}}</p>
+            <p *ngIf="languege==='ru'">{{item.coment_rus}}</p>
+            <p *ngIf="languege==='iv'">{{item.coment_iv}}</p>
+            <!--------------------------------------------------- INFORMATION DEPENDES ON PRODUCT CLASS-->
+            <!-- LUXIO option -->
+            <div *ngIf="item.prod_class==='Luxio'">
+                <p>{{ 'PROD_DESCRIPTION.LUXIO.main' | translate }}</p>
+                <ul>
+                    <li>{{ 'PROD_DESCRIPTION.LUXIO.list-1' | translate }}</li>
+                    <li>{{ 'PROD_DESCRIPTION.LUXIO.list-2' | translate }}</li>
+                    <li>{{ 'PROD_DESCRIPTION.LUXIO.list-3' | translate }}</li>
+                    <li>{{ 'PROD_DESCRIPTION.LUXIO.list-4' | translate }}</li>
+                    <li>{{ 'PROD_DESCRIPTION.LUXIO.list-5' | translate }}</li>
+                </ul>
+            </div>
+            <!-- OPTIONS option -->
+            <div *ngIf="item.prod_class==='Options'">
+                <p>{{ 'PROD_DESCRIPTION.OPTIONS.main' | translate }}</p>
+            </div>
+            <!-- PRO-FORM option -->
+            <div *ngIf="item.prod_class==='Hard GEL'">
+                <p>{{ 'PROD_DESCRIPTION.PRO-FORMANCE.main' | translate }}</p>
+            </div>
+            <!-- GELPLAY option -->
+            <div *ngIf="item.prod_class==='Gel Play'">
+                <ul>
+                    <li>{{ 'PROD_DESCRIPTION.GEL-PLAY.list-1' | translate }}</li>
+                    <li>{{ 'PROD_DESCRIPTION.GEL-PLAY.list-2' | translate }}</li>
+                </ul>
+            </div>
+            <!-- --------------------------------- -->
+        </div>
+        <!---------------------------  button to close selected------- -->
+        <div class="button-col">
+            <button type="button" (click)="closeSelected()" class="close-button">
+                <i class="fas fa-times fa-2x"></i>
+            </button>
         </div>
     </div>
-
-    <div class="txt-col" *ngFor="let item of selectedProd" [ngClass]="{Hebrew: languege==='iv'}">
-        <p *ngIf="item.prod_class==='Luxio' "><small>&#8470;</small>{{item.burcode_id}}</p>
-        <h4>{{item.prod_class}} {{item.name}}</h4>
-
+    <!--------------------------------------------------EXTRA - INFORMATION FOR ALL THE PRODUCTES-->
+    <div [ngClass]="{Hebrew: languege==='iv'}" style="margin-top: 150px;">
+        <!-- creation -->
+        <div class="box">
+            <p> {{ 'PROD_DESCRIPTION.ps' | translate }}</p>
+        </div>
+        <!-- shipment -->
+        <div class="box">
+            <p>{{ 'PROD_DESCRIPTION.extra-1' | translate }}</p>
+            <p>{{ 'PROD_DESCRIPTION.extra-2' | translate }}&#8362; {{ 'PROD_DESCRIPTION.extra-3' | translate }}</p>
+        </div>
+        <!-- return conditions -->
+        <div class="box">
+            <p>&#42;{{ 'PROD_DESCRIPTION.extra-4' | translate }}</p>
+            <p>&#42;{{ 'PROD_DESCRIPTION.extra-5' | translate }}</p>
+        </div>
         <br>
-
-        <form style="display: flex; flex-direction: row;">
-            <div class="form-group" style="width: 30%; margin:auto;">
-                <select class="form-control" (change)="amount_change($event.target.value)">
-                <option value="{{item.amount_1}}">{{item.amount_1}} {{item.price_1}}&#8362;</option>
-                <option value="{{item.amount_2}}" *ngIf="item.amount_2" >{{item.amount_2}} {{item.price_2}}&#8362;</option>
-              </select>
-            </div>
-
-            <div class="form-group" style="width: 15%; margin:auto;">
-                <input type="number" class="form-control" value="1" min="1" (change)="quantity_change($event.target.value)">
-            </div>
-
-            <div style="width: 50%; margin:auto; display: flex; flex-direction: column;">
-                <button type="button" class="button-link" (click)="addToCart(item)">
-                    <p *ngIf="!selectedProd_inCart">{{'PROD_DESCRIPTION.add_to_cart' | translate}}</p>
-                    <p *ngIf="selectedProd_inCart" style="color: rgb(212, 99, 99);">{{'PROD_DESCRIPTION.remove_from_cart' | translate}}</p>
-                </button>
-                <button type="button" class="button-link" (click)="addToFavorites(item)">
-                    <p *ngIf="!selectedProd_inFavorites">{{'PROD_DESCRIPTION.add_to_favorites' | translate}}</p>
-                    <p *ngIf="selectedProd_inFavorites" style="color: rgb(212, 99, 99);">{{'PROD_DESCRIPTION.remove_from_favorites' | translate}}</p>
-                </button>
-            </div>
-        </form>
-
-        <br>
-
-        <!-- INFORMATION -->
-        <p *ngIf="languege==='en'">{{item.coment_eng}}</p>
-        <p *ngIf="languege==='ru'">{{item.coment_rus}}</p>
-        <p *ngIf="languege==='iv'">{{item.coment_iv}}</p>
-        <!-- LUXIO option -->
-        <div *ngIf="item.prod_class==='Luxio'">
-            <p>{{ 'PROD_DESCRIPTION.LUXIO.main' | translate }}</p>
-            <ul>
-                <li>{{ 'PROD_DESCRIPTION.LUXIO.list-1' | translate }}</li>
-                <li>{{ 'PROD_DESCRIPTION.LUXIO.list-2' | translate }}</li>
-                <li>{{ 'PROD_DESCRIPTION.LUXIO.list-3' | translate }}</li>
-                <li>{{ 'PROD_DESCRIPTION.LUXIO.list-4' | translate }}</li>
-                <li>{{ 'PROD_DESCRIPTION.LUXIO.list-5' | translate }}</li>
-            </ul>
-        </div>
-        <!-- OPTIONS option -->
-        <div *ngIf="item.prod_class==='Options'">
-            <p>{{ 'PROD_DESCRIPTION.OPTIONS.main' | translate }}</p>
-        </div>
-        <!-- PRO-FORM option -->
-        <div *ngIf="item.prod_class==='Hard GEL'">
-            <p>{{ 'PROD_DESCRIPTION.PRO-FORMANCE.main' | translate }}</p>
-        </div>
-        <!-- GELPLAY option -->
-        <div *ngIf="item.prod_class==='Gel Play'">
-            <ul>
-                <li>{{ 'PROD_DESCRIPTION.GEL-PLAY.list-1' | translate }}</li>
-                <li>{{ 'PROD_DESCRIPTION.GEL-PLAY.list-2' | translate }}</li>
-            </ul>
-        </div>
-        <!--  -->
-
-
     </div>
-
-    <div class="button-col">
-        <button type="button" (click)="closeSelected()" class="close-button">
-            <i class="fas fa-times fa-2x"></i>
-        </button>
-    </div>
-
+    <!--  -->
 </div>
-
-<!-- extra info -->
-
-<div [ngClass]="{Hebrew: languege==='iv'}" style="margin-top: 150px;">
-    <div class="box">
-        <p> {{ 'PROD_DESCRIPTION.ps' | translate }}</p>
-    </div>
-    <div class="box">
-        <p>{{ 'PROD_DESCRIPTION.extra-1' | translate }}</p>
-        <p>{{ 'PROD_DESCRIPTION.extra-2' | translate }}&#8362; {{ 'PROD_DESCRIPTION.extra-3' | translate }}</p>
-    </div>
-    <div class="box">
-        <p>&#42;{{ 'PROD_DESCRIPTION.extra-4' | translate }}</p>
-        <p>&#42;{{ 'PROD_DESCRIPTION.extra-5' | translate }}</p>
-    </div>
-    <br>
-</div>
-
-<!--  -->

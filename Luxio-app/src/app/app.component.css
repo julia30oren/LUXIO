@@ -80,8 +80,10 @@
 /* --------------SELECTED PRODUCT------- */
 
 #selected-prod {
-    width: 70%;
+    width: 100%;
     margin-top: 200px;
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -335,7 +337,17 @@ option {
     right: 50px;
     display: flex;
     flex-direction: column;
-    align-content: space-between;
+}
+
+.admin-proertise {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    top: 0px;
+    left: 500px;
+    display: flex;
+    flex-direction: column;
+    font-size: smaller;
 }
 
 .nav-icon {

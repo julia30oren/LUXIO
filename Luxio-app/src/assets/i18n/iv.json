@@ -28,6 +28,14 @@
         "COMMENTS": {
             "title": "הערות"
         },
+        "REGISTER-ADMIN": {
+            "title": "מנהל הרשמה"
+        },
+        "DELETE-ADMIN": {
+            "title": "מחק את המנהל"
+        },
+        "basics": "יסודות",
+        "tools": "כלים",
         "rights": "קבוצת מיטרה",
         "welcome": "שלום",
         "sign-out": "להתנתק"

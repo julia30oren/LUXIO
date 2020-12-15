@@ -14,7 +14,7 @@
         <app-purchase-history *ngIf="what_to_show==='purchase-history'"></app-purchase-history>
     </div>
     <!-- ----------------------------------------------------MODEL IMAGE---------------------------------- -->
-    <div>
+    <div style="width: 400px;">
         <div class="AKZENTZ-model"></div>
         <p *ngIf="what_to_show==='wishlist' || what_to_show==='cart'" class="message-link" (click)="close_advertisement()">{{ 'PERSONAL-AREA.CARD.shipping-details' | translate}}</p>
         <div *ngIf="what_to_show==='wishlist' || what_to_show==='cart'" id="shipping-details" [ngClass]="{Hebrew: languege==='iv'}">

@@ -31,4 +31,18 @@ export class ImageService {
       }
       );
   }
+
+  insertPhotoDetails(selectedImg, id: string) {
+    // ------------------CLOUDINARY ----
+    return this.http.post(`${this.registeration_URL}/upload-certificate`, selectedImg)
+      .subscribe(res => {
+        this.respond_Service.saveRespond(res);
+        // SAVING TO DB ---
+        let image_link = res[0].date;  //photo link saving to form
+        console.log(image_link);
+        this.db_Servise.saveUserPhoto({ _id: id, photo_link: image_link });
+      }
+      );
+  }
+
 }

@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
   public respond: Array<any> = [];
   public selectedProd: boolean;
   public shop: Array<any>;
+  private admin: boolean = false;
 
   formTemplate = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -132,6 +133,9 @@ export class AppComponent implements OnInit {
     // -------------------------------------
     this.shop_Service.select_one_from_service
       .subscribe(date => this.selectedProd = date);
+    // if user is admin
+    this.regestration_Service.admin_from_service
+      .subscribe(date => this.admin = date);
   }
 
   // --------------------seting chosen languega--------------

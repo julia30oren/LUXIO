@@ -13,9 +13,16 @@
     <div></div>
     <div></div>
 </div>
-<!-- ---------------------------------- -->
+
 <!-- -------------------------------------------------------------PERSONAL INFO FORM---------------- -->
 <div *ngIf="!loader" id="Privat-info-component" [ngClass]="{Hebrew: languege==='iv'}">
+    <!-- -----------------------USER PHOTO----------- -->
+    <div style="width: 100%; margin-top: 50px;">
+        <input (change)="saveNewPhoto($event)" type="file" accept="image/*" name="file" id="file" class="inputfile" />
+        <label *ngIf="imgSrc" for="file"><img class="self-img" src={{imgSrc}} alt="Self Photo" /></label>
+        <label *ngIf="!imgSrc" for="file"><img class="self-img" src="https://static.thenounproject.com/png/220984-200.png" alt="Self Photo" /></label>
+        <button *ngIf="showButton" type="button" (click)="savePhoto()" style="background-color: pink; border:plum; border-radius: 10px; margin-left: 20px;">Save</button>
+    </div>
     <form [formGroup]="infoTemplate" (submit)="newInfoSave(infoTemplate.value)">
         <!-- ---------------------------------------------------------------------------CHANGING NAME--------------------------- -->
         <p style="margin-top: 50px;">{{ 'PERSONAL-AREA.FORM.p-1' | translate}}</p>

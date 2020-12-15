@@ -63,7 +63,7 @@ export class UserService {
     });
   }
 
-  // ---------------LOG IN USER------------/:lang/login
+  // ---------------LOG IN USER------------
   userToLogin(params: object, languege: string) {
     return this.http.post(`${this.user_URL}/${languege}/login`, params).subscribe(res => {
 
@@ -88,7 +88,8 @@ export class UserService {
       if (res[0].status) {
         localStorage.clear();
         this.seveAdmin_onService(res);
-      }
+        this.register_Service.userAsAdmin(true);
+      } else this.register_Service.userAsAdmin(false);
     });
   }
   // -----------------------

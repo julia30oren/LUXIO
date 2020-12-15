@@ -1,13 +1,75 @@
 /* FOOTER */
 
 .FOOTER {
-    width: 100%;
+    width: 1200px;
+    margin-top: 30px;
     background-color: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: grey;
+}
+
+#commertial {
+    height: 260px;
+    width: 100%;
+    background-image: url('https://i.pinimg.com/originals/53/fc/da/53fcda5b0189a758025f7ef95bc088c4.png');
+    background-size: cover;
+    border-bottom: black dotted 5px;
+}
+
+#commertial>p {
+    width: 50%;
+    margin: auto;
+    padding-top: 20px;
+    text-align: center;
+    font-size: xxx-large;
+}
+
+#footer {
+    width: 100%;
+}
+
+.footer-left,
+.footer-right {
+    width: 50%;
+    float: left;
+}
+
+.nav-left {
+    width: 60%;
+    float: left;
+    height: 150px;
+}
+
+.nav-right {
+    width: 40%;
+    float: left;
+    height: 150px;
+}
+
+.nav-left {
+    border-right: solid black 1px;
+    color: black;
+}
+
+.nav-left>a {
+    width: 100%;
+    float: left;
+    text-align: right;
+    padding-right: 5%;
+}
+
+.nav-right {
+    border-left: solid black 1px;
+    color: black;
+}
+
+.nav-right>a {
+    width: 100%;
+    float: left;
+    text-align: left;
+    padding-left: 5%;
+}
+
+.footer-link {
+    width: 100%;
 }
 
 .socials {
@@ -23,7 +85,9 @@
     color: rgb(212, 99, 99);
 }
 
-.rights {
-    color: rgb(129, 129, 129);
+.rights,
+.location {
     font-size: small;
+    padding-left: 15px;
+    margin-top: -10px;
 }

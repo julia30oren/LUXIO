@@ -24,7 +24,14 @@ export class RegistrationService {
   private passwordRestore_form = new BehaviorSubject<boolean>(false);
   public passwordRestore_form_from_service = this.passwordRestore_form.asObservable();
 
+  private admin = new BehaviorSubject<boolean>(localStorage.getItem('ad34_n746773e') ? true : false);
+  public admin_from_service = this.admin.asObservable();
+
   constructor() { }
+  // user is admin
+  userAsAdmin(state: boolean) {
+    this.admin.next(state);
+  }
 
   open_RegistrationForm() {
     this.regestrationForm.next(true);

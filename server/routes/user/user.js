@@ -59,7 +59,7 @@ router.post('/:lang/login', async(req, res) => {
     const language = req.params.lang;
     // -------------------------------if admin----------------
     if (email.toLowerCase() === process.env.mainAdmin) {
-        console.log(email);
+        // console.log(email);
         res.json([{ status: true, message: `admin` }]);
     } else {
         // ----------------------if user----------------
@@ -304,6 +304,27 @@ router.post("/:lang/newpass/:email", async(req, res) => {
                     break;
             }
             res.json([{ status: false, message: responseMessage }]);
+            // logger.error(``);
+        }
+    } catch (err) {
+        return res.json([{ status: false, message: err.message }]);
+        // logger.error(``);
+    }
+});
+
+// ------------------------------------------------------------------------- USER UPDATING IMAGE ------------------------------
+router.post("/new-image", async(req, res) => {
+    // -------------------------------------------------- requested parameters -----
+    const { _id, photo_link } = req.body;
+    //--------------------------------------------------- update users cart -------------
+    try {
+        const imgToSave = await UserSchema.update({ "_id": _id }, { $set: { "photo_link": photo_link } });
+        if (imgToSave.nModified === 1) {
+            return res.json([{ status: true, message: `Image saved successfully.` }]);
+        }
+        // --------------------------------------------------------------------------------- ERRORS --
+        else {
+            return res.json([{ status: false, message: `Something went wrong. Image wasn't save.` }]);
             // logger.error(``);
         }
     } catch (err) {

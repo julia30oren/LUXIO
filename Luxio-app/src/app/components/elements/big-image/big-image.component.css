@@ -7,9 +7,10 @@
 /* SELECTED-PRODUCT */
 
 .SELECTED-PRODUCT {
-    width: 100%;
+    width: 1200px;
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .img-col {

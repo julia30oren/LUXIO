@@ -28,6 +28,14 @@
         "COMMENTS": {
             "title": "COMMENTS"
         },
+        "REGISTER-ADMIN": {
+            "title": "REGISTER ADMIN"
+        },
+        "DELETE-ADMIN": {
+            "title": "DELETE ADMIN"
+        },
+        "basics": "Basics",
+        "tools": "Tools",
         "rights": "MITRA GROUP",
         "welcome": "Hello",
         "sign-out": "Log Out"
