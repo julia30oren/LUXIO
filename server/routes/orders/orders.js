@@ -2,21 +2,19 @@ const express = require('express');
 const router = express.Router();
 const OrderSchema = require('./order-model');
 const UserSchema = require('../user/user-model');
+const logger = require('../../logger');
+const moment = require("moment");
 
-// need to be done ------------- soon-----------------------
-// create          logger.error(``)         and          logger.info(``)
-// edd .status( )
 let responseMessage;
-
 
 // ---------------------------------------------------GET ALL orders-----------------------------
 router.get('/', async(req, res) => {
-    try {
-        const allOrders = await OrderSchema.find().sort({ 'order_date': -1 }); //get them sorted by name
-        res.json([{ status: true, allOrders }]);
-    } catch (err) {
-        res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
+            try {
+                const allOrders = await OrderSchema.find().sort({ 'order_date': -1 }); //get them sorted by name
+                return res.json([{ status: true, allOrders }]);
+            } catch (err) {
+                logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+                return res.json([{ status: false, message: err.message }]);
     }
 });
 
@@ -24,10 +22,10 @@ router.get('/', async(req, res) => {
 router.get('/:id', async(req, res) => {
     try {
         const userOrders = await OrderSchema.find().sort({ 'order_date': -1 }); //get them sorted by name
-        res.json([{ status: true, userOrders }]);
+        return res.json([{ status: true, userOrders }]);
     } catch (err) {
-        res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+        return res.json([{ status: false, message: err.message }]);
     }
 });
 
@@ -60,8 +58,8 @@ router.post("/:lang/save", async(req, res, next) => {
                         responseMessage = `ההזמנה בוצעה בהצלחה.`
                 };
                 const cartRestart = await UserSchema.update({ "_id": user_id }, { $set: { "cart": [] } });
-                res.json([{ status: true, message: responseMessage }]);
-                // logger.info(``);
+                logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage} Order id ${orderToSave._id}`);
+                return res.json([{ status: true, message: responseMessage }]);
             }
             //-------------------------------ERRORS-------
             else {
@@ -74,17 +72,17 @@ router.post("/:lang/save", async(req, res, next) => {
                         break;
                     default:
                         responseMessage = `ההזמנה לא בוצעה.`
-                }
-                res.json([{ status: false, message: responseMessage }]);
-                // logger.error(``);
+                };
+                logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+                return res.json([{ status: false, message: responseMessage }]);
             }
         } catch (err) {
-            res.json([{ status: false, message: err.message }]);
-            // logger.error(``);
+            logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+            return res.json([{ status: false, message: err.message }]);
         }
     } catch (err) {
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
         return res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
     }
 });
 
@@ -107,9 +105,9 @@ router.get('/:lang/delete/:id', async(req, res) => {
                 default:
                     responseMessage = `ההזמנה נמחקה.`
                     break;
-            }
-            res.json([{ status: true, message: responseMessage }]);
-            // logger.info(``);
+            };
+            logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+            return res.json([{ status: true, message: responseMessage }]);
         }
         // ---------------------------ERRORS------------
         else {
@@ -123,13 +121,13 @@ router.get('/:lang/delete/:id', async(req, res) => {
                 default:
                     responseMessage = `ההזמנה לא נמצאה.`
                     break;
-            }
+            };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
             return res.json([{ status: false, message: responseMessage }]);
-            // logger.error(``);
         }
     } catch (err) {
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
         return res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
     }
 });
 
@@ -154,9 +152,9 @@ router.get("/:lang/status/:id/:status", async(req, res) => {
                 default:
                     responseMessage = `סטטוס ההזמנה השתנה בהצלחה.`
                     break;
-            }
-            res.json([{ status: true, message: responseMessage }]);
-            // logger.info(``);
+            };
+            logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage} Order id ${id}`);
+            return res.json([{ status: true, message: responseMessage }]);
         }
         // ---------------------------ERRORS------------------
         else {
@@ -170,13 +168,13 @@ router.get("/:lang/status/:id/:status", async(req, res) => {
                 default:
                     responseMessage = `סטטוס ההזמנה לא השתנה.`
                     break;
-            }
-            res.json([{ status: false, message: responseMessage }]);
-            // logger.error(``);
+            };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage} Order id ${id}`);
+            return res.json([{ status: false, message: responseMessage }]);
         }
     } catch (err) {
-        res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+        return res.json([{ status: false, message: err.message }]);
     }
 });
 

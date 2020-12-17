@@ -1,20 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const ProductSchema = require('./product-model');
-// need to be done ------------- soon-----------------------
-// create          logger.error(``)         and          logger.info(``)
-// edd .status( )
-let responseMessage;
+const logger = require('../../logger');
+const moment = require("moment");
 
+let responseMessage;
 
 // ---------------------------------------------------GET ALL PRODUCTS-----------------------------
 router.get('/', async(req, res) => {
-    try {
-        const allProductes = await ProductSchema.find().sort({ 'prod_class': -1 }); //get them sorted by name
-        res.json([{ status: true, allProductes }]);
-    } catch (err) {
-        res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
+            try {
+                const allProductes = await ProductSchema.find().sort({ 'prod_class': -1 }); //get them sorted by name
+                return res.json([{ status: true, allProductes }]);
+            } catch (err) {
+                logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+                return res.json([{ status: false, message: err.message }]);
     }
 });
 
@@ -64,9 +63,9 @@ router.post("/:lang/save", async(req, res, next) => {
                             break;
                         default:
                             responseMessage = `המוצר <<${prod_class} ${name}>> נוסף בהצלחה.`
-                    }
-                    res.json([{ status: true, message: responseMessage }]);
-                    // logger.info(``);
+                    };
+                    logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+                    return res.json([{ status: true, message: responseMessage }]);
                 }
                 //-------------------------------ERRORS-------
                 else {
@@ -79,13 +78,13 @@ router.post("/:lang/save", async(req, res, next) => {
                             break;
                         default:
                             responseMessage = `המוצר <<${prod_class} ${name}>> לא נוסף.`
-                    }
-                    res.json([{ status: false, message: responseMessage }]);
-                    // logger.error(``);
+                    };
+                    logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+                    return res.json([{ status: false, message: responseMessage }]);
                 }
             } catch (err) {
-                res.json([{ status: false, message: err.message }]);
-                // logger.error(``);
+                logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+                return res.json([{ status: false, message: err.message }]);
             }
         }
         // -------------------------------SAVING CHANGES TO PRODUCT----------
@@ -122,9 +121,9 @@ router.post("/:lang/save", async(req, res, next) => {
                         break;
                     default:
                         responseMessage = `שינויים ב- <<${prod_class} ${name}>> נשמרו בהצלחה.`
-                }
+                };
+                logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
                 return res.json([{ status: true, message: responseMessage }]);
-                // logger.info(``);
             }
             //-------------------------------ERRORS-------
             else {
@@ -138,14 +137,14 @@ router.post("/:lang/save", async(req, res, next) => {
                         break;
                     default:
                         responseMessage = `שינויים ב- <<${prod_class} ${name}>> לא נשמרו. בבקשה נסה שוב.`
-                }
+                };
+                logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
                 return res.json([{ status: false, message: responseMessage }]);
-                // logger.error(``);
             }
         }
     } catch (err) {
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
         return res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
     }
 });
 
@@ -167,9 +166,9 @@ router.get('/:lang/remove/:id', async(req, res) => {
                     break;
                 default:
                     responseMessage = `המוצר נמחק.`
-            }
+            };
+            logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
             return res.json([{ status: true, message: responseMessage }]);
-            // logger.info(``);
         }
         // -------------------------ERRORS--------------
         else {
@@ -182,13 +181,13 @@ router.get('/:lang/remove/:id', async(req, res) => {
                     break;
                 default:
                     responseMessage = `המוצר לא נמצא.`
-            }
+            };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
             return res.json([{ status: false, message: responseMessage }]);
-            // logger.error(``);
         }
     } catch (err) {
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
         return res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
     }
 });
 

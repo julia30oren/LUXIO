@@ -1,3 +1,4 @@
+<!-- ------------------------------------------------------------------FOR USER------------------------------------------------ -->
 <form *ngIf="!asAdmin" class="regF" [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
     <div class="form-row">
         <div class="col">
@@ -17,32 +18,32 @@
 </form>
 
 
-<!-- -------------------------------------------------------------------------------------------------------------------------- -->
+<!-- -----------------------------------------------------------------FOR ADMIN--------------------------------------------------------- -->
 <form *ngIf="asAdmin" class="regF" [formGroup]="formTemplate2" (submit)="onSubmit2(formTemplate2.value)">
     <div class="form-row">
         <div class="col">
-            <input [ngClass]="{error: isSubmitted2 && formControls2.admin_name.errors?.required}" formControlName="admin_name" type="text" class="form-control" placeholder="admin_name">
+            <input [ngClass]="{error: isSubmitted2 && formControls2.admin_name.errors?.required}" formControlName="admin_name" type="text" class="form-control" placeholder="Admin name">
         </div>
         <div class="text-danger" *ngIf="isSubmitted2 && formControls2.admin_name.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
     </div>
 
     <div class="form-row">
         <div class="col">
-            <input [ngClass]="{error: isSubmitted2 && formControls2.admin_password.errors?.required}" formControlName="admin_password" type="password" class="form-control" placeholder="admin_password">
+            <input [ngClass]="{error: isSubmitted2 && formControls2.admin_password.errors?.required}" formControlName="admin_password" type="password" class="form-control" placeholder="Admin password">
         </div>
         <div class="text-danger" *ngIf="isSubmitted2 && formControls2.admin_password.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
     </div>
 
     <div class="form-row">
         <div class="col">
-            <input [ngClass]="{error: isSubmitted2 && formControls2.email.errors?.required}" formControlName="email" type="text" class="form-control" placeholder="main email">
+            <input [ngClass]="{error: isSubmitted2 && formControls2.main_email.errors?.required}" formControlName="main_email" type="text" class="form-control" placeholder="Main email">
         </div>
-        <div class="text-danger" *ngIf="isSubmitted2 && formControls2.email.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
+        <div class="text-danger" *ngIf="isSubmitted2 && formControls2.main_email.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
     </div>
 
     <div class="form-row">
         <div class="col">
-            <input [ngClass]="{error: isSubmitted2 && formControls2.main_password.errors?.required}" formControlName="main_password" type="password" class="form-control" placeholder="main password">
+            <input [ngClass]="{error: isSubmitted2 && formControls2.main_password.errors?.required}" formControlName="main_password" type="password" class="form-control" placeholder="Main password">
         </div>
         <div class="text-danger" *ngIf="isSubmitted2 && formControls2.main_password.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
     </div>

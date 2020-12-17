@@ -19,11 +19,11 @@ export class LogFormComponent implements OnInit {
   private asAdmin: boolean;
   public isSubmitted2: boolean;
   public formTemplate2 = new FormGroup({
-    email: new FormControl('', Validators.required),
+    main_email: new FormControl('', Validators.required),
     main_password: new FormControl('', Validators.required),
     admin_name: new FormControl('', Validators.required),
     admin_password: new FormControl('', Validators.required)
-  })
+  })// main_email, main_password, admin_name, admin_password
 
 
   constructor(
@@ -36,18 +36,18 @@ export class LogFormComponent implements OnInit {
     this.language_Service._selected_from_service
       .subscribe(date => { this.languege = date });
 
-    this.user_Service.asAdmin_from_service
-      .subscribe(date => {
-        if (date) { //log in as admin
-          this.asAdmin = date;
-          this.formTemplate2.setValue({ //email, main_password, admin_name, admin_password
-            email: '',
-            main_password: '',
-            admin_name: this.formTemplate.value.email, //seting email(as Admin name) from formTemplate for users
-            admin_password: this.formTemplate.value.password //seting password(as admin password) from formTemplate for users
-          });
-        }
-      })
+    // this.user_Service.asAdmin_from_service
+    //   .subscribe(date => {
+    //     this.asAdmin = date;
+    //     if (this.asAdmin) { //loged as admin
+    //       this.formTemplate2.setValue({ //email, main_password, admin_name, admin_password
+    //         main_email: '',
+    //         main_password: '',
+    //         admin_name: this.formTemplate.value.email, //seting email(as Admin name) from formTemplate for users
+    //         admin_password: this.formTemplate.value.password //seting password(as admin password) from formTemplate for users
+    //       });
+    //     }
+    //   })
   }
 
   get formControls() {
@@ -56,10 +56,22 @@ export class LogFormComponent implements OnInit {
 
   onSubmit(formValue) {
     this.isSubmitted = true;
-    if (this.formTemplate.valid) {
-      this.user_Service.userToLogin(formValue, this.languege)
+
+    if (formValue.email.includes('@')) {
+      if (this.formTemplate.valid) {
+        formValue.email = formValue.email.toLowerCase();
+        this.user_Service.userToLogin(formValue, this.languege);
+      } else {
+        console.log('denied');
+      }
     } else {
-      console.log('denied');
+      this.formTemplate2.setValue({ //email, main_password, admin_name, admin_password
+        admin_name: formValue.email, //seting email(as Admin name) from formTemplate for users
+        admin_password: formValue.password,  //seting password(as admin password) from formTemplate for users
+        main_email: "",
+        main_password: "",
+      });
+      this.asAdmin = true;
     }
   }
 
@@ -67,14 +79,20 @@ export class LogFormComponent implements OnInit {
     return this.formTemplate2['controls'];
   }
 
+  // ----------------------------SUBMIT FOR ADMIN
   onSubmit2(formValue) {
-    this.isSubmitted2 = true;
     console.log(formValue)
+    // main_email, main_password, admin_name, admin_password
+    this.isSubmitted2 = true;
     if (this.formTemplate2.valid) {
+      formValue.admin_name = formValue.admin_name.toLowerCase();
+      formValue.main_email = formValue.main_email.toLowerCase();
       this.user_Service.logInadmin(formValue, this.languege)
     } else {
       console.log('denied');
     }
+    this.asAdmin = false;
+
   }
 
 }

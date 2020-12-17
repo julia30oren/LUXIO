@@ -4,9 +4,8 @@ const AdminSchema = require('.//admin-model');
 const bcrypt = require('bcryptjs');
 const JWT = require('jsonwebtoken');
 const nodemailer = require("nodemailer");
-// need to be done ------------- soon-----------------------
-// create          logger.error(``)         and          logger.info(``)
-// edd .status( )
+const logger = require('../../logger');
+const moment = require("moment");
 let responseMessage;
 // create reusable transporter object using the default SMTP transport
 let transporter = nodemailer.createTransport({
@@ -18,16 +17,17 @@ let transporter = nodemailer.createTransport({
         pass: process.env.SMTPHOSTEMAILPASSWORD,
     }
 });
+const adminValidation = require('../../validations/adminValidation');
+router.use(adminValidation);
 
 // ---------------------------------------------------GET ALL ADMINS-----------------------------
 router.get("/", async(req, res, next) => {
-    try {
-        const alladmins = await AdminSchema.find();
-        res.json([{ status: true, alladmins }]);
-        // logger.info(``);
-    } catch (err) {
-        res.json([{ status: false, massage: err.message }]);
-        // logger.error(``);
+            try {
+                const alladmins = await AdminSchema.find();
+                return res.json([{ status: true, alladmins }]);
+            } catch (err) {
+                logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+                return res.json([{ status: false, message: err.message }]);
     }
 });
 
@@ -67,30 +67,30 @@ router.post("/:lang/create", async(req, res) => {
                 default:
                     responseMessage = `מנהל מערכת חדש נוצר בהצלחה.`
                     break;
-            }
-            res.json([{ status: true, massage: responseMessage }]);
+            };
             emailToLuxio(newAdmin_toSave.admin_name, true, language);
-            // logger.info(``);
+            logger.info(`${moment().format(`h:mm:ss a`)} - New Admin was created <<${newAdmin_toSave.admin_name}>> `);
+            return res.json([{ status: true, message: responseMessage }]);
         }
         // -------------------------ERRORS--------------
         else {
             switch (language) {
                 case 'en':
-                    responseMessage = `We have an error. Admin wasn't created`
+                    responseMessage = `An error has occurred. Admin was not added.`
                     break;
                 case 'ru':
-                    responseMessage = `Новый админ успешно создан.`
+                    responseMessage = `Произошла ошибка. Админ не был добавлен.`
                     break;
                 default:
-                    responseMessage = `מנהל מערכת חדש נוצר בהצלחה.`
+                    responseMessage = `אירעה שגיאה. מנהל המערכת לא התווסף.`
                     break;
-            }
-            res.json([{ status: false, massage: responseMessage }]);
-            // logger.error(``);
+            };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+            return res.json([{ status: false, message: responseMessage }]);
         }
     } catch (err) {
-        return res.json([{ status: false, massage: err.message }]);
-        // logger.error(``);
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err}`);
+        return res.json([{ status: false, message: err.message }]);
     }
 });
 
@@ -114,10 +114,10 @@ router.get('/:lang/remove/:id', async(req, res) => {
                 default:
                     responseMessage = `מנהל המערכת נמחק.`
                     break;
-            }
+            };
             emailToLuxio(admin.admin_name, false, language);
-            return res.json([{ status: true, massage: responseMessage }]);
-            // logger.info(``);
+            logger.info(`${moment().format(`h:mm:ss a`)} - <<${admin.admin_name}>> ${responseMessage}`);
+            return res.json([{ status: true, message: responseMessage }]);
         }
         // -------------------------ERRORS--------------
         else {
@@ -131,13 +131,13 @@ router.get('/:lang/remove/:id', async(req, res) => {
                 default:
                     responseMessage = `מנהל המערכת לא נמצא.`
                     break;
-            }
-            return res.json([{ status: false, massage: responseMessage }]);
-            // logger.error(``);
+            };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+            return res.json([{ status: false, message: responseMessage }]);
         }
     } catch (err) {
-        return res.json([{ status: false, massage: err.message }]);
-        // logger.error(``);
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err}`);
+        return res.json([{ status: false, message: err.message }]);
     }
 });
 
@@ -145,11 +145,12 @@ router.get('/:lang/remove/:id', async(req, res) => {
 // -------------------------------------------------ADMIN LOG-IN-------------------------
 router.post('/:lang/login', async(req, res) => {
     const language = req.params.lang;
-    const { email, main_password, admin_name, admin_password } = req.body;
+    const { main_email, main_password, admin_name, admin_password } = req.body;
+
     let adminName = admin_name.charAt(0).toUpperCase() + admin_name.slice(1)
         // check for main email match--------------
-    if (email === process.env.LuxioEmail) {
-        const adminExist = await AdminSchema.findOne({ "admin_name": adminName, "email": email });
+    if (main_email === process.env.LuxioEmail) {
+        const adminExist = await AdminSchema.findOne({ "admin_name": adminName, "email": main_email });
         if (adminExist) {
             // cheking main password--------------------
             const hush1 = adminExist.main_password;
@@ -160,7 +161,7 @@ router.post('/:lang/login', async(req, res) => {
 
             if (cryptoPassChek1 && cryptoPassChek2 && main_password === process.env.secretPASSWORD) {
                 // -----------------------------------------------------------If SUCCESS-------------------
-                const adminToken = JWT.sign({ email }, process.env.ADMIN_SECRET, { expiresIn: '6h' });
+                const adminToken = JWT.sign({ main_email }, process.env.ADMIN_SECRET, { expiresIn: '6h' });
                 // ---------------------CHOOSING LANGUAGE for response-------------------------
                 switch (language) {
                     case 'en':
@@ -172,9 +173,9 @@ router.post('/:lang/login', async(req, res) => {
                     default:
                         responseMessage = `מנהל מערכת <<${adminName}>> התחבר.`
                         break;
-                }
-                res.json([{ status: true, message: responseMessage, token: adminToken, admin: adminName }]);
-                // logger.info(``);
+                };
+                logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+                return res.json([{ status: true, message: responseMessage, token: adminToken, admin: adminName }]);
             }
             // -------------------------ERRORS--------------
             else {
@@ -188,9 +189,9 @@ router.post('/:lang/login', async(req, res) => {
                     default:
                         responseMessage = `מנהל המערכת לא התחבר. אנא בדוק << סיסמה ראשית >> ואת << סיסמה אישית >> שלך.`
                         break;
-                }
-                res.json([{ status: false, massage: responseMessage }]);
-                // logger.error(``);
+                };
+                logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+                return res.json([{ status: false, message: responseMessage }]);
             }
         } else {
             switch (language) {
@@ -198,14 +199,14 @@ router.post('/:lang/login', async(req, res) => {
                     responseMessage = `Admin <<${admin_name}>> don't exist.`
                     break;
                 case 'ru':
-                    responseMessage = `Администратор не авторизовался. Пожалуйста, проверьте << Основной пароль >> и ваш << Персональный пароль >>.`
+                    responseMessage = `Админа <<${admin_name}>> не существует.`
                     break;
                 default:
-                    responseMessage = `מנהל המערכת לא התחבר. אנא בדוק << סיסמה ראשית >> ואת << סיסמה אישית >> שלך.`
+                    responseMessage = `מנהל  <<${admin_name}>> לא קיים.`
                     break;
-            }
-            res.json([{ status: false, massage: responseMessage }]);
-            // logger.error(``);
+            };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+            return res.json([{ status: false, message: responseMessage }]);
         }
     } else {
         switch (language) {
@@ -218,9 +219,9 @@ router.post('/:lang/login', async(req, res) => {
             default:
                 responseMessage = `<< דוא"ל ראשי >> אינם תואמים.`
                 break;
-        }
-        res.json([{ status: false, massage: responseMessage }]);
-        // logger.error(``);
+        };
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+        return res.json([{ status: false, message: responseMessage }]);
     }
 });
 

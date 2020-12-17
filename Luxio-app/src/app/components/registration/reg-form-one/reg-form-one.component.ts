@@ -91,7 +91,8 @@ export class RegFormOneComponent implements OnInit {
       if (this.cookies) {
         formValue.agreement = this.cookies;
         formValue.cart = JSON.parse(localStorage.getItem('my_764528_ct')) ? JSON.parse(localStorage.getItem('my_764528_ct')) : [];
-        formValue.favorites = JSON.parse(localStorage.getItem('my_764528_f')) ? JSON.parse(localStorage.getItem('my_764528_f')) : []
+        formValue.favorites = JSON.parse(localStorage.getItem('my_764528_f')) ? JSON.parse(localStorage.getItem('my_764528_f')) : [];
+        formValue.email = formValue.email.toLowerCase();
         this.Save(formValue);
       }
     } else {

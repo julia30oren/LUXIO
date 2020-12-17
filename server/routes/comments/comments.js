@@ -1,20 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const CommentSchema = require('./comments-model');
-// need to be done ------------- soon-----------------------
-// create          logger.error(``)         and          logger.info(``)
-// edd .status( )
-let responseMessage;
+const logger = require('../../logger');
+const moment = require("moment");
 
+let responseMessage;
 
 // ---------------------------------------------------GET ALL COMMENTS-----------------------------
 router.get("/", async(req, res) => {
-    try {
-        const allComments = await CommentSchema.find();
-        res.json([{ status: true, allComments }]);
-    } catch (err) {
-        res.json([{ status: false, massage: err.message }]);
-        // logger.error(``);
+            try {
+                const allComments = await CommentSchema.find();
+                return res.json([{ status: true, allComments }]);
+            } catch (err) {
+                logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+                return res.json([{ status: false, message: err.message }]);
     }
 })
 
@@ -45,8 +44,9 @@ router.post("/:lang/save", async(req, res) => {
                     break;
                 default:
                     responseMessage = `תודה לך על תגובתך. הוא נשמר בהצלחה.`
-            }
-            res.json([{ status: true, message: responseMessage }]);
+            };
+            logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+            return res.json([{ status: true, message: responseMessage }]);
         }
         // -------------------------ERRORS--------------
         else {
@@ -59,13 +59,13 @@ router.post("/:lang/save", async(req, res) => {
                     break;
                 default:
                     responseMessage = `התגובה שלך לא נשמרה. בבקשה נסה שוב.`
-            }
-            res.json([{ status: false, message: responseMessage }]);
-            // logger.error(``);
+            };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+            return res.json([{ status: false, message: responseMessage }]);
         }
     } catch (err) {
-        res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+        return res.json([{ status: false, message: err.message }]);
     }
 })
 
@@ -88,8 +88,9 @@ router.get("/:lang/remove/:id", async(req, res) => {
                     break;
                 default:
                     responseMessage = `התגובה נמחקה.`
-            }
-            res.json([{ status: true, message: responseMessage }]);
+            };
+            logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+            return res.json([{ status: true, message: responseMessage }]);
         }
         // -------------------------ERRORS--------------
         else {
@@ -102,13 +103,13 @@ router.get("/:lang/remove/:id", async(req, res) => {
                     break;
                 default:
                     responseMessage = `התגובה לא נמצאה.`
-            }
+            };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
             return res.json([{ status: false, message: responseMessage }]);
-            // logger.error(``);
         }
     } catch (err) {
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
         return res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
     }
 })
 

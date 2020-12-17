@@ -6,26 +6,29 @@ const nodemailer = require("nodemailer");
 const upload = require('../../multer');
 const cloudinary = require('../../cloudinary');
 const fs = require('fs');
-// need to be done ------------- soon-----------------------
-// create          logger.error(``)         and          logger.info(``)
-// edd .status( )
+const logger = require('../../logger');
+const moment = require("moment");
+
 let responseMessage;
+const userValidation = require('../../validations/userValidation');
+router.use(userValidation);
 
 // --------------------------------------------upload-certificate--------------------
 router.post("/upload-certificate", upload.array('image'), async(req, res) => {
-    const files = req.files;
-    // -----------------------saving certificate------------------------
-    for (const file of files) {
-        const { path } = file;
-        const newPath = await cloudinary.uploads(path, 'Images');
-        // ---------------IF ALL GOOD-------------------
-        if (newPath.url) {
-            res.json([{ status: true, message: `Image uploaded successfuly.`, date: newPath.url }])
-        }
-        // --------------ERROR------------
-        else {
-            res.json([{ status: false, message: `Image wasn't uploaded.` }]);
-            // logger.error(``);
+            const files = req.files;
+            // -----------------------saving certificate------------------------
+            for (const file of files) {
+                const { path } = file;
+                const newPath = await cloudinary.uploads(path, 'Images');
+                // ---------------IF ALL GOOD-------------------
+                if (newPath.url) {
+                    logger.info(`${moment().format(`h:mm:ss a`)} - Image uploaded successfuly.`);
+                    return res.json([{ status: true, message: `Image uploaded successfuly.`, date: newPath.url }])
+                }
+                // --------------ERROR------------
+                else {
+                    logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+                    return res.json([{ status: false, message: `Image wasn't uploaded.` }]);
         }
         //----removes temporary file from server
         fs.unlinkSync(path);
@@ -73,8 +76,8 @@ router.post("/:lang/save", async(req, res) => {
             emailToAdmin(userToSave);
             // Send message in different languages----------------------
             emailToUser_Info(language);
-            res.json([{ status: true, message: responseMessage }]);
-            // logger.info(``);
+            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${userToSave._id} ${responseMessage}`);
+            return res.json([{ status: true, message: responseMessage }]);
         }
         // ---------------------------ERRORS------------
         else {
@@ -88,13 +91,13 @@ router.post("/:lang/save", async(req, res) => {
                 default:
                     responseMessage = `יש לנו שגיאה. בקשתך לא הוגשה..`
                     break;
-            }
-            res.json([{ status: false, message: responseMessage }]);
-            // logger.error(``);
+            };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage} ${userToSave}`);
+            return res.json([{ status: false, message: responseMessage }]);
         }
     } catch (err) {
-        res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+        return res.json([{ status: false, message: err.message }]);
     }
 });
 
@@ -122,8 +125,9 @@ router.get("/:lang/status/:id/:status", async(req, res) => {
                         break;
                 }
                 emailToUser_Deny(language);
-                res.json([{ status: true, message: responseMessage }]);
-                // logger.info(``);
+                logger.info(`${moment().format(`h:mm:ss a`)} - ID ${id} ${responseMessage}`);
+                return res.json([{ status: true, message: responseMessage }]);
+
             } else if (status === "true") {
                 switch (language) {
                     case 'en':
@@ -137,8 +141,8 @@ router.get("/:lang/status/:id/:status", async(req, res) => {
                         break;
                 }
                 emailToUser_Confirm(language);
-                res.json([{ status: true, message: responseMessage }]);
-                // logger.info(``);
+                logger.info(`${moment().format(`h:mm:ss a`)} - ID ${id} ${responseMessage}`);
+                return res.json([{ status: true, message: responseMessage }]);
             }
             // ---------------------------ERRORS------------------
             else {
@@ -153,8 +157,8 @@ router.get("/:lang/status/:id/:status", async(req, res) => {
                         responseMessage = `סטטוס המשתמשים לא השתנה.`
                         break;
                 }
-                res.json([{ status: false, message: responseMessage }]);
-                // logger.error(``);
+                logger.error(`${moment().format(`h:mm:ss a`)} - ID ${id} ${responseMessage}`);
+                return res.json([{ status: false, message: responseMessage }]);
             }
         } else {
             switch (language) {
@@ -167,13 +171,13 @@ router.get("/:lang/status/:id/:status", async(req, res) => {
                 default:
                     responseMessage = `סטטוס המשתמשים לא השתנה.`
                     break;
-            }
-            res.json([{ status: false, message: responseMessage }]);
-            // logger.error(``);
+            };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ID ${id} ${responseMessage}`);
+            return res.json([{ status: false, message: responseMessage }]);
         }
     } catch (err) {
-        res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+        return res.json([{ status: false, message: err.message }]);
     }
 });
 
@@ -196,9 +200,9 @@ router.get('/:lang/delete/user/:id', async(req, res) => {
                 default:
                     responseMessage = `המשתמש נמחק.`
                     break;
-            }
-            res.json([{ status: true, message: responseMessage }]);
-            // logger.info(``);
+            };
+            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${id} ${responseMessage}`);
+            return res.json([{ status: true, message: responseMessage }]);
         }
         // ---------------------------ERRORS------------
         else {
@@ -212,13 +216,13 @@ router.get('/:lang/delete/user/:id', async(req, res) => {
                 default:
                     responseMessage = `המשתמש לא נמצא.`
                     break;
-            }
+            };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ID ${id} ${responseMessage}`);
             return res.json([{ status: false, message: responseMessage }]);
-            // logger.error(``);
         }
     } catch (err) {
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
         return res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
     }
 });
 
@@ -247,9 +251,9 @@ router.get('/:lang/password/restore/:email', async(req, res) => {
                     default:
                         responseMessage = `הסיסמה שונתה. סיסמה זמנית נשלחה אל <<${email}>>.`
                         break;
-                }
+                };
+                logger.info(`${moment().format(`h:mm:ss a`)} - ID ${userExist._id} ${responseMessage}`);
                 return res.json([{ status: true, message: responseMessage }]);
-                // logger.info(``);
             }
             // ---------------------------ERRORS------------
             else {
@@ -263,9 +267,9 @@ router.get('/:lang/password/restore/:email', async(req, res) => {
                     default:
                         responseMessage = `הסיסמה לא שונתה. בבקשה נסה שוב.`
                         break;
-                }
+                };
+                logger.error(`${moment().format(`h:mm:ss a`)} - ID ${userExist._id} ${responseMessage}`);
                 return res.json([{ status: false, message: responseMessage }]);
-                // logger.error(``);
             }
         } else {
             switch (language) {
@@ -278,13 +282,13 @@ router.get('/:lang/password/restore/:email', async(req, res) => {
                 default:
                     responseMessage = `משתמש עם דוא"ל זה <<${email}>> לא קיים.`
                     break;
-            }
+            };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
             return res.json([{ status: false, message: responseMessage }]);
-            // logger.error(``);
         }
     } catch (err) {
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
         return res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
     }
 });
 // --------------------------------------------NEW PASSWORD SAVE------AFTER RESTORE-----------------------
@@ -317,9 +321,9 @@ router.post('/:lang/password/restore/new/:email', async(req, res) => {
                         default:
                             responseMessage = `<< סיסמה חדשה >> נשמרה בהצלחה.`
                             break;
-                    }
-                    res.json([{ status: true, message: responseMessage }]);
-                    // logger.info(``);
+                    };
+                    logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+                    return res.json([{ status: true, message: responseMessage }]);
                 }
                 // ---------------------------------------------------------------------------- ERRORS -----
                 else {
@@ -333,9 +337,9 @@ router.post('/:lang/password/restore/new/:email', async(req, res) => {
                         default:
                             responseMessage = `משהו השתבש. <<סיסמה>> לא שונה.`
                             break;
-                    }
+                    };
+                    logger.error(`${moment().format(`h:mm:ss a`)} - ID ${user._id} ${responseMessage}`);
                     res.json([{ status: false, message: responseMessage }]);
-                    // logger.error(``);
                 }
             } else {
                 switch (language) {
@@ -348,9 +352,9 @@ router.post('/:lang/password/restore/new/:email', async(req, res) => {
                     default:
                         responseMessage = `<< סיסמא זמנית >> אינן תואמות.`
                         break;
-                }
-                res.json([{ status: false, message: responseMessage }]);
-                // logger.error(``);
+                };
+                logger.error(`${moment().format(`h:mm:ss a`)} - ID ${user._id} ${responseMessage}`);
+                return res.json([{ status: false, message: responseMessage }]);
             }
         } else {
             switch (language) {
@@ -363,13 +367,13 @@ router.post('/:lang/password/restore/new/:email', async(req, res) => {
                 default:
                     responseMessage = `משתמש עם דוא"ל זה <<${email}>> לא קיים.`
                     break;
-            }
+            };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
             return res.json([{ status: false, message: responseMessage }]);
-            // logger.error(``);
         }
     } catch (err) {
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
         return res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
     }
 });
 

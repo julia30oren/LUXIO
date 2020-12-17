@@ -58,9 +58,7 @@ export class PasswordRestoreFormComponent implements OnInit {
   onSubmit(formValue) {
     this.isSubmitted = true;
     if (this.formTemplate.valid) {
-      console.log(formValue.email)
-      this.saveUser_Service.generateNewPass(formValue.email, this.language);
-
+      this.saveUser_Service.generateNewPass(formValue.email.toLowerCase(), this.language);
     } else {
       this.denied = true;
     }
@@ -74,7 +72,7 @@ export class PasswordRestoreFormComponent implements OnInit {
     this.isSubmitted2 = true;
     if (formValue.newPass && formValue.newPass === formValue.repeatPass) {
       this.passValid = true;
-      this.saveUser_Service.setNewPassword(formValue, email.email, this.language);
+      this.saveUser_Service.setNewPassword(formValue, email.email.toLowerCase(), this.language);
     } else {
       this.passValid = false;
     }

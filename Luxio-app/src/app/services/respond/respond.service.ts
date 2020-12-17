@@ -21,7 +21,7 @@ export class RespondService {
   ) { }
 
   saveRespond(respond: any) {
-    console.log(respond)
+    console.log(respond);
     this.respond_fromServer.next(respond);
   }
 

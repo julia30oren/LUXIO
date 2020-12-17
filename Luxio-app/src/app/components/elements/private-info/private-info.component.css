@@ -50,6 +50,7 @@
 
 .self-img {
     height: 150px;
+    width: 150px;
     margin: auto;
     border-radius: 50%;
     border: solid pink 3px

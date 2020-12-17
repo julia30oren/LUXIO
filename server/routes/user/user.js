@@ -3,20 +3,22 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const JWT = require('jsonwebtoken');
 const UserSchema = require('./user-model');
-// need to be done ------------- soon-----------------------
-// create          logger.error(``)         and          logger.info(``)
-// edd .status( )
+const logger = require('../../logger');
+const moment = require("moment");
+
 let responseMessage;
+const userValidation = require('../../validations/userValidation');
+router.use(userValidation);
 
 // -----------------------------------GET ALL USERS---------------
 // ----------------------------------------------------only for admin---------
 router.get("/", async(req, res, next) => {
-    try {
-        const allUsers = await UserSchema.find();
-        res.json([{ status: true, allUsers }]);
-    } catch (err) {
-        res.json([{ status: true, message: err.message }]);
-        // logger.error(``);
+            try {
+                const allUsers = await UserSchema.find();
+                return res.json([{ status: true, allUsers }]);
+            } catch (err) {
+                logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+        return res.json([{ status: true, message: err.message }]);
     }
 });
 
@@ -43,13 +45,13 @@ router.get("/:lang/:id", async(req, res) => {
                 default:
                     responseMessage = `משתמש עם מזהה <${id}>> אינו קיים.`
                     break;
-            }
+            };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
             return res.json([{ status: false, message: responseMessage }]);
-            // logger.error(``);
         }
     } catch (err) {
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
         return res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
     }
 });
 
@@ -60,7 +62,7 @@ router.post('/:lang/login', async(req, res) => {
     // -------------------------------if admin----------------
     if (email.toLowerCase() === process.env.mainAdmin) {
         // console.log(email);
-        res.json([{ status: true, message: `admin` }]);
+        return res.json([{ status: true, message: `admin` }]);
     } else {
         // ----------------------if user----------------
         try {
@@ -83,8 +85,9 @@ router.post('/:lang/login', async(req, res) => {
                         default:
                             responseMessage = `המשתמש <<${User.first_name} ${User.second_name}>> התחבר.`
                             break;
-                    }
-                    res.json([{
+                    };
+                    logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+                    return res.json([{
                         status: true,
                         token: userToken,
                         message: responseMessage,
@@ -110,8 +113,9 @@ router.post('/:lang/login', async(req, res) => {
                         default:
                             responseMessage = `בקשתך נדחתה. למידע מפורט יותר, צרו קשר עם נציג החברה.`
                             break;
-                    }
-                    res.json([{ status: false, message: responseMessage }]);
+                    };
+                    logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage} ${email}`);
+                    return res.json([{ status: false, message: responseMessage }]);
                 } else if (User.status === 'considered') {
                     switch (language) {
                         case 'en':
@@ -123,8 +127,9 @@ router.post('/:lang/login', async(req, res) => {
                         default:
                             responseMessage = `בקשתך עדיין ממתינה. למידע מפורט יותר, צרו קשר עם נציג החברה.`
                             break;
-                    }
-                    res.json([{ status: false, message: responseMessage }]);
+                    };
+                    logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage} ${email}`);
+                    return res.json([{ status: false, message: responseMessage }]);
                 } else if (!cryptoPassChek) {
                     switch (language) {
                         case 'en':
@@ -136,9 +141,9 @@ router.post('/:lang/login', async(req, res) => {
                         default:
                             responseMessage = `<<סיסמה>> אינם תואמים.`
                             break;
-                    }
-                    res.json([{ status: false, message: responseMessage }]);
-                    // logger.error(``);
+                    };
+                    logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage} ${email}`);
+                    return res.json([{ status: false, message: responseMessage }]);
                 }
             } else {
                 switch (language) {
@@ -151,13 +156,13 @@ router.post('/:lang/login', async(req, res) => {
                     default:
                         responseMessage = `משתמש <<${email}>> לא קיים.`
                         break;
-                }
-                res.json([{ status: false, message: responseMessage }]);
-                // logger.error(``);
+                };
+                logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+                return res.json([{ status: false, message: responseMessage }]);
             }
         } catch (err) {
+            logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
             return res.json([{ status: false, message: err.message }]);
-            // logger.error(``);
         }
     }
 
@@ -197,9 +202,9 @@ router.post("/:lang/update/:id", async(req, res) => {
                 default:
                     responseMessage = `עדכונים ל <<מידע אישי>> נשמרו בהצלחה.`
                     break;
-            }
+            };
+            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${id} ${responseMessage}`);
             return res.json([{ status: true, message: responseMessage }]);
-            // logger.info(``);
         }
         // ----------------------------------------- ERRORS --
         else {
@@ -213,13 +218,13 @@ router.post("/:lang/update/:id", async(req, res) => {
                 default:
                     responseMessage = `משהו השתבש. <<מידע אישי>> לא עודכן.`
                     break;
-            }
+            };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ID ${id} ${responseMessage}`);
             return res.json([{ status: false, message: responseMessage }]);
-            // logger.error(``);
         }
     } catch (err) {
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
         return res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
     }
 });
 
@@ -228,7 +233,6 @@ router.post("/:lang/newpass/:email", async(req, res) => {
     const email = req.params.email;
     const language = req.params.lang;
     const { old_pass, new_pass } = req.body;
-    // console.log(email, language, oldPassword, newPassword)
     //--------------------------------------------------- find user and compare old password ---
     try {
         const loginU = await UserSchema.find({ "email": email });
@@ -256,9 +260,9 @@ router.post("/:lang/newpass/:email", async(req, res) => {
                         default:
                             responseMessage = `<< סיסמה חדשה >> נשמרה בהצלחה.`
                             break;
-                    }
-                    res.json([{ status: true, message: responseMessage }]);
-                    // logger.info(``);
+                    };
+                    logger.info(`${moment().format(`h:mm:ss a`)} - ID ${User._id} ${responseMessage}`);
+                    return res.json([{ status: true, message: responseMessage }]);
                 }
                 // ---------------------------------------------------------------------------- ERRORS -----
                 else {
@@ -272,9 +276,9 @@ router.post("/:lang/newpass/:email", async(req, res) => {
                         default:
                             responseMessage = `משהו השתבש. <<סיסמה>> לא שונה.`
                             break;
-                    }
-                    res.json([{ status: false, message: responseMessage }]);
-                    // logger.error(``);
+                    };
+                    logger.error(`${moment().format(`h:mm:ss a`)} - ID ${User._id} ${responseMessage}`);
+                    return res.json([{ status: false, message: responseMessage }]);
                 }
             } else {
                 switch (language) {
@@ -287,9 +291,9 @@ router.post("/:lang/newpass/:email", async(req, res) => {
                     default:
                         responseMessage = `<< סיסמה ישנה >> אינה תואמת.`
                         break;
-                }
-                res.json([{ status: false, message: responseMessage }]);
-                // logger.error(``);
+                };
+                logger.info(`${moment().format(`h:mm:ss a`)} - ID ${User._id} ${responseMessage}`);
+                return res.json([{ status: false, message: responseMessage }]);
             }
         } else {
             switch (language) {
@@ -302,13 +306,13 @@ router.post("/:lang/newpass/:email", async(req, res) => {
                 default:
                     responseMessage = `משתמש עם דוא"ל <<${email}>> לא נמצא.`
                     break;
-            }
-            res.json([{ status: false, message: responseMessage }]);
-            // logger.error(``);
+            };
+            logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+            return res.json([{ status: false, message: responseMessage }]);
         }
     } catch (err) {
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
         return res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
     }
 });
 
@@ -316,20 +320,21 @@ router.post("/:lang/newpass/:email", async(req, res) => {
 router.post("/new-image", async(req, res) => {
     // -------------------------------------------------- requested parameters -----
     const { _id, photo_link } = req.body;
-    //--------------------------------------------------- update users cart -------------
+    //--------------------------------------------------- update users image -------------
     try {
         const imgToSave = await UserSchema.update({ "_id": _id }, { $set: { "photo_link": photo_link } });
         if (imgToSave.nModified === 1) {
+            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${_id} Image saved successfully.`);
             return res.json([{ status: true, message: `Image saved successfully.` }]);
         }
         // --------------------------------------------------------------------------------- ERRORS --
         else {
+            logger.error(`${moment().format(`h:mm:ss a`)} - ID ${_id} Something went wrong. Image wasn't save.`);
             return res.json([{ status: false, message: `Something went wrong. Image wasn't save.` }]);
-            // logger.error(``);
         }
     } catch (err) {
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
         return res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
     }
 });
 
@@ -341,16 +346,17 @@ router.post("/new-cart", async(req, res) => {
     try {
         const cartToSave = await UserSchema.update({ "_id": _id }, { $set: { "cart": cart } });
         if (cartToSave.nModified === 1) {
+            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${_id} Updates to <<Cart>> has been saved successfully.`);
             return res.json([{ status: true, message: `Updates to <<Cart>> has been saved successfully.` }]);
         }
         // --------------------------------------------------------------------------------- ERRORS --
         else {
+            logger.error(`${moment().format(`h:mm:ss a`)} - ID ${_id} Something went wrong. <<Cart>> hasn't been updated.`);
             return res.json([{ status: false, message: `Something went wrong. <<Cart>> hasn't been updated.` }]);
-            // logger.error(``);
         }
     } catch (err) {
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
         return res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
     }
 });
 
@@ -361,16 +367,17 @@ router.post("/new-favorites", async(req, res) => {
     try {
         const favoritesToSave = await UserSchema.update({ "_id": _id }, { $set: { "favorites": favorites } });
         if (favoritesToSave.nModified === 1) {
+            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${_id} Updates to <<Favorites>> has been saved successfully.`);
             return res.json([{ status: true, message: `Updates to <<Favorites>> has been saved successfully.` }]);
         }
         // --------------------------------------------------------------------------------- ERRORS --
         else {
+            logger.error(`${moment().format(`h:mm:ss a`)} - ID ${_id} Something went wrong. <<Favorites>> hasn't been updated.`);
             return res.json([{ status: false, message: `Something went wrong. <<Favorites>> hasn't been updated.` }]);
-            // logger.error(``);
         }
     } catch (err) {
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
         return res.json([{ status: false, message: err.message }]);
-        // logger.error(``);
     }
 });
 
