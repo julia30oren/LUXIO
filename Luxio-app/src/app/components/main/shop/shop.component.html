@@ -1,5 +1,6 @@
 <div [ngClass]="{Hebrew: languege==='iv'}" class="SHOP" *ngIf="!selectedProd">
     <div class="shop-buner"></div>
+    <!-- <p>{{shopToShow|json}}</p> -->
     <!-- SORT -->
     <div class="sort">
         <form>
@@ -64,3 +65,5 @@
 </div>
 <br>
 <app-shop-cards></app-shop-cards>
+
+<button *ngIf="moreButtonVisible" class="btn btn-lg btn-block btn-my" type="button" (click)="moreProducts();">More AKZENTZ products</button>

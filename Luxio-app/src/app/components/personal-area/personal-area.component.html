@@ -7,7 +7,7 @@
     <button type="button" class="btn btn-outline-dark s-button" (click)="getPrivateInfo()" [ngClass]="{butve: what_to_show==='private-info'}">{{ 'PERSONAL-AREA.personal-information' | translate }}</button>
 </div>
 
-<div style="display: flex; flex-direction: row;">
+<div style="display: flex; flex-direction: row; background-color: white; margin-top: 20px;border-top: 2px solid black;">
     <div class="personal-content">
         <app-personal-a-card *ngIf="what_to_show==='wishlist' || what_to_show==='cart'"></app-personal-a-card>
         <app-private-info *ngIf="what_to_show==='private-info'"></app-private-info>

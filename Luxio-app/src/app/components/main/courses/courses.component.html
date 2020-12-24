@@ -1,42 +1,71 @@
-<div [ngClass]="{Hebrew: languege==='iv'}" class="SHOP">
-    <!-- <div class="courses-buner"></div> -->
-
-    <div style="width: 100%; display: flex; flex-direction: row;">
-        <div class="text-block">
-            <h1>{{ 'COURSES.TEXT-1' | translate}}</h1>
-            <p>{{ 'COURSES.TEXT-2' | translate}}</p>
-            <p style="font-family: Calibri;font-size: medium; color: black;">{{ 'CONTACT.city' | translate}}, {{ 'CONTACT.street' | translate}}</p>
-        </div>
-        <div style="width: 50%;"><img style="width: 100%;" src="https://i.pinimg.com/originals/3b/58/84/3b5884b50b3175eaf8f17ad738fabe7a.png" /></div>
+<div class="courser-row">
+    <div class="right">
+        <div id="first-buner"></div>
     </div>
 
-    <div style="width: 100%; display: flex; flex-direction: row;">
-        <div style="width: 50%;"><img style="width: 100%" src="https://i.pinimg.com/originals/04/70/a2/0470a2f453d61ce9270d1990b514f302.jpg" /></div>
-
-        <div class="text-block">
-            <h1>Курс *Маникюр-Комби для начинающих* или для тех, кто хочет научиться работать с аппаратом.</h1>
-            <p>С нуля в комбинированной технике (одна фреза и ножницы). Практический курс из 4 занятий, с 10:00 до 18:00. Мы предоставляем все инструменты, материалы и моделей! </p>
-            <p>А также По окончании курса выдается сертификат.</p>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="contactMe1(contartPhone.value)">Пожалуйста, свяжитесь со мной :</button>
-                </div>
-                <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" [ngClass]="{error: phone1 === false}" placeholder="Номер телефона" #contartPhone>
+    <div class="text-block left" [ngClass]="{Hebrew: languege==='iv'}">
+        <h1>{{ 'COURSES.BLOK-1.TEXT-1' | translate}}
+            <span style="color: rgb(255, 255, 255);">*<span style="color: brown;">{{ 'COURSES.BLOK-1.TEXT-2' | translate}}</span>*</span>
+            {{ 'COURSES.BLOK-1.TEXT-3' | translate}}</h1>
+        <p>{{ 'COURSES.BLOK-1.TEXT-4' | translate}}</p>
+        <small>{{ 'CONTACT.city' | translate}}, {{ 'CONTACT.street' | translate}}</small>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="contactMe1(contartPhone.value)">{{ 'COURSES.cont-f.text' | translate}}</button>
             </div>
-            <div *ngIf="phone1 === false">
-                <p style="color: red;">номер телефона должен содержать от 10 до 11 цифер</p>
+            <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" [ngClass]="{error: phone1 === false}" placeholder="{{ 'COURSES.cont-f.button' | translate}}" #contartPhone>
+        </div>
+        <div *ngIf="phone1 === false">
+            <p style="color: red;">{{ 'COURSES.cont-f.alert' | translate}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="courser-row">
+    <div class="left">
+        <div id="second-buner"></div>
+    </div>
+
+    <div class="text-block right" [ngClass]="{Hebrew: languege==='iv'}">
+        <h1>
+            {{ 'COURSES.BLOK-2.TEXT-1' | translate}}
+            <span style="color: rgb(255, 255, 255);">*<span style="color: brown;">{{ 'COURSES.BLOK-2.TEXT-2' | translate}}</span>*</span>
+            {{ 'COURSES.BLOK-2.TEXT-3' | translate}}
+        </h1>
+        <p>{{ 'COURSES.BLOK-2.TEXT-4' | translate}}</p>
+        <small>{{ 'COURSES.BLOK-2.TEXT-5' | translate}}</small>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="contactMe2(contartPhone.value)">{{ 'COURSES.cont-f.text' | translate}}</button>
             </div>
+            <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" [ngClass]="{error: phone1 === false}" placeholder="{{ 'COURSES.cont-f.button' | translate}}" #contartPhone>
+        </div>
+        <div *ngIf="phone1 === false">
+            <p style="color: red;">{{ 'COURSES.cont-f.alert' | translate}}</p>
         </div>
     </div>
+</div>
 
-    <div style="width: 100%; display: flex; flex-direction: row;">
-        <div class="text-block">
-            <h1>Курс *Маникюр Комби - Повышение уровня*</h1>
-            <p>Курс рассчитан на мастеров со знаниями и опытом работы с шлифовальным аппаратом (более 6 месяцев). Техника - одна фреза и ножницы. Практический курс 1 день, с 10:00 до 18:00. Мы предоставляем все инструменты, материалы и моделей!</p>
-            <p>А также По окончании курса выдается сертификат.</p>
-        </div>
-
-        <div style="width: 50%;"><img style="width: 100%" src="https://i.pinimg.com/originals/ae/36/93/ae3693cf137e5e1066140e5d71acc54b.jpg" /></div>
+<div class="courser-row">
+    <div class="right">
+        <div id="therd-buner"></div>
     </div>
 
+    <div class="text-block left" [ngClass]="{Hebrew: languege==='iv'}">
+        <h1>
+            {{ 'COURSES.BLOK-3.TEXT-1' | translate}}
+            <span style="color: rgb(255, 255, 255);">*<span style="color: brown;">{{ 'COURSES.BLOK-3.TEXT-2' | translate}}</span>*</span>
+        </h1>
+        <p>{{ 'COURSES.BLOK-3.TEXT-4' | translate}}</p>
+        <small>{{ 'COURSES.BLOK-3.TEXT-5' | translate}}</small>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="contactMe3(contartPhone.value)">{{ 'COURSES.cont-f.text' | translate}}</button>
+            </div>
+            <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" [ngClass]="{error: phone1 === false}" placeholder="{{ 'COURSES.cont-f.button' | translate}}" #contartPhone>
+        </div>
+        <div *ngIf="phone1 === false">
+            <p style="color: red;">{{ 'COURSES.cont-f.alert' | translate}}</p>
+        </div>
+    </div>
 </div>

@@ -11,6 +11,8 @@ import { LanguageService } from 'src/app/services/language.service';
 export class ShopComponent implements OnInit {
 
   public languege: string;
+  public moreButtonVisible: boolean = true;
+  public shopToShow: any[];
   public shop: any[];
 
   constructor(
@@ -25,7 +27,15 @@ export class ShopComponent implements OnInit {
     this.shop_service.shop_products_from_service
       .subscribe(date => {
         this.shop = date[0];
+        this.shopToShow = [];
         this.shop_service.getProducts_sorted(this.shop);
+        if (date[0]) {
+          this.shopToShow = [];
+          for (let i = 0; i < 30; i++) {
+            this.shopToShow.push(date[0][i]);
+          }
+          this.shop_service.getProducts_sorted(this.shopToShow);
+        }
       });
 
     this.lang_service._selected_from_service
@@ -33,17 +43,27 @@ export class ShopComponent implements OnInit {
   }
 
   getSorted(by_class, by_color, by_tint, by_transparency) {
+    // this.moreButtonVisible = false;
     let newAr = [];
+
     this.shop.forEach(element => {
       if (element.prod_class.includes(by_class) && element.color.includes(by_color) && element.tint.includes(by_tint) && element.transparency.includes(by_transparency)) {
         newAr.push(element);
       }
+      this.shopToShow = newAr;
       this.shop_service.getProducts_sorted(newAr);
     });
   }
 
   getAll() {
-    this.shop_service.getProducts_sorted(this.shop);
+    if (this.shop[0]) {
+      this.shopToShow = [];
+      for (let i = 0; i < 30; i++) {
+        this.shopToShow.push(this.shop[i]);
+      }
+      this.shop_service.getProducts_sorted(this.shopToShow);
+    }
+    this.moreButtonVisible = true;
   }
 
   select(id: number) {
@@ -52,6 +72,19 @@ export class ShopComponent implements OnInit {
         this.shop_service.selectProd(element, true);
       }
     });
+  }
+
+  moreProducts() {
+    let x = this.shopToShow.length;
+    let y = x + 30;
+    if (this.shop[0]) {
+      if (y < this.shop.length) {
+        for (let i = x; i < y; i++) {
+          this.shopToShow.push(this.shop[i]);
+        }
+        this.shop_service.getProducts_sorted(this.shopToShow);
+      } else this.shop_service.getProducts_sorted(this.shop);
+    }
   }
 
 }

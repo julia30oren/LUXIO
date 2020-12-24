@@ -11,17 +11,23 @@
 }
 
 .OPTIONS-open {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     width: 100%;
     padding-bottom: 50px;
+    height: 850px;
     border-bottom: solid 2px rgba(128, 128, 128, 0.5);
 }
 
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
 .options-col {
-    display: flex;
-    flex-direction: column;
+    height: 100%;
+    margin-top: 50px;
     width: 50%;
 }
 
@@ -35,20 +41,16 @@
 
 .options-shop {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     margin: auto;
     padding-top: 50px;
     padding-bottom: 50px;
 }
 
 .options-card {
-    margin: auto;
     width: 47%;
     max-height: 350px;
-    display: flex;
-    flex-direction: row;
+    margin: auto;
+    float: left;
     cursor: pointer;
 }
 

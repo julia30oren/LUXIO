@@ -36,17 +36,14 @@
     width: 60%;
     float: left;
     height: 150px;
+    border-right: solid black 1px;
 }
 
 .nav-right {
     width: 40%;
     float: left;
     height: 150px;
-}
-
-.nav-left {
-    border-right: solid black 1px;
-    color: black;
+    border-left: solid black 1px;
 }
 
 .nav-left>a {
@@ -54,10 +51,6 @@
     float: left;
     text-align: right;
     padding-right: 5%;
-}
-
-.nav-right {
-    border-left: solid black 1px;
     color: black;
 }
 
@@ -66,6 +59,7 @@
     float: left;
     text-align: left;
     padding-left: 5%;
+    color: black;
 }
 
 .footer-link {

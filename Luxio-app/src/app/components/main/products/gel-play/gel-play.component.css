@@ -10,6 +10,27 @@
     background-size: cover;
 }
 
+.gelPlay-open {
+    width: 100%;
+    padding-bottom: 50px;
+    height: 1500px;
+    border-bottom: solid 2px rgba(128, 128, 128, 0.5);
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.gelPlay-col {
+    height: 100%;
+    margin-top: 50px;
+    width: 50%;
+}
+
 .title {
     font-family: Century Gothic;
     font-size: 25px;

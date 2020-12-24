@@ -5,6 +5,12 @@
     background-size: cover;
 }
 
+.PRO-FORMANCE-open {
+    margin-top: 50px;
+    padding-bottom: 50px;
+    border-bottom: solid 2px rgba(128, 128, 128, 0.5);
+}
+
 .Hebrew {
     text-align: right;
     direction: rtl;

@@ -14,11 +14,31 @@
     width: 100%;
 }
 
-.luxio-row {
-    display: flex;
-    flex-direction: row;
+.luxio-row-1 {
     width: 100%;
     padding: 2%;
+    height: 550px;
+}
+
+.luxio-row-2 {
+    width: 100%;
+    padding: 2%;
+    height: 800px;
+    border-bottom: rgba(128, 128, 128, 0.5) 2px solid;
+}
+
+.left {
+    float: left;
+    height: 100%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.right {
+    float: right;
+    height: 100%;
+    margin: auto;
+    margin-top: 50px;
 }
 
 .title {
@@ -32,9 +52,7 @@
     color: white;
     padding: 1%;
     text-align: center;
-    min-width: 50%;
-    max-width: 65%;
-    margin-top: 20%;
+    width: 90%;
 }
 
 .sm-text {

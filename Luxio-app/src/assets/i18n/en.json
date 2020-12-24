@@ -349,8 +349,30 @@
     },
 
     "COURSES": {
-        "TEXT-1": "Introductory workshops *free* with the various series of the AKZENTZ company are held on Mondays and Thursdays.",
-        "TEXT-2": "For details and registration for one of the workshops, contact us at 055-9519777 or 054-8785521"
+        "BLOK-1": {
+            "TEXT-1": "Introductory seminars",
+            "TEXT-2": "for free",
+            "TEXT-3": "with various series of the AKZENTZ company are held on Mondays and Thursdays.",
+            "TEXT-4": "For more information or to register for one of the seminars, please contact us at 055-9519777 or 054-8785521."
+        },
+        "BLOK-2": {
+            "TEXT-1": "Course",
+            "TEXT-2": "Manicure-Combi for beginners",
+            "TEXT-3": "or for those who want to learn how to work with the device.",
+            "TEXT-4": "From scratch in combined technique (one cutter and scissors). Practical course of 4 lessons, from 10:00 to 18:00. We provide all tools, materials and models!",
+            "TEXT-5": "At the end of the course, a certificate is issued."
+        },
+        "BLOK-3": {
+            "TEXT-1": "Course",
+            "TEXT-2": "Manicure Combi - Level Up",
+            "TEXT-4": "The course is designed for craftsmen with knowledge and experience in working with a grinding machine (more than 6 months). Technique - one cutter and scissors. Practical course 1 day, from 10:00 to 18:00. We provide all tools, materials and models!",
+            "TEXT-5": "At the end of the course, a certificate is issued."
+        },
+        "cont-f": {
+            "text": "Please contact me:",
+            "button": "Phone number",
+            "alert": "The phone number must contain between 10 and 11 digits."
+        }
     },
 
     "PERSONAL-AREA": {

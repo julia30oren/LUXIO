@@ -34,10 +34,10 @@ export class NewComponent implements OnInit {
 
   ngOnInit() {
     this.lang_service._selected_from_service
-      .subscribe(date => { this.languege = date })
+      .subscribe(date => { this.languege = date });
 
     this.shop_service.select_one_from_service
-      .subscribe(date => this.selectedProd = date)
+      .subscribe(date => this.selectedProd = date);
 
     this.shop_service.shop_products_from_service
       .subscribe(date => {

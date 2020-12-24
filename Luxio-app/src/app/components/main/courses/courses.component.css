@@ -1,16 +1,62 @@
-.courses-buner {
+.Hebrew {
+    direction: rtl;
+}
+
+.courser-row {
     width: 100%;
-    height: 450px;
-    background-image: url('https://i.pinimg.com/originals/9f/e1/44/9fe144effeebd12675ddf36ab3a801d7.png');
+    height: 500px;
+}
+
+.left {
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+
+.right {
+    float: right;
+    width: 50%;
+    height: 100%;
+}
+
+#first-buner,
+#second-buner,
+#therd-buner {
+    height: 100%;
+    width: 100%;
     background-size: cover;
+}
+
+#first-buner {
+    background-image: url('https://i.pinimg.com/originals/3b/58/84/3b5884b50b3175eaf8f17ad738fabe7a.png');
+}
+
+#second-buner {
+    background-image: url('https://i.pinimg.com/originals/04/70/a2/0470a2f453d61ce9270d1990b514f302.jpg');
+}
+
+#therd-buner {
+    background-image: url('https://i.pinimg.com/originals/ae/36/93/ae3693cf137e5e1066140e5d71acc54b.jpg');
 }
 
 .text-block {
     width: 50%;
     text-align: center;
+    padding: 2%;
+    color: gray;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    letter-spacing: 3px;
+    word-spacing: 6px;
+    font-weight: 400;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
 }
 
 .text-block>h1 {
+    color: black;
     font-size: 22px;
     margin: 30px;
     font-family: Century Gothic;
@@ -24,10 +70,15 @@
     margin: 30px;
 }
 
+.text-block>small {
+    font-family: Calibri;
+    font-size: medium;
+    color: black;
+}
+
 .input-group {
     width: auto;
     margin: auto;
-    margin-top: 100px;
 }
 
 .error {

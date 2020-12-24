@@ -40,6 +40,34 @@
     max-height: 300px;
 }
 
+.btn-block {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+.rendezvous-description,
+.miamy-description {
+    text-align: center;
+    font-family: Century Gothic;
+    padding: 5%;
+    background: #FFFFFF;
+    background: -moz-linear-gradient(left, #FFFFFF 0%, #ffffff80 50%, #ffffff00 100%);
+    background: -webkit-linear-gradient(left, #FFFFFF 0%, #ffffff80 50%, #ffffff00 100%);
+    background: linear-gradient(to right, #FFFFFF 0%, #ffffff80 50%, #ffffff00 100%);
+}
+
+.shades-description,
+.voyage-description {
+    text-align: center;
+    font-family: Century Gothic;
+    padding: 5%;
+    height: 100%;
+    background: #FFFFFF;
+    background: -moz-linear-gradient(left, #ffffff00 0%, #ffffff80 50%, #FFFFFF 100%);
+    background: -webkit-linear-gradient(left, #ffffff00 0%, #ffffff80 50%, #FFFFFF 100%);
+    background: linear-gradient(to right, #ffffff00 0%, #ffffff80 50%, #FFFFFF 100%);
+}
+
 
 /* The flip box container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 
@@ -47,7 +75,6 @@
     background-color: transparent;
     width: 300px;
     height: 400px;
-    border: 1px solid #f1f1f1;
     perspective: 1000px;
     /* Remove this if you don't want the 3D effect */
 }
@@ -144,34 +171,60 @@
     margin-left: 47%
 }
 
-.new-comp-row {
-    width: 100%;
-}
-
-.new-comp-row {
-    display: flex;
-    flex-direction: row;
-}
-
 .therd-row {
     width: 33%;
     margin: auto;
 }
 
-.half-row {
-    width: 50%;
-    margin: auto;
+.left {
+    float: left;
+    height: 100%;
+}
+
+.right {
+    float: right;
+    height: 100%;
 }
 
 
 /* BUNERS --------------------------------------------------------------------------*/
 
 .buner-rendezvous,
+.buner-shades,
 .buner-miami,
 .buner-voyage {
-    height: 500px;
-    width: 500px;
+    height: 100%;
+    width: 100%;
     background-size: cover;
+    background-color: white;
+}
+
+#rendezvous,
+#shades,
+#miamy,
+#voyage {
+    width: 100%;
+    height: 500px;
+}
+
+#rendezvous>.left,
+#miamy>.left {
+    width: 40%;
+}
+
+#rendezvous>.right,
+#miamy>.right {
+    width: 60%;
+}
+
+#shades>.left,
+#voyage>.left {
+    width: 60%;
+}
+
+#shades>.right,
+#voyage>.right {
+    width: 40%;
 }
 
 .buner-rendezvous {
@@ -179,8 +232,8 @@
 }
 
 .buner-miami {
-    height: 550px;
-    width: 600px;
+    background-size: 500px 450px;
+    background-repeat: no-repeat;
     background-image: url('https://i.pinimg.com/originals/8a/b3/80/8ab380f900bd1e8da627e3e9d0de4c1c.jpg');
 }
 
@@ -188,19 +241,8 @@
     background-image: url('https://i.pinimg.com/originals/cb/77/93/cb7793a456fb21a86ebc482e481bc95a.png');
 }
 
-.buner-shades-left,
-.buner-shades-right {
-    height: 400px;
-    width: 400px;
-    background-size: cover;
-}
-
-.buner-shades-left {
+.buner-shades {
     background-image: url('https://i.pinimg.com/originals/40/d8/4b/40d84bc50cdafe802160c267cbdf187c.jpg');
-}
-
-.buner-shades-right {
-    background-image: url('https://i.pinimg.com/originals/5d/9a/77/5d9a77ed39c4c999f26376d6746fbf22.jpg');
 }
 
 
