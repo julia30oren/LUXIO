@@ -33,6 +33,8 @@ export class NewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // window.scrollTo(0, 0);
+
     this.lang_service._selected_from_service
       .subscribe(date => { this.languege = date });
 
@@ -113,12 +115,9 @@ export class NewComponent implements OnInit {
   }
 
   select(id: number) {
-    let shop = this.shop[0]
-    shop.forEach(element => {
-      if (element.burcode_id === id) {
-        this.shop_service.selectProd(element, true);
-      }
-    });
+    let shop = this.shop[0];
+    let index = shop.findIndex((element) => element.burcode_id === id); //geting index of item by id
+    this.shop_service.selectProd(index, true); //sending index to server and seting bog-image-component open(true)
   }
 
   closeSelected() {

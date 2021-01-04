@@ -48,11 +48,11 @@ export class WideCardsComponent implements OnInit {
   }
 
   select(id: number) {
-    this.shop.forEach(element => {
-      if (element.burcode_id === id) {
-        this.shop_service.selectProd(element, true);
-      }
-    });
+    document.addEventListener('contextmenu',
+      event => event.preventDefault());
+
+    let index = this.shop.findIndex((element) => element.burcode_id === id); //geting index of item by id
+    this.shop_service.selectProd(index, true); //sending index to server and seting bog-image-component open(true)
   }
 
   getClasses(id) {

@@ -107,12 +107,10 @@
             </button>
         </div>
         <div class="col">
-            <div style="display: flex; flex-direction: row;align-items: center;">
-                <input class="form-control check-b" [checked]="cookies" (change)="agreementPolicy_check($event.target.checked)" type="checkbox" id="gridCheck1" formControlName="agreement">
-                <label for="gridCheck1" style="text-align:center">
+            <input class="form-control check-b" [checked]="cookies" (change)="agreementPolicy_check($event.target.checked)" type="checkbox" id="gridCheck1" formControlName="agreement">
+            <label for="gridCheck1" style="text-align:center">
                     {{ 'SIGN-IN.REGISTRATION-FORM.i-agree' | translate}}
                 </label>
-            </div>
         </div>
         <div class="text-danger col-sm-12" *ngIf="cookies === false">{{ 'SIGN-IN.rule-2' | translate}}</div>
     </div>

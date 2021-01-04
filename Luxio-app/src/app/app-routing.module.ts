@@ -19,6 +19,7 @@ import { CommentsComponent } from './components/admin/comments/comments.componen
 import { CookiesComponent } from './components/cookies/cookies.component';
 import { RegistrationComponent } from './components/admin/registration/registration.component';
 import { RemoveComponent } from './components/admin/remove/remove.component';
+import { MailingsComponent } from './components/admin/mailings/mailings.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'new', pathMatch: 'full' },
@@ -39,6 +40,7 @@ const routes: Routes = [
     { path: "admin/certificates", component: CrtificatesListComponent },
     { path: "admin/comments", component: CommentsComponent },
     { path: "admin/shop", component: AdminShopComponent },
+    { path: "admin/mailings", component: MailingsComponent },
     { path: "admin/registration", component: RegistrationComponent },
     { path: "admin/remove", component: RemoveComponent },
 
@@ -65,6 +67,7 @@ export const routingComponents = [
     ProFormanceComponent,
     BasicsComponent,
     AdminShopComponent,
+    MailingsComponent,
     RemoveComponent,
     CommentsComponent,
     RegistrationComponent,

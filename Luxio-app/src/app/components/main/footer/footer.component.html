@@ -1,7 +1,12 @@
 <div class="FOOTER">
     <!-- ------------------------------------------ COMMERCIAL -->
-    <div id="commertial">
-        <p>Buy any 5 bottles from the <span style="color: brown;">Luxio</span>, <span style="color: brown;">Options</span>, <span style="color: brown;">Gel Play</span> lines and get 1 for <span style="text-decoration: underline solid rgb(68, 68, 68);">free</span>!!!</p>
+    <div *ngIf="!admin" id="commertial" class=" wow animate__animated animate__heartBeat animate__delay-2s" [ngClass]="{Hebrew: languege==='iv'}">
+        <p>{{ 'FOOTER.commertial.l1' | translate}}
+            <br>
+            <span style="color: brown; text-transform: uppercase;">Luxio</span>,
+            <span style="color: brown; text-transform: uppercase;">Options</span>,
+            <span style="color: brown; text-transform: uppercase;">Gel Play</span>
+            <br> {{ 'FOOTER.commertial.l2' | translate}} <span style="text-decoration: underline solid rgb(68, 68, 68);"> {{ 'FOOTER.commertial.l3' | translate}}</span>!!!</p>
     </div>
     <!-- ------------------------------------------ FOOTER -->
     <div id="footer" style="margin-top: 20px;">
@@ -36,5 +41,4 @@
             </div>
         </div>
     </div>
-
 </div>

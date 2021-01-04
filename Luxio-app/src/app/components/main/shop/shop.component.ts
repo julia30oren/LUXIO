@@ -67,11 +67,14 @@ export class ShopComponent implements OnInit {
   }
 
   select(id: number) {
-    this.shop.forEach(element => {
-      if (element.burcode_id === id) {
-        this.shop_service.selectProd(element, true);
-      }
-    });
+    console.log('click')
+    let index = this.shop.findIndex((element) => element.burcode_id === id);
+    console.log(this.shop)
+    // this.shop.forEach(element => {
+    //   if (element.burcode_id === id) {
+    //     this.shop_service.selectProd(element, true, index);
+    //   }
+    // });
   }
 
   moreProducts() {

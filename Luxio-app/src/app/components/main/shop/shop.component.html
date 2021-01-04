@@ -1,18 +1,15 @@
 <div [ngClass]="{Hebrew: languege==='iv'}" class="SHOP" *ngIf="!selectedProd">
-    <div class="shop-buner"></div>
-    <!-- <p>{{shopToShow|json}}</p> -->
+    <div class="shop-buner animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow"></div>
     <!-- SORT -->
     <div class="sort">
         <form>
             <div class="form-row">
-                <div>
-                    <button type="submit" class="btn btn-outline-dark" (click)="getAll()">
-                        {{ 'SEARCH.all-button' | translate }}
-                    </button>
-                </div>
-                <div>
-                    <select class="custom-select" #prod_class>
-                    <option value='' selected>{{ 'SEARCH.not-selected' | translate }}</option>
+                <button type="submit" class="btn btn-outline-dark" (click)="getAll()">
+                    {{ 'SEARCH.all-button' | translate }}
+                </button>
+
+                <select class="custom-select" #prod_class>
+                    <option value='' selected>{{ 'SEARCH.line' | translate }} {{ 'SEARCH.not-selected' | translate }}</option>
                     <option value="basics">{{ 'SEARCH.OPTIONS.basics' | translate }}</option>
                     <option value="Luxio">{{ 'SEARCH.OPTIONS.Luxio' | translate }}</option>
                     <option value="Options">{{ 'SEARCH.OPTIONS.Options' | translate }}</option>
@@ -20,45 +17,40 @@
                     <option value="Hard GEL">{{ 'SEARCH.OPTIONS.Hard-GEL' | translate }}</option>
                     <option value="materials">{{ 'SEARCH.OPTIONS.materials' | translate }}</option>
                     <option value="accessories">{{ 'SEARCH.OPTIONS.accessories' | translate }}</option>
-            </select>
-                </div>
-                <div>
-                    <select class="custom-select" #color>
-                    <option value='' selected>{{ 'SEARCH.not-selected' | translate }}</option>
-                    <option value='white'>{{ 'SEARCH.OPTIONS.white' | translate }}</option>
-                    <option value='black'>{{ 'SEARCH.OPTIONS.black' | translate }}</option>
-                    <option value='pink'>{{ 'SEARCH.OPTIONS.pink' | translate }}</option>
-                    <option value='beige'>{{ 'SEARCH.OPTIONS.beige' | translate }}</option>
-                    <option value='red'>{{ 'SEARCH.OPTIONS.red' | translate }}</option>
-                    <option value='оrange'>{{ 'SEARCH.OPTIONS.оrange' | translate }}</option>
-                    <option value='yellow'>{{ 'SEARCH.OPTIONS.yellow' | translate }}</option>
-                    <option value='green'>{{ 'SEARCH.OPTIONS.green' | translate }}</option>
-                    <option value='blue'>{{ 'SEARCH.OPTIONS.blue' | translate }}</option>
-                    <option value='violet'>{{ 'SEARCH.OPTIONS.violet' | translate }}</option>
-                    <option value='brown'>{{ 'SEARCH.OPTIONS.brown' | translate }}</option>
-                    <option value='gray'>{{ 'SEARCH.OPTIONS.gray' | translate }}</option>
-            </select>
-                </div>
-                <div>
-                    <select class="custom-select" #tint>
-                    <option value="" selected>{{ 'SEARCH.not-selected' | translate }}</option>
-                    <option value='light'>{{ 'SEARCH.OPTIONS.light' | translate }}</option>
-                    <option value='dark'>{{ 'SEARCH.OPTIONS.dark' | translate }}</option>
-                    <option value='bright'>{{ 'SEARCH.OPTIONS.bright' | translate }}</option>
-            </select>
-                </div>
-                <div>
-                    <select class="custom-select" #transparency>
-                    <option value="" selected>{{ 'SEARCH.not-selected' | translate }}</option>
+                </select>
+
+                <select class="custom-select" #color>
+                        <option value='' selected>{{ 'SEARCH.color' | translate }} {{ 'SEARCH.not-selected' | translate }}</option>
+                        <option value='white'>{{ 'SEARCH.OPTIONS.white' | translate }}</option>
+                        <option value='black'>{{ 'SEARCH.OPTIONS.black' | translate }}</option>
+                        <option value='pink'>{{ 'SEARCH.OPTIONS.pink' | translate }}</option>
+                        <option value='beige'>{{ 'SEARCH.OPTIONS.beige' | translate }}</option>
+                        <option value='red'>{{ 'SEARCH.OPTIONS.red' | translate }}</option>
+                        <option value='оrange'>{{ 'SEARCH.OPTIONS.оrange' | translate }}</option>
+                        <option value='yellow'>{{ 'SEARCH.OPTIONS.yellow' | translate }}</option>
+                        <option value='green'>{{ 'SEARCH.OPTIONS.green' | translate }}</option>
+                        <option value='blue'>{{ 'SEARCH.OPTIONS.blue' | translate }}</option>
+                        <option value='violet'>{{ 'SEARCH.OPTIONS.violet' | translate }}</option>
+                        <option value='brown'>{{ 'SEARCH.OPTIONS.brown' | translate }}</option>
+                        <option value='gray'>{{ 'SEARCH.OPTIONS.gray' | translate }}</option>
+                </select>
+
+                <select class="custom-select" #tint>
+                        <option value="" selected>{{ 'SEARCH.tint' | translate }} {{ 'SEARCH.not-selected' | translate }}</option>
+                        <option value='light'>{{ 'SEARCH.OPTIONS.light' | translate }}</option>
+                        <option value='dark'>{{ 'SEARCH.OPTIONS.dark' | translate }}</option>
+                        <option value='bright'>{{ 'SEARCH.OPTIONS.bright' | translate }}</option>
+                </select>
+
+                <select class="custom-select" #transparency>
+                    <option value="" selected>{{ 'SEARCH.transparency' | translate }} {{ 'SEARCH.not-selected' | translate }}</option>
                     <option value='see-through'>{{ 'SEARCH.OPTIONS.see-through' | translate }}</option>
                     <option value='dense'>{{ 'SEARCH.OPTIONS.dense' | translate }}</option>
-            </select>
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-outline-dark" (click)="getSorted(prod_class.value, color.value, tint.value, transparency.value)">
-                        {{ 'SEARCH.sort-button' | translate }}
-                    </button>
-                </div>
+                </select>
+
+                <button type="submit" class="btn btn-outline-dark" (click)="getSorted(prod_class.value, color.value, tint.value, transparency.value)">
+                    {{ 'SEARCH.sort-button' | translate }}
+                </button>
             </div>
         </form>
     </div>

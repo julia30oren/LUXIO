@@ -4,11 +4,11 @@
 
 .comment-group {
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
 }
 
 .card {
-    margin: auto;
+    width: 24%;
+    text-align: center;
+    float: left;
+    margin: 0.5%;
 }

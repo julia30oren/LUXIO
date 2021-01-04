@@ -4,16 +4,17 @@
 }
 
 .personal-content {
+    min-height: 1000px;
     width: 750px;
     padding-left: 20px;
 }
 
-.AKZENTZ-model {
-    width: 100%;
-    height: 800px;
-    background-image: url('https://i.pinimg.com/originals/18/58/32/185832b4320525c080a8cb1ee5b66413.jpg');
-    background-size: cover;
-    margin: 20px;
+.model-side {
+    height: 100%;
+    width: 450px;
+    padding: 1%;
+    float: left;
+    background-color: white;
 }
 
 .sort-buttons-div {
@@ -46,7 +47,7 @@
     border: none;
     padding: 0;
     font-family: arial, sans-serif;
-    color: rgb(36, 138, 255);
+    color: brown;
     margin: auto;
     text-align: center;
 }

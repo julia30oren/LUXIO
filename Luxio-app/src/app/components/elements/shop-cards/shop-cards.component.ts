@@ -11,6 +11,7 @@ import { element } from 'protractor';
 export class ShopCardsComponent implements OnInit {
 
   public selectedProd: boolean;
+  public shop: Array<any>;
   public my_cart: Array<any>;
   public my_favorites: Array<any>;
   public itemsArray: Array<any>;
@@ -21,6 +22,13 @@ export class ShopCardsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.shop_service.shop_products_from_service
+      .subscribe(date => {
+        if (date[0]) {
+          this.shop = date[0];
+        }
+      });
+
     this.shop_service.shop_products_sorted_from_service
       .subscribe(date => this.itemsArray = date);
 
@@ -72,11 +80,11 @@ export class ShopCardsComponent implements OnInit {
   }
 
   select(id: number) {
-    this.itemsArray.forEach(element => {
-      if (element.burcode_id === id) {
-        this.shop_service.selectProd(element, true);
-      }
-    });
+    document.addEventListener('contextmenu',
+      event => event.preventDefault());
+
+    let index = this.shop.findIndex((element) => element.burcode_id === id); //geting index of item by id
+    this.shop_service.selectProd(index, true); //sending index to server and seting bog-image-component open(true)
   }
 
 }

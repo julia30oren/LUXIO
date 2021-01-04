@@ -156,11 +156,8 @@ export class PersonalACardComponent implements OnInit {
   }
 
   select(id: number) {
-    this.personalArea_products.forEach(element => {
-      if (element.burcode_id === id) {
-        this.shop_service.selectProd(element, true);
-      }
-    });
+    let index = this.personalArea_products.findIndex((element) => element.burcode_id === id); //geting index of item by id
+    this.shop_service.selectProd(index, true); //sending index to server and seting bog-image-component open(true)
   }
 
   goToBill() {

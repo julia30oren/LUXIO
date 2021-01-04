@@ -11,6 +11,8 @@ import { UserService } from 'src/app/services/user-servise/user.service';
 })
 export class BigImageComponent implements OnInit {
 
+  public allProducts: Array<any> = [];
+  public selectedIndex: number;
   public selectedProd: Array<any> = [];
   public selectedProd_Img: string;
   public selectedProd_inFavorites: boolean;
@@ -20,7 +22,7 @@ export class BigImageComponent implements OnInit {
   public my_cart: Array<any> = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
   public my_favorites: Array<any> = JSON.parse(localStorage.getItem('my_764528_f')) || [];
   private amount: string;
-  private quantity: number;
+  private quantity: number = 1;
 
 
   constructor(
@@ -31,15 +33,24 @@ export class BigImageComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+
     this.lang_service._selected_from_service
       .subscribe(date => {
         this.languege = date;
+      });
+
+    this.shop_service.shop_products_from_service
+      .subscribe(date => {
+        if (date[0]) {
+          this.allProducts = date[0];
+        }
       });
 
     this.shop_service.my_favorites_from_service
       .subscribe(date => {
         this.my_favorites = date;
       });
+
     this.shop_service.my_cart_from_service
       .subscribe(date => {
         this.my_cart = date;
@@ -47,24 +58,32 @@ export class BigImageComponent implements OnInit {
 
     this.shop_service.prod_selected_from_service
       .subscribe(date => {
-        this.selectedProd = date;
-        if (this.selectedProd[0]) {
-          this.selectedProd_Img = this.selectedProd[0].img_link_1 || this.selectedProd[0].img_link;
-          this.amount = this.selectedProd[0].amount_1;
-          this.quantity = 1;
-
-          this.my_favorites.forEach(element => { // check if selected item is in user wishlist
-            if (element._id === this.selectedProd[0]._id) {
-              this.selectedProd_inFavorites = true;
-            }
-          });
-          this.my_cart.forEach(element => { // check if selected item is in user cart
-            if (element._id === this.selectedProd[0]._id) {
-              this.selectedProd_inCart = true;
-            }
-          });
-        }
+        this.selectedIndex = date;
+        this.getSelected();
       });
+  }
+  prevenFromCopiing() {
+    document.addEventListener('contextmenu',
+      event => event.preventDefault());
+  }
+
+  getSelected() {
+    let i = this.selectedIndex;
+
+    this.selectedProd = [this.allProducts[i]];
+    this.selectedProd_Img = this.selectedProd[0].img_link_1 || this.selectedProd[0].img_link;
+    this.amount = this.selectedProd[0].amount_1;
+
+    this.my_favorites.forEach(element => { // check if selected item is in user wishlist
+      if (element._id === this.allProducts[i]._id) {
+        this.selectedProd_inFavorites = true;
+      } else this.selectedProd_inFavorites = false;
+    });
+    this.my_cart.forEach(element => { // check if selected item is in user cart
+      if (element._id === this.allProducts[i]._id) {
+        this.selectedProd_inCart = true;
+      } else this.selectedProd_inCart = false;
+    });
   }
 
   amount_change(target) {
@@ -76,10 +95,14 @@ export class BigImageComponent implements OnInit {
   }
 
   selectImage(link: string) {
+    document.addEventListener('contextmenu',
+      event => event.preventDefault());
+
     this.selectedProd_Img = link;
   }
 
   closeSelected() {
+    this.selectedProd = [];
     this.selectedProd_Img = null;
     this.shop_service.selectProd(null, false);
   }
@@ -114,6 +137,24 @@ export class BigImageComponent implements OnInit {
     setTimeout(() => {
       this.user_service.saveToCart(item_toCart);
     }, 1000);
+  }
+
+  getPrev() {
+    if (this.selectedIndex === 0) {
+      this.selectedIndex = this.allProducts.length - 1;
+    } else {
+      this.selectedIndex = this.selectedIndex - 1;
+    }
+    this.getSelected();
+  }
+
+  getNext() {
+    if (this.selectedIndex === this.allProducts.length - 1) {
+      this.selectedIndex = 0;
+    } else {
+      this.selectedIndex = this.selectedIndex + 1;
+    }
+    this.getSelected();
   }
 
 }

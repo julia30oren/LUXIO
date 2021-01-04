@@ -34,11 +34,22 @@
         "DELETE-ADMIN": {
             "title": "УДАЛИТЬ АДМИНИСТРАТОРА"
         },
+        "MAILINGS": {
+            "title": "РАССЫЛКИ"
+        },
         "basics": "Вспомогательные",
         "tools": "Инструменты",
         "rights": "МИТРА ГРУП",
         "welcome": "Привет",
         "sign-out": "Выйти"
+    },
+
+    "FOOTER": {
+        "commertial": {
+            "l1": "купите любые 5 бутылок",
+            "l2": "линий и получите 1",
+            "l3": "бесплатно"
+        }
     },
 
     "NEW": {
@@ -220,8 +231,12 @@
 
     "SEARCH": {
         "all-button": "Все",
-        "not-selected": "Не выбран...",
+        "not-selected": "не выбран...",
         "sort-button": "Сортировать",
+        "line": "Линия",
+        "color": "Цвет",
+        "tint": "Оттенок",
+        "transparency": "Прозрачность",
         "no-products": "Товар не найден!",
         "OPTIONS": {
             "basics": "Базы / Топы / BUILD",
@@ -379,6 +394,9 @@
         "purchase-history": "История покупок",
         "personal-information": "Персональные данные",
         "to-checkout": "Перейти к оформлению заказа",
+        "shipping": "Доставка",
+        "discount": "Скидка",
+        "order-total": "Весь заказ",
         "CARD": {
             "total-price": "Итоговая цена:",
             "remove": "Удалить",

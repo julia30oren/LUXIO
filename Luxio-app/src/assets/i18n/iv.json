@@ -34,11 +34,22 @@
         "DELETE-ADMIN": {
             "title": "מחק את המנהל"
         },
+        "MAILINGS": {
+            "title": "רשימת תפוצה"
+        },
         "basics": "יסודות",
         "tools": "כלים",
         "rights": "קבוצת מיטרה",
         "welcome": "שלום",
         "sign-out": "להתנתק"
+    },
+
+    "FOOTER": {
+        "commertial": {
+            "l1": "קנו 5 בקבוקים מה-",
+            "l2": "קווים וקבל 1 עבור",
+            "l3": "בחינם"
+        }
     },
 
     "NEW": {
@@ -221,6 +232,10 @@
 
     "SEARCH": {
         "all-button": "הכל",
+        "line": "קו מוצר",
+        "color": "צבע",
+        "tint": "גון",
+        "transparency": "שקיפות",
         "not-selected": "לא נבחר ...",
         "sort-button": "לסוג",
         "no-products": "לא נמצא מוצר!",
@@ -380,6 +395,9 @@
         "purchase-history": "היסטוריית רכישות",
         "personal-information": "מידע אישי",
         "to-checkout": "עבור לקופה",
+        "shipping": "משלוח",
+        "discount": "הנחה",
+        "order-total": "סך כל ההזמנה",
         "CARD": {
             "total-price": "הסר מחיר כולל:",
             "remove": "להסיר",

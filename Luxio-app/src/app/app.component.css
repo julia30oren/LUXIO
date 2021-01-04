@@ -1,51 +1,9 @@
-/* -----------------------------------commertial--------- */
-
-#commertial1 {
-    width: 300px;
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    font-family: "Courier New", Courier, monospace;
-    font-size: 24px;
-    letter-spacing: 0.6px;
-    word-spacing: 4.4px;
-    color: #000000;
-    font-weight: 400;
-    text-decoration: none solid rgb(68, 68, 68);
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
-    border-bottom: solid 5px rgb(255, 217, 0);
-}
-
-#commertial2 {
-    width: 300px;
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    /* font-family: "Comic Sans MS", cursive, sans-serif;
-    font-size: 28px;
-    letter-spacing: 0.6px;
-    word-spacing: 4.4px;
-    color: #000000;
-    font-weight: 400;
-    text-decoration: none solid rgb(68, 68, 68);
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
-    border-top: solid 5px rgb(130, 200, 0); */
-}
-
-
 /* ---------------------RESPOND FROM DB message--------- */
 
 .respond {
     background-color: white;
     border: black 2px solid;
     width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding: 30px;
     color: brown;
 }
@@ -56,8 +14,6 @@
     top: 45%;
     left: 0;
     z-index: 10;
-    display: flex;
-    justify-content: center;
     font-size: 20px;
     text-align: center;
 }
@@ -81,9 +37,8 @@
 
 #selected-prod {
     width: 100%;
-    margin-top: 200px;
-    display: flex;
-    justify-content: center;
+    padding-top: 120px;
+    padding-bottom: 50px;
 }
 
 
@@ -93,24 +48,24 @@
     width: 100%;
     position: fixed;
     top: 100px;
+    left: 0;
     z-index: 2;
     background-color: rgba(0, 0, 0, 0.8);
-    padding: 5px;
-    padding-left: 30%;
-    padding-right: 30%;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+}
+
+#cookies-in {
+    width: 900px;
+    margin: auto;
 }
 
 .cookies-button {
     background: none;
     border: none;
-    padding: 0;
     font-family: arial, sans-serif;
     color: rgb(36, 138, 255);
     cursor: pointer;
+    float: left;
+    width: 200px;
 }
 
 .cookies-button:hover {
@@ -118,31 +73,27 @@
     text-decoration: underline;
 }
 
-#cookies>p {
+#cookies-in>p {
     margin: auto;
     color: white;
-}
-
-
-/* ---------------------FOOTER------ */
-
-#footer {
-    width: 100%;
+    float: left;
+    width: 500px;
+    text-align: center;
 }
 
 
 /* ------------------------------------------------- */
 
 .main-app {
-    background: #E3AACB;
+    width: 100%;
+    /* background: #E3AACB;
     background: -moz-linear-gradient(top, #E3AACB 0%, #FFFABF 50%, #E3AACB 100%);
     background: -webkit-linear-gradient(top, #E3AACB 0%, #FFFABF 50%, #E3AACB 100%);
-    background: linear-gradient(to bottom, #E3AACB 0%, #FFFABF 50%, #E3AACB 100%);
-    width: 100%;
-    min-height: 920px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background: linear-gradient(to bottom, #E3AACB 0%, #FFFABF 50%, #E3AACB 100%); */
+}
+
+.main-app>div {
+    margin: auto;
 }
 
 .Hebrew {
@@ -172,9 +123,6 @@ option {
     filter: blur(18px);
     -webkit-filter: blur(18px);
     z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .RegForm {
@@ -222,10 +170,7 @@ option {
 /*------------------------------------------ NAVIGATION */
 
 #Header {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 1200px;
     position: fixed;
     z-index: 5;
     /* Make it stick/fixed */
@@ -236,23 +181,19 @@ option {
 }
 
 #header-top {
-    background-color: rgb(255, 255, 255);
     background: #ffffff00;
     background: -moz-linear-gradient(top, #ffffff00 0%, #ffffffca 50%, #FFFFFF 100%);
     background: -webkit-linear-gradient(top, #ffffff00 0%, #ffffffa1 50%, #FFFFFF 100%);
     background: linear-gradient(to bottom, #ffffff00 0%, #ffffffa1 50%, #FFFFFF 100%);
     width: 1200px;
     height: 100px;
-    display: flex;
-    flex-direction: row;
 }
 
 #header-left-side {
     height: 100%;
     width: 70%;
     margin: auto;
-    display: flex;
-    flex-direction: column;
+    float: left;
 }
 
 
@@ -261,10 +202,7 @@ option {
 .navbar {
     height: 45%;
     width: 100%;
-    /* background-color: rgb(226, 134, 134); */
     margin: auto;
-    display: flex;
-    flex-direction: row;
 }
 
 .nav-link {
@@ -281,13 +219,15 @@ option {
     color: rgb(212, 99, 99);
 }
 
-#user-info-bar {
-    height: 100%;
+.user-info-bar {
+    height: 60px;
     width: 60%;
     margin: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+}
+
+.nv-l {
+    float: left;
+    height: 100%;
 }
 
 .borderbottom {
@@ -315,9 +255,6 @@ option {
 }
 
 #prod-options {
-    display: flex;
-    flex-direction: row;
-    margin: auto;
     width: 1200px;
     height: 100%;
     border-bottom: black solid 2px;
@@ -330,7 +267,10 @@ option {
 .prod-option-link {
     color: rgb(0, 0, 0);
     height: 20px;
+    width: 200px;
     margin: auto;
+    float: left;
+    text-align: center;
 }
 
 
@@ -338,23 +278,22 @@ option {
 
 .user-proertise {
     width: 200px;
+    height: 100px;
     color: rgb(0, 0, 0);
-    background-color: rgb(255, 255, 255);
     position: absolute;
     top: 0px;
     right: 50px;
-    display: flex;
-    flex-direction: column;
+}
+
+.user-proertise>a {
+    width: 100%;
 }
 
 .admin-proertise {
     color: rgb(0, 0, 0);
-    background-color: rgb(255, 255, 255);
     position: absolute;
     top: 0px;
     left: 500px;
-    display: flex;
-    flex-direction: column;
     font-size: smaller;
 }
 
@@ -371,8 +310,6 @@ option {
 }
 
 .users-nav {
-    display: flex;
-    justify-content: center;
     width: 400px;
     align-items: center;
 }
@@ -394,29 +331,48 @@ option {
 }
 
 
-/* CONTENT */
+/* --------------------CONTENT */
 
 .content {
-    display: flex;
-    flex-direction: column;
     width: 1200px;
-    margin-top: 105px;
+    padding-top: 110px;
+    padding-bottom: 50px;
 }
 
 
 /* MESSAGE TO USER FOR REGISTRATION */
 
-.sign-in-div {
+.ADVERTISEMENT {
     position: fixed;
-    margin-top: 200px;
+    z-index: 12;
+    top: 150px;
+    left: 0;
+    width: 100%;
+}
+
+.sign-in-div {
+    width: 600px;
+    margin: auto;
     background-color: rgb(255, 255, 255);
     border: rgb(58, 58, 58) 0.5px solid;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     -webkit-box-shadow: 2px 5px 16px 0px #000000, 0px 2px 25px 29px rgba(0, 0, 0, 0.19);
     box-shadow: 2px 5px 16px 0px #505050, 0px 2px 25px 29px rgba(0, 0, 0, 0.19);
-    z-index: 12;
+    padding: 25px;
+}
+
+.sign-in-div>h1 {
+    width: 100%;
+    text-align: center;
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+    font-size: 25px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: #000000;
+    font-weight: 400;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: small-caps;
+    text-transform: none;
 }
 
 .message-link {
@@ -427,6 +383,7 @@ option {
     color: rgb(36, 138, 255);
     cursor: pointer;
     margin: auto;
+    width: 33%;
 }
 
 .message-link:hover {

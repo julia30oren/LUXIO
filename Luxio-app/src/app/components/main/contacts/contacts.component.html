@@ -1,42 +1,37 @@
 <div class="CONTACTS">
-    <h5 [ngClass]="{Hebrew: languege==='iv'}">{{ 'NAVIGATION.OFFICES.title' | translate }}</h5>
-    <div class="contacts-main">
-        <div class="contacts-col" [ngClass]="{Hebrew: languege==='iv'}">
-            <div>
-                <p>{{ 'CONTACT.country' | translate}},</p>
-                <p>{{ 'CONTACT.city' | translate}},</p>
-                <p>{{ 'CONTACT.street' | translate}}</p>
-                <p>{{ 'CONTACT.phone' | translate}}: 054-8785521 / 055-9519777</p>
-                <p>{{ 'CONTACT.email' | translate}}: luxiogel.israel@gmail.com</p>
-                <hr/>
-                <p>{{ 'CONTACT.days-1' | translate}} 10:00-18:00</p>
-                <p>{{ 'CONTACT.days-2' | translate}}</p>
-            </div>
+    <div class="contacts-col animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">
+        <div>
+            <p>{{ 'CONTACT.country' | translate}},</p>
+            <p>{{ 'CONTACT.city' | translate}},</p>
+            <p>{{ 'CONTACT.street' | translate}}</p>
+            <p>{{ 'CONTACT.phone' | translate}}: 054-8785521 / 055-9519777</p>
+            <p>{{ 'CONTACT.email' | translate}}: luxiogel.israel@gmail.com</p>
             <br/>
-            <div class="line"></div>
+            <p>{{ 'CONTACT.days-1' | translate}} 10:00-18:00</p>
+            <p>{{ 'CONTACT.days-2' | translate}}</p>
+        </div>
+        <br/>
+        <div class="line"></div>
 
-            <app-comment-form></app-comment-form>
+        <app-comment-form></app-comment-form>
+    </div>
 
+    <div class="contacts-col animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
+        <p [ngClass]="{Hebrew: languege==='iv'}">{{ 'CONTACT.message-2' | translate}}:</p>
+        <div class="icons">
+            <div class="social-icons">
+                <a target="_blank" href="https://www.facebook.com/luxioisrael" class="facebook"><i class="fab fa-facebook-square fa-2x"></i>  Facebook</a>
+                <a target="_blank" href="https://www.instagram.com/luxiogel_israel" class="facebook"><i class="fab fa-instagram fa-2x"></i>  Instagram</a>
+            </div>
+            <div class="social-icons">
+                <a target="_blank" href="https://www.pinterest.ru/luxiogelisrael/boards/" class="facebook"><i class="fab fa-pinterest fa-2x"></i>  Pinterest</a>
+                <a target="_blank" href="https://www.youtube.com/channel/UCIovV5TtXDx_0Enl_MJKB3g?view_as=subscriber" class="facebook"><i class="fab fa-youtube-square fa-2x"></i>  YouTube</a>
+            </div>
         </div>
 
-        <div class="contacts-col">
-            <p [ngClass]="{Hebrew: languege==='iv'}">{{ 'CONTACT.message-2' | translate}}:</p>
-            <div class="icons">
-                <div class="social-icons">
-                    <a target="_blank" href="https://www.facebook.com/luxioisrael" class="facebook"><i class="fab fa-facebook-square fa-2x"></i>  Facebook</a>
-                    <a target="_blank" href="https://www.instagram.com/luxiogel_israel" class="facebook"><i class="fab fa-instagram fa-2x"></i>  Instagram</a>
-                </div>
-                <div class="social-icons">
-                    <a target="_blank" href="https://www.pinterest.ru/luxiogelisrael/boards/" class="facebook"><i class="fab fa-pinterest fa-2x"></i>  Pinterest</a>
-                    <a target="_blank" href="https://www.youtube.com/channel/UCIovV5TtXDx_0Enl_MJKB3g?view_as=subscriber" class="facebook"><i class="fab fa-youtube-square fa-2x"></i>  YouTube</a>
-                </div>
-            </div>
-            <br/>
-            <div class="line"></div>
-            <br/><br/>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3380.321074361241!2d34.800022115485106!3d32.087607026122235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4bc6d1c6b9e7%3A0xf8afe5ed429208cf!2sAhaliav%20St%2010%2C%20Ramat%20Gan!5e0!3m2!1sen!2sil!4v1598260134478!5m2!1sen!2sil"
-                width="100%" height="350" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-        </div>
+        <div class="line"></div>
 
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3380.321074361241!2d34.800022115485106!3d32.087607026122235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4bc6d1c6b9e7%3A0xf8afe5ed429208cf!2sAhaliav%20St%2010%2C%20Ramat%20Gan!5e0!3m2!1sen!2sil!4v1598260134478!5m2!1sen!2sil"
+            width="100%" height="350" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow"></iframe>
     </div>
 </div>

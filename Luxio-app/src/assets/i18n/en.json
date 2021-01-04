@@ -34,11 +34,22 @@
         "DELETE-ADMIN": {
             "title": "DELETE ADMIN"
         },
+        "MAILINGS": {
+            "title": "NEWSLATTERS"
+        },
         "basics": "Basics",
         "tools": "Tools",
         "rights": "MITRA GROUP",
         "welcome": "Hello",
         "sign-out": "Log Out"
+    },
+
+    "FOOTER": {
+        "commertial": {
+            "l1": "buy any 5 bottles from the",
+            "l2": "lines and get 1 for",
+            "l3": "free"
+        }
     },
 
     "NEW": {
@@ -222,7 +233,11 @@
 
     "SEARCH": {
         "all-button": "All",
-        "not-selected": "Not seleced...",
+        "line": "Line",
+        "color": "Colour",
+        "tint": "Tint",
+        "transparency": "Transparency",
+        "not-selected": "not seleced...",
         "sort-button": "Sort",
         "no-products": "No product found!",
         "OPTIONS": {
@@ -381,6 +396,9 @@
         "purchase-history": "Purchase history",
         "personal-information": "Personal information",
         "to-checkout": "Go to checkout",
+        "shipping": "Shipping",
+        "discount": "Discount",
+        "order-total": "Order total",
         "CARD": {
             "total-price": "Total price:",
             "remove": "Remove",

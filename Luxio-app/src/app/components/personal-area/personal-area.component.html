@@ -1,26 +1,23 @@
-<!-- <p>{{what_to_show|json}}</p> -->
-
 <div class="sort-buttons-div">
-    <button type="button" class="btn btn-outline-dark s-button" (click)="getMyWishlist()" [ngClass]="{butve: what_to_show==='wishlist'}">{{ 'PERSONAL-AREA.wishlist' | translate }}</button>
-    <button type="button" class="btn btn-outline-dark s-button" (click)="getMyCart()" [ngClass]="{butve: what_to_show==='cart'}">{{ 'PERSONAL-AREA.cart' | translate }}</button>
-    <button type="button" class="btn btn-outline-dark s-button" (click)="getPurchaseHistory()" [ngClass]="{butve: what_to_show==='purchase-history'}">{{ 'PERSONAL-AREA.purchase-history' | translate }}</button>
-    <button type="button" class="btn btn-outline-dark s-button" (click)="getPrivateInfo()" [ngClass]="{butve: what_to_show==='private-info'}">{{ 'PERSONAL-AREA.personal-information' | translate }}</button>
+    <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getMyWishlist()" [ngClass]="{butve: what_to_show==='wishlist'}">{{ 'PERSONAL-AREA.wishlist' | translate }}</button>
+    <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getMyCart()" [ngClass]="{butve: what_to_show==='cart'}">{{ 'PERSONAL-AREA.cart' | translate }}</button>
+    <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getPurchaseHistory()" [ngClass]="{butve: what_to_show==='purchase-history'}">{{ 'PERSONAL-AREA.purchase-history' | translate }}</button>
+    <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getPrivateInfo()" [ngClass]="{butve: what_to_show==='private-info'}">{{ 'PERSONAL-AREA.personal-information' | translate }}</button>
 </div>
 
-<div style="display: flex; flex-direction: row; background-color: white; margin-top: 20px;border-top: 2px solid black;">
+<div style="width: 100%; background-image: url('https://i.pinimg.com/originals/5b/05/2b/5b052b8db8821b9d48f88db8ea8cab6a.png'); background-size: 1200px 800px;background-repeat: no-repeat;">
     <div class="personal-content">
         <app-personal-a-card *ngIf="what_to_show==='wishlist' || what_to_show==='cart'"></app-personal-a-card>
         <app-private-info *ngIf="what_to_show==='private-info'"></app-private-info>
         <app-purchase-history *ngIf="what_to_show==='purchase-history'"></app-purchase-history>
     </div>
-    <!-- ----------------------------------------------------MODEL IMAGE---------------------------------- -->
-    <div style="width: 400px;">
-        <div class="AKZENTZ-model"></div>
-        <p *ngIf="what_to_show==='wishlist' || what_to_show==='cart'" class="message-link" (click)="close_advertisement()">{{ 'PERSONAL-AREA.CARD.shipping-details' | translate}}</p>
-        <div *ngIf="what_to_show==='wishlist' || what_to_show==='cart'" id="shipping-details" [ngClass]="{Hebrew: languege==='iv'}">
-            <p>{{'PERSONAL-AREA.SHIPPING-D.p-1' | translate}}</p>
-            <p>{{'PERSONAL-AREA.SHIPPING-D.p-2' | translate}}</p>
-            <p>{{'PERSONAL-AREA.SHIPPING-D.p-3' | translate}}</p>
-        </div>
+</div>
+<!-- ----------------------------------------------------MODEL IMAGE---------------------------------- -->
+<div style="position: absolute; top: 1000px; margin-left: 750px; z-index: 2; width: 450px;">
+    <p *ngIf="what_to_show==='wishlist' || what_to_show==='cart'" class="message-link" (click)="close_advertisement()">{{ 'PERSONAL-AREA.CARD.shipping-details' | translate}}</p>
+    <div *ngIf="what_to_show==='wishlist' || what_to_show==='cart'" id="shipping-details" [ngClass]="{Hebrew: languege==='iv'}">
+        <p>{{'PERSONAL-AREA.SHIPPING-D.p-1' | translate}}</p>
+        <p>{{'PERSONAL-AREA.SHIPPING-D.p-2' | translate}}</p>
+        <p>{{'PERSONAL-AREA.SHIPPING-D.p-3' | translate}}</p>
     </div>
 </div>

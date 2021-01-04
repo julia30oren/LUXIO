@@ -8,6 +8,14 @@
     direction: rtl;
 }
 
+.tools-intro {
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+    border-bottom: rgba(128, 128, 128, 0.5) solid 2px
+}
+
 .title {
     font-family: Century Gothic;
     font-size: 25px;

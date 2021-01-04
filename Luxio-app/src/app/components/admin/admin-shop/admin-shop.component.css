@@ -11,10 +11,6 @@
     margin-right: 10px;
 }
 
-.btn {
-    margin: 1%;
-}
-
 .form {
     border: black solid 2px;
     padding: 1%;
@@ -29,10 +25,7 @@
     border: red solid 1.5px;
 }
 
-.shopComp {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.shop-table {
     width: 100%;
 }
 
@@ -48,8 +41,6 @@
     top: 45%;
     left: 0;
     z-index: 10;
-    display: flex;
-    justify-content: center;
     font-size: 20px;
     text-align: center;
 }
@@ -58,9 +49,7 @@
     background-color: white;
     border: black 2px solid;
     width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-left: 25%;
 }
 
 .warn-mes {

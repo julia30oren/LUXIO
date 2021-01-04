@@ -19,7 +19,7 @@ export class ShopService {
   private xtra_products_sorted = new BehaviorSubject<Array<any>>([]);
   public xtra_products_sorted_from_service = this.xtra_products_sorted.asObservable();
 
-  private prod_selected = new BehaviorSubject<Array<any>>([]);
+  private prod_selected = new BehaviorSubject<number>(null);
   public prod_selected_from_service = this.prod_selected.asObservable();
 
   private select_one = new BehaviorSubject<boolean>(false);
@@ -77,8 +77,8 @@ export class ShopService {
   }
 
   // -------------------get product selected and save ----------
-  selectProd(prod: object, open_state: boolean) {
-    this.prod_selected.next([prod]);
+  selectProd(prodIndex: number, open_state: boolean) {
+    this.prod_selected.next(prodIndex);
     this.select_one.next(open_state);
   }
 

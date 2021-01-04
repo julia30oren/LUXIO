@@ -10,7 +10,8 @@
         <p *ngIf="status==='deny'">
             {{ 'ADMIN.CERTIFICATES.WARNINGS.message-3.part-1' | translate }} &laquo; {{user.first_name}} {{user.second_name}} &raquo; {{ 'ADMIN.CERTIFICATES.WARNINGS.message-3.part-2' | translate }}
         </p>
-        <div style="display: flex; flex-direction: row;">
+
+        <div>
             <button *ngIf="status==='delete'" class="btn btn-outline-dark" type="button" (click)="userStatuse(user._id,'delete')" style="margin: 1%;">
                 {{ 'ADMIN.CERTIFICATES.WARNINGS.button-yes' | translate }}
             </button>
@@ -24,6 +25,8 @@
                 {{ 'ADMIN.CERTIFICATES.WARNINGS.button-no' | translate }}
             </button>
         </div>
+
+
     </div>
 </div>
 <!--  -->
@@ -31,14 +34,12 @@
 
 <div class="USERS-LIST" [ngClass]="{Hebrew: language === 'iv'}">
     <div class="sort-buttons">
-        <button type="button" class="btn btn-outline-dark sort-" (click)="getAll()">{{ 'ADMIN.CERTIFICATES.all' | translate }}</button>
-        <button type="button" class="btn btn-outline-dark sort-" (click)="getSort('considered')">{{ 'ADMIN.CERTIFICATES.state-undefined' | translate }}</button>
-        <button type="button" class="btn btn-outline-dark sort-" (click)="getSort('true')">{{ 'ADMIN.CERTIFICATES.state-approved' | translate }}</button>
-        <button type="button" class="btn btn-outline-dark sort-" (click)="getSort('false')">{{ 'ADMIN.CERTIFICATES.state-dened' | translate }}</button>
-        <!-- <p>{{ certificates_sorted | json}}</p> -->
+        <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getAll()">{{ 'ADMIN.CERTIFICATES.all' | translate }}</button>
+        <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getSort('considered')">{{ 'ADMIN.CERTIFICATES.state-undefined' | translate }}</button>
+        <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getSort('true')">{{ 'ADMIN.CERTIFICATES.state-approved' | translate }}</button>
+        <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getSort('false')">{{ 'ADMIN.CERTIFICATES.state-dened' | translate }}</button>
     </div>
 
-    <!-- <h1>{{ 'ADMIN.CERTIFICATES.title' | translate }}:</h1> -->
     <br>
 
     <div class="requests-div" *ngIf="certificatesList">
@@ -68,12 +69,12 @@
 
                     </div>
                 </div>
-                <div class="col-md-2 buttons">
-                    <button type="button" class="btn btn-outline-primary" (click)="changeStatus(item._id,'confirm')">
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-outline-primary buttons" (click)="changeStatus(item._id,'confirm')">
                         {{ 'ADMIN.CERTIFICATES.button-approve' | translate }}</button>
-                    <button type="button" class="btn btn-outline-warning" (click)="changeStatus(item._id,'deny')">
+                    <button type="button" class="btn btn-outline-warning buttons" (click)="changeStatus(item._id,'deny')">
                         {{ 'ADMIN.CERTIFICATES.button-deny' | translate }}</button>
-                    <button type="button" class="btn btn-outline-danger" (click)="changeStatus(item._id,'delete')">
+                    <button type="button" class="btn btn-outline-danger buttons" (click)="changeStatus(item._id,'delete')">
                         {{ 'ADMIN.CERTIFICATES.button-delete' | translate }}</button>
                 </div>
             </div>
