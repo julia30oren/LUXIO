@@ -86,14 +86,32 @@
 
 .main-app {
     width: 100%;
+    /* background: black; */
+    /*  */
+    /* background: #D1C6F3;
+    background: -moz-linear-gradient(-45deg, #d1c6f381 0%, rgba(233, 186, 172, 0.5) 100%);
+    background: -webkit-linear-gradient(-45deg, #d1c6f381 0%, rgba(233, 186, 172, 0.5) 100%);
+    background: linear-gradient(135deg, #d1c1ff81 0%, rgba(233, 186, 172, 0.5) 100%); */
+    /*  */
     /* background: #E3AACB;
     background: -moz-linear-gradient(top, #E3AACB 0%, #FFFABF 50%, #E3AACB 100%);
     background: -webkit-linear-gradient(top, #E3AACB 0%, #FFFABF 50%, #E3AACB 100%);
     background: linear-gradient(to bottom, #E3AACB 0%, #FFFABF 50%, #E3AACB 100%); */
+    /*  */
+    /* background: #ebcaa9af;
+    background: -moz-linear-gradient(left, #ebcaa9af 0%, #FFFFFF 30%, #FFFFFF 70%, , #ebcaa9af 100%);
+    background: -webkit-linear-gradient(left, #ebcaa9af 0%, #FFFFFF 30%, #FFFFFF 70%, , #ebcaa9af 100%);
+    background: linear-gradient(to right, #ebcaa9af 0%, #FFFFFF 30%, #FFFFFF 70%, #ebcaa9af 100%); */
+    /*  */
+    /* background: #000000;
+    background: -moz-linear-gradient(left, #000000 0%, #FFFFFF 15%, #FFFFFF 85%, #000000 100%);
+    background: -webkit-linear-gradient(left, #000000 0%, #FFFFFF 15%, #FFFFFF 85%, #000000 100%);
+    background: linear-gradient(to right, #000000 0%, #FFFFFF 15%, #FFFFFF 85%, #000000 100%); */
 }
 
 .main-app>div {
     margin: auto;
+    background: rgb(255, 255, 255);
 }
 
 .Hebrew {

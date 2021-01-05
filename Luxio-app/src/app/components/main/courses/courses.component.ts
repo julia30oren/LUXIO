@@ -19,7 +19,7 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit() {
     this.lang_service._selected_from_service
-      .subscribe(date => { this.languege = date })
+      .subscribe(date => { this.languege = date });
   }
 
   //Introductory seminars

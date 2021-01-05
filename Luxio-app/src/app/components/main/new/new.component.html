@@ -1,10 +1,62 @@
 <!---------------------------- "NEW" COMPONENT-->
 <!-- -------------------------------------------------MAIN BUNER & INFO-------- -->
 <div class="buner-New animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow"></div>
+<h5 class="title animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.title' | translate}}</h5>
 <p class="introduction animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">
-    <span style="color: brown;">Akzentz</span>{{ 'NEW.loz' | translate}}</p>
+    <span style="color: brown;">Akzentz</span>{{ 'NEW.loz' | translate}}
+</p>
+<h5 class="varn animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.varn' | translate}}</h5>
 <hr/>
+<!-------------------------------- JELLI --------------------------------------------------------------------------------->
+<!-- ---------------------------main announce--------- -->
+<div id="shades" class="animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow">
+    <div class="right">
+        <div class="buner-jelli"></div>
+    </div>
+    <div class="jelli-description left">
+        <h3>NEW LUXIO</h3>
+        <h1>JELLI</h1>
+        <h5>UV/LED COLOUR COLLECTION</h5>
+        <br>
+        <p [ngClass]="{Hebrew: langIv}" class="description">Create, layer and play with Luxio Jelli, sheer layable colours that can be worn alone, over art for rich depth and dimension, or use for water colour effects.</p>
+        <p class="description" style="margin-top: -15px;">New Luxio
+            <span style="color: brown;"> Jelly Teal</span>,
+            <span style="color: brown;"> Jelly Black</span>,
+            <span style="color: brown;"> Jelly Red</span>.
+        </p>
+        <p style="font-family: Calibri;font-size: small;">{{ 'NEW.info-2' | translate}}</p>
+        <br>
+        <!-- -------------------------------------button to open---------------- -->
+        <button type="button" (click)="openShades_shop()" class="btn btn-light btn-block">
+            <p *ngIf="!jelliOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-shop' | translate}}</p>
+            <p *ngIf="jelliOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-close' | translate}}</p>
+        </button>
+    </div>
+</div>
 
+<!-- ------------------------------------------productes-------------------- -->
+<div class="row row-cols-1 row-cols-md-3 g-4 prod-row " *ngIf="jelliOpen">
+    <div class="col" id={{item.burcode_id}} *ngFor="let item of jelly">
+        <div class="card card-new" id={{item.burcode_id}}>
+            <div class="flip-card" (click)="select(item.burcode_id)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}}  image not evaluable" />
+                        <h5 style="font-family: Gadugi;" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories'">{{item.prod_class}} {{item.name}}</h5>
+                        <h5 style="font-family: Gadugi;" *ngIf="item.prod_class==='basics'|| item.prod_class==='materials' || item.prod_class==='accessories'"> {{item.name}}</h5>
+                    </div>
+                    <div class="flip-card-back">
+                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable" />
+                        <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2"> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
+                        <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fas fa-shopping-basket fa-2x"></i></button>
+                        <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr/>
 <!---------------------------- RENDEZVOUS --------------------------------------------------------------------------->
 <!-- ---------------------------main announce--------- -->
 <div id="rendezvous" class="animate__animated animate__fadeInRight animate__delay-0.5s animate__slow wow">
@@ -57,7 +109,7 @@
         </div>
     </div>
 </div>
-
+<hr/>
 <!-------------------------------- SHADES --------------------------------------------------------------------------------->
 <!-- ---------------------------main announce--------- -->
 <div id="shades" class="animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow">
@@ -107,7 +159,7 @@
         </div>
     </div>
 </div>
-
+<hr/>
 <!--------------------------------------------------- MIAMI------------------------------------------------------------------------------ -->
 <!-- ---------------------------main announce--------- -->
 <div id="miamy" class="animate__animated animate__fadeInRight animate__delay-0.5s animate__slow wow">
@@ -133,7 +185,6 @@
             <p *ngIf="miamiOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-close' | translate}}</p>
         </button>
     </div>
-
 </div>
 
 <!-- ------------------------------------------productes-------------------- -->
@@ -158,8 +209,7 @@
         </div>
     </div>
 </div>
-
-
+<hr/>
 <!-- VOYAGE ------------------------------------------------------------------------------------->
 <!-- ---------------------------main announce--------- -->
 <div id="voyage" class="animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow">

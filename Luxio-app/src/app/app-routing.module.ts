@@ -20,10 +20,10 @@ import { CookiesComponent } from './components/cookies/cookies.component';
 import { RegistrationComponent } from './components/admin/registration/registration.component';
 import { RemoveComponent } from './components/admin/remove/remove.component';
 import { MailingsComponent } from './components/admin/mailings/mailings.component';
+import { HomeComponent } from './components/main/home/home.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'new', pathMatch: 'full' },
-
+    { path: '', component: HomeComponent },
     { path: 'new', component: NewComponent },
     { path: 'products/luxio', component: LuxioComponent },
     { path: 'products/options', component: OptionssComponent },
@@ -54,6 +54,7 @@ const routes: Routes = [
 })
 export class AppRoutingModule { };
 export const routingComponents = [
+    HomeComponent,
     SignInComponent,
     ShopComponent,
     CoursesComponent,

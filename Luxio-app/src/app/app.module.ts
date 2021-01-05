@@ -33,6 +33,7 @@ import { CommentFormComponent } from './components/elements/comment-form/comment
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationComponent } from './components/admin/registration/registration.component';
 import { RemoveComponent } from './components/admin/remove/remove.component';
+import { HomeComponent } from './components/main/home/home.component';
 
 
 // AoT requires an exported function for factories
@@ -60,6 +61,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CommentFormComponent,
     RegistrationComponent,
     RemoveComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
