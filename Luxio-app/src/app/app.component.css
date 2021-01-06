@@ -110,8 +110,15 @@
 }
 
 .main-app>div {
+    width: 1200px;
     margin: auto;
     background: rgb(255, 255, 255);
+}
+
+@media screen and (max-width: 1200px) {
+    .main-app>div {
+        width: 100%;
+    }
 }
 
 .Hebrew {
@@ -188,7 +195,7 @@ option {
 /*------------------------------------------ NAVIGATION */
 
 #Header {
-    width: 1200px;
+    width: 100%;
     position: fixed;
     z-index: 5;
     /* Make it stick/fixed */
@@ -198,13 +205,27 @@ option {
     /* Transition effect when sliding down (and up) */
 }
 
-#header-top {
+#Header-Main {
+    width: 1200px;
+    height: 100px;
+    margin: auto;
     background: #ffffff00;
     background: -moz-linear-gradient(top, #ffffff00 0%, #ffffffca 50%, #FFFFFF 100%);
     background: -webkit-linear-gradient(top, #ffffff00 0%, #ffffffa1 50%, #FFFFFF 100%);
     background: linear-gradient(to bottom, #ffffff00 0%, #ffffffa1 50%, #FFFFFF 100%);
+}
+
+#prodOptionsDiv {
+    height: 50px;
     width: 1200px;
-    height: 100px;
+    margin: auto;
+}
+
+@media screen and (max-width: 1200px) {
+    #Header-Main,
+    #prodOptionsDiv {
+        width: 98%;
+    }
 }
 
 #header-left-side {
@@ -212,6 +233,13 @@ option {
     width: 70%;
     margin: auto;
     float: left;
+}
+
+#header-right-side {
+    height: 100%;
+    width: 30%;
+    float: right;
+    margin: auto;
 }
 
 
@@ -225,16 +253,33 @@ option {
 
 .nav-link {
     color: rgb(0, 0, 0);
-    font-size: 100%;
     cursor: pointer;
 }
 
+@media screen and (max-width: 1200px) {
+    #header-left-side {
+        height: 100%;
+        width: 73%;
+        margin: auto;
+        float: left;
+    }
+    #header-right-side {
+        height: 100%;
+        width: 27%;
+        float: right;
+        margin: auto;
+    }
+    .nav-link {
+        font-size: 80%;
+    }
+}
+
 .nav-link:hover {
-    color: rgb(212, 99, 99);
+    color: brown;
 }
 
 .active {
-    color: rgb(212, 99, 99);
+    color: brown;
 }
 
 .user-info-bar {
@@ -267,11 +312,6 @@ option {
     border: black solid 0.5px;
 }
 
-#prodOptionsDiv {
-    height: 50px;
-    width: 100%;
-}
-
 #prod-options {
     width: 1200px;
     height: 100%;
@@ -285,10 +325,20 @@ option {
 .prod-option-link {
     color: rgb(0, 0, 0);
     height: 20px;
-    width: 200px;
+    width: 140px;
     margin: auto;
     float: left;
     text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+    #prod-options {
+        width: 98%;
+    }
+    .prod-option-link {
+        width: 12%;
+        font-size: 80%;
+    }
 }
 
 
@@ -355,6 +405,14 @@ option {
     width: 1200px;
     padding-top: 110px;
     padding-bottom: 50px;
+}
+
+@media screen and (max-width: 1200px) {
+    .content {
+        width: 100%;
+        padding-left: 1%;
+        padding-right: 1%;
+    }
 }
 
 

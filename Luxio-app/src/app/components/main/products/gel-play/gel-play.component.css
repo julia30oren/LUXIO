@@ -3,16 +3,9 @@
     direction: rtl;
 }
 
-.buner-GelPlay {
-    width: 100%;
-    height: 410px;
-    background-image: url('https://akzentz.com/wp-content/uploads/2018/06/gelplay-akzentz-header.png');
-    background-size: cover;
-}
-
 .gelPlay-open {
     width: 100%;
-    height: 1400px;
+    height: 1650px;
     border-bottom: solid 2px rgba(128, 128, 128, 0.5);
 }
 
@@ -24,10 +17,16 @@
     float: right;
 }
 
-.gelPlay-col {
+.gelPlay-col-1 {
     height: 100%;
     margin-top: 50px;
-    width: 50%;
+    width: 40%;
+}
+
+.gelPlay-col-2 {
+    height: 100%;
+    margin-top: 50px;
+    width: 60%;
 }
 
 .title {
@@ -36,21 +35,24 @@
 }
 
 .sm-text {
-    font-family: Georgia, serif;
-    font-size: 20px;
     color: gray;
-}
-
-.m-text {
-    color: gray;
-    padding: 2%;
+    padding-right: 2%;
+    padding-left: 2%;
     font-family: Georgia, serif;
     font-size: 20px;
     letter-spacing: 3px;
     word-spacing: 6px;
-    font-weight: 400;
-    text-decoration: none;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
+}
+
+@media screen and (max-width: 1200px) {
+    .gelPlay-open {
+        height: 1450px;
+    }
+    .sm-text {
+        padding-right: 1%;
+        padding-left: 1%;
+        font-size: 18px;
+        letter-spacing: 2.5px;
+        word-spacing: 5px;
+    }
 }

@@ -118,11 +118,13 @@
             "location": "Location..",
             "loc1": "Center of Israel (close to Tel Aviv)",
             "loc2": "Center of Israel (close to Jerusalem)",
-            "loc3": "North of Israel (close to Haifa)",
-            "loc4": "North of Israel (close to Nazareth)",
-            "loc5": "North of Israel (close to Qiryat Shemona)",
-            "loc6": "Western Israel (close to Be'er Sheva)",
-            "loc7": "Western Israel (close to Eilat)",
+            "loc3": "Center of Israel (close to Ashdod)",
+            "loc4": "North of Israel (close to Haifa)",
+            "loc5": "North of Israel (close to Nazareth)",
+            "loc6": "North of Israel (close to Nahariyya)",
+            "loc7": "North of Israel (close to Qiryat Shemona)",
+            "loc8": "South Israel (close to Be'er Sheva)",
+            "loc9": "South Israel (close to Eilat)",
             "email": "Email",
             "phoneN": "Phone number",
             "password": "Password",
@@ -209,20 +211,20 @@
     "GEL-PLAY": {
         "paragraf-1": {
             "title": "6 UNIQUE DESIGNS",
-            "text-1": "GEL PLAY PAINTS – 18 shades of densely pigmented color gel. Ideal for nail art, including for drawing fine lines, small or voluminous details.",
-            "text-2": "GEL PLAY GLITTERS - 6 shades of iridescent gel with micro-glitter.",
-            "text-3": "GEL PLAY GLITTER SHIFTERS - 6 shades of iridescent gel with micro-gloss.",
-            "text-4": "GEL PLAY MERMAID – 6 iridescent gel shades that change their tone depending on the base color (3D effect, mermaid effect).",
-            "text-5": "GEL PLAY GLITZ - 9 shades of densely pigmented color shimmery gel with high gloss (foil effect). Suitable as a stand alone coating and for selective designs.",
-            "text-6": "GEL PLAY GLITTERS CRUSH – 6 shades of densely pigmented hexagonal sequins of different sizes.",
-            "text-7": "GEL PLAY DAZZLE - 6 shades of densely pigmented gel with very fine colored glitters. Suitable as a stand alone coating and for selective designs.",
-            "text-8": "GEL PLAY LACE – 3 flake effect gel shade.",
-            "text-9": "GEL PLAY GLITTER ME –  colorless transparent gel base for adding glitter and creating new shades.",
-            "text-10": "GEL PLAY BLING ON - gel of dense consistency and extra strong hold for rhinestones, stones and other details. It is applied after the top coat, directly under the design detail."
+            "text-1": " – 18 shades of densely pigmented color gel. Ideal for nail art, including for drawing fine lines, small or voluminous details.",
+            "text-2": " - 6 shades of iridescent gel with micro-glitter.",
+            "text-3": " - 6 shades of iridescent gel with micro-gloss.",
+            "text-4": " – 6 iridescent gel shades that change their tone depending on the base color (3D effect, mermaid effect).",
+            "text-5": " - 9 shades of densely pigmented color shimmery gel with high gloss (foil effect). Suitable as a stand alone coating and for selective designs.",
+            "text-6": " – 6 shades of densely pigmented hexagonal sequins of different sizes.",
+            "text-7": " - 6 shades of densely pigmented gel with very fine colored glitters. Suitable as a stand alone coating and for selective designs.",
+            "text-8": " – 3 flake effect gel shade.",
+            "text-9": " –  colorless transparent gel base for adding glitter and creating new shades.",
+            "text-10": " - gel of dense consistency and extra strong hold for rhinestones, stones and other details. It is applied after the top coat, directly under the design detail."
         },
         "paragraf-2": {
             "title": "GIVE YOUR CREATIVITY WILL",
-            "text-1": "GEL PLAY – a 100% gel line designed specifically for nail art and design. The GEL PLAY line assortment consists of 10 collections of densely pigmented gels and glitters. All GEL PLAY gels dissolve easily and are removed with Akzentz Soak Off."
+            "text-1": " – a 100% gel line designed specifically for nail art and design. The GEL PLAY line assortment consists of 10 collections of densely pigmented gels and glitters. All GEL PLAY gels dissolve easily and are removed with Akzentz Soak Off."
         },
         "paragraf-3": {
             "title": "Mix, create and bring your wildest ideas to life with GEL PLAY!"
@@ -234,17 +236,17 @@
             "title": "OPTIONS",
             "text-1": "OPTIONS line - consists of a rich palette of 100% gel and a strengthening and building system.",
             "text-2": "All gels in the Options line are solvent free, odorless and keep the nail plate in perfect condition.",
-            "text-3": "OPTIONS SOAK OFF SYSTEMS - 100% strengthening and building gel. Provides extra firmness to brittle, soft and damaged nails. Strengthens, restores and improves the condition of the nail plate. Safe and easy removal by dissolving with Akzentz Soak Off. Provides a bright glossy shine and natural look."
+            "text-3": " - 100% strengthening and building gel. Provides extra firmness to brittle, soft and damaged nails. Strengthens, restores and improves the condition of the nail plate. Safe and easy removal by dissolving with Akzentz Soak Off. Provides a bright glossy shine and natural look."
         },
         "paragraf-2": {
-            "text-1": "OPTIONS COLORS - 100% gel for design and coverage. Dense, rich pigmented shades. Safe and easy removal by dissolving with Akzentz Soak Off. Ultra-thin coating that does not crack, does not shrink, does not chip. Compatible with Luxio base, top and colors."
+            "text-1": " - 100% gel for design and coverage. Dense, rich pigmented shades. Safe and easy removal by dissolving with Akzentz Soak Off. Ultra-thin coating that does not crack, does not shrink, does not chip. Compatible with Luxio base, top and colors."
         }
     },
 
     "PRO-FORMANCE": {
         "paragraf-1": {
             "title": "DIAMOND STRENGTH TECHNOLOGY",
-            "text-1": "(DST) Pro-Formance is the perfect choice for creating beautiful nail enhancements. The high quality and strength is achieved through DST which utilizes superior molecular cross-linking. Pro-Formance will maintain its durability regardless of your client’s lifestyle.",
+            "text-1": " is the perfect choice for creating beautiful nail enhancements. The high quality and strength is achieved through DST which utilizes superior molecular cross-linking. Pro-Formance will maintain its durability regardless of your client’s lifestyle.",
             "text-2": "All Pro-Formance series gels are solvent free, odourless and preserve clients natural nail condition. Pro-Formance gels are custom crafted from only the highest grade of European & USA sourced ingredients, and offer a wide variety of choice in viscosity, colour, opacity and strength – allowing you to create the perfect enhancement for your individual clients needs."
         }
     },

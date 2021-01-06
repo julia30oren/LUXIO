@@ -23,8 +23,9 @@
 /* SORT styles */
 
 .sort {
+    width: 98%;
+    margin: auto;
     margin-top: 50px;
-    width: 100%;
 }
 
 .custom-select {

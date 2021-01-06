@@ -3,11 +3,56 @@
     direction: rtl;
 }
 
+#welcom {
+    width: 60%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+#prod-line {
+    width: 100%;
+    text-align: center;
+    font-family: Microsoft Yi Baiti;
+    letter-spacing: 3px;
+    word-spacing: 3px;
+    margin-top: 70px;
+    background-color: rgb(65, 65, 65);
+    color: white;
+}
+
 .title {
     text-align: center;
     margin-top: 50px;
     font-family: Century Gothic;
     font-size: 35px;
+}
+
+#products-imgLinks {
+    width: 1200px;
+    height: 1000px;
+    margin: auto;
+}
+
+@media screen and (max-width: 1200px) {
+    #products-imgLinks {
+        width: 1000px;
+        height: 820px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .fl-left {
+        float: left;
+    }
+    #lux-opt-gpl {
+        height: 100%;
+        width: 64%;
+    }
+    #prof-bas {
+        height: 100%;
+        margin-left: 5px;
+        width: 35.5%;
+    }
 }
 
 .introduction {

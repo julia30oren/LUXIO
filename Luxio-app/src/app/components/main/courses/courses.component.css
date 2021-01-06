@@ -19,6 +19,12 @@
     height: 100%;
 }
 
+@media screen and (max-width: 1200px) {
+    .courser-row {
+        height: 400px;
+    }
+}
+
 #first-buner,
 #second-buner,
 #therd-buner {
@@ -39,6 +45,11 @@
     background-image: url('https://i.pinimg.com/originals/ae/36/93/ae3693cf137e5e1066140e5d71acc54b.jpg');
 }
 
+.red-text {
+    color: brown;
+    font-size: 26px;
+}
+
 .text-block {
     width: 50%;
     text-align: center;
@@ -48,7 +59,6 @@
     font-size: 25px;
     letter-spacing: 3px;
     word-spacing: 6px;
-    font-weight: 400;
     text-decoration: none;
     font-style: normal;
     font-variant: normal;
@@ -58,22 +68,38 @@
 .text-block>h1 {
     color: black;
     font-size: 22px;
-    margin: 30px;
+    margin: 25px;
+    font-weight: 700;
     font-family: Century Gothic;
     text-transform: uppercase;
 }
 
 .text-block>p {
-    font-family: Calibri;
+    font-family: Georgia, serif;
     font-size: 20px;
     color: gray;
-    margin: 30px;
+    margin: 20px;
 }
 
 .text-block>small {
     font-family: Calibri;
-    font-size: medium;
     color: black;
+}
+
+@media screen and (max-width: 1200px) {
+    .text-block {
+        font-size: 20px;
+        letter-spacing: 2px;
+        word-spacing: 4px;
+    }
+    .text-block>h1 {
+        font-size: 18px;
+        margin: 15px;
+    }
+    .text-block>p {
+        font-size: 16px;
+        margin: 15px;
+    }
 }
 
 .input-group {

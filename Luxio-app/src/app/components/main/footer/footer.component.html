@@ -1,6 +1,6 @@
 <div class="FOOTER">
     <!-- ------------------------------------------ COMMERCIAL -->
-    <div *ngIf="!admin" id="commertial" class=" wow animate__animated animate__heartBeat animate__delay-2s" [ngClass]="{Hebrew: languege==='iv'}">
+    <div id="commertial" *ngIf="!admin" class=" wow animate__animated animate__heartBeat animate__delay-2s" [ngClass]="{Hebrew: languege==='iv'}">
         <p>{{ 'FOOTER.commertial.l1' | translate}}
             <br>
             <span style="color: brown; text-transform: uppercase;">Luxio</span>,
@@ -20,7 +20,11 @@
                 <a class="social-icons" target="_blank" href="https://www.pinterest.ru/luxiogelisrael/boards/"><i class="fab fa-pinterest fa-2x"></i> </a>
                 <a class="social-icons" target="_blank" href="https://www.youtube.com/channel/UCIovV5TtXDx_0Enl_MJKB3g?view_as=subscriber"><i class="fab fa-youtube-square fa-2x"></i> </a>
             </div>
-            <p class="rights" style="margin-top: 0;">© Mitra-Group 2014 ©</p>
+            <small class="rights" style="margin-top: 0;">© Mitra-Group 2014 ©</small>
+            <small style="width: 100%; text-align: center; font-style: italic;">
+                This website is solely developed by 
+                <a href="https://www.linkedin.com/in/julia-orendovskyi-026a30b6/" target="_blank">Oren-j</a>.
+            </small>
         </div>
         <!-- -----------------------------footer navigation -->
         <div class="footer-right">
@@ -41,4 +45,5 @@
             </div>
         </div>
     </div>
+    <!--  -->
 </div>

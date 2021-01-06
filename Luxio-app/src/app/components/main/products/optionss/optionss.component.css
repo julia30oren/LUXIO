@@ -1,10 +1,3 @@
-.buner-Options {
-    width: 100%;
-    height: 410px;
-    background-image: url('https://akzentz.com/wp-content/uploads/2018/06/akzentz-options-gel-header-web.png');
-    background-size: cover;
-}
-
 .Hebrew {
     text-align: right;
     direction: rtl;
@@ -13,14 +6,8 @@
 .OPTIONS-open {
     width: 100%;
     padding-bottom: 50px;
-    height: 850px;
+    height: 1000px;
     border-bottom: solid 2px rgba(128, 128, 128, 0.5);
-}
-
-.sm-text {
-    font-family: Georgia, serif;
-    font-size: 20px;
-    color: gray;
 }
 
 .left {
@@ -40,4 +27,27 @@
 .options-images {
     width: 90%;
     margin: auto;
+}
+
+.sm-text {
+    color: gray;
+    padding-right: 2%;
+    padding-left: 2%;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    letter-spacing: 3px;
+    word-spacing: 6px;
+}
+
+@media screen and (max-width: 1200px) {
+    .OPTIONS-open {
+        height: 950px;
+    }
+    .sm-text {
+        padding-right: 1%;
+        padding-left: 1%;
+        font-size: 18px;
+        letter-spacing: 2.5px;
+        word-spacing: 5px;
+    }
 }

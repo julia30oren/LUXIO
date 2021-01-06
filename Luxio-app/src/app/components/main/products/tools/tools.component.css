@@ -1,8 +1,3 @@
-.buner {
-    width: 70%;
-    margin-left: 29%;
-}
-
 .Hebrew {
     text-align: right;
     direction: rtl;
@@ -22,7 +17,21 @@
 }
 
 .sm-text {
+    color: gray;
+    padding-right: 2%;
+    padding-left: 2%;
     font-family: Georgia, serif;
     font-size: 20px;
-    color: gray;
+    letter-spacing: 3px;
+    word-spacing: 6px;
+}
+
+@media screen and (max-width: 1200px) {
+    .sm-text {
+        padding-right: 1%;
+        padding-left: 1%;
+        font-size: 18px;
+        letter-spacing: 2.5px;
+        word-spacing: 5px;
+    }
 }
