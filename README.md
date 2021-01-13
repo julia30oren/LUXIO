@@ -2,7 +2,7 @@
 #### ONLINE SHOP
 ##### API address on DigitelOcean 
 
-hostURL: 'http://localhost'<br>
+hostURL: http://localhost<br>
 port for frontend : 4000<br>
 port for backend : 5000<br>
 port for MongoDB : 27017<br>
