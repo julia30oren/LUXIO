@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { RespondService } from '../respond/respond.service';
+import { environment } from '../../../environments/environment'
 
 
 @Injectable({
@@ -9,7 +10,8 @@ import { RespondService } from '../respond/respond.service';
 })
 export class OrderService {
 
-  private order_URL: string = 'http://localhost:5000/order';
+  private URL: string = `${environment.hostURL}:${environment.DBport}`;
+  private order_URL: string = `${this.URL}/order`;
 
   private userOrders = new BehaviorSubject<Array<any>>([]);
   public userOrders_fromService = this.userOrders.asObservable();

@@ -4,14 +4,16 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { UserService } from '../user-servise/user.service';
 import { RespondService } from '../respond/respond.service';
 import { RegistrationService } from '../registation/registration.service';
+import { environment } from '../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class SaveUserService {
 
-  private DB_url: string = 'http://localhost:5000/user';
-  private registeration_URL: string = 'http://localhost:5000/user/registeration';
+  private URL: string = `${environment.hostURL}:${environment.DBport}`;
+  private DB_url: string = `${this.URL}/user`;
+  private registeration_URL: string = `${this.DB_url}/registeration`;
 
   private stateForm = new BehaviorSubject<boolean>(false);
   public stateForm_from_service = this.stateForm.asObservable();

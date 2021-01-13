@@ -11,8 +11,8 @@ const validSchema = Joi.object({
     // FOR USER    
     id: Joi.string().min(10),
     _id: Joi.string().min(10),
-    first_name: Joi.string().alphanum().min(2).max(30),
-    second_name: Joi.string().alphanum().min(2).max(30),
+    first_name: Joi.string().min(2).max(30),
+    second_name: Joi.string().min(2).max(30),
     phoneN: Joi.string().min(8).max(20).message('PHONE NUMBER is not valid. It must contain at least 8 letters numbers (may contain "-" and/or "()").'),
     state: Joi.string(),
     email: Joi.string().min(8).max(30).message('EMAIL is not valid'),

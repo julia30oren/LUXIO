@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { RespondService } from '../respond/respond.service';
+import { environment } from '../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShopService {
 
-  private prod_url: string = 'http://localhost:5000/products';
+  private URL: string = `${environment.hostURL}:${environment.DBport}`;
+  private prod_url: string = `${this.URL}/products`;
 
   private shop_products = new BehaviorSubject<Array<any>>([]);
   public shop_products_from_service = this.shop_products.asObservable();

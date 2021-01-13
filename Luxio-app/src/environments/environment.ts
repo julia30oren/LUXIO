@@ -4,16 +4,11 @@
 
 export const environment = {
   production: false,
-  firebaseConfig: {
-    apiKey: "AIzaSyDnAWNfZ769z6yS-uuEPo6GFn5dOHfAE58",
-    authDomain: "luxio-gallery.firebaseapp.com",
-    databaseURL: "https://luxio-gallery.firebaseio.com",
-    projectId: "luxio-gallery",
-    storageBucket: "luxio-gallery.appspot.com",
-    messagingSenderId: "303771388809",
-    appId: "1:303771388809:web:00add2a7bc19fa34e96f58",
-    measurementId: "G-8QJFFTR1LF"
-  }
+  hostURL: 'http://localhost',
+  userName: 'user',
+  port: 4000,
+  DBport: 5000,
+  envName: 'angEnv'
 };
 
 /*

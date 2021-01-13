@@ -1,20 +1,25 @@
-# ONLINE SHOP
-### Luxio by AKZENTZ
+# Luxio by AKZENTZ
+#### ONLINE SHOP
 ##### API address on DigitelOcean 
 port for backend : 5000<br>
-port for MongoDB : 27017
+port for MongoDB : 27017<br>
+to change port or API address go:<br>
+1. **Luxio-app** ->
+2. **src** ->
+3. **environments** ->
+4. **environment.ts** ->
 
 ## Navigation
-1. FrontEnd **Luxio-app**
-2. BackEnd **server**
-3. Dev **dev-apps**
+- FrontEnd **Luxio-app**
+- BackEnd **server**
+- Dev **dev-apps**
 
 ## Installation
-- Open **Luxio-app** folder
+1. Open **Luxio-app** folder
     - run *npm i*
-- Open **server** folder
+2. Open **server** folder
     - run *npm i*
-- Open **dev-apps** folder
+3. Open **dev-apps** folder
     - run *npm i*
     - run *npm start*
 

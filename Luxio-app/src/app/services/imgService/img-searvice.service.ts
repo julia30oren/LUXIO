@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { SaveUserService } from '../saveUser/save-user.service';
 import { HttpClient } from '@angular/common/http';
-import { LocationStrategy } from '@angular/common';
 import { RespondService } from '../respond/respond.service';
-
+import { environment } from '../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImageService {
 
-  private registeration_URL: string = 'http://localhost:5000/user/registeration'
+  private URL: string = `${environment.hostURL}:${environment.DBport}`;
+  private registeration_URL: string = `${this.URL}/user/registeration`;
 
   constructor(
     private http: HttpClient,

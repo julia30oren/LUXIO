@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class WhatsappServiseService {
 
-  private whatsapp_URL: string = 'http://localhost:5000/whatsapp';
-
+  private URL: string = `${environment.hostURL}:${environment.DBport}`;
+  private whatsapp_URL: string = `${this.URL}/whatsapp`;
 
   constructor(
     private http: HttpClient
