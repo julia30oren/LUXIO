@@ -1,6 +1,6 @@
 # ONLINE SHOP
 ### Luxio by AKZENTZ
-######API address on DigitelOcean 
+#####API address on DigitelOcean 
 port for backend : 5000<br>
 port for MongoDB : 27017
 
@@ -19,12 +19,7 @@ port for MongoDB : 27017
     - run *npm start*
 
 ## License
-######creator
+#####creator
 [Oren__j](https://www.linkedin.com/in/julia-orendovskyi-026a30b6)
-######owner
+#####owner
 [Mitra group 2014](http://www.luxiogel.ru)
-
-
-cloud_name: 'luxio',
-api_key: '492869636989511',
-api_secret: 'mrLuIPL09ohLF-Q5GC2V9bY6r0g'
