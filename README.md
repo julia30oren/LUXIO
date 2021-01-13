@@ -3,11 +3,11 @@
 ##### API address on DigitelOcean 
 port for backend : 5000<br>
 port for MongoDB : 27017<br>
-to change port or API address go:<br>
+to change port or API address go to:<br>
 1. **Luxio-app** ->
 2. **src** ->
 3. **environments** ->
-4. **environment.ts** ->
+4. **environment.ts** -> IN THIS FILE
 
 ## Navigation
 - FrontEnd **Luxio-app**
