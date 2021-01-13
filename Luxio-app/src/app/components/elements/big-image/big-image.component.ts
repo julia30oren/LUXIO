@@ -91,7 +91,7 @@ export class BigImageComponent implements OnInit {
   }
 
   quantity_change(target) {
-    this.quantity = target;
+    this.quantity = JSON.parse(target);
   }
 
   selectImage(link: string) {

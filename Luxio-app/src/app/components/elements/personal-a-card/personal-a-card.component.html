@@ -1,9 +1,9 @@
 <!-- {{personalArea_products|json}} -->
 <!-- {{what_to_show|json}} -->
 
-<h2 *ngIf="!personalArea_products[0] && what_to_show === 'cart'" style="width: 100%; color: brown; text-align: center; margin-top: 200px;" [ngClass]="{Hebrew: languege==='iv'}">
+<h2 *ngIf="!personalArea_products[0] && what_to_show === 'cart'" style="width: 100%; color: brown; text-align: center;" [ngClass]="{Hebrew: languege==='iv'}">
     {{ 'PERSONAL-AREA.CARD.empty-cart' | translate}}</h2>
-<h2 *ngIf="!personalArea_products[0] && what_to_show === 'wishlist'" style="width: 100%; color: brown; text-align: center; margin-top: 200px;" [ngClass]="{Hebrew: languege==='iv'}">
+<h2 *ngIf="!personalArea_products[0] && what_to_show === 'wishlist'" style="width: 100%; color: brown; text-align: center;" [ngClass]="{Hebrew: languege==='iv'}">
     {{ 'PERSONAL-AREA.CARD.empty-wishlist' | translate}}</h2>
 
 <div *ngIf="personalArea_products" class="personal-areaCards">
@@ -77,14 +77,14 @@
     </table>
 </div>
 
-<button (click)="goToBill();" type="button" *ngIf="personalArea_products[0] && what_to_show === 'cart' && !do_checkout" class="btn btn-outline-dark btn-block" style="margin-bottom: 20px;">
+<button (click)="goToBill();" type="button" *ngIf="personalArea_products[0] && what_to_show === 'cart'" class="btn btn-outline-dark btn-block" style="margin-bottom: 20px;">
     {{ 'PERSONAL-AREA.to-checkout' | translate }}
 </button>
 
 <!-- ------------------------------------------CHECKOUT-------------------- -->
 <div *ngIf="do_checkout" id="CHECKOUT">
 
-    <div style="width: 1200px; background-color: white; margin: auto; border: black 2px dotted; height: auto; margin-top: 120px;">
+    <div id="checkout-inner">
         <h1 style="width: 100%; text-align: center;">Checkout</h1>
 
         <div>
@@ -98,8 +98,7 @@
                 <!-- ---------------------------------------------------------------------------ADDRESS--------------------------- -->
                 <div class="form-row">
                     <div class="col">
-                        <label for="inputState">State:</label>
-                        <select id="inputState" [ngClass]="{error: isSubmitted && formControls.state.errors?.required}" class="form-control" formControlName="state">
+                        <select id="inputState" (change)="cityCheck(city.value);" #city [ngClass]="{error: isSubmitted && formControls.state.errors?.required}" class="form-control" formControlName="state">
                                 <option value="" disabled selected>{{ 'SIGN-IN.REGISTRATION-FORM.location' | translate}}</option>
                                 <option value="Center of Israel (close to Tel Aviv)" >{{ 'SIGN-IN.REGISTRATION-FORM.loc1' | translate}}</option>
                                 <option value="Center of Israel (close to Jerusalem)">{{ 'SIGN-IN.REGISTRATION-FORM.loc2' | translate}}</option>
@@ -110,33 +109,36 @@
                                 <option value="Western Israel (close to Be'er Sheva)">{{ 'SIGN-IN.REGISTRATION-FORM.loc7' | translate}}</option>
                             </select>
                     </div>
-
-                    <div class="col">
-                        <label for="inputCity">City:</label>
-                        <input id="inputCity" type="text" class="form-control" value="formControls.city?formControls.city:null" formControlName="city" value="formControls.city" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.city' | translate}}">
+                    <div class="col" *ngIf="ashdod">
+                        <p>{{ 'CONTACT.nearest-office' | translate}} {{ 'CONTACT.ashdod' | translate}} <a href="https://www.instagram.com/lisagelman">Lisa Gelman</a></p>
+                    </div>
+                    <div class="col" *ngIf="yirka">
+                        <p>{{ 'CONTACT.nearest-office' | translate}} {{ 'CONTACT.yirka' | translate}} <a href="https://www.vrona.co.il">Vrona Cosmetic</a></p>
                     </div>
                 </div>
 
                 <div class="form-row" style="margin-top: 20px;">
                     <div class="col">
-                        <label for="inputStreet">Street:</label>
-                        <input id="inputStreet" type="text" class="form-control" value="formControls.street?formControls.street:null" formControlName="street" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.street' | translate}}">
+                        <input id="inputCity" type="text" class="form-control" [ngClass]="{error: isSubmitted && formControls.city.errors?.required}" value="formControls.city?formControls.city:null" formControlName="city" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.city' | translate}}">
+                    </div>
+                </div>
+
+                <div class="form-row" style="margin-top: 20px;">
+                    <div class="col">
+                        <input id="inputStreet" type="text" class="form-control" [ngClass]="{error: isSubmitted && formControls.street.errors?.required}" value="formControls.street?formControls.street:null" formControlName="street" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.street' | translate}}">
                     </div>
 
                     <div class="col">
-                        <label for="inputZip">Zip Code:</label>
                         <input id="inputZip" type="text" class="form-control" value="formControls.zip?formControls.zip:null" formControlName="zip" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.zip' | translate}}">
                     </div>
                 </div>
 
                 <div class="form-row" style="margin-top: 20px;">
                     <div class="col">
-                        <label for="inputHome">Home:</label>
-                        <input id="inputHome" type="text" class="form-control" value="formControls.home?formControls.home:null" formControlName="home" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.home' | translate}}">
+                        <input id="inputHome" type="text" class="form-control" [ngClass]="{error: isSubmitted && formControls.home.errors?.required}" value="formControls.home?formControls.home:null" formControlName="home" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.home' | translate}}">
                     </div>
 
                     <div class="col">
-                        <label for="inputApartment">Apartment:</label>
                         <input id="inputApartment" type="text" class="form-control" value="formControls.apartment?formControls.apartment:null" formControlName="apartment" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.apartment' | translate}}">
                     </div>
                 </div>
@@ -152,33 +154,26 @@
                     <form [formGroup]="cardTemplate" (submit)="goPay('Visa / Mastercard')">
                         <!-- ---------------------------------------------------------------------------Visa / Mastercard--------------------------- -->
                         <div class="form-row">
-                            <div class="col">
-                                <label for="inputCardNumber">Card Number:</label>
-                                <input id="inputCardNumber" type="password" class="form-control" formControlName="cardNumber">
-                            </div>
+                            <label for="inputCardNumber">Card Number:</label>
+                            <input id="inputCardNumber" type="password" class="form-control" [ngClass]="{error: isSubmitted && formControlsCard.cardNumber.errors?.required}" formControlName="cardNumber">
                         </div>
 
                         <div class="form-row" style="margin-top: 20px;">
                             <div class="col">
                                 <label for="inputExpirationDate">Expiration Date:</label>
-                                <input id="inputExpirationDate" type="text" class="form-control" formControlName="expirationDate">
+                                <input id="inputExpirationDate" type="text" class="form-control" [ngClass]="{error: isSubmitted && formControlsCard.expirationDate.errors?.required}" formControlName="expirationDate">
                             </div>
                             <div class="col">
                                 <label for="inputSecurityCode">Security Code:</label>
-                                <input id="inputSecurityCode" type="password" class="form-control" formControlName="securityCode">
+                                <input id="inputSecurityCode" type="password" class="form-control" [ngClass]="{error: isSubmitted && formControlsCard.securityCode.errors?.required}" formControlName="securityCode">
                             </div>
                         </div>
 
                         <div class="form-row" style="margin-top: 20px;">
-                            <div class="col">
-                                <label for="inputFName">First Name:</label>
-                                <input id="inputFName" type="text" class="form-control" formControlName="fName">
-                            </div>
-                            <div class="col">
-                                <label for="inputLName">Last Name:</label>
-                                <input id="inputLName" type="text" class="form-control" formControlName="lName">
-                            </div>
+                            <label for="inputLName">Card Holder Name:</label>
+                            <input id="inputLName" type="text" class="form-control" [ngClass]="{error: isSubmitted && formControlsCard.cardHolderName.errors?.required}" formControlName="cardHolderName">
                         </div>
+
                         <div class="form-row" style="margin-top: 20px;">
                             <button type="submit" class="btn btn-outline-dark btn-block" style="margin-top: 15px;">Confirm and pay</button>
                         </div>
@@ -190,15 +185,15 @@
                     <form [formGroup]="payPalTemplate" (submit)="goPay('Pay Pal')">
                         <div class="form-row">
                             <div class="col">
-                                <label for="inputPPemail">Email:</label>
-                                <input id="inputPPemail" type="email" class="form-control" formControlName="PayPalemail">
+                                <label for="inputPPemail">{{ 'SIGN-IN.REGISTRATION-FORM.email' | translate}}:</label>
+                                <input id="inputPPemail" type="email" class="form-control" [ngClass]="{error: isSubmitted && formControlsPayPal.PayPalemail.errors?.required}" formControlName="PayPalemail">
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="col">
-                                <label for="inputPPpassword">Password:</label>
-                                <input id="inputPPpassword" type="password" class="form-control" formControlName="PayPalPassword">
+                                <label for="inputPPpassword">{{ 'SIGN-IN.REGISTRATION-FORM.password' | translate}}:</label>
+                                <input id="inputPPpassword" type="password" class="form-control" [ngClass]="{error: isSubmitted && formControlsPayPal.PayPalPassword.errors?.required}" formControlName="PayPalPassword">
                             </div>
                         </div>
 
@@ -212,11 +207,11 @@
 
             </div>
             <div style="width: 90%; text-align: right; margin-top: 30px;">
-                <p style="margin-top: 20px;">Shipping: {{ shipping }}.00 &#8362;</p>
-                <p>Discount: -{{ discount }}.00 &#8362;</p>
-                <p style="color: brown;">Order total: {{ TOTAL_PRICE }}.00 &#8362;</p>
+                <p style="margin-top: 20px;">{{'PERSONAL-AREA.shipping' | translate}}: {{ shipping }}.00 &#8362;</p>
+                <p>{{'PERSONAL-AREA.discount' | translate}}: {{ discount }}.00 &#8362;</p>
+                <p style="color: brown;">{{'PERSONAL-AREA.order-total' | translate}}: {{ TOTAL_PRICE }}.00 &#8362;</p>
             </div>
-
+            <div><button type="button" (click)="closeCheckoutForm();">Close</button></div>
         </div>
     </div>
 

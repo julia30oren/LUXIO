@@ -1,6 +1,8 @@
 {
     "NAVIGATION": {
         "for-admin": "For admin",
+        "admins": "Admins",
+        "language": "language",
         "NEW": {
             "title": "WHAT'S NEW"
         },
@@ -35,12 +37,16 @@
             "title": "DELETE ADMIN"
         },
         "MAILINGS": {
-            "title": "NEWSLATTERS"
+            "title": "NEWS LATTERS"
+        },
+        "ORDERS": {
+            "title": "ORDERS"
         },
         "basics": "Basics",
         "tools": "Tools",
         "rights": "MITRA GROUP",
         "welcome": "Hello",
+        "log-in": "Log in",
         "sign-out": "Log Out"
     },
 
@@ -51,6 +57,7 @@
             "l3": "free"
         }
     },
+
     "HOME": {
         "title-1": "Welcome to ",
         "title-2": " professional nail products for healthy, beautiful, natural looking nails.",
@@ -58,9 +65,9 @@
         "par-1-tit": "Odourless",
         "par-1": " - All of our gels are odour free meaning they are healthier for you and your environment.",
         "par-2-tit": "Natural",
-        "par-2": " - Akzentz products and gels will leave your nails looking beautiful and feeling natural. Our wide variety of colours maintain clarity and do not discolour or lose their high gloss shine.",
+        "par-2": " - AKZÉNTZ products and gels will leave your nails looking beautiful and feeling natural. Our wide variety of colours maintain clarity and do not discolour or lose their high gloss shine.",
         "par-3-tit": "Durable",
-        "par-3": " - Akzentz gels are self-levelling and easy to use while delivering the durability clients demand.",
+        "par-3": " - AKZÉNTZ gels are self-levelling and easy to use while delivering the durability clients demand.",
         "par-4-tit": "Diverse",
         "par-4": " - We carry a comprehensive line of gels, products and colours that allow you to expand your services to new heights and unleash your creativity.",
 
@@ -70,7 +77,7 @@
 
     "NEW": {
         "title": "THE LATEST CREATIONS FROM THE AKZÉNTZ LABORATORY",
-        "loz": " is consistently releasing new and award-winning nail products. Through extensive research and innovation, Akzentz has earned a reputation as a formidable force in the beauty industry, with exclusive for formulations designed to inspire and support the skills of professional nail technicians around the globe. Our team of chemists and chemical engineers strive for perfection when creating Akzentz professional nail products.",
+        "loz": " is consistently releasing new and award-winning nail products. Through extensive research and innovation, AKZÉNTZ has earned a reputation as a formidable force in the beauty industry, with exclusive for formulations designed to inspire and support the skills of professional nail technicians around the globe. Our team of chemists and chemical engineers strive for perfection when creating Akzentz professional nail products.",
         "varn": "AVAILABLE ONLY TO CERTIFIED AND LICENSED PROFESSIONALS",
         "sades-m": "Science and beauty come together to bring you the new Trinity shade collection, available in ",
         "voyage-m": "Introducing the Luxio Voyage collection. Escape to a luxurious destination with six new Luxio shades ",
@@ -136,6 +143,7 @@
             "business": "Business category..",
             "self-employed": "Self employed",
             "salon-representative": "Salon representative",
+            "city": "City",
             "sert": "Choose a certificate:",
             "business-name": "Company name",
             "business-id": "Registration company number",
@@ -370,7 +378,10 @@
         "message-1": "Send us your comments, questions, or concerns",
         "message-2": "Find us on your favorite social media platform",
         "days-1": "Sun-Thu",
-        "days-2": "Friday-Saturday closed"
+        "days-2": "Friday-Saturday closed",
+        "nearest-office": "Please contact your nearest office in",
+        "ashdod": "Ashdod",
+        "yirka": "Yirka"
     },
 
     "BASICS": {
@@ -429,7 +440,8 @@
             "pay-only": "Pay only for",
             "shipping-details": "Delivery details",
             "empty-cart": "There is nothing in your cart.",
-            "empty-wishlist": "There is nothing in your wishlist."
+            "empty-wishlist": "There is nothing in your wishlist.",
+            "empty-purchase-history": "You haven't ordered anything yet."
         },
         "FORM": {
             "p-1": "Here you can add or change your personal information:",
@@ -446,6 +458,10 @@
             "p-2": "For orders over 1000₪, delivery is free.",
             "p-3": "The order will be delivered within 5 business days."
         }
+    },
+
+    "PURCHASE-HISTORY": {
+        "resived": "Resived"
     },
 
     "COOKIES": {

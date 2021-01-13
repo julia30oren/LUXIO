@@ -12,9 +12,6 @@ export class RegistrationService {
   private regestration_formOne = new BehaviorSubject<boolean>(false);
   public regestration_formOne_from_service = this.regestration_formOne.asObservable();
 
-  private regestration_formTwo = new BehaviorSubject<boolean>(false);
-  public regestration_formTwo_from_service = this.regestration_formTwo.asObservable();
-
   private regestration_formAgreement = new BehaviorSubject<boolean>(false);
   public regestration_formAgreement_from_service = this.regestration_formAgreement.asObservable();
 
@@ -41,7 +38,6 @@ export class RegistrationService {
   Page1_RegistrationForm() {
     this.passwordRestore_form.next(false);
     this.login_form.next(false);
-    this.regestration_formTwo.next(false);
     this.regestration_formOne.next(true);
   }
 
@@ -61,7 +57,6 @@ export class RegistrationService {
 
   loginPage() {
     this.regestration_formOne.next(false);
-    this.regestration_formTwo.next(false);
     this.regestration_formAgreement.next(false);
     this.passwordRestore_form.next(false);
     this.login_form.next(true);
@@ -69,7 +64,6 @@ export class RegistrationService {
 
   passwordRestorePage() {
     this.regestration_formOne.next(false);
-    this.regestration_formTwo.next(false);
     this.regestration_formAgreement.next(false);
     this.login_form.next(false);
     this.passwordRestore_form.next(true);
@@ -78,7 +72,6 @@ export class RegistrationService {
   close_RegistrationForm() {
     this.regestrationForm.next(false);
     this.regestration_formOne.next(false);
-    this.regestration_formTwo.next(false);
     this.regestration_formAgreement.next(false);
     this.login_form.next(false);
   }

@@ -15,264 +15,48 @@
     font-size: 20px;
 }
 
-.introduction {
-    padding: 2%;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    color: gray;
-    font-family: Georgia, serif;
-    font-size: 25px;
-    letter-spacing: 3px;
-    word-spacing: 6px;
-    font-weight: 400;
-    text-decoration: none;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
+@media screen and (max-width: 1200px) {
+    .introduction {
+        padding: 2%;
+        margin-top: 20px;
+        margin-bottom: 30px;
+        color: gray;
+        font-family: Georgia, serif;
+        font-size: 15px;
+        letter-spacing: 3px;
+        word-spacing: 6px;
+    }
+    .description {
+        font-family: Calibri;
+        color: gray;
+        text-align: center;
+        font-size: 10px;
+        word-spacing: 6px;
+    }
 }
 
-.description {
-    font-family: Calibri;
-    color: gray;
-    text-align: center;
-    font-size: 20px;
-    word-spacing: 6px;
-}
-
-.small-card-img {
-    width: 100%;
-    max-width: 300px;
-    max-height: 300px;
-}
-
-.btn-block {
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-}
-
-.rendezvous-description,
-.miamy-description {
-    text-align: center;
-    font-family: Century Gothic;
-    padding: 5%;
-    background: #FFFFFF;
-    background: -moz-linear-gradient(left, #FFFFFF 0%, #ffffff80 50%, #ffffff00 100%);
-    background: -webkit-linear-gradient(left, #FFFFFF 0%, #ffffff80 50%, #ffffff00 100%);
-    background: linear-gradient(to right, #FFFFFF 0%, #ffffff80 50%, #ffffff00 100%);
-}
-
-.jelli-description,
-.shades-description,
-.voyage-description {
-    text-align: center;
-    font-family: Century Gothic;
-    padding: 5%;
-    height: 100%;
-    background: #FFFFFF;
-    background: -moz-linear-gradient(left, #ffffff00 0%, #ffffff80 50%, #FFFFFF 100%);
-    background: -webkit-linear-gradient(left, #ffffff00 0%, #ffffff80 50%, #FFFFFF 100%);
-    background: linear-gradient(to right, #ffffff00 0%, #ffffff80 50%, #FFFFFF 100%);
+@media screen and (min-width: 1200px) {
+    .introduction {
+        padding: 2%;
+        margin-top: 20px;
+        margin-bottom: 30px;
+        color: gray;
+        font-family: Georgia, serif;
+        font-size: 25px;
+        letter-spacing: 3px;
+        word-spacing: 6px;
+    }
+    .description {
+        font-family: Calibri;
+        color: gray;
+        text-align: center;
+        font-size: 20px;
+        word-spacing: 6px;
+    }
 }
 
 
-/* The flip box container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
-
-.flip-box {
-    background-color: transparent;
-    width: 300px;
-    height: 400px;
-    perspective: 1000px;
-    /* Remove this if you don't want the 3D effect */
-}
-
-
-/* This container is needed to position the front and back side */
-
-.flip-box-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-}
-
-
-/* Do an horizontal flip when you move the mouse over the flip box container */
-
-.flip-box:hover .flip-box-inner {
-    transform: rotateY(180deg);
-}
-
-
-/* Position the front and back side */
-
-.flip-box-front,
-.flip-box-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    color: black;
-    -webkit-backface-visibility: hidden;
-    /* Safari */
-    backface-visibility: hidden;
-}
-
-.flip-box-back {
-    transform: rotateY(180deg);
-}
-
-.close-button {
-    color: brown;
-    background-color: rgb(0, 0, 0, 0);
-    border: none;
-}
-
-.close-button:hover {
-    color: red;
-}
-
-.img {
-    width: 100%;
-}
-
-.img-link {
-    width: 100%;
-    margin-left: 47%
-}
-
-.therd-row {
-    width: 33%;
-    margin: auto;
-}
-
-.left {
-    float: left;
-    height: 100%;
-}
-
-.right {
-    float: right;
-    height: 100%;
-}
-
-
-/* BUNERS --------------------------------------------------------------------------*/
-
-.buner-jelli,
-.buner-rendezvous,
-.buner-shades,
-.buner-miami,
-.buner-voyage {
-    height: 100%;
-    width: 100%;
-    background-size: cover;
-    background-color: white;
-}
-
-#rendezvous,
-#shades,
-#miamy,
-#voyage {
-    width: 100%;
-    height: 500px;
-}
-
-#rendezvous>.left,
-#miamy>.left {
-    width: 40%;
-}
-
-#rendezvous>.right,
-#miamy>.right {
-    width: 60%;
-}
-
-#shades>.left,
-#voyage>.left {
-    width: 60%;
-}
-
-#shades>.right,
-#voyage>.right {
-    width: 40%;
-}
-
-.buner-jelli {
-    background-size: 550px 400px;
-    background-repeat: no-repeat;
-    background-image: url('https://i.pinimg.com/originals/45/fc/e0/45fce068ce8f008f657fbf13b453e7d9.jpg');
-}
-
-.buner-rendezvous {
-    background-image: url('https://i.pinimg.com/originals/59/b8/71/59b87175281fb4294ca9c2eee28d6d47.jpg');
-}
-
-.buner-miami {
-    background-size: 500px 450px;
-    background-repeat: no-repeat;
-    background-image: url('https://i.pinimg.com/originals/8a/b3/80/8ab380f900bd1e8da627e3e9d0de4c1c.jpg');
-}
-
-.buner-voyage {
-    background-image: url('https://i.pinimg.com/originals/cb/77/93/cb7793a456fb21a86ebc482e481bc95a.png');
-}
-
-.buner-shades {
-    background-image: url('https://i.pinimg.com/originals/40/d8/4b/40d84bc50cdafe802160c267cbdf187c.jpg');
-}
-
-
-/* ----------------------------------------------------------------------- */
-
-.shopComp {
-    width: 100%;
-    padding: 5%;
-}
-
-.flip-box {
-    margin: auto;
-    width: 32%;
-    float: left;
-    margin-top: 30px;
-}
-
-.card-img {
-    max-height: 100%;
-    width: 80%;
-    margin: 10%
-}
-
-.card-info {
-    position: absolute;
-    bottom: 10px;
-    right: 15px;
-    z-index: 1;
-    font-family: Century Gothic;
-}
-
-
-/* ----------------- */
-
-.prod-row {
-    width: 1000px;
-    margin: auto;
-    margin-top: 50px;
-}
-
-.card-new {
-    height: 400px;
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-}
-
-.small-card-img {
-    width: 300px;
-    height: 300px;
-}
-
-
-/* -------------------------------buttons-- */
+/* button icons */
 
 .hart-button,
 .cart-button {
@@ -312,15 +96,124 @@
 }
 
 
+/* -------------------------------------------------                   ------ */
+
+.btn-block {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+.small-card-img {
+    width: 100%;
+}
+
+@media screen and (min-width: 900px) {
+    .left {
+        float: left;
+        height: 100%;
+    }
+    .right {
+        float: right;
+        height: 100%;
+    }
+    .main-row {
+        width: 100%;
+        height: 500px;
+    }
+    #rendezvous,
+    #shades,
+    #miamy,
+    #voyage {
+        width: 100%;
+    }
+    #rendezvous>.left,
+    #miamy>.left {
+        width: 40%;
+    }
+    #rendezvous>.right,
+    #miamy>.right {
+        width: 60%;
+    }
+    #shades>.left,
+    #voyage>.left {
+        width: 60%;
+    }
+    #shades>.right,
+    #voyage>.right {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .main-row {
+        width: 100%;
+        height: auto;
+    }
+    .left,
+    .right {
+        width: 98%;
+        margin: auto;
+    }
+}
+
+.rendezvous-description,
+.miamy-description {
+    text-align: center;
+    font-family: Century Gothic;
+    padding: 5%;
+    background: #FFFFFF;
+    background: -moz-linear-gradient(left, #FFFFFF 0%, #ffffff80 50%, #ffffff00 100%);
+    background: -webkit-linear-gradient(left, #FFFFFF 0%, #ffffff80 50%, #ffffff00 100%);
+    background: linear-gradient(to right, #FFFFFF 0%, #ffffff80 50%, #ffffff00 100%);
+}
+
+.jelli-description,
+.shades-description,
+.voyage-description {
+    text-align: center;
+    font-family: Century Gothic;
+    padding: 5%;
+    height: 100%;
+    background: #FFFFFF;
+    background: -moz-linear-gradient(left, #ffffff00 0%, #ffffff80 50%, #FFFFFF 100%);
+    background: -webkit-linear-gradient(left, #ffffff00 0%, #ffffff80 50%, #FFFFFF 100%);
+    background: linear-gradient(to right, #ffffff00 0%, #ffffff80 50%, #FFFFFF 100%);
+}
+
+
 /* ------------------------------------flip card--------------- */
+
+.card-body {
+    height: 350px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+@media screen and (min-width: 900px) {
+    .products-bl {
+        width: 900px;
+        margin: auto;
+    }
+    .flip-card-tablet-fit {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .products-bl {
+        width: 98%;
+        margin: auto;
+    }
+    .flip-card-leptop-fit {
+        display: none;
+    }
+}
 
 
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 
 .flip-card {
     background-color: transparent;
-    width: 300px;
-    height: 200px;
     perspective: 1000px;
 }
 
@@ -329,8 +222,6 @@
 
 .flip-card-inner {
     position: relative;
-    width: 100%;
-    height: 100%;
     text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
@@ -349,18 +240,9 @@
 .flip-card-front,
 .flip-card-back {
     position: absolute;
-    width: 100%;
-    height: 100%;
     -webkit-backface-visibility: hidden;
     /* Safari */
     backface-visibility: hidden;
-}
-
-
-/* Style the front side (fallback if image is missing) */
-
-.flip-card-front {
-    color: black;
 }
 
 

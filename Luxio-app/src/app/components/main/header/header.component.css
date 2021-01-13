@@ -1,0 +1,126 @@
+#Header {
+    width: 100%;
+    position: fixed;
+    z-index: 5;
+    /* Make it stick/fixed */
+    top: 0;
+    /* Stay on top */
+    transition: top 0.5s;
+    /* Transition effect when sliding down (and up) */
+}
+
+.navbar-toggler {
+    color: brown;
+}
+
+@media screen and (min-width: 990px) {
+    #nav-top {
+        max-width: 1200px;
+        margin: auto;
+        background: #ffffff6b;
+        background: -moz-linear-gradient(top, #ffffff6b 0%, #ffffff98 50%, #ffffffc2 100%);
+        background: -webkit-linear-gradient(top, #ffffff6b 0%, #ffffff98 50%, #ffffffc2 100%);
+        background: linear-gradient(to bottom, #ffffff6b 0%, #ffffff98 50%, #ffffffc2 100%);
+    }
+    #nav-bottom {
+        max-width: 1200px;
+        margin: auto;
+        background: #ffffffc2;
+        background: -moz-linear-gradient(top, #ffffffc2 0%, #ffffffda 50%, #ffffff 100%);
+        background: -webkit-linear-gradient(top, #ffffffc2 0%, #ffffffda 50%, #ffffff 100%);
+        background: linear-gradient(to bottom, #ffffffc2 0%, #ffffffda 50%, #ffffff 100%);
+        border-bottom: black solid 2px;
+    }
+    #nav-Logo-1 {
+        display: none;
+    }
+    #nav-Logo-2 {
+        height: 100px;
+        position: absolute;
+        right: 0;
+        top: -65px;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    #Header {
+        background-color: white;
+        border-bottom: black solid 2px;
+    }
+    #nav-Logo-2 {
+        display: none;
+    }
+    #nav-Logo-1 {
+        height: 70px;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .navbar-nav {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 990px) {
+    .navbar-nav {
+        width: 80%;
+    }
+    .dropdown-menu {
+        width: 250px;
+        border: solid black 2px;
+    }
+    .dropdown-menu-bottom {
+        width: 550px;
+        border: solid black 2px;
+    }
+    .dropdown-menu-lang {
+        width: 50px;
+        border: solid black 2px;
+    }
+    .dropdown-menu>li,
+    .dropdown-menu-bottom>li,
+    .dropdown-menu-lang>li {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+    .dropdown-item:hover {
+        color: brown;
+    }
+    .lang-nav {
+        text-align: center;
+        cursor: pointer;
+    }
+}
+
+.navbar-brand {
+    width: 20%;
+}
+
+.nav-link {
+    text-align: center;
+}
+
+.activeColor {
+    border-bottom: brown solid 2px;
+}
+
+.nav-item>a:hover {
+    color: brown;
+}
+
+.nav-item-top {
+    margin-right: 20px;
+}
+
+#welcome {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: brown;
+    font-weight: 700;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: small-caps;
+    text-transform: none;
+}

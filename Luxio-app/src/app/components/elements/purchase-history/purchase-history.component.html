@@ -1,27 +1,27 @@
-<!-- <p *ngFor="let item of orders">{{item|json}}</p> -->
+<h2 *ngIf="!orders[0]" style="width: 100%; color: brown; text-align: center; margin-top: 200px;" [ngClass]="{Hebrew: languege==='iv'}">
+    {{ 'PERSONAL-AREA.CARD.empty-purchase-history' | translate}}</h2>
 
-<div *ngFor="let order of orders" style="margin-top: 20px; border-bottom: gray 2px solid;">
+<div *ngFor="let order of orders" style="margin-top: 20px; padding-bottom: 20px; border-bottom: gray 2px solid;">
     <p style="color: brown;">{{order.order_date | date}}</p>
     <div>
-        <!-- {{order.order | json}} -->
         <table class="table">
             <tbody>
                 <tr *ngFor="let item of order.order">
                     <th scope="row"><img src={{item.img_link_1}} alt={{item.name}} style="height: 40px;" /></th>
                     <td>{{item.amount}}</td>
                     <td>{{item.prod_class}} {{item.name}}</td>
-                    <td>{{item.price}} &#8362;</td>
+                    <td [ngClass]="{Hebrew: languege==='iv'}">{{item.price}} &#8362;</td>
                     <td>{{item.quantity}}</td>
-                    <td>{{item.total_price}} &#8362;</td>
+                    <td [ngClass]="{Hebrew: languege==='iv'}">{{item.total_price}} &#8362;</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div style="margin-left: 70%;">
-        <p>Shipping: {{order.payments.shipping}} &#8362;</p>
-        <p>Discount: -{{order.payments.discount}} &#8362;</p>
-        <p>Total: {{order.payments.total}} &#8362;</p>
-        <!-- <button type="button" class="btn btn-info">Resived</button> -->
+    <div style="margin-left: 70%;" [ngClass]="{Hebrew: languege==='iv'}">
+        <p>{{'PERSONAL-AREA.shipping' | translate}}: {{order.payments.shipping}} &#8362;</p>
+        <p>{{'PERSONAL-AREA.discount' | translate}}: -{{order.payments.discount}} &#8362;</p>
+        <p>{{'PERSONAL-AREA.order-total' | translate}}: {{order.payments.total}} &#8362;</p>
+        <p *ngIf="order.received" style="color: brown;">{{'PURCHASE-HISTORY.resived' | translate}}</p>
+        <button type="button" *ngIf="!order.received" (click)="orderClosed(item._id)" class="btn btn-info">{{'PURCHASE-HISTORY.resived' | translate}}</button>
     </div>
-
 </div>

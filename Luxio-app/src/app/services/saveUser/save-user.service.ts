@@ -31,6 +31,7 @@ export class SaveUserService {
       if (res[0].statuse) {
         localStorage.removeItem('my_764528_ct');
         localStorage.removeItem('my_764528_f');
+        this.register_Service.close_RegistrationForm();
       }
     });
   }

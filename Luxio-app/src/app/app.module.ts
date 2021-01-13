@@ -34,6 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationComponent } from './components/admin/registration/registration.component';
 import { RemoveComponent } from './components/admin/remove/remove.component';
 import { HomeComponent } from './components/main/home/home.component';
+import { HeaderComponent } from './components/main/header/header.component';
+import { OrdersComponent } from './components/admin/orders/orders.component';
 
 
 // AoT requires an exported function for factories
@@ -62,6 +64,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     RegistrationComponent,
     RemoveComponent,
     HomeComponent,
+    HeaderComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,

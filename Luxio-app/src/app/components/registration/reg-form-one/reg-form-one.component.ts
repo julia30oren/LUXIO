@@ -14,6 +14,8 @@ import { RespondService } from 'src/app/services/respond/respond.service';
 export class RegFormOneComponent implements OnInit {
 
   public languege: string;
+  public ashdod: boolean = false;
+  public yirka: boolean = false;
 
   public formTemplate = new FormGroup({
     first_name: new FormControl('', Validators.required),
@@ -60,6 +62,17 @@ export class RegFormOneComponent implements OnInit {
     this.regService.AgreementPage();
   }
 
+  cityCheck(city) {
+    if (city === 'Center of Israel (close to Ashdod)') {
+      this.ashdod = true;
+    } else if (city === 'North of Israel (close to Nahariyya)') {
+      this.yirka = true;
+    } else {
+      this.ashdod = false;
+      this.yirka = false;
+    }
+  }
+
   showPreimg(event: any) {
     if (event.target.files && event.target.files[0]) {
 
@@ -103,16 +116,14 @@ export class RegFormOneComponent implements OnInit {
   Save(formValue) {
     if (this.category === 'self employed' && this.imgSrc) {
       this.cert_service.insertImageDetails(this.selectedImg, formValue, this.languege);
-      this.resetForm();
-      this.regService.close_RegistrationForm();
+      // this.resetForm();
+      // this.regService.close_RegistrationForm();
     } else if (this.category === 'salon representative') {
       formValue.business = { name: this.business_name, id: this.business_id };
       this.users_db.saveUser_toDB(formValue, this.languege);
-      this.resetForm();
-      this.regService.close_RegistrationForm();
+      // this.resetForm();
+      // this.regService.close_RegistrationForm();
     }
-
-
   }
 
   get formControls() {
@@ -124,6 +135,7 @@ export class RegFormOneComponent implements OnInit {
   }
 
   password2_change(pas2) {
+    console.log(this.password1, pas2)
     if (this.password1 === pas2) {
       this.password2 = true;
     } else this.password2 = false;

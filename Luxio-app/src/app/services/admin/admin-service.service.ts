@@ -10,9 +10,14 @@ import { UserService } from '../user-servise/user.service';
 export class AdminServiceService {
 
   private admin_URL: string = 'http://localhost:5000/admin';
+  private orders_URL: string = 'http://localhost:5000/order';
+
 
   private admins = new BehaviorSubject<Array<any>>([]);
   public admins_from_service = this.admins.asObservable();
+
+  private orders = new BehaviorSubject<Array<any>>([]);
+  public orders_from_service = this.orders.asObservable();
 
   constructor(
     private http: HttpClient,
@@ -26,6 +31,32 @@ export class AdminServiceService {
       } else {
         this.respond_Service.saveRespond(res);
       }
+    });
+  }
+
+  getOrders() {
+    return this.http.get(`${this.orders_URL}`).subscribe(res => {
+      if (res[0].status) {
+        this.orders.next(res[0].allOrders);
+      } else {
+        this.respond_Service.saveRespond(res);
+      }
+    });
+  }
+
+  getOrders_ofUser(user_id) {
+    return this.http.get(`${this.orders_URL}/${user_id}`).subscribe(res => {
+      if (res[0].status) {
+        this.orders.next(res[0].userOrders);
+      } else {
+        this.respond_Service.saveRespond(res);
+      }
+    });
+  }
+  changeOrdersStatuse(lang, order_id) {
+    return this.http.get(`${this.orders_URL}/${lang}/status/${order_id}/${true}`).subscribe(res => {
+      this.respond_Service.saveRespond(res);
+      this.getOrders();
     });
   }
 

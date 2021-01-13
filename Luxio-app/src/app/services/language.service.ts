@@ -21,8 +21,8 @@ export class LanguageService {
   ) { }
 
   setInitialAppLanguage() {
-    // const browserLang = this.translate.getBrowserLang();
-    // this.translate.use(browserLang.match(/en|ru|iv/) ? browserLang : 'en');
+    const browserLang = this.translate.getBrowserLang();
+    this.translate.use(browserLang.match(/en|ru|iv/) ? browserLang : 'en');
 
     let language = this.translate.getBrowserLang();
     this.translate.setDefaultLang(language);
@@ -35,21 +35,10 @@ export class LanguageService {
     });
   }
 
-  getLanguages() {
-    return [
-      { text: 'English', val: 'en' },
-      { text: 'Russian', val: 'ru' },
-      { text: 'Hebrew', val: 'iv' }
-    ]
-  }
-
   setLanguage(lng) {
     this.translate.use(lng);
     this._selected.next(lng);
     this.storage.set(LNG_KEY, lng);
     this.selected = lng;
-    // console.log(this.selected)
   }
-
-
 }

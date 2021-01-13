@@ -21,14 +21,17 @@ export class PersonalACardComponent implements OnInit {
   ) { }
 
   public languege: string;
-  public personalArea_products: Array<any>;
+  public personalArea_products: Array<any> = [];
   public what_to_show: string;
   public message: string;
   public TOTAL_PRICE: number = 0;
   public discount: number = 0;
-  public shipping: number = 0;
+  public shipping: number = 40;
   public do_checkout: boolean = false;
   private user: Array<any>;
+  public ashdod: boolean = false;
+  public yirka: boolean = false;
+  public isSubmitted: boolean;
 
   private infoTemplate = new FormGroup({
     _id: new FormControl('', Validators.required),
@@ -37,10 +40,10 @@ export class PersonalACardComponent implements OnInit {
     email: new FormControl('', Validators.required),
     phoneN: new FormControl('', Validators.required),
     state: new FormControl('', Validators.required),
-    city: new FormControl(''),
-    street: new FormControl(''),
+    city: new FormControl('', Validators.required),
+    street: new FormControl('', Validators.required),
     zip: new FormControl(null),
-    home: new FormControl(''),
+    home: new FormControl('', Validators.required),
     apartment: new FormControl(''),
   });
 
@@ -48,8 +51,7 @@ export class PersonalACardComponent implements OnInit {
     cardNumber: new FormControl('', Validators.required),
     expirationDate: new FormControl('', Validators.required),
     securityCode: new FormControl('', Validators.required),
-    fName: new FormControl('', Validators.required),
-    lName: new FormControl('', Validators.required)
+    cardHolderName: new FormControl('', Validators.required),
   });
 
   private payPalTemplate = new FormGroup({
@@ -82,27 +84,32 @@ export class PersonalACardComponent implements OnInit {
 
   getTotalPrice() {
     this.TOTAL_PRICE = 0;
-    this.personalArea_products.forEach(element => {
-      this.TOTAL_PRICE = this.TOTAL_PRICE + element.total_price;
-    });
+    this.discount = 0;
+    if (this.personalArea_products) {
+      this.personalArea_products.forEach(element => {
+        console.log(element.total_price, element)
+        this.TOTAL_PRICE = this.TOTAL_PRICE + element.total_price;
+      });
 
-    let x = 0;
-    this.personalArea_products.forEach(element => {
-      if (element.price === 117 || element.price === 112) {
-        x = x + element.quantity;
-      }
-    });
+      let x = 0;
+      this.personalArea_products.forEach(element => {
+        if (element.price === 117 || element.price === 112) {
+          x = x + element.quantity;
+        }
+      });
 
-    this.discount = Math.trunc(x / 6) * 117;
-    this.TOTAL_PRICE = this.TOTAL_PRICE - this.discount + this.shipping;
-    if (this.TOTAL_PRICE < 1000) {
-      this.shipping = 40;
-    } else this.shipping = 0;
+      this.discount = Math.trunc(x / 6) * 117;
+      this.TOTAL_PRICE = this.TOTAL_PRICE - this.discount;
+
+      if (this.TOTAL_PRICE < 1000) {
+        this.shipping = 40;
+        this.TOTAL_PRICE = this.TOTAL_PRICE + this.shipping;
+      } else this.shipping = 0;
+    }
   }
 
   delete_fromCart(item) {
     this.user_service.saveToCart(item);
-
     setTimeout(() => {
       this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_ct'));
       this.getTotalPrice();
@@ -114,7 +121,22 @@ export class PersonalACardComponent implements OnInit {
   }
 
   add_toCart(item) {
-    this.user_service.saveToCart(item);
+    let item_toCart = {  // creating item with needed properties:
+      _id: item._id,
+      burcode_id: item.burcode_id,
+      name: item.name,
+      prod_class: item.prod_class,
+      img_link_1: item.img_link_1,
+      amount: item.amount_1,
+      amount_1: item.amount_1,
+      amount_2: item.amount_2,
+      quantity: 1,
+      price_1: item.price_1,
+      price_2: item.price_2,
+      price: item.price_1,
+      total_price: item.price_1
+    };
+    this.user_service.saveToCart(item_toCart); //sending on service to save
   }
 
   remove_fromWishlist(item) {
@@ -123,7 +145,17 @@ export class PersonalACardComponent implements OnInit {
     setTimeout(() => {
       this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_f'));
     }, 1000);
+  }
 
+  cityCheck(city) {
+    if (city === 'Center of Israel (close to Ashdod)') {
+      this.ashdod = true;
+    } else if (city === 'North of Israel (close to Nahariyya)') {
+      this.yirka = true;
+    } else {
+      this.ashdod = false;
+      this.yirka = false;
+    }
   }
 
   quantity_change(item, val) {
@@ -174,13 +206,12 @@ export class PersonalACardComponent implements OnInit {
       home: this.user[0].home || '',
       apartment: this.user[0].apartment || ''
     });
-
     // ---------------
     this.do_checkout = !this.do_checkout;
   }
 
-  get formControls() {
-    return this.infoTemplate['controls'];
+  closeCheckoutForm() {
+    this.do_checkout = !this.do_checkout;
   }
 
   openPayment(paimentType) {
@@ -201,20 +232,52 @@ export class PersonalACardComponent implements OnInit {
     document.getElementById(paimentType).style.display = "block";
   }
 
+  get formControls() {
+    return this.infoTemplate['controls'];
+  }
+
+  get formControlsCard() {
+    return this.cardTemplate['controls'];
+  }
+
+  get formControlsPayPal() {
+    return this.payPalTemplate['controls'];
+  }
+
   goPay(paiment_type) {
-    let order = {
-      order: this.personalArea_products,
-      payments: {
-        shipping: this.shipping,
-        discount: this.discount,
-        total: this.TOTAL_PRICE,
-        paiment_type: paiment_type
-      },
-      shipping_details: this.infoTemplate.value
+    this.isSubmitted = true;
+    if (this.infoTemplate.valid && this.cardTemplate.valid) {
+      let order = {
+        order: this.personalArea_products,
+        payments: {
+          shipping: this.shipping,
+          discount: this.discount,
+          total: this.TOTAL_PRICE,
+          paiment_type: paiment_type
+        },
+        shipping_details: this.infoTemplate.value
+      }
+      this.order_service.createOrder(order, this.languege)
+      // close checkout and empty cart
+      this.personalArea_products = [];
+      this.do_checkout = false;
     }
-    this.order_service.createOrder(order, this.languege)
-    // close checkout and empty cart
-    this.personalArea_products = [];
-    this.do_checkout = false;
+    else if (this.infoTemplate.valid && this.payPalTemplate.valid) {
+      let order = {
+        order: this.personalArea_products,
+        payments: {
+          shipping: this.shipping,
+          discount: this.discount,
+          total: this.TOTAL_PRICE,
+          paiment_type: paiment_type
+        },
+        shipping_details: this.infoTemplate.value
+      }
+      this.order_service.createOrder(order, this.languege)
+      // close checkout and empty cart
+      this.personalArea_products = [];
+      this.do_checkout = false;
+    }
+
   }
 }

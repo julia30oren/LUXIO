@@ -1,35 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminServiceService } from 'src/app/services/admin/admin-service.service';
 import { LanguageService } from 'src/app/services/language.service';
-import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
-  selector: 'app-purchase-history',
-  templateUrl: './purchase-history.component.html',
-  styleUrls: ['./purchase-history.component.css']
+  selector: 'app-orders',
+  templateUrl: './orders.component.html',
+  styleUrls: ['./orders.component.css']
 })
-export class PurchaseHistoryComponent implements OnInit {
+export class OrdersComponent implements OnInit {
 
-  public orders: Array<any>;
   public languege: string;
+  public orders: Array<any>;
 
   constructor(
-    private order_service: OrderService,
     private language_Service: LanguageService,
     private admin_Service: AdminServiceService
   ) { }
 
   ngOnInit() {
-    let userID = localStorage.getItem('u324_3i_25d');
-    this.order_service.getUserOrders(userID);
     // ----------------------------------------language setings----
     this.language_Service._selected_from_service//subscribing for languege
       .subscribe(date => this.languege = date);
-    // -----------
-    this.order_service.userOrders_fromService
-      .subscribe(date => {
-        this.orders = date;
-      })
+    // ------------------ORDERS
+    this.getAllOrders();
+    this.admin_Service.orders_from_service
+      .subscribe(date => this.orders = date)
+
+  }
+
+  getAllOrders() {
+    this.admin_Service.getOrders();
+  }
+
+  getOrdersOfUser(user_id) {
+    this.admin_Service.getOrders_ofUser(user_id);
   }
 
   orderClosed(order_id) {
