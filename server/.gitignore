@@ -1,6 +1,6 @@
 /node_modules
 /logs
-
+.env
 #cloud_name: 'luxio',
 #api_key: '492869636989511',
 #api_secret: 'mrLuIPL09ohLF-Q5GC2V9bY6r0g'

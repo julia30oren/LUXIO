@@ -22,6 +22,7 @@ to change port or API address go to:<br>
     - run *npm i*
 2. Open **server** folder
     - run *npm i*
+    - inside folder **server** need to be created **.env** and fill it
 3. Open **dev-apps** folder
     - run *npm i*
     - run *npm start*

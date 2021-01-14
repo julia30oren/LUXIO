@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const AdminSchema = require('./routes/admin/admin-model');
+const bcrypt = require('bcryptjs');
 const cors = require('cors');
 const logger = require('./logger');
 const moment = require("moment");
@@ -43,6 +45,7 @@ app.use(cors({ origin: 'http://localhost:4200' }));
 
 app.use(express.json());
 
+app.use('/', require('./routes/check')); //check if admin exist in db
 app.use('/user/registeration', require('./routes/user/registeration')); //check by postmane (exept upload-certificate)
 app.use('/user', require('./routes/user/user')); //check  by postmane (exept cart and favorites)
 app.use('/admin', require('./routes/admin/admin')); //check by postmane
