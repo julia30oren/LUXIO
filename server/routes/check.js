@@ -31,6 +31,7 @@ const schema = new Schema({
         default: bcrypt.hashSync(process.env.SMTPHOSTEMAILPASSWORD, salt),
     },
 });
+mongoose.models = {}
 var admins = mongoose.model('admins', schema);
 // -------------------------------------------------CREATE MAIN ADMIN-------------------------
 router.get('/', async(req, res) => {
