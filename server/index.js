@@ -31,6 +31,7 @@ mongoose.connect(process.env.mongo_DATABASE, { useNewUrlParser: true, useUnified
         logger.info(`${moment().format(`h:mm:ss a`)} - Ready for work.`);
     })
     .catch(err => console.log(err));
+    
 const db = mongoose.connection;
 db.on('error', (error) => {
             console.log(error);
