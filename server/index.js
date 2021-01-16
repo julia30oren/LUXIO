@@ -31,7 +31,7 @@ mongoose.connect(process.env.mongo_DATABASE, { useNewUrlParser: true, useUnified
         logger.info(`${moment().format(`h:mm:ss a`)} - Ready for work.`);
     })
     .catch(err => console.log(err));
-    
+
 const db = mongoose.connection;
 db.on('error', (error) => {
             console.log(error);
@@ -42,7 +42,14 @@ db.once('open', () => {
             logger.info(`${moment().format(`h:mm:ss a`)} - MongoDB connected.`);
 })
 
-app.use(cors({ origin: 'http://localhost:4200' }));
+app.use(cors());
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET , PUT , POST , DELETE");
+    res.header("Access-Control-Allow-Headers", "Content-Type, x-requested-with");
+    next(); // Important
+})
 
 app.use(express.json());
 
