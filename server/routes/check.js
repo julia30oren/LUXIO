@@ -4,6 +4,8 @@ const AdminSchema = require('./admin/admin-model');
 const bcrypt = require('bcryptjs');
 const logger = require('../logger');
 const moment = require("moment");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const salt = bcrypt.genSaltSync(10);
 // var schema = new mongoose.Schema({ name: 'string', size: 'string' });
