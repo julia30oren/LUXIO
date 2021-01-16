@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  hostURL: 'http://127.0.0.1',
+  hostURL: 'http://localhost',
   userName: 'user',
   port: 4000,
   DBport: 5000,
