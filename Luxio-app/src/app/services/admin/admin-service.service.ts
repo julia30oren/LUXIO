@@ -3,13 +3,15 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { RespondService } from '../respond/respond.service';
 import { UserService } from '../user-servise/user.service';
+import { environment } from '../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminServiceService {
 
-  private admin_URL: string = 'http://localhost:5000/admin';
+  private admin_URL: string = `${environment.hostURL}:${environment.DBport}/admin`;
+  private orders_URL: string = `${environment.hostURL}:${environment.DBport}/order`;
 
   private admins = new BehaviorSubject<Array<any>>([]);
   public admins_from_service = this.admins.asObservable();

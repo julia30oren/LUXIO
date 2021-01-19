@@ -4,15 +4,16 @@ import { HttpClient } from '@angular/common/http';
 import { RegistrationService } from '../registation/registration.service';
 import { ShopService } from '../shop/shop.service';
 import { RespondService } from '../respond/respond.service';
+import { environment } from '../../../environments/environment'
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private user_URL: string = 'http://localhost:5000/user';
-  private comment_URL: string = 'http://localhost:5000/comments';
-  private admin_url: string = 'http://localhost:5000/admin'
+  private user_URL: string = `${environment.hostURL}:${environment.DBport}/user`;
+  private comment_URL: string = `${environment.hostURL}:${environment.DBport}/comments`;
+  private admin_url: string = `${environment.hostURL}:${environment.DBport}/admin`;
 
   private asAdmin = new BehaviorSubject<boolean>(false);
   public asAdmin_from_service = this.asAdmin.asObservable();

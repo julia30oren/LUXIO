@@ -39,7 +39,7 @@ db.once('open', () => {
             logger.info(`${moment().format(`h:mm:ss a`)} - MongoDB connected.`);
 })
 
-app.use(cors({ origin: 'http://localhost:4200' }));
+app.use(cors({ origin: 'http://localhost:4000' }));
 
 app.use(express.json());
 

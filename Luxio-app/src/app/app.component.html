@@ -1,85 +1,203 @@
-<!-------------------------------------------------- NAVIGATION ---------------------->
-<div id="Header">
-    <div id="Header-Main" [ngClass]="{borderbottom: !prodOptionsOpen}">
-        <!-- LEFT SIDE -->
-        <div id="header-left-side">
-            <!-- ----------------------------------------------------------NAV BAR TOP LINE -->
-            <div class="navbar">
-                <!-- search -->
-                <div class="input-group" style="width: 250px;">
-                    <div class="input-group-prepend">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="doSearch(search_text.value)"><i class="fas fa-search"></i></button>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Search.." #search_text (keyup.enter)="doSearch(search_text.value)">
-                </div>
-                <!-- ---------------------INFO BAR FOR USER -->
-                <div class="user-info-bar" *ngIf="!admin">
-                    <i *ngIf="user" class="fas fa-user-cog fa-2x nav-icon  nv-l" (click)="usersPropertise()"></i>
-                    <a href="personal-area" class=" nv-l"><i *ngIf="user" class="fas fa-shopping-basket  fa-2x nav-icon"></i></a>
-                    <p *ngIf="user" class=" nv-l" style="height: 20%;">{{ 'NAVIGATION.welcome' | translate}} , {{user}}</p>
+<!-------------------------------------------------- HEADER ---------------------->
+<div id="Header" class="animate__animated animate__fadeInDown animate__delay-0.5s">
+    <!-- 1 -->
+    <nav class="navbar navbar-expand-lg navbar-light" id="nav-top" *ngIf="!admin">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03,#navbarTogglerDemo02" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars fa-2x"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                    <!-- if user not loged in -->
-                    <i *ngIf="!user" class="fas fa-user-lock fa-2x nav-icon nv-l" (click)="login_form()"></i>
-                    <p *ngIf="!user" class="nv-l" style="height: 20%; cursor: pointer;" (click)="login_form()">Log-in</p>
-                </div>
-                <div class="user-proertise" *ngIf="users_props && !admin">
-                    <a href="personal-area" class="user-props">{{ 'PERSONAL-AREA.personal-information' | translate }}</a>
-                    <br>
-                    <a href="new" class="user-props" (click)="logOut()">{{'NAVIGATION.sign-out'| translate}}</a>
-                </div>
-                <!-- ---------------------INFO BAR FOR ADMIN -->
-                <div class="user-info-bar" *ngIf="admin">
-                    <i class="fas fa-user-shield fa-2x nav-icon"></i>
-                    <p style="height: 20%; color: brown;">{{ 'NAVIGATION.welcome' | translate}} , {{user}}</p>
-                </div>
-                <div class="admin-proertise" *ngIf="admin" [ngClass]="{Hebrew: languege==='iv'}">
-                    <a *ngIf="admin" class="nav-link" href="admin/registration">{{ 'NAVIGATION.REGISTER-ADMIN.title' | translate }}</a>
-                    <br>
-                    <a *ngIf="admin" class="nav-link" href="admin/remove" style="margin-top: -20px;">{{ 'NAVIGATION.DELETE-ADMIN.title' | translate }}</a>
-                    <br>
-                    <a *ngIf="admin" class="nav-link" href="new" style="margin-top: -20px;" (click)="logOut()">{{'NAVIGATION.sign-out'| translate}}</a>
-                </div>
-            </div>
-            <!-- ----------------------------------------------------------NAV BAR BOTTOM LINE -->
-            <div class="navbar">
-                <!-- --------------------------------------------for users -->
-                <a *ngIf="!admin" class="nav-link" href="new" [ngClass]="{active: location==='new'}">{{ 'NAVIGATION.NEW.title' | translate }}</a>
-                <a *ngIf="!admin" class="nav-link" (click)="openProdOptions();" [ngClass]="{active: location==='products/luxio' || location==='products/gel-play' || location==='products/options' || location==='products/pro-formance' || location==='products/basics' || location==='products/tools'}">{{ 'NAVIGATION.PRODUCTS.title' | translate }}</a>
-                <a *ngIf="!admin" class="nav-link" href="shop" [ngClass]="{active: location==='shop'}">{{ 'NAVIGATION.STORE.title' | translate }}</a>
-                <a *ngIf="!admin" class="nav-link" href="courses" [ngClass]="{active: location==='courses'}">{{ 'NAVIGATION.COURSES.title' | translate }}</a>
-                <a *ngIf="!admin" class="nav-link" href="contacts" [ngClass]="{active: location==='contacts'}">{{ 'NAVIGATION.OFFICES.title' | translate }}</a>
-                <a *ngIf="!admin" class="nav-link" href="registration" [ngClass]="{active: location==='registration'}">{{ 'NAVIGATION.PERSONALid.title' | translate }}</a>
-                <!-- -------------------------------------------for admin -->
-                <a *ngIf="admin" class="nav-link" href="admin/shop">{{ 'NAVIGATION.PRODUCTS.title' | translate }}</a>
-                <a *ngIf="admin" class="nav-link" href="admin/certificates">{{ 'NAVIGATION.CLIENTS.title' | translate }}</a>
-                <a *ngIf="admin" class="nav-link" href="admin/comments">{{ 'NAVIGATION.COMMENTS.title' | translate }}</a>
-                <a *ngIf="admin" class="nav-link" href="admin/mailings">{{ 'NAVIGATION.MAILINGS.title' | translate }}</a>
-                <!-- lanuege selector -->
-                <select class="lang-selector" #langSelect (change)="translate.use(langSelect.value); setLng(langSelect.value)">
-                            <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
-                        </select>
-            </div>
-        </div>
-        <!-- logo RIGHT SIDE -->
-        <a href="" id="header-right-side">
-            <img style="height: 100%;" src="https://i.pinimg.com/originals/f6/ca/90/f6ca90ea17192d2d652e2c0ba1559ddb.png" alt="Luxio logo" />
-        </a>
-    </div>
+                    <li class="nav-item dropdown  nav-item-top">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-search fa-2x"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-top" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <!-- <div class="input-group-prepend">
+                                    <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="doSearch(search_text.value)"><i class="fas fa-search"></i></button>
+                                </div> -->
+                                <input type="text" class="form-control" placeholder="Search.." #search_text (keyup.enter)="doSearch(search_text.value)">
+                            </li>
+                        </ul>
+                    </li>
 
-    <!-- ---------------------PRODUCTES OPTIONS -->
-    <div id="prodOptionsDiv" *ngIf="prodOptionsOpen && !admin">
-        <div id="prod-options">
-            <a class="prod-option-link" href="products/luxio">LUXIO</a>
-            <a class="prod-option-link" href="products/gel-play">GEL PLAY</a>
-            <a class="prod-option-link" href="products/options">OPTIONS</a>
-            <a class="prod-option-link" href="products/pro-formance">PRO-FORMANCE</a>
-            <a class="prod-option-link" href="products/basics">{{ 'NAVIGATION.basics' | translate }}</a>
-            <a class="prod-option-link" href="products/tools">{{ 'NAVIGATION.tools' | translate }}</a>
+                    <li class="nav-item dropdown nav-item-top" *ngIf="user">
+                        <a class="nav-link active dropdown-toggle" [ngClass]="{activeColor: location==='personal-area'}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-cog  fa-2x nav-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-top" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="personal-area">{{ 'PERSONAL-AREA.personal-information' | translate }}</a></li>
+                            <li><a class="dropdown-item" href="new" (click)="logOut()">{{'NAVIGATION.sign-out'| translate}}</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  nav-item-top" *ngIf="user">
+                        <a class="nav-link active" aria-current="page" href="personal-area">
+                            <i *ngIf="user" class="fas fa-shopping-basket fa-2x nav-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item" *ngIf="user">
+                        <a class="nav-link active" id="welcome" aria-current="page" href="personal-area">
+                            {{ 'NAVIGATION.welcome' | translate}} , {{user}}
+                        </a>
+                    </li>
+
+                    <li class="nav-item  nav-item-top" *ngIf="!user && !admin">
+                        <a class="nav-link active" aria-current="page" style="cursor: pointer;" (click)="getRegistrationForm()">
+                            <i *ngIf="!user" class="fas fa-user-lock fa-2x nav-icon nv-l"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item" *ngIf="!user && !admin">
+                        <a class="nav-link active" id="welcome" aria-current="page" style="cursor: pointer;" (click)="getRegistrationForm()">
+                            {{ 'NAVIGATION.log-in' | translate}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <a class="navbar-brand" href="">
+                <img id="nav-Logo-1" src="https://i.pinimg.com/originals/f6/ca/90/f6ca90ea17192d2d652e2c0ba1559ddb.png" alt="Luxio logo" />
+            </a>
         </div>
-    </div>
+    </nav>
+    <!-- 2 -->
+    <nav class="navbar navbar-expand-lg navbar-light" id="nav-bottom" *ngIf="!admin">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" [ngClass]="{activeColor: location==='new'}" aria-current="page" href="new">{{ 'NAVIGATION.NEW.title' | translate }}</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" [ngClass]="{activeColor: location==='products/luxio' || location==='products/gel-play' || location==='products/options' || location==='products/pro-formance' || location==='products/basics' || location==='products/tools'}"
+                            href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ 'NAVIGATION.PRODUCTS.title' | translate }}</a>
+                        <ul class="dropdown-menu dropdown-menu-bottom" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="products/luxio">LUXIO</a></li>
+                            <li><a class="dropdown-item" href="products/gel-play">GEL PLAY</a></li>
+                            <li><a class="dropdown-item" href="products/options">OPTIONS</a></li>
+                            <li><a class="dropdown-item" href="products/pro-formance">PRO-FORMANCE</a></li>
+                            <li><a class="dropdown-item" href="products/basics">{{ 'NAVIGATION.basics' | translate }}</a></li>
+                            <li><a class="dropdown-item" href="products/tools">{{ 'NAVIGATION.tools' | translate }}</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" [ngClass]="{activeColor: location==='shop'}" aria-current="page" href="shop">{{ 'NAVIGATION.STORE.title' | translate }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" [ngClass]="{activeColor: location==='courses'}" aria-current="page" href="courses">{{ 'NAVIGATION.COURSES.title' | translate }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" [ngClass]="{activeColor: location==='registration'}" aria-current="page" href="registration">{{ 'NAVIGATION.PERSONALid.title' | translate }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" [ngClass]="{activeColor: location==='contacts'}" aria-current="page" href="contacts">{{ 'NAVIGATION.OFFICES.title' | translate }}</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ 'NAVIGATION.language' | translate }}</a>
+                        <ul class="dropdown-menu dropdown-menu-lang" aria-labelledby="navbarDropdownMenuLink">
+                            <li class="dropdown-item lang-nav" (click)="translate.use(lang); setLng(lang)" *ngFor="let lang of translate.getLangs()">
+                                {{lang}}
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <a class="navbar-brand" href="">
+                <img id="nav-Logo-2" src="https://i.pinimg.com/originals/f6/ca/90/f6ca90ea17192d2d652e2c0ba1559ddb.png" alt="Luxio logo" />
+            </a>
+        </div>
+    </nav>
+    <!-- FOR ADMIN -->
+    <!-- 1 -->
+    <nav class="navbar navbar-expand-lg navbar-light" id="nav-top" *ngIf="admin">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03,#navbarTogglerDemo02" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars fa-2x"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item dropdown  nav-item-top">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-search fa-2x"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-top" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <input type="text" class="form-control" placeholder="Search.." #search_text (keyup.enter)="doSearch(search_text.value)">
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown nav-item-top">
+                        <a class="nav-link active dropdown-toggle" [ngClass]="{activeColor: location==='personal-area'}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-cog  fa-2x nav-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-top" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="personal-area">{{ 'PERSONAL-AREA.personal-information' | translate }}</a></li>
+                            <li><a class="dropdown-item" href="new" (click)="logOut()">{{'NAVIGATION.sign-out'| translate}}</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  nav-item-top">
+                        <a class="nav-link active" aria-current="page" href="personal-area">
+                            <i *ngIf="user" class="fas fa-shopping-basket fa-2x nav-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" id="welcome" aria-current="page" href="personal-area">
+                            {{ 'NAVIGATION.welcome' | translate}} , {{user}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <a class="navbar-brand" href="">
+                <img id="nav-Logo-1" src="https://i.pinimg.com/originals/f6/ca/90/f6ca90ea17192d2d652e2c0ba1559ddb.png" alt="Luxio logo" />
+            </a>
+        </div>
+    </nav>
+    <!-- 2 -->
+    <nav class="navbar navbar-expand-lg navbar-light" id="nav-bottom" *ngIf="admin">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" [ngClass]="{activeColor: location==='admin/orders'}" aria-current="page" href="admin/orders">{{ 'NAVIGATION.ORDERS.title' | translate }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" [ngClass]="{activeColor: location==='admin/shop'}" aria-current="page" href="admin/shop">{{ 'NAVIGATION.PRODUCTS.title' | translate }}</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" [ngClass]="{activeColor: location==='admin/registration' || location==='admin/remove'}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ 'NAVIGATION.admins' | translate }}</a>
+                        <ul class="dropdown-menu dropdown-menu-bottom" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="admin/registration">{{ 'NAVIGATION.REGISTER-ADMIN.title' | translate }}</a></li>
+                            <li><a class="dropdown-item" href="admin/remove">{{ 'NAVIGATION.DELETE-ADMIN.title' | translate }}</a></li>
+                            <li><a class="dropdown-item" href="new" (click)="logOut()">{{'NAVIGATION.sign-out'| translate}}</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" [ngClass]="{activeColor: location==='admin/certificates'}" aria-current="page" href="admin/certificates">{{ 'NAVIGATION.CLIENTS.title' | translate }}</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" [ngClass]="{activeColor: location==='admin/comments'}" aria-current="page" href="admin/comments">{{ 'NAVIGATION.COMMENTS.title' | translate }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" [ngClass]="{activeColor: location==='admin/mailings'}" aria-current="page" href="admin/mailings">{{ 'NAVIGATION.MAILINGS.title' | translate }}</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ 'NAVIGATION.language' | translate }}</a>
+                        <ul class="dropdown-menu dropdown-menu-lang" aria-labelledby="navbarDropdownMenuLink">
+                            <li class="dropdown-item lang-nav" (click)="translate.use(lang); setLng(lang)" *ngFor="let lang of translate.getLangs()">
+                                {{lang}}
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <a class="navbar-brand" href="">
+                <img id="nav-Logo-2" src="https://i.pinimg.com/originals/f6/ca/90/f6ca90ea17192d2d652e2c0ba1559ddb.png" alt="Luxio logo" />
+            </a>
+        </div>
+    </nav>
 </div>
+<!-- ------------------------------------------------MAIN----------- -->
 <div class="main-app">
-    <!-- <div> -->
     <!-- ----------------------------------------------------------------- -->
     <div *ngIf="selectedProd" id="selected-prod">
         <app-big-image></app-big-image>
@@ -107,72 +225,71 @@
     <!-- --------------------------------------- -->
 
     <!---------------------------------------------------------------- REGISTRATION FORM -->
-    <div class="RegFormBackground" *ngIf="regForm_Open" (click)="closeForm()"></div>
-
-    <div class="RegForm" *ngIf="regForm_Open" style="padding: 1%;" [ngClass]="{Hebrew: languege==='iv'}">
-        <div class="form-row">
-            <div class="col-sm-11">
-                <h1 *ngIf="formOne_Open || formTwo_Open">{{ 'SIGN-IN.REGISTRATION-FORM.title' | translate}}</h1>
-                <h1 *ngIf="formLogin_Open">{{ 'SIGN-IN.LOGIN-FORM.title' | translate}}</h1>
-                <h1 *ngIf="formPasswodRestore_Open">{{ 'SIGN-IN.PASSWORD-RESTORE-FORM.title' | translate}}</h1>
+    <div id="reg-f-back" *ngIf="regForm_Open">
+        <div class="RegForm" style="padding: 1%;" [ngClass]="{Hebrew: languege==='iv'}">
+            <div class="form-row">
+                <div class="col-sm-11">
+                    <h1 *ngIf="formOne_Open">{{ 'SIGN-IN.REGISTRATION-FORM.title' | translate}}</h1>
+                    <h1 *ngIf="formLogin_Open">{{ 'SIGN-IN.LOGIN-FORM.title' | translate}}</h1>
+                    <h1 *ngIf="formPasswodRestore_Open">{{ 'SIGN-IN.PASSWORD-RESTORE-FORM.title' | translate}}</h1>
+                </div>
+                <div class="col-sm-1">
+                    <button (click)="closeForm()" type="button" style="border: none; background-color: rgba(255, 255, 255, 0);"><i class="far fa-window-close fa-2x closeButton"></i></button>
+                </div>
             </div>
-            <div class="col-sm-1">
-                <button (click)="closeForm()" type="button" style="border: none; background-color: rgba(255, 255, 255, 0);"><i class="far fa-window-close fa-2x closeButton"></i></button>
+
+            <div class="formOne" *ngIf="formOne_Open" [ngClass]="{Hebrew: languege==='iv'}">
+                <app-reg-form-one></app-reg-form-one>
             </div>
-        </div>
 
-        <div class="formOne" *ngIf="formOne_Open" [ngClass]="{Hebrew: languege==='iv'}">
-            <app-reg-form-one></app-reg-form-one>
-        </div>
+            <div class="formAgreement" *ngIf="formAgreement_Open">
+                <app-cookies></app-cookies>
+            </div>
 
-        <div class="formAgreement" *ngIf="formAgreement_Open">
-            <app-cookies></app-cookies>
-        </div>
+            <div class="formLogin" *ngIf="formLogin_Open">
+                <app-log-form></app-log-form>
+            </div>
 
-        <div class="formLogin" *ngIf="formLogin_Open">
-            <app-log-form></app-log-form>
-        </div>
+            <div class="formPasswordRest" *ngIf="formPasswodRestore_Open">
+                <app-password-restore-form></app-password-restore-form>
+            </div>
 
-        <div class="formPasswordRest" *ngIf="formPasswodRestore_Open">
-            <app-password-restore-form></app-password-restore-form>
-        </div>
-
-        <div style="margin-top: 1%;">
-            <p>
-                <button *ngIf="!formOne_Open" type="button" class="btn btn-link" (click)="registration_form()">
+            <div style="margin-top: 1%;">
+                <p>
+                    <button *ngIf="!formOne_Open" type="button" class="btn btn-link" (click)="registration_form()">
                     {{ 'SIGN-IN.sign-in' | translate}}
                 </button>
-                <button *ngIf="!formPasswodRestore_Open" type="button" class="btn btn-link" (click)="passwordRest_form()">
+                    <button *ngIf="!formPasswodRestore_Open" type="button" class="btn btn-link" (click)="passwordRest_form()">
                     {{ 'SIGN-IN.link-3' | translate}}
                 </button>
-                <button *ngIf="!formLogin_Open" type="button" class="btn btn-link" (click)="login_form()">
+                    <button *ngIf="!formLogin_Open" type="button" class="btn btn-link" (click)="login_form()">
                     {{ 'SIGN-IN.link-2' | translate}}
                 </button>
-            </p>
-        </div>
-    </div>
-
-    <!-- -------------------------------------- -->
-    <!-- --------------------------------------------------ADVERTISEMENT-------------- -->
-    <div class="ADVERTISEMENT" *ngIf="advertisement">
-        <div class="sign-in-div" [ngClass]="{H: languege==='iv'}">
-            <h1> {{ 'SIGN-IN.OPEN-FORM.line-1' | translate }}</h1>
-            <img style="border: white 15px solid; width: 100%;" src="https://i.pinimg.com/originals/8a/c6/19/8ac619815ba0e122065b704e46781e72.jpg">
-            <p style="width: 100%; text-align: center;">{{ 'SIGN-IN.OPEN-FORM.line-2' | translate }}</p>
-            <div style="width: 100%;">
-                <button class="message-link" (click)="registration_form();close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-1' | translate }}</button>
-                <button class="message-link" (click)="login_form();close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-2' | translate }}</button>
-                <button class="message-link" (click)="close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-3' | translate }}</button>
+                </p>
             </div>
         </div>
     </div>
+    <!-- -------------------------------------- -->
 
-    <!-- -------------------------------------------------- -->
     <!-- CONTENT -->
     <div class="content" *ngIf="!selectedProd">
         <router-outlet></router-outlet>
     </div>
-    <!-------------------------------------------- FOOTER -->
-    <app-footer></app-footer>
-    <!-- </div> -->
+
 </div>
+<!-- --------------------------------------------------ADVERTISEMENT-------- ------ -->
+<div class="ADVERTISEMENT" *ngIf="advertisement">
+    <div class="sign-in-div" [ngClass]="{H: languege==='iv'}">
+        <h1> {{ 'SIGN-IN.OPEN-FORM.line-1' | translate }}</h1>
+        <img style="border: white 15px solid; width: 100%;" src="https://i.pinimg.com/originals/8a/c6/19/8ac619815ba0e122065b704e46781e72.jpg">
+        <p style="width: 100%; text-align: center;">{{ 'SIGN-IN.OPEN-FORM.line-2' | translate }}</p>
+        <div style="width: 100%;">
+            <button class="message-link" (click)="registration_form();close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-1' | translate }}</button>
+            <button class="message-link" (click)="login_form();close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-2' | translate }}</button>
+            <button class="message-link" (click)="close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-3' | translate }}</button>
+        </div>
+    </div>
+</div>
+<!-- ------------------------------------------------FOOTER -->
+<app-footer></app-footer>
+<!--  -->

@@ -47,7 +47,7 @@
 #cookies {
     width: 100%;
     position: fixed;
-    top: 100px;
+    top: 150px;
     left: 0;
     z-index: 2;
     background-color: rgba(0, 0, 0, 0.8);
@@ -140,30 +140,58 @@ option {
     background-color: rgb(0, 0, 0);
 }
 
-.RegFormBackground {
+#reg-f-back {
     height: 100%;
     width: 100%;
+    background: #CECECE;
+    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff88 50%, #ffffff26 100%);
+    background: -webkit-linear-gradient(top, #ffffff 0%, #ffffff88 50%, #ffffff26 100%);
+    background: linear-gradient(to bottom, #ffffff 0%, #ffffff88 50%, #ffffff26 100%);
     position: fixed;
-    background-color: rgba(255, 255, 255, 0.459);
-    filter: blur(18px);
-    -webkit-filter: blur(18px);
-    z-index: 1;
+    top: 0;
+    left: 0;
+    z-index: 6;
 }
 
 .RegForm {
-    min-height: 200px;
-    width: 800px;
+    width: 1200px;
+    margin: auto;
+    margin-top: 150px;
     background-color: white;
     border: black solid 2px;
-    margin-top: 180px;
-    z-index: 2;
-    position: fixed;
 }
 
-.formOne,
-.formLogin,
-.formPasswordRest {
-    z-index: 3;
+#reg-f-back {
+    height: 100%;
+    width: 100%;
+    background: #CECECE;
+    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff88 50%, #ffffff26 100%);
+    background: -webkit-linear-gradient(top, #ffffff 0%, #ffffff88 50%, #ffffff26 100%);
+    background: linear-gradient(to bottom, #ffffff 0%, #ffffff88 50%, #ffffff26 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 6;
+}
+
+@media screen and (min-width: 990px) {
+    .RegForm {
+        width: 1200px;
+        margin: auto;
+        margin-top: 150px;
+        background-color: white;
+        border: black solid 2px;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    .RegForm {
+        width: 98%;
+        margin: auto;
+        margin-top: 150px;
+        background-color: white;
+        border: black solid 2px;
+    }
 }
 
 .formAgreement {
@@ -192,218 +220,11 @@ option {
 }
 
 
-/*------------------------------------------ NAVIGATION */
-
-#Header {
-    width: 100%;
-    position: fixed;
-    z-index: 5;
-    /* Make it stick/fixed */
-    top: 0;
-    /* Stay on top */
-    transition: top 0.5s;
-    /* Transition effect when sliding down (and up) */
-}
-
-#Header-Main {
-    width: 1200px;
-    height: 100px;
-    margin: auto;
-    background: #ffffff00;
-    background: -moz-linear-gradient(top, #ffffff00 0%, #ffffffca 50%, #FFFFFF 100%);
-    background: -webkit-linear-gradient(top, #ffffff00 0%, #ffffffa1 50%, #FFFFFF 100%);
-    background: linear-gradient(to bottom, #ffffff00 0%, #ffffffa1 50%, #FFFFFF 100%);
-}
-
-#prodOptionsDiv {
-    height: 50px;
-    width: 1200px;
-    margin: auto;
-}
-
-@media screen and (max-width: 1200px) {
-    #Header-Main,
-    #prodOptionsDiv {
-        width: 98%;
-    }
-}
-
-#header-left-side {
-    height: 100%;
-    width: 70%;
-    margin: auto;
-    float: left;
-}
-
-#header-right-side {
-    height: 100%;
-    width: 30%;
-    float: right;
-    margin: auto;
-}
-
-
-/* nav links */
-
-.navbar {
-    height: 45%;
-    width: 100%;
-    margin: auto;
-}
-
-.nav-link {
-    color: rgb(0, 0, 0);
-    cursor: pointer;
-}
-
-@media screen and (max-width: 1200px) {
-    #header-left-side {
-        height: 100%;
-        width: 73%;
-        margin: auto;
-        float: left;
-    }
-    #header-right-side {
-        height: 100%;
-        width: 27%;
-        float: right;
-        margin: auto;
-    }
-    .nav-link {
-        font-size: 80%;
-    }
-}
-
-.nav-link:hover {
-    color: brown;
-}
-
-.active {
-    color: brown;
-}
-
-.user-info-bar {
-    height: 60px;
-    width: 60%;
-    margin: auto;
-}
-
-.nv-l {
-    float: left;
-    height: 100%;
-}
-
-.borderbottom {
-    border-bottom: black solid 2px;
-}
-
-
-/* language selector */
-
-.lang-selector {
-    margin-left: 15px;
-    cursor: pointer;
-    color: black;
-    border: none;
-}
-
-.lang-selector>option {
-    background-color: rgb(255, 255, 255);
-    border: black solid 0.5px;
-}
-
-#prod-options {
-    width: 1200px;
-    height: 100%;
-    border-bottom: black solid 2px;
-    background: #FFFFFF;
-    background: -moz-linear-gradient(top, #FFFFFF 0%, #ffffffa1 50%, #ffffff00 100%);
-    background: -webkit-linear-gradient(top, #FFFFFF 0%, #ffffffa1 50%, #ffffff00 100%);
-    background: linear-gradient(to bottom, #FFFFFF 0%, #ffffffa1 50%, #ffffff00 100%);
-}
-
-.prod-option-link {
-    color: rgb(0, 0, 0);
-    height: 20px;
-    width: 140px;
-    margin: auto;
-    float: left;
-    text-align: center;
-}
-
-@media screen and (max-width: 1200px) {
-    #prod-options {
-        width: 98%;
-    }
-    .prod-option-link {
-        width: 12%;
-        font-size: 80%;
-    }
-}
-
-
-/* user's navigation */
-
-.user-proertise {
-    width: 200px;
-    height: 100px;
-    color: rgb(0, 0, 0);
-    position: absolute;
-    top: 0px;
-    right: 50px;
-}
-
-.user-proertise>a {
-    width: 100%;
-}
-
-.admin-proertise {
-    color: rgb(0, 0, 0);
-    position: absolute;
-    top: 0px;
-    left: 500px;
-    font-size: smaller;
-}
-
-.nav-icon {
-    color: black;
-    margin-right: 15px;
-}
-
-.user-props {
-    margin: 1%;
-    width: 98%;
-    text-align: center;
-    color: rgb(0, 0, 0);
-}
-
-.users-nav {
-    width: 400px;
-    align-items: center;
-}
-
-.users-welcome {
-    width: 800px;
-    text-align: right;
-    margin-top: 10px;
-}
-
-.fa-user-lock,
-.users-welcome {
-    color: rgb(0, 0, 0);
-    padding: 10px;
-}
-
-.fa-user-lock:hover {
-    color: rgb(212, 99, 99);
-}
-
-
 /* --------------------CONTENT */
 
 .content {
     width: 1200px;
-    padding-top: 110px;
+    padding-top: 150px;
     padding-bottom: 50px;
 }
 
@@ -419,15 +240,16 @@ option {
 /* MESSAGE TO USER FOR REGISTRATION */
 
 .ADVERTISEMENT {
-    position: fixed;
-    z-index: 12;
-    top: 150px;
-    left: 0;
     width: 100%;
+    position: absolute;
+    z-index: 12;
+    top: 170px;
+    left: 0;
 }
 
 .sign-in-div {
-    width: 600px;
+    width: 30%;
+    height: 650px;
     margin: auto;
     background-color: rgb(255, 255, 255);
     border: rgb(58, 58, 58) 0.5px solid;
@@ -464,4 +286,134 @@ option {
 
 .message-link:hover {
     color: rgb(0, 90, 192);
+}
+
+
+/* HEADER */
+
+#Header {
+    width: 100%;
+    position: fixed;
+    z-index: 5;
+    /* Make it stick/fixed */
+    top: 0;
+    /* Stay on top */
+    transition: top 0.5s;
+    /* Transition effect when sliding down (and up) */
+}
+
+.navbar-toggler {
+    color: brown;
+}
+
+@media screen and (min-width: 990px) {
+    #nav-top {
+        max-width: 1200px;
+        margin: auto;
+        background: #ffffff6b;
+        background: -moz-linear-gradient(top, #ffffff6b 0%, #ffffff98 50%, #ffffffc2 100%);
+        background: -webkit-linear-gradient(top, #ffffff6b 0%, #ffffff98 50%, #ffffffc2 100%);
+        background: linear-gradient(to bottom, #ffffff6b 0%, #ffffff98 50%, #ffffffc2 100%);
+    }
+    #nav-bottom {
+        max-width: 1200px;
+        margin: auto;
+        background: #ffffffc2;
+        background: -moz-linear-gradient(top, #ffffffc2 0%, #ffffffda 50%, #ffffff 100%);
+        background: -webkit-linear-gradient(top, #ffffffc2 0%, #ffffffda 50%, #ffffff 100%);
+        background: linear-gradient(to bottom, #ffffffc2 0%, #ffffffda 50%, #ffffff 100%);
+        border-bottom: black solid 2px;
+    }
+    #nav-Logo-1 {
+        display: none;
+    }
+    #nav-Logo-2 {
+        height: 100px;
+        position: absolute;
+        right: 0;
+        top: -65px;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    #Header {
+        background-color: white;
+        border-bottom: black solid 2px;
+    }
+    #nav-Logo-2 {
+        display: none;
+    }
+    #nav-Logo-1 {
+        height: 70px;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .navbar-nav {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 990px) {
+    .navbar-nav {
+        width: 80%;
+    }
+    .dropdown-menu {
+        width: 250px;
+        border: solid black 2px;
+    }
+    .dropdown-menu-bottom {
+        width: 550px;
+        border: solid black 2px;
+    }
+    .dropdown-menu-lang {
+        width: 50px;
+        border: solid black 2px;
+    }
+    .dropdown-menu>li,
+    .dropdown-menu-bottom>li,
+    .dropdown-menu-lang>li {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+    .dropdown-item:hover {
+        color: brown;
+    }
+    .lang-nav {
+        text-align: center;
+        cursor: pointer;
+    }
+}
+
+.navbar-brand {
+    width: 20%;
+}
+
+.nav-link {
+    text-align: center;
+}
+
+.activeColor {
+    border-bottom: brown solid 2px;
+}
+
+.nav-item>a:hover {
+    color: brown;
+}
+
+.nav-item-top {
+    margin-right: 20px;
+}
+
+#welcome {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: brown;
+    font-weight: 700;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: small-caps;
+    text-transform: none;
 }
