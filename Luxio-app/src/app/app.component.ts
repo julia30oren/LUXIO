@@ -47,7 +47,6 @@ export class AppComponent implements OnInit {
     private regestration_Service: RegistrationService,
     private shop_Service: ShopService,
     private user_Service: UserService
-
   ) {
     translate.addLangs(['en', 'ru', 'iv']);
     translate.setDefaultLang('en');
