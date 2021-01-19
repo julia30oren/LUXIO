@@ -6,7 +6,7 @@ hostURL: http://localhost <br>
 port for *frontend* : **4000** <br>
 port for *backend* : **5001** <br>
 port for *MongoDB* : **27017** <br>
-database *MongoDB* : **LuxioIsrael** <br>
+database name : **LuxioIsrael** <br>
 to change port or API address go to: <br>
 /Luxio-app -> /src -> /environments -> /environment.ts -> IN THIS FILE <br>
 
