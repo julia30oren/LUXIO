@@ -2,10 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { environment } from '../environments/environment';
+// import { AngularFireModule } from '@angular/fire';
+// import { AngularFireStorageModule } from '@angular/fire/storage';
+// import { AngularFireDatabaseModule } from '@angular/fire/database';
+// import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicStorageModule } from '@ionic/storage';
@@ -67,9 +67,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule,
-    AngularFireDatabaseModule,
+    // AngularFireModule.initializeApp(environment.firebaseConfig),
+    // AngularFireStorageModule,
+    // AngularFireDatabaseModule,
     ReactiveFormsModule,
 
     IonicStorageModule.forRoot(),
