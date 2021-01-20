@@ -3,7 +3,7 @@ import { SaveUserService } from '../saveUser/save-user.service';
 import { HttpClient } from '@angular/common/http';
 import { LocationStrategy } from '@angular/common';
 import { RespondService } from '../respond/respond.service';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

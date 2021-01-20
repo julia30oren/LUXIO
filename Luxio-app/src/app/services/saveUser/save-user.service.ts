@@ -4,7 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { UserService } from '../user-servise/user.service';
 import { RespondService } from '../respond/respond.service';
 import { RegistrationService } from '../registation/registration.service';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
