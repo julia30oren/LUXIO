@@ -116,15 +116,12 @@ app.use('/whatsapp', require('./routes/whatsapp/whatsapp'))
 
 io.on('connection', (socket) => {
     console.log('a user connected');
-    socket.on('disconnect', () => {
-      console.log('user disconnected');
-    });
   });
 
-  // 
+// 
 app.set('io',io);
 
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, '/dist/Luxio-app')));
 // 
 
 server.listen(process.env.PORT, "0.0.0.0", (err) => {
