@@ -6,9 +6,9 @@ const moment = require("moment");
 require('dotenv').config();
 const AdminSchema = require('./routes/admin/admin-model');
 const bcrypt = require('bcryptjs');
-
-
 const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
 // function to check if all parameters exist in .env
 function ifEnvVarieblesExist(params) {
@@ -89,26 +89,26 @@ db.once('open', () => {
             logger.info(`${moment().format(`h:mm:ss a`)} - ${process.env.DATABASE} connected.`);
 });
 
-app.use(cors());
+io.use(cors());
 // 
-app.use((req, res, next) => {
+io.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET , PUT , POST , DELETE");
     res.header("Access-Control-Allow-Headers", "Content-Type, x-requested-with");
     next(); // Important
 });
 // 
-app.use(express.json());
+io.use(express.json());
 
-app.use('/user/registeration', require('./routes/user/registeration')); //check by postmane (exept upload-certificate)
-app.use('/user', require('./routes/user/user')); //check  by postmane (exept cart and favorites)
-app.use('/admin', require('./routes/admin/admin')); //check by postmane
-app.use('/comments', require('./routes/comments/comments')); //check by postmane
-app.use('/products', require('./routes/products/products')); //check by postmane
-app.use('/order', require('./routes/orders/orders')); //check by postmane
-app.use('/whatsapp', require('./routes/whatsapp/whatsapp'))
+io.use('/user/registeration', require('./routes/user/registeration')); //check by postmane (exept upload-certificate)
+io.use('/user', require('./routes/user/user')); //check  by postmane (exept cart and favorites)
+io.use('/admin', require('./routes/admin/admin')); //check by postmane
+io.use('/comments', require('./routes/comments/comments')); //check by postmane
+io.use('/products', require('./routes/products/products')); //check by postmane
+io.use('/order', require('./routes/orders/orders')); //check by postmane
+io.use('/whatsapp', require('./routes/whatsapp/whatsapp'))
 
-app.listen(process.env.PORT, "0.0.0.0", (err) => {
+server.listen(process.env.PORT, "0.0.0.0", (err) => {
     if (err) {
         console.log(err);
         logger.error(`${moment().format(`h:mm:ss a`)} - ${err}`);
