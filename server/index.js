@@ -8,12 +8,7 @@ const AdminSchema = require('./routes/admin/admin-model');
 const bcrypt = require('bcryptjs');
 const app = express();
 const server = require('http').createServer(app);
-const io = require('socket.io')(server);
 
-// 
-const path = require('path');
-// const bodyParser = require('body-parser');
-// 
 
 // function to check if all parameters exist in .env
 function ifEnvVarieblesExist(params) {
@@ -113,15 +108,18 @@ app.use('/products', require('./routes/products/products')); //check by postmane
 app.use('/order', require('./routes/orders/orders')); //check by postmane
 app.use('/whatsapp', require('./routes/whatsapp/whatsapp'))
 
-
-io.on('connection', (socket) => {
-    console.log('a user connected');
-  });
-
 // 
-app.set('io',io);
-
+const path = require('path');
+// const bodyParser = require('body-parser');
 app.use(express.static(path.join(__dirname, '/dist/Luxio-app')));
+// 
+var io = require('socket.io')(server);
+
+io.on('connection', function(client) {
+    console.log("connected");
+   client.emit("message", "Some thing to show");
+});
+
 // 
 
 server.listen(process.env.PORT, "0.0.0.0", (err) => {
