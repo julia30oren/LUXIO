@@ -6,7 +6,7 @@
     "scripts": {
         "start": "concurrently -k -p \"[{name}]\" -n \"server,client\" -c \"blue,magenta\" \"npm run server\" \"npm run client\"",
         "server": "cd ../server/ && npm start",
-        "client": "cd ../Luxio-app/ && ng serve"
+        "client": "cd ../Luxio-app/ && ng serve --host 0.0.0.0 --disable-host-check"
     },
     "author": "",
     "license": "ISC",

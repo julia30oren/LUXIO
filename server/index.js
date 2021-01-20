@@ -89,7 +89,7 @@ db.once('open', () => {
             logger.info(`${moment().format(`h:mm:ss a`)} - ${process.env.DATABASE} connected.`);
 });
 
-app.use(cors({ origin: 'http://localhost:4200' }));
+app.use(cors());
 // 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
