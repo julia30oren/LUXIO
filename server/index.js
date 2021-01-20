@@ -10,6 +10,11 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
+// 
+const path = require('path');
+// const bodyParser = require('body-parser');
+// 
+
 // function to check if all parameters exist in .env
 function ifEnvVarieblesExist(params) {
     const missingPart = params.filter(param => !process.env[param]);
@@ -90,7 +95,7 @@ db.once('open', () => {
 });
 
 app.use(cors());
-// 
+
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET , PUT , POST , DELETE");
@@ -115,7 +120,13 @@ io.on('connection', (socket) => {
       console.log('user disconnected');
     });
   });
-  
+
+  // 
+app.set('io',io);
+
+app.use(express.static(path.join(__dirname, 'dist')));
+// 
+
 server.listen(process.env.PORT, "0.0.0.0", (err) => {
     if (err) {
         console.log(err);

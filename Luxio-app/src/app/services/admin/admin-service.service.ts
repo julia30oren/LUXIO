@@ -10,8 +10,10 @@ import { environment } from '../../../environments/environment'
 })
 export class AdminServiceService {
 
+  // public socket = io();
+
   private admin_URL: string = `${environment.hostURL}:${environment.DBport}/admin`;
-  private orders_URL: string = `${environment.hostURL}:${environment.DBport}/order`;
+  // private orders_URL: string = `${environment.hostURL}:${environment.DBport}/order`;
 
   private admins = new BehaviorSubject<Array<any>>([]);
   public admins_from_service = this.admins.asObservable();
