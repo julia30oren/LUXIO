@@ -9,8 +9,8 @@ import { io } from 'socket.io-client';
   providedIn: 'root'
 })
 export class ShopService {
-  public socket;
   private prod_url: string = `${environment.hostURL}:${environment.DBport}/products`;
+  // public socket = io(this.prod_url);
 
   private shop_products = new BehaviorSubject<Array<any>>([]);
   public shop_products_from_service = this.shop_products.asObservable();
@@ -43,7 +43,8 @@ export class ShopService {
 
   // -----------------------------GET ALL PRODUCTS FROM DB------------------------
   getProducts_fromDB() {
-    return this.http.get(`/products`).subscribe(res => {
+    // console.log(this.socket)
+    return this.http.get(`${this.prod_url}`).subscribe(res => {
       let products = res[0].allProductes;
       if (products) {
         this.shop_products.next([products]);
