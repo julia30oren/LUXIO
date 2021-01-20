@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { RegistrationService } from '../registation/registration.service';
 import { ShopService } from '../shop/shop.service';
 import { RespondService } from '../respond/respond.service';
-import { environment } from '../../../environments/environment'
+import { environment } from '../../../environments/environment.prod';
 
 
 @Injectable({

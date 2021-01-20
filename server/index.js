@@ -108,7 +108,7 @@ app.use('/products', require('./routes/products/products')); //check by postmane
 app.use('/order', require('./routes/orders/orders')); //check by postmane
 app.use('/whatsapp', require('./routes/whatsapp/whatsapp'))
 
-app.listen(process.env.PORT, (err) => {
+app.listen(process.env.PORT, "0.0.0.0", (err) => {
     if (err) {
         console.log(err);
         logger.error(`${moment().format(`h:mm:ss a`)} - ${err}`);
