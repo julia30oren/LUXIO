@@ -58,7 +58,7 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.backgroundColor)
+    // console.log(this.backgroundColor)
     this.language_Service.setInitialAppLanguage();
     //------------------------------------detecting location for navbar--------
     this.location = window.location.pathname.substring(1);

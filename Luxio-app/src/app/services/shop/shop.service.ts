@@ -9,7 +9,8 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class ShopService {
-  // private socket = io(`${environment.hostURL}:${environment.DBport}`);
+
+  private socket = 'assets/config.json';
   private prod_url: string = `${environment.hostURL}:${environment.DBport}/products`;
 
 
