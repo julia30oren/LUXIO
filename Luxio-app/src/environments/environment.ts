@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  navBarBackgroundColor: 'red',
+
   hostURL: 'http://localhost',
   userName: 'user',
   DBport: 5001,

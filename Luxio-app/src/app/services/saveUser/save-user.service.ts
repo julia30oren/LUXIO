@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
 })
 export class SaveUserService {
   private DB_url: string = `${environment.hostURL}:${environment.DBport}/user`;
-  private registeration_URL: string = `${this.DB_url}/registeration`;
+  private registeration_URL: string = `${environment.hostURL}:${environment.DBport}/user/registeration`;
 
   private stateForm = new BehaviorSubject<boolean>(false);
   public stateForm_from_service = this.stateForm.asObservable();

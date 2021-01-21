@@ -10,8 +10,6 @@ import { environment } from '../../../environments/environment'
 })
 export class AdminServiceService {
 
-  // public socket = io();
-
   public admin_URL: string = `${environment.hostURL}:${environment.DBport}/admin`;
   // private orders_URL: string = `${environment.hostURL}:${environment.DBport}/order`;
 

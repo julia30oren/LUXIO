@@ -1,7 +1,10 @@
 {
-    "/api/*": {
-        "target": "http://0.0.0.0:5001",
+    "/api": {
+        "target": "http://ubuntu-s-1vcpu-1gb-fra1-01:5001",
         "secure": false,
+        "pathRewrite": {
+            "^/api": ""
+        },
         "logLevel": "debug"
     }
 }

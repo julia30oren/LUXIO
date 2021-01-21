@@ -10,8 +10,6 @@ import { environment } from '../../../environments/environment';
 export class ShopService {
 
   private prod_url: string = `${environment.hostURL}:${environment.DBport}/products`;
-  // private prod_url: string = `http://167.172.166.141:5001/products`;
-
 
   private shop_products = new BehaviorSubject<Array<any>>([]);
   public shop_products_from_service = this.shop_products.asObservable();
@@ -44,6 +42,7 @@ export class ShopService {
 
   // -----------------------------GET ALL PRODUCTS FROM DB------------------------
   getProducts_fromDB() {
+    console.log('production - ', environment.production)
     return this.http.get(`${this.prod_url}`).subscribe(res => {
       let products = res[0].allProductes;
       if (products) {
