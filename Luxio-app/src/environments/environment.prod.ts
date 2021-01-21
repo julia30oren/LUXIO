@@ -1,6 +1,8 @@
 export const environment = {
   production: true,
-  hostURL: 'http://167.172.166.141',
+  navBarBackgroundColor: 'blue',
+
+  hostURL: 'http://localhost',
   userName: 'userProd',
   DBport: 5001,
   envName: 'angEnvProd',

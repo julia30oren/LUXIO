@@ -8,6 +8,7 @@ import { UserService } from './services/user-servise/user.service';
 import { ShopService } from './services/shop/shop.service';
 import { RespondService } from './services/respond/respond.service';
 import * as bcrypt from 'bcryptjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -39,6 +40,7 @@ export class AppComponent implements OnInit {
     termsAgree: new FormControl(false, Validators.required)
   });
 
+  backgroundColor = environment.navBarBackgroundColor;
   constructor(
     private router: Router,
     private respond_Service: RespondService,
@@ -56,6 +58,7 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log(this.backgroundColor)
     this.language_Service.setInitialAppLanguage();
     //------------------------------------detecting location for navbar--------
     this.location = window.location.pathname.substring(1);

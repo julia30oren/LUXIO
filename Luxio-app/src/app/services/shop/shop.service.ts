@@ -3,14 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { RespondService } from '../respond/respond.service';
 import { environment } from '../../../environments/environment';
-import * as io from 'socket.io-client';
+// import * as io from 'socket.io-client';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShopService {
-  private socket = io(`${environment.hostURL}:${environment.DBport}`);
-  private prod_url: string = `${this.socket}/products`;
+  // private socket = io(`${environment.hostURL}:${environment.DBport}`);
+  private prod_url: string = `${environment.hostURL}:${environment.DBport}/products`;
 
 
   private shop_products = new BehaviorSubject<Array<any>>([]);

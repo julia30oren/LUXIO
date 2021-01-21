@@ -4,10 +4,12 @@
 
 export const environment = {
   production: false,
+  navBarBackgroundColor: 'red',
   hostURL: 'http://localhost',
   userName: 'user',
   DBport: 5001,
   envName: 'angEnv',
+
   // firebaseConfig: {
   //   apiKey: "AIzaSyDnAWNfZ769z6yS-uuEPo6GFn5dOHfAE58",
   //   authDomain: "luxio-gallery.firebaseapp.com",

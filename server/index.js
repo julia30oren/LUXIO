@@ -8,7 +8,11 @@ const AdminSchema = require('./routes/admin/admin-model');
 const bcrypt = require('bcryptjs');
 const app = express();
 const server = require('http').createServer(app);
-
+// var io = require('socket.io')(server);
+const path = require('path');
+// const bodyParser = require('body-parser');
+app.use(express.static(path.join(__dirname, '/dist/Luxio-app')));
+// 
 
 // function to check if all parameters exist in .env
 function ifEnvVarieblesExist(params) {
@@ -91,12 +95,12 @@ db.once('open', () => {
 
 app.use(cors());
 
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET , PUT , POST , DELETE");
-    res.header("Access-Control-Allow-Headers", "Content-Type, x-requested-with");
-    next(); // Important
-});
+// app.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Methods", "GET , PUT , POST , DELETE");
+//     res.header("Access-Control-Allow-Headers", "Content-Type, x-requested-with");
+//     next(); // Important
+// });
 // 
 app.use(express.json());
 
@@ -109,10 +113,7 @@ app.use('/order', require('./routes/orders/orders')); //check by postmane
 app.use('/whatsapp', require('./routes/whatsapp/whatsapp'))
 
 // 
-const path = require('path');
-// const bodyParser = require('body-parser');
-// app.use(express.static(path.join(__dirname, '/dist/Luxio-app')));
-// 
+
 
 server.listen(process.env.PORT, (err) => {
     if (err) {
