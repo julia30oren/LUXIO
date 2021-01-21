@@ -40,7 +40,6 @@ export class AppComponent implements OnInit {
     termsAgree: new FormControl(false, Validators.required)
   });
 
-  backgroundColor = environment.navBarBackgroundColor;
   constructor(
     private router: Router,
     private respond_Service: RespondService,
