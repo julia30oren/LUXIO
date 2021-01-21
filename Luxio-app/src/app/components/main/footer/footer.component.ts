@@ -9,7 +9,7 @@ import { RegistrationService } from 'src/app/services/registation/registration.s
 })
 export class FooterComponent implements OnInit {
   public languege: string;
-  private admin: boolean = false;
+  public admin: boolean = false;
 
   constructor(
     private language_Service: LanguageService,

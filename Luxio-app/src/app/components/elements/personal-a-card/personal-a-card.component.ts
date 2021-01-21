@@ -28,9 +28,10 @@ export class PersonalACardComponent implements OnInit {
   public discount: number = 0;
   public shipping: number = 0;
   public do_checkout: boolean = false;
-  private user: Array<any>;
+  public user: Array<any>;
+  public isSubmitted: boolean;
 
-  private infoTemplate = new FormGroup({
+  public infoTemplate = new FormGroup({
     _id: new FormControl('', Validators.required),
     first_name: new FormControl('', Validators.required),
     second_name: new FormControl('', Validators.required),
@@ -44,7 +45,7 @@ export class PersonalACardComponent implements OnInit {
     apartment: new FormControl(''),
   });
 
-  private cardTemplate = new FormGroup({
+  public cardTemplate = new FormGroup({
     cardNumber: new FormControl('', Validators.required),
     expirationDate: new FormControl('', Validators.required),
     securityCode: new FormControl('', Validators.required),
@@ -52,7 +53,7 @@ export class PersonalACardComponent implements OnInit {
     lName: new FormControl('', Validators.required)
   });
 
-  private payPalTemplate = new FormGroup({
+  public payPalTemplate = new FormGroup({
     PayPalemail: new FormControl('', Validators.required),
     PayPalPassword: new FormControl('', Validators.required)
   });
@@ -98,6 +99,9 @@ export class PersonalACardComponent implements OnInit {
     if (this.TOTAL_PRICE < 1000) {
       this.shipping = 40;
     } else this.shipping = 0;
+  }
+  newInfoSave(infoTemplateValue) {
+    console.log(infoTemplateValue)
   }
 
   delete_fromCart(item) {
@@ -202,6 +206,7 @@ export class PersonalACardComponent implements OnInit {
   }
 
   goPay(paiment_type) {
+    this.isSubmitted = true;
     let order = {
       order: this.personalArea_products,
       payments: {

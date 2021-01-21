@@ -12,9 +12,9 @@ import { ImageService } from 'src/app/services/imgService/img-searvice.service';
 export class PrivateInfoComponent implements OnInit {
 
   public loader: boolean = true;
-  private languege: string;
-  private user: Array<any>;
-  private infoTemplate = new FormGroup({
+  public languege: string;
+  public user: Array<any>;
+  public infoTemplate = new FormGroup({
     _id: new FormControl('', Validators.required),
     first_name: new FormControl('', Validators.required),
     second_name: new FormControl('', Validators.required),
@@ -28,7 +28,7 @@ export class PrivateInfoComponent implements OnInit {
     apartment: new FormControl(''),
   });
   public isSubmitted: boolean;
-  private formTemplate_password = new FormGroup({
+  public formTemplate_password = new FormGroup({
     old_pass: new FormControl('', Validators.required),
     new_pass: new FormControl('', Validators.required),
     conf_new: new FormControl('', Validators.required),

@@ -16,7 +16,7 @@ export class LogFormComponent implements OnInit {
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   })
-  private asAdmin: boolean;
+  public asAdmin: boolean;
   public isSubmitted2: boolean;
   public formTemplate2 = new FormGroup({
     main_email: new FormControl('', Validators.required),

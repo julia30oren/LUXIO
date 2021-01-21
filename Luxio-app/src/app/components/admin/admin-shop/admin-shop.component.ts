@@ -21,7 +21,7 @@ export class AdminShopComponent implements OnInit {
   public searchText: any;
   public searchRes: Array<any>;
   public language: string;
-  private prod_toDelete: Array<any>;
+  public prod_toDelete: Array<any>;
 
   formTemplate = new FormGroup({
     burcode_id: new FormControl(null, Validators.required),

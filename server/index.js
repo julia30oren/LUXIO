@@ -111,18 +111,10 @@ app.use('/whatsapp', require('./routes/whatsapp/whatsapp'))
 // 
 const path = require('path');
 // const bodyParser = require('body-parser');
-app.use(express.static(path.join(__dirname, '/dist/Luxio-app')));
-// 
-var io = require('socket.io')(server);
-
-io.on('connection', function(client) {
-    console.log("connected");
-   client.emit("message", "Some thing to show");
-});
-
+// app.use(express.static(path.join(__dirname, '/dist/Luxio-app')));
 // 
 
-server.listen(process.env.PORT, "0.0.0.0", (err) => {
+server.listen(process.env.PORT, (err) => {
     if (err) {
         console.log(err);
         logger.error(`${moment().format(`h:mm:ss a`)} - ${err}`);

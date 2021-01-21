@@ -50,7 +50,7 @@
                 <div class="right" style="width: 45%; height: 100%; margin-left: 1%;">
                     <!-- "ADD TO CART" & "REMOVE FROM CART" buttons,
                     text and colour depends on if item already in  -->
-                    <button type="button" class="button-link" (click)="addToCart(item)">
+                    <button type="button" class="button-link" (click)="addToCart()">
                     <p *ngIf="!selectedProd_inCart">{{'PROD_DESCRIPTION.add_to_cart' | translate}}</p>
                     <p *ngIf="selectedProd_inCart" style="color: rgb(212, 99, 99);">{{'PROD_DESCRIPTION.remove_from_cart' | translate}}</p>
                 </button>

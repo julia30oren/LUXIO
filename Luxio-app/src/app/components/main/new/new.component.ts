@@ -16,11 +16,13 @@ export class NewComponent implements OnInit {
   public shop: Array<any> = [];
   public selectedProd: boolean;
 
-  private shadesOpen: boolean;
-  private miamiOpen: boolean;
-  private voyageOpen: boolean;
+  public jelliOpen: boolean;
+  public shadesOpen: boolean;
+  public miamiOpen: boolean;
+  public voyageOpen: boolean;
   public rendezvousOpen: boolean;
 
+  public jelly: Array<any> = [];
   public shades: Array<any> = [];
   public voyage: Array<any> = [];
   public miami: Array<any> = [];

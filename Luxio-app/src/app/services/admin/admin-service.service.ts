@@ -12,7 +12,7 @@ export class AdminServiceService {
 
   // public socket = io();
 
-  private admin_URL: string = `${environment.hostURL}:${environment.DBport}/admin`;
+  public admin_URL: string = `${environment.hostURL}:${environment.DBport}/admin`;
   // private orders_URL: string = `${environment.hostURL}:${environment.DBport}/order`;
 
   private admins = new BehaviorSubject<Array<any>>([]);

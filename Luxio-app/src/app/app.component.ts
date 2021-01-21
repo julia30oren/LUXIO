@@ -16,14 +16,14 @@ import * as bcrypt from 'bcryptjs';
 })
 export class AppComponent implements OnInit {
 
-  private salt = bcrypt.genSaltSync(10);
+  public salt = bcrypt.genSaltSync(10);
   public regForm_Open: boolean = false;
   public formOne_Open: boolean = false;
   public formAgreement_Open: boolean = false;
   public formLogin_Open: boolean = false;
   public formPasswodRestore_Open: boolean = false;
   public prodOptionsOpen: boolean;
-  private location: string = "";
+  public location: string = "";
   public languege: string;
   public user: string;
   public users_props: boolean;
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
   public respond: Array<any> = [];
   public selectedProd: boolean;
   public shop: Array<any>;
-  private admin: boolean = false;
+  public admin: boolean = false;
 
   formTemplate = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private respond_Service: RespondService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private language_Service: LanguageService,
     private regestration_Service: RegistrationService,
     private shop_Service: ShopService,
@@ -64,9 +64,6 @@ export class AppComponent implements OnInit {
       .subscribe(date => {
         this.user = date
       });
-    // if user is admin
-    this.regestration_Service.admin_from_service
-      .subscribe(date => this.admin = date);
     // ----
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function () {

@@ -9,7 +9,7 @@ import { LanguageService } from 'src/app/services/language.service';
 })
 export class SignInComponent implements OnInit {
 
-  private langIv: boolean;
+  public langIv: boolean;
 
   constructor(
     private regService: RegistrationService,

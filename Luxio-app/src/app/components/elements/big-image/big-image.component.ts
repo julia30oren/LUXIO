@@ -21,8 +21,8 @@ export class BigImageComponent implements OnInit {
   public languege: string;
   public my_cart: Array<any> = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
   public my_favorites: Array<any> = JSON.parse(localStorage.getItem('my_764528_f')) || [];
-  private amount: string;
-  private quantity: number = 1;
+  public amount: string;
+  public quantity: number = 1;
 
 
   constructor(
