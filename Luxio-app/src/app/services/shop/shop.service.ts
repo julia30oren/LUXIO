@@ -3,15 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { RespondService } from '../respond/respond.service';
 import { environment } from '../../../environments/environment';
-// import * as io from 'socket.io-client';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShopService {
 
-  private socket = 'assets/config.json';
   private prod_url: string = `${environment.hostURL}:${environment.DBport}/products`;
+  // private prod_url: string = `http://167.172.166.141:5001/products`;
 
 
   private shop_products = new BehaviorSubject<Array<any>>([]);
@@ -45,7 +44,6 @@ export class ShopService {
 
   // -----------------------------GET ALL PRODUCTS FROM DB------------------------
   getProducts_fromDB() {
-    // console.log(this.socket)
     return this.http.get(`${this.prod_url}`).subscribe(res => {
       let products = res[0].allProductes;
       if (products) {
