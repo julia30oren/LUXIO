@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user-servise/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LanguageService } from 'src/app/services/language.service';
-import { ImageService } from 'src/app/services/imgService/img-searvice.service';
+import { ImgSearviceService } from 'src/app/services/imgService/img-searvice.service';
 
 @Component({
   selector: 'app-private-info',
@@ -41,7 +41,7 @@ export class PrivateInfoComponent implements OnInit {
 
   constructor(
     private language_Service: LanguageService,
-    private cert_service: ImageService,
+    private cert_service: ImgSearviceService,
     private user_Service: UserService
   ) { }
 

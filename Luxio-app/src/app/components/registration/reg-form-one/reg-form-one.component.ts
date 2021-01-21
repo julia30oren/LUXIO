@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RegistrationService } from 'src/app/services/registation/registration.service';
-import { ImageService } from 'src/app/services/imgService/img-searvice.service';
+import { ImgSearviceService } from 'src/app/services/imgService/img-searvice.service';
 import { SaveUserService } from 'src/app/services/saveUser/save-user.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { RespondService } from 'src/app/services/respond/respond.service';
@@ -38,7 +38,7 @@ export class RegFormOneComponent implements OnInit {
 
   constructor(
     private regService: RegistrationService,
-    private cert_service: ImageService,
+    private cert_service: ImgSearviceService,
     private respond_Service: RespondService,
     private users_db: SaveUserService,
     private lang_service: LanguageService
