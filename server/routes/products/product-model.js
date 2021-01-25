@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
     burcode_id: {
-        type: Number,
+        type: String,
         require: true
     },
     prod_class: {
