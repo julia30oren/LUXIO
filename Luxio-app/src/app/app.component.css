@@ -16,20 +16,7 @@
     z-index: 10;
     font-size: 20px;
     text-align: center;
-}
-
-.infoMessage {
-    background: #ABC7CE;
-    background: -moz-linear-gradient(left, #ABC7CE 0%, #D45959 50%, #ABC7CE 100%);
-    background: -webkit-linear-gradient(left, #ABC7CE 0%, #D45959 50%, #ABC7CE 100%);
-    background: linear-gradient(to right, #ABC7CE 0%, #D45959 50%, #ABC7CE 100%);
-}
-
-.errorMessage {
-    background: #D45959;
-    background: -moz-linear-gradient(left, #D45959 0%, #CE3636 50%, #D45959 100%);
-    background: -webkit-linear-gradient(left, #D45959 0%, #CE3636 50%, #D45959 100%);
-    background: linear-gradient(to right, #D45959 0%, #CE3636 50%, #D45959 100%);
+    background-color: #00000000;
 }
 
 
@@ -79,6 +66,19 @@
     float: left;
     width: 500px;
     text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+    #cookies-in,
+    #cookies-in>p {
+        width: 100%;
+        font-size: smaller;
+        text-align: center;
+    }
+    .cookies-button {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 
@@ -231,6 +231,7 @@ option {
 @media screen and (max-width: 1200px) {
     .content {
         width: 100%;
+        padding-top: 100px;
         padding-left: 1%;
         padding-right: 1%;
     }

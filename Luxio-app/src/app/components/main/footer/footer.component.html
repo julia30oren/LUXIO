@@ -1,49 +1,49 @@
-<div class="FOOTER">
-    <!-- ------------------------------------------ COMMERCIAL -->
-    <div id="commertial" *ngIf="!admin" class=" wow animate__animated animate__heartBeat animate__delay-2s" [ngClass]="{Hebrew: languege==='iv'}">
-        <p>{{ 'FOOTER.commertial.l1' | translate}}
-            <br>
-            <span style="color: brown; text-transform: uppercase;">Luxio</span>,
-            <span style="color: brown; text-transform: uppercase;">Options</span>,
-            <span style="color: brown; text-transform: uppercase;">Gel Play</span>
-            <br> {{ 'FOOTER.commertial.l2' | translate}} <span style="text-decoration: underline solid rgb(68, 68, 68);"> {{ 'FOOTER.commertial.l3' | translate}}</span>!!!</p>
-    </div>
-    <!-- ------------------------------------------ FOOTER -->
-    <div id="footer" style="margin-top: 20px;">
-        <div class="footer-left">
-            <p class="location">{{ 'CONTACT.city' | translate}}, {{ 'CONTACT.street' | translate}}</p>
-            <p class="location">{{ 'CONTACT.phone' | translate}}: 054-8785521 / 055-9519777</p>
-            <p class="location">{{ 'CONTACT.email' | translate}}: luxiogel.israel@gmail.com</p>
-            <div class="socials">
-                <a class="social-icons" target="_blank" href="https://www.facebook.com/luxioisrael"><i class="fab fa-facebook-square fa-2x"></i> </a>
-                <a class="social-icons" target="_blank" href="https://www.instagram.com/luxiogel_israel"><i class="fab fa-instagram fa-2x"></i> </a>
-                <a class="social-icons" target="_blank" href="https://www.pinterest.ru/luxiogelisrael/boards/"><i class="fab fa-pinterest fa-2x"></i> </a>
-                <a class="social-icons" target="_blank" href="https://www.youtube.com/channel/UCIovV5TtXDx_0Enl_MJKB3g?view_as=subscriber"><i class="fab fa-youtube-square fa-2x"></i> </a>
-            </div>
-            <small class="rights" style="margin-top: 0;">© Mitra-Group 2014 ©</small>
-            <small style="width: 100%; text-align: center; font-style: italic;">
-                This website is solely developed by 
-                <a href="https://www.linkedin.com/in/julia-orendovskyi-026a30b6/" target="_blank">Oren-j</a>.
-            </small>
+<!-- ------------------------------------------ COMMERCIAL -->
+<div class="commertial" style="border-top: 2px solid rgb(22, 22, 22);"></div>
+<div class="commertial wow animate__animated animate__heartBeat animate__delay-2s">
+    <img *ngIf="languege==='en'" style="width: 100%;" alt="commertial" src="https://i.pinimg.com/originals/ee/9e/25/ee9e2537c8f8044c2a547edb10d0ef2d.jpg?epik=dj0yJnU9LVpQeG5vMHdxSEpZNzNyS2VibW5GdG5XUVVqb01yLXImcD0wJm49ZlY2LURFb0pjX2J6UmZEZFg1dUozQSZ0PUFBQUFBR0FQNDRj"
+    />
+    <img *ngIf="languege==='iv'" style="width: 100%;" alt="commertial" src="https://i.pinimg.com/originals/13/15/01/131501335786b7545fdce10c918df0d3.jpg?epik=dj0yJnU9bkZ0c1FVOXRBUXZVbmpPLVQ0YUtzaXVta3pwSWRrN2gmcD0wJm49dUNneVNxZGp2M3ZyYUFqOTdTbkZtQSZ0PUFBQUFBR0FQNVJZ"
+    />
+    <img *ngIf="languege==='ru'" style="width: 100%;" alt="commertial" src="https://i.pinimg.com/originals/60/ca/e7/60cae7342f9afcf6bb742de979d25e57.jpg?epik=dj0yJnU9RkloVkdMYzUtWHFsaUJtQkxxMzNtUURpbWFzSDJRZXImcD0wJm49RUEwaDBYazNUWk5IN2RfSXBFa01XQSZ0PUFBQUFBR0FQNVQ4"
+    />
+</div>
+
+<div id="footer" class="container-fluid" style=" background-color: rgb(22, 22, 22);">
+    <div class="row">
+        <div class="footer-link col-lg-6 col-12">
+            <a class="social-icons" target="_blank" href="https://www.facebook.com/luxioisrael"><i class="fab fa-facebook-square fa-2x"></i> </a>
+            <a class="social-icons" target="_blank" href="https://www.instagram.com/luxiogel_israel"><i class="fab fa-instagram fa-2x"></i> </a>
+            <a class="social-icons" target="_blank" href="https://www.pinterest.ru/luxiogelisrael/boards/"><i class="fab fa-pinterest fa-2x"></i> </a>
+            <a class="social-icons" target="_blank" href="https://www.youtube.com/channel/UCIovV5TtXDx_0Enl_MJKB3g?view_as=subscriber"><i class="fab fa-youtube-square fa-2x"></i> </a><br><br>
+            <p class="address">{{ 'CONTACT.city' | translate}}, {{ 'CONTACT.street' | translate}}</p>
+            <p class="address">{{ 'CONTACT.phone' | translate}}: 054-8785521 / 055-9519777</p>
+            <p class="address">{{ 'CONTACT.email' | translate}}: luxiogel.israel@gmail.com</p>
         </div>
-        <!-- -----------------------------footer navigation -->
-        <div class="footer-right">
-            <div class="nav-left">
-                <a class="footer-link" href="products/luxio">LUXIO</a>
-                <a class="footer-link" href="products/gel-play">GEL PLAY</a>
-                <a class="footer-link" href="products/options">OPTIONS</a>
-                <a class="footer-link" href="products/pro-formance">PRO-FORMANCE</a>
-                <a class="footer-link" href="products/basics">{{ 'NAVIGATION.basics' | translate }}</a>
-                <a class="footer-link" href="products/tools">{{ 'NAVIGATION.tools' | translate }}</a>
-            </div>
-            <div class="nav-right">
-                <a class="footer-link" href="new">{{ 'NAVIGATION.NEW.title' | translate }}</a>
-                <a class="footer-link" href="shop">{{ 'NAVIGATION.STORE.title' | translate }}</a>
-                <a class="footer-link" href="courses">{{ 'NAVIGATION.COURSES.title' | translate }}</a>
-                <a class="footer-link" href="contacts">{{ 'NAVIGATION.OFFICES.title' | translate }}</a>
-                <a class="footer-link" href="registration">{{ 'NAVIGATION.PERSONALid.title' | translate }}</a>
-            </div>
+        <div class="footer-link col-lg-3 col-6">
+            <h1>PRODUCTS</h1>
+            <a href="products/luxio">LUXIO</a><br>
+            <a href="products/gel-play">GEL PLAY</a><br>
+            <a href="products/options">OPTIONS</a><br>
+            <a href="products/pro-formance">PRO-FORMANCE</a><br>
+            <a href="products/basics">{{ 'NAVIGATION.basics' | translate }}</a><br>
+            <a href="products/tools">{{ 'NAVIGATION.tools' | translate }}</a>
+        </div>
+        <div class="footer-link col-lg-3 col-6">
+            <h1>NAVIGATION</h1>
+            <a href="new">{{ 'NAVIGATION.NEW.title' | translate }}</a><br>
+            <a href="shop">{{ 'NAVIGATION.STORE.title' | translate }}</a><br>
+            <a href="courses">{{ 'NAVIGATION.COURSES.title' | translate }}</a><br>
+            <a href="contacts">{{ 'NAVIGATION.OFFICES.title' | translate }}</a><br>
+            <a href="registration">{{ 'NAVIGATION.PERSONALid.title' | translate }}</a>
         </div>
     </div>
-    <!--  -->
+    <div class="row" style="margin-top: 20px;">
+        <div class="col">
+            <small style="width: 100%; font-style: italic;">
+            © Mitra-Group 2014 © Developed by
+            <a href="https://www.linkedin.com/in/julia-orendovskyi-026a30b6/" target="_blank">Oren-j</a>.
+        </small>
+        </div>
+    </div>
 </div>

@@ -7,30 +7,7 @@
     width: 100%;
 }
 
-.luxio-row-1 {
-    width: 100%;
-    padding: 2%;
-    height: 550px;
-}
-
-.luxio-row-2 {
-    width: 100%;
-    padding: 2%;
-    height: 700px;
-    border-bottom: rgba(128, 128, 128, 0.5) 2px solid;
-}
-
-.left {
-    float: left;
-    height: 100%;
-    margin: auto;
-    margin-top: 50px;
-}
-
-.right {
-    float: right;
-    height: 100%;
-    margin: auto;
+.row {
     margin-top: 50px;
 }
 
@@ -57,11 +34,21 @@
     word-spacing: 6px;
 }
 
+#last {
+    margin-top: 100px;
+}
+
 @media screen and (max-width: 1200px) {
     .sm-text {
         padding: 1%;
         font-size: 18px;
         letter-spacing: 2.5px;
         word-spacing: 5px;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    #last {
+        margin-top: 0;
     }
 }

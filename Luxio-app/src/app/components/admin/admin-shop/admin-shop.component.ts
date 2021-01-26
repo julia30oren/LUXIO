@@ -24,7 +24,7 @@ export class AdminShopComponent implements OnInit {
   public prod_toDelete: Array<any>;
 
   formTemplate = new FormGroup({
-    burcode_id: new FormControl(null, Validators.required),
+    burcode_id: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
     prod_class: new FormControl('', Validators.required),
     prod_collection: new FormControl(''),
@@ -127,7 +127,7 @@ export class AdminShopComponent implements OnInit {
   clearForm() {
     this.formTemplate.reset();
     this.formTemplate.setValue({
-      burcode_id: null,
+      burcode_id: '',
       name: '',
       prod_class: '',
       img_link_1: '',

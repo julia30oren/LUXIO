@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShopService } from 'src/app/services/shop/shop.service';
 import { UserService } from 'src/app/services/user-servise/user.service';
-import { element } from 'protractor';
 
 @Component({
   selector: 'app-shop-cards',

@@ -9,12 +9,6 @@
     font-size: 25px;
 }
 
-.varn {
-    margin-top: 30px;
-    font-family: Century Gothic;
-    font-size: 20px;
-}
-
 .introduction {
     padding: 2%;
     margin-top: 20px;
@@ -31,48 +25,52 @@
     text-transform: none;
 }
 
-.description {
-    font-family: Calibri;
-    color: gray;
-    text-align: center;
-    font-size: 20px;
-    word-spacing: 6px;
-}
-
-.small-card-img {
-    width: 100%;
-    max-width: 300px;
-    max-height: 300px;
-}
-
 .btn-block {
     background-color: rgba(0, 0, 0, 0);
     border: none;
 }
 
-.rendezvous-description,
-.miamy-description {
+.description {
     text-align: center;
     font-family: Century Gothic;
     padding: 5%;
-    background: #FFFFFF;
-    background: -moz-linear-gradient(left, #FFFFFF 0%, #ffffff80 50%, #ffffff00 100%);
-    background: -webkit-linear-gradient(left, #FFFFFF 0%, #ffffff80 50%, #ffffff00 100%);
-    background: linear-gradient(to right, #FFFFFF 0%, #ffffff80 50%, #ffffff00 100%);
 }
 
-.jelli-description,
-.shades-description,
-.voyage-description {
-    text-align: center;
-    font-family: Century Gothic;
-    padding: 5%;
-    height: 100%;
-    background: #FFFFFF;
-    background: -moz-linear-gradient(left, #ffffff00 0%, #ffffff80 50%, #FFFFFF 100%);
-    background: -webkit-linear-gradient(left, #ffffff00 0%, #ffffff80 50%, #FFFFFF 100%);
-    background: linear-gradient(to right, #ffffff00 0%, #ffffff80 50%, #FFFFFF 100%);
+.description>p {
+    font-family: Georgia, serif;
+    color: gray;
+    font-size: 16px;
+    word-spacing: 6px;
 }
+
+@media screen and (max-width: 1200px) {
+    .title {
+        font-size: 20px;
+    }
+    .introduction {
+        font-size: 18px;
+    }
+    .description>p {
+        font-size: 14px;
+        word-spacing: 5px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .title {
+        font-size: 18px;
+    }
+    .introduction {
+        font-size: 14px;
+    }
+    .description>p {
+        font-size: 12px;
+        word-spacing: 4px;
+    }
+}
+
+
+/* --------------------------------------- */
 
 
 /* The flip box container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
@@ -141,87 +139,6 @@
     margin-left: 47%
 }
 
-.therd-row {
-    width: 33%;
-    margin: auto;
-}
-
-.left {
-    float: left;
-    height: 100%;
-}
-
-.right {
-    float: right;
-    height: 100%;
-}
-
-
-/* BUNERS --------------------------------------------------------------------------*/
-
-.buner-jelli,
-.buner-rendezvous,
-.buner-shades,
-.buner-miami,
-.buner-voyage {
-    height: 100%;
-    width: 100%;
-    background-size: cover;
-    background-color: white;
-}
-
-#rendezvous,
-#shades,
-#miamy,
-#voyage {
-    width: 100%;
-    height: 500px;
-}
-
-#rendezvous>.left,
-#miamy>.left {
-    width: 40%;
-}
-
-#rendezvous>.right,
-#miamy>.right {
-    width: 60%;
-}
-
-#shades>.left,
-#voyage>.left {
-    width: 60%;
-}
-
-#shades>.right,
-#voyage>.right {
-    width: 40%;
-}
-
-.buner-jelli {
-    background-size: 550px 400px;
-    background-repeat: no-repeat;
-    background-image: url('https://i.pinimg.com/originals/45/fc/e0/45fce068ce8f008f657fbf13b453e7d9.jpg');
-}
-
-.buner-rendezvous {
-    background-image: url('https://i.pinimg.com/originals/59/b8/71/59b87175281fb4294ca9c2eee28d6d47.jpg');
-}
-
-.buner-miami {
-    background-size: 500px 450px;
-    background-repeat: no-repeat;
-    background-image: url('https://i.pinimg.com/originals/8a/b3/80/8ab380f900bd1e8da627e3e9d0de4c1c.jpg');
-}
-
-.buner-voyage {
-    background-image: url('https://i.pinimg.com/originals/cb/77/93/cb7793a456fb21a86ebc482e481bc95a.png');
-}
-
-.buner-shades {
-    background-image: url('https://i.pinimg.com/originals/40/d8/4b/40d84bc50cdafe802160c267cbdf187c.jpg');
-}
-
 
 /* ----------------------------------------------------------------------- */
 
@@ -254,12 +171,6 @@
 
 /* ----------------- */
 
-.prod-row {
-    width: 1000px;
-    margin: auto;
-    margin-top: 50px;
-}
-
 .card-new {
     height: 400px;
     background-color: rgba(0, 0, 0, 0);
@@ -267,8 +178,7 @@
 }
 
 .small-card-img {
-    width: 300px;
-    height: 300px;
+    width: 100%;
 }
 
 

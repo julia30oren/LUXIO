@@ -27,7 +27,7 @@
         <!-- -------------------------------------info block----------- -->
         <div class="left main-info-sectio" [ngClass]="{Hebrew: languege==='iv'}">
             <!-- ----------------------------------product name---------- -->
-            <div style="width: 500px; height: 100px;" class="animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
+            <div style="width: 500px; height: 100px;">
                 <!-- ------------------------------------------title-------------- -->
                 <br *ngIf="item.prod_class!=='Luxio' ">
                 <p *ngIf="item.prod_class==='Luxio' "><small>&#8470;</small>{{item.burcode_id}}</p>
@@ -65,12 +65,12 @@
             <!--------------------------------------------------- INFORMATION -->
 
             <!-- special information , left by admin -->
-            <p *ngIf="languege==='en'" class="animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">{{item.coment_eng}}</p>
-            <p *ngIf="languege==='ru'" class="animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">{{item.coment_rus}}</p>
-            <p *ngIf="languege==='iv'" class="animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">{{item.coment_iv}}</p>
+            <p *ngIf="languege==='en'">{{item.coment_eng}}</p>
+            <p *ngIf="languege==='ru'">{{item.coment_rus}}</p>
+            <p *ngIf="languege==='iv'">{{item.coment_iv}}</p>
             <!--------------------------------------------------- INFORMATION DEPENDES ON PRODUCT CLASS-->
             <!-- LUXIO option -->
-            <div *ngIf="item.prod_class==='Luxio'" class="animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
+            <div *ngIf="item.prod_class==='Luxio'">
                 <p>{{ 'PROD_DESCRIPTION.LUXIO.main' | translate }}</p>
                 <ul>
                     <li>{{ 'PROD_DESCRIPTION.LUXIO.list-1' | translate }}</li>
@@ -81,15 +81,15 @@
                 </ul>
             </div>
             <!-- OPTIONS option -->
-            <div *ngIf="item.prod_class==='Options'" class="animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
+            <div *ngIf="item.prod_class==='Options'">
                 <p>{{ 'PROD_DESCRIPTION.OPTIONS.main' | translate }}</p>
             </div>
             <!-- PRO-FORM option -->
-            <div *ngIf="item.prod_class==='Hard GEL'" class="animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
+            <div *ngIf="item.prod_class==='Hard GEL'">
                 <p>{{ 'PROD_DESCRIPTION.PRO-FORMANCE.main' | translate }}</p>
             </div>
             <!-- GELPLAY option -->
-            <div *ngIf="item.prod_class==='Gel Play'" class="animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
+            <div *ngIf="item.prod_class==='Gel Play'">
                 <ul>
                     <li>{{ 'PROD_DESCRIPTION.GEL-PLAY.list-1' | translate }}</li>
                     <li>{{ 'PROD_DESCRIPTION.GEL-PLAY.list-2' | translate }}</li>
@@ -107,7 +107,7 @@
         </div>
     </div>
     <!-- -----------------------------------EXTRA -->
-    <div id="extra-info-div" class="animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
+    <div id="extra-info-div">
         <div [ngClass]="{Hebrew: languege==='iv'}" style="margin-top: 50px;">
             <!-- creation -->
             <div class="box">

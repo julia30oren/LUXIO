@@ -4,34 +4,34 @@
 
 <h5 class="title animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.title' | translate}}</h5>
 <p class="introduction animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">
-    <span style="color: brown;">Akzentz</span>{{ 'NEW.loz' | translate}}
+    <span style="color: brown;">AKZÉNTZ</span>{{ 'NEW.loz' | translate}}
 </p>
-<h5 class="varn animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.varn' | translate}}</h5>
 <hr/>
 <!-------------------------------- JELLI --------------------------------------------------------------------------------->
 <!-- ---------------------------main announce--------- -->
-<div id="shades" class="animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow">
-    <div class="right">
-        <div class="buner-jelli"></div>
-    </div>
-    <div class="jelli-description left">
-        <h3>NEW LUXIO</h3>
-        <h1>JELLI</h1>
-        <h5>UV/LED COLOUR COLLECTION</h5>
-        <br>
-        <p [ngClass]="{Hebrew: languege==='iv'}" class="description">Create, layer and play with Luxio Jelli, sheer layable colours that can be worn alone, over art for rich depth and dimension, or use for water colour effects.</p>
-        <p class="description" style="margin-top: -15px;">New Luxio
-            <span style="color: brown;"> Jelly Teal</span>,
-            <span style="color: brown;"> Jelly Black</span>,
-            <span style="color: brown;"> Jelly Red</span>.
-        </p>
-        <p style="font-family: Calibri;font-size: small;">{{ 'NEW.info-2' | translate}}</p>
-        <br>
-        <!-- -------------------------------------button to open---------------- -->
-        <button type="button" (click)="openShades_shop()" class="btn btn-light btn-block">
-            <p *ngIf="!jelliOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-shop' | translate}}</p>
-            <p *ngIf="jelliOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-close' | translate}}</p>
-        </button>
+<div class="container-fluid animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow">
+    <div class="row">
+        <div class="col-lg-6 col-12">
+            <img style="width: 100%;" src="https://i.pinimg.com/originals/45/fc/e0/45fce068ce8f008f657fbf13b453e7d9.jpg" alt="" />
+        </div>
+        <div class="col-lg-6 col-12 description">
+            <h3>NEW LUXIO</h3>
+            <h1>JELLI</h1>
+            <h5>UV/LED COLOUR COLLECTION</h5>
+            <br>
+            <p [ngClass]="{Hebrew: languege==='iv'}">Create, layer and play with Luxio Jelli, sheer layable colours that can be worn alone, over art for rich depth and dimension, or use for water colour effects.</p>
+            <p style="margin-top: -15px;">New Luxio
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_jelly_teal/" style="color: brown;"> Jelly Teal</a>,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_jelly_black/" style="color: brown;"> Jelly Black</a>,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_jelly_red/" style="color: brown;"> Jelly Red</a>.
+            </p>
+            <br>
+            <small>{{ 'NEW.info-2' | translate}}</small>
+            <button type="button" (click)="openShades_shop()" class="btn btn-light btn-block">
+                <p *ngIf="!jelliOpen" style="color: rgb(117, 0, 0); font-size: 20px;">{{ 'NEW.button-shop' | translate}}</p>
+                <p *ngIf="jelliOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-close' | translate}}</p>
+            </button>
+        </div>
     </div>
 </div>
 
@@ -60,36 +60,37 @@
 <hr/>
 <!---------------------------- RENDEZVOUS --------------------------------------------------------------------------->
 <!-- ---------------------------main announce--------- -->
-<div id="rendezvous" class="animate__animated animate__fadeInRight animate__delay-0.5s animate__slow wow">
-    <div class="left">
-        <div class="buner-rendezvous"></div>
-    </div>
-    <div class="right rendezvous-description">
-        <h3>NEW LUXIO</h3>
-        <h1>RENDEZVOUS</h1>
-        <h5>UV/LED COLOUR COLLECTION</h5>
-        <br>
-        <p [ngClass]="{Hebrew: languege==='iv'}" class="description">{{ 'NEW.rendezvous-m' | translate}}</p>
-        <p class="description" style="margin-top: -15px;">
-            <span style="color: brown;"> Sentiment</span>,
-            <span style="color: brown;"> Secret</span>,
-            <span style="color: brown;"> Sultry</span>,
-            <span style="color: brown;"> Provoke</span>,
-            <span style="color: brown;"> Tryst</span>,
-            <span style="color: brown;"> Cryptic</span>.
-        </p>
-        <p style="font-family: Calibri;font-size: small;">{{ 'NEW.info-2' | translate}}</p>
-        <br>
-        <!-- -------------------------------------button to open---------------- -->
-        <button type="button" (click)="openRendezvous_shop()" class="btn btn-light btn-block">
-            <p *ngIf="!rendezvousOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-shop' | translate}}</p>
-            <p *ngIf="rendezvousOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-close' | translate}}</p>
-        </button>
+<div class="container-fluid animate__animated animate__fadeInRight animate__delay-0.5s animate__slow wow">
+    <div class="row">
+        <div class="col-lg-6 col-12">
+            <img style="width: 100%;" src="https://i.pinimg.com/originals/59/b8/71/59b87175281fb4294ca9c2eee28d6d47.jpg" alt="" />
+        </div>
+        <div class="col-lg-6 col-12 description">
+            <h3>NEW LUXIO</h3>
+            <h1>RENDEZVOUS</h1>
+            <h5>UV/LED COLOUR COLLECTION</h5>
+            <br>
+            <p [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.rendezvous-m' | translate}}</p>
+            <p style="margin-top: -15px;">
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_sentiment/" style="color: brown;"> Sentiment</a>,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_secret/" style="color: brown;"> Secret</a>,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_sultry" style="color: brown;"> Sultry</a>,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_provoke/" style="color: brown;"> Provoke</a>,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_tryst/" style="color: brown;"> Tryst</a>,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_cryptic/" style="color: brown;"> Cryptic</a>.
+            </p>
+            <br>
+            <small>{{ 'NEW.info-2' | translate}}</small>
+            <button type="button" (click)="openRendezvous_shop()" class="btn btn-light btn-block">
+                <p *ngIf="!rendezvousOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-shop' | translate}}</p>
+                <p *ngIf="rendezvousOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-close' | translate}}</p>
+            </button>
+        </div>
     </div>
 </div>
 
 <!-- ------------------------------------------productes-------------------- -->
-<div class="row row-cols-1 row-cols-md-3 g-4 prod-row " *ngIf="rendezvousOpen">
+<div class="row row-cols-1 row-cols-md-3 g-4" *ngIf="rendezvousOpen">
     <div class="col" id={{item.burcode_id}} *ngFor="let item of rendezvous">
         <div class="card card-new" id={{item.burcode_id}}>
             <div class="flip-card" (click)="select(item.burcode_id)">
@@ -113,33 +114,34 @@
 <hr/>
 <!-------------------------------- SHADES --------------------------------------------------------------------------------->
 <!-- ---------------------------main announce--------- -->
-<div id="shades" class="animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow">
-    <div class="right">
-        <div class="buner-shades"></div>
-    </div>
-    <div class="shades-description left">
-        <h3>NEW TRINITY</h3>
-        <h1>SHADES</h1>
-        <h5>UV/LED PRO-FORMANCE LINE</h5>
-        <br>
-        <p [ngClass]="{Hebrew: languege==='iv'}" class="description">{{ 'NEW.sades-m' | translate}}</p>
-        <p class="description" style="margin-top: -15px;">Trinity Shades
-            <span style="color: brown;"> Cool</span>,
-            <span style="color: brown;"> Natural</span>,
-            <span style="color: brown;"> Warm</span>.
-        </p>
-        <p style="font-family: Calibri;font-size: small;">{{ 'NEW.info-2' | translate}}</p>
-        <br>
-        <!-- -------------------------------------button to open---------------- -->
-        <button type="button" (click)="openShades_shop()" class="btn btn-light btn-block">
-            <p *ngIf="!shadesOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-shop' | translate}}</p>
-            <p *ngIf="shadesOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-close' | translate}}</p>
-        </button>
+<div class="container-fluid animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow">
+    <div class="row">
+        <div class="col-lg-6 col-12">
+            <img style="width: 100%;" src="https://i.pinimg.com/originals/40/d8/4b/40d84bc50cdafe802160c267cbdf187c.jpg" alt="" />
+        </div>
+        <div class="col-lg-6 col-12 description">
+            <h3>NEW TRINITY</h3>
+            <h1>SHADES</h1>
+            <h5>UV/LED PRO-FORMANCE LINE</h5>
+            <br>
+            <p [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.sades-m' | translate}}</p>
+            <p style="margin-top: -15px;">Trinity Shades
+                <a target="_blank" href="https://www.instagram.com/explore/tags/trinitycool/" style="color: brown;"> Cool</a>,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/trinitynatural/" style="color: brown;"> Natural</a>,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/trinitywarm/" style="color: brown;"> Warm</a>.
+            </p>
+            <br>
+            <small>{{ 'NEW.info-2' | translate}}</small>
+            <button type="button" (click)="openShades_shop()" class="btn btn-light btn-block">
+                <p *ngIf="!shadesOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-shop' | translate}}</p>
+                <p *ngIf="shadesOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-close' | translate}}</p>
+            </button>
+        </div>
     </div>
 </div>
 
 <!-- ------------------------------------------productes-------------------- -->
-<div class="row row-cols-1 row-cols-md-3 g-4 prod-row " *ngIf="shadesOpen">
+<div class="row row-cols-1 row-cols-md-3 g-4" *ngIf="shadesOpen">
     <div class="col" id={{item.burcode_id}} *ngFor="let item of shades">
         <div class="card card-new" id={{item.burcode_id}}>
             <div class="flip-card" (click)="select(item.burcode_id)">
@@ -163,33 +165,34 @@
 <hr/>
 <!--------------------------------------------------- MIAMI------------------------------------------------------------------------------ -->
 <!-- ---------------------------main announce--------- -->
-<div id="miamy" class="animate__animated animate__fadeInRight animate__delay-0.5s animate__slow wow">
-    <div class="left">
-        <div class="buner-miami"></div>
-    </div>
-    <div class="right miamy-description">
-        <h3>NEW GEL PLAY</h3>
-        <h1>MIAMI</h1>
-        <h5>GLITTER SHIFTERS COLLECTION</h5>
-        <br>
-        <p [ngClass]="{Hebrew: languege==='iv'}" class="description">{{ 'NEW.miami-m' | translate}}</p>
-        <p class="description" style="margin-top: -15px;">Gel Play Miami Glitter Shifter:
-            <span style="color: brown;"> Heat</span>,
-            <span style="color: brown;"> Night</span>,
-            <span style="color: brown;"> Sunset</span>.
-        </p>
-        <p style="font-family: Calibri;font-size: small;">{{ 'NEW.info-2' | translate}}</p>
-        <br>
-        <!-- -------------------------------------button to open---------------- -->
-        <button type="button" (click)="openMiami_shop()" class="btn btn-light btn-block">
+<div class="container-fluid animate__animated animate__fadeInRight animate__delay-0.5s animate__slow wow">
+    <div class="row">
+        <div class="col-lg-6 col-12">
+            <img style="width: 100%;" src="https://i.pinimg.com/originals/8a/b3/80/8ab380f900bd1e8da627e3e9d0de4c1c.jpg" alt="" />
+        </div>
+        <div class="col-lg-6 col-12 description">
+            <h3>NEW GEL PLAY</h3>
+            <h1>MIAMI</h1>
+            <h5>GLITTER SHIFTERS COLLECTION</h5>
+            <br>
+            <p [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.miami-m' | translate}}</p>
+            <p style="margin-top: -15px;">Gel Play Miami Glitter Shifter:
+                <a target="_blank" href="https://www.instagram.com/explore/tags/gelplaymiamiheat/" style="color: brown;"> Heat</a>,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/gelplaymiaminight/" style="color: brown;"> Night</a>,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/gelplaymiamisunset/" style="color: brown;"> Sunset</a>.
+            </p>
+            <br>
+            <small>{{ 'NEW.info-2' | translate}}</small>
+            <button type="button" (click)="openMiami_shop()" class="btn btn-light btn-block">
             <p *ngIf="!miamiOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-shop' | translate}}</p>
             <p *ngIf="miamiOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-close' | translate}}</p>
         </button>
+        </div>
     </div>
 </div>
 
 <!-- ------------------------------------------productes-------------------- -->
-<div class="row row-cols-1 row-cols-md-3 g-4 prod-row " *ngIf="miamiOpen">
+<div class="row row-cols-1 row-cols-md-3 g-4" *ngIf="miamiOpen">
     <div class="col" id={{item.burcode_id}} *ngFor="let item of miami">
         <div class="card card-new" id={{item.burcode_id}}>
             <div class="flip-card" (click)="select(item.burcode_id)">
@@ -213,36 +216,37 @@
 <hr/>
 <!-- VOYAGE ------------------------------------------------------------------------------------->
 <!-- ---------------------------main announce--------- -->
-<div id="voyage" class="animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow">
-    <div class="right">
-        <div class="buner-voyage"></div>
-    </div>
-    <div class="left voyage-description">
-        <h3>NEW LUXIO</h3>
-        <h1>VOYAGE</h1>
-        <h5>UV/LED COLOUR COLLECTION</h5>
-        <br>
-        <p [ngClass]="{Hebrew: languege==='iv'}" class="description">{{ 'NEW.voyage-m' | translate}}</p>
-        <p class="description" style="margin-top: -15px;">
-            <span style="color: brown;"> Lustful</span>,
-            <span style="color: brown;"> Glimpse</span>,
-            <span style="color: brown;"> Jaded</span>,
-            <span style="color: brown;"> Instinct</span>,
-            <span style="color: brown;"> Persuasion</span>,
-            <span style="color: brown;"> Virtue</span>.
-        </p>
-        <p style="font-family: Calibri;font-size: small;">{{ 'NEW.info-1' | translate}}</p>
-        <br>
-        <!-- -------------------------------------button to open---------------- -->
-        <button type="button" (click)="openVoyage_shop()" class="btn btn-light btn-block">
+<div class="container-fluid animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow">
+    <div class="row">
+        <div class="col-lg-6 col-12">
+            <img style="width: 100%;" src="https://i.pinimg.com/originals/cb/77/93/cb7793a456fb21a86ebc482e481bc95a.png" alt="" />
+        </div>
+        <div class="col-lg-6 col-12 description">
+            <h3>NEW LUXIO</h3>
+            <h1>VOYAGE</h1>
+            <h5>UV/LED COLOUR COLLECTION</h5>
+            <br>
+            <p [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.voyage-m' | translate}}</p>
+            <p style="margin-top: -15px;">
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_lustful/" style="color: brown;"> Lustful</a>,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_glimpse/" style="color: brown;"> Glimpse</a>,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_jaded/" style="color: brown;"> Jaded</a>,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_instinct/" style="color: brown;"> Instinct</a>,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_persuasion/" style="color: brown;"> Persuasion</a>,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_virture/" style="color: brown;"> Virtue</a>.
+            </p>
+            <br>
+            <small>{{ 'NEW.info-1' | translate}}</small>
+            <button type="button" (click)="openVoyage_shop()" class="btn btn-light btn-block">
             <p *ngIf="!voyageOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-shop' | translate}}</p>
             <p *ngIf="voyageOpen" style="color: rgb(117, 0, 0);">{{ 'NEW.button-close' | translate}}</p>
         </button>
+        </div>
     </div>
 </div>
 
 <!-- ------------------------------------------productes-------------------- -->
-<div class="row row-cols-1 row-cols-md-3 g-4 prod-row " *ngIf="voyageOpen">
+<div class="row row-cols-1 row-cols-md-3 g-4" *ngIf="voyageOpen">
     <div class="col" id={{item.burcode_id}} *ngFor="let item of voyage">
         <div class="card card-new" id={{item.burcode_id}}>
             <div class="flip-card" (click)="select(item.burcode_id)">
@@ -263,3 +267,4 @@
         </div>
     </div>
 </div>
+<hr/>

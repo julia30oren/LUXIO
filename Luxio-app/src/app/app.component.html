@@ -196,6 +196,8 @@
         </div>
     </nav>
 </div>
+
+
 <!-- ------------------------------------------------MAIN----------- -->
 <div class="main-app">
     <!-- ----------------------------------------------------------------- -->
@@ -271,14 +273,14 @@
     </div>
     <!-- -------------------------------------- -->
 
-    <!-- CONTENT -->
-    <div class="content" *ngIf="!selectedProd">
+    <!-- CONTENT *ngIf="!selectedProd" -->
+    <div class="content">
         <router-outlet></router-outlet>
     </div>
 
 </div>
 <!-- --------------------------------------------------ADVERTISEMENT-------- ------ -->
-<div class="ADVERTISEMENT" *ngIf="advertisement">
+<!-- <div class="ADVERTISEMENT" *ngIf="advertisement">
     <div class="sign-in-div" [ngClass]="{H: languege==='iv'}">
         <h1> {{ 'SIGN-IN.OPEN-FORM.line-1' | translate }}</h1>
         <img style="border: white 15px solid; width: 100%;" src="https://i.pinimg.com/originals/8a/c6/19/8ac619815ba0e122065b704e46781e72.jpg">
@@ -289,7 +291,7 @@
             <button class="message-link" (click)="close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-3' | translate }}</button>
         </div>
     </div>
-</div>
+</div> -->
 <!-- ------------------------------------------------FOOTER -->
 <app-footer></app-footer>
 <!--  -->

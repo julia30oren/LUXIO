@@ -4,18 +4,34 @@
 }
 
 #Big-Image-comp {
-    height: 800px;
+    position: fixed;
+    z-index: 10;
+    background-color: white;
+    border-top: brown 2px solid;
+    border-bottom: brown 2px solid;
+    padding: 3px;
+    top: 0px;
+    height: 100%;
     width: 100%;
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    /* make scrollbar transparent */
 }
 
 #Image-row {
     margin: auto;
+    margin-top: 100px;
     width: 1200px;
     height: 500px;
 }
 
 #extra-info-div {
     margin: auto;
+    margin-bottom: 100px;
     width: 1200px;
     height: 300px;
 }

@@ -3,19 +3,12 @@
     direction: rtl;
 }
 
-.CONTACTS {
-    width: 100%;
-    height: 700px;
-}
-
-.line {
-    border-top: black 1px solid;
+.half {
     margin-top: 50px;
-    margin-bottom: 50px;
 }
 
 .facebook:hover {
-    color: rgb(212, 99, 99);
+    color: brown;
 }
 
 .icons {

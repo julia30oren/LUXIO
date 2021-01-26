@@ -3,62 +3,12 @@
     direction: rtl;
 }
 
-#welcom {
-    width: 60%;
-    margin: auto;
+.block {
     margin-top: 50px;
-}
-
-#prod-line {
-    width: 100%;
-    text-align: center;
-    font-family: Microsoft Yi Baiti;
-    letter-spacing: 3px;
-    word-spacing: 3px;
-    margin-top: 70px;
-    background-color: rgb(65, 65, 65);
-    color: white;
-}
-
-.title {
-    text-align: center;
-    margin-top: 50px;
-    font-family: Century Gothic;
-    font-size: 35px;
-}
-
-#products-imgLinks {
-    width: 1200px;
-    height: 1000px;
-    margin: auto;
-}
-
-@media screen and (max-width: 1200px) {
-    #products-imgLinks {
-        width: 1000px;
-        height: 820px;
-    }
-}
-
-@media screen and (min-width: 900px) {
-    .fl-left {
-        float: left;
-    }
-    #lux-opt-gpl {
-        height: 100%;
-        width: 64%;
-    }
-    #prof-bas {
-        height: 100%;
-        margin-left: 5px;
-        width: 35.5%;
-    }
 }
 
 .introduction {
-    padding-left: 2%;
-    padding-right: 2%;
-    color: gray;
+    padding: 1%;
     font-family: Georgia, serif;
     font-size: 20px;
     letter-spacing: 3px;
@@ -70,119 +20,52 @@
     text-transform: none;
 }
 
-.bl-text {
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+.welcom {
     text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
+    font-family: Century Gothic;
+    font-size: 35px;
+    width: 60%;
+    margin: auto;
+    margin-top: 50px;
 }
 
-.bl-text>h1 {
-    font-family: Microsoft Yi Baiti;
-    letter-spacing: 3px;
-    word-spacing: 3px;
-    font-size: 100px;
+.welc {
+    text-align: center;
+    font-family: Century Gothic;
+    font-size: 25px;
+    width: 90%;
+    margin: auto;
 }
 
-.bl-text>p {
-    font-family: Microsoft Yi Baiti;
-    letter-spacing: 3px;
-    font-size: 30px;
+@media screen and (max-width: 1200px) {
+    .introduction {
+        font-size: 18px;
+    }
+    .welcom {
+        width: 80%;
+        font-size: 25px;
+        margin-top: 0px;
+    }
+    .welc {
+        font-size: 20px;
+        width: 100%;
+    }
 }
 
-#options-bl>.bl-text>h1,
-#proformance-bl>.bl-text>h1,
-#basics-bl>.bl-text>h1 {
-    font-family: Microsoft Yi Baiti;
-    letter-spacing: 3px;
-    word-spacing: 3px;
-    font-size: 50px;
-}
-
-
-/* --------- */
-
-#luxio-bl {
-    height: 40%;
-    width: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://i.pinimg.com/originals/74/5a/d0/745ad0d243d9700f1388032b919be514.png');
-    /* Position and center the image to scale nicely on all screens */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
-
-#luxio-bl:hover {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://i.pinimg.com/originals/74/5a/d0/745ad0d243d9700f1388032b919be514.png');
-}
-
-#options-bl {
-    height: 59%;
-    width: 35%;
-    margin-top: 5px;
-    float: left;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://i.pinimg.com/originals/69/ef/b7/69efb71ddc48897f41d985499001ee61.png');
-    /* Position and center the image to scale nicely on all screens */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
-
-#options-bl:hover {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://i.pinimg.com/originals/69/ef/b7/69efb71ddc48897f41d985499001ee61.png');
-}
-
-#gelplay-bl {
-    height: 59%;
-    width: 64.2%;
-    margin-top: 5px;
-    margin-left: 5px;
-    float: left;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://i.pinimg.com/originals/ba/8e/34/ba8e34b532bb53be4f2f7849c24167e9.png');
-    /* Position and center the image to scale nicely on all screens */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
-
-#gelplay-bl:hover {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://i.pinimg.com/originals/ba/8e/34/ba8e34b532bb53be4f2f7849c24167e9.png');
-}
-
-#proformance-bl {
-    height: 69%;
-    width: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://i.pinimg.com/originals/c9/ac/e2/c9ace26f21ebea3b081f9b1a65976690.png');
-    /* Position and center the image to scale nicely on all screens */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
-
-#proformance-bl:hover {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://i.pinimg.com/originals/c9/ac/e2/c9ace26f21ebea3b081f9b1a65976690.png');
-}
-
-#basics-bl {
-    height: 30%;
-    width: 100%;
-    margin-top: 5px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://i.pinimg.com/originals/f3/8b/76/f38b76ca764ae6d53ba33c133ad9aed9.png');
-    /* Position and center the image to scale nicely on all screens */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
-
-#basics-bl:hover {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://i.pinimg.com/originals/f3/8b/76/f38b76ca764ae6d53ba33c133ad9aed9.png');
+@media screen and (max-width: 900px) {
+    .introduction {
+        font-size: 16px;
+    }
+    .welcom {
+        width: 100%;
+        font-size: 18px;
+    }
+    .welc {
+        font-size: 16px;
+        width: 100%;
+    }
+    #prof {
+        width: 90%;
+        margin: auto;
+    }
 }

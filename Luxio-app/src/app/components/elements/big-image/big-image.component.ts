@@ -32,7 +32,7 @@ export class BigImageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
 
     this.lang_service._selected_from_service
       .subscribe(date => {

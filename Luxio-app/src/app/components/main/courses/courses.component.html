@@ -1,73 +1,70 @@
-<div class="courser-row">
-    <div class="right animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow">
-        <div id="first-buner"></div>
-    </div>
-
-    <div class="text-block left animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">
-        <h1>{{ 'COURSES.BLOK-1.TEXT-1' | translate}}
-            <span style="color:gray;">*<span  class="red-text">{{ 'COURSES.BLOK-1.TEXT-2' | translate}}</span>*</span>
-            {{ 'COURSES.BLOK-1.TEXT-3' | translate}}</h1>
-        <p>{{ 'COURSES.BLOK-1.TEXT-4' | translate}}</p>
-        <small>{{ 'CONTACT.city' | translate}}, {{ 'CONTACT.street' | translate}}</small>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="contactMe1(contartPhone.value)">{{ 'COURSES.cont-f.text' | translate}}</button>
+<div class="container-fluid">
+    <div class="row">
+        <div class="text-block col-md-6 col-12">
+            <h1>{{ 'COURSES.BLOK-1.TEXT-1' | translate}}
+                <span style="color:gray;">*<span  class="red-text">{{ 'COURSES.BLOK-1.TEXT-2' | translate}}</span>*</span>
+                {{ 'COURSES.BLOK-1.TEXT-3' | translate}}</h1>
+            <p>{{ 'COURSES.BLOK-1.TEXT-4' | translate}}</p>
+            <small>{{ 'CONTACT.city' | translate}}, {{ 'CONTACT.street' | translate}}</small>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary" type="button" (click)="contactMe1(contartPhone.value)">{{ 'COURSES.cont-f.text' | translate}}</button>
+                </div>
+                <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" [ngClass]="{error: phone1 === false}" placeholder="{{ 'COURSES.cont-f.button' | translate}}" #contartPhone>
             </div>
-            <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" [ngClass]="{error: phone1 === false}" placeholder="{{ 'COURSES.cont-f.button' | translate}}" #contartPhone>
-        </div>
-        <div *ngIf="phone1 === false">
-            <p style="color: red;">{{ 'COURSES.cont-f.alert' | translate}}</p>
-        </div>
-    </div>
-</div>
-
-<div class="courser-row">
-    <div class="left  animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow">
-        <div id="second-buner"></div>
-    </div>
-
-    <div class="text-block right  animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">
-        <h1>
-            {{ 'COURSES.BLOK-2.TEXT-1' | translate}}
-            <span style="color:gray;">*<span  class="red-text">{{ 'COURSES.BLOK-2.TEXT-2' | translate}}</span>*</span>
-            {{ 'COURSES.BLOK-2.TEXT-3' | translate}}
-        </h1>
-        <p>{{ 'COURSES.BLOK-2.TEXT-4' | translate}}</p>
-        <small>{{ 'COURSES.BLOK-2.TEXT-5' | translate}}</small>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="contactMe2(contartPhone.value)">{{ 'COURSES.cont-f.text' | translate}}</button>
+            <div *ngIf="phone1 === false">
+                <p style="color: red;">{{ 'COURSES.cont-f.alert' | translate}}</p>
             </div>
-            <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" [ngClass]="{error: phone1 === false}" placeholder="{{ 'COURSES.cont-f.button' | translate}}" #contartPhone>
         </div>
-        <div *ngIf="phone1 === false">
-            <p style="color: red;">{{ 'COURSES.cont-f.alert' | translate}}</p>
+        <div class="col-md-6 col-12">
+            <img style="width: 100%;" src="https://i.pinimg.com/originals/3b/58/84/3b5884b50b3175eaf8f17ad738fabe7a.png" alt="" />
         </div>
     </div>
-</div>
-
-<div class="courser-row">
-    <div class="right  animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow">
-        <div id="therd-buner"></div>
-    </div>
-
-    <div class="text-block left  animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">
-        <h1>
-            {{ 'COURSES.BLOK-3.TEXT-1' | translate}}
-            <span style="color:gray;">*
-                <span class="red-text">{{ 'COURSES.BLOK-3.TEXT-2' | translate}}</span>*
-            </span>
-        </h1>
-        <p>{{ 'COURSES.BLOK-3.TEXT-4' | translate}}</p>
-        <small>{{ 'COURSES.BLOK-3.TEXT-5' | translate}}</small>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="contactMe3(contartPhone.value)">{{ 'COURSES.cont-f.text' | translate}}</button>
+    <div class="row">
+        <div class="col-md-6 col-12">
+            <img style="width: 100%;" src="https://i.pinimg.com/originals/04/70/a2/0470a2f453d61ce9270d1990b514f302.jpg" alt="" />
+        </div>
+        <div class="text-block col-md-6 col-12">
+            <h1>
+                {{ 'COURSES.BLOK-2.TEXT-1' | translate}}
+                <span style="color:gray;">*<span  class="red-text">{{ 'COURSES.BLOK-2.TEXT-2' | translate}}</span>*</span>
+                {{ 'COURSES.BLOK-2.TEXT-3' | translate}}
+            </h1>
+            <p>{{ 'COURSES.BLOK-2.TEXT-4' | translate}}</p>
+            <small>{{ 'COURSES.BLOK-2.TEXT-5' | translate}}</small>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary" type="button" (click)="contactMe2(contartPhone.value)">{{ 'COURSES.cont-f.text' | translate}}</button>
+                </div>
+                <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" [ngClass]="{error: phone1 === false}" placeholder="{{ 'COURSES.cont-f.button' | translate}}" #contartPhone>
             </div>
-            <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" [ngClass]="{error: phone1 === false}" placeholder="{{ 'COURSES.cont-f.button' | translate}}" #contartPhone>
+            <div *ngIf="phone1 === false">
+                <p style="color: red;">{{ 'COURSES.cont-f.alert' | translate}}</p>
+            </div>
         </div>
-        <div *ngIf="phone1 === false">
-            <p style="color: red;">{{ 'COURSES.cont-f.alert' | translate}}</p>
+    </div>
+    <div class="row">
+        <div class="text-block col-md-6 col-12">
+            <h1>
+                {{ 'COURSES.BLOK-3.TEXT-1' | translate}}
+                <span style="color:gray;">*
+                    <span class="red-text">{{ 'COURSES.BLOK-3.TEXT-2' | translate}}</span>*
+                </span>
+            </h1>
+            <p>{{ 'COURSES.BLOK-3.TEXT-4' | translate}}</p>
+            <small>{{ 'COURSES.BLOK-3.TEXT-5' | translate}}</small>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary" type="button" (click)="contactMe3(contartPhone.value)">{{ 'COURSES.cont-f.text' | translate}}</button>
+                </div>
+                <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" [ngClass]="{error: phone1 === false}" placeholder="{{ 'COURSES.cont-f.button' | translate}}" #contartPhone>
+            </div>
+            <div *ngIf="phone1 === false">
+                <p style="color: red;">{{ 'COURSES.cont-f.alert' | translate}}</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-12">
+            <img style="width: 100%;" src="https://i.pinimg.com/originals/ae/36/93/ae3693cf137e5e1066140e5d71acc54b.jpg" alt="" />
         </div>
     </div>
 </div>
