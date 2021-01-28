@@ -9,7 +9,7 @@ import { LanguageService } from 'src/app/services/language.service';
 })
 export class SignInComponent implements OnInit {
 
-  public langIv: boolean;
+  public languege: string;
 
   constructor(
     private regService: RegistrationService,
@@ -18,11 +18,7 @@ export class SignInComponent implements OnInit {
 
   ngOnInit() {
     this.lang_service._selected_from_service
-      .subscribe(date => {
-        if (date === 'iv') {
-          this.langIv = true;
-        } else this.langIv = false;
-      })
+      .subscribe(date => { this.languege = date; })
   }
 
   getID_regForm() {

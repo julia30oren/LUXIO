@@ -11,6 +11,7 @@ import { LanguageService } from 'src/app/services/language.service';
 export class ShopComponent implements OnInit {
 
   public languege: string;
+  public doSortState: boolean = false;
   public moreButtonVisible: boolean = true;
   public shopToShow: any[];
   public shop: any[];
@@ -40,6 +41,10 @@ export class ShopComponent implements OnInit {
 
     this.lang_service._selected_from_service
       .subscribe(date => { this.languege = date });
+  }
+
+  doSort() {
+    this.doSortState = !this.doSortState
   }
 
   getSorted(by_class, by_color, by_tint, by_transparency) {

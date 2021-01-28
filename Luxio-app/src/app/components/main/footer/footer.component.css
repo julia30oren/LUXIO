@@ -1,4 +1,5 @@
-.Hebrew>p {
+.Hebrew {
+    text-align: right;
     direction: rtl;
 }
 
@@ -16,15 +17,15 @@
 }
 
 .footer-link {
-    font-family: Century Gothic;
     margin-top: 50px;
-    color: white;
-    letter-spacing: 1.6px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 3.4px;
+    word-spacing: 3.4px;
 }
 
 .footer-link>h1 {
-    font-weight: 500;
-    font-size: 20px;
+    color: white;
+    font-size: 18px;
 }
 
 .footer-link>a {
@@ -34,7 +35,7 @@
 
 .footer-link>p {
     color: gray;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 .footer-link>a:hover {
@@ -50,7 +51,7 @@
         display: none;
     }
     .footer-link>h1 {
-        font-size: 18px;
+        font-size: 16px;
     }
     .footer-link>a {
         font-size: 12px;

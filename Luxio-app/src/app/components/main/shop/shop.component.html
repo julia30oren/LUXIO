@@ -1,25 +1,20 @@
-<div [ngClass]="{Hebrew: languege==='iv'}" class="SHOP">
-    <div class="shop-buner animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow"></div>
-    <!-- SORT -->
-    <div class="sort">
-        <form>
-            <div class="form-row">
-                <button type="submit" class="btn btn-outline-dark" (click)="getAll()">
-                    {{ 'SEARCH.all-button' | translate }}
-                </button>
+<img style="width: 100%;" class="animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" src="https://i.pinimg.com/originals/ee/9c/48/ee9c48b36e879ebf783f6246f0926ce6.png" alt="AKZENTZ luxio" />
+<!-- SORT -->
+<button style="margin-top: 30px;" type="button" class="btn btn-link" [ngClass]="{Hebrew: languege==='iv'}" (click)="doSort();">{{ 'SHOP.link' | translate }}<i class="fas fa-sort-down"></i></button>
 
-                <select class="custom-select" #prod_class>
-                    <option value='' selected>{{ 'SEARCH.line' | translate }} {{ 'SEARCH.not-selected' | translate }}</option>
-                    <option value="basics">{{ 'SEARCH.OPTIONS.basics' | translate }}</option>
-                    <option value="Luxio">{{ 'SEARCH.OPTIONS.Luxio' | translate }}</option>
-                    <option value="Options">{{ 'SEARCH.OPTIONS.Options' | translate }}</option>
-                    <option value="Gel Play">{{ 'SEARCH.OPTIONS.Gel-Play' | translate }}</option>
-                    <option value="Hard GEL">{{ 'SEARCH.OPTIONS.Hard-GEL' | translate }}</option>
-                    <option value="materials">{{ 'SEARCH.OPTIONS.materials' | translate }}</option>
-                    <option value="accessories">{{ 'SEARCH.OPTIONS.accessories' | translate }}</option>
-                </select>
+<form style="padding: 0;" *ngIf="doSortState" [ngClass]="{Hebrew: languege==='iv'}">
+    <select class="form-control form-control-sm container-fluid animate__animated animate__fadeInDown animate__slow wow" #prod_class (change)="getSorted(prod_class.value, color.value, tint.value, transparency.value)">
+                <option value='' selected>{{ 'SEARCH.line' | translate }} {{ 'SEARCH.not-selected' | translate }}</option>
+                <option value="basics">{{ 'SEARCH.OPTIONS.basics' | translate }}</option>
+                <option value="Luxio">{{ 'SEARCH.OPTIONS.Luxio' | translate }}</option>
+                <option value="Options">{{ 'SEARCH.OPTIONS.Options' | translate }}</option>
+                <option value="Gel Play">{{ 'SEARCH.OPTIONS.Gel-Play' | translate }}</option>
+                <option value="Hard GEL">{{ 'SEARCH.OPTIONS.Hard-GEL' | translate }}</option>
+                <option value="materials">{{ 'SEARCH.OPTIONS.materials' | translate }}</option>
+                <option value="accessories">{{ 'SEARCH.OPTIONS.accessories' | translate }}</option>
+            </select>
 
-                <select class="custom-select" #color>
+    <select class="form-control form-control-sm container-fluid animate__animated animate__fadeInDown animate__slow animate__delay-1s wow" #color (change)="getSorted(prod_class.value, color.value, tint.value, transparency.value)">
                         <option value='' selected>{{ 'SEARCH.color' | translate }} {{ 'SEARCH.not-selected' | translate }}</option>
                         <option value='white'>{{ 'SEARCH.OPTIONS.white' | translate }}</option>
                         <option value='black'>{{ 'SEARCH.OPTIONS.black' | translate }}</option>
@@ -35,28 +30,23 @@
                         <option value='gray'>{{ 'SEARCH.OPTIONS.gray' | translate }}</option>
                 </select>
 
-                <select class="custom-select" #tint>
+    <select class="form-control form-control-sm container-fluid animate__animated animate__fadeInDown animate__slow animate__delay-2s wow" #tint (change)="getSorted(prod_class.value, color.value, tint.value, transparency.value)">
                         <option value="" selected>{{ 'SEARCH.tint' | translate }} {{ 'SEARCH.not-selected' | translate }}</option>
                         <option value='light'>{{ 'SEARCH.OPTIONS.light' | translate }}</option>
                         <option value='dark'>{{ 'SEARCH.OPTIONS.dark' | translate }}</option>
                         <option value='bright'>{{ 'SEARCH.OPTIONS.bright' | translate }}</option>
                 </select>
 
-                <select class="custom-select" #transparency>
+    <select class="form-control form-control-sm form-control form-control-sm container-fluid animate__animated animate__fadeInDown animate__slow animate__delay-3s wow" #transparency (change)="getSorted(prod_class.value, color.value, tint.value, transparency.value)">
                     <option value="" selected>{{ 'SEARCH.transparency' | translate }} {{ 'SEARCH.not-selected' | translate }}</option>
                     <option value='see-through'>{{ 'SEARCH.OPTIONS.see-through' | translate }}</option>
                     <option value='dense'>{{ 'SEARCH.OPTIONS.dense' | translate }}</option>
                 </select>
-
-                <button type="submit" class="btn btn-outline-dark" (click)="getSorted(prod_class.value, color.value, tint.value, transparency.value)">
-                    {{ 'SEARCH.sort-button' | translate }}
+    <button type="button" class="btn btn-link animate__animated animate__fadeInDown animate__slow animate__delay-4s wow" (click)="getAll()">
+                    {{ 'SEARCH.all-button' | translate }}
                 </button>
-            </div>
-        </form>
-    </div>
-</div>
-<br>
+</form>
 
 <app-shop-cards></app-shop-cards>
 
-<button *ngIf="moreButtonVisible" class="btn btn-lg btn-block btn-my" type="button" (click)="moreProducts();">More AKZENTZ products</button>
+<button style="width: 100%; margin:auto;" *ngIf="moreButtonVisible" class="btn btn-link" [ngClass]="{H: languege==='iv'}" type="button" (click)="moreProducts();">{{ 'SHOP.button' | translate }}</button>

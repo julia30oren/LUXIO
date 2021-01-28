@@ -12,9 +12,21 @@
 }
 
 .title {
-    font-family: Century Gothic;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
+    letter-spacing: 3.4px;
+    word-spacing: 3.4px;
+}
+
+.sm-text {
+    padding: 2%;
     margin-top: 10px;
+    margin-bottom: 30px;
+    color: gray;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    letter-spacing: 3px;
+    word-spacing: 6px;
 }
 
 .darck-bg {
@@ -23,15 +35,6 @@
     padding: 1%;
     text-align: center;
     width: 90%;
-}
-
-.sm-text {
-    color: gray;
-    padding: 2%;
-    font-family: Georgia, serif;
-    font-size: 20px;
-    letter-spacing: 3px;
-    word-spacing: 6px;
 }
 
 #last {

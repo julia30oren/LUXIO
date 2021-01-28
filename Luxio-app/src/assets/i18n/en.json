@@ -1,5 +1,6 @@
 {
     "NAVIGATION": {
+        "navigation": "NAVIGATION",
         "for-admin": "For admin",
         "admins": "Admins",
         "language": "language",
@@ -257,6 +258,11 @@
             "text-1": " is the perfect choice for creating beautiful nail enhancements. The high quality and strength is achieved through DST which utilizes superior molecular cross-linking. Pro-Formance will maintain its durability regardless of your client’s lifestyle.",
             "text-2": "All Pro-Formance series gels are solvent free, odourless and preserve clients natural nail condition. Pro-Formance gels are custom crafted from only the highest grade of European & USA sourced ingredients, and offer a wide variety of choice in viscosity, colour, opacity and strength – allowing you to create the perfect enhancement for your individual clients needs."
         }
+    },
+
+    "SHOP": {
+        "link": "Sort by.. ",
+        "button": "More AKZÉNTZ products"
     },
 
     "SEARCH": {

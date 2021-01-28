@@ -10,7 +10,7 @@
 </div>
 
 <div id="footer" class="container-fluid" style=" background-color: rgb(22, 22, 22);">
-    <div class="row">
+    <div class="row" [ngClass]="{Hebrew: languege==='iv'}">
         <div class="footer-link col-lg-6 col-12">
             <a class="social-icons" target="_blank" href="https://www.facebook.com/luxioisrael"><i class="fab fa-facebook-square fa-2x"></i> </a>
             <a class="social-icons" target="_blank" href="https://www.instagram.com/luxiogel_israel"><i class="fab fa-instagram fa-2x"></i> </a>
@@ -21,7 +21,7 @@
             <p class="address">{{ 'CONTACT.email' | translate}}: luxiogel.israel@gmail.com</p>
         </div>
         <div class="footer-link col-lg-3 col-6">
-            <h1>PRODUCTS</h1>
+            <h1>{{ 'NAVIGATION.PRODUCTS.title' | translate }}</h1>
             <a href="products/luxio">LUXIO</a><br>
             <a href="products/gel-play">GEL PLAY</a><br>
             <a href="products/options">OPTIONS</a><br>
@@ -30,7 +30,7 @@
             <a href="products/tools">{{ 'NAVIGATION.tools' | translate }}</a>
         </div>
         <div class="footer-link col-lg-3 col-6">
-            <h1>NAVIGATION</h1>
+            <h1>{{ 'NAVIGATION.navigation' | translate }}</h1>
             <a href="new">{{ 'NAVIGATION.NEW.title' | translate }}</a><br>
             <a href="shop">{{ 'NAVIGATION.STORE.title' | translate }}</a><br>
             <a href="courses">{{ 'NAVIGATION.COURSES.title' | translate }}</a><br>

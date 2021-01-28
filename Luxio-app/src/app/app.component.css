@@ -130,6 +130,18 @@
     direction: rtl;
 }
 
+.btn-link>i {
+    color: brown;
+    font-size: 150%;
+}
+
+.title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    letter-spacing: 3.4px;
+    word-spacing: 3.4px;
+}
+
 select {
     background-color: rgb(0, 0, 0, 0);
     color: white;
@@ -155,42 +167,25 @@ option {
 
 .RegForm {
     width: 1200px;
+    max-height: 80%;
     margin: auto;
     margin-top: 150px;
+    padding: 15px;
     background-color: white;
-    border: black solid 2px;
+    border: black solid 1px;
+    overflow: auto;
 }
 
-#reg-f-back {
-    height: 100%;
-    width: 100%;
-    background: #CECECE;
-    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff88 50%, #ffffff26 100%);
-    background: -webkit-linear-gradient(top, #ffffff 0%, #ffffff88 50%, #ffffff26 100%);
-    background: linear-gradient(to bottom, #ffffff 0%, #ffffff88 50%, #ffffff26 100%);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 6;
-}
-
-@media screen and (min-width: 990px) {
-    .RegForm {
-        width: 1200px;
-        margin: auto;
-        margin-top: 150px;
-        background-color: white;
-        border: black solid 2px;
-    }
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    /* make scrollbar transparent */
 }
 
 @media screen and (max-width: 990px) {
     .RegForm {
         width: 98%;
-        margin: auto;
-        margin-top: 150px;
-        background-color: white;
-        border: black solid 2px;
+        margin-top: 100px;
     }
 }
 

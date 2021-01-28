@@ -2,6 +2,16 @@
     width: 100%;
 }
 
+.row {
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+    .row {
+        margin-top: 0;
+    }
+}
+
 
 /* button icons */
 
@@ -42,6 +52,14 @@
     color: rgb(194, 0, 0);
 }
 
+.main-font {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    word-spacing: -0.5px;
+    text-transform: uppercase;
+}
+
 
 /* ------------------------------------flip card--------------- */
 
@@ -49,8 +67,21 @@
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 
 .flip-card {
+    height: 270px;
     background-color: transparent;
     perspective: 1000px;
+}
+
+@media screen and (max-width: 1200px) {
+    .flip-card {
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .flip-card {
+        height: 200px;
+    }
 }
 
 

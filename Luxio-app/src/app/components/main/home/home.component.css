@@ -20,21 +20,34 @@
     text-transform: none;
 }
 
+.col-md-6 {
+    padding: 0;
+}
+
+.welc,
 .welcom {
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 3.4px;
+    word-spacing: 3.4px;
+    color: #000000;
+    font-weight: 400;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: uppercase;
     text-align: center;
-    font-family: Century Gothic;
-    font-size: 35px;
-    width: 60%;
     margin: auto;
+}
+
+.welcom {
+    font-size: 30px;
+    width: 70%;
     margin-top: 50px;
 }
 
 .welc {
-    text-align: center;
-    font-family: Century Gothic;
-    font-size: 25px;
+    font-size: 20px;
     width: 90%;
-    margin: auto;
 }
 
 @media screen and (max-width: 1200px) {

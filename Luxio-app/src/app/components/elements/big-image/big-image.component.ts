@@ -3,7 +3,6 @@ import { ShopService } from 'src/app/services/shop/shop.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { UserService } from 'src/app/services/user-servise/user.service';
 
-
 @Component({
   selector: 'app-big-image',
   templateUrl: './big-image.component.html',
@@ -24,7 +23,6 @@ export class BigImageComponent implements OnInit {
   public amount: string;
   public quantity: number = 1;
 
-
   constructor(
     private shop_service: ShopService,
     private lang_service: LanguageService,
@@ -32,8 +30,6 @@ export class BigImageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // window.scrollTo(0, 0);
-
     this.lang_service._selected_from_service
       .subscribe(date => {
         this.languege = date;
@@ -84,7 +80,34 @@ export class BigImageComponent implements OnInit {
         this.selectedProd_inCart = true;
       } else this.selectedProd_inCart = false;
     });
+
+
+
   }
+
+  // mouseMove(event) {
+  //   event.preventDefault();
+  //   var img, glass, w, h, bw;
+  //   img = document.getElementById("bigImage");
+  //   glass = document.getElementById("glass");
+  //   // -------------
+  //   glass.style.display = 'block';
+  //   glass.style.backgroundImage = "url('" + this.selectedProd_Img + "')";
+  //   glass.style.backgroundRepeat = "no-repeat";
+  //   glass.style.backgroundSize = (img.width * 3) + "px " + (img.height * 3) + "px";
+  //   bw = 3;
+  //   w = glass.offsetWidth / 2;
+  //   h = glass.offsetHeight / 2;
+  //   // 
+  //   var x, y;
+  //   x = event.offsetX;
+  //   y = event.offsetY;
+  //   /* Set the position of the magnifier glass: */
+  //   glass.style.left = (x - w) + "px";
+  //   glass.style.top = (y - h) + "px";
+  //   // /* Display what the magnifier glass "sees":
+  //   glass.style.backgroundPosition = "-" + ((x * 3) - w + bw) + "px -" + ((y * 3) - h + bw) + "px";
+  // }
 
   amount_change(target) {
     this.amount = target;

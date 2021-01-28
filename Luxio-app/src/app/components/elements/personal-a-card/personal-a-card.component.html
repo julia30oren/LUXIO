@@ -16,7 +16,7 @@
                 <img class="card-img" src={{item.img_link_1}} alt="Product image" />
             </div>
             <div class="personal-card-info-div" [ngClass]="{Hebrew: languege==='iv'}">
-                <h5 style="font-family: Gadugi;">{{item.prod_class}} {{item.name}}</h5>
+                <h5 class="main-title">{{item.prod_class}} {{item.name}}</h5>
 
                 <div *ngIf="what_to_show === 'wishlist'">
                     <p>{{item.amount_1}} {{item.price_1}}&#8362;</p>

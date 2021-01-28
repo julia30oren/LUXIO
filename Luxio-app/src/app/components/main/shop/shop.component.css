@@ -3,37 +3,18 @@
     direction: rtl;
 }
 
-.shop-buner {
-    width: 100%;
-    height: 500px;
-    background-image: url('https://i.pinimg.com/originals/ee/9c/48/ee9c48b36e879ebf783f6246f0926ce6.png');
-    background-size: cover;
+.H {
+    direction: rtl;
 }
 
-.btn-my {
-    border: solid 1px rgba(255, 255, 255, 0.39);
-}
-
-.btn-my:hover {
-    background-color: rgba(255, 255, 255, 0.39);
+.btn {
     color: brown;
 }
 
 
 /* SORT styles */
 
-.sort {
-    width: 98%;
-    margin: auto;
-    margin-top: 50px;
-}
-
-.custom-select {
-    width: 20%;
-    margin: auto;
-}
-
-.btn-outline-dark {
-    width: auto;
-    margin-left: 0;
+.form-control,
+.btn-sm {
+    margin-top: 15px;
 }

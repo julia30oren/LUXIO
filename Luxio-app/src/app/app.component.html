@@ -228,15 +228,17 @@
 
     <!---------------------------------------------------------------- REGISTRATION FORM -->
     <div id="reg-f-back" *ngIf="regForm_Open">
-        <div class="RegForm" style="padding: 1%;" [ngClass]="{Hebrew: languege==='iv'}">
-            <div class="form-row">
-                <div class="col-sm-11">
-                    <h1 *ngIf="formOne_Open">{{ 'SIGN-IN.REGISTRATION-FORM.title' | translate}}</h1>
-                    <h1 *ngIf="formLogin_Open">{{ 'SIGN-IN.LOGIN-FORM.title' | translate}}</h1>
-                    <h1 *ngIf="formPasswodRestore_Open">{{ 'SIGN-IN.PASSWORD-RESTORE-FORM.title' | translate}}</h1>
+        <div class="container RegForm" [ngClass]="{Hebrew: languege==='iv'}">
+            <div class="row justify-content-end">
+                <div class="col-2">
+                    <button class="btn btn-link" (click)="closeForm()" type="button"><i class="fas fa-times"></i></button>
                 </div>
-                <div class="col-sm-1">
-                    <button (click)="closeForm()" type="button" style="border: none; background-color: rgba(255, 255, 255, 0);"><i class="far fa-window-close fa-2x closeButton"></i></button>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h1 class="title" *ngIf="formOne_Open">{{ 'SIGN-IN.REGISTRATION-FORM.title' | translate}}</h1>
+                    <h1 class="title" *ngIf="formLogin_Open">{{ 'SIGN-IN.LOGIN-FORM.title' | translate}}</h1>
+                    <h1 class="title" *ngIf="formPasswodRestore_Open">{{ 'SIGN-IN.PASSWORD-RESTORE-FORM.title' | translate}}</h1>
                 </div>
             </div>
 
@@ -256,19 +258,17 @@
                 <app-password-restore-form></app-password-restore-form>
             </div>
 
-            <div style="margin-top: 1%;">
-                <p>
-                    <button *ngIf="!formOne_Open" type="button" class="btn btn-link" (click)="registration_form()">
+            <p style="margin-top: 10px;">
+                <button *ngIf="!formOne_Open" type="button" class="btn btn-link" (click)="registration_form()">
                     {{ 'SIGN-IN.sign-in' | translate}}
                 </button>
-                    <button *ngIf="!formPasswodRestore_Open" type="button" class="btn btn-link" (click)="passwordRest_form()">
+                <button *ngIf="!formPasswodRestore_Open" type="button" class="btn btn-link" (click)="passwordRest_form()">
                     {{ 'SIGN-IN.link-3' | translate}}
                 </button>
-                    <button *ngIf="!formLogin_Open" type="button" class="btn btn-link" (click)="login_form()">
+                <button *ngIf="!formLogin_Open" type="button" class="btn btn-link" (click)="login_form()">
                     {{ 'SIGN-IN.link-2' | translate}}
                 </button>
-                </p>
-            </div>
+            </p>
         </div>
     </div>
     <!-- -------------------------------------- -->

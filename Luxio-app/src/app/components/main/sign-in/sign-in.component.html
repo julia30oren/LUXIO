@@ -1,29 +1,25 @@
 <img style="width: 100%;" class="animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" src="https://i.pinimg.com/originals/c6/cc/40/c6cc401385ab2c8b7f819f5f03ecd1a0.jpg" alt="AKZENTZ model" />
+<h4 class="title" [ngClass]="{Hebrew: languege==='iv'}">{{ 'SIGN-IN.RULES.title2' | translate }}:</h4>
+<h1 class="title" [ngClass]="{Hebrew: languege==='iv'}">{{ 'SIGN-IN.RULES.title' | translate }}!</h1>
+<div class="sm-text animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">
+    <p>
+        1. {{ 'SIGN-IN.RULES.rule-1' | translate }}.
+    </p>
+    <p>
+        2. {{ 'SIGN-IN.RULES.rule-2' | translate }}.
+    </p>
+    <ul>
+        <li> {{ 'SIGN-IN.RULES.rule-2-li-1' | translate }}.</li>
+        <li> {{ 'SIGN-IN.RULES.rule-2-li-2' | translate }}.</li>
+    </ul>
 
-<div class="rules animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: langIv}">
-    <h1>{{ 'SIGN-IN.RULES.title' | translate }}</h1>
-
-    <div>
-        <h4>{{ 'SIGN-IN.RULES.title2' | translate }}:</h4>
-        <p>
-            1. {{ 'SIGN-IN.RULES.rule-1' | translate }}.
-        </p>
-        <p>
-            2. {{ 'SIGN-IN.RULES.rule-2' | translate }}.
-        </p>
-        <ul>
-            <li> {{ 'SIGN-IN.RULES.rule-2-li-1' | translate }}.</li>
-            <li> {{ 'SIGN-IN.RULES.rule-2-li-2' | translate }}.</li>
-        </ul>
-
-        <p>
-            3. {{ 'SIGN-IN.RULES.rule-3' | translate }}.
-        </p>
-        <p>
-            4. {{ 'SIGN-IN.RULES.rule-4' | translate }}.
-        </p>
-        <button type="button" class="btn btn-dark btn-lg btn-block animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" (click)="getID_regForm()">
-            {{ 'SIGN-IN.RULES.button-get-id' | translate }}
-        </button>
-    </div>
+    <p>
+        3. {{ 'SIGN-IN.RULES.rule-3' | translate }}.
+    </p>
+    <p>
+        4. {{ 'SIGN-IN.RULES.rule-4' | translate }}.
+    </p>
 </div>
+<button type="button" class="btn btn-link btn-block animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" (click)="getID_regForm()">
+    {{ 'SIGN-IN.RULES.button-get-id' | translate }}
+</button>

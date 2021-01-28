@@ -2,10 +2,6 @@
     direction: rtl;
 }
 
-.col {
-    padding: 0;
-}
-
 @media screen and (max-width: 1200px) {
     .courser-row {
         height: 400px;
@@ -18,38 +14,29 @@
 }
 
 .text-block {
+    color: black;
     width: 50%;
     text-align: center;
     padding: 2%;
-    color: gray;
     font-family: Georgia, serif;
-    font-size: 25px;
     letter-spacing: 3px;
     word-spacing: 6px;
-    text-decoration: none;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
 }
 
 .text-block>h1 {
-    color: black;
-    font-size: 22px;
-    margin: 25px;
-    font-weight: 700;
-    font-family: Century Gothic;
-    text-transform: uppercase;
+    margin: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
 }
 
 .text-block>p {
-    font-family: Georgia, serif;
     font-size: 18px;
     color: gray;
     margin: 20px;
 }
 
 .text-block>small {
-    font-family: Calibri;
+    font-family: Arial, Helvetica, sans-serif;
     color: black;
     font-size: 14px;
 }

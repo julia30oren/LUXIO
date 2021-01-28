@@ -9,11 +9,15 @@
     background-color: white;
     border-top: brown 2px solid;
     border-bottom: brown 2px solid;
-    padding: 3px;
     top: 0px;
     height: 100%;
     width: 100%;
     overflow: auto;
+}
+
+#Big-Image-comp>.container-fluid {
+    width: 1200px;
+    margin: auto;
 }
 
 ::-webkit-scrollbar {
@@ -22,64 +26,31 @@
     /* make scrollbar transparent */
 }
 
-#Image-row {
-    margin: auto;
-    margin-top: 100px;
-    width: 1200px;
-    height: 500px;
+.row {
+    margin-top: 30px;
 }
 
 #extra-info-div {
     margin: auto;
     margin-bottom: 100px;
     width: 1200px;
-    height: 300px;
 }
 
 @media screen and (max-width: 1200px) {
     #Big-Image-comp {
         height: 700px;
     }
-    #Image-row {
-        height: 400px;
-        width: 98%;
-    }
+    #Big-Image-comp>.container-fluid,
     #extra-info-div {
-        width: 98%;
+        width: 100%;
     }
-}
-
-.left {
-    float: left;
-    /* height: 100%; */
-}
-
-.right {
-    float: right;
-}
-
-
-/* SELECTED-PRODUCT */
-
-.images-section {
-    width: 50%;
-}
-
-.main-info-sectio {
-    width: 45%;
-    padding-left: 1%;
-}
-
-.close-button-section {
-    width: 5%;
 }
 
 
 /*  */
 
 .thumbnail {
-    width: 140px;
-    height: 140px;
+    width: 100%;
     margin: auto;
     z-index: 1;
     cursor: pointer;
@@ -90,12 +61,47 @@
     width: 100%;
 }
 
-.newImages-link {
-    background-color: rgba(0, 0, 128, 0);
-    border: none;
-    width: 80%;
-    height: 100%;
-    margin: auto;
+
+/* ---------------------zoom-area---- */
+
+#glass {
+    display: none;
+    position: absolute;
+    border: 3px solid #000;
+    border-radius: 50%;
+    cursor: none;
+    /*Set the size of the magnifier glass:*/
+    width: 100px;
+    height: 100px;
+}
+
+
+/*  */
+
+.main-title {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 20px;
+    letter-spacing: 3px;
+    word-spacing: -0.5px;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.main-title>span {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 22px;
+    letter-spacing: 3px;
+    word-spacing: -0.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.sm-text {
+    color: gray;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    word-spacing: 5px;
 }
 
 .next-prev {

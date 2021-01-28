@@ -1,48 +1,46 @@
 <form class="regF" [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
 
     <div class="form-row">
-        <div class="col">
+        <div class="col-md-6 col-12">
             <input [ngClass]="{error: isSubmitted && formControls.first_name.errors?.required}" type="text" class="form-control" formControlName="first_name" value="formControls.first_name" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.name' | translate}}">
         </div>
         <div class="text-danger" *ngIf="isSubmitted && formControls.first_name.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
 
-        <div class="col">
+        <div class="col-md-6 col-12">
             <input [ngClass]="{error: isSubmitted && formControls.second_name.errors?.required}" type="text" class="form-control" formControlName="second_name" value="formControls.second_name" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.second-name' | translate}}">
         </div>
         <div class="text-danger" *ngIf="isSubmitted && formControls.second_name.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
     </div>
 
     <div class="form-row">
-        <div class="col">
+        <div class="col-md-6 col-12">
             <input [ngClass]="{error: isSubmitted && formControls.email.errors?.required}" type="text" class="form-control" formControlName="email" value="formControls.email" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.email' | translate}}">
         </div>
         <div class="text-danger" *ngIf="isSubmitted && formControls.email.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
-    </div>
 
-    <div class="form-row">
-        <div class="col">
+        <div class="col-md-6 col-12">
             <input [ngClass]="{error: isSubmitted && formControls.phoneN.errors?.required}" type="text" class="form-control" formControlName="phoneN" value="formControls.email" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.phoneN' | translate}}">
         </div>
         <div class="text-danger" *ngIf="isSubmitted && formControls.phoneN.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
     </div>
 
     <div class="form-row">
-        <div class="col">
+        <div class="col-md-6 col-12">
             <input [ngClass]="{error: isSubmitted && formControls.password.errors?.required}" (change)="password1_change($event.target.value)" type="password" class="form-control" formControlName="password" value="formControls.password" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.password' | translate}}">
         </div>
         <div class="text-danger" *ngIf="isSubmitted && formControls.password.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
-        <div class="col">
+        <div class="col-md-6 col-12">
             <input type="password" [ngClass]="{error: isSubmitted && !password2}" (change)="password2_change($event.target.value)" class="form-control" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.password-conf' | translate}}">
         </div>
         <div class="text-danger" *ngIf="password2 === false">{{ 'SIGN-IN.REGISTRATION-FORM.password-doesnt-match' | translate}}</div>
     </div>
 
     <div class="form-row" style="align-items: center;">
-        <div class="col">
+        <div class="col-md-6 col-12">
             <button title="?" type="button" class="btn button-question btn-outline-dark">?</button>
             <label for="category" class="category-label">{{ 'SIGN-IN.REGISTRATION-FORM.entrepreneurship' | translate}}</label>
         </div>
-        <div class="col">
+        <div class="col-md-6 col-12">
             <select id="category" type="text" class="form-control" [ngClass]="{error: isSubmitted && formControls.category.errors?.required}" formControlName="category" (change)="category_check($event.target.value)">
                 <option value="" disabled>{{ 'SIGN-IN.REGISTRATION-FORM.business' | translate}}</option>
                 <option value="self employed">{{ 'SIGN-IN.REGISTRATION-FORM.self-employed' | translate}}</option>
@@ -54,11 +52,11 @@
 
     <!-- for self employed ------------------------------------------------------------------------------------>
     <div class="form-row" style="align-items: center;" *ngIf="category==='self employed'">
-        <div class="col">
+        <div class="col-md-6 col-12">
             <button title="?" type="button" class="btn button-question btn-outline-dark">?</button>
             <label for="image">{{ 'SIGN-IN.REGISTRATION-FORM.sert' | translate}}</label>
         </div>
-        <div class="col">
+        <div class="col-md-6 col-12">
             <input (change)="showPreimg($event)" type="file" accept="image/*" class="form-control" id="image" [ngClass]="{error: isSubmitted && !imgSrc}">
         </div>
         <div *ngIf="imgSrc" class="col">
@@ -73,18 +71,18 @@
 
     <!-- for salon representative --------------------------------------------------------------------------------------- -->
     <div class="form-row" style="align-items: center;" *ngIf="category==='salon representative'">
-        <div class="col">
+        <div class="col-md-6 col-12">
             <input (change)="set_businessName($event.target.value)" [ngClass]="{error: isSubmitted && !business_name}" type="text" class="form-control" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.business-name' | translate}}">
         </div>
         <div class="text-danger" *ngIf="isSubmitted && !business_name">{{ 'SIGN-IN.rule-1' | translate}}</div>
 
-        <div class="col">
+        <div class="col-md-6 col-12">
             <input (change)="set_businessId($event.target.value)" [ngClass]="{error: isSubmitted && !business_id}" type="text" class="form-control" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.business-id' | translate}}">
         </div>
         <div class="text-danger" *ngIf="isSubmitted && !business_id">{{ 'SIGN-IN.rule-1' | translate}}</div>
     </div>
     <div class="form-row">
-        <div class="col">
+        <div class="col-md-6 col-12">
             <select [ngClass]="{error: isSubmitted && formControls.state.errors?.required}" type="text" class="form-control" formControlName="state">
                 <option value="" disabled>{{ 'SIGN-IN.REGISTRATION-FORM.location' | translate}}</option>
                 <option value="Center of Israel (close to Tel Aviv)">{{ 'SIGN-IN.REGISTRATION-FORM.loc1' | translate}}</option>
@@ -103,18 +101,16 @@
     <!-- ---------------------------------------------------------------------------------------------------------------- -->
     <br>
     <div class="form-row">
-        <div class="col">
-            <button [ngClass]="{error: cookies === false}" (click)="getTermsOfAgeement()" class="agreementButton btn btn-outline-secondary">
-                {{ 'SIGN-IN.REGISTRATION-FORM.agreement' | translate}}
-            </button>
+        <div class="col-md-6 col-12" style="margin-left: 25px;">
+            <input class="form-check-input" type="checkbox" [checked]="cookies" (change)="agreementPolicy_check($event.target.checked)" formControlName="agreement" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+                {{ 'SIGN-IN.REGISTRATION-FORM.i-agree' | translate}}
+            </label>
         </div>
-        <div class="col">
-            <input class="form-control check-b" [checked]="cookies" (change)="agreementPolicy_check($event.target.checked)" type="checkbox" id="gridCheck1" formControlName="agreement">
-            <label for="gridCheck1" style="text-align:center">
-                    {{ 'SIGN-IN.REGISTRATION-FORM.i-agree' | translate}}
-                </label>
-        </div>
-        <div class="text-danger col-sm-12" *ngIf="cookies === false">{{ 'SIGN-IN.rule-2' | translate}}</div>
+        <button [ngClass]="{error: cookies === false}" (click)="getTermsOfAgeement()" class="btn btn-link">
+            {{ 'SIGN-IN.REGISTRATION-FORM.agreement' | translate}}
+        </button>
+        <div class="text-danger" *ngIf="cookies === false">{{ 'SIGN-IN.rule-2' | translate}}</div>
     </div>
 
 
