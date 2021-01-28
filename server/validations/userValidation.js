@@ -13,7 +13,7 @@ const validSchema = Joi.object({
     _id: Joi.string().min(10),
     first_name: Joi.string().alphanum().min(2).max(30),
     second_name: Joi.string().alphanum().min(2).max(30),
-    phoneN: Joi.string().min(8).max(20).pattern(new RegExp('^(- ())[0-9]{3,30}$')).message('PHONE NUMBER is not valid. It must contain at least 8 letters numbers (may contain "-" and/or "()").'),
+    phoneN: Joi.string().min(8).max(20).message('PHONE NUMBER is not valid. It must contain at least 8 letters numbers (may contain "-" and/or "()").'),
     state: Joi.string(),
     email: Joi.string().min(8).max(30).message('EMAIL is not valid'),
     password: Joi.string().min(6).message('PASSWORD is to short. It must contain at least 6 letters and/or numbers.').pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).message('PASSWORD is not valid.'),

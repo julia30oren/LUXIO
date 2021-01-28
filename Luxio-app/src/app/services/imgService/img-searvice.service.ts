@@ -18,7 +18,7 @@ export class ImgSearviceService {
   ) { }
 
   insertImageDetails(imageDetails, formValue, languege) {
-    // console.log('imageDetails : ', imageDetails, 'formValue : ', formValue);
+    console.log('imageDetails : ', imageDetails, 'formValue : ', formValue);
     // ------------------CLOUDINARY ----
     return this.http.post(`${this.registeration_URL}/upload-certificate`, imageDetails)
       .subscribe(res => {
