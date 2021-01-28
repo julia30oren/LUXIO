@@ -1,12 +1,12 @@
 <!---------------------------- "NEW" COMPONENT-->
 <!-- -------------------------------------------------MAIN BUNER & INFO-------- -->
 <img style="width: 100%;" class="animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" src="https://i.pinimg.com/originals/76/8d/0f/768d0f9635932751311f757099c3f743.png" alt="AKZENTZ new" />
-
 <h5 class="title animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.title' | translate}}</h5>
 <p class="introduction animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">
     <span style="color: brown;">AKZÉNTZ</span>{{ 'NEW.loz' | translate}}
 </p>
 <hr/>
+
 <!-------------------------------- JELLI --------------------------------------------------------------------------------->
 <!-- ---------------------------main announce--------- -->
 <div class="container-fluid animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow">
@@ -34,23 +34,22 @@
         </div>
     </div>
 </div>
-
 <!-- ------------------------------------------productes-------------------- -->
-<div class="row row-cols-1 row-cols-md-3 g-4 prod-row " *ngIf="jelliOpen">
-    <div class="col" id={{item.burcode_id}} *ngFor="let item of jelly">
-        <div class="card card-new" id={{item.burcode_id}}>
-            <div class="flip-card" (click)="select(item.burcode_id)">
-                <div class="flip-card-inner">
+<div class="container-fluid" *ngIf="jelliOpen" style="margin-top: 50px;">
+    <div class="row">
+        <div class="col-md-2 col-sm-3 col-4" *ngFor="let item of jelly" id={{item.burcode_id}}>
+            <div class="flip-card">
+                <div class=" flip-card-inner">
                     <div class="flip-card-front">
-                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}}  image not evaluable" />
-                        <h5 class="main-title" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories'">{{item.prod_class}} {{item.name}}</h5>
-                        <h5 class="main-title" *ngIf="item.prod_class==='basics'|| item.prod_class==='materials' || item.prod_class==='accessories'"> {{item.name}}</h5>
+                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                        <p class="main-font" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
+                        <p class="main-font" *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
                     </div>
                     <div class="flip-card-back">
-                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable" />
-                        <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2"> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
-                        <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fas fa-shopping-basket fa-2x"></i></button>
-                        <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                        <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2 "> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
+                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket fa-2x "></i></button>
+                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart fa-2x "></i></button>
                     </div>
                 </div>
             </div>
@@ -58,6 +57,7 @@
     </div>
 </div>
 <hr/>
+
 <!---------------------------- RENDEZVOUS --------------------------------------------------------------------------->
 <!-- ---------------------------main announce--------- -->
 <div class="container-fluid animate__animated animate__fadeInRight animate__delay-0.5s animate__slow wow">
@@ -88,23 +88,22 @@
         </div>
     </div>
 </div>
-
 <!-- ------------------------------------------productes-------------------- -->
-<div class="row row-cols-1 row-cols-md-3 g-4" *ngIf="rendezvousOpen">
-    <div class="col" id={{item.burcode_id}} *ngFor="let item of rendezvous">
-        <div class="card card-new" id={{item.burcode_id}}>
-            <div class="flip-card" (click)="select(item.burcode_id)">
-                <div class="flip-card-inner">
+<div class="container-fluid" *ngIf="rendezvousOpen" style="margin-top: 50px;">
+    <div class="row">
+        <div class="col-md-2 col-sm-3 col-4" *ngFor="let item of rendezvous" id={{item.burcode_id}}>
+            <div class="flip-card">
+                <div class=" flip-card-inner">
                     <div class="flip-card-front">
-                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}}  image not evaluable" />
-                        <h5 class="main-title" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories'">{{item.prod_class}} {{item.name}}</h5>
-                        <h5 class="main-title" *ngIf="item.prod_class==='basics'|| item.prod_class==='materials' || item.prod_class==='accessories'"> {{item.name}}</h5>
+                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                        <p class="main-font" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
+                        <p class="main-font" *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
                     </div>
                     <div class="flip-card-back">
-                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable" />
-                        <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2"> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
-                        <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fas fa-shopping-basket fa-2x"></i></button>
-                        <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                        <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2 "> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
+                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket fa-2x "></i></button>
+                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart fa-2x "></i></button>
                     </div>
                 </div>
             </div>
@@ -112,6 +111,7 @@
     </div>
 </div>
 <hr/>
+
 <!-------------------------------- SHADES --------------------------------------------------------------------------------->
 <!-- ---------------------------main announce--------- -->
 <div class="container-fluid animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow">
@@ -139,23 +139,22 @@
         </div>
     </div>
 </div>
-
 <!-- ------------------------------------------productes-------------------- -->
-<div class="row row-cols-1 row-cols-md-3 g-4" *ngIf="shadesOpen">
-    <div class="col" id={{item.burcode_id}} *ngFor="let item of shades">
-        <div class="card card-new" id={{item.burcode_id}}>
-            <div class="flip-card" (click)="select(item.burcode_id)">
-                <div class="flip-card-inner">
+<div class="container-fluid" *ngIf="shadesOpen" style="margin-top: 50px;">
+    <div class="row justify-content-center">
+        <div class="col-md-2 col-sm-3 col-4" *ngFor="let item of shades" id={{item.burcode_id}}>
+            <div class="flip-card">
+                <div class=" flip-card-inner">
                     <div class="flip-card-front">
-                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}}  image not evaluable" />
-                        <h5 class="main-title" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories'">{{item.prod_class}} {{item.name}}</h5>
-                        <h5 class="main-title" *ngIf="item.prod_class==='basics'|| item.prod_class==='materials' || item.prod_class==='accessories'"> {{item.name}}</h5>
+                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                        <p class="main-font" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
+                        <p class="main-font" *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
                     </div>
                     <div class="flip-card-back">
-                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable" />
-                        <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2"> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
-                        <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fas fa-shopping-basket fa-2x"></i></button>
-                        <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                        <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2 "> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
+                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket fa-2x "></i></button>
+                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart fa-2x "></i></button>
                     </div>
                 </div>
             </div>
@@ -163,6 +162,7 @@
     </div>
 </div>
 <hr/>
+
 <!--------------------------------------------------- MIAMI------------------------------------------------------------------------------ -->
 <!-- ---------------------------main announce--------- -->
 <div class="container-fluid animate__animated animate__fadeInRight animate__delay-0.5s animate__slow wow">
@@ -190,23 +190,22 @@
         </div>
     </div>
 </div>
-
 <!-- ------------------------------------------productes-------------------- -->
-<div class="row row-cols-1 row-cols-md-3 g-4" *ngIf="miamiOpen">
-    <div class="col" id={{item.burcode_id}} *ngFor="let item of miami">
-        <div class="card card-new" id={{item.burcode_id}}>
-            <div class="flip-card" (click)="select(item.burcode_id)">
-                <div class="flip-card-inner">
+<div class="container-fluid" *ngIf="miamiOpen" style="margin-top: 50px;">
+    <div class="row justify-content-center">
+        <div class="col-md-2 col-sm-3 col-4" *ngFor="let item of miami" id={{item.burcode_id}}>
+            <div class="flip-card">
+                <div class=" flip-card-inner">
                     <div class="flip-card-front">
-                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}}  image not evaluable" />
-                        <h5 class="main-title" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories'">{{item.prod_class}} {{item.name}}</h5>
-                        <h5 class="main-title" *ngIf="item.prod_class==='basics'|| item.prod_class==='materials' || item.prod_class==='accessories'"> {{item.name}}</h5>
+                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                        <p class="main-font" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
+                        <p class="main-font" *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
                     </div>
                     <div class="flip-card-back">
-                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable" />
-                        <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2"> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
-                        <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fas fa-shopping-basket fa-2x"></i></button>
-                        <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                        <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2 "> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
+                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket fa-2x "></i></button>
+                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart fa-2x "></i></button>
                     </div>
                 </div>
             </div>
@@ -214,6 +213,7 @@
     </div>
 </div>
 <hr/>
+
 <!-- VOYAGE ------------------------------------------------------------------------------------->
 <!-- ---------------------------main announce--------- -->
 <div class="container-fluid animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow">
@@ -244,27 +244,25 @@
         </div>
     </div>
 </div>
-
 <!-- ------------------------------------------productes-------------------- -->
-<div class="row row-cols-1 row-cols-md-3 g-4" *ngIf="voyageOpen">
-    <div class="col" id={{item.burcode_id}} *ngFor="let item of voyage">
-        <div class="card card-new" id={{item.burcode_id}}>
-            <div class="flip-card" (click)="select(item.burcode_id)">
-                <div class="flip-card-inner">
+<div class="container-fluid" *ngIf="voyageOpen" style="margin-top: 50px;">
+    <div class="row justify-content-center">
+        <div class="col-md-2 col-sm-3 col-4" *ngFor="let item of voyage" id={{item.burcode_id}}>
+            <div class="flip-card">
+                <div class=" flip-card-inner">
                     <div class="flip-card-front">
-                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}}  image not evaluable" />
-                        <h5 class="main-title" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories'">{{item.prod_class}} {{item.name}}</h5>
-                        <h5 class="main-title" *ngIf="item.prod_class==='basics'|| item.prod_class==='materials' || item.prod_class==='accessories'"> {{item.name}}</h5>
+                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                        <p class="main-font" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
+                        <p class="main-font" *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
                     </div>
                     <div class="flip-card-back">
-                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable" />
-                        <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2"> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
-                        <button [ngClass]="getCartClasse(item._id)" (click)="addToCart(item)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}"><i class="fas fa-shopping-basket fa-2x"></i></button>
-                        <button [ngClass]="getClasses(item._id)" (click)="addToFavorites(item)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}"><i class="fas fa-heart fa-2x"></i></button>
+                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                        <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2 "> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
+                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket fa-2x "></i></button>
+                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart fa-2x "></i></button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<hr/>
