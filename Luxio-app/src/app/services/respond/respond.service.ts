@@ -21,7 +21,6 @@ export class RespondService {
   ) { }
 
   saveRespond(respond: any) {
-    console.log(respond);
     this.respond_fromServer.next(respond);
   }
 
@@ -39,7 +38,6 @@ export class RespondService {
 
   agreementToCookiesPolicy(state: boolean) {
     const agreementHash = bcrypt.hashSync(JSON.stringify(state), this.salt);
-    console.log(state)
     localStorage.setItem('cookies_rep_hash', agreementHash);
     this.userAgreementPolicy.next(state);
     this.regestration_Service.close_AgreementPage();

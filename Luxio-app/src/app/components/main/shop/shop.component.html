@@ -49,4 +49,13 @@
 
 <app-shop-cards></app-shop-cards>
 
+<div *ngIf="noneFound">
+    <img *ngIf="languege==='en'" style="width: 100%;" src="https://i.pinimg.com/originals/82/99/f1/8299f1d00ced87473f11bb05e982da53.png?epik=dj0yJnU9WlhFd2hVWTJqOFVvbHdvSlJYTnNpVlY0bUNWakdnd0YmcD0wJm49VS1UWGJrczZ4M0drNmg4d2kxeUJOZyZ0PUFBQUFBR0FXbDJn" alt="Oops"
+    />
+    <img *ngIf="languege==='ru'" style="width: 100%;" src="https://i.pinimg.com/originals/e1/46/51/e146516381dc06c609f10b43a28ad42b.png?epik=dj0yJnU9LTBlVm9rZUJISzREN3FIOTBqNHlNS18zYWNnRHdacUEmcD0wJm49cFc1MC1Ca0wtQjBWTXltMEtsaEdvUSZ0PUFBQUFBR0FXbVBn" alt="Oops"
+    />
+    <img *ngIf="languege==='iv'" style="width: 100%;" src="https://i.pinimg.com/originals/81/25/44/8125446fa06833aa9595f36cc4471d25.png?epik=dj0yJnU9VlVNNndtV29TZkRDSkxzYnBocUFRc01jQ3dqSExpejgmcD0wJm49Q1F1ZVd5bFkzdkY1R0RjcW1kRGhsdyZ0PUFBQUFBR0FXbU1Z" alt="Oops"
+    />
+</div>
+
 <button style="width: 100%; margin:auto;" *ngIf="moreButtonVisible" class="btn btn-link" [ngClass]="{H: languege==='iv'}" type="button" (click)="moreProducts();">{{ 'SHOP.button' | translate }}</button>

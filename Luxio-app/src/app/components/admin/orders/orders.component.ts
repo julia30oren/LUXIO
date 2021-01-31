@@ -5,41 +5,43 @@ import { LanguageService } from 'src/app/services/language.service';
 import { UserService } from 'src/app/services/user-servise/user.service';
 
 @Component({
-  selector: 'app-remove',
-  templateUrl: './remove.component.html',
-  styleUrls: ['./remove.component.css']
+  selector: 'app-orders',
+  templateUrl: './orders.component.html',
+  styleUrls: ['./orders.component.css']
 })
-export class RemoveComponent implements OnInit {
+export class OrdersComponent implements OnInit {
+
   public languege: string;
-  public allAdmins: Array<any>;
+  public orders: Array<any>;
   public admin: boolean;
   constructor(
     private router: Router,
     private user_Service: UserService,
-    private lang_service: LanguageService,
+    private language_Service: LanguageService,
     private admin_Service: AdminServiceService
   ) { }
 
   ngOnInit() {
     this.adminCheck();
-    // -------------------------------------------subscribing for languege 
-    this.lang_service._selected_from_service
+    // ----------------------------------------language setings----
+    this.language_Service._selected_from_service//subscribing for languege
       .subscribe(date => this.languege = date);
-    // ------------------------------------------subscribing for comments
+    // ------------------ORDERS
     this.user_Service.asAdmin_from_service
       .subscribe(date => {
         this.admin = date;
         setTimeout(() => {
           if (this.admin) {
-            this.admin_Service.getAdmins_fromDB();
-            this.admin_Service.admins_from_service
-              .subscribe(date => this.allAdmins = date)
+            this.getAllOrders();
+            this.admin_Service.orders_from_service
+              .subscribe(date => {
+                this.orders = date
+              })
           } else {
             this.router.navigate(['/**']);
           }
         }, 1000);
       });
-
   }
 
   adminCheck() {
@@ -49,8 +51,17 @@ export class RemoveComponent implements OnInit {
     } else this.router.navigate(['/**']);
   }
 
-  deleteAdmin(id) {
-    console.log(id);
-    // this.admin_Service.deleteAdmin_fromDB(id, this.languege);
+  getAllOrders() {
+    this.admin_Service.getOrders();
   }
+
+  getOrdersOfUser(user_id) {
+    this.admin_Service.getOrders_ofUser(user_id);
+  }
+
+  orderClosed(order_id) {
+    this.admin_Service.changeOrdersStatuse(this.languege, order_id);
+  }
+
+
 }

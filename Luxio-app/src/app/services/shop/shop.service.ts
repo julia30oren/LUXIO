@@ -42,7 +42,6 @@ export class ShopService {
 
   // -----------------------------GET ALL PRODUCTS FROM DB------------------------
   getProducts_fromDB() {
-    console.log('production - ', environment.production)
     return this.http.get(`${this.prod_url}`).subscribe(res => {
       let products = res[0].allProductes;
       if (products) {
@@ -53,7 +52,6 @@ export class ShopService {
   // ----------------------------------SAVE NEW PRODUCT TO DB or UPDATE------------------------
   saveProduct_toDB(prod: object, language: string) {
     return this.http.post(`${this.prod_url}/${language}/save`, prod).subscribe(res => {
-      // console.log(res);
       this.respond_Service.saveRespond(res);
       this.getProducts_fromDB();
     });
@@ -61,7 +59,6 @@ export class ShopService {
   // ----------------------------------DELETE PRODUCT FROM DB BY ID ------------------------
   removeProduct_fromDB(id: number, language: string) {
     return this.http.get(`${this.prod_url}/${language}/remove/${id}`).subscribe(res => {
-      // console.log(res);
       this.respond_Service.saveRespond(res);
       this.getProducts_fromDB();
     });

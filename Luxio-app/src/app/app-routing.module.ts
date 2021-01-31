@@ -21,6 +21,7 @@ import { RegistrationComponent } from './components/admin/registration/registrat
 import { RemoveComponent } from './components/admin/remove/remove.component';
 import { MailingsComponent } from './components/admin/mailings/mailings.component';
 import { HomeComponent } from './components/main/home/home.component';
+import { OrdersComponent } from './components/admin/orders/orders.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -35,9 +36,11 @@ const routes: Routes = [
     { path: 'shop', component: ShopComponent },
     { path: 'courses', component: CoursesComponent },
     { path: 'contacts', component: ContactsComponent },
+
     { path: 'personal-area', component: PersonalAreaComponent },
 
     { path: "admin/certificates", component: CrtificatesListComponent },
+    { path: "admin/orders", component: OrdersComponent },
     { path: "admin/comments", component: CommentsComponent },
     { path: "admin/shop", component: AdminShopComponent },
     { path: "admin/mailings", component: MailingsComponent },
@@ -68,6 +71,7 @@ export const routingComponents = [
     ProFormanceComponent,
     BasicsComponent,
     AdminShopComponent,
+    OrdersComponent,
     MailingsComponent,
     RemoveComponent,
     CommentsComponent,

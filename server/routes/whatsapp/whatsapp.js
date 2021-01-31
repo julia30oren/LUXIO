@@ -18,7 +18,6 @@ const MessagingResponse = require('twilio').twiml.MessagingResponse;
 router.post("/", async(req, res) => {
     sendWhatsapp(req.body.say);
     res.json([{ status: true, message: `Whatsapp message sent.` }]);
-    // console.log('go')
     // -----------------
     // wbm.start().then(async() => {
     //     const phones = ['972524458442'];
@@ -29,7 +28,7 @@ router.post("/", async(req, res) => {
 });
 
 router.post("/next", async(req, res) => {
-    console.log('next', req.body.say);
+    // console.log('next', req.body.say);
 
     const response = new MessagingResponse();
     const message = response.message();

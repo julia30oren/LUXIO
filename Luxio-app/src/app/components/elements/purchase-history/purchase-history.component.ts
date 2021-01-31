@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LanguageService } from 'src/app/services/language.service';
 import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
@@ -8,20 +9,26 @@ import { OrderService } from 'src/app/services/order/order.service';
 })
 export class PurchaseHistoryComponent implements OnInit {
 
+  public userID = localStorage.getItem('u324_3i_25d');
+  public languege: string;
   public orders: Array<any>;
+
   constructor(
-    private order_service: OrderService
+    private order_service: OrderService,
+    private language_Service: LanguageService
   ) { }
 
   ngOnInit() {
-    let userID = localStorage.getItem('u324_3i_25d');
-    this.order_service.getUserOrders(userID);
+    this.language_Service._selected_from_service
+      .subscribe(date => this.languege = date);
 
+    this.order_service.getUserOrders(this.userID);
     this.order_service.userOrders_fromService
       .subscribe(date => {
-        this.orders = date;
+        if (date[0]) {
+          this.orders = date;
+        }
       })
-
   }
 
 }

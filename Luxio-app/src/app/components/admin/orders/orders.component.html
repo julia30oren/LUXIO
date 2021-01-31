@@ -1,0 +1,55 @@
+<button type="button" class="btn btn-link" (click)="getAllOrders();">All</button>
+<div *ngFor="let item of orders" style="border-bottom: brown 1px solid; padding: 20px;">
+    <table class="table table-bordered border-primary">
+        <thead>
+            <tr>
+                <th colspan="2">Order:</th>
+                <th>{{item.order_date|date}} {{item.order_date|date:'shortTime'}}</th>
+                <td><button type="button" *ngIf="!item.received" class="btn btn-success" (click)="orderClosed(item._id)">Order received</button></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let prod of item.order">
+                <th scope="row">{{prod.prod_class}} {{prod.name}}</th>
+                <td><span style="color: brown;">{{prod.quantity}}</span></td>
+                <td>{{prod.price}}&#8362; / {{prod.amount}}</td>
+                <td>{{prod.total_price}}&#8362;</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td scope="row">Shipping:</td>
+                <td>{{item.payments.shipping}}&#8362;</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td scope="row">Discount:</td>
+                <td>{{item.payments.discount}}&#8362;</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <th scope="row">Total:</th>
+                <th>{{item.payments.total}}&#8362;</th>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <th scope="row">Received:</th>
+                <th><span *ngIf="item.received">Received</span><span *ngIf="!item.received">Not received</span></th>
+            </tr>
+            <tr>
+                <th scope="row">Shipping details:</th>
+                <th (click)="getOrdersOfUser(item.shipping_details._id);" style="color: brown; cursor: pointer;">{{item.shipping_details.first_name}} {{item.shipping_details.second_name}}</th>
+                <td>{{item.shipping_details.phoneN}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>{{item.shipping_details.city}}</td>
+                <td>{{item.shipping_details.street}} {{item.shipping_details.home}}</td>
+                <td>apartment {{item.shipping_details.apartment}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- <p>{{item.order|json}}</p> -->
+    <!-- <p>shipping_details: {{item.shipping_details|json}}</p> -->
+    <!-- <p>payments: {{item.payments|json}}</p> -->
+    <!-- <p>received: {{item.received|json}}</p> -->
+</div>

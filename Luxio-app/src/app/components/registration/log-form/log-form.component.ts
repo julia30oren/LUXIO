@@ -62,7 +62,7 @@ export class LogFormComponent implements OnInit {
         formValue.email = formValue.email.toLowerCase();
         this.user_Service.userToLogin(formValue, this.languege);
       } else {
-        console.log('denied');
+        alert('denied');
       }
     } else {
       this.formTemplate2.setValue({ //email, main_password, admin_name, admin_password
@@ -81,7 +81,6 @@ export class LogFormComponent implements OnInit {
 
   // ----------------------------SUBMIT FOR ADMIN
   onSubmit2(formValue) {
-    console.log(formValue)
     // main_email, main_password, admin_name, admin_password
     this.isSubmitted2 = true;
     if (this.formTemplate2.valid) {
@@ -89,7 +88,7 @@ export class LogFormComponent implements OnInit {
       formValue.main_email = formValue.main_email.toLowerCase();
       this.user_Service.logInadmin(formValue, this.languege)
     } else {
-      console.log('denied');
+      alert('denied');
     }
     this.asAdmin = false;
 

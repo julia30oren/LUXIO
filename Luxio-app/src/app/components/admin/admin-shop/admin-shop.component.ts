@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ShopService } from 'src/app/services/shop/shop.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { LanguageService } from 'src/app/services/language.service';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user-servise/user.service';
 
 @Component({
   selector: 'app-admin-shop',
@@ -22,7 +24,7 @@ export class AdminShopComponent implements OnInit {
   public searchRes: Array<any>;
   public language: string;
   public prod_toDelete: Array<any>;
-
+  public admin: boolean;
   formTemplate = new FormGroup({
     burcode_id: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
@@ -45,27 +47,39 @@ export class AdminShopComponent implements OnInit {
   })
 
   constructor(
+    private router: Router,
+    private user_Service: UserService,
     private shop_service: ShopService,
     private lang_service: LanguageService
   ) { }
 
   ngOnInit() {
-    this.shop_service.getProducts_fromDB();
+    this.adminCheck();
 
-    this.shop_service.shop_products_from_service
+    this.lang_service._selected_from_service ///language subscribe
+      .subscribe(date => this.language = date);
+
+    this.user_Service.asAdmin_from_service
       .subscribe(date => {
-        this.shop = date[0];
-        // this.shop_service.getProducts_sorted(this.shop);
-      });
+        this.admin = date;
+        setTimeout(() => {
+          if (this.admin) {
+            this.shop_service.getProducts_fromDB();
 
-    this.lang_service._selected_from_service
-      .subscribe(date => { this.language = date })
+            this.shop_service.shop_products_from_service
+              .subscribe(date => {
+                this.shop = date[0];
+              });
+          } else {
+            this.router.navigate(['/**']);
+          }
+        }, 1000);
+      });
 
     this.shop_service.responce_fromDB_from_service
       .subscribe(date => {
         this.responce_from_DB = date;
         if (this.responce_from_DB[0]) {
-          // console.log(this.responce_from_DB);
           if (this.responce_from_DB[0].state === 1) {
             alert(this.responce_from_DB[0].message);
             this.clearForm();
@@ -77,7 +91,12 @@ export class AdminShopComponent implements OnInit {
       })
   }
 
-
+  adminCheck() {
+    let adminToken = localStorage.getItem('token');
+    if (adminToken) {
+      this.user_Service.adminTokenCheck(adminToken);
+    } else this.router.navigate(['/**']);
+  }
 
   openForm(state) {
     this.new_form_open = state;
@@ -99,7 +118,6 @@ export class AdminShopComponent implements OnInit {
   onSubmit(formValue) {
     this.isSubmitted = true;
     if (this.formTemplate.valid) {
-      // console.log(formValue);
       this.shop_service.saveProduct_toDB(formValue, this.language);
     }
   }
@@ -152,10 +170,8 @@ export class AdminShopComponent implements OnInit {
   }
 
   select(id: number) {
-    console.log(id);
     this.shop.forEach(element => {
       if (element.burcode_id === id) {
-        // console.log(element)
         this.imgSelected1 = element.img_link || element.img_link_1;
         this.imgSelected2 = element.img_link_2;
         this.imgSelected3 = element.img_link_3;

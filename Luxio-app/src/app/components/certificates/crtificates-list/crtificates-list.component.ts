@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SaveUserService } from 'src/app/services/saveUser/save-user.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { UserService } from 'src/app/services/user-servise/user.service';
+import { Router } from '@angular/router';
+import * as jwt from 'jsonwebtoken';
 
 @Component({
   selector: 'app-crtificates-list',
@@ -16,23 +18,44 @@ export class CrtificatesListComponent implements OnInit {
   public certificateImg: string;
   public user_toConsider: Array<any>;
   public status: string;
+  public admin: boolean;
 
   constructor(
+    private router: Router,
     private user_Service: UserService,
     private language_Service: LanguageService,
     private registration_Service: SaveUserService
   ) { }
 
   ngOnInit() {
-    this.user_Service.getUsers_fromDB();
-    this.user_Service.users_from_service // geting users from db
-      .subscribe(date => {
-        this.certificatesList = date;
-        this.certificates_sorted = date;
-      });
+    this.adminCheck();
 
     this.language_Service._selected_from_service ///language subscribe
-      .subscribe(date => this.language = date)
+      .subscribe(date => this.language = date);
+
+    this.user_Service.asAdmin_from_service
+      .subscribe(date => {
+        this.admin = date;
+        setTimeout(() => {
+          if (this.admin) {
+            this.user_Service.getUsers_fromDB();
+            this.user_Service.users_from_service // geting users from db
+              .subscribe(date => {
+                this.certificatesList = date;
+                this.certificates_sorted = date;
+              });
+          } else {
+            this.router.navigate(['/**']);
+          }
+        }, 1000);
+      });
+  }
+
+  adminCheck() {
+    let adminToken = localStorage.getItem('token');
+    if (adminToken) {
+      this.user_Service.adminTokenCheck(adminToken);
+    } else this.router.navigate(['/**']);
   }
 
   // -----------------------------------------SORT------------

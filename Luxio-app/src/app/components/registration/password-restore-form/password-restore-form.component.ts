@@ -46,7 +46,6 @@ export class PasswordRestoreFormComponent implements OnInit {
 
     this.saveUser_Service.stateForm_from_service
       .subscribe(date => {
-        console.log(date);
         this.openForm = date;
       })
   }

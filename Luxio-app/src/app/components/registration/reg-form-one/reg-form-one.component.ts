@@ -68,7 +68,6 @@ export class RegFormOneComponent implements OnInit {
       reader.onload = (e: any) => { this.imgSrc = e.target.result; };
       reader.readAsDataURL(event.target.files[0]);
       this.imgSrc = event.target.files[0];
-      console.log(this.imgSrc);
       // image file
       let file = event.target.files[0];
       let formData = new FormData();
@@ -96,20 +95,17 @@ export class RegFormOneComponent implements OnInit {
         this.Save(formValue);
       }
     } else {
-      console.log('denied');
+      alert('denied');
     }
   }
 
   Save(formValue) {
-    console.log(formValue);
     if (this.category === 'self employed' && this.imgSrc) {
-      console.log(this.selectedImg, formValue, this.languege)
       this.cert_service.insertImageDetails(this.selectedImg, formValue, this.languege);
       this.resetForm();
       this.regService.close_RegistrationForm();
     } else if (this.category === 'salon representative') {
       formValue.business = { name: this.business_name, id: this.business_id };
-      console.log(formValue, this.languege)
       this.users_db.saveUser_toDB(formValue, this.languege);
       this.resetForm();
       this.regService.close_RegistrationForm();
@@ -135,7 +131,6 @@ export class RegFormOneComponent implements OnInit {
   }
 
   category_check(category) {
-    console.log(category);
     this.category = category;
   }
 

@@ -20,14 +20,15 @@ router.get('/', async(req, res) => {
 
 // ---------------------------------------------------GET ALL orders of ONE USER-----------------------------
 router.get('/:id', async(req, res) => {
-    try {
-        const userOrders = await OrderSchema.find().sort({ 'order_date': -1 }); //get them sorted by name
-        return res.json([{ status: true, userOrders }]);
-    } catch (err) {
-        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
-        return res.json([{ status: false, message: err.message }]);
-    }
-});
+        const id = req.params.id;
+        try {
+            const userOrders = await OrderSchema.find({ "shipping_details._id": id }).sort({ 'order_date': -1 }); //get them sorted by date
+            return res.json([{ status: true, userOrders }]);
+        } catch (err) {
+            logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+            return res.json([{ status: false, message: err.message }]);
+        }
+    });
 
 // ------------------------------------------------------SAVE NEW ORDER-------------------------------
 router.post("/:lang/save", async(req, res, next) => {

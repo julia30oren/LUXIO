@@ -57,14 +57,13 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
-    // console.log(this.backgroundColor)
     this.language_Service.setInitialAppLanguage();
     //------------------------------------detecting location for navbar--------
     this.location = window.location.pathname.substring(1);
     // 
     this.user_Service.user_name_from_service
       .subscribe(date => {
-        this.user = date
+        this.user = date;
       });
     // ----
     var prevScrollpos = window.pageYOffset;
@@ -82,7 +81,6 @@ export class AppComponent implements OnInit {
     this.respond_Service.userAgreementPolicy_service
       .subscribe(date => {
         this.cookies = date;
-        // console.log(this.cookies)
       });
     // ------------------------------
     this.shop_Service.getProducts_fromDB();
@@ -171,7 +169,6 @@ export class AppComponent implements OnInit {
   }
 
   login_form() {
-    console.log('click')
     if (this.regForm_Open) {
       this.regestration_Service.loginPage();
     } else this.regestration_Service.loginForm();
@@ -252,13 +249,11 @@ export class AppComponent implements OnInit {
   }
 
   getRegistrationForm() {
-    console.log('reg')
     this.regestration_Service.loginForm();
   }
   // -----------------------------SEARCH FUNCTION------
   doSearch(search_txt) {
     let toSearch = search_txt.toLowerCase();
-    console.log(toSearch);
     if (toSearch !== '') {
       switch (toSearch) {
         case 'luxio':
@@ -295,7 +290,6 @@ export class AppComponent implements OnInit {
           break;
         default:
           let index = this.shop[0].findIndex((element) => element.name.toLowerCase() === toSearch); //geting index of item by id
-          console.log(index)
           this.shop_Service.selectProd(index, true); //sending index to server and seting bog-image-component open(true)
           break;
       }

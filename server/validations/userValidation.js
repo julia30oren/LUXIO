@@ -18,6 +18,8 @@ const validSchema = Joi.object({
     email: Joi.string().min(8).max(30).message('EMAIL is not valid'),
     password: Joi.string().min(6).message('PASSWORD is to short. It must contain at least 6 letters and/or numbers.').pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).message('PASSWORD is not valid.'),
     category: Joi.string(),
+    files: Joi.any(),
+    agreement: Joi.any(),
     certificate_link: Joi.any(),
     cart: Joi.any(),
     favorites: Joi.any(),

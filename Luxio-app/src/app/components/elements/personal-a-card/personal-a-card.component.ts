@@ -100,6 +100,7 @@ export class PersonalACardComponent implements OnInit {
       this.shipping = 40;
     } else this.shipping = 0;
   }
+
   newInfoSave(infoTemplateValue) {
     console.log(infoTemplateValue)
   }

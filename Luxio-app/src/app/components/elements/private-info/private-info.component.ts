@@ -53,7 +53,6 @@ export class PrivateInfoComponent implements OnInit {
 
     this.user_Service.user_full_from_service
       .subscribe(date => {
-        console.log(date)
         this.user = date;
         window.setTimeout(() => {
           this.imgSrc = this.user[0].photo_link || null;
@@ -81,7 +80,7 @@ export class PrivateInfoComponent implements OnInit {
     if (this.infoTemplate.valid) {
       this.user_Service.saveUserChanges_toDB(id, formValue, this.languege);
     } else {
-      console.log('denied');
+      alert('denied');
     }
   }
   get formControls() {
@@ -96,7 +95,7 @@ export class PrivateInfoComponent implements OnInit {
       this.user_Service.saveNewPassword(email, formValue, this.languege);
     } else {
       this.conf_new = false;
-      console.log('denied');
+      alert('denied');
     }
   }
   get formControlsPassword() {
@@ -104,7 +103,6 @@ export class PrivateInfoComponent implements OnInit {
   }
 
   saveNewPhoto(ev) {
-    // console.log(ev);
     if (ev.target.files && ev.target.files[0]) {
       // image prevue
       const reader = new FileReader();
@@ -122,7 +120,6 @@ export class PrivateInfoComponent implements OnInit {
   }
 
   savePhoto() {
-    // console.log(this.infoTemplate.value._id)
     this.cert_service.insertPhotoDetails(this.selectedImg, this.infoTemplate.value._id);
     // hide "SAVE"button
     this.showButton = false;

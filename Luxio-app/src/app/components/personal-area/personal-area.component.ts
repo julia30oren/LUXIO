@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LanguageService } from 'src/app/services/language.service';
 import { ShopService } from 'src/app/services/shop/shop.service';
 import { UserService } from 'src/app/services/user-servise/user.service';
@@ -12,15 +13,17 @@ export class PersonalAreaComponent implements OnInit {
 
   constructor(
     private language_Service: LanguageService,
+    private router: Router,
     private shop_Service: ShopService,
     private user_Service: UserService
   ) { }
-
+  public userID = localStorage.getItem('u324_3i_25d');
   public languege: string;
   public shop: any[];
   public what_to_show: string;
 
   ngOnInit() {
+    this.userCheck();
     this.language_Service._selected_from_service
       .subscribe(date => { this.languege = date });
 
@@ -35,7 +38,12 @@ export class PersonalAreaComponent implements OnInit {
         let cart = JSON.parse(localStorage.getItem('my_764528_ct'));
         this.shop_Service.getProducts_sorted(cart);
       });
+  }
 
+  userCheck() {
+    if (!this.userID) {
+      this.router.navigate(['/**']);
+    }
   }
 
   getMyCart() {

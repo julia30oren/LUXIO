@@ -27,16 +27,13 @@ export class OrderService {
 
   getUserOrders(id: string) {
     return this.http.get(`${this.order_URL}/${id}`).subscribe(res => {
-      console.log(res);
       let orders = res[0] ? res[0].userOrders : [];
       this.userOrders.next(orders);
     });
   }
 
   createOrder(order: object, lang: string) {
-    // console.log(order, lang)
     return this.http.post(`${this.order_URL}/${lang}/save`, order).subscribe(res => {
-      // console.log(res)
       if (res[0].status) {
         localStorage.setItem('my_764528_ct', '[]')
       }

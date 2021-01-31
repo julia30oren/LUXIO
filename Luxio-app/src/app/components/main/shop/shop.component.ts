@@ -15,6 +15,7 @@ export class ShopComponent implements OnInit {
   public moreButtonVisible: boolean = true;
   public shopToShow: any[];
   public shop: any[];
+  public noneFound: boolean = false;
 
   constructor(
     private shop_service: ShopService,
@@ -48,16 +49,17 @@ export class ShopComponent implements OnInit {
   }
 
   getSorted(by_class, by_color, by_tint, by_transparency) {
-    // this.moreButtonVisible = false;
     let newAr = [];
-
     this.shop.forEach(element => {
       if (element.prod_class.includes(by_class) && element.color.includes(by_color) && element.tint.includes(by_tint) && element.transparency.includes(by_transparency)) {
         newAr.push(element);
       }
-      this.shopToShow = newAr;
-      this.shop_service.getProducts_sorted(newAr);
     });
+    if (newAr.length < 1) {
+      this.noneFound = true;
+    } else this.noneFound = false;
+    this.shopToShow = newAr;
+    this.shop_service.getProducts_sorted(newAr);
   }
 
   getAll() {
@@ -69,17 +71,6 @@ export class ShopComponent implements OnInit {
       this.shop_service.getProducts_sorted(this.shopToShow);
     }
     this.moreButtonVisible = true;
-  }
-
-  select(id: number) {
-    console.log('click')
-    let index = this.shop.findIndex((element) => element.burcode_id === id);
-    console.log(this.shop)
-    // this.shop.forEach(element => {
-    //   if (element.burcode_id === id) {
-    //     this.shop_service.selectProd(element, true, index);
-    //   }
-    // });
   }
 
   moreProducts() {

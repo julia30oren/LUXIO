@@ -18,14 +18,12 @@ export class ImgSearviceService {
   ) { }
 
   insertImageDetails(imageDetails, formValue, languege) {
-    console.log('imageDetails : ', imageDetails, 'formValue : ', formValue);
     // ------------------CLOUDINARY ----
     return this.http.post(`${this.registeration_URL}/upload-certificate`, imageDetails)
       .subscribe(res => {
         this.respond_Service.saveRespond(res);
-        // SAVING TO DB ---
+        // // SAVING TO DB ---
         formValue.certificate_link = res[0].date;  //certificate link saving to form
-        console.log(formValue.certificate_link);
         this.db_Servise.saveUser_toDB(formValue, languege);
       }
       );
@@ -38,7 +36,6 @@ export class ImgSearviceService {
         this.respond_Service.saveRespond(res);
         // SAVING TO DB ---
         let image_link = res[0].date;  //photo link saving to form
-        console.log(image_link);
         this.db_Servise.saveUserPhoto({ _id: id, photo_link: image_link });
       }
       );

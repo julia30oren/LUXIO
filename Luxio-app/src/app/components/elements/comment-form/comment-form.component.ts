@@ -27,7 +27,6 @@ export class CommentFormComponent implements OnInit {
   }
 
   onSubmit(formValue) {
-    console.log(formValue)
     this.isSubmitted = true;
     if (this.formTemplate.valid) {
       formValue.user_id = localStorage.getItem('u324_3i_25d');
@@ -35,7 +34,7 @@ export class CommentFormComponent implements OnInit {
       this.user_Service.leaveAcomment(formValue, this.language);
       this.resetForm();
     } else {
-      console.log('denied');
+      alert('denied');
     }
   }
 

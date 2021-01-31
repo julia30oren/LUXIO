@@ -61,7 +61,6 @@ router.post('/:lang/login', async(req, res) => {
     const language = req.params.lang;
     // -------------------------------if admin----------------
     if (email.toLowerCase() === process.env.mainAdmin) {
-        // console.log(email);
         return res.json([{ status: true, message: `admin` }]);
     } else {
         // ----------------------if user----------------

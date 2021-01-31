@@ -13,7 +13,7 @@ export class ShopCardsComponent implements OnInit {
   public shop: Array<any>;
   public my_cart: Array<any>;
   public my_favorites: Array<any>;
-  public itemsArray: Array<any>;
+  public itemsArray: Array<any> = [];
 
   constructor(
     private shop_service: ShopService,
@@ -25,11 +25,14 @@ export class ShopCardsComponent implements OnInit {
       .subscribe(date => {
         if (date[0]) {
           this.shop = date[0];
+          this.itemsArray = this.shop;
         }
       });
 
     this.shop_service.shop_products_sorted_from_service
-      .subscribe(date => this.itemsArray = date);
+      .subscribe(date => {
+        this.itemsArray = date;
+      });
 
     this.shop_service.my_favorites_from_service
       .subscribe(date => this.my_favorites = date);

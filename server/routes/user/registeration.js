@@ -20,63 +20,63 @@ router.post("/upload-certificate", upload.array('image'), async(req, res) => {
             for (const file of files) {
                 const { path } = file;
                 const newPath = await cloudinary.uploads(path, 'Images');
+                // ----removes temporary file from server
+                fs.unlinkSync(path);
                 // ---------------IF ALL GOOD-------------------
                 if (newPath.url) {
                     logger.info(`${moment().format(`h:mm:ss a`)} - Image uploaded successfuly.`);
                     return res.json([{ status: true, message: `Image uploaded successfuly.`, date: newPath.url }])
-                }
-                // --------------ERROR------------
-                else {
-                    logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
-                    return res.json([{ status: false, message: `Image wasn't uploaded.` }]);
         }
-        //----removes temporary file from server
-        fs.unlinkSync(path);
+        // --------------ERROR------------
+        else {
+            logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+            return res.json([{ status: false, message: `Image wasn't uploaded.` }]);
+    }
     }
 });
 
 // ---------------------------------------------CREATE A NEW USER-------------------------
 router.post("/:lang/save", async(req, res) => {
-    const language = req.params.lang;
-    const { first_name, second_name, phoneN, state, email, password, category, certificate_link, cart, favorites, business } = req.body;
-    // -------------------------------------- cripting password-------------------------
-    const salt = bcrypt.genSaltSync(10);
-    const passwordHash = bcrypt.hashSync(password, salt);
-    // ----------------------------------------------------CREATIN USER AND SAVING-----------------------
-    const newUser = new UserSchema({
-        first_name: first_name.charAt(0).toUpperCase() + first_name.slice(1),
-        second_name: second_name.charAt(0).toUpperCase() + second_name.slice(1),
-        phoneN: phoneN,
-        state: state.charAt(0).toUpperCase() + state.slice(1),
-        email: email,
-        password: passwordHash,
-        category: category,
-        certificate_link: certificate_link,
-        cart: cart,
-        favorites: favorites,
-        business: business,
-        langueg: language
-    });
-    try {
-        const userToSave = await newUser.save();
-        if (userToSave._id) {
-            // ------------------------------------------------------CHOOSING LANGUAGE for response-------------------------
-            switch (language) {
-                case 'en':
-                    responseMessage = `Your request has been put successfully.`
-                    break;
-                case 'ru':
-                    responseMessage = `Ваш запрос был успешно отправлен.`
-                    break;
-                default:
-                    responseMessage = `בקשתך הוגשה בהצלחה.`
-                    break;
-            }
-            // Send message to Luxio----------------------
-            emailToAdmin(userToSave);
-            // Send message in different languages----------------------
-            emailToUser_Info(language);
-            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${userToSave._id} ${responseMessage}`);
+            const language = req.params.lang;
+            const { first_name, second_name, phoneN, state, email, password, category, certificate_link, cart, favorites, business } = req.body;
+            // -------------------------------------- cripting password-------------------------
+            const salt = bcrypt.genSaltSync(10);
+            const passwordHash = bcrypt.hashSync(password, salt);
+            // ----------------------------------------------------CREATIN USER AND SAVING-----------------------
+            const newUser = new UserSchema({
+                first_name: first_name.charAt(0).toUpperCase() + first_name.slice(1),
+                second_name: second_name.charAt(0).toUpperCase() + second_name.slice(1),
+                phoneN: phoneN,
+                state: state.charAt(0).toUpperCase() + state.slice(1),
+                email: email,
+                password: passwordHash,
+                category: category,
+                certificate_link: certificate_link,
+                cart: cart,
+                favorites: favorites,
+                business: business,
+                langueg: language
+            });
+            try {
+                const userToSave = await newUser.save();
+                if (userToSave._id) {
+                    // ------------------------------------------------------CHOOSING LANGUAGE for response-------------------------
+                    switch (language) {
+                        case 'en':
+                            responseMessage = `Your request has been put successfully.`
+                            break;
+                        case 'ru':
+                            responseMessage = `Ваш запрос был успешно отправлен.`
+                            break;
+                        default:
+                            responseMessage = `בקשתך הוגשה בהצלחה.`
+                            break;
+                    }
+                    // Send message to Luxio----------------------
+                    emailToAdmin(userToSave);
+                    // Send message in different languages----------------------
+                    emailToUser_Info(language);
+                    logger.info(`${moment().format(`h:mm:ss a`)} - ID ${userToSave._id} ${responseMessage}`);
             return res.json([{ status: true, message: responseMessage }]);
         }
         // ---------------------------ERRORS------------

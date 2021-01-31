@@ -20,6 +20,20 @@ let transporter = nodemailer.createTransport({
 const adminValidation = require('../../validations/adminValidation');
 router.use(adminValidation);
 
+// ---------------------------------------------------admin Check-----------------------------
+router.get("/check/:token", async(req, res, next) => {
+    const token = req.params.token;
+    JWT.verify(token, process.env.ADMIN_SECRET, function(err, decoded) {
+        if (err) {
+            // console.log(err);
+            return res.json([{ status: false }]);
+        } else {
+            // console.log(decoded);
+            return res.json([{ status: true }]);
+        }
+    });
+});
+
 // ---------------------------------------------------GET ALL ADMINS-----------------------------
 router.get("/", async(req, res, next) => {
             try {

@@ -50,7 +50,6 @@ export class SaveUserService {
 
   deleteUser(id: string, language: string) {
     return this.http.get(`${this.registeration_URL}/${language}/delete/user/${id}`).subscribe(res => {
-      console.log(res);
       this.respond_Service.saveRespond(res);
       this.user_Service.getUsers_fromDB();
     });
@@ -68,7 +67,6 @@ export class SaveUserService {
   setNewPassword(info, email: string, language: string) {
     return this.http.post(`${this.registeration_URL}/${language}/password/restore/new/${email}`, info).subscribe(res => {
       this.respond_Service.saveRespond(res);
-      console.log(res);
       if (res[0].status) {
         this.register_Service.close_RegistrationForm();
       }

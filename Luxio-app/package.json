@@ -35,6 +35,7 @@
         "dotenv": "^8.2.0",
         "firebase": ">= 5.5.7 <8",
         "hammerjs": "^2.0.8",
+        "jsonwebtoken": "^8.5.1",
         "rxjs": "~6.4.0",
         "socket.io-client": "^2.2.0",
         "tslib": "^1.10.0",

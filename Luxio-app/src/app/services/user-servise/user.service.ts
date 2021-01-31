@@ -49,6 +49,19 @@ export class UserService {
 
 
   // -----------------------------get all users-------------------
+  adminTokenCheck(token: any) {
+    return this.http.get(`${this.admin_url}/check/${token}`).subscribe(res => {
+      if (res && res[0].status) {
+        this.asAdmin.next(true);
+      } else {
+        localStorage.clear();
+        this.asAdmin.next(false);
+        this.user_name.next(null);
+        window.location.reload();
+      }
+    });
+  }
+
   getUsers_fromDB() {
     return this.http.get(`${this.user_URL}`).subscribe(res => {
       let users = res[0].allUsers;
@@ -83,13 +96,13 @@ export class UserService {
   // -----------------LOG IN AS ADMIN------------------
   logInadmin(params: object, languege: string) {
     return this.http.post(`${this.admin_url}/${languege}/login`, params).subscribe(res => {
-      // console.log(res);
       this.respond_Service.saveRespond(res);
       this.register_Service.close_RegistrationForm();
       if (res[0].status) {
         localStorage.clear();
         this.seveAdmin_onService(res);
         this.register_Service.userAsAdmin(true);
+        window.location.reload();
       } else this.register_Service.userAsAdmin(false);
     });
   }
@@ -103,7 +116,6 @@ export class UserService {
     // geting user and token:
     let admin = adminInfo[0].admin;
     let token = adminInfo[0].token;
-    console.log(admin, token)
     this.user_name.next(admin);// saving admin name on serner
     // saving users info to localStorage
     localStorage.setItem('ad34_n746773e', admin);
@@ -124,7 +136,6 @@ export class UserService {
   saveNewPassword(email: string, new_pass: object, languege: string) {
     return this.http.post(`${this.user_URL}/${languege}/newpass/${email}`, new_pass)
       .subscribe(res => {
-        // console.log(res)
         this.respond_Service.saveRespond(res);
       });
   };
