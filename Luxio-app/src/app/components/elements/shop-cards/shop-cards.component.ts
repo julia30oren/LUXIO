@@ -25,7 +25,6 @@ export class ShopCardsComponent implements OnInit {
       .subscribe(date => {
         if (date[0]) {
           this.shop = date[0];
-          this.itemsArray = this.shop;
         }
       });
 

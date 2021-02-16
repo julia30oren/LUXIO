@@ -3,13 +3,15 @@ import { LanguageService } from 'src/app/services/language.service';
 import { ShopService } from 'src/app/services/shop/shop.service';
 
 @Component({
-  selector: 'app-luxio',
-  templateUrl: './luxio.component.html',
-  styleUrls: ['./luxio.component.css']
+  selector: 'app-tryme',
+  templateUrl: './tryme.component.html',
+  styleUrls: ['./tryme.component.css']
 })
-export class LuxioComponent implements OnInit {
+export class TrymeComponent implements OnInit {
 
+  public shop: Array<any>;
   public languege: string;
+
   constructor(
     private lang_service: LanguageService,
     private shop_service: ShopService
@@ -26,22 +28,15 @@ export class LuxioComponent implements OnInit {
     this.shop_service.shop_products_from_service
       .subscribe(date => {
         if (date[0]) {
+          this.shop = date[0];
           let shop = date[0];
-          let sortedLuxio = [];
-          let basesANDtops = [];
+          let tryMeKits = [];
 
           shop.forEach(element => {
-            if (element.prod_class === "Luxio") {
-              sortedLuxio.push(element);
+            if (element.prod_collection === 'mini kit') {
+              tryMeKits.push(element);
             }
-            this.shop_service.getProducts_sorted(sortedLuxio);
-          });
-
-          shop.forEach(element => {
-            if (element.prod_class === 'basics') {
-              basesANDtops.push(element);
-            }
-            this.shop_service.getXtra_sorted(basesANDtops)
+            this.shop_service.getXtra_sorted(tryMeKits)
           });
         };
       });

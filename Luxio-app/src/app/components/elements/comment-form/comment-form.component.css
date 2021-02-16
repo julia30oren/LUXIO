@@ -2,3 +2,7 @@
     text-align: right;
     direction: rtl;
 }
+
+.error {
+    border: red solid 1.5px;
+}

@@ -2,14 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
-// import { AngularFireModule } from '@angular/fire';
-// import { AngularFireStorageModule } from '@angular/fire/storage';
-// import { AngularFireDatabaseModule } from '@angular/fire/database';
-// import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { IonicStorageModule } from '@ionic/storage';
-
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -35,6 +29,7 @@ import { RegistrationComponent } from './components/admin/registration/registrat
 import { RemoveComponent } from './components/admin/remove/remove.component';
 import { HomeComponent } from './components/main/home/home.component';
 import { OrdersComponent } from './components/admin/orders/orders.component';
+import { TrymeComponent } from './components/main/tryme/tryme.component';
 
 
 // AoT requires an exported function for factories
@@ -64,9 +59,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     RemoveComponent,
     HomeComponent,
     OrdersComponent,
+    TrymeComponent,
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
     // AngularFireModule.initializeApp(environment.firebaseConfig),

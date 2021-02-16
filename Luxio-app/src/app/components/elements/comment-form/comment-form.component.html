@@ -1,6 +1,5 @@
 <div [ngClass]="{Hebrew: language==='iv'}">
-    <p style="margin-top: 50px;">
-        {{ 'CONTACT.message-1' | translate}}:</p>
+    <p>{{ 'CONTACT.message-1' | translate}}:</p>
 
     <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
         <div class="form-group">
@@ -8,8 +7,8 @@
         </div>
         <div>
             <button type="submit" class="btn btn-outline-dark btn-block">
-            {{ 'CONTACT.button-send' | translate}}
-        </button>
+                {{ 'CONTACT.button-send' | translate}}
+            </button>
         </div>
     </form>
 </div>

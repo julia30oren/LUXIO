@@ -97,11 +97,28 @@
 }
 
 .sm-text {
+    padding: 1%;
     color: gray;
     font-family: Georgia, serif;
-    font-size: 16px;
+    font-size: 20px;
     letter-spacing: 2px;
     word-spacing: 5px;
+}
+
+@media screen and (max-width: 1200px) {
+    .sm-text {
+        font-size: 16px;
+        letter-spacing: 2px;
+        word-spacing: 4px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .sm-text {
+        font-size: 12px;
+        letter-spacing: 1px;
+        word-spacing: 2px;
+    }
 }
 
 .next-prev {

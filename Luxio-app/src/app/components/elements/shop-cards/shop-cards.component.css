@@ -15,6 +15,10 @@
 
 /* button icons */
 
+i {
+    font-size: 150%;
+}
+
 .hart-button,
 .cart-button {
     margin-left: 1%;

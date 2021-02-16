@@ -80,14 +80,17 @@
                         </ul>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link active" [ngClass]="{activeColor: location==='registration'}" aria-current="page" href="tryme">{{ 'NAVIGATION.TRYME.title' | translate }}</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" [ngClass]="{activeColor: location==='shop'}" aria-current="page" href="shop">{{ 'NAVIGATION.STORE.title' | translate }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" [ngClass]="{activeColor: location==='courses'}" aria-current="page" href="courses">{{ 'NAVIGATION.COURSES.title' | translate }}</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link active" [ngClass]="{activeColor: location==='registration'}" aria-current="page" href="registration">{{ 'NAVIGATION.PERSONALid.title' | translate }}</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link active" [ngClass]="{activeColor: location==='contacts'}" aria-current="page" href="contacts">{{ 'NAVIGATION.OFFICES.title' | translate }}</a>
                     </li>

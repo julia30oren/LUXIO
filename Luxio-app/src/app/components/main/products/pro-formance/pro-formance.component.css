@@ -1,38 +1,56 @@
-.PRO-FORMANCE-open {
-    margin-top: 50px;
-    padding-bottom: 50px;
-    border-bottom: solid 2px rgba(128, 128, 128, 0.5);
-}
-
 .Hebrew {
     text-align: right;
     direction: rtl;
 }
 
+span {
+    color: brown;
+}
+
+.margTop {
+    margin-top: 50px;
+}
+
 .title {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
-    letter-spacing: 3.4px;
-    word-spacing: 3.4px;
+    letter-spacing: 1.5px;
+    word-spacing: 3px;
 }
 
 .sm-text {
-    padding: 2%;
     margin-top: 10px;
     margin-bottom: 30px;
+    padding: 1%;
     color: gray;
     font-family: Georgia, serif;
     font-size: 20px;
-    letter-spacing: 3px;
-    word-spacing: 6px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    text-align: justify;
 }
 
 @media screen and (max-width: 1200px) {
+    .title {
+        font-size: 20px;
+    }
     .sm-text {
-        padding-right: 1%;
-        padding-left: 1%;
-        font-size: 18px;
-        letter-spacing: 2.5px;
-        word-spacing: 5px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .title {
+        font-size: 16px;
+        letter-spacing: 1px;
+        word-spacing: 2px;
+    }
+    .sm-text {
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        word-spacing: 1px;
+    }
+    .margTop {
+        margin-top: 20px;
     }
 }

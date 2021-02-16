@@ -15,24 +15,26 @@ router.use(userValidation);
 
 // --------------------------------------------upload-certificate--------------------
 router.post("/upload-certificate", upload.array('image'), async(req, res) => {
-            const files = req.files;
-            // -----------------------saving certificate------------------------
-            for (const file of files) {
-                const { path } = file;
-                const newPath = await cloudinary.uploads(path, 'Images');
-                // ----removes temporary file from server
-                fs.unlinkSync(path);
-                // ---------------IF ALL GOOD-------------------
-                if (newPath.url) {
-                    logger.info(`${moment().format(`h:mm:ss a`)} - Image uploaded successfuly.`);
-                    return res.json([{ status: true, message: `Image uploaded successfuly.`, date: newPath.url }])
-        }
-        // --------------ERROR------------
-        else {
-            logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
-            return res.json([{ status: false, message: `Image wasn't uploaded.` }]);
-    }
-    }
+    const files = req.files;
+    console.log(files)
+
+    // -----------------------saving certificate------------------------
+    //     for (const file of files) {
+    //         const { path } = file;
+    //         const newPath = await cloudinary.uploads(path, 'Images');
+    //         // ----removes temporary file from server
+    //         fs.unlinkSync(path);
+    //         // ---------------IF ALL GOOD-------------------
+    //         if (newPath.url) {
+    //             logger.info(`${moment().format(`h:mm:ss a`)} - Image uploaded successfuly.`);
+    //             return res.json([{ status: true, message: `Image uploaded successfuly.`, date: newPath.url }])
+    // }
+    // --------------ERROR------------
+    //     else {
+    //         logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+    //         return res.json([{ status: false, message: `Image wasn't uploaded.` }]);
+    // }
+    // }
 });
 
 // ---------------------------------------------CREATE A NEW USER-------------------------

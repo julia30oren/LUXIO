@@ -3,10 +3,22 @@
     direction: rtl;
 }
 
+span {
+    color: brown;
+}
+
+.material-icons {
+    font-size: small;
+}
+
 .col-md-6,
-.col-12 {
+.col-12,
+.btn-outline-dark {
     margin-top: 5px;
 }
+
+
+/*  */
 
 .agreementButton {
     border: solid grey 1px;

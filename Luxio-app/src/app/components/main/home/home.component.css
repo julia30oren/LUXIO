@@ -7,17 +7,18 @@
     margin-top: 50px;
 }
 
+span {
+    color: brown;
+}
+
 .introduction {
     padding: 1%;
+    color: gray;
     font-family: Georgia, serif;
     font-size: 20px;
-    letter-spacing: 3px;
-    word-spacing: 6px;
-    font-weight: 400;
-    text-decoration: none;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    text-align: justify;
 }
 
 .col-md-6 {
@@ -27,13 +28,8 @@
 .welc,
 .welcom {
     font-family: Arial, Helvetica, sans-serif;
-    letter-spacing: 3.4px;
-    word-spacing: 3.4px;
-    color: #000000;
-    font-weight: 400;
-    text-decoration: none;
-    font-style: normal;
-    font-variant: normal;
+    letter-spacing: 1.5px;
+    word-spacing: 3px;
     text-transform: uppercase;
     text-align: center;
     margin: auto;
@@ -52,11 +48,11 @@
 
 @media screen and (max-width: 1200px) {
     .introduction {
-        font-size: 18px;
+        font-size: 16px;
     }
     .welcom {
         width: 80%;
-        font-size: 25px;
+        font-size: 22px;
         margin-top: 0px;
     }
     .welc {
@@ -67,15 +63,16 @@
 
 @media screen and (max-width: 900px) {
     .introduction {
-        font-size: 16px;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        word-spacing: 1px;
     }
-    .welcom {
-        width: 100%;
-        font-size: 18px;
-    }
+    .welcom,
     .welc {
         font-size: 16px;
         width: 100%;
+        letter-spacing: 0.7px;
+        word-spacing: 1.4px;
     }
     #prof {
         width: 90%;

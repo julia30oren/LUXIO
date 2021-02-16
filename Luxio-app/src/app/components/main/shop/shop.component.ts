@@ -33,7 +33,7 @@ export class ShopComponent implements OnInit {
         this.shop_service.getProducts_sorted(this.shop);
         if (date[0]) {
           this.shopToShow = [];
-          for (let i = 0; i < 30; i++) {
+          for (let i = 0; i < 60; i++) {
             this.shopToShow.push(date[0][i]);
           }
           this.shop_service.getProducts_sorted(this.shopToShow);
@@ -65,7 +65,7 @@ export class ShopComponent implements OnInit {
   getAll() {
     if (this.shop[0]) {
       this.shopToShow = [];
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 60; i++) {
         this.shopToShow.push(this.shop[i]);
       }
       this.shop_service.getProducts_sorted(this.shopToShow);
@@ -75,7 +75,7 @@ export class ShopComponent implements OnInit {
 
   moreProducts() {
     let x = this.shopToShow.length;
-    let y = x + 30;
+    let y = x + 60;
     if (this.shop[0]) {
       if (y < this.shop.length) {
         for (let i = x; i < y; i++) {

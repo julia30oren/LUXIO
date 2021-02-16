@@ -11,7 +11,7 @@
         <tbody>
             <tr *ngFor="let prod of item.order">
                 <th scope="row">{{prod.prod_class}} {{prod.name}}</th>
-                <td><span style="color: brown;">{{prod.quantity}}</span></td>
+                <td><span>{{prod.quantity}}</span></td>
                 <td>{{prod.price}}&#8362; / {{prod.amount}}</td>
                 <td>{{prod.total_price}}&#8362;</td>
             </tr>
@@ -37,7 +37,7 @@
             </tr>
             <tr>
                 <th scope="row">Shipping details:</th>
-                <th (click)="getOrdersOfUser(item.shipping_details._id);" style="color: brown; cursor: pointer;">{{item.shipping_details.first_name}} {{item.shipping_details.second_name}}</th>
+                <th (click)="getOrdersOfUser(item.shipping_details._id);" style="cursor: pointer;"><span>{{item.shipping_details.first_name}} {{item.shipping_details.second_name}}</span></th>
                 <td>{{item.shipping_details.phoneN}}</td>
             </tr>
             <tr>

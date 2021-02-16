@@ -16,13 +16,17 @@ export class NewComponent implements OnInit {
   public shop: Array<any> = [];
   public selectedProd: boolean;
 
+  public AvantgardeOpen: boolean;
   public jelliOpen: boolean;
+  public fantasyOpen: boolean;
   public shadesOpen: boolean;
   public miamiOpen: boolean;
   public voyageOpen: boolean;
   public rendezvousOpen: boolean;
 
-  public jelly: Array<any> = [];
+  public avantgarde: Array<any> = [];
+  public jelli: Array<any> = [];
+  public fantasy: Array<any> = [];
   public shades: Array<any> = [];
   public voyage: Array<any> = [];
   public miami: Array<any> = [];
@@ -50,10 +54,19 @@ export class NewComponent implements OnInit {
         shop.forEach(element => {
           if (element.prod_collection === 'shades') {
             this.shades.push(element);
-          } else if (element.prod_collection === 'voyage') {
+          }
+          else if (element.prod_collection === 'avant garde') {
+            this.avantgarde.push(element);
+          }
+          else if (element.prod_collection === 'jelli') {
+            this.jelli.push(element);
+          }
+          else if (element.prod_collection === 'fantasy') {
+            this.fantasy.push(element);
+          }
+          else if (element.prod_collection === 'voyage') {
             this.voyage.push(element);
           }
-
           else if (element.prod_collection === 'miami') {
             this.miami.push(element);
           }
@@ -62,6 +75,9 @@ export class NewComponent implements OnInit {
           }
         });
       });
+  }
+  openAvantgarde_shop() {
+    this.AvantgardeOpen = !this.AvantgardeOpen;
   }
 
   openRendezvous_shop() {
@@ -76,6 +92,13 @@ export class NewComponent implements OnInit {
     this.voyageOpen = !this.voyageOpen;
   }
 
+  openJelli_shop() {
+    this.jelliOpen = !this.jelliOpen;
+  }
+
+  openFantasy_shop() {
+    this.fantasyOpen = !this.fantasyOpen;
+  }
 
   openMiami_shop() {
     this.miamiOpen = !this.miamiOpen;

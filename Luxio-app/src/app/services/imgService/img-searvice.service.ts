@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { SaveUserService } from '../saveUser/save-user.service';
 import { HttpClient } from '@angular/common/http';
 import { RespondService } from '../respond/respond.service';
@@ -9,8 +10,9 @@ import { environment } from '../../../environments/environment';
 })
 export class ImgSearviceService {
 
-  private registeration_URL: string = `${environment.hostURL}:${environment.DBport}/user/registeration`
-
+  private registeration_URL: string = `${environment.hostURL}:${environment.DBport}/user/registeration`;
+  private certifikateLink = new BehaviorSubject<string>('');
+  public certifikateLink_fromService = this.certifikateLink.asObservable();
   constructor(
     private http: HttpClient,
     private respond_Service: RespondService,
@@ -37,6 +39,18 @@ export class ImgSearviceService {
         // SAVING TO DB ---
         let image_link = res[0].date;  //photo link saving to form
         this.db_Servise.saveUserPhoto({ _id: id, photo_link: image_link });
+      }
+      );
+  }
+
+  saveCertifikate(selectedImg) {
+    // ------------------CLOUDINARY ----
+    return this.http.post(`${this.registeration_URL}/upload-certificate`, selectedImg)
+      .subscribe(res => {
+        this.respond_Service.saveRespond(res);
+        // SAVING TO DB ---
+        let image_link = res[0].date;  //photo link saving to form
+        this.certifikateLink.next(image_link);
       }
       );
   }

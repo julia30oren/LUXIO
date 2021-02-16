@@ -3,32 +3,26 @@
     direction: rtl;
 }
 
+span {
+    color: brown;
+}
+
 .title {
     margin-top: 50px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
-    letter-spacing: 3.4px;
-    word-spacing: 3.4px;
-}
-
-.main-title {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 20px;
-    letter-spacing: 3px;
-    word-spacing: -0.5px;
-    font-weight: 400;
-    text-transform: capitalize;
+    letter-spacing: 1.5px;
+    word-spacing: 3px;
 }
 
 .introduction {
-    padding: 2%;
-    margin-top: 10px;
-    margin-bottom: 30px;
+    padding: 1%;
     color: gray;
     font-family: Georgia, serif;
     font-size: 20px;
-    letter-spacing: 3px;
-    word-spacing: 6px;
+    letter-spacing: 1.5px;
+    word-spacing: 3px;
+    text-align: justify;
 }
 
 .btn-block {
@@ -39,16 +33,18 @@
 .description {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
-    letter-spacing: 3.4px;
-    word-spacing: 3.4px;
+    letter-spacing: 1.5px;
+    word-spacing: 3px;
     padding: 5%;
 }
 
 .description>p {
-    font-family: Georgia, serif;
+    padding: 1%;
     color: gray;
-    font-size: 16px;
-    word-spacing: 6px;
+    font-family: Georgia, serif;
+    letter-spacing: 1px;
+    word-spacing: 3px;
+    font-size: 14px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -56,24 +52,26 @@
         font-size: 20px;
     }
     .introduction {
-        font-size: 18px;
+        font-size: 16px;
+        letter-spacing: 1px;
+        word-spacing: 2px;
     }
     .description>p {
         font-size: 14px;
-        word-spacing: 5px;
     }
 }
 
 @media screen and (max-width: 900px) {
     .title {
         font-size: 18px;
+        letter-spacing: 1px;
+        word-spacing: 2px;
     }
-    .introduction {
-        font-size: 14px;
-    }
+    .introduction,
     .description>p {
         font-size: 12px;
-        word-spacing: 4px;
+        letter-spacing: 0.5px;
+        word-spacing: 1px;
     }
 }
 
@@ -93,6 +91,10 @@
 
 
 /* button icons */
+
+i {
+    font-size: 150%;
+}
 
 .hart-button,
 .cart-button {

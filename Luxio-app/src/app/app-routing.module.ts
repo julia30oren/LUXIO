@@ -22,6 +22,7 @@ import { RemoveComponent } from './components/admin/remove/remove.component';
 import { MailingsComponent } from './components/admin/mailings/mailings.component';
 import { HomeComponent } from './components/main/home/home.component';
 import { OrdersComponent } from './components/admin/orders/orders.component';
+import { TrymeComponent } from './components/main/tryme/tryme.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [
     { path: 'products/tools', component: ToolsComponent },
     { path: 'registration', component: SignInComponent },
     { path: 'shop', component: ShopComponent },
+    { path: 'tryme', component: TrymeComponent },
     { path: 'courses', component: CoursesComponent },
     { path: 'contacts', component: ContactsComponent },
 
@@ -63,6 +65,7 @@ export const routingComponents = [
     CoursesComponent,
     ContactsComponent,
     NewComponent,
+    TrymeComponent,
     CrtificatesListComponent,
     GelPlayComponent,
     OptionssComponent,

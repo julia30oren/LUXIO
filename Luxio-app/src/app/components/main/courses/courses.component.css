@@ -2,48 +2,54 @@
     direction: rtl;
 }
 
-@media screen and (max-width: 1200px) {
-    .courser-row {
-        height: 400px;
-    }
-}
-
-.red-text {
+span {
     color: brown;
-    font-size: 26px;
+    text-transform: uppercase;
 }
 
 .text-block {
-    color: black;
-    width: 50%;
-    text-align: center;
-    padding: 2%;
-    font-family: Georgia, serif;
-    letter-spacing: 3px;
-    word-spacing: 6px;
+    padding: 1%;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .text-block>h1 {
-    margin: 20px;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
+    letter-spacing: 1.5px;
+    word-spacing: 3px;
+    text-align: center;
+    margin: 5%;
 }
 
 .text-block>p {
-    font-size: 18px;
     color: gray;
-    margin: 20px;
+    font-family: Georgia, serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    text-align: justify;
 }
 
-.text-block>small {
-    font-family: Arial, Helvetica, sans-serif;
-    color: black;
-    font-size: 14px;
+.input-group {
+    width: auto;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.error {
+    border: red 1px solid;
+}
+
+@media screen and (max-width: 900px) {
+    .text-block {
+        font-size: 12px;
+        letter-spacing: 1px;
+        word-spacing: 2px;
+    }
 }
 
 @media screen and (max-width: 1200px) {
     .text-block {
-        font-size: 20px;
+        font-size: 16px;
         letter-spacing: 2px;
         word-spacing: 4px;
     }
@@ -55,16 +61,4 @@
         font-size: 16px;
         margin: 15px;
     }
-    .text-block>small {
-        font-size: 12px;
-    }
-}
-
-.input-group {
-    width: auto;
-    margin: auto;
-}
-
-.error {
-    border: red 1px solid;
 }

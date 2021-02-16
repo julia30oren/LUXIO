@@ -10,35 +10,50 @@
     width: 100%;
 }
 
-i {
-    font-size: 150%;
-}
-
 .main-title {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 20px;
-    letter-spacing: 3px;
-    word-spacing: -0.5px;
-    font-weight: 400;
+    letter-spacing: 1.5px;
+    word-spacing: 3px;
     text-transform: capitalize;
 }
 
 .sm-text {
+    padding: 1%;
     color: gray;
     font-family: Georgia, serif;
+    letter-spacing: 1px;
+    word-spacing: 2px;
     font-size: 14px;
-    letter-spacing: 2px;
-    word-spacing: 5px;
+}
+
+@media screen and (max-width: 1200px) {
+    .main-title {
+        font-size: 18px;
+        letter-spacing: 1px;
+        word-spacing: 2px;
+    }
 }
 
 @media screen and (max-width: 900px) {
+    .main-title {
+        font-size: 15px;
+        letter-spacing: 0.5px;
+        word-spacing: 1px;
+    }
     .sm-text {
         font-size: 12px;
+        letter-spacing: 0.5px;
+        word-spacing: 1px;
     }
 }
 
 
 /* button icons */
+
+i {
+    font-size: 150%;
+}
 
 .hart-button,
 .cart-button {
