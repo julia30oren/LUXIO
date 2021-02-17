@@ -38,23 +38,21 @@ router.post("/upload-certificate", upload.array('image'), async(req, res) => {
     }
 });
 
-// ---------------------------------------------CREATE A NEW USER-------------------------
+// ---------------------------------------------CREATE A NEW USER--------------------category, certificate_link-----
 router.post("/:lang/save", async(req, res) => {
             const language = req.params.lang;
-            const { first_name, second_name, phoneN, state, email, password, category, certificate_link, cart, favorites, business } = req.body;
+            const { first_name, second_name, phoneN, state, email, password, cart, favorites, business } = req.body;
             // -------------------------------------- cripting password-------------------------
             const salt = bcrypt.genSaltSync(10);
             const passwordHash = bcrypt.hashSync(password, salt);
             // ----------------------------------------------------CREATIN USER AND SAVING-----------------------
             const newUser = new UserSchema({
                 first_name: first_name.charAt(0).toUpperCase() + first_name.slice(1),
-                second_name: second_name.charAt(0).toUpperCase() + second_name.slice(1),
+                second_name: second_name?second_name.charAt(0).toUpperCase() + second_name.slice(1):'',
                 phoneN: phoneN,
-                state: state.charAt(0).toUpperCase() + state.slice(1),
+                state: state,
                 email: email,
                 password: passwordHash,
-                category: category,
-                certificate_link: certificate_link,
                 cart: cart,
                 favorites: favorites,
                 business: business,
@@ -406,11 +404,12 @@ function emailToAdmin(user) {
             <div style="border: grey 1px solid">
             <ul>  
               <li>Name: ${user.first_name} ${user.second_name} </li>
-              <li>City: ${user.city}</li>
+              <li>Location: ${user.state}</li>
+              <li>Email: ${user.email}</li>
               <li>Phone number: ${user.phoneN}</li>
-              <li>Category: ${user.category}</li>
+              <li>Business: ${user.business[0].type} ${user.business[0].salon?user.business[0].salon:''}</li>
             </ul>
-            <img src="${user.certificate_link}"  style="width: 500px;"/>
+            ${user.business[0].certifikate? `<img src="${user.business[0].certifikate}" style="width: 500px;"/>`:''}
             <a href="http://localhost:4200/admin/certificates">On Page</a>
             </div>
           `
@@ -431,7 +430,7 @@ function emailToUser_Info(langueg) {
                             <h3>We are nothing without customers! Your presence is our motivation to do better!</h3>
                             <p> For any additional information, contact the company representative by number:</p>
                             <p> 054-8785521 / 055-9519777 </p>
-                            <img src="https://i.pinimg.com/originals/ee/9c/48/ee9c48b36e879ebf783f6246f0926ce6.png" alt="AKZENTZ"/>
+                            <img style="width: 500px;" src="https://i.pinimg.com/originals/ee/9c/48/ee9c48b36e879ebf783f6246f0926ce6.png" alt="AKZENTZ"/>
                         </div>`;
                 break;
             case 'ru':
@@ -441,7 +440,7 @@ function emailToUser_Info(langueg) {
                             <h3>Мы ничто без клиентов! Ваше присутствие - наша мотивация работать лучше!</h3>
                             <p> За дополнительной информацией обращайтесь к представителю компании по номеру: </p>
                             <p> 054-8785521 / 055-9519777 </p>
-                            <img src="https://i.pinimg.com/originals/ee/9c/48/ee9c48b36e879ebf783f6246f0926ce6.png" alt="AKZENTZ"/>
+                            <img style="width: 500px;" src="https://i.pinimg.com/originals/ee/9c/48/ee9c48b36e879ebf783f6246f0926ce6.png" alt="AKZENTZ"/>
                         </div>`;
                 break;
             default:
@@ -451,7 +450,7 @@ function emailToUser_Info(langueg) {
                             <h3>אנחנו כלום בלי לקוחות! הנוכחות שלך היא המוטיבציה שלנו לעשות טוב יותר!</h3>
                             <p> לקבלת מידע נוסף, צרו קשר עם נציג החברה במספר:</p>
                             <p> 054-8785521 / 055-9519777 </p>
-                            <img src="https://i.pinimg.com/originals/ee/9c/48/ee9c48b36e879ebf783f6246f0926ce6.png" alt="AKZENTZ"/>
+                            <img style="width: 500px;" src="https://i.pinimg.com/originals/ee/9c/48/ee9c48b36e879ebf783f6246f0926ce6.png" alt="AKZENTZ"/>
                         </div>`;
                 break;
         }

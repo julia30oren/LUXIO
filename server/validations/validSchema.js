@@ -16,7 +16,7 @@ const validSchema = Joi.object({
 
     // FOR USER   
     first_name: Joi.string().alphanum().min(2).max(30).required(),
-    second_name: Joi.string().alphanum().min(2).max(30).required(),
+    second_name: Joi.string().alphanum(),
     phoneN: Joi.string().min(8).max(20).pattern(new RegExp('^(- ())[0-9]{3,30}$')).message('PHONE NUMBER is not valid. It must contain at least 8 letters numbers (may contain "-" and/or "()").'),
     state: Joi.string(),
     email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com'] } }),

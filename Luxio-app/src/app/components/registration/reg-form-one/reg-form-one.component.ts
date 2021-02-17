@@ -26,6 +26,8 @@ export class RegFormOneComponent implements OnInit {
     private fb: FormBuilder,
     private lang_service: LanguageService,
     private certifikate_Service: ImgSearviceService,
+    private user_service: SaveUserService,
+    private reg_service: RegistrationService,
   ) { this.frmSignup = this.createSignupForm(); }
 
   ngOnInit() {
@@ -36,10 +38,10 @@ export class RegFormOneComponent implements OnInit {
   createSignupForm(): FormGroup {
     return this.fb.group(
       {
-        name: [null, Validators.compose([Validators.required])],
-        surname: [null],
+        first_name: [null, Validators.compose([Validators.required])],
+        second_name: [''],
         email: [null, Validators.compose([Validators.email, Validators.required])],
-        phoneN: [null],
+        phoneN: [''],
         password: [null, Validators.compose([
           Validators.required,
           // check whether the entered password has a number
@@ -65,7 +67,7 @@ export class RegFormOneComponent implements OnInit {
         ])
         ],
         confirmPassword: [null, Validators.compose([Validators.required])],
-        location: [null, Validators.compose([Validators.required])]
+        state: [null, Validators.compose([Validators.required])]
       },
       {
         // check whether our password and confirm password match
@@ -118,26 +120,27 @@ export class RegFormOneComponent implements OnInit {
   }
 
   submit() {
-    // business: { type: this.business, certifikate: this.selectedImg_link || salon: this.salonName }
-    // confirmPassword: "Justdoit2day!"
-    // email: "Juliaoren30@jmail.com"
-    // location: "Center of Israel (close to Tel Aviv)"
-    // name: "Julia Orendovskyi"
-    // password: "Justdoit2day!"
-    // phoneN: "0524458442" || null
-    // business_details: "salon name" || "certifikate link"
-    // surname: null
+    //first_name, second_name, phoneN, state, email, password, cart, favorites, business
     this.isSubmited = true;
     // do signup or something
     if (this.frmSignup.valid && this.business) {
       if (this.business === 'salon representative' && this.salonName) {
-        this.frmSignup.value.business = { type: this.business, salon: this.salonName };
-        console.log(this.frmSignup.value);
+        this.frmSignup.value.business = [{ type: this.business, salon: this.salonName }];
+        this.frmSignup.value.cart = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
+        this.frmSignup.value.favorites = JSON.parse(localStorage.getItem('my_764528_f')) || [];
+        // console.log(this.frmSignup.value);
+        JSON.parse(localStorage.getItem('my_764528_ct'))
+        this.user_service.saveUser_toDB(this.frmSignup.value, this.languege);
       }
       else if (this.business === 'self employed' && this.selectedImg_link) {
-        this.frmSignup.value.business = { type: this.business, certifikate: this.selectedImg_link };
-        console.log(this.frmSignup.value);
+        this.frmSignup.value.business = [{ type: this.business, certifikate: this.selectedImg_link }];
+        this.frmSignup.value.cart = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
+        this.frmSignup.value.favorites = JSON.parse(localStorage.getItem('my_764528_f')) || [];
+        // console.log(this.frmSignup.value);
+        this.user_service.saveUser_toDB(this.frmSignup.value, this.languege);
       }
+      // close form
+      this.reg_service.close_RegistrationForm();
     }
   }
 }

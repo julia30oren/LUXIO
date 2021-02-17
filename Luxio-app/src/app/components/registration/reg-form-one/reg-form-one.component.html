@@ -3,14 +3,14 @@
         <!---------------------------- NAME & SURNAME ROW-->
         <div class="row">
             <div class="col-md-6 col-12">
-                <label for="name" [ngClass]="frmSignup.controls['name'].invalid && isSubmited ? 'text-danger' : ''">Name<span >*</span></label>
-                <input id="name" formControlName="name" type="text" class="form-control" [ngClass]="frmSignup.controls['name'].invalid && isSubmited ? 'is-invalid' : ''">
-                <label class="text-danger" *ngIf="frmSignup.controls['name'].hasError('required') && isSubmited">Name is Required!</label>
-                <label class="text-danger" *ngIf="frmSignup.controls['name'].hasError('name')  && isSubmited">Name a valid email address!</label>
+                <label for="name" [ngClass]="frmSignup.controls['first_name'].invalid && isSubmited ? 'text-danger' : ''">Name<span >*</span></label>
+                <input id="name" formControlName="first_name" type="text" class="form-control" [ngClass]="frmSignup.controls['first_name'].invalid && isSubmited ? 'is-invalid' : ''">
+                <label class="text-danger" *ngIf="frmSignup.controls['first_name'].hasError('required') && isSubmited">Name is Required!</label>
+                <label class="text-danger" *ngIf="frmSignup.controls['first_name'].hasError('first_name')  && isSubmited">Name a valid email address!</label>
             </div>
             <div class="col-md-6 col-12">
                 <label for="surname">Surname</label>
-                <input id="surname" formControlName="surname" type="text" class="form-control">
+                <input id="surname" formControlName="second_name" type="text" class="form-control">
             </div>
         </div>
         <!---------------------------- EMAIL & PHONE ROW-->
@@ -78,19 +78,19 @@
             <div class="col-md-6 col-12">
                 <!-- LOCATION -->
                 <div>
-                    <label for="location" [ngClass]="frmSignup.controls['location'].invalid && isSubmited ? 'text-danger' : ''">Location<span >*</span></label>
-                    <select id="location" formControlName="location" class="form-control" (change)="cityCheck($event.target.value)" [ngClass]=" frmSignup.controls['location'].invalid && isSubmited ? 'is-invalid' : '' ">
-                <option value="Center of Israel (close to Tel Aviv)">{{ 'SIGN-IN.REGISTRATION-FORM.loc1' | translate}}</option>
-                <option value="Center of Israel (close to Jerusalem)">{{ 'SIGN-IN.REGISTRATION-FORM.loc2' | translate}}</option>
-                <option value="Center of Israel (close to Ashdod)">{{ 'SIGN-IN.REGISTRATION-FORM.loc3' | translate}}</option>
-                <option value="North of Israel (close to Haifa)">{{ 'SIGN-IN.REGISTRATION-FORM.loc4' | translate}}</option>
-                <option value="North of Israel (close to Nazareth)">{{ 'SIGN-IN.REGISTRATION-FORM.loc5' | translate}}</option>
-                <option value="North of Israel (close to Nahariyya)">{{ 'SIGN-IN.REGISTRATION-FORM.loc6' | translate}}</option>
-                <option value="North of Israel (close to Qiryat Shemona)">{{ 'SIGN-IN.REGISTRATION-FORM.loc7' | translate}}</option>
-                <option value="South Israel (close to Be'er Sheva)">{{ 'SIGN-IN.REGISTRATION-FORM.loc8' | translate}}</option>
-                <option value="South Israel (close to Eilat)">{{ 'SIGN-IN.REGISTRATION-FORM.loc9' | translate}}</option>
-                </select>
-                    <label class="text-danger" *ngIf="frmSignup.controls['location'].hasError('required') && isSubmited">Location is Required!</label>
+                    <label for="location" [ngClass]="frmSignup.controls['state'].invalid && isSubmited ? 'text-danger' : ''">Location<span >*</span></label>
+                    <select id="location" formControlName="state" class="form-control" (change)="cityCheck($event.target.value)" [ngClass]=" frmSignup.controls['state'].invalid && isSubmited ? 'is-invalid' : '' ">
+                        <option value="Center of Israel (close to Tel Aviv)">{{ 'SIGN-IN.REGISTRATION-FORM.loc1' | translate}}</option>
+                        <option value="Center of Israel (close to Jerusalem)">{{ 'SIGN-IN.REGISTRATION-FORM.loc2' | translate}}</option>
+                        <option value="Center of Israel (close to Ashdod)">{{ 'SIGN-IN.REGISTRATION-FORM.loc3' | translate}}</option>
+                        <option value="North of Israel (close to Haifa)">{{ 'SIGN-IN.REGISTRATION-FORM.loc4' | translate}}</option>
+                        <option value="North of Israel (close to Nazareth)">{{ 'SIGN-IN.REGISTRATION-FORM.loc5' | translate}}</option>
+                        <option value="North of Israel (close to Nahariyya)">{{ 'SIGN-IN.REGISTRATION-FORM.loc6' | translate}}</option>
+                        <option value="North of Israel (close to Qiryat Shemona)">{{ 'SIGN-IN.REGISTRATION-FORM.loc7' | translate}}</option>
+                        <option value="South Israel (close to Be'er Sheva)">{{ 'SIGN-IN.REGISTRATION-FORM.loc8' | translate}}</option>
+                        <option value="South Israel (close to Eilat)">{{ 'SIGN-IN.REGISTRATION-FORM.loc9' | translate}}</option>
+                    </select>
+                    <label class="text-danger" *ngIf="frmSignup.controls['state'].hasError('required') && isSubmited">Location is Required!</label>
                     <label class="text-danger" *ngIf="closeToAsdod"><span>{{ 'CONTACT.ashdod' | translate}} <i class="fas fa-arrow-right"></i></span> <a target="_blank" href="https://www.instagram.com/lisagelman">Lisa Gelman</a></label>
                     <label class="text-danger" *ngIf="closeToNahariyya"><span>{{ 'CONTACT.yirka' | translate}} <i class="fas fa-arrow-right"></i></span><a target="_blank" href="https://www.vrona.co.il">Vrona Cosmetic</a></label>
                 </div>

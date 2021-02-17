@@ -7,19 +7,18 @@ const UserSchema = new Schema({
         require: true
     },
     second_name: {
-        type: String,
-        require: true
+        type: String
     },
     phoneN: {
         type: String,
         require: true
     },
     city: {
-        type: String,
-        require: true
+        type: String
     },
     state: {
-        type: String
+        type: String,
+        require: true
     },
     street: {
         type: String
@@ -44,18 +43,13 @@ const UserSchema = new Schema({
         type: String,
         require: true
     },
-    category: {
-        type: String,
-        require: true
-    },
-    certificate_link: {
-        type: String
-    },
     photo_link: {
         type: String
     },
     business: {
-        type: Object
+        type: Array,
+        default: [],
+        require: true
     },
     status: {
         type: String,

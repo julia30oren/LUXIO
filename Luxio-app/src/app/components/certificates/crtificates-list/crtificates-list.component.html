@@ -45,28 +45,23 @@
     <div class="requests-div" *ngIf="certificatesList">
         <div *ngFor="let item of certificates_sorted" class="card mb-3" style="max-width: 100%;">
             <div class="row no-gutters">
-                <div class="col-md-3">
-                    <img *ngIf="item.certificate_link" src="{{item.certificate_link}}" class="card-img" (click)="openCertificate(item.certificate_link)" alt="certificate">
+                <div class="col-md-3" *ngFor="let userBusiness of item.business">
+                    <img *ngIf="!userBusiness.certifikate" src="https://blog.cpanel.com/wp-content/uploads/2019/08/user-01.png" class="card-img" alt="certificate">
+                    <img *ngIf="userBusiness.certifikate" src="{{userBusiness.certifikate}}" class="card-img" (click)="openCertificate(item.certificate_link)" alt="certificate">
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
-                        {{ 'ADMIN.CERTIFICATES.name' | translate }}:
-                        <h5 class="card-title"> {{item.first_name}} {{item.second_name}}</h5>
-
-                        <p class="card-text" *ngIf="item.certificate_link"> {{ 'ADMIN.CERTIFICATES.category' | translate }}: {{item.category}}</p>
-                        <p class="card-text" *ngIf="item.business"> {{ 'ADMIN.CERTIFICATES.category' | translate }}: {{item.category}} &laquo; {{item.business.name}} &raquo; {{item.business.id}}</p>
-
-                        <p class="card-text">{{ 'ADMIN.CERTIFICATES.city' | translate }}: {{item.city}}</p>
+                        <h5 class="card-title">{{item.first_name}} {{item.second_name}}</h5>
+                        <p class="card-text" *ngFor="let userBusiness of item.business">{{userBusiness.type}} <span *ngIf="userBusiness.salon">«{{userBusiness.salon}}»</span></p>
+                        <p class="card-text">State: {{item.state}}</p>
+                        <p class="card-text">Email: {{item.email}}</p>
                         <p class="card-text">{{ 'ADMIN.CERTIFICATES.phone' | translate }}: {{item.phoneN}}</p>
-                        <p class="card-text"><small class="text-muted">
-                            {{ 'ADMIN.CERTIFICATES.date' | translate }}: {{item.date | date:'shortDate'}}</small>
-                        </p>
+                        <p class="card-text"><small class="text-muted">{{ 'ADMIN.CERTIFICATES.date' | translate }}: {{item.date | date:'shortDate'}}</small></p>
                         <p class="card-text">
                             <small class="text-muted" *ngIf="item.status==='considered'">{{ 'ADMIN.CERTIFICATES.state' | translate }} {{ 'ADMIN.CERTIFICATES.state-undefined' | translate }}</small>
                             <small class="text-muted" *ngIf="item.status==='true'">{{ 'ADMIN.CERTIFICATES.state' | translate }} {{ 'ADMIN.CERTIFICATES.state-approved' | translate }}</small>
                             <small class="text-muted" *ngIf="item.status==='false'">{{ 'ADMIN.CERTIFICATES.state' | translate }} {{ 'ADMIN.CERTIFICATES.state-dened' | translate }}</small>
                         </p>
-
                     </div>
                 </div>
                 <div class="col-md-2">
