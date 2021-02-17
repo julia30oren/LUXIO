@@ -115,7 +115,6 @@ export class RegFormOneComponent implements OnInit {
           .subscribe(date => this.selectedImg_link = date);
       }
     }
-
   }
 
   submit() {

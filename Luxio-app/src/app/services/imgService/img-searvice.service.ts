@@ -49,12 +49,13 @@ export class ImgSearviceService {
   saveCertifikate(selectedImg) {
     // ------------------CLOUDINARY ----
     return this.http.post(`${this.registeration_URL}/upload-certificate`, selectedImg)
-      .subscribe(res => {
-        console.log(res);
-        // this.respond_Service.saveRespond(res);
-        // SAVING TO DB ---
-        // let image_link = res[0].date;  //photo link saving to form
-        // this.certifikateLink.next(image_link);
+      .subscribe(res => {  // {status, message, date}
+        if (res[0].status && res[0].date) {
+          // SAVING link lockaly ---
+          let image_link = res[0].date;  //photo link saving to form
+          this.certifikateLink.next(image_link);
+        }
+        this.respond_Service.saveRespond(res);
       }
       );
   }
