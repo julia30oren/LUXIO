@@ -11,13 +11,14 @@ const moment = require("moment");
 
 let responseMessage;
 const userValidation = require('../../validations/userValidation');
+const { json } = require('body-parser');
 router.use(userValidation);
 
 // --------------------------------------------upload-certificate--------------------
 router.post("/upload-certificate", upload.array('image'), async(req, res) => {
     const files = req.files;
-    console.log(files)
-
+    console.log(files);
+    return res.json([{ message: JSON.stringify(files) }]);
     // -----------------------saving certificate------------------------
     //     for (const file of files) {
     //         const { path } = file;

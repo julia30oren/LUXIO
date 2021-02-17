@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 })
 export class ImgSearviceService {
 
-  private registeration_URL: string = `${environment.hostURL}:${environment.DBport}/user/registeration`;
+  private registeration_URL: string = `${environment.hostURL}:${environment.DBport}/registeration`;
   private certifikateLink = new BehaviorSubject<string>('');
   public certifikateLink_fromService = this.certifikateLink.asObservable();
   constructor(
@@ -19,38 +19,42 @@ export class ImgSearviceService {
     private db_Servise: SaveUserService
   ) { }
 
-  insertImageDetails(imageDetails, formValue, languege) {
-    // ------------------CLOUDINARY ----
-    return this.http.post(`${this.registeration_URL}/upload-certificate`, imageDetails)
-      .subscribe(res => {
-        this.respond_Service.saveRespond(res);
-        // // SAVING TO DB ---
-        formValue.certificate_link = res[0].date;  //certificate link saving to form
-        this.db_Servise.saveUser_toDB(formValue, languege);
-      }
-      );
-  }
+  // insertImageDetails(imageDetails, formValue, languege) {
+  //   // ------------------CLOUDINARY ----
+  //   return this.http.post(`${this.registeration_URL}/upload-certificate`, imageDetails)
+  //     .subscribe(res => {
+  //       console.log(res);
+  //       // this.respond_Service.saveRespond(res);
+  //       // // SAVING TO DB ---
+  //       // formValue.certificate_link = res[0].date;  //certificate link saving to form
+  //       // this.db_Servise.saveUser_toDB(formValue, languege);
+  //     }
+  //     );
+  // }
 
-  insertPhotoDetails(selectedImg, id: string) {
-    // ------------------CLOUDINARY ----
-    return this.http.post(`${this.registeration_URL}/upload-certificate`, selectedImg)
-      .subscribe(res => {
-        this.respond_Service.saveRespond(res);
-        // SAVING TO DB ---
-        let image_link = res[0].date;  //photo link saving to form
-        this.db_Servise.saveUserPhoto({ _id: id, photo_link: image_link });
-      }
-      );
-  }
+  // insertPhotoDetails(selectedImg, id: string) {
+  //   // ------------------CLOUDINARY ----
+  //   return this.http.post(`${this.registeration_URL}/upload-certificate`, selectedImg)
+  //     .subscribe(res => {
+  //       console.log(res);
+
+  //       // this.respond_Service.saveRespond(res);
+  //       // SAVING TO DB ---
+  //       // let image_link = res[0].date;  //photo link saving to form
+  //       // this.db_Servise.saveUserPhoto({ _id: id, photo_link: image_link });
+  //     }
+  //     );
+  // }
 
   saveCertifikate(selectedImg) {
     // ------------------CLOUDINARY ----
     return this.http.post(`${this.registeration_URL}/upload-certificate`, selectedImg)
       .subscribe(res => {
-        this.respond_Service.saveRespond(res);
+        console.log(res);
+        // this.respond_Service.saveRespond(res);
         // SAVING TO DB ---
-        let image_link = res[0].date;  //photo link saving to form
-        this.certifikateLink.next(image_link);
+        // let image_link = res[0].date;  //photo link saving to form
+        // this.certifikateLink.next(image_link);
       }
       );
   }

@@ -234,38 +234,37 @@ option {
 
 /* MESSAGE TO USER FOR REGISTRATION */
 
-.ADVERTISEMENT {
-    width: 100%;
-    position: absolute;
-    z-index: 12;
-    top: 170px;
-    left: 0;
-}
-
-.sign-in-div {
-    width: 30%;
-    height: 650px;
-    margin: auto;
-    background-color: rgb(255, 255, 255);
+.adv {
+    background-color: white;
     border: rgb(58, 58, 58) 0.5px solid;
     -webkit-box-shadow: 2px 5px 16px 0px #000000, 0px 2px 25px 29px rgba(0, 0, 0, 0.19);
     box-shadow: 2px 5px 16px 0px #505050, 0px 2px 25px 29px rgba(0, 0, 0, 0.19);
-    padding: 25px;
 }
 
-.sign-in-div>h1 {
-    width: 100%;
+.adv>h1 {
+    margin-top: 15px;
     text-align: center;
-    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
+    word-spacing: 3px;
+}
+
+.adv>img {
+    width: 70%;
+    margin-left: 15%;
+}
+
+.adv>p {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding: 1%;
+    color: gray;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    letter-spacing: 1px;
     word-spacing: 2px;
-    color: #000000;
-    font-weight: 400;
-    text-decoration: none solid rgb(68, 68, 68);
-    font-style: normal;
-    font-variant: small-caps;
-    text-transform: none;
+    text-align: justify;
 }
 
 .message-link {
@@ -275,8 +274,7 @@ option {
     font-family: arial, sans-serif;
     color: rgb(36, 138, 255);
     cursor: pointer;
-    margin: auto;
-    width: 33%;
+    width: 100%;
 }
 
 .message-link:hover {

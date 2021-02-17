@@ -8,11 +8,11 @@ const AdminSchema = require('./routes/admin/admin-model');
 const bcrypt = require('bcryptjs');
 const app = express();
 const server = require('http').createServer(app);
-// var io = require('socket.io')(server);
-// const path = require('path');
-// const bodyParser = require('body-parser');
-// app.use(express.static(path.join(__dirname, '/Luxio-app')));
-// 
+// -----------------------
+// const fileUpload = require('express-fileupload')
+// app.post('/upload', function(req, res) {
+//     console.log(req.files.foo); // the uploaded file object
+// });
 
 // function to check if all parameters exist in .env
 function ifEnvVarieblesExist(params) {
@@ -106,7 +106,7 @@ app.use(express.json());
 
 // app.get('/*',(req,res)=>{res.sendFile(path.join(__dirname))})
 // app.get('/new',(req,res)=>{res.sendFile(path.join(__dirname))})
-app.use('/user/registeration', require('./routes/user/registeration')); //check by postmane (exept upload-certificate)
+app.use('/registeration', require('./routes/user/registeration')); //check by postmane (exept upload-certificate)
 app.use('/user', require('./routes/user/user')); //check  by postmane (exept cart and favorites)
 app.use('/admin', require('./routes/admin/admin')); //check by postmane
 app.use('/comments', require('./routes/comments/comments')); //check by postmane
