@@ -32,19 +32,19 @@ export class ImgSearviceService {
   //     );
   // }
 
-  // insertPhotoDetails(selectedImg, id: string) {
-  //   // ------------------CLOUDINARY ----
-  //   return this.http.post(`${this.registeration_URL}/upload-certificate`, selectedImg)
-  //     .subscribe(res => {
-  //       console.log(res);
+  insertPhotoDetails(selectedImg, id: string) {
+    // ------------------CLOUDINARY ----
+    return this.http.post(`${this.registeration_URL}/upload-certificate`, selectedImg)
+      .subscribe(res => {
+        console.log(res);
 
-  //       // this.respond_Service.saveRespond(res);
-  //       // SAVING TO DB ---
-  //       // let image_link = res[0].date;  //photo link saving to form
-  //       // this.db_Servise.saveUserPhoto({ _id: id, photo_link: image_link });
-  //     }
-  //     );
-  // }
+        // this.respond_Service.saveRespond(res);
+        // SAVING TO DB ---
+        // let image_link = res[0].date;  //photo link saving to form
+        // this.db_Servise.saveUserPhoto({ _id: id, photo_link: image_link });
+      }
+      );
+  }
 
   saveCertifikate(selectedImg) {
     // ------------------CLOUDINARY ----
