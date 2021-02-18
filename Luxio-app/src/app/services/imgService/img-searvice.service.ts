@@ -37,7 +37,7 @@ export class ImgSearviceService {
   }
 
   saveNewImage_toDB(img: string, id: string) {
-    return this.http.post(`${this.user_URL}//new-image`, { _id: '', photo_link: img })
+    return this.http.post(`${this.user_URL}/new-image`, { _id: id, photo_link: img })
       .subscribe(res => {
         console.log(res);
         // this.respond_Service.saveRespond(res);

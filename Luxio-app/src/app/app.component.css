@@ -40,18 +40,17 @@
 }
 
 #cookies-in {
-    width: 900px;
-    margin: auto;
+    width: 100%;
+    font-size: 90%;
+    text-align: center;
 }
 
 .cookies-button {
     background: none;
     border: none;
-    font-family: arial, sans-serif;
     color: rgb(36, 138, 255);
     cursor: pointer;
-    float: left;
-    width: 200px;
+    width: 100%;
 }
 
 .cookies-button:hover {
@@ -60,24 +59,8 @@
 }
 
 #cookies-in>p {
-    margin: auto;
     color: white;
-    float: left;
-    width: 500px;
-    text-align: center;
-}
-
-@media screen and (max-width: 1200px) {
-    #cookies-in,
-    #cookies-in>p {
-        width: 100%;
-        font-size: smaller;
-        text-align: center;
-    }
-    .cookies-button {
-        width: 100%;
-        text-align: center;
-    }
+    width: 100%;
 }
 
 
@@ -234,6 +217,12 @@ option {
 
 /* MESSAGE TO USER FOR REGISTRATION */
 
+.advertis {
+    position: fixed;
+    z-index: 10;
+    top: 170px;
+}
+
 .adv {
     background-color: white;
     border: rgb(58, 58, 58) 0.5px solid;
@@ -265,6 +254,32 @@ option {
     letter-spacing: 1px;
     word-spacing: 2px;
     text-align: justify;
+}
+
+@media screen and (max-width: 1200px) {
+    .adv>h1 {
+        margin-top: 10px;
+        font-size: 20px;
+        letter-spacing: 1px;
+        word-spacing: 2px;
+    }
+    .adv>p {
+        margin-top: 5px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        letter-spacing: 0.5px;
+        word-spacing: 1px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .adv>h1 {
+        font-size: 16px;
+    }
+    .adv>p {
+        margin-bottom: 10px;
+        font-size: 12px;
+    }
 }
 
 .message-link {

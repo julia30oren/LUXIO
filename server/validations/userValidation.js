@@ -18,6 +18,7 @@ const validSchema = Joi.object({
     email: Joi.string().min(8).max(40).message('EMAIL is not valid'),
     password: Joi.any(),
     confirmPassword: Joi.any(),
+    conditionsСonfirmation: Joi.any(),
     category: Joi.string(),
     files: Joi.any(),
     agreement: Joi.any(),

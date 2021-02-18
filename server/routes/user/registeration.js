@@ -17,8 +17,7 @@ router.use(userValidation);
 // --------------------------------------------upload-certificate--------------------
 router.post("/upload-certificate", upload.array('image'), async(req, res) => {
             const files = req.files;
-            // console.log(files);
-            // return res.json([{ message: JSON.stringify(files) }]);
+
             // -- -- -- -- -- -- -- -- -- -- -- - saving certificate-- -- -- -- -- -- -- -- -- -- -- --
             for (const file of files) {
                 const { path } = file;
@@ -41,12 +40,28 @@ router.post("/upload-certificate", upload.array('image'), async(req, res) => {
 // ---------------------------------------------CREATE A NEW USER--------------------category, certificate_link-----
 router.post("/:lang/save", async(req, res) => {
             const language = req.params.lang;
-            const { first_name, second_name, phoneN, state, email, password, cart, favorites, business } = req.body;
+            const { conditionsСonfirmation, first_name, second_name, phoneN, state, email, password, cart, favorites, business } = req.body;
+                let user = await UserSchema.find({ "email": email });
+                if (user){
+                    switch (language) {
+                        case 'en':
+                            responseMessage = `User with email <<${email}>> already exist.`
+                            break;
+                        case 'ru':
+                            responseMessage = `Пользователь с адресом электронной почты <<${email}>> уже существует.`
+                            break;
+                        default:
+                            responseMessage = `משתמש עם דוא"ל <<${email}>> כבר קיים.`
+                            break;
+                    }
+                    return res.json([{ status: false, message: responseMessage }]);
+                } else {
             // -------------------------------------- cripting password-------------------------
             const salt = bcrypt.genSaltSync(10);
             const passwordHash = bcrypt.hashSync(password, salt);
             // ----------------------------------------------------CREATIN USER AND SAVING-----------------------
             const newUser = new UserSchema({
+                conditionsСonfirmation: conditionsСonfirmation,
                 first_name: first_name.charAt(0).toUpperCase() + first_name.slice(1),
                 second_name: second_name?second_name.charAt(0).toUpperCase() + second_name.slice(1):'',
                 phoneN: phoneN,
@@ -100,6 +115,7 @@ router.post("/:lang/save", async(req, res) => {
         logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
         return res.json([{ status: false, message: err.message }]);
     }
+}
 });
 
 // ------------------------------------------------------USER STATUSE CHANGE------------------------

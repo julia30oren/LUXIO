@@ -12,7 +12,7 @@ import { CustomValidators } from './custom-validators';
   styleUrls: ['./reg-form-one.component.css']
 })
 export class RegFormOneComponent implements OnInit {
-
+  public stepTow: boolean = false;
   public frmSignup: FormGroup;
   public languege: string;
   public isSubmited: boolean;
@@ -22,6 +22,8 @@ export class RegFormOneComponent implements OnInit {
   public salonName: string;
   public selectedImg: any = null;
   public selectedImg_link: string;
+  public agreement: boolean;
+  public buttonDisable: boolean;
   constructor(
     private fb: FormBuilder,
     private lang_service: LanguageService,
@@ -33,11 +35,15 @@ export class RegFormOneComponent implements OnInit {
   ngOnInit() {
     this.lang_service._selected_from_service
       .subscribe(date => { this.languege = date });
+
+    let conditions = localStorage.getItem('cookies_rep_hash') || null;
+    conditions ? this.agreement = true : this.agreement = false;
   }
 
   createSignupForm(): FormGroup {
     return this.fb.group(
       {
+        conditionsСonfirmation: [false, Validators.compose([Validators.required])],
         first_name: [null, Validators.compose([Validators.required])],
         second_name: [''],
         email: [null, Validators.compose([Validators.email, Validators.required])],
@@ -76,6 +82,10 @@ export class RegFormOneComponent implements OnInit {
     );
   }
 
+  go_stepTow() {
+    this.stepTow = !this.stepTow;
+  }
+
   cityCheck(city) {
     if (city === 'Center of Israel (close to Ashdod)') {
       this.closeToAsdod = true;
@@ -100,10 +110,12 @@ export class RegFormOneComponent implements OnInit {
   }
 
   agreementPolicy_check(value) {
-    console.log(value);
+    this.agreement = value;
+    this.frmSignup.value.conditionsСonfirmation = value;
   }
 
   showPreimg(event) {
+    this.buttonDisable = true;
     if (event.target.files && event.target.files[0]) {
       let file = event.target.files[0];
       let formData = new FormData();
@@ -114,22 +126,24 @@ export class RegFormOneComponent implements OnInit {
         this.certifikate_Service.saveCertifikate(this.selectedImg);
         // image prevue
         this.certifikate_Service.certifikateLink_fromService
-          .subscribe(date => this.selectedImg_link = date);
+          .subscribe(date => {
+            this.selectedImg_link = date;
+          });
       }
     }
+    setTimeout(() => { this.buttonDisable = false; }, 2000);
   }
 
   submit() {
     //first_name, second_name, phoneN, state, email, password, cart, favorites, business
     this.isSubmited = true;
     // do signup or something
-    if (this.frmSignup.valid && this.business) {
+    if (this.frmSignup.valid && this.business && this.agreement) {
       if (this.business === 'salon representative' && this.salonName) {
         this.frmSignup.value.business = [{ type: this.business, salon: this.salonName }];
         this.frmSignup.value.cart = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
         this.frmSignup.value.favorites = JSON.parse(localStorage.getItem('my_764528_f')) || [];
         // console.log(this.frmSignup.value);
-        JSON.parse(localStorage.getItem('my_764528_ct'))
         this.user_service.saveUser_toDB(this.frmSignup.value, this.languege);
       }
       else if (this.business === 'self employed' && this.selectedImg_link) {
@@ -141,6 +155,7 @@ export class RegFormOneComponent implements OnInit {
       }
       // close form
       this.reg_service.close_RegistrationForm();
-    }
+    } else this.frmSignup.value.conditionsСonfirmation = false;
+
   }
 }

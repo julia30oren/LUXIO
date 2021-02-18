@@ -1,84 +1,82 @@
-<form [formGroup]="frmSignup" (submit)="submit()">
+<div *ngIf="!stepTow">
+    <app-sign-in></app-sign-in>
+    <button type="button" (click)="go_stepTow();" class="btn btn-link" style="color: brown;">{{ 'SIGN-IN.sign-in' | translate}}</button>
+</div>
+
+
+<form [formGroup]="frmSignup" (submit)="submit();" *ngIf="stepTow">
     <div class="container-fluid">
         <!---------------------------- NAME & SURNAME ROW-->
         <div class="row">
             <div class="col-md-6 col-12">
-                <label for="name" [ngClass]="frmSignup.controls['first_name'].invalid && isSubmited ? 'text-danger' : ''">Name<span >*</span></label>
+                <label for="name" [ngClass]="frmSignup.controls['first_name'].invalid && isSubmited ? 'text-danger' : ''">{{ 'SIGN-IN.REGISTRATION-FORM.name' | translate}}<span >*</span></label>
                 <input id="name" formControlName="first_name" type="text" class="form-control" [ngClass]="frmSignup.controls['first_name'].invalid && isSubmited ? 'is-invalid' : ''">
-                <label class="text-danger" *ngIf="frmSignup.controls['first_name'].hasError('required') && isSubmited">Name is Required!</label>
-                <label class="text-danger" *ngIf="frmSignup.controls['first_name'].hasError('first_name')  && isSubmited">Name a valid email address!</label>
+                <label class="text-danger" *ngIf="frmSignup.controls['first_name'].hasError('required') && isSubmited">{{ 'SIGN-IN.REGISTRATION-FORM.Required.name' | translate}}</label>
             </div>
             <div class="col-md-6 col-12">
-                <label for="surname">Surname</label>
+                <label for="surname">{{ 'SIGN-IN.REGISTRATION-FORM.second-name' | translate}}</label>
                 <input id="surname" formControlName="second_name" type="text" class="form-control">
             </div>
         </div>
         <!---------------------------- EMAIL & PHONE ROW-->
         <div class="row">
             <div class="col-md-6 col-12">
-                <label for="email" [ngClass]="frmSignup.controls['email'].invalid && isSubmited ? 'text-danger' : ''">Email Address<span >*</span></label>
+                <label for="email" [ngClass]="frmSignup.controls['email'].invalid && isSubmited ? 'text-danger' : ''">{{ 'SIGN-IN.REGISTRATION-FORM.email' | translate}}<span >*</span></label>
                 <input id="email" formControlName="email" type="email" class="form-control" [ngClass]="frmSignup.controls['email'].invalid && isSubmited ? 'is-invalid' : ''">
-                <label class="text-danger" *ngIf="frmSignup.controls['email'].hasError('required') && isSubmited">
-                        Email is Required!
-                      </label>
-                <label class="text-danger" *ngIf="frmSignup.controls['email'].hasError('email') && isSubmited">
-                        Enter a valid email address!
-                      </label>
+                <label class="text-danger" *ngIf="frmSignup.controls['email'].hasError('required') && isSubmited">{{ 'SIGN-IN.REGISTRATION-FORM.Required.email' | translate}}</label>
+                <label class="text-danger" *ngIf="frmSignup.controls['email'].hasError('email') && isSubmited">{{ 'SIGN-IN.REGISTRATION-FORM.Required.valid-email' | translate}}</label>
             </div>
             <div class="col-md-6 col-12">
-                <label for="phoneN">Phone number</label>
+                <label for="phoneN">{{ 'SIGN-IN.REGISTRATION-FORM.phoneN' | translate}}</label>
                 <input id="phoneN" formControlName="phoneN" type="text" class="form-control">
             </div>
         </div>
         <!---------------------------- PASSWORD & PASSWORD CONF.-->
         <div class="row">
             <div class="col-md-6 col-12">
-                <label for="password" [ngClass]="frmSignup.controls['password'].invalid  && isSubmited ? 'text-danger' : ''">Password<span >*</span></label>
+                <label for="password" [ngClass]="frmSignup.controls['password'].invalid  && isSubmited ? 'text-danger' : ''">{{ 'SIGN-IN.REGISTRATION-FORM.password' | translate}}<span >*</span></label>
                 <input id="password" formControlName="password" type="password" class="form-control" [ngClass]="frmSignup.controls['password'].invalid && isSubmited ? 'is-invalid' : ''">
-                <!-- <label class="text-danger col" *ngIf="frmSignup.controls['password'].hasError('required')">
-                        Password is Required!
-                      </label> -->
                 <label class="col" [ngClass]="frmSignup.controls['password'].hasError('required') || frmSignup.controls['password'].hasError('minlength')  ? 'text-danger' : 'text-success'">
                         <small><i class="material-icons">{{ frmSignup.controls['password'].hasError('required') ||
                           frmSignup.controls['password'].hasError('minlength') ? 'cancel' :
                           'check_circle' }}</i>
-                        Must be at least 8 characters!</small>
+                          {{ 'SIGN-IN.REGISTRATION-FORM.password-rule1' | translate}}</small>
                       </label>
                 <label class="col" [ngClass]="frmSignup.controls['password'].hasError('required') || frmSignup.controls['password'].hasError('hasNumber')  ? 'text-danger' : 'text-success'">
                     <small><i class="material-icons">{{ frmSignup.controls['password'].hasError('required') ||
                           frmSignup.controls['password'].hasError('hasNumber') ? 'cancel' :
                           'check_circle' }}</i>
-                        Must contain at least 1 number!</small>
+                          {{ 'SIGN-IN.REGISTRATION-FORM.password-rule2' | translate}}</small>
                       </label>
                 <label class="col" [ngClass]="frmSignup.controls['password'].hasError('required') || frmSignup.controls['password'].hasError('hasCapitalCase')  ? 'text-danger' : 'text-success'">
                     <small><i class="material-icons">{{ frmSignup.controls['password'].hasError('required') ||
                           frmSignup.controls['password'].hasError('hasCapitalCase') ? 'cancel' :
                           'check_circle' }}</i>
-                        Must contain at least 1 in Capital Case!</small>
+                          {{ 'SIGN-IN.REGISTRATION-FORM.password-rule3' | translate}}</small>
                       </label>
                 <label class="col" [ngClass]="frmSignup.controls['password'].hasError('required') || frmSignup.controls['password'].hasError('hasSmallCase')  ? 'text-danger' : 'text-success'">
                     <small><i class="material-icons">{{ frmSignup.controls['password'].hasError('required') ||
                           frmSignup.controls['password'].hasError('hasSmallCase') ? 'cancel' :
                           'check_circle' }}</i>
-                        Must contain at least 1 Letter in Small Case!</small>
+                          {{ 'SIGN-IN.REGISTRATION-FORM.password-rule4' | translate}}</small>
                       </label>
                 <label class="col" [ngClass]="frmSignup.controls['password'].hasError('required') || frmSignup.controls['password'].hasError('hasSpecialCharacters') ? 'text-danger' : 'text-success'">
                     <small><i class="material-icons">{{ frmSignup.controls['password'].hasError('required') ||
                           frmSignup.controls['password'].hasError('hasSpecialCharacters') ? 'cancel' :
                           'check_circle' }}</i>
-                        Must contain at least 1 Special Character!</small>
+                          {{ 'SIGN-IN.REGISTRATION-FORM.password-rule4' | translate}}</small>
                       </label>
                 <br>
                 <!-- Confirm Password -->
-                <label for="confirmPassword" [ngClass]="frmSignup.controls['confirmPassword'].invalid  && isSubmited? 'text-danger' : ''">Confirm Password<span >*</span></label>
+                <label for="confirmPassword" [ngClass]="frmSignup.controls['confirmPassword'].invalid  && isSubmited? 'text-danger' : ''">{{ 'SIGN-IN.REGISTRATION-FORM.password-conf' | translate}}<span >*</span></label>
                 <input id="confirmPassword" formControlName="confirmPassword" type="password" class="form-control" [ngClass]="frmSignup.controls['confirmPassword'].invalid && isSubmited ? 'is-invalid' : ''">
-                <label class="text-danger" *ngIf="frmSignup.controls['confirmPassword'].hasError('required') && isSubmited">Password is Required!</label>
-                <label class="text-danger" *ngIf="frmSignup.controls['confirmPassword'].hasError('NoPassswordMatch') && isSubmited">Password do not match</label>
+                <label class="text-danger" *ngIf="frmSignup.controls['confirmPassword'].hasError('required') && isSubmited">{{ 'SIGN-IN.REGISTRATION-FORM.Required.password' | translate}}</label>
+                <label class="text-danger" *ngIf="frmSignup.controls['confirmPassword'].hasError('NoPassswordMatch') && isSubmited">{{ 'SIGN-IN.REGISTRATION-FORM.password-doesnt-match' | translate}}</label>
             </div>
             <div class="col-md-6 col-12">
                 <!-- LOCATION -->
                 <div>
-                    <label for="location" [ngClass]="frmSignup.controls['state'].invalid && isSubmited ? 'text-danger' : ''">Location<span >*</span></label>
+                    <label for="location" [ngClass]="frmSignup.controls['state'].invalid && isSubmited ? 'text-danger' : ''">{{ 'SIGN-IN.REGISTRATION-FORM.location' | translate}}<span >*</span></label>
                     <select id="location" formControlName="state" class="form-control" (change)="cityCheck($event.target.value)" [ngClass]=" frmSignup.controls['state'].invalid && isSubmited ? 'is-invalid' : '' ">
                         <option value="Center of Israel (close to Tel Aviv)">{{ 'SIGN-IN.REGISTRATION-FORM.loc1' | translate}}</option>
                         <option value="Center of Israel (close to Jerusalem)">{{ 'SIGN-IN.REGISTRATION-FORM.loc2' | translate}}</option>
@@ -90,51 +88,53 @@
                         <option value="South Israel (close to Be'er Sheva)">{{ 'SIGN-IN.REGISTRATION-FORM.loc8' | translate}}</option>
                         <option value="South Israel (close to Eilat)">{{ 'SIGN-IN.REGISTRATION-FORM.loc9' | translate}}</option>
                     </select>
-                    <label class="text-danger" *ngIf="frmSignup.controls['state'].hasError('required') && isSubmited">Location is Required!</label>
+                    <label class="text-danger" *ngIf="frmSignup.controls['state'].hasError('required') && isSubmited">{{ 'SIGN-IN.REGISTRATION-FORM.Required.location' | translate}}</label>
                     <label class="text-danger" *ngIf="closeToAsdod"><span>{{ 'CONTACT.ashdod' | translate}} <i class="fas fa-arrow-right"></i></span> <a target="_blank" href="https://www.instagram.com/lisagelman">Lisa Gelman</a></label>
                     <label class="text-danger" *ngIf="closeToNahariyya"><span>{{ 'CONTACT.yirka' | translate}} <i class="fas fa-arrow-right"></i></span><a target="_blank" href="https://www.vrona.co.il">Vrona Cosmetic</a></label>
                 </div>
 
                 <!-- business -->
                 <div style="margin-top: 10px;">
-                    <label for="business" [ngClass]="!business && isSubmited ? 'text-danger' : ''">{{ 'SIGN-IN.REGISTRATION-FORM.entrepreneurship' | translate}}<span >*</span></label>
+                    <label for="business" [ngClass]="!business && isSubmited ? 'text-danger' : ''">{{ 'SIGN-IN.REGISTRATION-FORM.business' | translate}}<span >*</span></label>
                     <select id="business" class="form-control" (change)="businessCheck($event.target.value)" [ngClass]="!business && isSubmited ? 'is-invalid' : '' ">
                         <option value="" disabled></option>
                         <option value="self employed">{{ 'SIGN-IN.REGISTRATION-FORM.self-employed' | translate}}</option>
-                        <option value="salon representative">{{ 'SIGN-IN.REGISTRATION-FORM.salon-representative' | translate}}</option>    
+                        <option value="salon representative">{{ 'SIGN-IN.REGISTRATION-FORM.salon-representative' | translate}}</option>
                     </select>
-                    <label class="text-danger" *ngIf="!business && isSubmited">Business type is Required!</label>
+                    <label class="text-danger" *ngIf="!business && isSubmited">{{ 'SIGN-IN.REGISTRATION-FORM.Required.business' | translate}}</label>
                 </div>
                 <!-- business name -->
                 <div style="margin-top: 10px;" *ngIf="business==='salon representative'">
-                    <label for="salon" [ngClass]="!salonName && isSubmited ? 'text-danger' : ''">Salon name<span >*</span></label>
+                    <label for="salon" [ngClass]="!salonName && isSubmited ? 'text-danger' : ''">{{ 'SIGN-IN.REGISTRATION-FORM.business-name' | translate}}<span >*</span></label>
                     <input id="salon" type="text" (keyup)="setSalonName($event.target.value)" class="form-control" [ngClass]="!salonName && isSubmited ? 'is-invalid' : '' ">
-                    <label class="text-danger" *ngIf="!salonName && isSubmited">Salon name is Required!</label>
+                    <label class="text-danger" *ngIf="!salonName && isSubmited">{{ 'SIGN-IN.REGISTRATION-FORM.Required.salon' | translate}}</label>
                 </div>
                 <!--certifikate image -->
                 <div style="margin-top: 10px;" *ngIf="business==='self employed'">
-                    <label for="certifikate" [ngClass]="!selectedImg_link && isSubmited ? 'text-danger' : ''">Certifikate<span >*</span></label>
+                    <label for="certifikate" [ngClass]="!selectedImg_link && isSubmited ? 'text-danger' : ''">{{ 'SIGN-IN.REGISTRATION-FORM.certificate' | translate}}<span >*</span></label>
                     <input id="certifikate" (change)="showPreimg($event)" type="file" accept="image/*" class="form-control" [ngClass]="!selectedImg_link && isSubmited ? 'is-invalid' : '' ">
-                    <label class="text-danger" *ngIf="!selectedImg_link && isSubmited">Certifikate is Required!</label>
+                    <label class="text-danger" *ngIf="!selectedImg_link && isSubmited">{{ 'SIGN-IN.REGISTRATION-FORM.Required.certificate' | translate}}</label>
                     <img *ngIf="selectedImg_link" [src]="selectedImg_link" style="max-width: 300px; max-height: 100px;">
                 </div>
             </div>
         </div>
 
         <!-- agreement -->
-        <!-- <div class="row">
+        <div class="row" *ngIf="!agreement">
             <div class="col-md-6 col-12">
-                <label for="agreementCheck">{{ 'SIGN-IN.REGISTRATION-FORM.i-agree' | translate}}<span >*</span></label>
+                <label for="agreementCheck" [ngClass]="!agreement && isSubmited ? 'text-danger' : ''">{{ 'SIGN-IN.REGISTRATION-FORM.i-agree' | translate}}<span >*</span></label>
                 <input id="agreementCheck" style="margin-left: 15px;" type="checkbox" [checked]="cookies" (change)="agreementPolicy_check($event.target.checked)">
                 <label for="agreementCheck"><button class="btn btn-link">{{ 'SIGN-IN.REGISTRATION-FORM.agreement' | translate}}</button></label>
             </div>
-        </div> -->
+        </div>
     </div>
 
 
     <div class="row">
         <div class="col-12">
-            <button type="submit" class="btn btn-outline-dark btn-block">{{ 'SIGN-IN.sign-in' | translate}}</button>
+            <button type="submit" class="btn btn-outline-dark btn-block" [ngClass]="{disabled: buttonDisable}">
+                {{ 'SIGN-IN.sign-in' | translate}}
+            </button>
         </div>
     </div>
 </form>

@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
+    conditionsСonfirmation: {
+        type: Boolean,
+        require: true
+    },
     first_name: {
         type: String,
         require: true

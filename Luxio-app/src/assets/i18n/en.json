@@ -126,6 +126,7 @@
             "rule-2-li-2": "If you are a master of nail service, please provide a diploma",
             "rule-3": "Your application will be reviewed within one business day",
             "rule-4": "The online store is available only for authorized users with a PERSONAL ID",
+            "rule-5": "It may take you a few minutes, but we are very grateful for your time!",
             "button-get-id": "GET ID"
         },
 
@@ -133,7 +134,7 @@
             "title": "Registration form:",
             "name": "Name",
             "second-name": "Surname",
-            "location": "Location..",
+            "location": "Location",
             "loc1": "Center of Israel (close to Tel Aviv)",
             "loc2": "Center of Israel (close to Jerusalem)",
             "loc3": "Center of Israel (close to Ashdod)",
@@ -146,22 +147,37 @@
             "email": "Email",
             "phoneN": "Phone number",
             "password": "Password",
+            "password-rule1": "Must be at least 8 characters!",
+            "password-rule2": "Must contain at least 1 number!",
+            "password-rule3": "Must contain at least 1 in Capital Case!",
+            "password-rule4": "Must contain at least 1 Letter in Small Case!",
+            "password-rule5": "Must contain at least 1 Special Character!",
             "password-conf": "Password confirmation",
             "password-doesnt-match": "The passwords do not match.",
             "agreement": "Terms of agreement",
             "i-agree": "I agree with the terms of the agreement",
             "entrepreneurship": "Entrepreneurship:",
-            "business": "Business category..",
+            "business": "Business category",
             "self-employed": "Self employed",
             "salon-representative": "Salon representative",
             "city": "City",
-            "sert": "Choose a certificate:",
+            "certificate": "Choose a certificate",
             "business-name": "Company name",
             "business-id": "Registration company number",
             "street": "Sreet",
             "zip": "Zip code",
             "home": "Home",
-            "apartment": "Apartment"
+            "apartment": "Apartment",
+            "Required": {
+                "name": "Name is Required!",
+                "valid-email": "Enter a valid email address!",
+                "email": "Email is Required!",
+                "password": "Password is Required!",
+                "location": "Location is Required!",
+                "business": "Business type is Required!",
+                "salon": "Salon name is Required!",
+                "certificate": "Certificate is Required!"
+            }
         },
         "LOGIN-FORM": {
             "title": "Log-in:"

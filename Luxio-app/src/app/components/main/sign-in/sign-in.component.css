@@ -3,16 +3,15 @@
     direction: rtl;
 }
 
-span {
+small {
     color: brown;
 }
 
 .title {
-    margin-top: 30px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
-    letter-spacing: 3.4px;
-    word-spacing: 3.4px;
+    letter-spacing: 1.5px;
+    word-spacing: 3px;
 }
 
 .sm-text {
@@ -22,20 +21,17 @@ span {
     color: gray;
     font-family: Georgia, serif;
     font-size: 20px;
-    letter-spacing: 2px;
-    word-spacing: 5px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    text-align: justify;
 }
 
 @media screen and (max-width: 1200px) {
     .title {
         font-size: 20px;
-        letter-spacing: 1.5px;
-        word-spacing: 3px;
     }
     .sm-text {
         font-size: 16px;
-        letter-spacing: 2px;
-        word-spacing: 4px;
     }
 }
 
@@ -47,7 +43,7 @@ span {
     }
     .sm-text {
         font-size: 12px;
-        letter-spacing: 1px;
-        word-spacing: 2px;
+        letter-spacing: 0.5px;
+        word-spacing: 1px;
     }
 }
