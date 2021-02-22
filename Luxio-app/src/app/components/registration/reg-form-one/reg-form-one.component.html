@@ -4,7 +4,7 @@
 </div>
 
 
-<form [formGroup]="frmSignup" (submit)="submit();" *ngIf="stepTow">
+<form [formGroup]="frmSignup" (submit)="submit();" *ngIf="stepTow && !termsToOpen">
     <div class="container-fluid">
         <!---------------------------- NAME & SURNAME ROW-->
         <div class="row">
@@ -123,13 +123,11 @@
         <div class="row" *ngIf="!agreement">
             <div class="col-md-6 col-12">
                 <label for="agreementCheck" [ngClass]="!agreement && isSubmited ? 'text-danger' : ''">{{ 'SIGN-IN.REGISTRATION-FORM.i-agree' | translate}}<span >*</span></label>
-                <input id="agreementCheck" style="margin-left: 15px;" type="checkbox" [checked]="cookies" (change)="agreementPolicy_check($event.target.checked)">
-                <label for="agreementCheck"><button class="btn btn-link">{{ 'SIGN-IN.REGISTRATION-FORM.agreement' | translate}}</button></label>
+                <input id="agreementCheck" style="margin-left: 15px;" type="checkbox" (change)="agreementPolicy_check($event.target.checked)">
+                <label for="agreementCheck"><button class="btn btn-link" (click)="agreementOpen();">{{ 'SIGN-IN.REGISTRATION-FORM.agreement' | translate}}</button></label>
             </div>
         </div>
     </div>
-
-
     <div class="row">
         <div class="col-12">
             <button type="submit" class="btn btn-outline-dark btn-block" [ngClass]="{disabled: buttonDisable}">
@@ -138,3 +136,7 @@
         </div>
     </div>
 </form>
+
+<div *ngIf="termsToOpen">
+    <app-cookies></app-cookies>
+</div>

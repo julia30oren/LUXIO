@@ -39,11 +39,15 @@ router.post("/upload-certificate", upload.array('image'), async(req, res) => {
 
 // ---------------------------------------------CREATE A NEW USER--------------------category, certificate_link-----
 router.post("/:lang/save", async(req, res) => {
-            const language = req.params.lang;
-            const { conditionsСonfirmation, first_name, second_name, phoneN, state, email, password, cart, favorites, business } = req.body;
-                let user = await UserSchema.find({ "email": email });
-                if (user){
-                    switch (language) {
+    const language = req.params.lang;
+    const { conditionsСonfirmation, phoneN, state, password, cart, favorites, business } = req.body;
+    const name= req.body.first_name.charAt(0).toUpperCase() + req.body.first_name.slice(1).toLowerCase();
+    const surname= req.body.second_name.charAt(0).toUpperCase() + req.body.second_name.slice(1).toLowerCase();
+    const email= req.body.email.toLowerCase();
+
+    let user = await UserSchema.find({ "email": email });
+    if (user[0]){
+        switch (language) {
                         case 'en':
                             responseMessage = `User with email <<${email}>> already exist.`
                             break;
@@ -62,8 +66,8 @@ router.post("/:lang/save", async(req, res) => {
             // ----------------------------------------------------CREATIN USER AND SAVING-----------------------
             const newUser = new UserSchema({
                 conditionsСonfirmation: conditionsСonfirmation,
-                first_name: first_name.charAt(0).toUpperCase() + first_name.slice(1),
-                second_name: second_name?second_name.charAt(0).toUpperCase() + second_name.slice(1):'',
+                first_name: name,
+                second_name: surname||'',
                 phoneN: phoneN,
                 state: state,
                 email: email,
@@ -110,12 +114,12 @@ router.post("/:lang/save", async(req, res) => {
             };
             logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage} ${userToSave}`);
             return res.json([{ status: false, message: responseMessage }]);
+            }
+        } catch (err) {
+            logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+            return res.json([{ status: false, message: err.message }]);
         }
-    } catch (err) {
-        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
-        return res.json([{ status: false, message: err.message }]);
     }
-}
 });
 
 // ------------------------------------------------------USER STATUSE CHANGE------------------------

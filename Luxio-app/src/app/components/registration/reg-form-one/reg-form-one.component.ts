@@ -24,20 +24,28 @@ export class RegFormOneComponent implements OnInit {
   public selectedImg_link: string;
   public agreement: boolean;
   public buttonDisable: boolean;
+  public termsToOpen: boolean = false;
   constructor(
     private fb: FormBuilder,
     private lang_service: LanguageService,
     private certifikate_Service: ImgSearviceService,
     private user_service: SaveUserService,
     private reg_service: RegistrationService,
+    private respond_service: RespondService
   ) { this.frmSignup = this.createSignupForm(); }
 
   ngOnInit() {
     this.lang_service._selected_from_service
       .subscribe(date => { this.languege = date });
 
-    let conditions = localStorage.getItem('cookies_rep_hash') || null;
-    conditions ? this.agreement = true : this.agreement = false;
+    this.reg_service.regestration_formAgreement_from_service
+      .subscribe(date => this.termsToOpen = date);
+
+    this.respond_service.userAgreementPolicy_service
+      .subscribe(date => {
+        this.agreement = date;
+        this.frmSignup.value.conditionsСonfirmation = date;
+      });
   }
 
   createSignupForm(): FormGroup {
@@ -86,6 +94,10 @@ export class RegFormOneComponent implements OnInit {
     this.stepTow = !this.stepTow;
   }
 
+  agreementOpen() {
+    this.termsToOpen = !this.termsToOpen;
+  }
+
   cityCheck(city) {
     if (city === 'Center of Israel (close to Ashdod)') {
       this.closeToAsdod = true;
@@ -109,9 +121,8 @@ export class RegFormOneComponent implements OnInit {
     this.salonName = value;
   }
 
-  agreementPolicy_check(value) {
-    this.agreement = value;
-    this.frmSignup.value.conditionsСonfirmation = value;
+  agreementPolicy_check(value: boolean) {
+    this.respond_service.agreementToCookiesPolicy(value);
   }
 
   showPreimg(event) {

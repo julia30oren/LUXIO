@@ -13,7 +13,7 @@ export class RespondService {
   private respond_fromServer = new BehaviorSubject<Array<any>>([]);
   public respond_fromServer_service = this.respond_fromServer.asObservable();
 
-  private userAgreementPolicy = new BehaviorSubject<boolean>(false);
+  private userAgreementPolicy = new BehaviorSubject<boolean>(localStorage.getItem('cookies_rep_hash') ? true : false);
   public userAgreementPolicy_service = this.userAgreementPolicy.asObservable();
 
   constructor(
@@ -37,10 +37,15 @@ export class RespondService {
   }
 
   agreementToCookiesPolicy(state: boolean) {
-    const agreementHash = bcrypt.hashSync(JSON.stringify(state), this.salt);
-    localStorage.setItem('cookies_rep_hash', agreementHash);
+    if (state) {
+      const agreementHash = bcrypt.hashSync(JSON.stringify(state), this.salt);
+      localStorage.setItem('cookies_rep_hash', agreementHash);
+    } else localStorage.removeItem('cookies_rep_hash');
     this.userAgreementPolicy.next(state);
-    this.regestration_Service.close_AgreementPage();
+    // to close agreement page -------------state=false
+    this.regestration_Service.AgreementPage(false);
   }
+
+
 
 }

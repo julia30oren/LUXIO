@@ -20,7 +20,7 @@ small {
     padding: 1%;
     color: gray;
     font-family: Georgia, serif;
-    font-size: 20px;
+    font-size: 16px;
     letter-spacing: 1px;
     word-spacing: 2px;
     text-align: justify;
@@ -31,7 +31,7 @@ small {
         font-size: 20px;
     }
     .sm-text {
-        font-size: 16px;
+        font-size: 14px;
     }
 }
 

@@ -9,7 +9,7 @@ let responseMessage;
 // ---------------------------------------------------GET ALL PRODUCTS-----------------------------
 router.get('/', async(req, res) => {
             try {
-                const allProductes = await ProductSchema.find().sort({ 'prod_class': -1 }); //get them sorted by name
+                const allProductes = await ProductSchema.find().sort({ 'prod_class': 1, 'burcode_id': -1 }); //get them sorted by name
                 return res.json([{ status: true, allProductes }]);
             } catch (err) {
                 logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);

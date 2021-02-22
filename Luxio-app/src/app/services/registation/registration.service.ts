@@ -45,14 +45,14 @@ export class RegistrationService {
     this.regestration_formOne.next(true);
   }
 
-  AgreementPage() {
-    this.regestration_formAgreement.next(true);
+  AgreementPage(st: boolean) {
+    this.regestration_formAgreement.next(st);
   }
 
-  close_AgreementPage() {
-    this.regestration_formAgreement.next(false);
-    this.Page1_RegistrationForm();
-  }
+  // close_AgreementPage() {
+  //   this.regestration_formAgreement.next(false);
+  //   // this.Page1_RegistrationForm();
+  // }
 
   loginForm() {
     this.regestrationForm.next(true);
