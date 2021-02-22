@@ -199,20 +199,26 @@
         </div>
     </nav>
 </div>
+
+<!-- ----------------------------------------RESPOND FROM DB message--------------->
+<!-- changing background color depending on respond status -->
+<div class="container-fluid RESPOND" *ngFor="let item of respond">
+    <div class="row justify-content-center" [ngClass]="{infoMessage: item.status===true, errorMessage: item.status===false}">
+        <div class="col-10 col-lg-4 inner-message">
+            <h4 [ngClass]="{H: languege==='iv'}"><span>{{item.message}}</span></h4>
+        </div>
+    </div>
+</div>
+<!--  -->
+
+
 <!-- ------------------------------------------------MAIN----------- -->
 <div class="main-app">
     <!-- ----------------------------------------------------------------- -->
     <div *ngIf="selectedProd" id="selected-prod">
         <app-big-image></app-big-image>
     </div>
-    <!-- ----------------------------------------RESPOND FROM DB message--------------->
-    <!-- changing background color depending on respond status -->
-    <div *ngIf="respond[0]" class="respond-bg" [ngClass]="{infoMessage: respond[0].status===true, errorMessage:respond[0].status===false}">
-        <div class="respond" [ngClass]="{H: languege==='iv'}">
-            <h3>{{respond[0].message}}</h3>
-        </div>
-    </div>
-    <!--  -->
+
     <!-- ------------------------------------------COOKIES------ -->
     <div *ngIf="!cookies && !admin && !user" id="cookies" [ngClass]="{H: languege==='iv'}">
         <div id="cookies-in">

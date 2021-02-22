@@ -1,21 +1,44 @@
-/* ---------------------RESPOND FROM DB message--------- */
+.Hebrew {
+    text-align: right;
+    direction: rtl;
+}
 
-.respond {
-    background-color: white;
-    border: black 2px solid;
-    width: 50%;
-    padding: 30px;
+.H {
+    direction: rtl;
+}
+
+span {
     color: brown;
 }
 
-.respond-bg {
-    width: 60%;
+
+/* ---------------------RESPOND FROM DB message--------- */
+
+.RESPOND {
     position: fixed;
     top: 45%;
-    left: 15%;
-    z-index: 10;
-    font-size: 20px;
+    z-index: 15;
     text-align: center;
+}
+
+.infoMessage {
+    background: #cecece07;
+    background: -moz-linear-gradient(left, #cecece07 0%, #00000085 50%, #cecece07 100%);
+    background: -webkit-linear-gradient(left, #cecece07 0%, #00000085 50%, #cecece07 100%);
+    background: linear-gradient(to right, #cecece07 0%, #00000085 50%, #cecece07 100%);
+}
+
+.errorMessage {
+    background: #cecece07;
+    background: -moz-linear-gradient(left, #cecece07 0%, rgba(165, 42, 42, 0.5) 50%, #cecece07 100%);
+    background: -webkit-linear-gradient(left, #cecece07 0%, rgba(165, 42, 42, 0.5) 50%, #cecece07 100%);
+    background: linear-gradient(to right, #cecece07 0%, rgba(165, 42, 42, 0.5) 50%, #cecece07 100%);
+}
+
+.inner-message {
+    background-color: white;
+    border: black solid 1px;
+    padding: 1%;
 }
 
 
@@ -101,15 +124,6 @@
     .main-app>div {
         width: 100%;
     }
-}
-
-.Hebrew {
-    text-align: right;
-    direction: rtl;
-}
-
-.H {
-    direction: rtl;
 }
 
 .btn-link>i {

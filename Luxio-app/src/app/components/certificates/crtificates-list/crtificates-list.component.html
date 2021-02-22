@@ -39,9 +39,7 @@
         <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getSort('true')">{{ 'ADMIN.CERTIFICATES.state-approved' | translate }}</button>
         <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getSort('false')">{{ 'ADMIN.CERTIFICATES.state-dened' | translate }}</button>
     </div>
-
     <br>
-
     <div class="requests-div" *ngIf="certificatesList">
         <div *ngFor="let item of certificates_sorted" class="card mb-3" style="max-width: 100%;">
             <div class="row no-gutters">
@@ -75,9 +73,8 @@
             </div>
         </div>
     </div>
-
-    <div *ngIf="certificateImg" class="selected-img-div">
+    <!-- <div *ngIf="certificateImg" class="selected-img-div">
         <img src="{{certificateImg}}" class="selected-img" />
         <button (click)="closeCertificate()" type="button" class="btn btn-outline-dark" style="width: auto;">X</button>
-    </div>
+    </div> -->
 </div>

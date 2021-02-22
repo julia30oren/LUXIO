@@ -3,7 +3,7 @@
     direction: rtl;
 }
 
-.Hebrew1 {
+.H {
     direction: rtl;
 }
 
@@ -73,25 +73,25 @@
 }
 
 .red {
-    background: #CE5937;
-    background: -moz-linear-gradient(left, #CE5937 0%, #A40000 50%, #CE5937 100%);
-    background: -webkit-linear-gradient(left, #CE5937 0%, #A40000 50%, #CE5937 100%);
-    background: linear-gradient(to right, #CE5937 0%, #A40000 50%, #CE5937 100%);
+    background: #cecece07;
+    background: -moz-linear-gradient(left, #cecece07 0%, rgba(165, 42, 42, 0.5) 50%, #cecece07 100%);
+    background: -webkit-linear-gradient(left, #cecece07 0%, rgba(165, 42, 42, 0.5) 50%, #cecece07 100%);
+    background: linear-gradient(to right, #cecece07 0%, rgba(165, 42, 42, 0.5) 50%, #cecece07 100%);
     color: brown;
 }
 
 .blue {
-    background: #009CCE;
-    background: -moz-linear-gradient(left, #009CCE 0%, #0800A4 50%, #009CCE 100%);
-    background: -webkit-linear-gradient(left, #009CCE 0%, #0800A4 50%, #009CCE 100%);
-    background: linear-gradient(to right, #009CCE 0%, #0800A4 50%, #009CCE 100%);
+    background: #cecece07;
+    background: -moz-linear-gradient(left, #cecece07 0%, rgb(42, 44, 165, 0.5) 50%, #cecece07 100%);
+    background: -webkit-linear-gradient(left, #cecece07 0%, rgb(42, 44, 165, 0.5) 50%, #cecece07 100%);
+    background: linear-gradient(to right, #cecece07 0%, rgb(42, 44, 165, 0.5) 50%, #cecece07 100%);
     color: rgb(42, 44, 165);
 }
 
 .yellow {
+    background: #cecece07;
+    background: -moz-linear-gradient(left, #cecece07 0%, rgba(255, 166, 0, 0.5) 50%, #cecece07 100%);
+    background: -webkit-linear-gradient(left, #cecece07 0%, rgba(255, 166, 0, 0.5) 50%, #cecece07 100%);
+    background: linear-gradient(to right, #cecece07 0%, rgba(255, 166, 0, 0.5) 50%, #cecece07 100%);
     color: orange;
-    background: #DBD60B;
-    background: -moz-linear-gradient(left, #DBD60B 0%, #CC6200 50%, #DBD60B 100%);
-    background: -webkit-linear-gradient(left, #DBD60B 0%, #CC6200 50%, #DBD60B 100%);
-    background: linear-gradient(to right, #DBD60B 0%, #CC6200 50%, #DBD60B 100%);
 }
