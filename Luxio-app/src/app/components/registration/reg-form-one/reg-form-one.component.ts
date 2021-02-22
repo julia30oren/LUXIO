@@ -23,7 +23,7 @@ export class RegFormOneComponent implements OnInit {
   public selectedImg: any = null;
   public selectedImg_link: string;
   public agreement: boolean;
-  public buttonDisable: boolean;
+  public buttonDisable: boolean = true;
   public termsToOpen: boolean = false;
   constructor(
     private fb: FormBuilder,
@@ -139,10 +139,11 @@ export class RegFormOneComponent implements OnInit {
         this.certifikate_Service.certifikateLink_fromService
           .subscribe(date => {
             this.selectedImg_link = date;
+            date ? this.buttonDisable = false : this.buttonDisable = true;
           });
       }
     }
-    setTimeout(() => { this.buttonDisable = false; }, 2000);
+    setTimeout(() => { }, 2000);
   }
 
   submit() {

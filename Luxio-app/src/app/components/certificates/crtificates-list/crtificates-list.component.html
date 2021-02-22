@@ -55,7 +55,7 @@
                         <p class="card-text" *ngFor="let userBusiness of item.business">{{userBusiness.type}} <span *ngIf="userBusiness.salon">«{{userBusiness.salon}}»</span></p>
                         <p class="card-text">State: {{item.state}}</p>
                         <p class="card-text">Email: {{item.email}}</p>
-                        <p class="card-text">{{ 'ADMIN.CERTIFICATES.phone' | translate }}: {{item.phoneN}}</p>
+                        <p class="card-text" *ngIf="item.phoneN">{{ 'ADMIN.CERTIFICATES.phone' | translate }}: {{item.phoneN}}</p>
                         <p class="card-text"><small class="text-muted">{{ 'ADMIN.CERTIFICATES.date' | translate }}: {{item.date | date:'shortDate'}}</small></p>
                         <p class="card-text">
                             <small class="text-muted" *ngIf="item.status==='considered'">{{ 'ADMIN.CERTIFICATES.state' | translate }} {{ 'ADMIN.CERTIFICATES.state-undefined' | translate }}</small>

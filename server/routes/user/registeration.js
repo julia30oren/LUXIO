@@ -439,7 +439,7 @@ function emailToAdmin(user) {
 };
 
 // Send message to user in different languages-------------------------------
-function emailToUser_Info(langueg) {
+function emailToUser_Info(langueg, user) {
     const main = async() => {
         // ------------------------------------------CHOOSING LANGUAGE-------------------------
         switch (langueg) {
@@ -477,7 +477,7 @@ function emailToUser_Info(langueg) {
         // ------------------------------------------------sending------------
         let info = await transporter.sendMail({
             from: process.env.SMTPHOSTEMAILUSER, // sender address
-            to: process.env.DESIGNATEDSUPPORTEMAIL, // list of receivers
+            to: user.email, // list of receivers
             subject: subject, // Subject line
             html: mainText //main text
         });
@@ -486,7 +486,7 @@ function emailToUser_Info(langueg) {
 };
 
 // -------------------------------------------------------REJECTING USER----------------------------
-function emailToUser_Deny(langueg) {
+function emailToUser_Deny(langueg, user) {
     const main = async() => {
         // ------------------------------------------CHOOSING LANGUAGE-------------------------
         switch (langueg) {
@@ -518,7 +518,7 @@ function emailToUser_Deny(langueg) {
         // ------------------------------------------------sending------------
         let info = await transporter.sendMail({
             from: process.env.SMTPHOSTEMAILUSER, // sender address
-            to: process.env.DESIGNATEDSUPPORTEMAIL, // list of receivers
+            to: user.email, // list of receivers
             subject: subject, // Subject line
             html: mainText //main text
         });
@@ -527,7 +527,7 @@ function emailToUser_Deny(langueg) {
 };
 
 // -------------------------------------------------------APPROVING USER----------------------------
-function emailToUser_Confirm(langueg) {
+function emailToUser_Confirm(langueg, user) {
     const main = async() => {
         // ------------------------------------------CHOOSING LANGUAGE-------------------------
         switch (langueg) {
@@ -562,7 +562,7 @@ function emailToUser_Confirm(langueg) {
         // ------------------------------------------------sending------------
         let info = await transporter.sendMail({
             from: process.env.SMTPHOSTEMAILUSER, // sender address
-            to: process.env.DESIGNATEDSUPPORTEMAIL, // list of receivers
+            to: user.email, // list of receivers
             subject: subject, // Subject line
             html: mainText //main text
         });
