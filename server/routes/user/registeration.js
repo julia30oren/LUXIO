@@ -11,7 +11,6 @@ const moment = require("moment");
 
 let responseMessage;
 const userValidation = require('../../validations/userValidation');
-const { json } = require('body-parser');
 router.use(userValidation);
 
 // --------------------------------------------upload-certificate--------------------
@@ -145,7 +144,7 @@ router.get("/:lang/status/:id/:status", async(req, res) => {
                         responseMessage = `סטטוס המשתמשים השתנה בהצלחה. זה נדחה.`
                         break;
                 }
-                emailToUser_Deny(language);
+                emailToUser_Deny(language,user);
                 logger.info(`${moment().format(`h:mm:ss a`)} - ID ${id} ${responseMessage}`);
                 return res.json([{ status: true, message: responseMessage }]);
 
@@ -161,7 +160,7 @@ router.get("/:lang/status/:id/:status", async(req, res) => {
                         responseMessage = `סטטוס המשתמשים השתנה בהצלחה. זה אושר.`
                         break;
                 }
-                emailToUser_Confirm(language);
+                emailToUser_Confirm(language,user);
                 logger.info(`${moment().format(`h:mm:ss a`)} - ID ${id} ${responseMessage}`);
                 return res.json([{ status: true, message: responseMessage }]);
             }
@@ -312,6 +311,7 @@ router.get('/:lang/password/restore/:email', async(req, res) => {
         return res.json([{ status: false, message: err.message }]);
     }
 });
+
 // --------------------------------------------NEW PASSWORD SAVE------AFTER RESTORE-----------------------
 router.post('/:lang/password/restore/new/:email', async(req, res) => {
     const language = req.params.lang;
@@ -430,7 +430,7 @@ function emailToAdmin(user) {
               <li>Business: ${user.business[0].type} ${user.business[0].salon?user.business[0].salon:''}</li>
             </ul>
             ${user.business[0].certifikate? `<img src="${user.business[0].certifikate}" style="width: 500px;"/>`:''}
-            <a href="http://localhost:4200/admin/certificates">On Page</a>
+            <a href="https://www.luxiobyakzentz.com/admin/certificates">On Page</a>
             </div>
           `
         });
@@ -493,7 +493,7 @@ function emailToUser_Deny(langueg, user) {
             case 'en':
                 subject = `Request was rejected`;
                 mainText = `<div style="border: red 1px solid; padding: 5%">
-                            <p> Your request to get a personal account for online purchases from <a href="http://localhost:4200">Luxio website</a> was rejected.</p>
+                            <p> Your request to get a personal account for online purchases from <a href="https://www.luxiobyakzentz.com/">Luxio website</a> was rejected.</p>
                             <p> To change this status or get additional information, contact the company representative by number:</p>
                             <p> 054-8785521 / 055-9519777 </p>
                         </div>`;
@@ -501,7 +501,7 @@ function emailToUser_Deny(langueg, user) {
             case 'ru':
                 subject = `В запросе было отказано`;
                 mainText = `<div style="border: red 1px solid; padding: 5%">
-                            <p> Ваш запрос на получение личного аккаунта для покупок в Интернете с сайта <a href="http://localhost:4200">Luxio</a> был отклонен.</p>
+                            <p> Ваш запрос на получение личного аккаунта для покупок в Интернете с сайта <a href="https://www.luxiobyakzentz.com/">Luxio</a> был отклонен.</p>
                             <p> За дополнительной информацией обращайтесь к представителю компании по номеру: </p>
                             <p> 054-8785521 / 055-9519777 </p>
                         </div>`;
@@ -509,7 +509,7 @@ function emailToUser_Deny(langueg, user) {
             default:
                 subject = `בקשה נדחה`;
                 mainText = `<div style="border: red 1px solid; padding: 5%; text-align: right; direction: rtl;">
-                            <p> בקשתך לקבל חשבון אישי לרכישות מקוונות מ<a href="http://localhost:4200">Luxio</a> נדחה.</p>
+                            <p> בקשתך לקבל חשבון אישי לרכישות מקוונות מ<a href="https://www.luxiobyakzentz.com/">Luxio</a> נדחה.</p>
                             <p> לקבלת מידע נוסף, צרו קשר עם נציג החברה במספר:</p>
                             <p> 054-8785521 / 055-9519777 </p>
                         </div>`;
@@ -534,7 +534,7 @@ function emailToUser_Confirm(langueg, user) {
             case 'en':
                 subject = `Request was approved`;
                 mainText = `<div style="border: green 1px solid; padding: 5%">
-                            <p> Your request to get a personal account for online purchases from <a href="http://localhost:4200">Luxio website</a> was approved.</p>
+                            <p> Your request to get a personal account for online purchases from <a href="https://www.luxiobyakzentz.com/">Luxio website</a> was approved.</p>
                             <p> Now you can order any goods directly from our website. </p>
                             <p> For any additional information, contact the company representative by number:</p>
                             <p> 054-8785521 / 055-9519777 </p>
@@ -543,7 +543,7 @@ function emailToUser_Confirm(langueg, user) {
             case 'ru':
                 subject = `Запрос был одобрен`;
                 mainText = `<div style="border: green 1px solid; padding: 5%">
-                            <p> Ваш запрос на получение личного кабинета для покупок в Интернете от <a href="http://localhost:4200">Luxio</a> был одобрен.</p>
+                            <p> Ваш запрос на получение личного кабинета для покупок в Интернете от <a href="https://www.luxiobyakzentz.com/">Luxio</a> был одобрен.</p>
                             <p> Теперь Вы можете заказывать любые товары прямо с нашего сайта. </p>
                             <p> За дополнительной информацией обращайтесь к представителю компании по номеру: </p>
                             <p> 054-8785521 / 055-9519777 </p>
@@ -552,7 +552,7 @@ function emailToUser_Confirm(langueg, user) {
             default:
                 subject = `הבקשה אושרה`;
                 mainText = `<div style="border: green 1px solid; padding: 5%; text-align: right; direction: rtl;">
-                            <p> בקשתך לקבל חשבון אישי לרכישות מקוונות מ <a href="http://localhost:4200">Luxio</a> אושרה.</p>
+                            <p> בקשתך לקבל חשבון אישי לרכישות מקוונות מ <a href="https://www.luxiobyakzentz.com/">Luxio</a> אושרה.</p>
                             <p> עכשיו אתה יכול להזמין כל סחורה ישירות מהאתר שלנו. </p>
                             <p> לקבלת מידע נוסף, צרו קשר עם נציג החברה במספר:</p>
                             <p> 054-8785521 / 055-9519777 </p>

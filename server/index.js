@@ -65,7 +65,7 @@ mongoose.connect(`${process.env.DATABASE}://${process.env.HOST}:${process.env.DB
                     console.log('- Collection "admins" created!');
                     const salt = bcrypt.genSaltSync(10);
                     const main_passwordHash = bcrypt.hashSync(process.env.secretPASSWORD, salt);
-                    const private_passwordHash = bcrypt.hashSync(process.env.SMTPHOSTEMAILPASSWORD, salt);
+                    const private_passwordHash = bcrypt.hashSync(process.env.mainPass, salt);
                     const mainAdmin = new AdminSchema({
                         email: process.env.LuxioEmail,
                         main_password: main_passwordHash, 
