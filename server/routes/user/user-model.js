@@ -30,9 +30,6 @@ const UserSchema = new Schema({
     zip: {
         type: String
     },
-    city: {
-        type: String
-    },
     home: {
         type: String
     },

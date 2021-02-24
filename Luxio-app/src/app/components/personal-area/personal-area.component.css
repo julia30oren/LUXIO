@@ -3,25 +3,6 @@
     direction: rtl;
 }
 
-.personal-content {
-    min-height: 1000px;
-    width: 750px;
-    padding-left: 20px;
-}
-
-.model-side {
-    height: 100%;
-    width: 450px;
-    padding: 1%;
-    float: left;
-    background-color: white;
-}
-
-.sort-buttons-div {
-    width: 100%;
-    height: 50px;
-}
-
 .s-button {
     width: 23%;
     float: left;
@@ -57,4 +38,10 @@
     margin: auto;
     margin-top: 20px;
     border-bottom: rgba(128, 128, 128, 0.2) 1px solid;
+}
+
+@media screen and (max-width: 990px) {
+    #photo-model {
+        display: none;
+    }
 }

@@ -17,9 +17,9 @@ export class PrivateInfoComponent implements OnInit {
   public infoTemplate = new FormGroup({
     _id: new FormControl('', Validators.required),
     first_name: new FormControl('', Validators.required),
-    second_name: new FormControl('', Validators.required),
+    second_name: new FormControl(''),
     email: new FormControl('', Validators.required),
-    phoneN: new FormControl('', Validators.required),
+    phoneN: new FormControl(''),
     state: new FormControl('', Validators.required),
     city: new FormControl(''),
     street: new FormControl(''),
@@ -57,13 +57,13 @@ export class PrivateInfoComponent implements OnInit {
         window.setTimeout(() => {
           this.imgSrc = this.user[0].photo_link || null;
           this.infoTemplate.setValue({
-            _id: this.user[0]._id || '',
-            first_name: this.user[0].first_name || '',
+            _id: this.user[0]._id,
+            first_name: this.user[0].first_name,
             second_name: this.user[0].second_name || '',
-            email: this.user[0].email || '',
+            email: this.user[0].email,
             phoneN: this.user[0].phoneN || '',
             city: this.user[0].city || '',
-            state: this.user[0].state || '',
+            state: this.user[0].state,
             street: this.user[0].street || '',
             zip: this.user[0].zip || null,
             home: this.user[0].home || '',

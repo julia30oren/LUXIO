@@ -177,9 +177,9 @@ router.post("/:lang/update/:id", async(req, res) => {
         // ------------------------------------------------ updating -------------------
         const userInfoToSave = await UserSchema.updateMany({ "_id": id }, {
             $set: {
-                "email": email,
-                "first_name": first_name,
-                "second_name": second_name,
+                "email": email.toLowerCase(),
+                "first_name": first_name.charAt(0).toUpperCase() + first_name.slice(1).toLowerCase(),
+                "second_name": second_name.charAt(0).toUpperCase() + second_name.slice(1).toLowerCase(),
                 "phoneN": phoneN,
                 "city": city,
                 "state": state,

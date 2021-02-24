@@ -147,10 +147,7 @@ export class UserService {
     // ----------------------------------------saving new favorites to service----------------
     this.shop_Service.favorites(newWishlist);
     // -----------------------------------------saving new favorites to DB----------------
-    return this.http.post(`${this.user_URL}/new-favorites`, toSend)
-      .subscribe(res => {
-        console.log(res);
-      });
+    return this.http.post(`${this.user_URL}/new-favorites`, toSend);
   }
 
   // -----------------------------------------------SAVING NEW CART----------------------
@@ -159,14 +156,9 @@ export class UserService {
     let toSend = { _id: userLog, cart: newCart };
     // ----------------------------------------saving new cart to service----------------
     this.shop_Service.cart(newCart);
-    // -----save on localStorage
-    localStorage.setItem('my_764528_ct', JSON.stringify(newCart));
+    localStorage.setItem('my_764528_ct', JSON.stringify(newCart));  // save new cart to localStorage
     // -----------------------------------------saving new cart to DB----------------
-    return this.http.post(`${this.user_URL}/new-cart`, toSend)
-      .subscribe(res => {
-        console.log(res);
-      });
-
+    return this.http.post(`${this.user_URL}/new-cart`, toSend);
   }
 
 
@@ -190,10 +182,7 @@ export class UserService {
   // ---------------------------------------------------- DELETE COMMENT ------------------------------
   // no connected function----
   deleteAcomment(comment_id: string, languege: string) {
-    return this.http.get(`${this.comment_URL}/${languege}/remove/${comment_id}`)
-      .subscribe(res => {
-        console.log(res);
-      });
+    return this.http.get(`${this.comment_URL}/${languege}/remove/${comment_id}`);
   }
 
 
@@ -290,7 +279,6 @@ export class UserService {
 
     setTimeout(() => {
       this.saveCart_toDB(localCart);  // save new cart to DB
-      localStorage.setItem('my_764528_ct', JSON.stringify(localCart));  // save new cart to localStorage
     }, 1000);
   }
   // ---------------------------after user loged in
@@ -312,7 +300,6 @@ export class UserService {
 
     setTimeout(() => {
       this.saveCart_toDB(localCart);  // save new cart to DB
-      localStorage.setItem('my_764528_ct', JSON.stringify(localCart));  // save new cart to localStorage
     }, 1000);
   }
 

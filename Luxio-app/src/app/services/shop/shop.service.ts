@@ -35,6 +35,9 @@ export class ShopService {
   private my_cart = new BehaviorSubject<Array<any>>(localStorage.getItem('my_764528_ct') ? JSON.parse(localStorage.getItem('my_764528_ct')) : []);
   public my_cart_from_service = this.my_cart.asObservable();
 
+  private orderToPay = new BehaviorSubject<Array<any>>([]);
+  public orderToPay_from_service = this.orderToPay.asObservable();
+
   constructor(
     private http: HttpClient,
     private respond_Service: RespondService
@@ -91,4 +94,7 @@ export class ShopService {
     this.my_cart.next(new_arr)
   }
 
+  createOreder(order: Array<any>) {
+    this.orderToPay.next(order);
+  }
 }

@@ -168,8 +168,15 @@
                 "location": "המיקום נדרש!",
                 "business": "סוג העסק נדרש!",
                 "salon": "נדרש שם סלון!",
-                "certificate": "יש צורך בתעודה!"
-            }
+                "certificate": "יש צורך בתעודה!",
+                "city": "עיר נדרשת!",
+                "street": "רחוב נדרש!",
+                "home": "הבית נדרש!",
+                "phoneN": "נדרש מספר טלפון!"
+            },
+            "delivery-address": "כתובת למשלוח",
+            "close-button": "לסגור",
+            "confirmandpay-button": "אשר ושלם"
         },
         "LOGIN-FORM": {
             "title": "כניסה:"

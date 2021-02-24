@@ -176,8 +176,15 @@
                 "location": "Location is Required!",
                 "business": "Business type is Required!",
                 "salon": "Salon name is Required!",
-                "certificate": "Certificate is Required!"
-            }
+                "certificate": "Certificate is Required!",
+                "city": "City is Required!",
+                "street": "Street is Required!",
+                "home": "Home is Required!",
+                "phoneN": "Phone number is Required!"
+            },
+            "delivery-address": "Delivery address",
+            "close-button": "Close",
+            "confirmandpay-button": "Confirm and pay"
         },
         "LOGIN-FORM": {
             "title": "Log-in:"

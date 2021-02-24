@@ -92,7 +92,7 @@ router.post("/:lang/save", async(req, res) => {
                             break;
                     }
                     // Send message to Luxio----------------------
-                    emailToAdmin(userToSave);
+                    emailToAdmin(userToSave,userToSave);
                     // Send message in different languages----------------------
                     emailToUser_Info(language);
                     logger.info(`${moment().format(`h:mm:ss a`)} - ID ${userToSave._id} ${responseMessage}`);

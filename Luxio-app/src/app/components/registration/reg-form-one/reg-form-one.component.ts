@@ -153,15 +153,15 @@ export class RegFormOneComponent implements OnInit {
     if (this.frmSignup.valid && this.business && this.agreement) {
       if (this.business === 'salon representative' && this.salonName) {
         this.frmSignup.value.business = [{ type: this.business, salon: this.salonName }];
-        this.frmSignup.value.cart = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
-        this.frmSignup.value.favorites = JSON.parse(localStorage.getItem('my_764528_f')) || [];
+        this.frmSignup.value.cart = JSON.parse(localStorage.getItem('my_764528_ct'));
+        this.frmSignup.value.favorites = JSON.parse(localStorage.getItem('my_764528_f'));
         // console.log(this.frmSignup.value);
         this.user_service.saveUser_toDB(this.frmSignup.value, this.languege);
       }
       else if (this.business === 'self employed' && this.selectedImg_link) {
         this.frmSignup.value.business = [{ type: this.business, certifikate: this.selectedImg_link }];
-        this.frmSignup.value.cart = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
-        this.frmSignup.value.favorites = JSON.parse(localStorage.getItem('my_764528_f')) || [];
+        this.frmSignup.value.cart = JSON.parse(localStorage.getItem('my_764528_ct'));
+        this.frmSignup.value.favorites = JSON.parse(localStorage.getItem('my_764528_f'));
         // console.log(this.frmSignup.value);
         this.user_service.saveUser_toDB(this.frmSignup.value, this.languege);
       }
