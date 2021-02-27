@@ -1,34 +1,55 @@
-<div style="min-height: 750px;">
-
-    <!-- -------------------------------------------------------------------------------------------------------------------------- -->
-    <form class="regF" [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+<!-- -------------------------------------------------------------------------------------------------------------------------- -->
+<form [formGroup]="frmSignupAdmin" (submit)="submit();">
+    <div class="container-fluid">
+        <h1>New admin registration</h1><br/>
         <div class="form-row">
             <div class="col">
-                <input [ngClass]="{error: isSubmitted && formControls.admin_name.errors?.required}" formControlName="admin_name" type="text" class="form-control" placeholder="admin_name">
+                <label for="name" class="sm-text">{{ 'SIGN-IN.REGISTRATION-FORM.name' | translate}}<span >*</span></label>
+                <input id="name" formControlName="admin_name" type="text" class="form-control" [ngClass]="frmSignupAdmin.controls['admin_name'].hasError('required') && isSubmited ? 'is-invalid' : ''">
+                <label class="text-danger" *ngIf="frmSignupAdmin.controls['admin_name'].hasError('required') && isSubmited">{{ 'SIGN-IN.rule-1' | translate}}</label>
             </div>
-            <div class="text-danger" *ngIf="isSubmitted && formControls.admin_name.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
         </div>
 
         <div class="form-row">
             <div class="col">
-                <input [ngClass]="{error: isSubmitted && formControls.admin_password.errors?.required}" formControlName="admin_password" type="password" class="form-control" placeholder="admin_password">
+                <label for="password" class="sm-text">{{ 'SIGN-IN.REGISTRATION-FORM.password' | translate}}<span >*</span></label>
+                <input id="password" formControlName="admin_password" type="password" class="form-control" [ngClass]="frmSignupAdmin.controls['admin_password'].hasError('required') && isSubmited ? 'is-invalid' : ''">
+                <label class="col" [ngClass]="frmSignupAdmin.controls['admin_password'].hasError('required') || frmSignupAdmin.controls['admin_password'].hasError('minlength')  ? 'text-danger' : 'text-success'">
+                            <small><i class="material-icons">{{ frmSignupAdmin.controls['admin_password'].hasError('required') ||
+                                frmSignupAdmin.controls['admin_password'].hasError('minlength') ? 'cancel' :
+                              'check_circle' }}</i>
+                              {{ 'SIGN-IN.REGISTRATION-FORM.password-rule1' | translate}}</small>
+                          </label>
+                <label class="col" [ngClass]="frmSignupAdmin.controls['admin_password'].hasError('required') || frmSignupAdmin.controls['admin_password'].hasError('hasNumber')  ? 'text-danger' : 'text-success'">
+                        <small><i class="material-icons">{{ frmSignupAdmin.controls['admin_password'].hasError('required') ||
+                            frmSignupAdmin.controls['admin_password'].hasError('hasNumber') ? 'cancel' :
+                              'check_circle' }}</i>
+                              {{ 'SIGN-IN.REGISTRATION-FORM.password-rule2' | translate}}</small>
+                          </label>
             </div>
-            <div class="text-danger" *ngIf="isSubmitted && formControls.admin_password.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
         </div>
 
         <div class="form-row">
             <div class="col">
-                <input [ngClass]="{error: isSubmitted && formControls.email.errors?.required}" formControlName="email" type="text" class="form-control" placeholder="main email">
+                <label for="email" class="sm-text">{{ 'SIGN-IN.REGISTRATION-FORM.email' | translate}}<span >*</span></label>
+                <input id="email" formControlName="email" type="email" class="form-control" [ngClass]="frmSignupAdmin.controls['email'].invalid && isSubmited ? 'is-invalid' : ''">
+                <label class="text-danger" *ngIf="frmSignupAdmin.controls['email'].hasError('required') && isSubmited">{{ 'SIGN-IN.REGISTRATION-FORM.Required.email' | translate}}</label>
+                <label class="text-danger" *ngIf="frmSignupAdmin.controls['email'].hasError('email') && isSubmited">{{ 'SIGN-IN.REGISTRATION-FORM.Required.valid-email' | translate}}</label>
             </div>
-            <div class="text-danger" *ngIf="isSubmitted && formControls.email.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
         </div>
 
         <div class="form-row">
             <div class="col">
-                <input [ngClass]="{error: isSubmitted && formControls.main_password.errors?.required}" formControlName="main_password" type="password" class="form-control" placeholder="main password">
+                <label for="main_password" class="sm-text">{{ 'SIGN-IN.REGISTRATION-FORM.main-pass' | translate}}<span >*</span></label>
+                <input id="main_password" formControlName="main_password" type="password" class="form-control" [ngClass]="frmSignupAdmin.controls['main_password'].hasError('required') && isSubmited ? 'is-invalid' : ''">
+                <label class="text-danger" *ngIf="frmSignupAdmin.controls['main_password'].hasError('required') && isSubmited">{{ 'SIGN-IN.REGISTRATION-FORM.Required.password' | translate}}</label>
             </div>
-            <div class="text-danger" *ngIf="isSubmitted && formControls.main_password.errors?.required">{{ 'SIGN-IN.rule-1' | translate}}</div>
         </div>
-        <button type="submit" class="btn btn-dark btn-lg btn-block" style="margin-top: 15px;">{{ 'SIGN-IN.log-in' | translate}}</button>
-    </form>
-</div>
+
+        <div class="form-row">
+            <div class="col">
+                <button type="submit" class="btn btn-block btn-link"><h1><span>{{ 'SIGN-IN.log-in' | translate}}</span></h1></button>
+            </div>
+        </div>
+    </div>
+</form>

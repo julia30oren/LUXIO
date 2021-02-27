@@ -28,7 +28,7 @@
             <tr>
                 <td colspan="2"></td>
                 <th scope="row">Total:</th>
-                <th>{{item.payments.total}}&#8362;</th>
+                <th>{{item.payments.totalPrice}}&#8362;</th>
             </tr>
             <tr>
                 <td colspan="2"></td>
@@ -39,17 +39,14 @@
                 <th scope="row">Shipping details:</th>
                 <th (click)="getOrdersOfUser(item.shipping_details._id);" style="cursor: pointer;"><span>{{item.shipping_details.first_name}} {{item.shipping_details.second_name}}</span></th>
                 <td>{{item.shipping_details.phoneN}}</td>
+                <td *ngIf="item.shipping_details.zip">zipcode: {{item.shipping_details.zip}}</td>
             </tr>
             <tr>
                 <td></td>
                 <td>{{item.shipping_details.city}}</td>
                 <td>{{item.shipping_details.street}} {{item.shipping_details.home}}</td>
-                <td>apartment {{item.shipping_details.apartment}}</td>
+                <td *ngIf="item.shipping_details.apartment">apartment: {{item.shipping_details.apartment}}</td>
             </tr>
         </tbody>
     </table>
-    <!-- <p>{{item.order|json}}</p> -->
-    <!-- <p>shipping_details: {{item.shipping_details|json}}</p> -->
-    <!-- <p>payments: {{item.payments|json}}</p> -->
-    <!-- <p>received: {{item.received|json}}</p> -->
 </div>

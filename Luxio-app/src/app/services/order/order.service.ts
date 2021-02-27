@@ -34,9 +34,9 @@ export class OrderService {
 
   createOrder(order: object, lang: string) {
     return this.http.post(`${this.order_URL}/${lang}/save`, order).subscribe(res => {
-      if (res[0].status) {
-        localStorage.setItem('my_764528_ct', '[]')
-      }
+      // if (res[0].status) {
+      //   localStorage.setItem('my_764528_ct', '[]')
+      // }
       this.respond_Service.saveRespond(res);
     });
   }

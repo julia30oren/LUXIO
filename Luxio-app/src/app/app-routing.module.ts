@@ -23,6 +23,7 @@ import { MailingsComponent } from './components/admin/mailings/mailings.componen
 import { HomeComponent } from './components/main/home/home.component';
 import { OrdersComponent } from './components/admin/orders/orders.component';
 import { TrymeComponent } from './components/main/tryme/tryme.component';
+import { PaypaltestComponent } from './components/paypaltest/paypaltest.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -38,6 +39,7 @@ const routes: Routes = [
     { path: 'tryme', component: TrymeComponent },
     { path: 'courses', component: CoursesComponent },
     { path: 'contacts', component: ContactsComponent },
+    { path: 'paypaltest', component: PaypaltestComponent }, // delete
 
     { path: 'personal-area', component: PersonalAreaComponent },
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RegistrationService } from 'src/app/services/registation/registration.service';
 import { ImgSearviceService } from 'src/app/services/imgService/img-searvice.service';
 import { SaveUserService } from 'src/app/services/saveUser/save-user.service';

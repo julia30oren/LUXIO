@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { RespondService } from '../respond/respond.service';
-import { UserService } from '../user-servise/user.service';
 import { environment } from '../../../environments/environment'
 
 @Injectable({
@@ -33,10 +32,17 @@ export class AdminServiceService {
       }
     });
   }
-
+  // --------------------------------------------------DELETE ADMIN by id
   deleteAdmin_fromDB(id: string, lang: string) {
     return this.http.get(`${this.admin_URL}/${lang}/remove/${id}`).subscribe(res => {
-      console.log(res);
+      this.respond_Service.saveRespond(res);
+      this.getAdmins_fromDB();
+    });
+  }
+  // --------------------------------------------------CREATE NEW ADMIN
+  createAdmin(admin: object, lang: string) {
+    return this.http.post(`${this.admin_URL}/${lang}/create`, admin).subscribe(res => {
+      this.respond_Service.saveRespond(res);
     });
   }
 

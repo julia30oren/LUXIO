@@ -50,11 +50,12 @@ router.get("/", async(req, res, next) => {
 router.post("/:lang/create", async(req, res) => {
     // to create new admin Im using :
     const language = req.params.lang;
-    const { admin_name, admin_password } = req.body;
+    const { admin_name, admin_password, main_password, email } = req.body;
     // email - official email of a company
-    // main_password - one password for everyone
+    // main_password - one password for everyone 
     // admin_name - personnel admin name
     // admin_password - personnel admin password
+    if(main_password===process.env.secretPASSWORD && email===process.env.LuxioEmail){
     const salt = bcrypt.genSaltSync(10);
     const main_passwordHash = bcrypt.hashSync(process.env.secretPASSWORD, salt);
     const private_passwordHash = bcrypt.hashSync(admin_password, salt);
@@ -106,6 +107,22 @@ router.post("/:lang/create", async(req, res) => {
         logger.error(`${moment().format(`h:mm:ss a`)} - ${err}`);
         return res.json([{ status: false, message: err.message }]);
     }
+    } else {
+        switch (language) {
+            case 'en':
+                responseMessage = `An error has occurred. Email and master password do not match.`
+                break;
+            case 'ru':
+                responseMessage = `Произошла ошибка. Емейл и главный пароль не совпадают.`
+                break;
+            default:
+                responseMessage = `אירעה שגיאה. הדוא"ל והסיסמה הראשית אינם תואמים.`
+                break;
+        };
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+        return res.json([{ status: false, message: responseMessage }]);
+    }
+
 });
 
 

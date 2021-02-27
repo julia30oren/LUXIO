@@ -6,7 +6,6 @@ import { ShopService } from 'src/app/services/shop/shop.service';
 import { UserService } from 'src/app/services/user-servise/user.service';
 import { OrderService } from 'src/app/services/order/order.service';
 
-
 @Component({
   selector: 'app-personal-a-card',
   templateUrl: './personal-a-card.component.html',
@@ -32,7 +31,7 @@ export class PersonalACardComponent implements OnInit {
   public discount: number = 0;
   public shipping: number = 0;
   public do_checkout: boolean;
-  public Checkout_Payments: object;
+  public Checkout_Payments: Array<any>;
   public order: Array<any>;
   public user: Array<any>;
   public isSubmited: boolean;
@@ -184,38 +183,40 @@ export class PersonalACardComponent implements OnInit {
 
   getTotalPriceForOneItem(itemToOrder) {
     let Checkout_ForOneItem = {
-      totalPrice_ForOneItem: itemToOrder.total_price,
-      shipping_ForOneItem: 40,
-      discount_ForOneItem: 0
+      totalPrice: itemToOrder.total_price,
+      shipping: 40,
+      discount: 0
     };
     let x = 0;
     if (itemToOrder.price === 117 || itemToOrder.price === 112) { x = itemToOrder.quantity; }
-    Checkout_ForOneItem.discount_ForOneItem = Math.trunc(x / 6) * 117;
-    Checkout_ForOneItem.totalPrice_ForOneItem = Checkout_ForOneItem.totalPrice_ForOneItem - Checkout_ForOneItem.discount_ForOneItem;
-    if (Checkout_ForOneItem.totalPrice_ForOneItem < 1000) {
-      Checkout_ForOneItem.shipping_ForOneItem = 40;
-      Checkout_ForOneItem.totalPrice_ForOneItem = Checkout_ForOneItem.totalPrice_ForOneItem + Checkout_ForOneItem.shipping_ForOneItem;
-    } else Checkout_ForOneItem.shipping_ForOneItem = 0;
-    this.Checkout_Payments = Checkout_ForOneItem;
+    Checkout_ForOneItem.discount = Math.trunc(x / 6) * 117;
+    Checkout_ForOneItem.totalPrice = Checkout_ForOneItem.totalPrice - Checkout_ForOneItem.discount;
+    if (Checkout_ForOneItem.totalPrice < 1000) {
+      Checkout_ForOneItem.shipping = 40;
+      Checkout_ForOneItem.totalPrice = Checkout_ForOneItem.totalPrice + Checkout_ForOneItem.shipping;
+    } else Checkout_ForOneItem.shipping = 0;
+    this.Checkout_Payments = [Checkout_ForOneItem];
   }
 
   PAY() {
     this.isSubmited = true;
     if (this.frmShipment.valid) { //Delivery address:
+      this.frmShipment.value._id = this.user[0]._id
       this.frmShipment.value.first_name = this.user[0].first_name;
       this.frmShipment.value.second_name = this.user[0].second_name;
       this.frmShipment.value.email = this.user[0].email;
       this.frmShipment.value.state = this.user[0].state;
       // --------------------------------------------------------------------------!!!!!!!!!!!!! do payment! & save order to DB
-      let order = [
-        { order: this.order },
-        { payments: this.Checkout_Payments },
-        { shipping_details: this.frmShipment.value }
-      ]
-      console.log(order);
-      // this.order_service.createOrder(order, this.languege)
+      let order = {
+        order: this.order,
+        payments: this.Checkout_Payments[0],
+        shipping_details: this.frmShipment.value
+      }
+
+      // console.log(order);
+      this.order_service.createOrder(order, this.languege)
       this.do_checkout = false;
     }
   }
-
+  goToBill() { }
 }

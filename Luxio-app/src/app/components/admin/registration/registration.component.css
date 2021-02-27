@@ -1,7 +1,26 @@
-.form-row {
-    margin-top: 1%;
+span {
+    color: brown;
 }
 
-.error {
-    border: red solid 1.5px;
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    letter-spacing: 1.5px;
+    word-spacing: 3px;
+}
+
+.sm-text {
+    color: gray;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+}
+
+i {
+    font-size: 120%;
+}
+
+.form-row {
+    margin-top: 10px;
 }

@@ -9,9 +9,10 @@ const validSchema = Joi.object({
     // FOR ADMIN     admin_name, admin_password,id,email, main_password
     id: Joi.string().min(10),
     admin_name: Joi.string().alphanum().min(3).max(30), // personnel admin name
-    admin_password: Joi.string().min(6).message('PASSWORD is to short. It must contain at least 6 letters and/or numbers.').pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).message('PASSWORD is not valid.'), // personnel admin password
-    main_email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com'] } }).message('EMAIL is not valid').min(8).max(30),
-    main_password: Joi.string().min(14).message('PASSWORD is not valid. It must contain at least 14 letters and/or numbers').pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).message('PASSWORD is not valid.'),
+    admin_password: Joi.string(), // personnel admin password
+    email: Joi.string(),
+    main_email: Joi.string(),
+    main_password: Joi.string(),
 })
 
 function adminValidation(req, res, next) {

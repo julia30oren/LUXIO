@@ -156,18 +156,18 @@
                 <div class="row" style="padding: 1%;">
                     <div class="col-12">
                         <table class="table" style="width: 70%; margin-left: 30%;" [ngClass]="{Hebrew: languege==='iv'}">
-                            <tbody>
+                            <tbody *ngFor="let item of Checkout_Payments">
                                 <tr>
                                     <td>{{ 'PERSONAL-AREA.shipping' | translate }}:</td>
-                                    <td>{{ Checkout_Payments.shipping_ForOneItem }}.00 &#8362;</td>
+                                    <td>{{ item.shipping }}.00 &#8362;</td>
                                 </tr>
                                 <tr>
                                     <td>{{ 'PERSONAL-AREA.discount' | translate }}:</td>
-                                    <td>{{ Checkout_Payments.discount_ForOneItem }}.00 &#8362;</td>
+                                    <td>{{ item.discount }}.00 &#8362;</td>
                                 </tr>
                                 <tr>
                                     <td><span>{{ 'PERSONAL-AREA.order-total' | translate }}:</span></td>
-                                    <td><span>{{ Checkout_Payments.totalPrice_ForOneItem }}.00 &#8362;</span></td>
+                                    <td><span>{{ item.totalPrice }}.00 &#8362;</span></td>
                                 </tr>
                             </tbody>
                         </table>

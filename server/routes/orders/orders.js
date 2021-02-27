@@ -34,6 +34,7 @@ router.get('/:id', async(req, res) => {
 router.post("/:lang/save", async(req, res, next) => {
     const language = req.params.lang;
     const { order, payments, shipping_details } = req.body;
+    // console.log(order, payments, shipping_details)
     // creating new product-----------------------
     try {
         // ----------------------------we are creating new ORDER:
@@ -178,6 +179,5 @@ router.get("/:lang/status/:id/:status", async(req, res) => {
         return res.json([{ status: false, message: err.message }]);
     }
 });
-
 
 module.exports = router;

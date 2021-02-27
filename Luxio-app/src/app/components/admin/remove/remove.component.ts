@@ -50,7 +50,6 @@ export class RemoveComponent implements OnInit {
   }
 
   deleteAdmin(id) {
-    console.log(id);
-    // this.admin_Service.deleteAdmin_fromDB(id, this.languege);
+    this.admin_Service.deleteAdmin_fromDB(id, this.languege);
   }
 }

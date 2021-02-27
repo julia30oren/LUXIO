@@ -30,6 +30,7 @@ import { RemoveComponent } from './components/admin/remove/remove.component';
 import { HomeComponent } from './components/main/home/home.component';
 import { OrdersComponent } from './components/admin/orders/orders.component';
 import { TrymeComponent } from './components/main/tryme/tryme.component';
+import { PaypaltestComponent } from './components/paypaltest/paypaltest.component';
 
 
 // AoT requires an exported function for factories
@@ -60,6 +61,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     HomeComponent,
     OrdersComponent,
     TrymeComponent,
+    PaypaltestComponent,
   ],
   imports: [
     BrowserModule,

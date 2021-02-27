@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminServiceService } from 'src/app/services/admin/admin-service.service';
 import { LanguageService } from 'src/app/services/language.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CustomValidators } from '../../registration/reg-form-one/custom-validators';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user-servise/user.service';
-
 
 @Component({
   selector: 'app-registration',
@@ -14,24 +14,20 @@ import { UserService } from 'src/app/services/user-servise/user.service';
 export class RegistrationComponent implements OnInit {
 
   public language: string;
-  public isSubmitted: boolean;
-  public formTemplate = new FormGroup({
-    email: new FormControl('', Validators.required),
-    main_password: new FormControl('', Validators.required),
-    admin_name: new FormControl('', Validators.required),
-    admin_password: new FormControl('', Validators.required)
-  });
   public admin: boolean;
+  public isSubmited: boolean;
+  public frmSignupAdmin: FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     private router: Router,
     private user_Service: UserService,
-    private lang_service: LanguageService
-  ) { }
+    private lang_service: LanguageService,
+    private admin_service: AdminServiceService
+  ) { this.frmSignupAdmin = this.createSignupForm(); }
 
   ngOnInit() {
     this.adminCheck();
-
     this.lang_service._selected_from_service ///language subscribe
       .subscribe(date => this.language = date);
 
@@ -46,6 +42,25 @@ export class RegistrationComponent implements OnInit {
       });
   }
 
+  createSignupForm(): FormGroup {
+    return this.fb.group(
+      {
+        main_password: [null, Validators.compose([Validators.required])],
+        email: [null, Validators.compose([Validators.email, Validators.required])],
+        admin_name: [null, Validators.compose([Validators.required])],
+        admin_password: [null, Validators.compose([
+          Validators.required,
+          // check whether the entered password has a number
+          CustomValidators.patternValidator(/\d/, {
+            hasNumber: true
+          }),
+          Validators.minLength(8)
+        ])
+        ],
+      }
+    );
+  }
+
   adminCheck() {
     let adminToken = localStorage.getItem('token');
     if (adminToken) {
@@ -53,16 +68,12 @@ export class RegistrationComponent implements OnInit {
     } else this.router.navigate(['/**']);
   }
 
-  get formControls() {
-    return this.formTemplate['controls'];
-  }
-
-  onSubmit(formValue) {
-    this.isSubmitted = true;
-    if (this.formTemplate.valid) {
-      console.log(formValue);
+  submit() {
+    this.isSubmited = true;
+    if (this.frmSignupAdmin.valid) {
+      this.admin_service.createAdmin(this.frmSignupAdmin.value, this.language)
     } else {
-      alert('denied');
+      alert('All lines need to be filed!');
     }
   }
 }

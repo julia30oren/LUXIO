@@ -182,6 +182,7 @@
                 "home": "Home is Required!",
                 "phoneN": "Phone number is Required!"
             },
+            "main-pass": "Main password",
             "delivery-address": "Delivery address",
             "close-button": "Close",
             "confirmandpay-button": "Confirm and pay"
