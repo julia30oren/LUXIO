@@ -28,7 +28,7 @@
             </div>
             <div class="col-md-6 col-12">
                 <label for="phoneN">{{ 'SIGN-IN.REGISTRATION-FORM.phoneN' | translate}}</label>
-                <input id="phoneN" formControlName="phoneN" type="text" class="form-control">
+                <input id="phoneN" formControlName="phoneN" oninput="this.value=this.value.replace(/[^0-9]/g,'');" type="text" class="form-control">
             </div>
         </div>
         <!---------------------------- PASSWORD & PASSWORD CONF.-->

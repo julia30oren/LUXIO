@@ -6,20 +6,26 @@
                 {{ 'COURSES.BLOK-1.TEXT-3' | translate}}</h1>
             <p>{{ 'COURSES.BLOK-1.TEXT-4' | translate}}</p>
             <p>{{ 'CONTACT.city' | translate}}, {{ 'CONTACT.street' | translate}}</p>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary" type="button" (click)="contactMe1(contartPhone.value)">{{ 'COURSES.cont-f.text' | translate}}</button>
+            <div class="container-fluid">
+                <div class="row contactRow">
+                    <div class="col-auto">
+                        <label>+972</label>
+                    </div>
+                    <div class="col-auto">
+                        <div class="row"><input type="text" class="phoneInpute" oninput="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]='phone' /></div>
+                        <div class="row"><label *ngIf="isSubmited1 && !validPhone1" class="text-danger"><small>{{ 'COURSES.cont-f.alert' | translate}}</small></label></div>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" (click)="contactMe1()" class="btn btn-link">{{ 'COURSES.cont-f.text' | translate}}</button>
+                    </div>
                 </div>
-                <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" [ngClass]="{error: phone1 === false}" placeholder="{{ 'COURSES.cont-f.button' | translate}}" #contartPhone>
-            </div>
-            <div *ngIf="phone1 === false">
-                <p style="color: red;">{{ 'COURSES.cont-f.alert' | translate}}</p>
             </div>
         </div>
         <div class="col-md-6 col-12">
             <img style="width: 100%;" src="https://i.pinimg.com/originals/3b/58/84/3b5884b50b3175eaf8f17ad738fabe7a.png" alt="" />
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-6 col-12">
             <img style="width: 100%;" src="https://i.pinimg.com/originals/04/70/a2/0470a2f453d61ce9270d1990b514f302.jpg" alt="" />
@@ -32,17 +38,23 @@
             </h1>
             <p>{{ 'COURSES.BLOK-2.TEXT-4' | translate}}</p>
             <p>{{ 'COURSES.BLOK-3.TEXT-5' | translate}}</p>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary" type="button" (click)="contactMe2(contartPhone.value)">{{ 'COURSES.cont-f.text' | translate}}</button>
+            <div class="container-fluid">
+                <div class="row contactRow">
+                    <div class="col-auto">
+                        <label>+972</label>
+                    </div>
+                    <div class="col-auto">
+                        <div class="row"><input type="text" class="phoneInpute" oninput="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]='phone' /></div>
+                        <div class="row"><label *ngIf="isSubmited2 && !validPhone2" class="text-danger"><small>{{ 'COURSES.cont-f.alert' | translate}}</small></label></div>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" (click)="contactMe2()" class="btn btn-link">{{ 'COURSES.cont-f.text' | translate}}</button>
+                    </div>
                 </div>
-                <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" [ngClass]="{error: phone1 === false}" placeholder="{{ 'COURSES.cont-f.button' | translate}}" #contartPhone>
-            </div>
-            <div *ngIf="phone1 === false">
-                <p style="color: red;">{{ 'COURSES.cont-f.alert' | translate}}</p>
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="text-block col-md-6 col-12">
             <h1>
@@ -51,14 +63,19 @@
             </h1>
             <p>{{ 'COURSES.BLOK-3.TEXT-4' | translate}}</p>
             <p>{{ 'COURSES.BLOK-3.TEXT-5' | translate}}</p>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary" type="button" (click)="contactMe3(contartPhone.value)">{{ 'COURSES.cont-f.text' | translate}}</button>
+            <div class="container-fluid">
+                <div class="row contactRow">
+                    <div class="col-auto">
+                        <label>+972</label>
+                    </div>
+                    <div class="col-auto">
+                        <div class="row"><input type="text" class="phoneInpute" oninput="this.value=this.value.replace(/[^0-9]/g,'');" [(ngModel)]='phone' /></div>
+                        <div class="row"><label *ngIf="isSubmited3 && !validPhone3" class="text-danger"><small>{{ 'COURSES.cont-f.alert' | translate}}</small></label></div>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" (click)="contactMe3()" class="btn btn-link">{{ 'COURSES.cont-f.text' | translate}}</button>
+                    </div>
                 </div>
-                <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" [ngClass]="{error: phone1 === false}" placeholder="{{ 'COURSES.cont-f.button' | translate}}" #contartPhone>
-            </div>
-            <div *ngIf="phone1 === false">
-                <p style="color: red;">{{ 'COURSES.cont-f.alert' | translate}}</p>
             </div>
         </div>
         <div class="col-md-6 col-12">

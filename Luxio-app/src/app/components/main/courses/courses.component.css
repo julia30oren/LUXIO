@@ -7,6 +7,20 @@ span {
     text-transform: uppercase;
 }
 
+.contactRow {
+    margin-top: 50px;
+}
+
+.col-auto {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.phoneInpute {
+    border: none;
+    border-bottom: black solid 1px;
+}
+
 .text-block {
     padding: 1%;
     font-family: Arial, Helvetica, sans-serif;

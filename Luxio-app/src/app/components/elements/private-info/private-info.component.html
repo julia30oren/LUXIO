@@ -44,7 +44,7 @@
         <!-- ---------------------------------------------------------------------------CHANGING PHONE NUM--------------------------- -->
         <div class="form-row">
             <div class="col">
-                <input type="text" class="form-control" value="formControls.phoneN?formControls.phoneN:null" formControlName="phoneN" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.phoneN' | translate}}">
+                <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" value="formControls.phoneN?formControls.phoneN:null" formControlName="phoneN" placeholder="{{ 'SIGN-IN.REGISTRATION-FORM.phoneN' | translate}}">
             </div>
         </div>
         <!-- ---------------------------------------------------------------------------ADDRESS--------------------------- -->

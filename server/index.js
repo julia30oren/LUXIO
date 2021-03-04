@@ -94,14 +94,6 @@ db.once('open', () => {
 });
 
 app.use(cors());
-
-// app.use((req, res, next) => {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Methods", "GET , PUT , POST , DELETE");
-//     res.header("Access-Control-Allow-Headers", "Content-Type, x-requested-with");
-//     next(); // Important
-// });
-// 
 app.use(express.json());
 
 // app.get('/*',(req,res)=>{res.sendFile(path.join(__dirname))})

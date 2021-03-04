@@ -455,9 +455,9 @@
             "TEXT-5": "At the end of the course, a certificate is issued."
         },
         "cont-f": {
-            "text": "Please contact me:",
+            "text": "Please contact me",
             "button": "Phone number",
-            "alert": "The phone number must contain between 10 and 11 digits."
+            "alert": "The phone number is incorrect."
         }
     },
 
