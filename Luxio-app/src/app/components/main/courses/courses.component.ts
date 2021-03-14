@@ -61,7 +61,6 @@ export class CoursesComponent implements OnInit {
       this.validPhone2 = false;
     } else {
       this.validPhone2 = true;
-      console.log(phoneNumber);
       switch (this.language) {
         case 'en':
           whatsappMessage = `✏️ Good day. I would like to know more about *MANICURE COMBI course FOR BEGINNERS*. Please contact me at ${phoneNumber}`
@@ -86,7 +85,6 @@ export class CoursesComponent implements OnInit {
       this.validPhone3 = false;
     } else {
       this.validPhone3 = true;
-      console.log(phoneNumber);
       switch (this.language) {
         case 'en':
           whatsappMessage = `✏️ Good day. I would like to know more about *MANICURE COMBI course FOR BEGINNERS*. Please contact me at ${phoneNumber}`

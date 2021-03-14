@@ -28,9 +28,7 @@ export class MailingsComponent implements OnInit {
       .subscribe(date => {
         this.admin = date;
         setTimeout(() => {
-          if (this.admin) {
-            console.log('good')
-          } else {
+          if (!this.admin) {
             this.router.navigate(['/**']);
           }
         }, 1000);

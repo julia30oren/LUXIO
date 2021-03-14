@@ -33,13 +33,6 @@ export class PaypaltestComponent implements OnInit {
   ngOnInit() {
     this.paypal_service.paypal_orderDetails_fromService
       .subscribe(date => {
-        // console.log(date);
-        // 0:
-        // discount: 0
-        // item: "Luxio CASHMERE x2"
-        // price: 234
-        // shipping: 40
-        // totalPrice: 274
         if (date[0]) {
           this.product.price = date[0].totalPrice;
           this.product.description = date[0].item;
@@ -56,7 +49,6 @@ export class PaypaltestComponent implements OnInit {
     paypal
       .Buttons({
         createOrder: (date, action) => {
-          console.log(date);
           return action.order.create({
             purchase_units: [
               {
@@ -103,7 +95,6 @@ export class PaypaltestComponent implements OnInit {
           this.canceled = true;
         },
         onError: err => {
-          console.log(err);
           // Show this
           switch (this.languege) {
             case 'en':

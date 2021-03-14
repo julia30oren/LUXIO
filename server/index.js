@@ -8,11 +8,6 @@ const AdminSchema = require('./routes/admin/admin-model');
 const bcrypt = require('bcryptjs');
 const app = express();
 const server = require('http').createServer(app);
-// -----------------------
-// const fileUpload = require('express-fileupload')
-// app.post('/upload', function(req, res) {
-//     console.log(req.files.foo); // the uploaded file object
-// });
 
 // function to check if all parameters exist in .env
 function ifEnvVarieblesExist(params) {

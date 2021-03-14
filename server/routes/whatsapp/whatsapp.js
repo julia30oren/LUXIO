@@ -29,14 +29,13 @@ router.post("/:lang", async(req, res) => {
     res.json([{ status: true, message: responseMessage }]);
 });
 
+
 // router.post("/next", async(req, res) => {
 //     // console.log('next', req.body.say);
-
 //     const response = new MessagingResponse();
 //     const message = response.message();
 //     message.body(req.body.say);
 //     response.redirect('https://demo.twilio.com/welcome/sms/');
-
 //     console.log(response.toString());
 // });
 

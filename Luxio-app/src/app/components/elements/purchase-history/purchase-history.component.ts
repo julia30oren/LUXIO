@@ -34,7 +34,6 @@ export class PurchaseHistoryComponent implements OnInit {
   }
 
   orderResived(orderID) {
-    // console.log(orderID);
     this.admin_Service.changeOrdersStatuse(this.languege, orderID);
   }
 

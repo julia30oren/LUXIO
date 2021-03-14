@@ -147,7 +147,6 @@ export class RegFormOneComponent implements OnInit {
   }
 
   submit() {
-    //first_name, second_name, phoneN, state, email, password, cart, favorites, business
     this.isSubmited = true;
     // do signup or something
     if (this.frmSignup.valid && this.business && this.agreement) {
@@ -155,14 +154,12 @@ export class RegFormOneComponent implements OnInit {
         this.frmSignup.value.business = [{ type: this.business, salon: this.salonName }];
         this.frmSignup.value.cart = JSON.parse(localStorage.getItem('my_764528_ct'));
         this.frmSignup.value.favorites = JSON.parse(localStorage.getItem('my_764528_f'));
-        // console.log(this.frmSignup.value);
         this.user_service.saveUser_toDB(this.frmSignup.value, this.languege);
       }
       else if (this.business === 'self employed' && this.selectedImg_link) {
         this.frmSignup.value.business = [{ type: this.business, certifikate: this.selectedImg_link }];
         this.frmSignup.value.cart = JSON.parse(localStorage.getItem('my_764528_ct'));
         this.frmSignup.value.favorites = JSON.parse(localStorage.getItem('my_764528_f'));
-        // console.log(this.frmSignup.value);
         this.user_service.saveUser_toDB(this.frmSignup.value, this.languege);
       }
       // close form

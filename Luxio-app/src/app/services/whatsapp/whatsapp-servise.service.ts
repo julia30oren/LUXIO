@@ -18,7 +18,6 @@ export class WhatsappServiseService {
   // -----------------------------send whatsapp message to admin-------------------
   whatsapp_toAdmin(message: object, lang: string) {
     return this.http.post(`${this.whatsapp_URL}/${lang}`, message).subscribe(res => {
-      console.log(res);
       this.respond_Service.saveRespond(res);
     });
   }
