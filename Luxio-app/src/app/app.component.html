@@ -4,35 +4,36 @@
     <nav class="navbar navbar-expand-lg navbar-light" id="nav-top" *ngIf="!admin">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03,#navbarTogglerDemo02" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars fa-2x"></i>
+                <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
+                    <!-- SEARCH -->
                     <li class="nav-item dropdown  nav-item-top">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-search fa-2x"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-top" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-search"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-top search-res-list" aria-labelledby="navbarDropdownMenuLink">
                             <li>
-                                <!-- <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="doSearch(search_text.value)"><i class="fas fa-search"></i></button>
-                                </div> -->
-                                <input type="text" class="form-control" placeholder="Search.." #search_text (keyup.enter)="doSearch(search_text.value)">
+                                <input type="email" class="form-control" id="search-text" aria-describedby="search-text" [(ngModel)]="searchText" placeholder="Enter text to search" autofocus>
+                            </li>
+                            <br>
+                            <li class="list-group-item" *ngFor="let c of shop | appFilter: searchText">
+                                <small style="cursor: pointer;" *ngIf="c.name" (click)="doSearch(c._id)">{{c.prod_class}} {{c.name}}</small>
                             </li>
                         </ul>
                     </li>
 
                     <li class="nav-item dropdown nav-item-top" *ngIf="user">
                         <a class="nav-link active dropdown-toggle" [ngClass]="{activeColor: location==='personal-area'}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user-cog  fa-2x nav-icon"></i>
+                            <i class="fas fa-user-cog nav-icon"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-top" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="personal-area">{{ 'PERSONAL-AREA.personal-information' | translate }}</a></li>
                             <li><a class="dropdown-item" href="new" (click)="logOut()">{{'NAVIGATION.sign-out'| translate}}</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item  nav-item-top" *ngIf="user">
+                    <li class="nav-item  nav-item-top">
                         <a class="nav-link active" aria-current="page" href="personal-area">
-                            <i *ngIf="user" class="fas fa-shopping-basket fa-2x nav-icon"></i>
+                            <i class="fas fa-shopping-basket nav-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item" *ngIf="user">
@@ -43,7 +44,7 @@
 
                     <li class="nav-item  nav-item-top" *ngIf="!user && !admin">
                         <a class="nav-link active" aria-current="page" style="cursor: pointer;" (click)="getRegistrationForm()">
-                            <i *ngIf="!user" class="fas fa-user-lock fa-2x nav-icon nv-l"></i>
+                            <i *ngIf="!user" class="fas fa-user-lock nav-icon nv-l"></i>
                         </a>
                     </li>
                     <li class="nav-item" *ngIf="!user && !admin">
@@ -63,7 +64,6 @@
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
                     <li class="nav-item">
                         <a class="nav-link active" [ngClass]="{activeColor: location==='new'}" aria-current="page" href="new">{{ 'NAVIGATION.NEW.title' | translate }}</a>
                     </li>
@@ -114,13 +114,13 @@
     <nav class="navbar navbar-expand-lg navbar-light" id="nav-top" *ngIf="admin">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03,#navbarTogglerDemo02" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars fa-2x"></i>
+                <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li class="nav-item dropdown  nav-item-top">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-search fa-2x"></i></a>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-search"></i></a>
                         <ul class="dropdown-menu dropdown-menu-top" aria-labelledby="navbarDropdownMenuLink">
                             <li>
                                 <input type="text" class="form-control" placeholder="Search.." #search_text (keyup.enter)="doSearch(search_text.value)">
@@ -130,7 +130,7 @@
 
                     <li class="nav-item dropdown nav-item-top">
                         <a class="nav-link active dropdown-toggle" [ngClass]="{activeColor: location==='personal-area'}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user-cog  fa-2x nav-icon"></i>
+                            <i class="fas fa-user-cog nav-icon"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-top" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="personal-area">{{ 'PERSONAL-AREA.personal-information' | translate }}</a></li>
@@ -139,7 +139,7 @@
                     </li>
                     <li class="nav-item  nav-item-top">
                         <a class="nav-link active" aria-current="page" href="personal-area">
-                            <i *ngIf="user" class="fas fa-shopping-basket fa-2x nav-icon"></i>
+                            <i *ngIf="user" class="fas fa-shopping-basket nav-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item">

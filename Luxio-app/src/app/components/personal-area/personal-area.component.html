@@ -2,8 +2,8 @@
     <div class="row">
         <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getMyWishlist()" [ngClass]="{butve: what_to_show==='wishlist'}">{{ 'PERSONAL-AREA.wishlist' | translate }}</button>
         <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getMyCart()" [ngClass]="{butve: what_to_show==='cart'}">{{ 'PERSONAL-AREA.cart' | translate }}</button>
-        <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getPurchaseHistory()" [ngClass]="{butve: what_to_show==='purchase-history'}">{{ 'PERSONAL-AREA.purchase-history' | translate }}</button>
-        <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getPrivateInfo()" [ngClass]="{butve: what_to_show==='private-info'}">{{ 'PERSONAL-AREA.personal-information' | translate }}</button>
+        <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getPurchaseHistory()" [ngClass]="{butve: what_to_show==='purchase-history'}" *ngIf="userAuthorized">{{ 'PERSONAL-AREA.purchase-history' | translate }}</button>
+        <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getPrivateInfo()" [ngClass]="{butve: what_to_show==='private-info'}" *ngIf="userAuthorized">{{ 'PERSONAL-AREA.personal-information' | translate }}</button>
     </div>
     <div class="row">
         <div class="col-12 col-lg-8">
@@ -13,8 +13,11 @@
         </div>
         <div class="col-12 col-lg-4">
             <img id="photo-model" width="100%" src="https://i.pinimg.com/originals/18/58/32/185832b4320525c080a8cb1ee5b66413.jpg" alt="Akzentz model" />
+            <div *ngIf="what_to_show==='wishlist' || what_to_show==='cart'" class="shipping-details" [ngClass]="{Hebrew: languege==='iv'}">
+                <p>{{'PERSONAL-AREA.SHIPPING-D.p-0' | translate}}</p>
+            </div>
             <p *ngIf="what_to_show==='wishlist' || what_to_show==='cart'" class="message-link">{{ 'PERSONAL-AREA.CARD.shipping-details' | translate}}</p>
-            <div *ngIf="what_to_show==='wishlist' || what_to_show==='cart'" id="shipping-details" [ngClass]="{Hebrew: languege==='iv'}">
+            <div *ngIf="what_to_show==='wishlist' || what_to_show==='cart'" class="shipping-details" [ngClass]="{Hebrew: languege==='iv'}">
                 <p>{{'PERSONAL-AREA.SHIPPING-D.p-1' | translate}}</p>
                 <p>{{'PERSONAL-AREA.SHIPPING-D.p-2' | translate}}</p>
                 <p>{{'PERSONAL-AREA.SHIPPING-D.p-3' | translate}}</p>

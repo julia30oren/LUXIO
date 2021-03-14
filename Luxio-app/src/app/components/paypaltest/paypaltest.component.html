@@ -1,13 +1,5 @@
-<p>paypaltest works!</p>
-
-<div *ngIf="!paidFor">
-    <img src={{product.img}} alt="" />
-    <h1>Buy this - {{product.price}} ILS</h1>
-    <p>{{product.description}}</p>
-</div>
-
-<div *ngIf="paidFor">
-    <h1>Yay, you got it!</h1>
+<div [ngClass]="{Hebrew: languege==='iv'}">
+    <h1 class="title">{{resPayPal}}</h1>
 </div>
 
 <div #paypal></div>

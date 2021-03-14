@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { element } from 'protractor';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LanguageService } from 'src/app/services/language.service';
 import { ShopService } from 'src/app/services/shop/shop.service';
 import { UserService } from 'src/app/services/user-servise/user.service';
-import { OrderService } from 'src/app/services/order/order.service';
+import { PaypalService } from 'src/app/services/paypal/paypal.service';
 
 @Component({
   selector: 'app-personal-a-card',
@@ -19,7 +18,7 @@ export class PersonalACardComponent implements OnInit {
     private language_Service: LanguageService,
     private shop_service: ShopService,
     private user_service: UserService,
-    private order_service: OrderService
+    private paypal_service: PaypalService
   ) { this.frmShipment = this.createSignupForm(); }
 
   public languege: string;
@@ -35,6 +34,8 @@ export class PersonalACardComponent implements OnInit {
   public order: Array<any>;
   public user: Array<any>;
   public isSubmited: boolean;
+  public paypalButtonsDisabled: boolean = true;
+  public userAuthorized: boolean;
 
   ngOnInit() {
     this.language_Service._selected_from_service
@@ -49,6 +50,9 @@ export class PersonalACardComponent implements OnInit {
     this.user_service.user_full_from_service
       .subscribe(date => {
         this.user = date;
+        if (this.user.length < 1) {
+          this.userAuthorized = false;
+        } else this.userAuthorized = true;
       });
 
     this.user_service.user_to_show_from_service
@@ -68,6 +72,16 @@ export class PersonalACardComponent implements OnInit {
       .subscribe(date => {
         this.order = date;
       });
+
+    this.paypal_service.NEWcheckout_fromService
+      .subscribe(date => {
+        if (date) {
+          this.paypalButtonsDisabled = true;
+        }
+      })
+
+    this.paypal_service.checkoutState_fromService
+      .subscribe(date => this.do_checkout = date);
   }
 
   createSignupForm(): FormGroup {
@@ -77,7 +91,7 @@ export class PersonalACardComponent implements OnInit {
         city: ['', Validators.compose([Validators.required])],
         street: ['', Validators.compose([Validators.required])],
         home: ['', Validators.compose([Validators.required])],
-        apartment: [""],
+        apartment: [''],
         zip: [null]
       }
     );
@@ -113,7 +127,7 @@ export class PersonalACardComponent implements OnInit {
   }
 
   closePaimentForm() {
-    this.do_checkout = false;
+    this.paypal_service.endCheckout();
   }
 
   add_toCart(item_id) {
@@ -168,21 +182,35 @@ export class PersonalACardComponent implements OnInit {
     this.shop_service.selectProd(index, true); //sending index to server and seting big-image-component open(true)
   }
 
-  pay_onlyThis(item) {
-    this.frmShipment.value.city = this.user[0].city;
-    this.frmShipment.value.phoneN = this.user[0].phoneN;
-    this.frmShipment.value.street = this.user[0].street;
-    this.frmShipment.value.home = this.user[0].home;
-    this.frmShipment.value.apartment = this.user[0].apartment;
-    this.frmShipment.value.zip = this.user[0].zip;
+  goToBill() {
+    this.shop_service.createOreder(this.personalArea_products);
+    this.paypal_service.changeCheckoutState(true);
+    let Checkout_ForAllCart = {
+      allCart: true,
+      item: '',
+      price: this.TOTAL_PRICE - this.shipping + this.discount,
+      totalPrice: this.TOTAL_PRICE,
+      shipping: this.shipping,
+      discount: this.discount
+    };
+    this.personalArea_products.forEach(element => {
+      let name = element.prod_class + ' ' + element.name + ' x' + element.amount + ' x' + element.quantity;
+      Checkout_ForAllCart.item = Checkout_ForAllCart.item + name + '; '
+    });
+    this.Checkout_Payments = [Checkout_ForAllCart];
+    this.paypal_service.plaseOrderDetails([Checkout_ForAllCart]);
+  }
 
+  pay_onlyThis(item) {
     this.shop_service.createOreder([item]);
     this.getTotalPriceForOneItem(item);
-    this.do_checkout = true;
+    this.paypal_service.changeCheckoutState(true);
   }
 
   getTotalPriceForOneItem(itemToOrder) {
     let Checkout_ForOneItem = {
+      item: itemToOrder.prod_class + ' ' + itemToOrder.name + ' x' + itemToOrder.quantity,
+      price: itemToOrder.total_price,
       totalPrice: itemToOrder.total_price,
       shipping: 40,
       discount: 0
@@ -196,6 +224,8 @@ export class PersonalACardComponent implements OnInit {
       Checkout_ForOneItem.totalPrice = Checkout_ForOneItem.totalPrice + Checkout_ForOneItem.shipping;
     } else Checkout_ForOneItem.shipping = 0;
     this.Checkout_Payments = [Checkout_ForOneItem];
+    // send data to paypal service:
+    this.paypal_service.plaseOrderDetails(this.Checkout_Payments);
   }
 
   PAY() {
@@ -212,11 +242,11 @@ export class PersonalACardComponent implements OnInit {
         payments: this.Checkout_Payments[0],
         shipping_details: this.frmShipment.value
       }
-
-      // console.log(order);
-      this.order_service.createOrder(order, this.languege)
-      this.do_checkout = false;
+      // ende of checkout = payment sent to DB and PayPal
+      this.paypal_service.plaseOrderDetails_forDB(order);
+      this.paypalButtonsDisabled = false;
     }
   }
-  goToBill() { }
+
+
 }

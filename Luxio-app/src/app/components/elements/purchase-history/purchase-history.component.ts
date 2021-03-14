@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminServiceService } from 'src/app/services/admin/admin-service.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { OrderService } from 'src/app/services/order/order.service';
 
@@ -15,7 +16,8 @@ export class PurchaseHistoryComponent implements OnInit {
 
   constructor(
     private order_service: OrderService,
-    private language_Service: LanguageService
+    private language_Service: LanguageService,
+    private admin_Service: AdminServiceService
   ) { }
 
   ngOnInit() {
@@ -29,6 +31,11 @@ export class PurchaseHistoryComponent implements OnInit {
           this.orders = date;
         }
       })
+  }
+
+  orderResived(orderID) {
+    // console.log(orderID);
+    this.admin_Service.changeOrdersStatuse(this.languege, orderID);
   }
 
 }

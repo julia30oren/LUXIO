@@ -470,6 +470,7 @@
         "shipping": "Shipping",
         "discount": "Discount",
         "order-total": "Order total",
+        "save-shipping-address": "Save shipping address",
         "CARD": {
             "total-price": "Total price:",
             "remove": "Remove",
@@ -494,6 +495,7 @@
             "button-saveNewPass": "Save new password"
         },
         "SHIPPING-D": {
+            "p-0": "You can place an order by calling 054-8785521 or 055-9519777.",
             "p-1": "Home delivery cost 40₪.",
             "p-2": "For orders over 1000₪, delivery is free.",
             "p-3": "The order will be delivered within 5 business days."

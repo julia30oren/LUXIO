@@ -21,6 +21,7 @@ export class PersonalAreaComponent implements OnInit {
   public languege: string;
   public shop: any[];
   public what_to_show: string;
+  public userAuthorized: boolean;
 
   ngOnInit() {
     this.userCheck();
@@ -41,9 +42,9 @@ export class PersonalAreaComponent implements OnInit {
   }
 
   userCheck() {
-    if (!this.userID) {
-      this.router.navigate(['/**']);
-    }
+    if (this.userID) {
+      this.userAuthorized = true;
+    } else this.userAuthorized = false;
   }
 
   getMyCart() {

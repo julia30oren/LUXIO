@@ -1,4 +1,3 @@
-<!-- <p *ngFor="let item of orders">{{item|json}}</p> -->
 <div *ngIf="!orders">
     <img *ngIf="languege==='en'" style="width: 100%;" src="https://i.pinimg.com/originals/82/99/f1/8299f1d00ced87473f11bb05e982da53.png?epik=dj0yJnU9WlhFd2hVWTJqOFVvbHdvSlJYTnNpVlY0bUNWakdnd0YmcD0wJm49VS1UWGJrczZ4M0drNmg4d2kxeUJOZyZ0PUFBQUFBR0FXbDJn" alt="Oops"
     />
@@ -11,25 +10,27 @@
 <div *ngFor="let order of orders" style="margin-top: 20px; border-bottom: gray 2px solid;">
     <p style="color: brown;">{{order.order_date | date}}</p>
     <div>
-        <!-- {{order.order | json}} -->
         <table class="table">
             <tbody>
                 <tr *ngFor="let item of order.order">
                     <th scope="row"><img src={{item.img_link_1}} alt={{item.name}} style="height: 40px;" /></th>
                     <td>{{item.amount}}</td>
                     <td>{{item.prod_class}} {{item.name}}</td>
-                    <td>{{item.price}} &#8362;</td>
+                    <td [ngClass]="{H: languege==='iv'}">{{item.price}} &#8362;</td>
                     <td>{{item.quantity}}</td>
-                    <td>{{item.total_price}} &#8362;</td>
+                    <td [ngClass]="{H: languege==='iv'}">{{item.total_price}} &#8362;</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div style="margin-left: 70%;">
-        <p>Shipping: {{order.payments.shipping}} &#8362;</p>
-        <p>Discount: -{{order.payments.discount}} &#8362;</p>
-        <p>Total: {{order.payments.total}} &#8362;</p>
-        <!-- <button type="button" class="btn btn-info">Resived</button> -->
+    <div class="row justify-content-end">
+        <div class="col-4">
+            <button *ngIf="!order.received" type="button" class="btn btn-outline-info btn-sm" (click)="orderResived(order._id)">{{'PURCHASE-HISTORY.resived' | translate}}</button>
+        </div>
+        <div class='col-4' [ngClass]="{Hebrew: languege==='iv'}">
+            <p>{{ 'PERSONAL-AREA.shipping' | translate }}: {{order.payments.shipping}} &#8362;</p>
+            <p>{{ 'PERSONAL-AREA.discount' | translate }}: {{order.payments.discount}} &#8362;</p>
+            <p>{{ 'PERSONAL-AREA.order-total' | translate }}: {{order.payments.totalPrice}} &#8362;</p>
+        </div>
     </div>
-
 </div>

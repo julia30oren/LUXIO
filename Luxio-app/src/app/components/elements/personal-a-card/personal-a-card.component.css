@@ -72,6 +72,12 @@ span {
     border-right: black dotted 2px;
     max-height: 600px;
     margin: 1%;
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }
 
 
@@ -103,4 +109,14 @@ span {
     display: none;
     padding: 50px;
     text-align: center;
+}
+
+
+/* ---------------------paypal buttons disabled */
+
+.paypalButtons.disabled {
+    pointer-events: none;
+    /* for "disabled" effect */
+    opacity: 0.5;
+    background: rgba(255, 255, 255, 0.596);
 }

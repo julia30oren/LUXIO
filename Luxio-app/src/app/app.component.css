@@ -11,6 +11,10 @@ span {
     color: brown;
 }
 
+i {
+    font-size: 150%;
+}
+
 
 /* ---------------------RESPOND FROM DB message--------- */
 
@@ -222,9 +226,14 @@ option {
 @media screen and (max-width: 1200px) {
     .content {
         width: 100%;
-        padding-top: 100px;
         padding-left: 1%;
         padding-right: 1%;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    .content {
+        padding-top: 100px;
     }
 }
 
@@ -328,6 +337,11 @@ option {
     color: brown;
 }
 
+.search-res-list {
+    max-height: 350px;
+    overflow: auto;
+}
+
 @media screen and (min-width: 990px) {
     #nav-top {
         max-width: 1200px;
@@ -353,7 +367,7 @@ option {
         height: 100px;
         position: absolute;
         right: 0;
-        top: -65px;
+        top: -60px;
     }
 }
 
@@ -423,19 +437,13 @@ option {
     color: brown;
 }
 
-.nav-item-top {
-    margin-right: 20px;
-}
-
 #welcome {
-    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-    font-size: 28px;
-    letter-spacing: 2px;
-    word-spacing: 2px;
+    height: 100%;
     color: brown;
-    font-weight: 700;
-    text-decoration: none;
-    font-style: normal;
-    font-variant: small-caps;
-    text-transform: none;
+    font-weight: 500;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    margin-left: 10px;
 }

@@ -4,6 +4,7 @@ const OrderSchema = require('./order-model');
 const UserSchema = require('../user/user-model');
 const logger = require('../../logger');
 const moment = require("moment");
+const nodemailer = require("nodemailer");
 
 let responseMessage;
 
@@ -34,13 +35,19 @@ router.get('/:id', async(req, res) => {
 router.post("/:lang/save", async(req, res, next) => {
     const language = req.params.lang;
     const { order, payments, shipping_details } = req.body;
-    // console.log(order, payments, shipping_details)
     // creating new product-----------------------
     try {
         // ----------------------------we are creating new ORDER:
         const newOrder = new OrderSchema({
             order: order,
-            payments: payments,
+            payments: {
+                type:'PayPal',
+                orderID:payments.orderID,
+                payerID:payments.payerID,
+                totalPrice : payments.totalPrice,
+                shipping : payments.shipping,
+                discount : payments.discount
+            },
             shipping_details: shipping_details
         });
         // ---------------------------SAVING NEW---------------------
@@ -59,7 +66,9 @@ router.post("/:lang/save", async(req, res, next) => {
                     default:
                         responseMessage = `ההזמנה בוצעה בהצלחה.`
                 };
-                const cartRestart = await UserSchema.update({ "_id": user_id }, { $set: { "cart": [] } });
+                const cartRestart = await UserSchema.update({ "_id": user_id }, { $set: { "cart": [] } });  
+                //payments.description => email sent to Ann
+                emailToLuxio(payments, orderToSave.shipping_details);
                 logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage} Order id ${orderToSave._id}`);
                 return res.json([{ status: true, message: responseMessage }]);
             }
@@ -179,5 +188,55 @@ router.get("/:lang/status/:id/:status", async(req, res) => {
         return res.json([{ status: false, message: err.message }]);
     }
 });
+
+// -------------------------------------------------------EMAIL TO LUXIO ABOUT NEW USER----------------------------
+let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+        user: process.env.SMTPHOSTEMAILUSER,
+        pass: process.env.SMTPHOSTEMAILPASSWORD,
+    }
+});
+function emailToLuxio(order, address) {
+    const main = async() => {
+        // ------------------------------------------------sending------------
+        let info = await transporter.sendMail({
+            from: process.env.SMTPHOSTEMAILUSER, // luxio extra email
+            to: process.env.DESIGNATEDSUPPORTEMAIL, // luxio email process.env.LuxioEmail
+            subject: `💸 New Order`, // Subject line
+            html: `<table>
+                        <tbody>
+                            <tr>
+                                <td>Payer:</td>
+                                <td>${address.first_name} ${address.second_name} (${address.phoneN})</td>
+                            </tr>
+                            <tr>
+                                <td>Order ID on PayPal:</td>
+                                <td>${order.orderID}</td>
+                            </tr>
+                            <tr>
+                                <td>Payer ID on PayPal:</td>
+                                <td>${order.payerID}</td>
+                            </tr>
+                            <tr>
+                                <td>Payment:</td>
+                                <td>${order.totalPrice}&#8362;</td>
+                            </tr>
+                            <tr>
+                                <td>Order:</td>
+                                <td>${order.item}</td>
+                            </tr>
+                            <tr>
+                                <td>Payer address:</td>
+                                <td>${address.state}, ${address.city}, ${address.street} ${address.home} / ${address.apartment}</td>
+                            </tr>
+                        </tbody>
+                    </table>` //main text
+        });
+    }
+    main().catch(console.error);
+};
 
 module.exports = router;

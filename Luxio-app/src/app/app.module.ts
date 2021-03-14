@@ -7,6 +7,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FilterPipe } from './filter.pipe';
 
 import { AppComponent } from './app.component';
 
@@ -41,6 +42,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
+    FilterPipe,
     RegFormOneComponent,
     LogFormComponent,
     PasswordRestoreFormComponent,
@@ -68,9 +70,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
-    // AngularFireModule.initializeApp(environment.firebaseConfig),
-    // AngularFireStorageModule,
-    // AngularFireDatabaseModule,
     ReactiveFormsModule,
 
     IonicStorageModule.forRoot(),

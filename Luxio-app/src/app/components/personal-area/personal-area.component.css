@@ -30,10 +30,11 @@
     font-family: arial, sans-serif;
     color: brown;
     margin: auto;
+    margin-top: 15px;
     text-align: center;
 }
 
-#shipping-details {
+.shipping-details {
     width: 70%;
     margin: auto;
     margin-top: 20px;

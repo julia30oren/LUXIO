@@ -1,0 +1,11 @@
+.Hebrew {
+    direction: rtl;
+}
+
+.title {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 25px;
+    letter-spacing: 1.5px;
+    word-spacing: 3px;
+}

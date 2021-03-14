@@ -8,7 +8,7 @@ export const environment = {
   hostURL: 'http://localhost',
   userName: 'user',
   DBport: 5001,
-  envName: 'angEnv',
+  envName: 'angEnv'
 
   // firebaseConfig: {
   //   apiKey: "AIzaSyDnAWNfZ769z6yS-uuEPo6GFn5dOHfAE58",

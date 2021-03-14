@@ -47,7 +47,7 @@
                 <div class="col-3" [ngClass]="{Hebrew: languege==='iv'}">
                     <div *ngIf="what_to_show === 'cart'">
                         <p (click)="delete_fromCart(item)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.remove' | translate}} {{item.name}} {{ 'PERSONAL-AREA.CARD.from-cart' | translate}}</small></p>
-                        <p (click)="pay_onlyThis(item)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.pay-only' | translate}} {{item.name}}</small></p>
+                        <p (click)="pay_onlyThis(item)" class="option-buttons" *ngIf="userAuthorized"><small>{{ 'PERSONAL-AREA.CARD.pay-only' | translate}} {{item.name}}</small></p>
                     </div>
                     <div *ngIf="what_to_show === 'wishlist'">
                         <p (click)="add_toCart(item._id)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.add' | translate}} {{item.name}} {{ 'PERSONAL-AREA.CARD.to-cart' | translate}}</small></p>
@@ -78,7 +78,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-12">
+        <div class="col-12" *ngIf="userAuthorized">
             <button (click)="goToBill();" type="button" *ngIf="personalArea_products && what_to_show === 'cart' && !do_checkout" class="btn btn-outline-dark btn-block" style="margin-bottom: 20px;">
                 {{ 'PERSONAL-AREA.to-checkout' | translate }}
             </button>
@@ -98,7 +98,7 @@
                     <div class="form-row marginTop">
                         <div class="col">
                             <label for="phoneN" [ngClass]="frmShipment.controls['phoneN'].hasError('required') && isSubmited ? 'text-danger' : ''">{{ 'SIGN-IN.REGISTRATION-FORM.phoneN' | translate}}<span >*</span></label>
-                            <input id="phoneN" formControlName="phoneN" type="text" class="form-control" [ngClass]="frmShipment.controls['phoneN'].hasError('required') && isSubmited ? 'is-invalid' : ''">
+                            <input id="phoneN" formControlName="phoneN" type="text" class="form-control" [ngClass]="frmShipment.controls['phoneN'].hasError('required') && isSubmited ? 'is-invalid' : ''" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
                             <label class="text-danger" *ngIf="frmShipment.controls['phoneN'].hasError('required') && isSubmited">{{ 'SIGN-IN.REGISTRATION-FORM.Required.phoneN' | translate}}</label>
                         </div>
                         <div class="col">
@@ -128,17 +128,17 @@
                         </div>
                         <div class="col">
                             <label for="inputZip">{{ 'SIGN-IN.REGISTRATION-FORM.zip' | translate}}</label>
-                            <input id="inputZip" formControlName="zip" type="text" class="form-control">
+                            <input id="inputZip" formControlName="zip" type="text" class="form-control" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-outline-dark btn-block marginTop">{{ 'SIGN-IN.REGISTRATION-FORM.confirmandpay-button' | translate}}</button>
+                    <button type="submit" class="btn btn-outline-dark btn-block marginTop">{{ 'PERSONAL-AREA.save-shipping-address' | translate }}</button>
                     <button type="button" (click)="closePaimentForm();" class="btn btn btn-link btn-block"><span>{{ 'SIGN-IN.REGISTRATION-FORM.close-button' | translate}}</span></button>
                 </form>
-
             </div>
-            <div class="col-10 col-lg-4 paiment-info  order-lg-2 order-1" *ngFor="let item of order">
-                <div class="row" style="padding: 1%;">
+
+            <div class="col-10 col-lg-4 paiment-info order-lg-2 order-1">
+                <div class="row" style="padding: 1%;" *ngFor="let item of order">
                     <div class="col-3">
                         <small>{{item.prod_class}}</small>
                     </div>
@@ -173,6 +173,12 @@
                         </table>
                     </div>
                 </div>
+
+                <!-- -----------------PAYPALL BUTTONS -->
+                <div class="paypalButtons" [ngClass]="{ disabled : paypalButtonsDisabled }">
+                    <app-paypaltest></app-paypaltest>
+                </div>
+
             </div>
         </div>
     </div>
