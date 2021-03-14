@@ -119,11 +119,16 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
+                    <!-- SEARCH -->
                     <li class="nav-item dropdown  nav-item-top">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-search"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-top" aria-labelledby="navbarDropdownMenuLink">
+                        <ul class="dropdown-menu dropdown-menu-top search-res-list" aria-labelledby="navbarDropdownMenuLink">
                             <li>
-                                <input type="text" class="form-control" placeholder="Search.." #search_text (keyup.enter)="doSearch(search_text.value)">
+                                <input type="email" class="form-control" id="search-text" aria-describedby="search-text" [(ngModel)]="searchText" placeholder="Enter text to search" autofocus>
+                            </li>
+                            <br>
+                            <li class="list-group-item" *ngFor="let c of shop | appFilter: searchText">
+                                <small style="cursor: pointer;" *ngIf="c.name" (click)="doSearch(c._id)">{{c.prod_class}} {{c.name}}</small>
                             </li>
                         </ul>
                     </li>
@@ -133,14 +138,8 @@
                             <i class="fas fa-user-cog nav-icon"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-top" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="personal-area">{{ 'PERSONAL-AREA.personal-information' | translate }}</a></li>
                             <li><a class="dropdown-item" href="new" (click)="logOut()">{{'NAVIGATION.sign-out'| translate}}</a></li>
                         </ul>
-                    </li>
-                    <li class="nav-item  nav-item-top">
-                        <a class="nav-link active" aria-current="page" href="personal-area">
-                            <i *ngIf="user" class="fas fa-shopping-basket nav-icon"></i>
-                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" id="welcome" aria-current="page" href="personal-area">
