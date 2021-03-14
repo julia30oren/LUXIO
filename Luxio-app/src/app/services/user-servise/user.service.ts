@@ -201,16 +201,8 @@ export class UserService {
     localStorage.setItem('u324_3i_25d', user._id);
     localStorage.setItem('u324_n4325e', user.first_name + ' ' + user.second_name);
     localStorage.setItem('token', token);
-
-    user.favorites.forEach(element => {
-      this.usersFavorites(element); // to mix favorites from DB and from localStorage
-    });
-
-    user.cart.forEach(element => {
-      this.usersCart(element); // to mix cart from DB and from localStorage
-    });
-
-    this.register_Service.close_RegistrationForm();   // closing log-in form
+    localStorage.setItem('my_764528_f', JSON.stringify(user.favorites));
+    localStorage.setItem('my_764528_ct', JSON.stringify(user.cart));
   }
 
 
@@ -236,7 +228,7 @@ export class UserService {
     setTimeout(() => {
       this.saveWishlist_toDB(localWishlist);  // save new wishlist to DB
       localStorage.setItem('my_764528_f', JSON.stringify(localWishlist));  // save new wishlist to localStorage
-    }, 1000);
+    }, 500);
   }
   // ---------------------------after user logd in
   usersFavorites(newToFavorites) {
@@ -258,7 +250,7 @@ export class UserService {
     setTimeout(() => {
       this.saveWishlist_toDB(localWishlist);  // save new wishlist to DB
       localStorage.setItem('my_764528_f', JSON.stringify(localWishlist));  // save new wishlist to localStorage
-    }, 1000);
+    }, 500);
   }
 
 
@@ -281,7 +273,7 @@ export class UserService {
 
     setTimeout(() => {
       this.saveCart_toDB(localCart);  // save new cart to DB
-    }, 1000);
+    }, 500);
   }
   // ---------------------------after user loged in
   usersCart(newToCart) {
@@ -302,7 +294,7 @@ export class UserService {
 
     setTimeout(() => {
       this.saveCart_toDB(localCart);  // save new cart to DB
-    }, 1000);
+    }, 500);
   }
 
   // ----------------------------------------------

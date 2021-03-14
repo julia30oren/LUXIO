@@ -149,7 +149,7 @@ export class RegFormOneComponent implements OnInit {
   submit() {
     this.isSubmited = true;
     // do signup or something
-    if (this.frmSignup.valid && this.business && this.agreement) {
+    if (this.frmSignup.valid && this.business && this.agreement && !this.closeToNahariyya && !this.closeToAsdod) {
       if (this.business === 'salon representative' && this.salonName) {
         this.frmSignup.value.business = [{ type: this.business, salon: this.salonName }];
         this.frmSignup.value.cart = JSON.parse(localStorage.getItem('my_764528_ct'));

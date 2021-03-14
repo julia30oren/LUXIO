@@ -9,6 +9,7 @@ import { ShopService } from './services/shop/shop.service';
 import { RespondService } from './services/respond/respond.service';
 import * as bcrypt from 'bcryptjs';
 import { environment } from 'src/environments/environment';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,10 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
+  @HostListener('contextmenu', ['$event'])
+  onRightClick(event) {
+    event.preventDefault();
+  }
   public searchText = '';
   public salt = bcrypt.genSaltSync(10);
   public regForm_Open: boolean = false;
