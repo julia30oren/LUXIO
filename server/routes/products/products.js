@@ -21,7 +21,8 @@ router.get('/', async(req, res) => {
 // ------------------------------------------------------SAVE NEW PRODUCT OR CHANGE OLD ONE-------------------------------
 router.post("/:lang/save", async(req, res, next) => {
     const language = req.params.lang;
-    const { burcode_id, prod_class, name, prod_collection, color, tint, transparency, label, amount_1, price_1, amount_2, price_2, price, img_link_1, img_link_2, img_link_3, coment_eng, coment_iv, coment_rus } = req.body;
+    console.log(req.body);
+    const { burcode_id, prod_class, name, prod_collection, color, tint, transparency, label, amount_1, price_1, amount_2, price_2, price, img_link_1, img_link_2, img_link_3, img_link_4, img_link_5, img_link_6, coment_eng, coment_iv, coment_rus } = req.body;
     // creating new product-----------------------
     try {
         // ---------------------------------------------------CHECK if item already exist BY BURCODE--------
@@ -45,6 +46,9 @@ router.post("/:lang/save", async(req, res, next) => {
                 img_link_1: img_link_1,
                 img_link_2: img_link_2,
                 img_link_3: img_link_3,
+                img_link_4: img_link_4,
+                img_link_5: img_link_5,
+                img_link_6: img_link_6,
                 coment_eng: coment_eng,
                 coment_iv: coment_iv,
                 coment_rus: coment_rus
@@ -105,6 +109,9 @@ router.post("/:lang/save", async(req, res, next) => {
                     "img_link_1": img_link_1,
                     "img_link_2": img_link_2,
                     "img_link_3": img_link_3,
+                    "img_link_4": img_link_4,
+                    "img_link_5": img_link_5,
+                    "img_link_6": img_link_6,
                     "coment_eng": coment_eng,
                     "coment_iv": coment_iv,
                     "coment_rus": coment_rus

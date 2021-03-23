@@ -19,6 +19,7 @@
 .imgSelected {
     max-height: 150px;
     max-width: 150px;
+    margin: 10px;
 }
 
 .error {

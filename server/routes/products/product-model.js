@@ -41,6 +41,16 @@ const ProductSchema = new Schema({
     img_link_3: {
         type: String
     },
+    img_link_4: {
+        type: String
+    },
+    img_link_5: {
+        type: String
+    },
+    img_link_6: {
+        type: String
+    },
+
     color: {
         type: String
     },

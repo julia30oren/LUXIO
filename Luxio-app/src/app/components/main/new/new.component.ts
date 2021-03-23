@@ -39,8 +39,6 @@ export class NewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // window.scrollTo(0, 0);
-
     this.lang_service._selected_from_service
       .subscribe(date => { this.languege = date });
 

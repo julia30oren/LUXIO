@@ -2,8 +2,9 @@
     <div class="row">
         <div class="col-md-2 col-sm-3 col-4" *ngFor="let item of itemsArray" id={{item.burcode_id}}>
             <div class="flip-card">
-                <div class=" flip-card-inner">
+                <div class="flip-card-inner">
                     <div class="flip-card-front">
+                        <p *ngIf="item.label" class="prod-label" [ngClass]="{labelNew: item.label==='New', labelBestseller: item.label==='Best seller', labelSpecialOffer: item.label==='Special offer', labelOutOfStock: item.label==='Out of stock', labelComingSoon: item.label==='Coming soon'}">{{item.label}}</p>
                         <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id)" />
                         <p class="main-font" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
                         <p class="main-font" *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>

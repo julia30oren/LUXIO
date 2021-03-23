@@ -1,5 +1,6 @@
 .Hebrew {
     direction: rtl;
+    text-align: right;
 }
 
 span {

@@ -44,17 +44,21 @@ export class ShopCardsComponent implements OnInit {
   }
 
   getClasses(id) {
-    var index = this.my_favorites.findIndex(x => x._id === id);
-    if (index === -1) {
-      return 'hart-button grey-hart';
-    } else return 'hart-button red-hart';
+    if (this.my_favorites !== null) {
+      var index = this.my_favorites.findIndex(x => x._id === id);
+      if (index === -1) {
+        return 'hart-button grey-hart';
+      } else return 'hart-button red-hart';
+    } return 'hart-button grey-hart';
   }
 
   getCartClasse(id) {
-    var index = this.my_cart.findIndex(x => x._id === id);
-    if (index === -1) {
-      return 'cart-button not-active';
-    } else return 'cart-button active';
+    if (this.my_cart !== null) {
+      var index = this.my_cart.findIndex(x => x._id === id);
+      if (index === -1) {
+        return 'cart-button not-active';
+      } else return 'cart-button active';
+    } return 'cart-button not-active';
   }
 
   addToFavorites(item) {
@@ -71,9 +75,6 @@ export class ShopCardsComponent implements OnInit {
   }
 
   select(id: number) {
-    document.addEventListener('contextmenu',
-      event => event.preventDefault());
-
     let index = this.shop.findIndex((element) => element.burcode_id === id); //geting index of item by id
     this.shop_service.selectProd(index, true); //sending index to server and seting bog-image-component open(true)
   }

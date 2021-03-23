@@ -1,9 +1,37 @@
 .small-card-img {
     width: 100%;
+    background-color: white;
 }
 
 .row {
     margin-top: 20px;
+}
+
+.prod-label {
+    position: absolute;
+    z-index: 5;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.labelNew {
+    background-color: rgba(102, 194, 255, 0.3);
+}
+
+.labelBestseller {
+    background-color: rgba(255, 147, 210, 0.43);
+}
+
+.labelSpecialOffer {
+    background-color: rgba(202, 110, 255, 0.43);
+}
+
+.labelOutOfStock {
+    background-color: rgba(141, 255, 170, 0.43);
+}
+
+.labelComingSoon {
+    background-color: rgba(255, 228, 141, 0.43);
 }
 
 @media screen and (max-width: 1200px) {

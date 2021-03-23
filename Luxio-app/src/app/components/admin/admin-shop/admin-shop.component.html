@@ -23,7 +23,6 @@
 
     <div class="form" *ngIf="new_form_open" [ngClass]="{Hebrew: language==='iv'}">
         <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
-            <!-- <p>{{selectedProd | json}}</p> -->
 
             <div class="form-row align-items-center">
                 <div class="col-sm-3 my-1">
@@ -150,7 +149,7 @@
                     <input formControlName="price_2" [ngClass]="{error: isSubmitted && formControls.price_2.errors?.required}" type="text" class="form-control" id="price2Input" placeholder="&#8362;" #price_2>
                 </div>
             </div>
-
+            <!-- -----------------------------------------------------------uploading images -->
             <div class="form-row align-items-center">
                 <div style="width: 50%;">
                     <label>{{ 'ADMIN.img-link' | translate}} 1:</label>
@@ -169,7 +168,25 @@
                     <img src={{imgSelected3}} *ngIf="imgSelected3" alt="No image" class="imgSelected">
                 </div>
             </div>
+            <div class="form-row align-items-center" *ngIf="imgSelected3">
+                <div style="width: 50%;">
+                    <label>{{ 'ADMIN.img-link' | translate}} 4:</label>
+                    <input formControlName="img_link_4" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" (ngModelChange)="showImg4($event)" type="text" class="form-control">
 
+                    <label>{{ 'ADMIN.img-link' | translate}} 5:</label>
+                    <input formControlName="img_link_5" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" (ngModelChange)="showImg5($event)" type="text" class="form-control">
+
+                    <label>{{ 'ADMIN.img-link' | translate}} 6:</label>
+                    <input formControlName="img_link_6" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" (ngModelChange)="showImg6($event)" type="text" class="form-control">
+                </div>
+
+                <div style="width: 50%;">
+                    <img src={{imgSelected4}} *ngIf="imgSelected4" alt="No image" class="imgSelected">
+                    <img src={{imgSelected5}} *ngIf="imgSelected5" alt="No image" class="imgSelected">
+                    <img src={{imgSelected6}} *ngIf="imgSelected6" alt="No image" class="imgSelected">
+                </div>
+            </div>
+            <!----------------------------------------------------------------------------------extra text-------------- -->
             <div class="form-row align-items-center">
                 <div class="col-sm-12 my-1">
                     <label for="Textarea">{{ 'ADMIN.text-area' | translate}} (english):</label>

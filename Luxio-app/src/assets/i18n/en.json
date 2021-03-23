@@ -25,6 +25,9 @@
         "OFFICES": {
             "title": "OFFICES"
         },
+        "COATING": {
+            "title": "COATING"
+        },
         "PAGEnotFOUND": {
             "title": "PAGE NOT FOUND"
         },
@@ -79,7 +82,10 @@
         "par-4": " - We carry a comprehensive line of gels, products and colours that allow you to expand your services to new heights and unleash your creativity.",
 
         "title-3": "PRODUCT LINES",
-        "goshop": "shopping"
+        "goshop": "shopping",
+        "interesting": "Some interesting videos:",
+        "tutorials": "Some tutorials and guides:",
+        "more": "And more:"
     },
 
     "NEW": {
@@ -174,6 +180,7 @@
                 "email": "Email is Required!",
                 "password": "Password is Required!",
                 "location": "Location is Required!",
+                "location-reject": "You cannot register. Please contact your local representative.",
                 "business": "Business type is Required!",
                 "salon": "Salon name is Required!",
                 "certificate": "Certificate is Required!",

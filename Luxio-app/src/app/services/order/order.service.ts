@@ -11,6 +11,9 @@ export class OrderService {
 
   private order_URL: string = `${environment.hostURL}:${environment.DBport}/order`;
 
+  private allOrders = new BehaviorSubject<Array<any>>([]);
+  public allOrders_fromService = this.allOrders.asObservable();
+
   private userOrders = new BehaviorSubject<Array<any>>([]);
   public userOrders_fromService = this.userOrders.asObservable();
 
@@ -21,7 +24,8 @@ export class OrderService {
 
   getAllOrders() {
     return this.http.get(`${this.order_URL}`).subscribe(res => {
-      console.log(res);
+      let orders = res[0] ? res[0].allOrders : [];
+      this.allOrders.next(orders);
     });
   }
 

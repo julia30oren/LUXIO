@@ -17,10 +17,10 @@ import { HostListener } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  @HostListener('contextmenu', ['$event'])
-  onRightClick(event) {
-    event.preventDefault();
-  }
+  // @HostListener('contextmenu', ['$event'])
+  // onRightClick(event) {
+  //   event.preventDefault();
+  // }
   public searchText = '';
   public salt = bcrypt.genSaltSync(10);
   public regForm_Open: boolean = false;

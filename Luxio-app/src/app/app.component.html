@@ -88,9 +88,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" [ngClass]="{activeColor: location==='courses'}" aria-current="page" href="courses">{{ 'NAVIGATION.COURSES.title' | translate }}</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link active" [ngClass]="{activeColor: location==='registration'}" aria-current="page" href="registration">{{ 'NAVIGATION.PERSONALid.title' | translate }}</a>
-                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link active" [ngClass]="{activeColor: location==='coating'}" aria-current="page" href="coating">{{ 'NAVIGATION.COATING.title' | translate }}</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link active" [ngClass]="{activeColor: location==='contacts'}" aria-current="page" href="contacts">{{ 'NAVIGATION.OFFICES.title' | translate }}</a>
                     </li>
@@ -98,7 +98,10 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ 'NAVIGATION.language' | translate }}</a>
                         <ul class="dropdown-menu dropdown-menu-lang" aria-labelledby="navbarDropdownMenuLink">
                             <li class="dropdown-item lang-nav" (click)="translate.use(lang); setLng(lang)" *ngFor="let lang of translate.getLangs()">
-                                {{lang}}
+                                <small *ngIf="lang==='iv'">עברית</small>
+                                <small *ngIf="lang==='en'">English</small>
+                                <small *ngIf="lang==='ru'">Русский</small>
+                                <!-- {{lang}} -->
                             </li>
                         </ul>
                     </li>
@@ -186,7 +189,10 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ 'NAVIGATION.language' | translate }}</a>
                         <ul class="dropdown-menu dropdown-menu-lang" aria-labelledby="navbarDropdownMenuLink">
                             <li class="dropdown-item lang-nav" (click)="translate.use(lang); setLng(lang)" *ngFor="let lang of translate.getLangs()">
-                                {{lang}}
+                                <!-- {{lang}} -->
+                                <small *ngIf="lang==='iv'">עברית</small>
+                                <small *ngIf="lang==='en'">English</small>
+                                <small *ngIf="lang==='ru'">Русский</small>
                             </li>
                         </ul>
                     </li>
@@ -302,6 +308,12 @@
             </div>
         </div>
     </div>
+</div>
+<!-- ------------------------------------WHATSAPP BUTTON -->
+<div id="whatsapp-button" class="animate__animated animate__fadeInDownBig animate__delay-0.5s animate__slow wow">
+    <a class="social-icons" target="_blank" href="https://api.whatsapp.com/send?phone=972559519777">
+        <img id="whatsapp-img" src="https://i.pinimg.com/originals/02/1a/be/021abebe8f67a7b50c5d29ac0f846886.png" alt="whatsapp">
+    </a>
 </div>
 <!-- ------------------------------------------------FOOTER -->
 <app-footer></app-footer>

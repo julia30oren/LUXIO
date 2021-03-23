@@ -24,6 +24,7 @@ import { HomeComponent } from './components/main/home/home.component';
 import { OrdersComponent } from './components/admin/orders/orders.component';
 import { TrymeComponent } from './components/main/tryme/tryme.component';
 import { PaypaltestComponent } from './components/paypaltest/paypaltest.component';
+import { CoatingComponent } from './components/main/coating/coating.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -39,7 +40,8 @@ const routes: Routes = [
     { path: 'tryme', component: TrymeComponent },
     { path: 'courses', component: CoursesComponent },
     { path: 'contacts', component: ContactsComponent },
-    { path: 'paypaltest', component: PaypaltestComponent }, // delete
+    { path: 'paypaltest', component: PaypaltestComponent },
+    { path: 'coating', component: CoatingComponent },
 
     { path: 'personal-area', component: PersonalAreaComponent },
 
@@ -67,6 +69,7 @@ export const routingComponents = [
     CoursesComponent,
     ContactsComponent,
     NewComponent,
+    CoatingComponent,
     TrymeComponent,
     CrtificatesListComponent,
     GelPlayComponent,

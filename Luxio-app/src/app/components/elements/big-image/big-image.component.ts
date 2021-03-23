@@ -67,22 +67,23 @@ export class BigImageComponent implements OnInit {
     let i = this.selectedIndex;
 
     this.selectedProd = [this.allProducts[i]];
-    this.selectedProd_Img = this.selectedProd[0].img_link_1 || this.selectedProd[0].img_link;
+    this.selectedProd_Img = this.selectedProd[0].img_link_1;
     this.amount = this.selectedProd[0].amount_1;
 
-    this.my_favorites.forEach(element => { // check if selected item is in user wishlist
-      if (element._id === this.allProducts[i]._id) {
-        this.selectedProd_inFavorites = true;
-      } else this.selectedProd_inFavorites = false;
-    });
-    this.my_cart.forEach(element => { // check if selected item is in user cart
-      if (element._id === this.allProducts[i]._id) {
-        this.selectedProd_inCart = true;
-      } else this.selectedProd_inCart = false;
-    });
-
-
-
+    if (this.my_favorites !== null) {
+      this.my_favorites.forEach(element => { // check if selected item is in user wishlist
+        if (element._id === this.allProducts[i]._id) {
+          this.selectedProd_inFavorites = true;
+        } else this.selectedProd_inFavorites = false;
+      });
+    } else this.selectedProd_inFavorites = false;
+    if (this.my_cart !== null) {
+      this.my_cart.forEach(element => { // check if selected item is in user cart
+        if (element._id === this.allProducts[i]._id) {
+          this.selectedProd_inCart = true;
+        } else this.selectedProd_inCart = false;
+      });
+    } else this.selectedProd_inCart = false;
   }
 
   // mouseMove(event) {

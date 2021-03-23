@@ -447,3 +447,27 @@ option {
     word-spacing: 2px;
     margin-left: 10px;
 }
+
+
+/* ----whatsapp */
+
+#whatsapp-button {
+    position: fixed;
+    bottom: 50px;
+    right: 100px;
+    z-index: 15;
+}
+
+#whatsapp-img {
+    width: 100px;
+}
+
+@media screen and (max-width: 990px) {
+    #whatsapp-button {
+        bottom: 30px;
+        right: 50px;
+    }
+    #whatsapp-img {
+        width: 70px;
+    }
+}

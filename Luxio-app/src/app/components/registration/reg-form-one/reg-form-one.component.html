@@ -89,8 +89,14 @@
                         <option value="South Israel (close to Eilat)">{{ 'SIGN-IN.REGISTRATION-FORM.loc9' | translate}}</option>
                     </select>
                     <label class="text-danger" *ngIf="frmSignup.controls['state'].hasError('required') && isSubmited">{{ 'SIGN-IN.REGISTRATION-FORM.Required.location' | translate}}</label>
-                    <label class="text-danger" *ngIf="closeToAsdod"><span>{{ 'CONTACT.ashdod' | translate}} <i class="fas fa-arrow-right"></i></span> <a target="_blank" href="https://www.instagram.com/lisagelman">Lisa Gelman</a></label>
-                    <label class="text-danger" *ngIf="closeToNahariyya"><span>{{ 'CONTACT.yirka' | translate}} <i class="fas fa-arrow-right"></i></span><a target="_blank" href="https://www.vrona.co.il">Vrona Cosmetic</a></label>
+                    <label class="text-danger" *ngIf="closeToAsdod">
+                        <span style="color: red;">{{ 'SIGN-IN.REGISTRATION-FORM.Required.location-reject' | translate}}</span><br>
+                        <span>{{ 'CONTACT.ashdod' | translate}} <i class="fas fa-arrow-right"></i></span> <a target="_blank" href="https://www.instagram.com/lisagelman"> Lisa Gelman</a>
+                    </label>
+                    <label class="text-danger" *ngIf="closeToNahariyya">
+                        <span  style="color: red;">{{ 'SIGN-IN.REGISTRATION-FORM.Required.location-reject' | translate}}</span><br>
+                        <span>{{ 'CONTACT.yirka' | translate}} <i class="fas fa-arrow-right"></i></span><a target="_blank" href="https://www.vrona.co.il"> Vrona Cosmetic</a>
+                    </label>
                 </div>
 
                 <!-- business -->

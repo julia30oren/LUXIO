@@ -16,7 +16,7 @@ export class CoursesComponent implements OnInit {
   public validPhone1: boolean;
   public validPhone2: boolean;
   public validPhone3: boolean;
-  public language: string;
+  public languege: string;
 
   constructor(
     private lang_service: LanguageService,
@@ -25,7 +25,7 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit() {
     this.lang_service._selected_from_service
-      .subscribe(date => { this.language = date });
+      .subscribe(date => { this.languege = date });
   }
 
   //Introductory seminars
@@ -37,7 +37,7 @@ export class CoursesComponent implements OnInit {
       this.validPhone1 = false;
     } else {
       this.validPhone1 = true;
-      switch (this.language) {
+      switch (this.languege) {
         case 'en':
           whatsappMessage = `✏️ Good day. I want to know more about the *free survey seminar*. Please contact me at ${phoneNumber}`
           break;
@@ -48,7 +48,7 @@ export class CoursesComponent implements OnInit {
           whatsappMessage = `✏️ יום טוב. אני רוצה לדעת יותר על *סדנאות היכרות ללא עלות*. אנא צרו איתי קשר בטלפון ${phoneNumber}`
           break;
       };
-      this.whatsapp_Service.whatsapp_toAdmin({ say: whatsappMessage }, this.language);
+      this.whatsapp_Service.whatsapp_toAdmin({ say: whatsappMessage }, this.languege);
     }
   }
 
@@ -61,7 +61,7 @@ export class CoursesComponent implements OnInit {
       this.validPhone2 = false;
     } else {
       this.validPhone2 = true;
-      switch (this.language) {
+      switch (this.languege) {
         case 'en':
           whatsappMessage = `✏️ Good day. I would like to know more about *MANICURE COMBI course FOR BEGINNERS*. Please contact me at ${phoneNumber}`
           break;
@@ -72,7 +72,7 @@ export class CoursesComponent implements OnInit {
           whatsappMessage = `✏️ אחר הצהריים טובים. ברצוני לדעת יותר אודות *קורס קומבי למניקור למתחילים*. אנא צרו איתי קשר בטלפון ${phoneNumber}`
           break;
       };
-      this.whatsapp_Service.whatsapp_toAdmin({ say: whatsappMessage }, this.language);
+      this.whatsapp_Service.whatsapp_toAdmin({ say: whatsappMessage }, this.languege);
     }
   }
 
@@ -85,7 +85,7 @@ export class CoursesComponent implements OnInit {
       this.validPhone3 = false;
     } else {
       this.validPhone3 = true;
-      switch (this.language) {
+      switch (this.languege) {
         case 'en':
           whatsappMessage = `✏️ Good day. I would like to know more about *MANICURE COMBI course FOR BEGINNERS*. Please contact me at ${phoneNumber}`
           break;
@@ -96,7 +96,7 @@ export class CoursesComponent implements OnInit {
           whatsappMessage = `✏️ אחר הצהריים טובים. ברצוני לדעת יותר אודות *קורס קומבי למניקור למתחילים*. אנא צרו איתי קשר בטלפון ${phoneNumber}`
           break;
       };
-      this.whatsapp_Service.whatsapp_toAdmin({ say: whatsappMessage }, this.language);
+      this.whatsapp_Service.whatsapp_toAdmin({ say: whatsappMessage }, this.languege);
     }
   }
 }

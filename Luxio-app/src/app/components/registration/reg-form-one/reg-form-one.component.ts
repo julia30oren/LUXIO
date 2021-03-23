@@ -103,7 +103,10 @@ export class RegFormOneComponent implements OnInit {
       this.closeToAsdod = true;
       this.closeToNahariyya = false;
     }
-    else if (city === 'North of Israel (close to Nahariyya)') {
+    else if (city === 'North of Israel (close to Nahariyya)'
+      || city === 'North of Israel (close to Qiryat Shemona)'
+      || city === 'North of Israel (close to Nazareth)'
+      || city === 'North of Israel (close to Haifa)') {
       this.closeToAsdod = false;
       this.closeToNahariyya = true;
     }

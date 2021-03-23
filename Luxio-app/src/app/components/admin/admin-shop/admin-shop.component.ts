@@ -19,6 +19,9 @@ export class AdminShopComponent implements OnInit {
   public imgSelected1: string;
   public imgSelected2: string;
   public imgSelected3: string;
+  public imgSelected4: string;
+  public imgSelected5: string;
+  public imgSelected6: string;
   public responce_from_DB: Array<any>;
   public searchText: any;
   public searchRes: Array<any>;
@@ -33,6 +36,9 @@ export class AdminShopComponent implements OnInit {
     img_link_1: new FormControl('', Validators.required),
     img_link_2: new FormControl(''),
     img_link_3: new FormControl(''),
+    img_link_4: new FormControl(''),
+    img_link_5: new FormControl(''),
+    img_link_6: new FormControl(''),
     amount_1: new FormControl('', Validators.required),
     price_1: new FormControl(null, Validators.required),
     amount_2: new FormControl(''),
@@ -114,6 +120,15 @@ export class AdminShopComponent implements OnInit {
   showImg3(value) {
     this.imgSelected3 = value;
   }
+  showImg4(value) {
+    this.imgSelected4 = value;
+  }
+  showImg5(value) {
+    this.imgSelected5 = value;
+  }
+  showImg6(value) {
+    this.imgSelected6 = value;
+  }
 
   onSubmit(formValue) {
     this.isSubmitted = true;
@@ -151,6 +166,9 @@ export class AdminShopComponent implements OnInit {
       img_link_1: '',
       img_link_2: '',
       img_link_3: '',
+      img_link_4: '',
+      img_link_5: '',
+      img_link_6: '',
       amount_1: '',
       price_1: null,
       amount_2: '',
@@ -172,9 +190,12 @@ export class AdminShopComponent implements OnInit {
   select(id: number) {
     this.shop.forEach(element => {
       if (element.burcode_id === id) {
-        this.imgSelected1 = element.img_link || element.img_link_1;
+        this.imgSelected1 = element.img_link_1;
         this.imgSelected2 = element.img_link_2;
         this.imgSelected3 = element.img_link_3;
+        this.imgSelected4 = element.img_link_4;
+        this.imgSelected5 = element.img_link_5;
+        this.imgSelected6 = element.img_link_6;
 
         this.formTemplate.setValue({
           burcode_id: element.burcode_id,
@@ -185,9 +206,12 @@ export class AdminShopComponent implements OnInit {
           price_1: element.price_1,
           amount_2: element.amount_2,
           price_2: element.price_2,
-          img_link_1: element.img_link_1 || element.img_link,
+          img_link_1: element.img_link_1,
           img_link_2: element.img_link_2 || '',
           img_link_3: element.img_link_3 || '',
+          img_link_4: element.img_link_4 || '',
+          img_link_5: element.img_link_5 || '',
+          img_link_6: element.img_link_6 || '',
           color: element.color,
           tint: element.tint,
           transparency: element.transparency,

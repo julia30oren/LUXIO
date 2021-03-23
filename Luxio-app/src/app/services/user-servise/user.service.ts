@@ -148,7 +148,7 @@ export class UserService {
     this.shop_Service.favorites(newWishlist);
     // -----------------------------------------saving new favorites to DB----------------
     return this.http.post(`${this.user_URL}/new-favorites`, toSend)
-      .subscribe(date => console.log(date));
+      .subscribe(date => this.respond_Service.saveRespond(date));
   }
 
   // -----------------------------------------------SAVING NEW CART----------------------
@@ -160,7 +160,7 @@ export class UserService {
     localStorage.setItem('my_764528_ct', JSON.stringify(newCart));  // save new cart to localStorage
     // -----------------------------------------saving new cart to DB----------------
     return this.http.post(`${this.user_URL}/new-cart`, toSend)
-      .subscribe(date => console.log(date));
+      .subscribe(date => this.respond_Service.saveRespond(date));
   }
 
 
