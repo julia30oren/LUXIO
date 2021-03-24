@@ -1,7 +1,11 @@
 <!-- <img style="width: 100%;" class="buner animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" src="https://i.pinimg.com/originals/09/7c/c8/097cc8835efe558ccc62ead0b2771ce2.jpg" alt="Tools buner" /> -->
-<div [ngClass]="{Hebrew: languege==='iv'}" class="margTop animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
-    <h5 class="title">{{'TOOLS.title' | translate}}</h5>
-    <p class="sm-text">{{'TOOLS.text' | translate}}</p>
+<div class="container-fluid">
+    <div class="row margTop">
+        <div class="col animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">
+            <h5 class="title">{{'TOOLS.title' | translate}}</h5>
+            <p class="sm-text">{{'TOOLS.text' | translate}}</p>
+        </div>
+    </div>
 </div>
 <hr/>
 <!-- -------------------------- -->

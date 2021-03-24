@@ -3,6 +3,14 @@
     direction: rtl;
 }
 
+.H {
+    text-align: right;
+}
+
+.row {
+    margin-top: 15px;
+}
+
 
 /* CARDS TOPS & BASES */
 
@@ -12,10 +20,10 @@
 
 .main-title {
     font-family: Verdana, Geneva, sans-serif;
-    font-size: 20px;
-    letter-spacing: 1.5px;
-    word-spacing: 3px;
-    text-transform: capitalize;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
 .sm-text {
@@ -29,17 +37,15 @@
 
 @media screen and (max-width: 1200px) {
     .main-title {
-        font-size: 18px;
+        font-size: 12px;
         letter-spacing: 1px;
-        word-spacing: 2px;
     }
 }
 
 @media screen and (max-width: 900px) {
     .main-title {
-        font-size: 15px;
-        letter-spacing: 0.5px;
-        word-spacing: 1px;
+        font-size: 10px;
+        letter-spacing: 1px;
     }
     .sm-text {
         font-size: 12px;
@@ -58,7 +64,7 @@ i {
 .hart-button,
 .cart-button {
     margin-left: 1%;
-    margin-top: 2%;
+    margin-top: 1%;
     border: none;
     background-color: rgba(0, 0, 0, 0);
 }
@@ -90,4 +96,10 @@ i {
 
 .hart-button:hover {
     color: rgb(194, 0, 0);
+}
+
+@media screen and (max-width: 900px) {
+    i {
+        font-size: 100%;
+    }
 }
