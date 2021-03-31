@@ -69,20 +69,32 @@
     },
 
     "HOME": {
-        "title-1": "ברוך הבא ל",
-        "title-2": " מוצרי ציפורניים מקצועיים לציפורניים בריאות, יפות וטבעיות למראה.",
+        "title-01": "גלה את",
+        "title-02": "המניקור המושלם !",
 
-        "par-1-tit": "חסר ריח",
-        "par-1": " - כל הג'לים שלנו נטולי ריח, כלומר בריאים יותר עבורכם וסביבתיכם.",
-        "par-2-tit": "טבעי",
-        "par-2": " - AKZÉNTZ מוצרים וג'לים ישאירו את הציפורניים שלך יפות ומרגישות טבעיות. המגוון הרחב של הצבעים שלנו שומר על בהירות ואינו משתק או מאבד את הברק הגבוה.",
-        "par-3-tit": "עמיד",
-        "par-3": " - AKZÉNTZ ג'לים הם פילוס עצמי וקל לשימוש תוך מתן עמידות שלקוחות.",
-        "par-4-tit": "מגוון",
-        "par-4": " - אנו נושאים קו מקיף של ג'לים, מוצרים וצבעים המאפשרים לך להרחיב את שירותיך לגבהים חדשים ולשחרר את היצירתיות שלך.",
+        "title-2": "חברת AKZÉNTZ (תוצרת קנדה) החלה את דרכה בשנת 1989. החברה מתמחה בייצור ג'לים ברמה הגבוהה ביותר לבנייה ולציפורניים טבעיות לחיזוק, תיקון, ציפוי ועיצובים עכשוויים. ",
+        "title-3": "העקרונות שלנו הם:",
+        "par-1": " - בטיחות",
+        "par-2": " - איכות",
+        "par-3": " - נוחות",
 
-        "title-3": "קווי מוצרים",
-        "goshop": "לקנות",
+        "title-4": "חברת AKZÉNTZ מציגה מגוון סדרות:",
+        "par-4": "LUXIO GEL",
+        "par-5": "OPTIONS",
+        "par-6": "GEL PLAY",
+        "par-7": "PRO-FORMANCE",
+        "par-8": "חומרים נלווים AKZÉNTZ",
+
+        "title-5": "כמו כן, לחומרים שלנו אין ריח חזק מה שמספק סביבה נעימה לטכנאית וללקוחותיה.",
+        "title-6": "בזכות העדר של רכיבים מסוכנים לבריאות בתוך הנוסחה (כגון: פורמלין, פתלטים, טולואן, חומצות וחומרים ממיסים), ג'לים של AKZENTZ  לא מפתחים אלרגיה ומתאימים לרב האלרגיות. ",
+
+        "par-9": "The Spring-Summer 2021 collection is nothing more than an appeal to the eponymous and very bright direction in art - the Avant Garde.",
+        "par-10": "Avant Garde (",
+        "par-11": "fr. avant-garde - vanguard",
+        "par-12": ") - a trend in the visual arts, which is based on the rejection of classical canons and traditions, experiments with new forms, images, colors and concepts.",
+        "par-13": "The avant-garde is always a bold experiment.",
+        "title-7": "הכל חדש מ AKZÉNTZ",
+
         "interesting": "כמה סרטונים מעניינים:",
         "tutorials": "כמה מדריכים ומדריכים:",
         "more": "ועוד:"

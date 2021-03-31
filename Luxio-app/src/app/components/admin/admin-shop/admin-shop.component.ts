@@ -13,26 +13,25 @@ import { UserService } from 'src/app/services/user-servise/user.service';
 export class AdminShopComponent implements OnInit {
 
   public shop: Array<any>;
-  public new_form_open: boolean;
-  public selectedProd: Array<any>;
+  public formOpen: boolean;
+  public accessoriesState: boolean;
   public isSubmitted: boolean;
-  public imgSelected1: string;
-  public imgSelected2: string;
-  public imgSelected3: string;
-  public imgSelected4: string;
-  public imgSelected5: string;
-  public imgSelected6: string;
   public responce_from_DB: Array<any>;
   public searchText: any;
   public searchRes: Array<any>;
   public language: string;
   public prod_toDelete: Array<any>;
   public admin: boolean;
+
   formTemplate = new FormGroup({
     burcode_id: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
     prod_class: new FormControl('', Validators.required),
     prod_collection: new FormControl(''),
+    color: new FormControl(''),
+    tint: new FormControl(''),
+    transparency: new FormControl(''),
+    label: new FormControl(''),
     img_link_1: new FormControl('', Validators.required),
     img_link_2: new FormControl(''),
     img_link_3: new FormControl(''),
@@ -43,10 +42,14 @@ export class AdminShopComponent implements OnInit {
     price_1: new FormControl(null, Validators.required),
     amount_2: new FormControl(''),
     price_2: new FormControl(null),
-    color: new FormControl(''),
-    tint: new FormControl(''),
-    transparency: new FormControl(''),
-    label: new FormControl(''),
+    amount_3: new FormControl(''),
+    price_3: new FormControl(null),
+    amount_4: new FormControl(''),
+    price_4: new FormControl(null),
+    amount_5: new FormControl(''),
+    price_5: new FormControl(null),
+    amount_6: new FormControl(''),
+    price_6: new FormControl(null),
     coment_eng: new FormControl(''),
     coment_iv: new FormControl(''),
     coment_rus: new FormControl('')
@@ -65,7 +68,7 @@ export class AdminShopComponent implements OnInit {
     this.lang_service._selected_from_service ///language subscribe
       .subscribe(date => this.language = date);
 
-    this.user_Service.asAdmin_from_service
+    this.user_Service.asAdmin_from_service ///if admin IS admin
       .subscribe(date => {
         this.admin = date;
         setTimeout(() => {
@@ -82,7 +85,7 @@ export class AdminShopComponent implements OnInit {
         }, 1000);
       });
 
-    this.shop_service.responce_fromDB_from_service
+    this.shop_service.responce_fromDB_from_service ///responce subscribe
       .subscribe(date => {
         this.responce_from_DB = date;
         if (this.responce_from_DB[0]) {
@@ -104,49 +107,30 @@ export class AdminShopComponent implements OnInit {
     } else this.router.navigate(['/**']);
   }
 
-  openForm(state) {
-    this.new_form_open = state;
-    if (state) {
-      window.scrollTo(0, 0)
-    }
+  classCheck() {
+    if (this.formTemplate.value.prod_class === 'accessories') this.accessoriesState = true;
+    else this.accessoriesState = false;
   }
 
-  showImg1(value) {
-    this.imgSelected1 = value;
-  }
-  showImg2(value) {
-    this.imgSelected2 = value;
-  }
-  showImg3(value) {
-    this.imgSelected3 = value;
-  }
-  showImg4(value) {
-    this.imgSelected4 = value;
-  }
-  showImg5(value) {
-    this.imgSelected5 = value;
-  }
-  showImg6(value) {
-    this.imgSelected6 = value;
+  openForm(state) {
+    this.formOpen = state;
+    if (state) window.scrollTo(0, 0);
   }
 
   onSubmit(formValue) {
     this.isSubmitted = true;
-    if (this.formTemplate.valid) {
-      this.shop_service.saveProduct_toDB(formValue, this.language);
-    }
+    console.log(this.formTemplate.value)
+    if (this.formTemplate.valid) this.shop_service.saveProduct_toDB(formValue, this.language);
   }
 
   get formControls() {
     return this.formTemplate['controls'];
   }
 
-  delete(user_id) {
+  delete(prod_id) {
     this.prod_toDelete = [];
     this.shop.forEach(element => {
-      if (element._id === user_id) {
-        this.prod_toDelete.push(element);
-      }
+      if (element._id === prod_id) this.prod_toDelete.push(element);
     });
   }
 
@@ -159,69 +143,45 @@ export class AdminShopComponent implements OnInit {
 
   clearForm() {
     this.formTemplate.reset();
-    this.formTemplate.setValue({
-      burcode_id: '',
-      name: '',
-      prod_class: '',
-      img_link_1: '',
-      img_link_2: '',
-      img_link_3: '',
-      img_link_4: '',
-      img_link_5: '',
-      img_link_6: '',
-      amount_1: '',
-      price_1: null,
-      amount_2: '',
-      price_2: null,
-      color: '',
-      tint: '',
-      prod_collection: '',
-      transparency: '',
-      label: '',
-      coment_eng: '',
-      coment_iv: '',
-      coment_rus: ''
-    });
     this.isSubmitted = false;
-    this.imgSelected1 = '';
-    this.selectedProd = [];
   }
 
   select(id: number) {
-    this.shop.forEach(element => {
-      if (element.burcode_id === id) {
-        this.imgSelected1 = element.img_link_1;
-        this.imgSelected2 = element.img_link_2;
-        this.imgSelected3 = element.img_link_3;
-        this.imgSelected4 = element.img_link_4;
-        this.imgSelected5 = element.img_link_5;
-        this.imgSelected6 = element.img_link_6;
-
-        this.formTemplate.setValue({
+    this.shop.find(element => {
+      if (element._id === id) {
+        if (element.prod_class === 'accessories') { this.accessoriesState = true } else this.accessoriesState = false;
+        this.formTemplate.patchValue({
           burcode_id: element.burcode_id,
           name: element.name,
           prod_class: element.prod_class,
           prod_collection: element.prod_collection || '',
+          color: element.color || '',
+          tint: element.tint || '',
+          transparency: element.transparency || '',
+          label: element.label || '',
           amount_1: element.amount_1,
           price_1: element.price_1,
-          amount_2: element.amount_2,
-          price_2: element.price_2,
+          amount_2: element.amount_2 || '',
+          price_2: element.price_2 || null,
+          amount_3: element.amount_3 || '',
+          price_3: element.price_3 || null,
+          amount_4: element.amount_4 || '',
+          price_4: element.price_4 || null,
+          amount_5: element.amount_5 || '',
+          price_5: element.price_5 || null,
+          amount_6: element.amount_6 || '',
+          price_6: element.price_6 || null,
           img_link_1: element.img_link_1,
           img_link_2: element.img_link_2 || '',
           img_link_3: element.img_link_3 || '',
           img_link_4: element.img_link_4 || '',
           img_link_5: element.img_link_5 || '',
           img_link_6: element.img_link_6 || '',
-          color: element.color,
-          tint: element.tint,
-          transparency: element.transparency,
-          label: element.label,
-          coment_eng: element.coment_eng,
-          coment_iv: element.coment_iv,
-          coment_rus: element.coment_rus
+          coment_eng: element.coment_eng || '',
+          coment_iv: element.coment_iv || '',
+          coment_rus: element.coment_rus || ''
         });
-
-        // this.shop_service.selectProd(element);
+        // console.log(this.formTemplate.value)
       }
     });
   }

@@ -69,20 +69,32 @@
     },
 
     "HOME": {
-        "title-1": "Welcome to ",
-        "title-2": " professional nail products for healthy, beautiful, natural looking nails.",
+        "title-01": "Discover",
+        "title-02": "the perfect manicure!",
 
-        "par-1-tit": "Odourless",
-        "par-1": " - All of our gels are odour free meaning they are healthier for you and your environment.",
-        "par-2-tit": "Natural",
-        "par-2": " - AKZÉNTZ products and gels will leave your nails looking beautiful and feeling natural. Our wide variety of colours maintain clarity and do not discolour or lose their high gloss shine.",
-        "par-3-tit": "Durable",
-        "par-3": " - AKZÉNTZ gels are self-levelling and easy to use while delivering the durability clients demand.",
-        "par-4-tit": "Diverse",
-        "par-4": " - We carry a comprehensive line of gels, products and colours that allow you to expand your services to new heights and unleash your creativity.",
+        "title-2": "The AKZÉNTZ company (Canada), founded in 1989, represents a full range of high-quality materials for nails, their modeling, strengthening, repair, coating and design of any complexity.",
+        "title-3": "Our main priorities:",
+        "par-1": " - security",
+        "par-2": " - quality",
+        "par-3": " - comfort",
 
-        "title-3": "PRODUCT LINES",
-        "goshop": "shopping",
+        "title-4": "AKZÉNTZ includes 5 lines:",
+        "par-4": "LUXIO GEL",
+        "par-5": "OPTIONS",
+        "par-6": "GEL PLAY",
+        "par-7": "PRO-FORMANCE",
+        "par-8": "AKZÉNTZ technical materials",
+
+        "title-5": "Due to the absence of a lacquer component in the composition, gels from AKZÉNTZ are odorless, providing comfort to both the master and his client.",
+        "title-6": "The materials developed by the AKZÉNTZ campaign do not contain substances harmful to the body (formaldehyde, toluene, dibutyl phthalate, resins and solvents), do not cause allergies and are suitable for most allergy sufferers.",
+
+        "par-9": "The Spring-Summer 2021 collection is nothing more than an appeal to the eponymous and very bright direction in art - the Avant Garde.",
+        "par-10": "Avant Garde (",
+        "par-11": "fr. avant-garde - vanguard",
+        "par-12": ") - a trend in the visual arts, which is based on the rejection of classical canons and traditions, experiments with new forms, images, colors and concepts.",
+        "par-13": "The avant-garde is always a bold experiment.",
+        "title-7": "Everything new from AKZÉNTZ",
+
         "interesting": "Some interesting videos:",
         "tutorials": "Some tutorials and guides:",
         "more": "And more:"

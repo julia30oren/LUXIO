@@ -31,6 +31,30 @@ const ProductSchema = new Schema({
     price_2: {
         type: Number
     },
+    amount_3: {
+        type: String
+    },
+    price_3: {
+        type: Number
+    },
+    amount_4: {
+        type: String
+    },
+    price_4: {
+        type: Number
+    },
+    amount_5: {
+        type: String
+    },
+    price_5: {
+        type: Number
+    },
+    amount_6: {
+        type: String
+    },
+    price_6: {
+        type: Number
+    },
     img_link_1: {
         type: String,
         require: true

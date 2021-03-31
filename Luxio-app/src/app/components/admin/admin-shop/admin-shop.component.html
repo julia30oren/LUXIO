@@ -1,8 +1,8 @@
-<!-- IF ADMIN WANT TO DELETE PRODUCT HE GET THIS MESSAGE  ----------------------------------------------------- -->
+<!---------------------------------- IF ADMIN WANT TO DELETE PRODUCT HE GET THIS MESSAGE  --------------------- -->
 <div *ngIf="prod_toDelete" class="warn-mes message-to-admin">
     <div *ngFor="let item of prod_toDelete" class="inner-message" [ngClass]="{Hebrew1: language === 'iv'}">
         <p>
-            {{ 'ADMIN.CERTIFICATES.WARNINGS.message-4.part-1' | translate }} &laquo; {{item.prod_class}} {{item.name}} &raquo; {{ 'ADMIN.CERTIFICATES.WARNINGS.message-4.part-2' | translate }}
+            {{ 'ADMIN.CERTIFICATES.WARNINGS.message-4.part-1' | translate }} &laquo;{{item.prod_class}} {{item.name}}&raquo; {{ 'ADMIN.CERTIFICATES.WARNINGS.message-4.part-2' | translate }}
         </p>
         <div style="height: 60px; width: 70%; margin-left: 15%;">
             <button style="float: right;" class="btn btn-outline-dark" type="button" (click)="deleteState(true)" style="margin: 1%;">
@@ -15,15 +15,15 @@
 
     </div>
 </div>
-
+<!--  -->
 <div>
-    <div *ngIf="!new_form_open" [ngClass]="{Hebrew: language==='iv'}">
+    <div *ngIf="!formOpen" [ngClass]="{Hebrew: language==='iv'}">
         <button class="btn btn-secondary btn-lg btn-block" type="button" (click)="openForm(true)">{{ 'ADMIN.CERTIFICATES.button-create-modify' | translate}}</button>
     </div>
-
-    <div class="form" *ngIf="new_form_open" [ngClass]="{Hebrew: language==='iv'}">
+    <!-- -----------------------------------------FORM -->
+    <div class="form" *ngIf="formOpen" [ngClass]="{Hebrew: language==='iv'}">
         <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
-
+            <!-- ----------first line -->
             <div class="form-row align-items-center">
                 <div class="col-sm-3 my-1">
                     <label for="idInput">ID:</label>
@@ -31,13 +31,8 @@
                 </div>
 
                 <div class="col-sm-3 my-1">
-                    <label for="nameInput">{{ 'ADMIN.name' | translate}}:</label>
-                    <input formControlName="name" [ngClass]="{error: isSubmitted && formControls.name.errors?.required}" type="text" #name class="form-control" id="nameInput" placeholder="{{ 'ADMIN.PLACEHOLDER.name' | translate}}">
-                </div>
-
-                <div class="col-sm-3 my-1">
                     <label for="classSelect">{{ 'ADMIN.class' | translate}}:</label>
-                    <select formControlName="prod_class" [ngClass]="{error: isSubmitted && formControls.prod_class.errors?.required}" class="custom-select" id="classSelect">
+                    <select formControlName="prod_class" (change)="classCheck()" [ngClass]="{error: isSubmitted && formControls.prod_class.errors?.required}" class="custom-select" id="classSelect">
                         <option value='' selected>{{ 'SEARCH.not-selected' | translate }}</option>
                         <option value="basics">{{ 'SEARCH.OPTIONS.basics' | translate }}</option>
                         <option value="Luxio">{{ 'SEARCH.OPTIONS.Luxio' | translate }}</option>
@@ -50,11 +45,16 @@
                 </div>
 
                 <div class="col-sm-3 my-1">
+                    <label for="nameInput">{{ 'ADMIN.name' | translate}}:</label>
+                    <input formControlName="name" [ngClass]="{error: isSubmitted && formControls.name.errors?.required}" type="text" #name class="form-control" id="nameInput" placeholder="{{ 'ADMIN.PLACEHOLDER.name' | translate}}">
+                </div>
+
+                <div class="col-sm-3 my-1" *ngIf="!accessoriesState">
                     <label for="collectionInput">{{ 'ADMIN.collection' | translate}}:</label>
-                    <input value="selectedProd[0].prod_collection" formControlName="prod_collection" placeholder="{{ 'ADMIN.PLACEHOLDER.collection' | translate}}" type="text" class="form-control" id="collectionInput">
+                    <input formControlName="prod_collection" *ngIf="formControls.prod_collection" placeholder="{{ 'ADMIN.PLACEHOLDER.collection' | translate}}" type="text" class="form-control" id="collectionInput">
                 </div>
             </div>
-
+            <!-- ---------------extra info options -->
             <div class="form-row align-items-center">
                 <div class="col-sm-3 my-1">
                     <label for="colorInput">{{ 'ADMIN.color' | translate}}:</label>
@@ -106,11 +106,12 @@
                     </select>
                 </div>
             </div>
-
+            <!-- -------------------------------------------quantity options -->
             <div class="form-row align-items-center">
+                <!-- 1 -->
                 <div class="col-sm-3 my-1">
                     <label for="amount1Input">{{ 'ADMIN.amount' | translate}} 1:</label>
-                    <select formControlName="amount_1" class="custom-select" [ngClass]="{error: isSubmitted && formControls.amount_1.errors?.required}" id="amount1Input" #amount_1>
+                    <select formControlName="amount_1" class="custom-select" *ngIf="!accessoriesState" [ngClass]="{error: isSubmitted && formControls.amount_1.errors?.required}" id="amount1Input">
                         <option value="1 piece" selected>1 piece</option>
                         <option value='15 ml.'>15 ml.</option>
                         <option value='120 ml.'>120 ml.</option>
@@ -121,16 +122,16 @@
                         <option value='25 g.'>25 g.</option>
                         <option value='45 g.'>45 g.</option>
                     </select>
+                    <input formControlName="amount_1" type="text" class="form-control" [ngClass]="{error: isSubmitted && formControls.amount_1.errors?.required}" *ngIf="accessoriesState" id="amount1Input">
                 </div>
-
                 <div class="col-sm-3 my-1">
                     <label for="price1Input">{{ 'ADMIN.price' | translate}} 1:</label>
-                    <input formControlName="price_1" [ngClass]="{error: isSubmitted && formControls.price_1.errors?.required}" type="text" class="form-control" id="price1Input" placeholder="&#8362;" #price_1>
+                    <input formControlName="price_1" type="text" class="form-control" [ngClass]="{error: isSubmitted && formControls.price_1.errors?.required}" id="price1Input" placeholder="&#8362;">
                 </div>
-
+                <!-- 2 -->
                 <div class="col-sm-3 my-1">
                     <label for="amount2Input">{{ 'ADMIN.amount' | translate}} 2:</label>
-                    <select formControlName="amount_2" class="custom-select" id="amount2Input" #amount_2>
+                    <select formControlName="amount_2" *ngIf="!accessoriesState" class="custom-select" id="amount2Input">
                         <option value="" selected>{{ 'SEARCH.not-selected' | translate }}</option>
                         <option value="1 piece">1 piece</option>
                         <option value='15 ml.'>15 ml.</option>
@@ -142,48 +143,88 @@
                         <option value='25 g.'>25 g.</option>
                         <option value='45 g.'>45 g.</option>
                     </select>
+                    <input formControlName="amount_2" *ngIf="accessoriesState" type="text" class="form-control" id="amount2Input">
                 </div>
-
                 <div class="col-sm-3 my-1">
                     <label for="price2Input">{{ 'ADMIN.price' | translate}} 2:</label>
-                    <input formControlName="price_2" [ngClass]="{error: isSubmitted && formControls.price_2.errors?.required}" type="text" class="form-control" id="price2Input" placeholder="&#8362;" #price_2>
+                    <input formControlName="price_2" [ngClass]="{error: isSubmitted && formControls.price_2.errors?.required}" type="text" class="form-control" id="price2Input" placeholder="&#8362;">
+                </div>
+            </div>
+            <div class="form-row align-items-center" *ngIf="accessoriesState && formControls.amount_1.value && formControls.amount_2.value && formControls.price_1.value && formControls.price_2.value">
+                <!-- 3 -->
+                <div class="col-sm-3 my-1">
+                    <label for="amount3Input">{{ 'ADMIN.amount' | translate}} 3:</label>
+                    <input formControlName="amount_3" *ngIf="accessoriesState" type="text" class="form-control" id="amount3Input">
+                </div>
+                <div class="col-sm-3 my-1">
+                    <label for="price3Input">{{ 'ADMIN.price' | translate}} 3:</label>
+                    <input formControlName="price_3" type="text" class="form-control" id="price3Input" placeholder="&#8362;">
+                </div>
+                <!-- 4 -->
+                <div class="col-sm-3 my-1">
+                    <label for="amount4Input">{{ 'ADMIN.amount' | translate}} 4:</label>
+                    <input formControlName="amount_4" *ngIf="accessoriesState" type="text" class="form-control" id="amount4Input">
+                </div>
+                <div class="col-sm-3 my-1">
+                    <label for="price4Input">{{ 'ADMIN.price' | translate}} 4:</label>
+                    <input formControlName="price_4" type="text" class="form-control" id="price4Input" placeholder="&#8362;">
+                </div>
+            </div>
+            <div class="form-row align-items-center" *ngIf="accessoriesState && formControls.amount_3.value && formControls.amount_4.value && formControls.price_3.value && formControls.price_4.value">
+                <!-- 5 -->
+                <div class="col-sm-3 my-1">
+                    <label for="amount5Input">{{ 'ADMIN.amount' | translate}} 5:</label>
+                    <input formControlName="amount_5" *ngIf="accessoriesState" type="text" class="form-control" id="amount5Input">
+                </div>
+                <div class="col-sm-3 my-1">
+                    <label for="price5Input">{{ 'ADMIN.price' | translate}} 5:</label>
+                    <input formControlName="price_5" type="text" class="form-control" id="price5Input" placeholder="&#8362;">
+                </div>
+                <!-- 6 -->
+                <div class="col-sm-3 my-1">
+                    <label for="amount6Input">{{ 'ADMIN.amount' | translate}} 6:</label>
+                    <input formControlName="amount_6" *ngIf="accessoriesState" type="text" class="form-control" id="amount6Input">
+                </div>
+                <div class="col-sm-3 my-1">
+                    <label for="price6Input">{{ 'ADMIN.price' | translate}} 6:</label>
+                    <input formControlName="price_6" type="text" class="form-control" id="price6Input" placeholder="&#8362;">
                 </div>
             </div>
             <!-- -----------------------------------------------------------uploading images -->
             <div class="form-row align-items-center">
                 <div style="width: 50%;">
                     <label>{{ 'ADMIN.img-link' | translate}} 1:</label>
-                    <input formControlName="img_link_1" [ngClass]="{error: isSubmitted && formControls.img_link_1.errors?.required}" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" (ngModelChange)="showImg1($event)" type="text" class="form-control">
+                    <input formControlName="img_link_1" [ngClass]="{error: isSubmitted && formControls.img_link_1.errors?.required}" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" type="text" class="form-control">
 
                     <label>{{ 'ADMIN.img-link' | translate}} 2:</label>
-                    <input formControlName="img_link_2" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" (ngModelChange)="showImg2($event)" type="text" class="form-control">
+                    <input formControlName="img_link_2" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" type="text" class="form-control">
 
                     <label>{{ 'ADMIN.img-link' | translate}} 3:</label>
-                    <input formControlName="img_link_3" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" (ngModelChange)="showImg3($event)" type="text" class="form-control">
+                    <input formControlName="img_link_3" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" type="text" class="form-control">
                 </div>
 
                 <div style="width: 50%;">
-                    <img src={{imgSelected1}} *ngIf="imgSelected1" alt="No image" class="imgSelected">
-                    <img src={{imgSelected2}} *ngIf="imgSelected2" alt="No image" class="imgSelected">
-                    <img src={{imgSelected3}} *ngIf="imgSelected3" alt="No image" class="imgSelected">
+                    <img src={{formControls.img_link_1.value}} *ngIf="formControls.img_link_1.value" alt="No image" class="imgSelected">
+                    <img src={{formControls.img_link_2.value}} *ngIf="formControls.img_link_2.value" alt="No image" class="imgSelected">
+                    <img src={{formControls.img_link_3.value}} *ngIf="formControls.img_link_3.value" alt="No image" class="imgSelected">
                 </div>
             </div>
-            <div class="form-row align-items-center" *ngIf="imgSelected3">
+            <div class="form-row align-items-center" *ngIf="formControls.img_link_1.value && formControls.img_link_2.value && formControls.img_link_3.value">
                 <div style="width: 50%;">
                     <label>{{ 'ADMIN.img-link' | translate}} 4:</label>
-                    <input formControlName="img_link_4" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" (ngModelChange)="showImg4($event)" type="text" class="form-control">
+                    <input formControlName="img_link_4" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" type="text" class="form-control">
 
                     <label>{{ 'ADMIN.img-link' | translate}} 5:</label>
-                    <input formControlName="img_link_5" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" (ngModelChange)="showImg5($event)" type="text" class="form-control">
+                    <input formControlName="img_link_5" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" type="text" class="form-control">
 
                     <label>{{ 'ADMIN.img-link' | translate}} 6:</label>
-                    <input formControlName="img_link_6" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" (ngModelChange)="showImg6($event)" type="text" class="form-control">
+                    <input formControlName="img_link_6" placeholder="{{ 'ADMIN.PLACEHOLDER.img-link' | translate}}" type="text" class="form-control">
                 </div>
 
                 <div style="width: 50%;">
-                    <img src={{imgSelected4}} *ngIf="imgSelected4" alt="No image" class="imgSelected">
-                    <img src={{imgSelected5}} *ngIf="imgSelected5" alt="No image" class="imgSelected">
-                    <img src={{imgSelected6}} *ngIf="imgSelected6" alt="No image" class="imgSelected">
+                    <img src={{formControls.img_link_4.value}} *ngIf="formControls.img_link_4.value" alt="No image" class="imgSelected">
+                    <img src={{formControls.img_link_5.value}} *ngIf="formControls.img_link_5.value" alt="No image" class="imgSelected">
+                    <img src={{formControls.img_link_6.value}} *ngIf="formControls.img_link_6.value" alt="No image" class="imgSelected">
                 </div>
             </div>
             <!----------------------------------------------------------------------------------extra text-------------- -->
@@ -199,7 +240,7 @@
                     <textarea class="form-control Hebrew" id="Textarea" formControlName="coment_iv"></textarea>
                 </div>
             </div>
-
+            <!-- buttons -->
             <div class="form-row align-items-center">
                 <div class="col-sm-3 my-1">
                     <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="clearForm()">
@@ -212,15 +253,14 @@
                     </button>
                 </div>
                 <div class="col-sm-1 my-1">
-                    <button type="button" class="btn btn-secondary" (click)="openForm(false)"><i class="far fa-window-close fa-2x closeButton"></i></button>
+                    <button type="button" class="btn btn-secondary" (click)="openForm(false)">
+                        <i class="far fa-window-close fa-2x closeButton"></i>
+                    </button>
                 </div>
             </div>
-
         </form>
     </div>
-
-    <br> <br>
-
+    <!-- --------------------------------------------PRODUCTS -->
     <div class="shop-table" *ngIf="shop">
         <table class="table table-hover">
             <thead>
@@ -229,50 +269,48 @@
                     <th scope="col">Image</th>
                     <th scope="col">Class</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Collection</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Colour</th>
+                    <th scope="col">Quantity/Price</th>
                     <th scope="col">Label</th>
+                    <th scope="col">Collection</th>
+                    <th scope="col">Colour</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of shop" (click)="select(item.burcode_id);openForm(true)">
+                <tr *ngFor="let item of shop" (click)="select(item._id); openForm(true)">
                     <th scope="row">{{item.burcode_id}}</th>
                     <td><img src={{item.img_link_1}} class="card-img" alt={{item.name}}></td>
                     <td>{{item.prod_class}}</td>
                     <td>{{item.name}}</td>
-                    <td>{{ item.prod_collection}}</td>
                     <td>
-                        <p>{{item.amount_1}}</p>
-                        <p>{{item.amount_2}}</p>
-                    </td>
-                    <td>
-                        <p>{{item.price_1}} &#8362;</p>
-                        <p *ngIf="item.price_2">{{item.price_2}} &#8362;</p>
-                    </td>
-                    <td>
-                        <small class="text-muted">{{item.color}}</small>
-                        <small class="text-muted">{{item.tint}}</small>
-                        <small class="text-muted">{{item.transparency}}</small>
+                        <p>{{item.amount_1}} / {{item.price_1}} &#8362;</p>
+                        <p *ngIf="item.price_2">{{item.amount_2}} / {{item.price_2}} &#8362;</p>
+                        <p *ngIf="item.price_3">{{item.amount_3}} / {{item.price_3}} &#8362;</p>
+                        <p *ngIf="item.price_4">{{item.amount_4}} / {{item.price_4}} &#8362;</p>
+                        <p *ngIf="item.price_5">{{item.amount_5}} / {{item.price_5}} &#8362;</p>
+                        <p *ngIf="item.price_6">{{item.amount_6}} / {{item.price_6}} &#8362;</p>
                     </td>
                     <td>
                         <small class="text-muted" *ngIf="item.label">{{item.label}}</small>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-dark" (click)="select(item.burcode_id);openForm(true)">
+                        <small class="text-muted" *ngIf="item.prod_collection">{{item.prod_collection}}</small>
+                    </td>
+                    <td>
+                        <small class="text-muted" *ngIf="item.color">{{item.color}}</small>
+                        <small class="text-muted" *ngIf="item.tint">{{item.tint}}</small>
+                        <small class="text-muted" *ngIf="item.transparency">{{item.transparency}}</small>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-dark list-btn" (click)="select(item._id); openForm(true)">
                             {{ 'ADMIN.CERTIFICATES.button-edit' | translate }}
                         </button>
-                        <button type="button" class="btn btn-outline-danger" (click)="delete(item._id)" style="margin-left: 15px;">
+                        <button type="button" class="btn btn-outline-danger list-btn" (click)="delete(item._id)">
                             {{ 'ADMIN.CERTIFICATES.button-delete' | translate }}
-                        </button> </td>
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>
-        <!--<p class="card-text">{{item.coment_eng}}</p>
-            <p class="card-text">{{item.coment_rus}}</p>
-            <p class="card-text Hebrew">{{item.coment_iv}}</p> -->
     </div>
-
 </div>

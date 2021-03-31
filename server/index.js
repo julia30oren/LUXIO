@@ -101,6 +101,8 @@ app.use('/products', require('./routes/products/products')); //check by postmane
 app.use('/order', require('./routes/orders/orders')); //check by postmane
 app.use('/whatsapp', require('./routes/whatsapp/whatsapp'))
 
+app.use('/mitraproducts', require('./routes/luxio-products/products')); //check by postmane
+
 // 
 
 

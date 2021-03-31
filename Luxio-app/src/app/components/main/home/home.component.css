@@ -7,75 +7,122 @@
     margin-top: 50px;
 }
 
-span {
+img {
+    width: 100%;
+}
+
+span,
+a:hover {
     color: brown;
 }
 
+a {
+    color: gray;
+}
+
+.sound {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    position: absolute;
+    top: 20px;
+    left: 80px;
+}
+
+.play {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+}
+
+.fas {
+    color: white;
+    font-size: 200%;
+}
+
+.welcom {
+    font-family: Georgia, serif;
+    letter-spacing: 1.5px;
+    word-spacing: 3px;
+    font-size: 45px;
+    font-style: italic;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.welcomSpan {
+    margin-left: 20%;
+}
+
+.welcomSpanHebrew {
+    margin-right: 15%;
+}
+
+.welcomHebrew {
+    font-size: 70px;
+}
+
 .introduction {
-    padding: 1%;
     color: gray;
     font-family: Georgia, serif;
-    font-size: 20px;
+    font-size: 18px;
     letter-spacing: 1px;
     word-spacing: 2px;
     text-align: justify;
 }
 
-.col-md-6 {
-    padding: 0;
+.introductionHebrew {
+    font-size: 23px;
 }
 
-.welc,
-.welcom {
-    font-family: Arial, Helvetica, sans-serif;
-    letter-spacing: 1.5px;
-    word-spacing: 3px;
-    text-transform: uppercase;
-    text-align: center;
-    margin: auto;
+.linkToNew {
+    padding: 10px;
+    color: black;
+    width: 100%;
+    font-size: 200%;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    font-variant: small-caps;
 }
 
-.welcom {
-    font-size: 30px;
-    width: 70%;
-    margin-top: 50px;
-}
-
-.welc {
-    font-size: 20px;
-    width: 90%;
-}
-
-@media screen and (max-width: 1200px) {
-    .introduction {
-        font-size: 16px;
-    }
-    .welcom {
-        width: 80%;
-        font-size: 22px;
-        margin-top: 0px;
-    }
-    .welc {
-        font-size: 20px;
-        width: 100%;
-    }
+.marginTop {
+    margin-top: 100px;
 }
 
 @media screen and (max-width: 900px) {
+    .sound {
+        left: 50px;
+    }
+    .play {
+        left: 20px;
+    }
+    .marginTop {
+        margin-top: 20px;
+    }
+    .fas {
+        font-size: 100%;
+    }
+    .welcom {
+        letter-spacing: 0.5px;
+        word-spacing: 1px;
+        font-size: 25px;
+    }
+    .welcomHebrew {
+        font-size: 30px;
+    }
     .introduction {
         font-size: 12px;
         letter-spacing: 0.5px;
         word-spacing: 1px;
     }
-    .welcom,
-    .welc {
-        font-size: 16px;
-        width: 100%;
-        letter-spacing: 0.7px;
-        word-spacing: 1.4px;
+    .introductionHebrew {
+        font-size: 14px;
     }
-    #prof {
-        width: 90%;
-        margin: auto;
+    .linkToNew {
+        font-size: 100%;
+        letter-spacing: 1px;
+        word-spacing: 1px;
     }
 }

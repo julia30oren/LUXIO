@@ -95,18 +95,6 @@ i {
 
 .main-app {
     width: 100%;
-    /* background: black; */
-    /*  */
-    /* background: #E3AACB;
-    background: -moz-linear-gradient(top, #E3AACB 0%, #FFFABF 50%, #E3AACB 100%);
-    background: -webkit-linear-gradient(top, #E3AACB 0%, #FFFABF 50%, #E3AACB 100%);
-    background: linear-gradient(to bottom, #E3AACB 0%, #FFFABF 50%, #E3AACB 100%); */
-    /*  */
-    background: #ebcaa9af;
-    background: -moz-linear-gradient(left, #eba9d0af 0%, #ffe8d5 30%, #ffe8d5 70%, #eba9d0af 100%);
-    background: -webkit-linear-gradient(left, #eba9d0af 0%, #ffe8d5 30%, #ffe8d5 70%, #eba9d0af 100%);
-    background: linear-gradient(to right, #eba9d0af 0%, #ffe8d5 30%, #ffe8d5 70%, #eba9d0af 100%);
-    /*  */
 }
 
 .main-app>div {
