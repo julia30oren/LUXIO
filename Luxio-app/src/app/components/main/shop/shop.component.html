@@ -1,6 +1,6 @@
 <img style="width: 100%;" class="animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" src="https://i.pinimg.com/originals/ee/9c/48/ee9c48b36e879ebf783f6246f0926ce6.png" alt="AKZENTZ luxio" />
 <!-- SORT -->
-<button style="margin-top: 30px;" type="button" class="btn btn-link" [ngClass]="{Hebrew: languege==='iv'}" (click)="doSort();">{{ 'SHOP.link' | translate }}<i class="fas fa-sort-down"></i></button>
+<button type="button" class="btn btn-link marginTop50" [ngClass]="{Hebrew: languege==='iv'}" (click)="doSort();">{{ 'SHOP.link' | translate }}<i class="fas fa-sort-down"></i></button>
 
 <form style="padding: 0;" *ngIf="doSortState" [ngClass]="{Hebrew: languege==='iv'}">
     <select class="form-control form-control-sm container-fluid animate__animated animate__fadeInDown animate__slow wow" #prod_class (change)="getSorted(prod_class.value, color.value, tint.value, transparency.value)">
@@ -58,4 +58,4 @@
     />
 </div>
 
-<button style="width: 100%; margin:auto;" *ngIf="moreButtonVisible" class="btn btn-link" [ngClass]="{H: languege==='iv'}" type="button" (click)="moreProducts();">{{ 'SHOP.button' | translate }}</button>
+<button style="width: 100%; margin:auto;" *ngIf="moreButtonVisible" class="btn btn-link marginTop50" [ngClass]="{H: languege==='iv'}" type="button" (click)="moreProducts();">{{ 'SHOP.button' | translate }}</button>

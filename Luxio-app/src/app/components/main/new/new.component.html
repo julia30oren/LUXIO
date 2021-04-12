@@ -1,12 +1,12 @@
 <!---------------------------- "NEW" COMPONENT-->
 <!-- -------------------------------------------------MAIN BUNER & INFO-------- -->
 <img style="width: 100%;" class="animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" src="https://i.pinimg.com/originals/76/8d/0f/768d0f9635932751311f757099c3f743.png" alt="AKZENTZ new" />
-<div class="container-fluid">
+<div class="container-fluid animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow marginTop50">
     <div class="row">
         <div class="col">
-            <h5 class="title animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.title' | translate}}</h5>
-            <p class="introduction animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">
-                <span>AKZÉNTZ</span>{{ 'NEW.loz' | translate}}
+            <p class="main-title" [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.title' | translate}}</p>
+            <p class="main-txt" [ngClass]="{Hebrew: languege==='iv'}">
+                {{ 'NEW.loz-1' | translate}}<span>AKZÉNTZ</span>{{ 'NEW.loz-2' | translate}}
             </p>
         </div>
     </div>
@@ -15,24 +15,24 @@
 
 <!-------------------------------- AVANT GARDE --------------------------------------------------------------------------------->
 <!-- ---------------------------main announce--------- -->
-<div class="container-fluid animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow">
+<div class="container-fluid animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow marginTop50">
     <div class="row">
         <div class="col-lg-6 col-12">
             <img style="width: 100%;" src="https://i.pinimg.com/originals/8e/55/0c/8e550c15e6db93061fc7139e0a63e91e.png" alt="AVANT GARDE" />
         </div>
-        <div class="col-lg-6 col-12 description">
-            <h3>NEW LUXIO</h3>
+        <div class="col-lg-6 col-12" style="text-align: center;">
+            <img src="https://i.pinimg.com/originals/dd/d6/34/ddd63477383f6fcaad0446ecde7e2405.png" class="titleImg" alt="Avant Garde">
+            <!-- <h3>NEW LUXIO</h3>
             <h1>AVANT GARDE</h1>
-            <h5>UV/LED COLOUR COLLECTION</h5>
-            <br>
-            <p [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.avantgarde-m' | translate}} {{ 'NEW.new' | translate}}</p>
-            <p style="margin-top: -15px;">
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_swank/"><span> Swank</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_suave/"><span> Suave</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_stigma/"><span> Stigma</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_movement/"><span> Movement</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_restrain/"><span> Restrain</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_incite/"><span> Incite</span></a>.
+            <h5>UV/LED COLOUR COLLECTION</h5> -->
+            <p class="main-txt marginTop50" [ngClass]="{HebrewDirection: languege==='iv'}">{{ 'NEW.avantgarde-m' | translate}} {{ 'NEW.new' | translate}}
+                <br>
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_swank/"><span> Swank</span></a> ,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_suave/"><span> Suave</span></a> ,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_stigma/"><span> Stigma</span></a> ,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_movement/"><span> Movement</span></a> ,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_restrain/"><span> Restrain</span></a> ,
+                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_incite/"><span> Incite</span></a>
             </p>
             <br>
             <small>{{ 'NEW.info-2' | translate}}</small>
@@ -44,21 +44,21 @@
     </div>
 </div>
 <!-- ------------------------------------------productes-------------------- -->
-<div class="container-fluid" *ngIf="avantgarde" style="margin-top: 50px;">
-    <div class="row  justify-content-center">
-        <div class="col-md-2 col-sm-3 col-4" *ngFor="let item of avantgarde" id={{item.burcode_id}}>
-            <div class="flip-card">
-                <div class=" flip-card-inner">
-                    <div class="flip-card-front">
-                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
-                        <p class="main-font" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
-                        <p class="main-font" *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
+<div class="container-fluid marginTop50" *ngIf="avantgarde">
+    <div class="row justify-content-center ">
+        <div class="col-md-2 col-sm-3 col-4 " *ngFor="let item of avantgarde " id={{item.burcode_id}}>
+            <div class="flip-card ">
+                <div class=" flip-card-inner ">
+                    <div class="flip-card-front ">
+                        <img class="small-card-img " src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                        <p class="main-font " *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
+                        <p class="main-font " *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
                     </div>
-                    <div class="flip-card-back">
-                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                    <div class="flip-card-back ">
+                        <img class="small-card-img " src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
                         <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2 "> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
-                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket"></i></button>
-                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart"></i></button>
+                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket "></i></button>
+                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart "></i></button>
                     </div>
                 </div>
             </div>
@@ -69,47 +69,43 @@
 
 <!-------------------------------- JELLI --------------------------------------------------------------------------------->
 <!-- ---------------------------main announce--------- -->
-<div class="container-fluid animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow">
+<div class="container-fluid animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow marginTop50">
     <div class="row">
-        <div class="col-lg-6 col-12 order-1 order-lg-2">
-            <img style="width: 100%;" src="https://i.pinimg.com/originals/45/fc/e0/45fce068ce8f008f657fbf13b453e7d9.jpg" alt="JELLI" />
+        <div class="col-lg-6 col-12 order-1 order-lg-2 ">
+            <img style="width: 100%; " src="https://i.pinimg.com/originals/45/fc/e0/45fce068ce8f008f657fbf13b453e7d9.jpg " alt="JELLI " />
         </div>
-        <div class="col-lg-6 col-12 order-2 order-lg-1 description">
-            <h3>NEW LUXIO</h3>
-            <h1>JELLI</h1>
-            <h5>UV/LED COLOUR COLLECTION</h5>
-            <br>
-            <p [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.jelli-m' | translate}}</p>
-            <p style="margin-top: -15px;">{{ 'NEW.new' | translate}} Luxio
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_jelly_teal/"><span> Jelly Teal</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_jelly_black/"><span> Jelly Black</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_jelly_red/"><span> Jelly Red</span></a>.
+        <div class="col-lg-6 col-12 order-2 order-lg-1 " style="text-align: center; ">
+            <img src="https://i.pinimg.com/originals/62/84/20/62842093f37f90c7b10b63772b15b98a.jpg " class="titleImg " alt="JELLI ">
+            <p class="main-txt marginTop50 " [ngClass]="{HebrewDirection: languege==='iv' } ">{{ 'NEW.jelli-m' | translate}} {{ 'NEW.new' | translate}}Luxio<br>
+                <a target="_blank " href="https://www.instagram.com/explore/tags/luxio_jelly_teal/ "><span> Jelly Teal</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/luxio_jelly_black/ "><span> Jelly Black</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/luxio_jelly_red/ "><span> Jelly Red</span></a>
             </p>
             <br>
             <small>{{ 'NEW.info-1' | translate}}</small>
-            <button type="button" (click)="openJelli_shop()" class="btn btn-light btn-block">
-                <p *ngIf="!jelliOpen"><span>{{ 'NEW.button-shop' | translate}}</span></p>
-                <p *ngIf="jelliOpen"><span>{{ 'NEW.button-close' | translate}}</span></p>
+            <button type="button" (click)="openJelli_shop() " class="btn btn-light btn-block ">
+                <p *ngIf="!jelliOpen "><span>{{ 'NEW.button-shop' | translate}}</span></p>
+                <p *ngIf="jelliOpen "><span>{{ 'NEW.button-close' | translate}}</span></p>
             </button>
         </div>
     </div>
 </div>
 <!-- ------------------------------------------productes-------------------- -->
-<div class="container-fluid" *ngIf="jelliOpen" style="margin-top: 50px;">
-    <div class="row  justify-content-center">
-        <div class="col-md-2 col-sm-3 col-4" *ngFor="let item of jelli" id={{item.burcode_id}}>
-            <div class="flip-card">
-                <div class=" flip-card-inner">
-                    <div class="flip-card-front">
-                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
-                        <p class="main-font" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
-                        <p class="main-font" *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
+<div class="container-fluid marginTop50" *ngIf="jelliOpen">
+    <div class="row justify-content-center ">
+        <div class="col-md-2 col-sm-3 col-4 " *ngFor="let item of jelli " id={{item.burcode_id}}>
+            <div class="flip-card ">
+                <div class=" flip-card-inner ">
+                    <div class="flip-card-front ">
+                        <img class="small-card-img " src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                        <p class="main-font " *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
+                        <p class="main-font " *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
                     </div>
-                    <div class="flip-card-back">
-                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                    <div class="flip-card-back ">
+                        <img class="small-card-img " src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
                         <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2 "> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
-                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket"></i></button>
-                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart"></i></button>
+                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket "></i></button>
+                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart "></i></button>
                     </div>
                 </div>
             </div>
@@ -120,47 +116,43 @@
 
 <!-------------------------------- FANTASY--------------------------------------------------------------------------------->
 <!-- ---------------------------main announce--------- -->
-<div class="container-fluid animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow">
-    <div class="row justify-content-between">
-        <div class="col-lg-5 col-12">
-            <img style="width: 100%;" src="https://i.pinimg.com/originals/ba/3a/15/ba3a151649255b265975eda274b6df51.jpg" alt="FANTASY" />
+<div class="container-fluid animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow marginTop50">
+    <div class="row justify-content-between ">
+        <div class="col-lg-5 col-12 ">
+            <img style="width: 100%; " src="https://i.pinimg.com/originals/ba/3a/15/ba3a151649255b265975eda274b6df51.jpg " alt="FANTASY " />
         </div>
-        <div class="col-lg-6 col-12 description">
-            <h3>NEW GEL PLAY</h3>
-            <h1>FANTASY</h1>
-            <h5>GLITTER COLOUR COLLECTION</h5>
-            <br>
-            <p [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.fantasy-m' | translate}}</p>
-            <p style="margin-top: -15px;">{{ 'NEW.new' | translate}} Gel Play
-                <a target="_blank" href="https://www.instagram.com/explore/tags/peony_fantasy/"><span> Peony Fantasy</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/blossom_fantasy/"><span> Blossom Fantasy</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/scarlet_fantasy/"><span> Scarlet Fantasy</span></a>.
+        <div class="col-lg-6 col-12 " style="text-align: center; ">
+            <img src="https://i.pinimg.com/originals/50/c1/bc/50c1bc36d604c794605f6b864b9aa0ea.jpg " class="titleImg " alt="FANTASY " />
+            <p class="main-txt marginTop50 " [ngClass]="{HebrewDirection: languege==='iv' } ">{{ 'NEW.fantasy-m' | translate}} {{ 'NEW.new' | translate}}Gel Play<br>
+                <a target="_blank " href="https://www.instagram.com/explore/tags/peony_fantasy/ "><span> Peony Fantasy</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/blossom_fantasy/ "><span> Blossom Fantasy</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/scarlet_fantasy/ "><span> Scarlet Fantasy</span></a>
             </p>
             <br>
             <small>{{ 'NEW.info-1' | translate}}</small>
-            <button type="button" (click)="openFantasy_shop()" class="btn btn-light btn-block">
-                <p *ngIf="!fantasyOpen"><span>{{ 'NEW.button-shop' | translate}}</span></p>
-                <p *ngIf="fantasyOpen"><span>{{ 'NEW.button-close' | translate}}</span></p>
+            <button type="button " (click)="openFantasy_shop() " class="btn btn-light btn-block ">
+                <p *ngIf="!fantasyOpen "><span>{{ 'NEW.button-shop' | translate}}</span></p>
+                <p *ngIf="fantasyOpen "><span>{{ 'NEW.button-close' | translate}}</span></p>
             </button>
         </div>
     </div>
 </div>
 <!-- ------------------------------------------productes-------------------- -->
-<div class="container-fluid" *ngIf="fantasyOpen" style="margin-top: 50px;">
-    <div class="row  justify-content-center">
-        <div class="col-md-2 col-sm-3 col-4" *ngFor="let item of fantasy" id={{item.burcode_id}}>
-            <div class="flip-card">
-                <div class=" flip-card-inner">
-                    <div class="flip-card-front">
-                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
-                        <p class="main-font" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
-                        <p class="main-font" *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
+<div class="container-fluid marginTop50" *ngIf="fantasyOpen ">
+    <div class="row justify-content-center ">
+        <div class="col-md-2 col-sm-3 col-4 " *ngFor="let item of fantasy " id={{item.burcode_id}}>
+            <div class="flip-card ">
+                <div class=" flip-card-inner ">
+                    <div class="flip-card-front ">
+                        <img class="small-card-img " src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                        <p class="main-font " *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
+                        <p class="main-font " *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
                     </div>
-                    <div class="flip-card-back">
-                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                    <div class="flip-card-back ">
+                        <img class="small-card-img " src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
                         <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2 "> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
-                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket"></i></button>
-                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart"></i></button>
+                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket "></i></button>
+                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart "></i></button>
                     </div>
                 </div>
             </div>
@@ -171,50 +163,46 @@
 
 <!---------------------------- RENDEZVOUS --------------------------------------------------------------------------->
 <!-- ---------------------------main announce--------- -->
-<div class="container-fluid animate__animated animate__fadeInRight animate__delay-0.5s animate__slow wow">
-    <div class="row">
-        <div class="col-lg-6 col-12 order-1 order-lg-2">
-            <img style="width: 100%; background-color: white;" src="https://i.pinimg.com/originals/59/b8/71/59b87175281fb4294ca9c2eee28d6d47.jpg" alt="RENDEZVOUS" />
+<div class="container-fluid animate__animated animate__fadeInRight animate__delay-0.5s animate__slow wow marginTop50">
+    <div class="row ">
+        <div class="col-lg-6 col-12 order-1 order-lg-2 ">
+            <img style="width: 100%;" src="https://i.pinimg.com/originals/59/b8/71/59b87175281fb4294ca9c2eee28d6d47.jpg " alt="RENDEZVOUS " />
         </div>
-        <div class="col-lg-6 col-12 order-2 order-lg-1 description">
-            <h3>NEW LUXIO</h3>
-            <h1>RENDEZVOUS</h1>
-            <h5>UV/LED COLOUR COLLECTION</h5>
-            <br>
-            <p [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.rendezvous-m' | translate}}</p>
-            <p style="margin-top: -15px;">
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_sentiment/"><span> Sentiment</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_secret/"><span> Secret</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_sultry"><span> Sultry</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_provoke/"><span> Provoke</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_tryst/"><span> Tryst</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_cryptic/"><span> Cryptic</span></a>.
+        <div class="col-lg-6 col-12 order-2 order-lg-1 " style="text-align: center; ">
+            <img src="https://i.pinimg.com/originals/4d/f3/c0/4df3c0b04728b4f21651c625678d774b.jpg " class="titleImg " alt="RENDEZVOUS " />
+            <p class="main-txt marginTop50 " [ngClass]="{HebrewDirection: languege==='iv' } ">{{ 'NEW.rendezvous-m' | translate}}<br>
+                <a target="_blank " href="https://www.instagram.com/explore/tags/luxio_sentiment/ "><span> Sentiment</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/luxio_secret/ "><span> Secret</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/luxio_sultry "><span> Sultry</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/luxio_provoke/ "><span> Provoke</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/luxio_tryst/ "><span> Tryst</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/luxio_cryptic/ "><span> Cryptic</span></a>
             </p>
             <br>
             <small>{{ 'NEW.info-1' | translate}}</small>
-            <button type="button" (click)="openRendezvous_shop()" class="btn btn-light btn-block">
-                <p *ngIf="!rendezvousOpen"><span>{{ 'NEW.button-shop' | translate}}</span></p>
-                <p *ngIf="rendezvousOpen"><span>{{ 'NEW.button-close' | translate}}</span></p>
+            <button type="button " (click)="openRendezvous_shop() " class="btn btn-light btn-block ">
+                <p *ngIf="!rendezvousOpen "><span>{{ 'NEW.button-shop' | translate}}</span></p>
+                <p *ngIf="rendezvousOpen "><span>{{ 'NEW.button-close' | translate}}</span></p>
             </button>
         </div>
     </div>
 </div>
 <!-- ------------------------------------------productes-------------------- -->
-<div class="container-fluid" *ngIf="rendezvousOpen" style="margin-top: 50px;">
-    <div class="row  justify-content-center">
-        <div class="col-md-2 col-sm-3 col-4" *ngFor="let item of rendezvous" id={{item.burcode_id}}>
-            <div class="flip-card">
-                <div class=" flip-card-inner">
-                    <div class="flip-card-front">
-                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
-                        <p class="main-font" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
-                        <p class="main-font" *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
+<div class="container-fluid marginTop50" *ngIf="rendezvousOpen ">
+    <div class="row justify-content-center ">
+        <div class="col-md-2 col-sm-3 col-4 " *ngFor="let item of rendezvous " id={{item.burcode_id}}>
+            <div class="flip-card ">
+                <div class=" flip-card-inner ">
+                    <div class="flip-card-front ">
+                        <img class="small-card-img " src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                        <p class="main-font " *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
+                        <p class="main-font " *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
                     </div>
-                    <div class="flip-card-back">
-                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                    <div class="flip-card-back ">
+                        <img class="small-card-img " src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
                         <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2 "> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
-                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket"></i></button>
-                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart"></i></button>
+                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket "></i></button>
+                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart "></i></button>
                     </div>
                 </div>
             </div>
@@ -225,47 +213,43 @@
 
 <!-------------------------------- SHADES --------------------------------------------------------------------------------->
 <!-- ---------------------------main announce--------- -->
-<div class="container-fluid animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow">
-    <div class="row">
-        <div class="col-lg-6 col-12">
-            <img style="width: 100%;" src="https://i.pinimg.com/originals/40/d8/4b/40d84bc50cdafe802160c267cbdf187c.jpg" alt="SHADES" />
+<div class="container-fluid animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow marginTop50">
+    <div class="row ">
+        <div class="col-lg-6 col-12 ">
+            <img style="width: 100%; " src="https://cdn.shopify.com/s/files/1/1186/7574/products/akzentz-pro-formance-hard-gel-new-trinity-shades-374659_1024x1024.jpg?v=1585717606 " alt="SHADES " />
         </div>
-        <div class="col-lg-6 col-12 description">
-            <h3>NEW TRINITY</h3>
-            <h1>SHADES</h1>
-            <h5>UV/LED PRO-FORMANCE LINE</h5>
-            <br>
-            <p [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.sades-m' | translate}}</p>
-            <p style="margin-top: -15px;">Trinity Shades
-                <a target="_blank" href="https://www.instagram.com/explore/tags/trinitycool/"><span> Cool</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/trinitynatural/"><span> Natural</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/trinitywarm/"><span> Warm</span></a>.
+        <div class="col-lg-6 col-12 " style="text-align: center; ">
+            <img src="https://i.pinimg.com/originals/d5/d1/ae/d5d1ae36251f4406dd18776a52f051ae.jpg " class="titleImg " alt="SHADES " />
+            <p class="main-txt marginTop50 " [ngClass]="{HebrewDirection: languege==='iv' } ">{{ 'NEW.sades-m' | translate}} Trinity Shades <br>
+                <a target="_blank " href="https://www.instagram.com/explore/tags/trinitycool/ "><span> Cool</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/trinitynatural/ "><span> Natural</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/trinitywarm/ "><span> Warm</span></a>
             </p>
             <br>
             <small>{{ 'NEW.info-1' | translate}}</small>
-            <button type="button" (click)="openShades_shop()" class="btn btn-light btn-block">
-                <p *ngIf="!shadesOpen"><span>{{ 'NEW.button-shop' | translate}}</span></p>
-                <p *ngIf="shadesOpen"><span>{{ 'NEW.button-close' | translate}}</span></p>
+            <button type="button " (click)="openShades_shop() " class="btn btn-light btn-block ">
+                <p *ngIf="!shadesOpen "><span>{{ 'NEW.button-shop' | translate}}</span></p>
+                <p *ngIf="shadesOpen "><span>{{ 'NEW.button-close' | translate}}</span></p>
             </button>
         </div>
     </div>
 </div>
 <!-- ------------------------------------------productes-------------------- -->
-<div class="container-fluid" *ngIf="shadesOpen" style="margin-top: 50px;">
-    <div class="row justify-content-center">
-        <div class="col-md-2 col-sm-3 col-4" *ngFor="let item of shades" id={{item.burcode_id}}>
-            <div class="flip-card">
-                <div class=" flip-card-inner">
-                    <div class="flip-card-front">
-                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
-                        <p class="main-font" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
-                        <p class="main-font" *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
+<div class="container-fluid marginTop50" *ngIf="shadesOpen ">
+    <div class="row justify-content-center ">
+        <div class="col-md-2 col-sm-3 col-4 " *ngFor="let item of shades " id={{item.burcode_id}}>
+            <div class="flip-card ">
+                <div class=" flip-card-inner ">
+                    <div class="flip-card-front ">
+                        <img class="small-card-img " src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                        <p class="main-font " *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
+                        <p class="main-font " *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
                     </div>
-                    <div class="flip-card-back">
-                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                    <div class="flip-card-back ">
+                        <img class="small-card-img " src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
                         <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2 "> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
-                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket"></i></button>
-                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart"></i></button>
+                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket "></i></button>
+                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart "></i></button>
                     </div>
                 </div>
             </div>
@@ -276,47 +260,43 @@
 
 <!--------------------------------------------------- MIAMI------------------------------------------------------------------------------ -->
 <!-- ---------------------------main announce--------- -->
-<div class="container-fluid animate__animated animate__fadeInRight animate__delay-0.5s animate__slow wow">
-    <div class="row">
-        <div class="col-lg-6 col-12 order-1 order-lg-2">
-            <img style="width: 100%;" src="https://i.pinimg.com/originals/8a/b3/80/8ab380f900bd1e8da627e3e9d0de4c1c.jpg" alt="MIAMI" />
+<div class="container-fluid animate__animated animate__fadeInRight animate__delay-0.5s animate__slow wow marginTop50">
+    <div class="row ">
+        <div class="col-lg-6 col-12 order-1 order-lg-2 ">
+            <img style="width: 100%; " src="https://i.pinimg.com/originals/8a/b3/80/8ab380f900bd1e8da627e3e9d0de4c1c.jpg " alt="MIAMI " />
         </div>
-        <div class="col-lg-6 col-12 order-2 order-lg-1 description">
-            <h3>NEW GEL PLAY</h3>
-            <h1>MIAMI</h1>
-            <h5>GLITTER SHIFTERS COLLECTION</h5>
-            <br>
-            <p [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.miami-m' | translate}}</p>
-            <p style="margin-top: -15px;">Gel Play Miami Glitter Shifter:
-                <a target="_blank" href="https://www.instagram.com/explore/tags/gelplaymiamiheat/"><span> Heat</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/gelplaymiaminight/"><span> Night</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/gelplaymiamisunset/"><span> Sunset</span></a>.
+        <div class="col-lg-6 col-12 order-2 order-lg-1 " style="text-align: center; ">
+            <img src="https://i.pinimg.com/originals/79/5f/37/795f37bbe95de22c6a2f8a83bd81f998.png" class="titleImg " alt="MIAMI " />
+            <p class="main-txt marginTop50 " [ngClass]="{HebrewDirection: languege==='iv' } ">{{ 'NEW.miami-m' | translate}} Gel Play Miami Glitter Shifter <br>
+                <a target="_blank " href="https://www.instagram.com/explore/tags/gelplaymiamiheat/ "><span> Heat</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/gelplaymiaminight/ "><span> Night</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/gelplaymiamisunset/ "><span> Sunset</span></a>
             </p>
             <br>
             <small>{{ 'NEW.info-1' | translate}}</small>
-            <button type="button" (click)="openMiami_shop()" class="btn btn-light btn-block">
-            <p *ngIf="!miamiOpen"><span>{{ 'NEW.button-shop' | translate}}</span></p>
-            <p *ngIf="miamiOpen"><span>{{ 'NEW.button-close' | translate}}</span></p>
+            <button type="button " (click)="openMiami_shop() " class="btn btn-light btn-block ">
+            <p *ngIf="!miamiOpen "><span>{{ 'NEW.button-shop' | translate}}</span></p>
+            <p *ngIf="miamiOpen "><span>{{ 'NEW.button-close' | translate}}</span></p>
         </button>
         </div>
     </div>
 </div>
 <!-- ------------------------------------------productes-------------------- -->
-<div class="container-fluid" *ngIf="miamiOpen" style="margin-top: 50px;">
-    <div class="row justify-content-center">
-        <div class="col-md-2 col-sm-3 col-4" *ngFor="let item of miami" id={{item.burcode_id}}>
-            <div class="flip-card">
-                <div class=" flip-card-inner">
-                    <div class="flip-card-front">
-                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
-                        <p class="main-font" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
-                        <p class="main-font" *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
+<div class="container-fluid marginTop50" *ngIf="miamiOpen ">
+    <div class="row justify-content-center ">
+        <div class="col-md-2 col-sm-3 col-4 " *ngFor="let item of miami " id={{item.burcode_id}}>
+            <div class="flip-card ">
+                <div class=" flip-card-inner ">
+                    <div class="flip-card-front ">
+                        <img class="small-card-img " src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                        <p class="main-font " *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
+                        <p class="main-font " *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
                     </div>
-                    <div class="flip-card-back">
-                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                    <div class="flip-card-back ">
+                        <img class="small-card-img " src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
                         <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2 "> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
-                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket"></i></button>
-                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart"></i></button>
+                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket "></i></button>
+                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart "></i></button>
                     </div>
                 </div>
             </div>
@@ -327,50 +307,46 @@
 
 <!-------------------------------------- VOYAGE ------------------------------------------------------------------------------------->
 <!-- ---------------------------main announce--------- -->
-<div class="container-fluid animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow">
-    <div class="row">
-        <div class="col-lg-6 col-12">
-            <img style="width: 100%;" src="https://i.pinimg.com/originals/cb/77/93/cb7793a456fb21a86ebc482e481bc95a.png" alt="VOYAGE" />
+<div class="container-fluid animate__animated animate__fadeInLeft animate__delay-0.5s animate__slow wow marginTop50">
+    <div class="row ">
+        <div class="col-lg-6 col-12 ">
+            <img style="width: 100%; " src="https://i.pinimg.com/originals/cb/77/93/cb7793a456fb21a86ebc482e481bc95a.png " alt="VOYAGE " />
         </div>
-        <div class="col-lg-6 col-12 description">
-            <h3>NEW LUXIO</h3>
-            <h1>VOYAGE</h1>
-            <h5>UV/LED COLOUR COLLECTION</h5>
-            <br>
-            <p [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.voyage-m' | translate}}</p>
-            <p style="margin-top: -15px;">
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_lustful/"><span> Lustful</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_glimpse/"><span> Glimpse</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_jaded/"><span> Jaded</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_instinct/"><span> Instinct</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_persuasion/"><span> Persuasion</span></a>,
-                <a target="_blank" href="https://www.instagram.com/explore/tags/luxio_virtue❤️/"><span> Virtue</span></a>.
+        <div class="col-lg-6 col-12 " style="text-align: center; ">
+            <img src="https://i.pinimg.com/originals/39/9f/31/399f316f6e7db6c55b37ff85b5c79dd8.jpg " class="titleImg " alt="VOYAGE " />
+            <p class="main-txt marginTop50 " [ngClass]="{HebrewDirection: languege==='iv' } ">{{ 'NEW.voyage-m' | translate}} <br>
+                <a target="_blank " href="https://www.instagram.com/explore/tags/luxio_lustful/ "><span> Lustful</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/luxio_glimpse/ "><span> Glimpse</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/luxio_jaded/ "><span> Jaded</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/luxio_instinct/ "><span> Instinct</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/luxio_persuasion/ "><span> Persuasion</span></a> ,
+                <a target="_blank " href="https://www.instagram.com/explore/tags/luxio_virtue❤️/ "><span> Virtue</span></a>
             </p>
             <br>
             <small>{{ 'NEW.info-1' | translate}}</small>
-            <button type="button" (click)="openVoyage_shop()" class="btn btn-light btn-block">
-            <p *ngIf="!voyageOpen"><span>{{ 'NEW.button-shop' | translate}}</span></p>
-            <p *ngIf="voyageOpen"><span>{{ 'NEW.button-close' | translate}}</span></p>
+            <button type="button " (click)="openVoyage_shop() " class="btn btn-light btn-block ">
+            <p *ngIf="!voyageOpen "><span>{{ 'NEW.button-shop' | translate}}</span></p>
+            <p *ngIf="voyageOpen "><span>{{ 'NEW.button-close' | translate}}</span></p>
         </button>
         </div>
     </div>
 </div>
 <!-- ------------------------------------------productes-------------------- -->
-<div class="container-fluid" *ngIf="voyageOpen" style="margin-top: 50px;">
-    <div class="row justify-content-center">
-        <div class="col-md-2 col-sm-3 col-4" *ngFor="let item of voyage" id={{item.burcode_id}}>
-            <div class="flip-card">
-                <div class=" flip-card-inner">
-                    <div class="flip-card-front">
-                        <img class="small-card-img" src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
-                        <p class="main-font" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
-                        <p class="main-font" *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
+<div class="container-fluid marginTop50" *ngIf="voyageOpen ">
+    <div class="row justify-content-center ">
+        <div class="col-md-2 col-sm-3 col-4 " *ngFor="let item of voyage " id={{item.burcode_id}}>
+            <div class="flip-card ">
+                <div class=" flip-card-inner ">
+                    <div class="flip-card-front ">
+                        <img class="small-card-img " src={{item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                        <p class="main-font " *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
+                        <p class="main-font " *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
                     </div>
-                    <div class="flip-card-back">
-                        <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
+                    <div class="flip-card-back ">
+                        <img class="small-card-img " src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id) " />
                         <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2 "> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
-                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket"></i></button>
-                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart"></i></button>
+                        <button [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket "></i></button>
+                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart "></i></button>
                     </div>
                 </div>
             </div>

@@ -1,17 +1,32 @@
+.sm-card-title {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
 .small-card-img {
     width: 100%;
     background-color: white;
 }
 
-.row {
-    margin-top: 20px;
+.phoneButtons {
+    margin-top: -10px;
+    display: none;
 }
 
-@media screen and (max-width: 1200px) {
-    .row {
-        margin-top: 0;
+@media screen and (max-width: 1100px) {
+    .sm-card-title {
+        font-size: 14px;
+        letter-spacing: 0px;
+    }
+    .phoneButtons {
+        display: block;
     }
 }
+
+
+/* ----------------- */
 
 .prod-label {
     position: absolute;
@@ -83,56 +98,6 @@
     .main-font {
         font-size: 10px;
         letter-spacing: 1px;
-    }
-}
-
-
-/* button icons */
-
-i {
-    font-size: 150%;
-}
-
-.hart-button,
-.cart-button {
-    margin-left: 1%;
-    margin-top: 2%;
-    border: none;
-    background-color: rgba(0, 0, 0, 0);
-}
-
-.active {
-    color: green;
-}
-
-.not-active {
-    color: rgba(128, 128, 128, 0.5);
-}
-
-.red-hart {
-    color: rgb(194, 0, 0);
-}
-
-.red-hart:hover {
-    color: rgba(128, 128, 128, 0.5);
-}
-
-.grey-hart {
-    color: rgba(128, 128, 128, 0.5);
-}
-
-.grey-hart:hover,
-.cart-button:hover {
-    color: rgb(194, 0, 0);
-}
-
-.hart-button:hover {
-    color: rgb(194, 0, 0);
-}
-
-@media screen and (max-width: 900px) {
-    i {
-        font-size: 100%;
     }
 }
 

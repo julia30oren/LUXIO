@@ -1,5 +1,5 @@
 <!-------------------------------------------------- HEADER ---------------------->
-<div id="Header" class="animate__animated animate__fadeInDown animate__delay-0.5s">
+<div id="Header">
     <!-- 1 -->
     <nav class="navbar navbar-expand-lg navbar-light" id="nav-top" *ngIf="!admin">
         <div class="container-fluid">
@@ -65,42 +65,42 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" [ngClass]="{activeColor: location==='new'}" aria-current="page" href="new">{{ 'NAVIGATION.NEW.title' | translate }}</a>
+                        <a class="nav-link nav-txt active" [ngClass]="{activeColor: location==='new'}" aria-current="page" href="new">{{ 'NAVIGATION.NEW.title' | translate }}</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" [ngClass]="{activeColor: location==='products/luxio' || location==='products/gel-play' || location==='products/options' || location==='products/pro-formance' || location==='products/basics' || location==='products/tools'}"
+                        <a class="nav-link active dropdown-toggle nav-txt" [ngClass]="{activeColor: location==='products/luxio' || location==='products/gel-play' || location==='products/options' || location==='products/pro-formance' || location==='products/basics' || location==='products/tools'}"
                             href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ 'NAVIGATION.PRODUCTS.title' | translate }}</a>
                         <ul class="dropdown-menu dropdown-menu-bottom" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="products/luxio">LUXIO</a></li>
-                            <li><a class="dropdown-item" href="products/gel-play">GEL PLAY</a></li>
-                            <li><a class="dropdown-item" href="products/options">OPTIONS</a></li>
-                            <li><a class="dropdown-item" href="products/pro-formance">PRO-FORMANCE</a></li>
-                            <li><a class="dropdown-item" href="products/basics">{{ 'NAVIGATION.basics' | translate }}</a></li>
-                            <li><a class="dropdown-item" href="products/tools">{{ 'NAVIGATION.tools' | translate }}</a></li>
+                            <li><a class="dropdown-item nav-txt" href="products/luxio">LUXIO</a></li>
+                            <li><a class="dropdown-item nav-txt" href="products/gel-play">GEL PLAY</a></li>
+                            <li><a class="dropdown-item nav-txt" href="products/options">OPTIONS</a></li>
+                            <li><a class="dropdown-item nav-txt" href="products/pro-formance">PRO-FORMANCE</a></li>
+                            <li><a class="dropdown-item nav-txt" href="products/basics">{{ 'NAVIGATION.basics' | translate }}</a></li>
+                            <li><a class="dropdown-item nav-txt" href="products/tools">{{ 'NAVIGATION.tools' | translate }}</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" [ngClass]="{activeColor: location==='registration'}" aria-current="page" href="tryme">{{ 'NAVIGATION.TRYME.title' | translate }}</a>
+                        <a class="nav-link nav-txt active" [ngClass]="{activeColor: location==='registration'}" aria-current="page" href="tryme">{{ 'NAVIGATION.TRYME.title' | translate }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" [ngClass]="{activeColor: location==='shop'}" aria-current="page" href="shop">{{ 'NAVIGATION.STORE.title' | translate }}</a>
+                        <a class="nav-link nav-txt active" [ngClass]="{activeColor: location==='shop'}" aria-current="page" href="shop">{{ 'NAVIGATION.STORE.title' | translate }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" [ngClass]="{activeColor: location==='courses'}" aria-current="page" href="courses">{{ 'NAVIGATION.COURSES.title' | translate }}</a>
+                        <a class="nav-link nav-txt active" [ngClass]="{activeColor: location==='courses'}" aria-current="page" href="courses">{{ 'NAVIGATION.COURSES.title' | translate }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" [ngClass]="{activeColor: location==='coating'}" aria-current="page" href="coating">{{ 'NAVIGATION.COATING.title' | translate }}</a>
+                        <a class="nav-link nav-txt active" [ngClass]="{activeColor: location==='coating'}" aria-current="page" href="coating">{{ 'NAVIGATION.COATING.title' | translate }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" [ngClass]="{activeColor: location==='contacts'}" aria-current="page" href="contacts">{{ 'NAVIGATION.OFFICES.title' | translate }}</a>
+                        <a class="nav-link nav-txt active" [ngClass]="{activeColor: location==='contacts'}" aria-current="page" href="contacts">{{ 'NAVIGATION.OFFICES.title' | translate }}</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ 'NAVIGATION.language' | translate }}</a>
                         <ul class="dropdown-menu dropdown-menu-lang" aria-labelledby="navbarDropdownMenuLink">
-                            <li class="dropdown-item lang-nav" (click)="translate.use(lang); setLng(lang)" *ngFor="let lang of translate.getLangs()">
-                                <small *ngIf="lang==='iv'">עברית</small>
-                                <small *ngIf="lang==='en'">English</small>
-                                <small *ngIf="lang==='ru'">Русский</small>
+                            <li class="dropdown-item lang-nav nav-txt" (click)="translate.use(lang); setLng(lang)" *ngFor="let lang of translate.getLangs()">
+                                <p *ngIf="lang==='iv'">עברית</p>
+                                <p *ngIf="lang==='en'">English</p>
+                                <p *ngIf="lang==='ru'">Русский</p>
                                 <!-- {{lang}} -->
                             </li>
                         </ul>
@@ -162,37 +162,37 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" [ngClass]="{activeColor: location==='admin/orders'}" aria-current="page" href="admin/orders">{{ 'NAVIGATION.ORDERS.title' | translate }}</a>
+                        <a class="nav-link nav-txt active" [ngClass]="{activeColor: location==='admin/orders'}" aria-current="page" href="admin/orders">{{ 'NAVIGATION.ORDERS.title' | translate }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" [ngClass]="{activeColor: location==='admin/shop'}" aria-current="page" href="admin/shop">{{ 'NAVIGATION.PRODUCTS.title' | translate }}</a>
+                        <a class="nav-link nav-txt active" [ngClass]="{activeColor: location==='admin/shop'}" aria-current="page" href="admin/shop">{{ 'NAVIGATION.PRODUCTS.title' | translate }}</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" [ngClass]="{activeColor: location==='admin/registration' || location==='admin/remove'}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ 'NAVIGATION.admins' | translate }}</a>
+                        <a class="nav-link nav-txt dropdown-toggle" [ngClass]="{activeColor: location==='admin/registration' || location==='admin/remove'}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ 'NAVIGATION.admins' | translate }}</a>
                         <ul class="dropdown-menu dropdown-menu-bottom" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="admin/registration">{{ 'NAVIGATION.REGISTER-ADMIN.title' | translate }}</a></li>
-                            <li><a class="dropdown-item" href="admin/remove">{{ 'NAVIGATION.DELETE-ADMIN.title' | translate }}</a></li>
-                            <li><a class="dropdown-item" href="new" (click)="logOut()">{{'NAVIGATION.sign-out'| translate}}</a></li>
+                            <li><a class="dropdown-item nav-txt" href="admin/registration">{{ 'NAVIGATION.REGISTER-ADMIN.title' | translate }}</a></li>
+                            <li><a class="dropdown-item nav-txt" href="admin/remove">{{ 'NAVIGATION.DELETE-ADMIN.title' | translate }}</a></li>
+                            <li><a class="dropdown-item nav-txt" href="new" (click)="logOut()">{{'NAVIGATION.sign-out'| translate}}</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" [ngClass]="{activeColor: location==='admin/certificates'}" aria-current="page" href="admin/certificates">{{ 'NAVIGATION.CLIENTS.title' | translate }}</a>
+                        <a class="nav-link nav-txt active" [ngClass]="{activeColor: location==='admin/certificates'}" aria-current="page" href="admin/certificates">{{ 'NAVIGATION.CLIENTS.title' | translate }}</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" [ngClass]="{activeColor: location==='admin/comments'}" aria-current="page" href="admin/comments">{{ 'NAVIGATION.COMMENTS.title' | translate }}</a>
+                        <a class="nav-link nav-txt active" [ngClass]="{activeColor: location==='admin/comments'}" aria-current="page" href="admin/comments">{{ 'NAVIGATION.COMMENTS.title' | translate }}</a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link active" [ngClass]="{activeColor: location==='admin/mailings'}" aria-current="page" href="admin/mailings">{{ 'NAVIGATION.MAILINGS.title' | translate }}</a>
                     </li> -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ 'NAVIGATION.language' | translate }}</a>
+                        <a class="nav-link nav-txt dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ 'NAVIGATION.language' | translate }}</a>
                         <ul class="dropdown-menu dropdown-menu-lang" aria-labelledby="navbarDropdownMenuLink">
-                            <li class="dropdown-item lang-nav" (click)="translate.use(lang); setLng(lang)" *ngFor="let lang of translate.getLangs()">
+                            <li class="dropdown-item lang-nav nav-txt" (click)="translate.use(lang); setLng(lang)" *ngFor="let lang of translate.getLangs()">
+                                <p *ngIf="lang==='iv'">עברית</p>
+                                <p *ngIf="lang==='en'">English</p>
+                                <p *ngIf="lang==='ru'">Русский</p>
                                 <!-- {{lang}} -->
-                                <small *ngIf="lang==='iv'">עברית</small>
-                                <small *ngIf="lang==='en'">English</small>
-                                <small *ngIf="lang==='ru'">Русский</small>
                             </li>
                         </ul>
                     </li>
@@ -210,12 +210,33 @@
 <div class="container-fluid RESPOND" *ngFor="let item of respond">
     <div class="row justify-content-center" [ngClass]="{infoMessage: item.status===true, errorMessage: item.status===false}">
         <div class="col-10 col-lg-4 inner-message">
-            <h4 [ngClass]="{H: languege==='iv'}"><span>{{item.message}}</span></h4>
+            <p class="main-txt" [ngClass]="{H: languege==='iv'}"><span>{{item.message}}</span></p>
         </div>
     </div>
 </div>
 <!--  -->
 
+<!-- --------------------------------------------------ADVERTISEMENT-------- ------ -->
+<div class="container-fluid" *ngIf="advertisement" style="position: fixed; z-index: 10; top: 160px;">
+    <div class="row justify-content-center">
+        <div class="col-10 col-lg-3 adv" style="text-align: center;" [ngClass]="{H: languege==='iv'}">
+            <p class="main-title"> {{ 'SIGN-IN.OPEN-FORM.line-1' | translate }}</p>
+            <img src="https://i.pinimg.com/originals/8a/c6/19/8ac619815ba0e122065b704e46781e72.jpg" alt="Woow!" width="100%">
+            <p class="main-txt">{{ 'SIGN-IN.OPEN-FORM.line-2' | translate }}</p>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-10">
+                    <button class="message-link" (click)="registration_form();close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-1' | translate }}</button>
+                </div>
+                <div class="col-lg-4 col-10">
+                    <button class="message-link" (click)="close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-3' | translate }}</button>
+                </div>
+                <div class="col-lg-4 col-10">
+                    <button class="message-link" (click)="login_form();close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-2' | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- ------------------------------------------------MAIN----------- -->
 <div class="main-app">
@@ -248,9 +269,9 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <h1 class="title" *ngIf="formOne_Open">{{ 'SIGN-IN.REGISTRATION-FORM.title' | translate}}</h1>
-                    <h1 class="title" *ngIf="formLogin_Open">{{ 'SIGN-IN.LOGIN-FORM.title' | translate}}</h1>
-                    <h1 class="title" *ngIf="formPasswodRestore_Open">{{ 'SIGN-IN.PASSWORD-RESTORE-FORM.title' | translate}}</h1>
+                    <p class="main-title" *ngIf="formOne_Open">{{ 'SIGN-IN.REGISTRATION-FORM.title' | translate}}</p>
+                    <p class="main-title" *ngIf="formLogin_Open">{{ 'SIGN-IN.LOGIN-FORM.title' | translate}}</p>
+                    <p class="main-title" *ngIf="formPasswodRestore_Open">{{ 'SIGN-IN.PASSWORD-RESTORE-FORM.title' | translate}}</p>
                 </div>
             </div>
 
@@ -262,11 +283,11 @@
                 <app-cookies></app-cookies>
             </div>
 
-            <div class="formLogin" *ngIf="formLogin_Open">
+            <div *ngIf="formLogin_Open">
                 <app-log-form></app-log-form>
             </div>
 
-            <div class="formPasswordRest" *ngIf="formPasswodRestore_Open">
+            <div *ngIf="formPasswodRestore_Open">
                 <app-password-restore-form></app-password-restore-form>
             </div>
 
@@ -283,6 +304,7 @@
             </p>
         </div>
     </div>
+
     <!-- -------------------------------------- -->
     <div class="content">
         <router-outlet></router-outlet>
@@ -291,27 +313,7 @@
     <!-- ------------------------------------------------FOOTER -->
     <app-footer></app-footer>
 </div>
-<!-- --------------------------------------------------ADVERTISEMENT-------- ------ -->
-<div class="container-fluid" *ngIf="advertisement" style="position: fixed; z-index: 10; top: 160px;">
-    <div class="row justify-content-center">
-        <div class="col-10 col-lg-4 adv" [ngClass]="{H: languege==='iv'}">
-            <h1> {{ 'SIGN-IN.OPEN-FORM.line-1' | translate }}</h1>
-            <img src="https://i.pinimg.com/originals/8a/c6/19/8ac619815ba0e122065b704e46781e72.jpg">
-            <p style="width: 100%; text-align: center;">{{ 'SIGN-IN.OPEN-FORM.line-2' | translate }}</p>
-            <div class="row justify-content-center">
-                <div class="col-lg-4 col-10">
-                    <button class="message-link" (click)="registration_form();close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-1' | translate }}</button>
-                </div>
-                <div class="col-lg-4 col-10">
-                    <button class="message-link" (click)="close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-3' | translate }}</button>
-                </div>
-                <div class="col-lg-4 col-10">
-                    <button class="message-link" (click)="login_form();close_advertisement()">{{ 'SIGN-IN.OPEN-FORM.link-2' | translate }}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <!-- ------------------------------------WHATSAPP BUTTON -->
 <div id="whatsapp-button" class="animate__animated animate__fadeInDownBig animate__delay-0.5s animate__slow">
     <a class="social-icons" target="_blank" href="https://api.whatsapp.com/send?phone=972559519777">

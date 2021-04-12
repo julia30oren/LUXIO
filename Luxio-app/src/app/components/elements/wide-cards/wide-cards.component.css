@@ -1,105 +1,23 @@
-.Hebrew {
-    text-align: right;
-    direction: rtl;
-}
-
-.H {
-    text-align: right;
-}
-
-.row {
-    margin-top: 15px;
-}
-
-
-/* CARDS TOPS & BASES */
-
-.card-img {
-    width: 100%;
-}
-
-.main-title {
+.card-title {
     font-family: Verdana, Geneva, sans-serif;
-    font-size: 14px;
+    font-size: 20px;
     letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: 700;
 }
 
-.sm-text {
-    padding: 1%;
-    color: gray;
+.card-txt {
+    color: rgb(107, 107, 107);
     font-family: Georgia, serif;
-    letter-spacing: 1px;
-    word-spacing: 2px;
-    font-size: 14px;
-}
-
-@media screen and (max-width: 1200px) {
-    .main-title {
-        font-size: 12px;
-        letter-spacing: 1px;
-    }
+    font-size: 18px;
 }
 
 @media screen and (max-width: 900px) {
-    .main-title {
-        font-size: 10px;
-        letter-spacing: 1px;
-    }
-    .sm-text {
-        font-size: 12px;
+    .card-title {
+        font-size: 18px;
         letter-spacing: 0.5px;
-        word-spacing: 1px;
     }
-}
-
-
-/* button icons */
-
-i {
-    font-size: 150%;
-}
-
-.hart-button,
-.cart-button {
-    margin-left: 1%;
-    margin-top: 1%;
-    border: none;
-    background-color: rgba(0, 0, 0, 0);
-}
-
-.active {
-    color: green;
-}
-
-.not-active {
-    color: rgba(128, 128, 128, 0.5);
-}
-
-.red-hart {
-    color: rgb(194, 0, 0);
-}
-
-.red-hart:hover {
-    color: rgba(128, 128, 128, 0.5);
-}
-
-.grey-hart {
-    color: rgba(128, 128, 128, 0.5);
-}
-
-.grey-hart:hover,
-.cart-button:hover {
-    color: rgb(194, 0, 0);
-}
-
-.hart-button:hover {
-    color: rgb(194, 0, 0);
-}
-
-@media screen and (max-width: 900px) {
-    i {
-        font-size: 100%;
+    .card-txt {
+        font-size: 14px;
     }
 }

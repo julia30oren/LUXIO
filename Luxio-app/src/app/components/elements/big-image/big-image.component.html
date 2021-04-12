@@ -46,6 +46,10 @@
                         <select class="form-control" (change)="amount_change($event.target.value)">
                                 <option value="{{item.amount_1}}">{{item.amount_1}} {{item.price_1}}&#8362;</option>
                                 <option value="{{item.amount_2}}" *ngIf="item.amount_2" >{{item.amount_2}} {{item.price_2}}&#8362;</option>
+                                <option value="{{item.amount_3}}" *ngIf="item.amount_3" >{{item.amount_3}} {{item.price_3}}&#8362;</option>
+                                <option value="{{item.amount_4}}" *ngIf="item.amount_4" >{{item.amount_4}} {{item.price_4}}&#8362;</option>
+                                <option value="{{item.amount_5}}" *ngIf="item.amount_5" >{{item.amount_5}} {{item.price_5}}&#8362;</option>
+                                <option value="{{item.amount_6}}" *ngIf="item.amount_6" >{{item.amount_6}} {{item.price_6}}&#8362;</option>
                             </select>
                     </div>
                     <div class="col-lg-2 col-4">

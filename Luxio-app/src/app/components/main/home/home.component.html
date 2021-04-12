@@ -1,58 +1,63 @@
 <div class="container-fluid">
 
-    <div class="row justify-content-between animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" style="margin-top: 50px;">
-        <div class="col-lg-7 col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">
-            <p class="introduction" [ngClass]="{introductionHebrew: languege==='iv'}">{{'HOME.title-2' | translate}}</p><br>
-            <p class="introduction" [ngClass]="{introductionHebrew: languege==='iv'}">{{'HOME.title-3' | translate}}</p>
-            <p class="introduction" [ngClass]="{introductionHebrew: languege==='iv'}">{{ 'HOME.par-1' | translate }}</p>
-            <p class="introduction" [ngClass]="{introductionHebrew: languege==='iv'}">{{ 'HOME.par-2' | translate }}</p>
-            <p class="introduction" [ngClass]="{introductionHebrew: languege==='iv'}">{{ 'HOME.par-3' | translate }}</p>
+    <div class="row justify-content-between animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
+        <div class="col-lg-6 col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow main-txt" [ngClass]="{Hebrew: languege==='iv'}">
+            <p>{{'HOME.title-2' | translate}}</p>
+            <dl [ngClass]="{margRight100: languege==='iv', margLeft100: languege!=='iv'}" class="marginTop50">
+                <dd>{{'HOME.title-3' | translate}}</dd>
+                <dd>-
+                    <small class="priorities">{{ 'HOME.par-1' | translate }}</small>
+                </dd>
+                <dd>-
+                    <small class="priorities">{{ 'HOME.par-2' | translate }}</small>
+                </dd>
+                <dd>-
+                    <small class="priorities">{{ 'HOME.par-3' | translate }}</small>
+                </dd>
+            </dl>
         </div>
 
-        <div class="col-lg-5 col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
-            <img src="https://i.pinimg.com/originals/ac/e3/ff/ace3ff6a326bf1eef407d4935e740127.png" alt="AKZÉNTZ" />
-        </div>
-    </div>
-
-    <div class="row marginTop justify-content-end animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">
-        <div class="col-1">
-            <img src="http://www.pngall.com/wp-content/uploads/4/Quotation-Symbol-PNG.png">
-        </div>
-        <div class="col-10">
-            <h1 class="welcom animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{welcomHebrew: languege==='iv'}">
-                <span>{{'HOME.title-01' | translate}}</span><br>
-                <span [ngClass]="{welcomSpan: languege!=='iv', welcomSpanHebrew: languege==='iv'}">{{'HOME.title-02' | translate}}</span>
-            </h1>
-        </div>
-    </div>
-
-    <div class="row justify-content-between marginTop">
         <div class="col-lg-6 col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
-            <img style="width: 100%;" src="https://i.pinimg.com/564x/06/8d/3a/068d3a55a97a78b616ca861c1d1b2b4e.jpg" alt="AKZÉNTZ model" />
-        </div>
-
-        <div class="col-lg-6 col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">
-            <p class="introduction" [ngClass]="{introductionHebrew: languege==='iv'}">{{'HOME.title-5' | translate}}<br>{{'HOME.title-6' | translate}}</p><br>
-            <p class="introduction" [ngClass]="{introductionHebrew: languege==='iv'}">{{'HOME.title-4' | translate}}</p>
-            <p class="introduction" [ngClass]="{introductionHebrew: languege==='iv'}">- <a href="products/luxio">{{ 'HOME.par-4' | translate }}</a></p>
-            <p class="introduction" [ngClass]="{introductionHebrew: languege==='iv'}">- <a href="roducts/options">{{ 'HOME.par-5' | translate }}</a></p>
-            <p class="introduction" [ngClass]="{introductionHebrew: languege==='iv'}">- <a href="products/gel-play">{{ 'HOME.par-6' | translate }}</a></p>
-            <p class="introduction" [ngClass]="{introductionHebrew: languege==='iv'}">- <a href="products/pro-formance">{{ 'HOME.par-7' | translate }}</a></p>
-            <p class="introduction" [ngClass]="{introductionHebrew: languege==='iv'}">- <a href="products/basics">{{ 'HOME.par-8' | translate }}</a></p>
+            <img src="https://i.pinimg.com/originals/ac/e3/ff/ace3ff6a326bf1eef407d4935e740127.png" alt="AKZÉNTZ" style="width: 100%;" />
         </div>
     </div>
 
-
-    <hr class="marginTop" />
-
-    <div class="row">
-        <div class="col-6 col-lg-6 col-12" [ngClass]="{Hebrew: languege==='iv'}">
-            <p class="linkToNew">New Luxio<br>AVANT GARDE</p>
-            <p class="introduction" [ngClass]="{introductionHebrew: languege==='iv'}">{{ 'HOME.par-9' | translate }}</p>
-            <br>
+    <div class="row marginTop50 justify-content-end animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
+        <div class="col-9 slogan" [ngClass]="{HebrewDirection: languege==='iv'}">
+            <p>&rdquo;<span style="margin: 20px;">{{'HOME.title-01' | translate}}</span></p>
+            <p style="margin-top: -30px;"><span>{{'HOME.title-02' | translate}}</span></p>
         </div>
-        <div class="col-12">
-            <video width="100%" #comersial>
+    </div>
+
+    <div class="row justify-content-between marginTop50 marginBottom50">
+        <div class="col-lg-6 col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
+            <img src="https://i.pinimg.com/564x/06/8d/3a/068d3a55a97a78b616ca861c1d1b2b4e.jpg" alt="AKZÉNTZ model" width="100%" />
+        </div>
+
+        <div class="col-lg-6 col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow main-txt" [ngClass]="{Hebrew: languege==='iv'}">
+            <p [ngClass]="{introductionHebrew: languege==='iv'}">{{'HOME.title-5' | translate}}<br>{{'HOME.title-6' | translate}}</p>
+            <dl [ngClass]="{margRight100: languege==='iv', margLeft100: languege!=='iv'}" class="marginTop50">
+                <dd>{{'HOME.title-4' | translate}}</dd>
+                <dd>- <a href="roducts/options">{{ 'HOME.par-5' | translate }}</a></dd>
+                <dd>- <a href="products/gel-play">{{ 'HOME.par-6' | translate }}</a></dd>
+                <dd>- <a href="products/pro-formance">{{ 'HOME.par-7' | translate }}</a></dd>
+                <dd>- <a href="products/basics">{{ 'HOME.par-8' | translate }}</a></dd>
+            </dl>
+        </div>
+    </div>
+    <hr/>
+    <div class="row marginTop50">
+        <div class="col-lg-3 col-5 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
+            <img src="https://i.pinimg.com/originals/dd/d6/34/ddd63477383f6fcaad0446ecde7e2405.png" style="margin-top: 10px;" alt="Avant Garde">
+        </div>
+        <div class="col-lg-9 col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow main-txt" [ngClass]="{Hebrew: languege==='iv'}">
+            <p [ngClass]="{introductionHebrew: languege==='iv'}">{{ 'HOME.par-9' | translate }}</p>
+            <p [ngClass]="{introductionHebrew: languege==='iv'}">{{ 'HOME.par-10' | translate }}<em>{{ 'HOME.par-11' | translate }}</em>{{ 'HOME.par-12' | translate }}</p>
+            <p [ngClass]="{introductionHebrew: languege==='iv'}">{{ 'HOME.par-13' | translate }}</p>
+        </div>
+
+        <div class="col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
+            <video width="100%" autoplay loop #comersial>
                 <source src="https://res.cloudinary.com/luxio/video/upload/v1617005151/2_5366311918363479121_1_fkvcon.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -65,81 +70,7 @@
                 <i *ngIf="!sound" class="fas fa-volume-up"></i>
             </button>
         </div>
-        <div class="col-6"></div>
-        <div class="col-6 col-lg-6 col-12" [ngClass]="{Hebrew: languege==='iv'}">
-            <br>
-            <p class="introduction" [ngClass]="{introductionHebrew: languege==='iv'}">{{ 'HOME.par-10' | translate }}<i>{{ 'HOME.par-11' | translate }}</i>{{ 'HOME.par-12' | translate }}</p>
-            <p class="introduction" [ngClass]="{introductionHebrew: languege==='iv'}">{{ 'HOME.par-13' | translate }}</p>
-        </div>
 
-        <a href="new" class="linkToNew" style="text-align: right;" [ngClass]="{Hebrew: languege==='iv'}">{{'HOME.title-7' | translate}} <i class="fas fa-caret-right"></i></a>
+        <a href="new" class="linkToNew" [ngClass]="{Hebrew: languege==='iv'}">{{'HOME.title-7' | translate}} <i class="fas fa-caret-right"></i></a>
     </div>
-
-
-
-    <!-- <div class="block animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
-                <a href="products/luxio">
-                    <img style="width: 100%;" src="https://i.pinimg.com/originals/dc/01/1b/dc011b48436b188117d581a7589020e3.jpg?epik=dj0yJnU9bGtWWUYyM053SWgzWGc0THVYdzdWR05tOUltUkdFcDcmcD0wJm49R2dJR2RJbEQtN1FJTS04U1UtSWZUZyZ0PUFBQUFBR0FRSU5R" alt="" />
-                </a>
-            </div> -->
-    <!-- <div class="block animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
-                <p class="introduction" [ngClass]="{Hebrew: languege==='iv'}">
-                    <span>{{'HOME.par-1-tit' | translate}}</span>{{ 'HOME.par-1' | translate }}</p>
-                <p class="introduction" [ngClass]="{Hebrew: languege==='iv'}">
-                    <span>{{'HOME.par-2-tit' | translate}}</span>{{ 'HOME.par-2' | translate }}</p>
-            </div> -->
-    <!-- <div class="block animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
-                <a href="products/gel-play">
-                    <img style="width: 60%;" src="https://i.pinimg.com/originals/6a/1b/be/6a1bbecfd4ab8db4a8fcece6e38a121b.png" alt="" />
-                </a>
-                <a href="products/options">
-                    <img style="width: 40%;" src="https://i.pinimg.com/originals/45/b6/23/45b62388bd6d3804fb2b1fab369e6f0b.png" alt="" />
-                </a>
-            </div> -->
-    <!-- <div class="block animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
-                <p class="introduction" [ngClass]="{Hebrew: languege==='iv'}">
-                    <span>{{'HOME.par-4-tit' | translate}}</span>{{ 'HOME.par-4' | translate }}</p>
-            </div> -->
-    <!-- <div class="block animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
-                <a href="products/pro-formance">
-                    <img style="width: 100%;" src="https://i.pinimg.com/originals/be/01/2e/be012e2f93e99859f6045b3f118d72fb.png" alt="" />
-                </a>
-            </div> -->
-    <!-- <div class="block animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
-                <p class="introduction" [ngClass]="{Hebrew: languege==='iv'}">
-                    <span>{{'HOME.par-3-tit' | translate}}</span>{{ 'HOME.par-3' | translate }}</p>
-            </div> -->
-    <!-- <div class="block">
-                <h1 class="welc animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">{{ 'NEW.varn' | translate}}</h1>
-            </div> -->
-    <!-- </div> -->
-    <!-- <div class="col-md-3  col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow">
-            <p class="introduction" [ngClass]="{Hebrew: languege==='iv'}" style="margin-top: 30px;">{{ 'HOME.interesting' | translate }}</p>
-            <div class="block embed-responsive embed-responsive-16by9">
-                <iframe width="100%" src="https://www.youtube.com/embed/JmQOxaTBiz4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="block embed-responsive embed-responsive-16by9">
-                <iframe width="100%" src="https://www.youtube.com/embed/ay65d1T_Q_c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-
-            <p class="introduction" [ngClass]="{Hebrew: languege==='iv'}" style="margin-top: 70px;">{{ 'HOME.tutorials' | translate }}</p>
-            <div class="block embed-responsive embed-responsive-16by9">
-                <iframe width="100%" src="https://www.youtube.com/embed/VNeZCO-obxM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="block embed-responsive embed-responsive-16by9">
-                <iframe width="100%" src="https://www.youtube.com/embed/XCskt2e1YVE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="block embed-responsive embed-responsive-16by9">
-                <iframe width="100%" src="https://www.youtube.com/embed/EorpBcNwM7g" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-
-            <p class="introduction" [ngClass]="{Hebrew: languege==='iv'}" style="margin-top: 70px;">{{ 'HOME.more' | translate }}</p>
-            <div class="block embed-responsive embed-responsive-16by9">
-                <iframe width="100%" src="https://www.youtube.com/embed/vhkVnca0zkw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="block embed-responsive embed-responsive-16by9">
-                <iframe width="100%" src="https://www.youtube.com/embed/rZlRipZna28" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div> -->
-    <!-- </div> -->
 </div>

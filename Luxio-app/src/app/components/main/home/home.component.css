@@ -1,128 +1,73 @@
-.Hebrew {
-    text-align: right;
-    direction: rtl;
-}
-
-.block {
-    margin-top: 50px;
-}
-
-img {
-    width: 100%;
-}
-
-span,
-a:hover {
-    color: brown;
-}
-
-a {
-    color: gray;
-}
-
-.sound {
-    background-color: rgba(255, 255, 255, 0);
-    border: none;
-    position: absolute;
-    top: 20px;
-    left: 80px;
-}
-
-.play {
-    background-color: rgba(255, 255, 255, 0);
-    border: none;
-    position: absolute;
-    top: 20px;
-    left: 30px;
-}
-
-.fas {
-    color: white;
-    font-size: 200%;
-}
-
-.welcom {
-    font-family: Georgia, serif;
-    letter-spacing: 1.5px;
-    word-spacing: 3px;
-    font-size: 45px;
-    font-style: italic;
-    margin: auto;
-    margin-top: 20px;
-}
-
-.welcomSpan {
-    margin-left: 20%;
-}
-
-.welcomSpanHebrew {
-    margin-right: 15%;
-}
-
-.welcomHebrew {
-    font-size: 70px;
-}
-
-.introduction {
-    color: gray;
-    font-family: Georgia, serif;
-    font-size: 18px;
-    letter-spacing: 1px;
-    word-spacing: 2px;
-    text-align: justify;
-}
-
-.introductionHebrew {
-    font-size: 23px;
-}
-
-.linkToNew {
-    padding: 10px;
-    color: black;
-    width: 100%;
-    font-size: 200%;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    letter-spacing: 2px;
-    word-spacing: 2px;
-    font-variant: small-caps;
-}
-
-.marginTop {
-    margin-top: 100px;
-}
-
-@media screen and (max-width: 900px) {
-    .sound {
-        left: 50px;
-    }
-    .play {
-        left: 20px;
-    }
-    .marginTop {
-        margin-top: 20px;
-    }
-    .fas {
-        font-size: 100%;
-    }
-    .welcom {
-        letter-spacing: 0.5px;
-        word-spacing: 1px;
-        font-size: 25px;
-    }
-    .welcomHebrew {
-        font-size: 30px;
-    }
-    .introduction {
-        font-size: 12px;
-        letter-spacing: 0.5px;
-        word-spacing: 1px;
-    }
-    .introductionHebrew {
-        font-size: 14px;
-    }
-    .linkToNew {
-        font-size: 100%;
-        letter-spacing: 1px;
-        word-spacing: 1px;
-    }
-}
+        .priorities {
+            color: black;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: larger;
+        }
+        
+        .slogan>p {
+            font-size: 400%;
+            font-family: "Times New Roman", Times, serif;
+            word-spacing: 20px;
+            font-style: italic;
+            font-weight: 500;
+        }
+        
+        .play,
+        .sound {
+            background-color: rgba(0, 0, 0, 0);
+            border: none;
+            color: white;
+            position: absolute;
+            margin: 20px;
+        }
+        
+        .play {
+            left: 0;
+        }
+        
+        .sound {
+            left: 50px;
+        }
+        
+        .linkToNew {
+            width: 100%;
+            font-size: larger;
+            margin: 20px;
+            text-align: right;
+            color: black;
+        }
+        
+        .margRight100 {
+            margin-right: 100px;
+        }
+        
+        .margLeft100 {
+            margin-left: 100px;
+        }
+        
+        @media screen and (max-width: 900px) {
+            .slogan>p {
+                font-size: 200%;
+                word-spacing: 10px;
+            }
+            .margRight100 {
+                margin-right: 10px;
+            }
+            .margLeft100 {
+                margin-left: 10px;
+            }
+        }
+        
+        @media screen and (max-width: 1200px) {
+            .slogan>p {
+                font-size: 300%;
+                word-spacing: 15px;
+            }
+            .margRight100 {
+                margin-right: 40px;
+            }
+            .margLeft100 {
+                margin-left: 40px;
+            }
+        }

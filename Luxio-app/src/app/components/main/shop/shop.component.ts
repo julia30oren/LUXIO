@@ -50,16 +50,29 @@ export class ShopComponent implements OnInit {
 
   getSorted(by_class, by_color, by_tint, by_transparency) {
     let newAr = [];
-    this.shop.forEach(element => {
-      if (element.prod_class.includes(by_class) && element.color.includes(by_color) && element.tint.includes(by_tint) && element.transparency.includes(by_transparency)) {
-        newAr.push(element);
-      }
-    });
-    if (newAr.length < 1) {
-      this.noneFound = true;
-    } else this.noneFound = false;
-    this.shopToShow = newAr;
-    this.shop_service.getProducts_sorted(newAr);
+    if (by_class === 'accessories') {
+      this.shop.forEach(element => {
+        if (element.prod_class.includes(by_class)) {
+          newAr.push(element);
+        }
+      });
+      if (newAr.length < 1) {
+        this.noneFound = true;
+      } else this.noneFound = false;
+      this.shopToShow = newAr;
+      this.shop_service.getProducts_sorted(newAr);
+    } else {
+      this.shop.forEach(element => {
+        if (element.prod_class.includes(by_class) && element.color.includes(by_color) && element.tint.includes(by_tint) && element.transparency.includes(by_transparency)) {
+          newAr.push(element);
+        }
+      });
+      if (newAr.length < 1) {
+        this.noneFound = true;
+      } else this.noneFound = false;
+      this.shopToShow = newAr;
+      this.shop_service.getProducts_sorted(newAr);
+    }
   }
 
   getAll() {

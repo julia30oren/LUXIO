@@ -1,5 +1,5 @@
 <div [ngClass]="{Hebrew: language==='iv'}">
-    <p>{{ 'CONTACT.message-1' | translate}}:</p>
+    <p class="main-txt">{{ 'CONTACT.message-1' | translate}}:</p>
 
     <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
         <div class="form-group">

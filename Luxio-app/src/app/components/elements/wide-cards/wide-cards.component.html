@@ -1,22 +1,29 @@
 <div class="container-fluid" *ngIf="wideCardProductes[0]">
     <div class="row">
-        <div style="margin-top: 20px; margin-bottom: 10px;" class="col-md-6 col-12 animate__animated animate__flipInY animate__delay-0.5s animate__slow wow" *ngFor="let item of wideCardProductes" id={{item.burcode_id}}>
+        <div class="col-lg-6 col-12 animate__animated animate__flipInY animate__delay-0.5s animate__slow wow" *ngFor="let item of wideCardProductes" id={{item.burcode_id}}>
             <div class="row">
-                <div class="col-5">
-                    <img class="card-img" src={{item.img_link_1}} alt="Product image" (click)="select(item.burcode_id)" />
+                <div class="col-lg-5 col-3">
+                    <img class="card-img" src={{item.img_link_1}} alt="Product image" (click)="select(item.burcode_id)" width="100%" />
                 </div>
-                <div class="col-7" [ngClass]="{H: languege==='iv'}">
-                    <h5 class="main-title">{{item.name}}</h5>
+                <div class="col-lg-7 col-9" [ngClass]="{HebrewDirection: languege==='iv'}">
+                    <p class="card-title">{{item.name}}</p>
                     <button class="card-button" [ngClass]="getCartClasse(item._id)" (click)="addToCart(item)" title="{{'PROD_DESCRIPTION.add_to_cart' | translate}}">
                             <i class="fas fa-shopping-basket"></i></button>
                     <button class="card-button" [ngClass]="getClasses(item._id)" (click)="addToFavorites(item)" title="{{'PROD_DESCRIPTION.add_to_favorites' | translate}}">
                             <i class="fas fa-heart"></i></button>
                     <div (click)="select(item.burcode_id)">
-                        <p class="sm-text" *ngIf="languege==='en'">{{item.coment_eng}}</p>
-                        <p class="sm-text" *ngIf="languege==='ru'">{{item.coment_rus}}</p>
-                        <p class="sm-text" *ngIf="languege==='iv'" [ngClass]="{Hebrew: languege==='iv'}">{{item.coment_iv}}</p>
-                        <small>{{item.amount_1}} / {{item.price_1}} &#8362;</small><br>
-                        <small *ngIf="item.amount_2 && item.price_2">{{item.amount_2}} / {{item.price_2}} &#8362;</small>
+                        <p class="card-txt" *ngIf="languege==='en'">{{item.coment_eng}}</p>
+                        <p class="card-txt" *ngIf="languege==='ru'">{{item.coment_rus}}</p>
+                        <p class="card-txt" *ngIf="languege==='iv'" [ngClass]="{Hebrew: languege==='iv'}">{{item.coment_iv}}</p>
+                        <p *ngIf="item.prod_class!=='accessories'"><small>{{item.amount_1}} / {{item.price_1}} &#8362;</small><br>
+                            <small *ngIf="item.amount_2">{{item.amount_2}} / {{item.price_2}} &#8362;</small></p>
+                        <p *ngIf="item.prod_class==='accessories'">
+                            <small>{{item.amount_1}} / {{item.price_1}} &#8362;</small><br>
+                            <small *ngIf="item.amount_2">{{item.amount_2}} / {{item.price_2}} &#8362;</small><br>
+                            <small *ngIf="item.amount_3">{{item.amount_3}} / {{item.price_3}} &#8362;</small><br>
+                            <small *ngIf="item.amount_4">{{item.amount_4}} / {{item.price_4}} &#8362;</small><br>
+                            <small *ngIf="item.amount_5">{{item.amount_5}} / {{item.price_5}} &#8362;</small><br>
+                            <small *ngIf="item.amount_6">{{item.amount_6}} / {{item.price_6}} &#8362;</small></p>
                     </div>
                 </div>
             </div>

@@ -55,7 +55,7 @@
                 </div>
             </div>
             <!-- ---------------extra info options -->
-            <div class="form-row align-items-center">
+            <div class="form-row align-items-center" *ngIf="!accessoriesState">
                 <div class="col-sm-3 my-1">
                     <label for="colorInput">{{ 'ADMIN.color' | translate}}:</label>
                     <select formControlName="color" class="custom-select" id="colorInput">

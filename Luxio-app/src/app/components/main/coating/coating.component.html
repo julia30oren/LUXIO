@@ -1,12 +1,14 @@
-<div class="container-fluid">
-    <h3>{{ 'COATING.title' | translate}}</h3>
+<div class="container-fluid  animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
+    <p class="main-title">{{ 'COATING.title' | translate}}</p>
+
     <div class="row align-items-center">
         <div class="col-10" [ngClass]="{Hebrew: languege==='iv'}">
-            <p>{{ 'COATING.instruction-1.part-1' | translate}}</p>
-            <p></p>
+            <p class="main-txt">{{ 'COATING.instruction-1.part-1' | translate}}</p>
         </div>
         <div class="col-2">
-            <h3><span>1.</span> {{ 'COATING.instruction-1.manicure' | translate}}</h3>
+            <ol start="1">
+                <span class="main-title-sm"><li style="list-style-type:decimal"><p style="color: black;">{{ 'COATING.instruction-1.manicure' | translate}}</p></li></span>
+            </ol>
         </div>
     </div>
 
@@ -18,10 +20,12 @@
             </video>
         </div>
         <div class="col-7" [ngClass]="{Hebrew: languege==='iv'}">
-            <p>{{ 'COATING.instruction-1.part-2' | translate}}<span class="prod-link" (click)="openBig('ds31-32')"> Prep & Wipe</span>{{ 'COATING.instruction-1.part-3' | translate}}</p>
+            <p class="main-txt">{{ 'COATING.instruction-1.part-2' | translate}}<span class="prod-link" (click)="openBig('ds31-32')"> Prep & Wipe</span>{{ 'COATING.instruction-1.part-3' | translate}}</p>
         </div>
         <div class="col-2">
-            <h3><span>2.</span> Prep & Wipe</h3>
+            <ol start="2">
+                <span class="main-title-sm"><li style="list-style-type:decimal"><p style="color: black;">Prep & Wipe</p></li></span>
+            </ol>
         </div>
     </div>
 
@@ -33,10 +37,12 @@
             </video>
         </div>
         <div class="col-7" [ngClass]="{Hebrew: languege==='iv'}">
-            <p>{{ 'COATING.instruction-1.part-4' | translate}}<span class="prod-link" (click)="openBig('sp10')">Sure Bond</span>{{ 'COATING.instruction-1.part-5' | translate}}</p>
+            <p class="main-txt">{{ 'COATING.instruction-1.part-4' | translate}}<span class="prod-link" (click)="openBig('sp10')">Sure Bond</span>{{ 'COATING.instruction-1.part-5' | translate}}</p>
         </div>
         <div class="col-2">
-            <h3><span>3.</span> Sure Bond</h3>
+            <ol start="3">
+                <span class="main-title-sm"><li style="list-style-type:decimal"><p style="color: black;">Sure Bond</p></li></span>
+            </ol>
         </div>
     </div>
 
@@ -48,10 +54,12 @@
             </video>
         </div>
         <div class="col-7" [ngClass]="{Hebrew: languege==='iv'}">
-            <p>{{ 'COATING.instruction-1.part-6' | translate}}<span class="prod-link" (click)="openBig('sp20')">Affixit</span>{{ 'COATING.instruction-1.part-7' | translate}}</p>
+            <p class="main-txt">{{ 'COATING.instruction-1.part-6' | translate}}<span class="prod-link" (click)="openBig('sp20')">Affixit</span>{{ 'COATING.instruction-1.part-7' | translate}}</p>
         </div>
         <div class="col-2">
-            <h3><span>4.</span> Affixit</h3>
+            <ol start="4">
+                <span class="main-title-sm"><li style="list-style-type:decimal"><p style="color: black;">Affixit</p></li></span>
+            </ol>
         </div>
     </div>
 
@@ -63,10 +71,12 @@
             </video>
         </div>
         <div class="col-7" [ngClass]="{Hebrew: languege==='iv'}">
-            <p>{{ 'COATING.instruction-1.part-8' | translate}}<span class="prod-link" (click)="openBig('002')">X-Bond</span>{{ 'COATING.instruction-1.part-9' | translate}}</p>
+            <p class="main-txt">{{ 'COATING.instruction-1.part-8' | translate}}<span class="prod-link" (click)="openBig('002')">X-Bond</span>{{ 'COATING.instruction-1.part-9' | translate}}</p>
         </div>
         <div class="col-2">
-            <h3><span>5.</span> X-Bond</h3>
+            <ol start="5">
+                <span class="main-title-sm"><li style="list-style-type:decimal"><p style="color: black;">X-Bond</p></li></span>
+            </ol>
         </div>
     </div>
 
@@ -78,10 +88,12 @@
             </video>
         </div>
         <div class="col-7" [ngClass]="{Hebrew: languege==='iv'}">
-            <p>{{ 'COATING.instruction-1.part-10' | translate}}</p>
+            <p class="main-txt">{{ 'COATING.instruction-1.part-10' | translate}}</p>
         </div>
         <div class="col-2">
-            <h3><span>6</span>. {{ 'COATING.instruction-1.dry' | translate}}</h3>
+            <ol start="6">
+                <span class="main-title-sm"><li style="list-style-type:decimal"><p style="color: black;">{{ 'COATING.instruction-1.dry' | translate}}</p></li></span>
+            </ol>
         </div>
     </div>
 
@@ -93,10 +105,12 @@
             </video>
         </div>
         <div class="col-7" [ngClass]="{Hebrew: languege==='iv'}">
-            <p>{{ 'COATING.instruction-1.part-11' | translate}}<span class="prod-link" (click)="openBig('010')">Build</span>{{ 'COATING.instruction-1.part-12' | translate}}</p>
+            <p class="main-txt"><span class="prod-link" (click)="openBig('010')">Build</span>{{ 'COATING.instruction-1.part-12' | translate}}</p>
         </div>
         <div class="col-2">
-            <h3><span>7.</span> Build</h3>
+            <ol start="7">
+                <span class="main-title-sm"><li style="list-style-type:decimal"><p style="color: black;">Build</p></li></span>
+            </ol>
         </div>
     </div>
 
@@ -108,10 +122,12 @@
             </video>
         </div>
         <div class="col-7" [ngClass]="{Hebrew: languege==='iv'}">
-            <p>{{ 'COATING.instruction-1.part-10' | translate}}</p>
+            <p class="main-txt">{{ 'COATING.instruction-1.part-10' | translate}}</p>
         </div>
         <div class="col-2">
-            <h3><span>8</span>. {{ 'COATING.instruction-1.dry' | translate}}</h3>
+            <ol start="8">
+                <span class="main-title-sm"><li style="list-style-type:decimal"><p style="color: black;">{{ 'COATING.instruction-1.dry' | translate}}</p></li></span>
+            </ol>
         </div>
     </div>
 
@@ -123,10 +139,12 @@
             </video>
         </div>
         <div class="col-7" [ngClass]="{Hebrew: languege==='iv'}">
-            <p>{{ 'COATING.instruction-1.part-13' | translate}}</p>
+            <p class="main-txt">{{ 'COATING.instruction-1.part-13' | translate}}</p>
         </div>
         <div class="col-2">
-            <h3><span>9</span>. {{ 'COATING.instruction-1.colour' | translate}}</h3>
+            <ol start="9">
+                <span class="main-title-sm"><li style="list-style-type:decimal"><p style="color: black;">{{ 'COATING.instruction-1.colour' | translate}}</p></li></span>
+            </ol>
         </div>
     </div>
 
@@ -138,10 +156,12 @@
             </video>
         </div>
         <div class="col-7" [ngClass]="{Hebrew: languege==='iv'}">
-            <p>{{ 'COATING.instruction-1.dry-color' | translate}}</p>
+            <p class="main-txt">{{ 'COATING.instruction-1.dry-color' | translate}}</p>
         </div>
         <div class="col-2">
-            <h3><span>10</span>. {{ 'COATING.instruction-1.dry' | translate}}</h3>
+            <ol start="10">
+                <span class="main-title-sm"><li style="list-style-type:decimal"><p style="color: black;">{{ 'COATING.instruction-1.dry' | translate}}</p></li></span>
+            </ol>
         </div>
     </div>
 
@@ -153,12 +173,13 @@
             </video>
         </div>
         <div class="col-7" [ngClass]="{Hebrew: languege==='iv'}">
-            <p>{{ 'COATING.instruction-1.part-14' | translate}}<span class="prod-link" (click)="openBig('020')">Luxio Gloss</span> / <span class="prod-link" (click)="openBig('not-10')">Shine-On</span>{{ 'COATING.instruction-1.part-15' | translate}}
+            <p class="main-txt">{{ 'COATING.instruction-1.part-14' | translate}}<span class="prod-link" (click)="openBig('020')">Luxio Gloss</span> / <span class="prod-link" (click)="openBig('not-10')">Shine-On</span>{{ 'COATING.instruction-1.part-15' | translate}}
                 <span class="prod-link" (click)="openBig('ds31-32')">Prep & Wipe</span>{{ 'COATING.instruction-1.part-16' | translate}}</p>
         </div>
         <div class="col-2">
-            <h3><span>11</span>. Top</h3>
+            <ol start="11">
+                <span class="main-title-sm"><li style="list-style-type:decimal"><p style="color: black;">Top</p></li></span>
+            </ol>
         </div>
     </div>
-
 </div>

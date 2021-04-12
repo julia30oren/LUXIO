@@ -1,16 +1,14 @@
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { LanguageService } from 'src/app/services/language.service';
-// import { CarouselModule, WavesModule } from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
 
   @ViewChild('comersial', { static: false }) public comersial: ElementRef;
-
   public languege: string;
   public play: boolean = true;
   public sound: boolean = true;
@@ -21,17 +19,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.lang_service._selected_from_service
-      .subscribe(date => { this.languege = date });
-  }
-
-  ngAfterViewInit() {
-    this.comersial.nativeElement.play();
-    this.comersial.nativeElement.autoplay = !this.comersial.nativeElement.autoplay;
+      .subscribe(date => this.languege = date);
   }
 
   playPause() {
-    if (!this.comersial.nativeElement.autoplay) this.comersial.nativeElement.play();
-    else this.comersial.nativeElement.pause();
+    if (!this.comersial.nativeElement.autoplay) { this.comersial.nativeElement.play(); }
+    else { this.comersial.nativeElement.pause(); }
     this.comersial.nativeElement.autoplay = !this.comersial.nativeElement.autoplay;
     this.play = !this.play;
   }
@@ -40,5 +33,4 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.comersial.nativeElement.muted = !this.comersial.nativeElement.muted;
     this.sound = !this.sound;
   }
-
 }

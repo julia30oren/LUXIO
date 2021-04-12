@@ -1,144 +1,24 @@
-.Hebrew {
-    text-align: right;
-    direction: rtl;
-}
-
-span {
-    color: brown;
-}
-
-.title {
-    margin-top: 50px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 25px;
-    letter-spacing: 1.5px;
-    word-spacing: 3px;
-}
-
-.introduction {
-    padding: 1%;
-    color: gray;
-    font-family: Georgia, serif;
+.smaller {
     font-size: 20px;
-    letter-spacing: 1.5px;
-    word-spacing: 3px;
-    text-align: justify;
 }
 
-.btn-block {
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
+.smallerHebrew {
+    font-size: x-large;
 }
 
-.description {
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    letter-spacing: 1.5px;
-    word-spacing: 3px;
-    padding: 5%;
-}
-
-.description>p {
-    padding: 1%;
-    color: gray;
-    font-family: Georgia, serif;
-    letter-spacing: 1px;
-    word-spacing: 3px;
-    font-size: 14px;
-}
-
-@media screen and (max-width: 1200px) {
-    .title {
-        font-size: 20px;
-    }
-    .introduction {
-        font-size: 16px;
-        letter-spacing: 1px;
-        word-spacing: 2px;
-    }
-    .description>p {
-        font-size: 14px;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .title {
-        font-size: 18px;
-        letter-spacing: 1px;
-        word-spacing: 2px;
-    }
-    .introduction,
-    .description>p {
-        font-size: 12px;
-        letter-spacing: 0.5px;
-        word-spacing: 1px;
-    }
+.titleImg {
+    margin-top: 10px;
+    max-height: 200px;
+    max-width: 100%;
 }
 
 .small-card-img {
     width: 100%;
 }
 
-.row {
-    margin-top: 20px;
-}
-
-@media screen and (max-width: 1200px) {
-    .row {
-        margin-top: 0;
-    }
-}
-
-
-/* button icons */
-
-i {
-    font-size: 150%;
-}
-
-.hart-button,
-.cart-button {
-    margin-left: 1%;
-    margin-top: 2%;
-    border: none;
+.btn-block {
     background-color: rgba(0, 0, 0, 0);
-}
-
-.active {
-    color: green;
-}
-
-.not-active {
-    color: rgba(128, 128, 128, 0.5);
-}
-
-.red-hart {
-    color: rgb(194, 0, 0);
-}
-
-.red-hart:hover {
-    color: rgba(128, 128, 128, 0.5);
-}
-
-.grey-hart {
-    color: rgba(128, 128, 128, 0.5);
-}
-
-.grey-hart:hover,
-.cart-button:hover {
-    color: rgb(194, 0, 0);
-}
-
-.hart-button:hover {
-    color: rgb(194, 0, 0);
-}
-
-.main-font {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 14px;
-    letter-spacing: 3px;
-    word-spacing: -0.5px;
-    text-transform: uppercase;
+    border: none;
 }
 
 

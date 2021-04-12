@@ -1,21 +1,3 @@
-.Hebrew {
-    text-align: right;
-    direction: rtl;
-}
-
-.H {
-    direction: rtl;
-}
-
-span {
-    color: brown;
-}
-
-i {
-    font-size: 150%;
-}
-
-
 /* ---------------------RESPOND FROM DB message--------- */
 
 .RESPOND {
@@ -91,7 +73,7 @@ i {
 }
 
 
-/* ------------------------------------------------- */
+/* -------------------------------------MAIN------------ */
 
 .main-app {
     width: 100%;
@@ -100,7 +82,6 @@ i {
 .main-app>div {
     width: 1200px;
     margin: auto;
-    background: rgb(255, 255, 255);
 }
 
 @media screen and (max-width: 1200px) {
@@ -111,14 +92,6 @@ i {
 
 .btn-link>i {
     color: brown;
-    font-size: 150%;
-}
-
-.title {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 25px;
-    letter-spacing: 3.4px;
-    word-spacing: 3.4px;
 }
 
 select {
@@ -184,11 +157,6 @@ option {
     color: black;
 }
 
-.regF {
-    margin: 1%;
-    max-height: 30%;
-}
-
 .form-row {
     margin-top: 10px;
 }
@@ -217,7 +185,7 @@ option {
 }
 
 
-/* MESSAGE TO USER FOR REGISTRATION */
+/*--------------------- MESSAGE TO USER FOR REGISTRATION */
 
 .advertis {
     position: fixed;
@@ -230,58 +198,6 @@ option {
     border: rgb(58, 58, 58) 0.5px solid;
     -webkit-box-shadow: 2px 5px 16px 0px #000000, 0px 2px 25px 29px rgba(0, 0, 0, 0.19);
     box-shadow: 2px 5px 16px 0px #505050, 0px 2px 25px 29px rgba(0, 0, 0, 0.19);
-}
-
-.adv>h1 {
-    margin-top: 15px;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 25px;
-    letter-spacing: 1.5px;
-    word-spacing: 3px;
-}
-
-.adv>img {
-    width: 70%;
-    margin-left: 15%;
-}
-
-.adv>p {
-    margin-top: 10px;
-    margin-bottom: 30px;
-    padding: 1%;
-    color: gray;
-    font-family: Georgia, serif;
-    font-size: 20px;
-    letter-spacing: 1px;
-    word-spacing: 2px;
-    text-align: justify;
-}
-
-@media screen and (max-width: 1200px) {
-    .adv>h1 {
-        margin-top: 10px;
-        font-size: 20px;
-        letter-spacing: 1px;
-        word-spacing: 2px;
-    }
-    .adv>p {
-        margin-top: 5px;
-        margin-bottom: 20px;
-        font-size: 16px;
-        letter-spacing: 0.5px;
-        word-spacing: 1px;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .adv>h1 {
-        font-size: 16px;
-    }
-    .adv>p {
-        margin-bottom: 10px;
-        font-size: 12px;
-    }
 }
 
 .message-link {
@@ -314,6 +230,12 @@ option {
 
 .navbar-toggler {
     color: brown;
+}
+
+.nav-txt {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    word-spacing: 2px;
 }
 
 .search-res-list {

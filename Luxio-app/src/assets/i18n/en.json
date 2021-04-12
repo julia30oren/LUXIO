@@ -5,7 +5,7 @@
         "admins": "Admins",
         "language": "language",
         "NEW": {
-            "title": "WHAT'S NEW"
+            "title": "NEW"
         },
         "PRODUCTS": {
             "title": "PRODUCTS"
@@ -14,7 +14,7 @@
             "title": "STORE"
         },
         "TRYME": {
-            "title": "TRY ME"
+            "title": "TRYME"
         },
         "COURSES": {
             "title": "COURSES"
@@ -74,9 +74,9 @@
 
         "title-2": "The AKZÉNTZ company (Canada), founded in 1989, represents a full range of high-quality materials for nails, their modeling, strengthening, repair, coating and design of any complexity.",
         "title-3": "Our main priorities:",
-        "par-1": " - security",
-        "par-2": " - quality",
-        "par-3": " - comfort",
+        "par-1": "security",
+        "par-2": "quality",
+        "par-3": "comfort",
 
         "title-4": "AKZÉNTZ includes 5 lines:",
         "par-4": "LUXIO GEL",
