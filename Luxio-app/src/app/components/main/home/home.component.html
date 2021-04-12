@@ -5,15 +5,9 @@
             <p>{{'HOME.title-2' | translate}}</p>
             <dl [ngClass]="{margRight100: languege==='iv', margLeft100: languege!=='iv'}" class="marginTop50">
                 <dd>{{'HOME.title-3' | translate}}</dd>
-                <dd>-
-                    <small class="priorities">{{ 'HOME.par-1' | translate }}</small>
-                </dd>
-                <dd>-
-                    <small class="priorities">{{ 'HOME.par-2' | translate }}</small>
-                </dd>
-                <dd>-
-                    <small class="priorities">{{ 'HOME.par-3' | translate }}</small>
-                </dd>
+                <dd>- <b class="priorities">{{ 'HOME.par-2' | translate }}</b></dd>
+                <dd>- <b class="priorities">{{ 'HOME.par-3' | translate }}</b></dd>
+                <dd>- <b class="priorities">{{ 'HOME.par-1' | translate }}</b></dd>
             </dl>
         </div>
 
@@ -38,7 +32,8 @@
             <p [ngClass]="{introductionHebrew: languege==='iv'}">{{'HOME.title-5' | translate}}<br>{{'HOME.title-6' | translate}}</p>
             <dl [ngClass]="{margRight100: languege==='iv', margLeft100: languege!=='iv'}" class="marginTop50">
                 <dd>{{'HOME.title-4' | translate}}</dd>
-                <dd>- <a href="roducts/options">{{ 'HOME.par-5' | translate }}</a></dd>
+                <dd>- <a href="products/luxio">{{ 'HOME.par-4' | translate }}</a></dd>
+                <dd>- <a href="products/options">{{ 'HOME.par-5' | translate }}</a></dd>
                 <dd>- <a href="products/gel-play">{{ 'HOME.par-6' | translate }}</a></dd>
                 <dd>- <a href="products/pro-formance">{{ 'HOME.par-7' | translate }}</a></dd>
                 <dd>- <a href="products/basics">{{ 'HOME.par-8' | translate }}</a></dd>

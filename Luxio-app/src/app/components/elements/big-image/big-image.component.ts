@@ -58,10 +58,6 @@ export class BigImageComponent implements OnInit {
         this.getSelected();
       });
   }
-  prevenFromCopiing() {
-    document.addEventListener('contextmenu',
-      event => event.preventDefault());
-  }
 
   getSelected() {
     let i = this.selectedIndex;
@@ -119,9 +115,6 @@ export class BigImageComponent implements OnInit {
   }
 
   selectImage(link: string) {
-    document.addEventListener('contextmenu',
-      event => event.preventDefault());
-
     this.selectedProd_Img = link;
   }
 

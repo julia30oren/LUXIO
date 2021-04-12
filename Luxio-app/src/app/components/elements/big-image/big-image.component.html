@@ -33,7 +33,7 @@
                         <!-- It's container of the magnify glass -->
                         <!-- <div id="glass"></div>
                         <div (mousemove)="mouseMove($event);"> -->
-                        <img id="bigImage" src={{selectedProd_Img}} alt={{item.name}} class="big-img" (click)="prevenFromCopiing();" />
+                        <img id="bigImage" src={{selectedProd_Img}} alt={{item.name}} class="big-img" />
                         <!-- </div> -->
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="sm-text">
+                <div class="main-txt">
                     <p *ngIf="languege==='en'">{{item.coment_eng}}</p>
                     <p *ngIf="languege==='ru'">{{item.coment_rus}}</p>
                     <p *ngIf="languege==='iv'">{{item.coment_iv}}</p>
@@ -106,7 +106,7 @@
         </div>
         <!-- -----------------------------------EXTRA -->
         <div class="row">
-            <div id="extra-info-div" class="sm-text">
+            <div id="extra-info-div" class="main-txt">
                 <div [ngClass]="{Hebrew: languege==='iv'}" style="margin-top: 50px;">
                     <!-- creation -->
                     <div class="box">

@@ -56,6 +56,7 @@
         "log-in": "Log in",
         "sign-out": "Log Out"
     },
+
     "TRYME": {
         "par": "Mini case that includes Luxio in a size of 5 ml."
     },
@@ -102,7 +103,8 @@
 
     "NEW": {
         "title": "THE LATEST CREATIONS FROM THE AKZÉNTZ LABORATORY",
-        "loz": " is consistently releasing new and award-winning nail products. Through extensive research and innovation, AKZÉNTZ has earned a reputation as a formidable force in the beauty industry, with exclusive for formulations designed to inspire and support the skills of professional nail technicians around the globe. Our team of chemists and chemical engineers strive for perfection when creating Akzentz professional nail products.",
+        "loz-1": "Through extensive research and innovation as well as exclusive formulas ",
+        "loz-2": " regularly releases new products to the nail industry market, designed to inspire and develop the professional skills of nail professionals around the world.",
         "varn": "AVAILABLE ONLY TO CERTIFIED AND LICENSED PROFESSIONALS",
         "new": "New ",
         "avantgarde-m": "Introducing a series of uniquely artistic tones inspired by contemporary Avant Garde art and fashion. Six new colours to be added into the Luxio line.",
@@ -116,6 +118,31 @@
         "info-2": "COMMING SOON",
         "button-shop": "Shop",
         "button-close": "Close"
+    },
+
+    "COATING": {
+        "title": "Technology for working with 100% gels X-Bond and Build from AKZÉNTZ.",
+        "instruction-1": {
+            "manicure": "Manicure",
+            "part-1": "When performing classic manicure with maceration (soaking), remember that maceration should not exceed more than three minutes! Combined and classic manicure with a remover and the use of water is allowed. Before degreasing the nail plate, it is necessary to treat the area near the cuticle and lateral sinuses with a soft buff in order to remove the lipid layer (as well as the remnants of the remover) from the nail plate.",
+            "part-2": "Then start removing the grease from the surface of the nail with the liquid ",
+            "part-3": ". Before coating, it is best to thoroughly remove the grease twice, paying attention to the area near the cuticle, lateral cavities, below the tip of the nail.",
+            "part-4": "With a classic manicure with maceration (soaking), or using water in a manicure, and even with very wet client hands, it is necessary to use a dehydrator ",
+            "part-5": ". The dehydrator is applied to the zone of detachment - along the perimeter of the nail plate.",
+            "part-6": "In the case of thin, flaking or problem nails, an acid-free primer ",
+            "part-7": " should be used (works on the principle of double-sided tape). It is applied only to the free edge and end of the nail. It is important to apply the primer according to the following scheme: slightly squeezing the brush against the neck of the bottle, touch the lint-free napkin (let the excess primer soak into the napkin) and use such a semi-dry brush to walk along the free edge. Otherwise, if the primer is applied excessively, the opposite result (detachment) is possible. It is important to let the primer air dry for 1.5-2 minutes.",
+            "part-8": "Getting started applying the liquid base ",
+            "part-9": ". Upon AKZÉNTZ technology, the base is applied in a thin layer, does not require removing the sticky layer. It is very important to apply perfect base coat. Where there is a base, there will be a color gel.",
+            "dry": "Dry",
+            "part-10": "Dry all the nails. Curing time - 30 seconds LED lamp / 2 minutes UV lamp.",
+            "part-12": "has a thick consistency, which allows you to align the deformed nail plate, the surface for beautiful highlights. First, apply a thin layer on the entire nail plate (without drying it in a lamp), and then proceed to tearing out and strengthening. It is important to work in a checkerboard pattern!",
+            "colour": "Color",
+            "part-13": "When working with color gels, it is important to mix the pigment correctly using an iron spatula / pusher or a metal tool. Stir the gels for 1-2 minutes, all new bottles and bottles that have not been in use for a long time (after 1.5-2 weeks the pigment settles again).",
+            "dry-color": "Next, you need to apply colored gels in two layers, even the end of the nail. Colors cure 30 seconds LED / 2 minutes UV. Colors, regardless of the applied layer (thickness), do not boil, do not turn into an «accordion».",
+            "part-14": "Top",
+            "part-15": " applied in a middle layer, without pressing the brush to the nail plate. The material will cure in 30 seconds LED lamp / 2 minutes UV lamp. Removal of the sticky layer should be done with liquid ",
+            "part-16": ". No removal of the sticky layer is required for Shine-On."
+        }
     },
 
     "SIGN-IN": {
