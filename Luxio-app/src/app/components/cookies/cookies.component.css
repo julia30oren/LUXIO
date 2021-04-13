@@ -18,8 +18,3 @@
 .buttons>button {
     width: 48%;
 }
-
-.Hebrew {
-    direction: rtl;
-    text-align: right;
-}

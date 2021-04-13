@@ -1,11 +1,12 @@
 <div class="container-fluid animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
+
     <div class="row">
         <div class="col-md-6 col-12 animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" style="margin: auto;" [ngClass]="{Hebrew: languege==='iv'}">
-            <p class="main-title" style="text-align: center;">
+            <p class="main-title" style="text-align: center;" [ngClass]="{HebrewDirection: languege==='iv'}">
                 {{ 'COURSES.BLOK-1.TEXT-1' | translate}}
                 <span style="color:gray;">*<span>{{ 'COURSES.BLOK-1.TEXT-2' | translate}}</span>*</span>
                 {{ 'COURSES.BLOK-1.TEXT-3' | translate}}</p>
-            <p class="main-txt">{{ 'COURSES.BLOK-1.TEXT-4' | translate}}</p>
+            <p class="main-txt" [ngClass]="{Hebrew: languege==='iv'}">{{ 'COURSES.BLOK-1.TEXT-4' | translate}}</p>
             <p>{{ 'CONTACT.city' | translate}}, {{ 'CONTACT.street' | translate}}</p>
             <!-- <div class="container-fluid">
                 <div class="row contactRow">
@@ -32,12 +33,12 @@
             <img style="width: 100%;" src="https://i.pinimg.com/originals/04/70/a2/0470a2f453d61ce9270d1990b514f302.jpg" alt="AKZÉNTZ" />
         </div>
         <div class="col-md-6 col-12 animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" style="margin: auto;" [ngClass]="{Hebrew: languege==='iv'}">
-            <p class="main-title" style="text-align: center;">
+            <p class="main-title" style="text-align: center;" [ngClass]="{HebrewDirection: languege==='iv'}">
                 {{ 'COURSES.BLOK-2.TEXT-1' | translate}}
                 <span style="color:gray;">*<span>{{ 'COURSES.BLOK-2.TEXT-2' | translate}}</span>*</span>
                 {{ 'COURSES.BLOK-2.TEXT-3' | translate}}
             </p>
-            <p class="main-txt">{{ 'COURSES.BLOK-2.TEXT-4' | translate}}</p>
+            <p class="main-txt" [ngClass]="{Hebrew: languege==='iv'}">{{ 'COURSES.BLOK-2.TEXT-4' | translate}}</p>
             <p>{{ 'COURSES.BLOK-3.TEXT-5' | translate}}</p>
             <!-- <div class="container-fluid">
                 <div class="row contactRow">
@@ -58,11 +59,11 @@
 
     <div class="row">
         <div class="col-md-6 col-12  animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" style="margin: auto;" [ngClass]="{Hebrew: languege==='iv'}">
-            <p class="main-title" style="text-align: center;">
+            <p class="main-title" style="text-align: center;" [ngClass]="{HebrewDirection: languege==='iv'}">
                 {{ 'COURSES.BLOK-3.TEXT-1' | translate}}
                 <span style="color:gray;">*<span>{{ 'COURSES.BLOK-3.TEXT-2' | translate}}</span>*</span>
             </p>
-            <p class="main-txt">{{ 'COURSES.BLOK-3.TEXT-4' | translate}}</p>
+            <p class="main-txt" [ngClass]="{Hebrew: languege==='iv'}">{{ 'COURSES.BLOK-3.TEXT-4' | translate}}</p>
             <p>{{ 'COURSES.BLOK-3.TEXT-5' | translate}}</p>
             <!-- <div class="container-fluid">
                 <div class="row contactRow">

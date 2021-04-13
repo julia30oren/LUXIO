@@ -27,23 +27,31 @@ span {
     text-transform: uppercase;
 }
 
+.main-title[class~="Hebrew"],
+.main-title[class~="HebrewDirection"] {
+    font-size: 32px;
+}
+
 .main-txt {
     padding: 1%;
     padding-top: 0;
-    color: rgb(107, 107, 107);
+    color: rgb(39, 39, 39);
     font-family: Georgia, serif;
     font-size: 22px;
+}
+
+.main-txt[class~="Hebrew"],
+.main-txt[class~="HebrewDirection"] {
+    font-size: 26px;
 }
 
 .Hebrew {
     text-align: right;
     direction: rtl;
-    font-size: xx-large;
 }
 
 .HebrewDirection {
     direction: rtl;
-    font-size: x-large;
 }
 
 @media screen and (max-width: 900px) {
@@ -63,14 +71,16 @@ span {
         font-size: 18px;
         word-spacing: 1.5px;
     }
+    .main-title[class~="Hebrew"],
+    .main-title[class~="HebrewDirection"] {
+        font-size: 22px;
+    }
     .main-txt {
         font-size: 16px;
     }
-    .Hebrew {
-        font-size: large;
-    }
-    .HebrewDirection {
-        font-size: medium;
+    .main-txt [class~="Hebrew"],
+    .main-txt [class~="HebrewDirection"] {
+        font-size: 20px;
     }
 }
 
@@ -79,14 +89,16 @@ span {
         font-size: 22px;
         word-spacing: 2px;
     }
+    .main-title[class~="Hebrew"],
+    .main-title[class~="HebrewDirection"] {
+        font-size: 24px;
+    }
     .main-txt {
         font-size: 20px;
     }
-    .Hebrew {
-        font-size: x-large;
-    }
-    .HebrewDirection {
-        font-size: large;
+    .main-txt [class~="Hebrew"],
+    .main-txt [class~="HebrewDirection"] {
+        font-size: 22px;
     }
 }
 

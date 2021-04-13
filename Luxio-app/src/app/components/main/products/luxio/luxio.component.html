@@ -3,9 +3,9 @@
 <div class="container-fluid  marginTop50 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
     <div class="row marginTop50">
         <div class="col-lg-7 col-12" [ngClass]="{Hebrew: languege==='iv'}">
-            <p class="main-title">{{ 'LUXIO.paragraf-1.title' | translate}}</p>
-            <p class="main-txt">{{ 'LUXIO.paragraf-1.text-1' | translate}}</p>
-            <p class="main-txt"><span>LUXIO GEL</span> {{ 'LUXIO.paragraf-1.text-2' | translate}}</p>
+            <p class="main-title" [ngClass]="{Hebrew: languege==='iv'}">{{ 'LUXIO.paragraf-1.title' | translate}}</p>
+            <p class="main-txt" [ngClass]="{Hebrew: languege==='iv'}">{{ 'LUXIO.paragraf-1.text-1' | translate}}</p>
+            <p class="main-txt" [ngClass]="{Hebrew: languege==='iv'}">{{ 'LUXIO.paragraf-1.text-12' | translate}} <span>LUXIO GEL</span> {{ 'LUXIO.paragraf-1.text-2' | translate}}</p>
         </div>
         <div class="col-lg-5 col-12 animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow">
             <img class="luxio-images" src="https://akzentz.com/wp-content/uploads/2018/06/akzentz-luxio-gel-bossy.png" alt="AKZENTZ" />
@@ -17,7 +17,7 @@
             <img class="luxio-images animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" src="https://i.pinimg.com/originals/92/4e/4f/924e4f8f1127008a2f35f9b05e568e46.png" alt="AKZENTZ" />
         </div>
         <div class="marginTop50 col-lg-5" [ngClass]="{Hebrew: languege==='iv'}">
-            <p class="main-txt">{{ 'LUXIO.paragraf-2.text-2' | translate}}</p>
+            <p class="main-txt" [ngClass]="{Hebrew: languege==='iv'}">{{ 'LUXIO.paragraf-2.text-2' | translate}}</p>
         </div>
     </div>
 </div>
@@ -28,6 +28,6 @@
 </div>
 <hr/>
 <div class="marginTop50">
-    <h5 [ngClass]="{Hebrew: languege==='iv'}">LUXIO {{ 'LUXIO.coloures' | translate}} | 180+</h5>
+    <h5 [ngClass]="{Hebrew: languege==='iv'}" style="margin-left: 15px; margin-right: 15px;">LUXIO {{ 'LUXIO.coloures' | translate}} | 180+</h5>
     <app-shop-cards></app-shop-cards>
 </div>

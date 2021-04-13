@@ -1,12 +1,3 @@
-.Hebrew {
-    text-align: right;
-    direction: rtl;
-}
-
-span {
-    color: brown;
-}
-
 .empty {
     width: 100%;
     text-align: center;

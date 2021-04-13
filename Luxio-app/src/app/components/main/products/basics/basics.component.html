@@ -2,8 +2,8 @@
 <div class="container-fluid">
     <div class="row marginTop50">
         <div class="col animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">
-            <p class="main-title">{{'BASICS.title' | translate}}</p>
-            <p class="main-txt">{{'BASICS.text' | translate}}</p>
+            <p class="main-title" [ngClass]="{Hebrew: languege==='iv'}">{{'BASICS.title' | translate}}</p>
+            <p class="main-txt" [ngClass]="{Hebrew: languege==='iv'}">{{'BASICS.text' | translate}}</p>
         </div>
     </div>
 </div>
