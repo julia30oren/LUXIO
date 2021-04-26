@@ -50,7 +50,7 @@
             "title": "ORDERS"
         },
         "basics": "Technical materials",
-        "tools": "Supporting tools",
+        "tools": "Tools",
         "rights": "MITRA GROUP",
         "welcome": "Hello",
         "log-in": "Log in",
@@ -58,15 +58,17 @@
     },
 
     "TRYME": {
-        "par": "Mini case that includes Luxio in a size of 5 ml."
+        "par": "Mini case that includes LUXIO in a size of 5 ml."
     },
 
-    "FOOTER": {
-        "commertial": {
-            "l1": "buy any 5 bottles from the",
-            "l2": "lines and get 1 for",
-            "l3": "free"
-        }
+    "COMMERCIAL": {
+        "bottle-1": "1st bottle",
+        "bottle-2": "2nd bottle",
+        "bottle-3": "3rd bottle",
+        "bottle-4": "4th bottle",
+        "bottle-5": "5th bottle",
+        "bottle-6-free": "6th bottle (free)",
+        "add-set": "Add selected items to cart?"
     },
 
     "HOME": {
@@ -256,12 +258,12 @@
             "list-1": "Odorless",
             "list-2": "Does not cause allergies",
             "list-3": "Has no varnish component",
-            "list-4": "Safe and easy removal by dissolving with liquid Akzentz Soak Off",
+            "list-4": "Safe and easy removal by dissolving with liquid AKZÉNTZ Soak Off",
             "list-5": "Be sure to remix the color before first use!"
         },
         "GEL-PLAY": {
             "list-1": "Line designed specifically for nail art and design.",
-            "list-2": "GEL PLAY gels dissolve easily and are removed with Akzentz Soak Off."
+            "list-2": "GEL PLAY gels dissolve easily and are removed with AKZÉNTZ Soak Off."
         },
         "OPTIONS": {
             "main": "All gels in the Options line are solvent free, odorless and keep the nail plate in perfect condition. OPTIONS SOAK OFF SYSTEMS - 100% strengthening and building gel."
@@ -310,14 +312,12 @@
             "text-7": " - 6 shades of densely pigmented gel with very fine colored glitters. Suitable as a stand alone coating and for selective designs.",
             "text-8": " – 3 flake effect gel shade.",
             "text-9": " –  colorless transparent gel base for adding glitter and creating new shades.",
-            "text-10": " - gel of dense consistency and extra strong hold for rhinestones, stones and other details. It is applied after the top coat, directly under the design detail."
+            "text-10": " - gel of dense consistency and extra strong hold for rhinestones, stones and other details. It is applied after the top coat, directly under the design detail.",
+            "text-11": " - 6 shades of the most pigmented gel without a sticky layer. Suitable for design and drawing very thin lines."
         },
         "paragraf-2": {
-            "title": "GIVE YOUR CREATIVITY WILL",
-            "text-1": " – a 100% gel line designed specifically for nail art and design. The GEL PLAY line assortment consists of 10 collections of densely pigmented gels and glitters. All GEL PLAY gels dissolve easily and are removed with Akzentz Soak Off."
-        },
-        "paragraf-3": {
-            "title": "Mix, create and bring your wildest ideas to life with GEL PLAY!"
+            "title": "UNLEASH YOUR CREATIVITY",
+            "text-1": " – a 100% gel line designed specifically for nail art and design. The GEL PLAY line assortment consists of 11 collections of densely pigmented gels and glitters. All GEL PLAY gels dissolve easily and are removed with AKZÉNTZ Soak Off."
         }
     },
 
@@ -326,10 +326,10 @@
             "title": "OPTIONS",
             "text-1": "OPTIONS line - consists of a rich palette of 100% gel and a strengthening and building system.",
             "text-2": "All gels in the Options line are solvent free, odorless and keep the nail plate in perfect condition.",
-            "text-3": " - 100% strengthening and building gel. Provides extra firmness to brittle, soft and damaged nails. Strengthens, restores and improves the condition of the nail plate. Safe and easy removal by dissolving with Akzentz Soak Off. Provides a bright glossy shine and natural look."
+            "text-3": " - 100% strengthening and building gel. Provides extra firmness to brittle, soft and damaged nails. Strengthens, restores and improves the condition of the nail plate. Safe and easy removal by dissolving with AKZÉNTZ Soak Off. Provides a bright glossy shine and natural look."
         },
         "paragraf-2": {
-            "text-1": " - 100% gel for design and coverage. Dense, rich pigmented shades. Safe and easy removal by dissolving with Akzentz Soak Off. Ultra-thin coating that does not crack, does not shrink, does not chip. Compatible with Luxio base, top and colors."
+            "text-1": " - 100% gel for design and coverage. Dense, rich pigmented shades. Safe and easy removal by dissolving with AKZÉNTZ Soak Off. Ultra-thin coating that does not crack, does not shrink, does not chip. Compatible with LUXIO base, top and colors."
         }
     },
 
@@ -472,8 +472,8 @@
     },
 
     "BASICS": {
-        "title": "Basics",
-        "text": "Essential products used in the application of Akzentz Gel systems. Our Basics line includes only the highest quality products made from the finest ingredients."
+        "title": "Technical materials",
+        "text": "Essential products used in the application of AKZÉNTZ Gel systems. Our Basics line includes only the highest quality products made from the finest ingredients."
     },
 
     "TOOLS": {
@@ -485,7 +485,7 @@
         "BLOK-1": {
             "TEXT-1": "Introductory seminars",
             "TEXT-2": "for free",
-            "TEXT-3": "with various series of the AKZENTZ company are held on Mondays and Thursdays.",
+            "TEXT-3": "with various series of the AKZÉNTZ company are held on Mondays and Thursdays.",
             "TEXT-4": "For more information or to register for one of the seminars, please contact us at 055-9519777 or 054-8785521."
         },
         "BLOK-2": {
@@ -509,6 +509,7 @@
     },
 
     "PERSONAL-AREA": {
+        "out-of-stock": "Out of stock",
         "wishlist": "Wishlist",
         "cart": "Cart",
         "purchase-history": "Purchase history",
@@ -519,6 +520,8 @@
         "order-total": "Order total",
         "save-shipping-address": "Save shipping address",
         "CARD": {
+            "promotional-set": "Promotional Set",
+            "free": "(for free)",
             "total-price": "Total price:",
             "remove": "Remove",
             "from-cart": "from cart",
@@ -600,7 +603,7 @@
         "block-3": {
             "title-1": "תנאים וחוקים ",
             "p-1": "יש לקרוא את מדיניות הפרטיות הזו בעיון ולחזור לדף הזה מעת לעת כדי לבדוק את כל השינויים האפשריים שנוספו. כל המשתמש באתר זה מסכים כי הגישה והשימוש באתר זה כפופים לתנאים והתניות ומגבלות חוקיות אחרות. אם אינך מסכים לתנאי וההתניות, אין להשתמש באתר זה.",
-            "p-1-2": "כל המוצרים של Akzentz המוצגים באתר זה נועדו לשימוש מקצועי בלבד.",
+            "p-1-2": "כל המוצרים של AKZÉNTZ המוצגים באתר זה נועדו לשימוש מקצועי בלבד.",
             "title-2": "זכויות יוצרים",
             "p-2": "כל התוכן הכלול באתר זה, כולל, אך לא מוגבל לטקסט, גרפיקה או קוד, מוגן בזכויות יוצרים כיצירה קולקטיבית על פי החוק בישראל וחוקי זכויות יוצרים אחרים, ובבעלות מיטרה גרופ (2014) בע''מ. היצירה הקולקטיבית כוללת עבודות ברישיון בבעלות מיטרה גרופ (2014) בע''מ. כל הזכויות שמורות. ניתנת הרשאה להעתיק ולהדפיס אלקטרונית חלקים של עותקים קשיחים של אתר זה למטרה היחידה של ביצוע הזמנה בחברת מיטרה גרופ (2014) בע''מ או רכישת מוצרי מיטרה גרופ (2014) בע''מ. אתה רשאי להציג בכפוף לכל מגבלה או מגבלות שצוינו במפורש בנוגע לחומר ספציפי, להוריד או להדפיס חלקים מהחומר מאזורים שונים באתר אך ורק לשימושך שאינו מסחרי, או לבצע הזמנה אצל מיטרה גרופ (2014) בע''מ או לרכישת מוצרים של מיטרה גרופ (2014) בע''מ. כל שימוש אחר, כולל אך לא מוגבל לשכפול, הפצה, הצגת או העברת תכני אתר זה אסור בהחלט, אלא אם כן הוסמך על ידי מיטרה גרופ (2014) בע''מ. בנוסף אתה מסכים שלא לשנות או למחוק הודעות קנייניות מחומרים שהורדו מהאתר.",
             "title-3": "סימני מסחר",

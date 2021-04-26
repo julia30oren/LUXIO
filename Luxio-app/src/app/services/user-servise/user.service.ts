@@ -141,25 +141,25 @@ export class UserService {
   };
 
   // -----------------------------------------------SAVING NEW WISHLIST----------------------
-  saveWishlist_toDB(newWishlist: Array<any>) {
+  saveWishlist_toDB(newWishlist: Array<any>, lang: string) {
     let userLog = localStorage.getItem('u324_3i_25d'); //geting users id
     let toSend = { _id: userLog, favorites: newWishlist };
     // ----------------------------------------saving new favorites to service----------------
     this.shop_Service.favorites(newWishlist);
     // -----------------------------------------saving new favorites to DB----------------
-    return this.http.post(`${this.user_URL}/new-favorites`, toSend)
+    return this.http.post(`${this.user_URL}/${lang}/new-favorites`, toSend)
       .subscribe(date => this.respond_Service.saveRespond(date));
   }
 
   // -----------------------------------------------SAVING NEW CART----------------------
-  saveCart_toDB(newCart: Array<any>) {
+  saveCart_toDB(newCart: Array<any>, lang: string) {
     let userLog = localStorage.getItem('u324_3i_25d');
     let toSend = { _id: userLog, cart: newCart };
     // ----------------------------------------saving new cart to service----------------
     this.shop_Service.cart(newCart);
     localStorage.setItem('my_764528_ct', JSON.stringify(newCart));  // save new cart to localStorage
     // -----------------------------------------saving new cart to DB----------------
-    return this.http.post(`${this.user_URL}/new-cart`, toSend)
+    return this.http.post(`${this.user_URL}/${lang}/new-cart`, toSend)
       .subscribe(date => this.respond_Service.saveRespond(date));
   }
 
@@ -192,6 +192,8 @@ export class UserService {
   // --------------------------------------------------------------------------------FUNCTIONS-----------------
   // ----to save user on service----------
   seveUser_onService(userFullInfo) {
+    console.log('userFullInfo')
+
     // geting user and token:
     let user = userFullInfo[0].user;
     let token = userFullInfo[0].token;
@@ -203,11 +205,12 @@ export class UserService {
     localStorage.setItem('token', token);
     localStorage.setItem('my_764528_f', JSON.stringify(user.favorites));
     localStorage.setItem('my_764528_ct', JSON.stringify(user.cart));
+    localStorage.setItem('special_set', JSON.stringify(user.specialSet))
   }
 
 
   // ----------------------------------------------------NEW WISHLIST---------
-  saveToFavorites(newToFavorites: object) {
+  saveToFavorites(newToFavorites: object, lang: string) {
     // ----geting wishlist from localStorage
     let localWishlist = JSON.parse(localStorage.getItem('my_764528_f')) || [];
 
@@ -226,12 +229,12 @@ export class UserService {
     }
 
     setTimeout(() => {
-      this.saveWishlist_toDB(localWishlist);  // save new wishlist to DB
+      this.saveWishlist_toDB(localWishlist, lang);  // save new wishlist to DB
       localStorage.setItem('my_764528_f', JSON.stringify(localWishlist));  // save new wishlist to localStorage
     }, 500);
   }
   // ---------------------------after user logd in
-  usersFavorites(newToFavorites) {
+  usersFavorites(newToFavorites, lang: string) {
     // ----geting wishlist from localStorage
     let localWishlist = JSON.parse(localStorage.getItem('my_764528_f')) || [];
 
@@ -248,14 +251,14 @@ export class UserService {
     }
 
     setTimeout(() => {
-      this.saveWishlist_toDB(localWishlist);  // save new wishlist to DB
+      this.saveWishlist_toDB(localWishlist, lang);  // save new wishlist to DB
       localStorage.setItem('my_764528_f', JSON.stringify(localWishlist));  // save new wishlist to localStorage
     }, 500);
   }
 
 
   // ----------------------------------------------------NEW CART---------
-  saveToCart(newToCart: object) {
+  saveToCart(newToCart: object, lang: string) {
     // ----geting cart from localStorage
     let localCart = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
 
@@ -272,11 +275,11 @@ export class UserService {
     }
 
     setTimeout(() => {
-      this.saveCart_toDB(localCart);  // save new cart to DB
+      this.saveCart_toDB(localCart, lang);  // save new cart to DB
     }, 500);
   }
   // ---------------------------after user loged in
-  usersCart(newToCart) {
+  usersCart(newToCart, lang: string) {
     // ----geting cart from localStorage
     let localCart = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
 
@@ -293,8 +296,27 @@ export class UserService {
     }
 
     setTimeout(() => {
-      this.saveCart_toDB(localCart);  // save new cart to DB
+      this.saveCart_toDB(localCart, lang);  // save new cart to DB
     }, 500);
+  }
+
+  // ---------------------------------------------------special order-----
+  saveSpecialSet_toDB(user_id: string, set_id: string, specialSet: Array<any>, lang: string) {
+    return this.http.post(`${this.user_URL}/${lang}/new-special`, { _id: user_id, set_id: set_id, newSet: specialSet })
+      .subscribe(date => {
+        this.respond_Service.saveRespond(date)
+        let res = date[0];
+        if (res.status) {
+          this.saveNewSet_localy(res.newSet);
+          // ----------------------------------------saving new favorites to service----------------
+          this.shop_Service.special(res.newSet);
+        }
+      });
+  }
+
+  saveNewSet_localy(newSet) {
+    localStorage.removeItem('special_set');
+    localStorage.setItem('special_set', JSON.stringify(newSet))
   }
 
   // ----------------------------------------------

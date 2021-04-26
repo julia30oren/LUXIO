@@ -48,13 +48,13 @@ router.post("/:lang/save", async(req, res) => {
     if (user[0]){
         switch (language) {
                         case 'en':
-                            responseMessage = `User with email <<${email}>> already exist.`
+                            responseMessage = `User with email «${email}» already exist.`
                             break;
                         case 'ru':
-                            responseMessage = `Пользователь с адресом электронной почты <<${email}>> уже существует.`
+                            responseMessage = `Пользователь с адресом электронной почты «${email}» уже существует.`
                             break;
                         default:
-                            responseMessage = `משתמש עם דוא"ל <<${email}>> כבר קיים.`
+                            responseMessage = `משתמש עם דוא"ל «${email}» כבר קיים.`
                             break;
                     }
                     return res.json([{ status: false, message: responseMessage }]);
@@ -263,13 +263,13 @@ router.get('/:lang/password/restore/:email', async(req, res) => {
                 // ------------------------------------------------------CHOOSING LANGUAGE for response-------------------------
                 switch (language) {
                     case 'en':
-                        responseMessage = `Password has been modified. Temporary password has been sent to <<${email}>>.`
+                        responseMessage = `Password has been modified. Temporary password has been sent to «${email}».`
                         break;
                     case 'ru':
-                        responseMessage = `Пароль был изменен. Временный пароль отправлен на <<${email}>>.`
+                        responseMessage = `Пароль был изменен. Временный пароль отправлен на «${email}».`
                         break;
                     default:
-                        responseMessage = `הסיסמה שונתה. סיסמה זמנית נשלחה אל <<${email}>>.`
+                        responseMessage = `הסיסמה שונתה. סיסמה זמנית נשלחה אל «${email}».`
                         break;
                 };
                 logger.info(`${moment().format(`h:mm:ss a`)} - ID ${userExist._id} ${responseMessage}`);
@@ -294,13 +294,13 @@ router.get('/:lang/password/restore/:email', async(req, res) => {
         } else {
             switch (language) {
                 case 'en':
-                    responseMessage = `User with this email <<${email}>> do not exist.`
+                    responseMessage = `User with this email «${email}» do not exist.`
                     break;
                 case 'ru':
-                    responseMessage = `Пользователь с этим адресом электронной почты <<${email}>> не существует.`
+                    responseMessage = `Пользователь с этим адресом электронной почты «${email}» не существует.`
                     break;
                 default:
-                    responseMessage = `משתמש עם דוא"ל זה <<${email}>> לא קיים.`
+                    responseMessage = `משתמש עם דוא"ל זה «${email}» לא קיים.`
                     break;
             };
             logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
@@ -334,13 +334,13 @@ router.post('/:lang/password/restore/new/:email', async(req, res) => {
                     // ------------------------------------------------------CHOOSING LANGUAGE for response-------------------------
                     switch (language) {
                         case 'en':
-                            responseMessage = `<<New password>> has been saved successfully.`
+                            responseMessage = `«New password» has been saved successfully.`
                             break;
                         case 'ru':
-                            responseMessage = `<<Новый пароль>> Сохранено успешно.`
+                            responseMessage = `«Новый пароль» Сохранено успешно.`
                             break;
                         default:
-                            responseMessage = `<< סיסמה חדשה >> נשמרה בהצלחה.`
+                            responseMessage = `« סיסמה חדשה» נשמרה בהצלחה.`
                             break;
                     };
                     logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
@@ -350,13 +350,13 @@ router.post('/:lang/password/restore/new/:email', async(req, res) => {
                 else {
                     switch (language) {
                         case 'en':
-                            responseMessage = `Something went wrong. <<Password>> wasn't changed.`
+                            responseMessage = `Something went wrong. «Password» wasn't changed.`
                             break;
                         case 'ru':
-                            responseMessage = `Что-то пошло не так. <<Пароль>> не был изменен.`
+                            responseMessage = `Что-то пошло не так. «Пароль» не был изменен.`
                             break;
                         default:
-                            responseMessage = `משהו השתבש. <<סיסמה>> לא שונה.`
+                            responseMessage = `משהו השתבש. «סיסמה» לא שונה.`
                             break;
                     };
                     logger.error(`${moment().format(`h:mm:ss a`)} - ID ${user._id} ${responseMessage}`);
@@ -365,13 +365,13 @@ router.post('/:lang/password/restore/new/:email', async(req, res) => {
             } else {
                 switch (language) {
                     case 'en':
-                        responseMessage = `<<Temporary password>> don't match.`
+                        responseMessage = `«Temporary passwor» don't match.`
                         break;
                     case 'ru':
-                        responseMessage = `<<Временный пароль>> не совпадает.`
+                        responseMessage = `«Временный пароль» не совпадает.`
                         break;
                     default:
-                        responseMessage = `<< סיסמא זמנית >> אינן תואמות.`
+                        responseMessage = `« סיסמא זמנית» אינן תואמות.`
                         break;
                 };
                 logger.error(`${moment().format(`h:mm:ss a`)} - ID ${user._id} ${responseMessage}`);
@@ -380,13 +380,13 @@ router.post('/:lang/password/restore/new/:email', async(req, res) => {
         } else {
             switch (language) {
                 case 'en':
-                    responseMessage = `User with this email <<${email}>> do not exist.`
+                    responseMessage = `User with this email «${email}» do not exist.`
                     break;
                 case 'ru':
-                    responseMessage = `Пользователь с этим адресом электронной почты <<${email}>> не существует.`
+                    responseMessage = `Пользователь с этим адресом электронной почты «${email}» не существует.`
                     break;
                 default:
-                    responseMessage = `משתמש עם דוא"ל זה <<${email}>> לא קיים.`
+                    responseMessage = `משתמש עם דוא"ל זה «${email}» לא קיים.`
                     break;
             };
             logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);

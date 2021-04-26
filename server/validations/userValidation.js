@@ -25,6 +25,8 @@ const validSchema = Joi.object({
     certificate_link: Joi.any(),
     cart: Joi.any(),
     favorites: Joi.any(),
+    set_id: Joi.string(),
+    newSet: Joi.any(),
     business: Joi.any(),
     photo_link: Joi.any(),
     old_pass: Joi.any(),

@@ -22,22 +22,22 @@ export class ImgSearviceService {
     private db_Servise: SaveUserService
   ) { }
 
-  insertPhotoDetails(selectedImg, id: string) {
+  insertPhotoDetails(selectedImg, id: string, lang: string) {
     // ------------------CLOUDINARY ----
     return this.http.post(`${this.registeration_URL}/upload-certificate`, selectedImg)
       .subscribe(res => {
         if (res[0].status && res[0].date) {
           // SAVING link lockaly ---
           let image_link = res[0].date;  //photo link saving to form
-          this.saveNewImage_toDB(image_link, id);
+          this.saveNewImage_toDB(image_link, id, lang);
         }
         this.respond_Service.saveRespond(res);
       }
       );
   }
 
-  saveNewImage_toDB(img: string, id: string) {
-    return this.http.post(`${this.user_URL}/new-image`, { _id: id, photo_link: img })
+  saveNewImage_toDB(img: string, id: string, lang: string) {
+    return this.http.post(`${this.user_URL}/${lang}/new-image`, { _id: id, photo_link: img })
       .subscribe(res => {
         this.respond_Service.saveRespond(res);
       }

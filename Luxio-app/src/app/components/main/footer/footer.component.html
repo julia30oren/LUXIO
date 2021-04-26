@@ -1,17 +1,8 @@
-<!-- ------------------------------------------ COMMERCIAL -->
-<div class="commertial" style="border-top: 2px solid rgb(22, 22, 22);"></div>
-<div class="commertial wow animate__animated animate__heartBeat animate__delay-2s">
-    <img *ngIf="languege==='en'" style="width: 100%;" alt="commertial" src="https://i.pinimg.com/originals/ee/9e/25/ee9e2537c8f8044c2a547edb10d0ef2d.jpg?epik=dj0yJnU9LVpQeG5vMHdxSEpZNzNyS2VibW5GdG5XUVVqb01yLXImcD0wJm49ZlY2LURFb0pjX2J6UmZEZFg1dUozQSZ0PUFBQUFBR0FQNDRj"
-    />
-    <img *ngIf="languege==='iv'" style="width: 100%;" alt="commertial" src="https://i.pinimg.com/originals/13/15/01/131501335786b7545fdce10c918df0d3.jpg?epik=dj0yJnU9bkZ0c1FVOXRBUXZVbmpPLVQ0YUtzaXVta3pwSWRrN2gmcD0wJm49dUNneVNxZGp2M3ZyYUFqOTdTbkZtQSZ0PUFBQUFBR0FQNVJZ"
-    />
-    <img *ngIf="languege==='ru'" style="width: 100%;" alt="commertial" src="https://i.pinimg.com/originals/60/ca/e7/60cae7342f9afcf6bb742de979d25e57.jpg?epik=dj0yJnU9RkloVkdMYzUtWHFsaUJtQkxxMzNtUURpbWFzSDJRZXImcD0wJm49RUEwaDBYazNUWk5IN2RfSXBFa01XQSZ0PUFBQUFBR0FQNVQ4"
-    />
-</div>
-
+<!-- ------------------------------------------FOOTER -->
 <div id="footer" class="container-fluid" style="background-color: rgb(22, 22, 22);">
+
     <div class="row" [ngClass]="{Hebrew: languege==='iv'}">
-        <div class="footer-link col-lg-6 col-12">
+        <div class="col-lg-6 col-12 footer-link marginTop50">
             <a class="social-icons" target="_blank" href="https://www.facebook.com/luxioisrael"><i class="fab fa-facebook-square fa-2x"></i> </a>
             <a class="social-icons" target="_blank" href="https://www.instagram.com/luxiogel_israel"><i class="fab fa-instagram fa-2x"></i> </a>
             <a class="social-icons" target="_blank" href="https://www.pinterest.ru/luxiogelisrael/boards/"><i class="fab fa-pinterest fa-2x"></i> </a>
@@ -22,7 +13,7 @@
             <p class="address">{{ 'CONTACT.phone' | translate}}: 054-8785521 / 055-9519777</p>
             <p class="address">{{ 'CONTACT.email' | translate}}: luxiogel.israel@gmail.com</p>
         </div>
-        <div class="footer-link col-lg-3 col-6">
+        <div class="col-lg-3 col-6 footer-link marginTop50">
             <h1>{{ 'NAVIGATION.PRODUCTS.title' | translate }}</h1>
             <a href="products/luxio">LUXIO</a><br>
             <a href="products/gel-play">GEL PLAY</a><br>
@@ -31,7 +22,7 @@
             <a href="products/basics"><small>{{ 'NAVIGATION.basics' | translate }}</small></a><br>
             <a href="products/tools"><small>{{ 'NAVIGATION.tools' | translate }}</small></a>
         </div>
-        <div class="footer-link col-lg-3 col-6">
+        <div class="footer-link col-lg-3 col-6 marginTop50">
             <h1>{{ 'NAVIGATION.navigation' | translate }}</h1>
             <a href="new">{{ 'NAVIGATION.NEW.title' | translate }}</a><br>
             <a href="tryme">{{ 'NAVIGATION.TRYME.title' | translate }}</a><br>

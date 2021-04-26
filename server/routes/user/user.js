@@ -37,13 +37,13 @@ router.get("/:lang/:id", async(req, res) => {
             // ---------------------CHOOSING LANGUAGE for response-------------------------
             switch (language) {
                 case 'en':
-                    responseMessage = `User with id <<${id}>> don't exist.`
+                    responseMessage = `User with id «${id}» don't exist.`
                     break;
                 case 'ru':
-                    responseMessage = `Пользователь с идентификатором <<${id}>> не существует.`
+                    responseMessage = `Пользователь с идентификатором «${id}» не существует.`
                     break;
                 default:
-                    responseMessage = `משתמש עם מזהה <${id}>> אינו קיים.`
+                    responseMessage = `משתמש עם מזהה «${id}» אינו קיים.`
                     break;
             };
             logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
@@ -76,13 +76,13 @@ router.post('/:lang/login', async(req, res) => {
                     // ------------------------------------------------------CHOOSING LANGUAGE for response-------------------------
                     switch (language) {
                         case 'en':
-                            responseMessage = `User <<${User.first_name} ${User.second_name}>> logged in.`
+                            responseMessage = `User «${User.first_name} ${User.second_name}» logged in.`
                             break;
                         case 'ru':
-                            responseMessage = `Пользователь <<${User.first_name} ${User.second_name}>> вошел/a в систему.`
+                            responseMessage = `Пользователь «${User.first_name} ${User.second_name}» вошел/a в систему.`
                             break;
                         default:
-                            responseMessage = `המשתמש <<${User.first_name} ${User.second_name}>> התחבר.`
+                            responseMessage = `המשתמש «${User.first_name} ${User.second_name}» התחבר.`
                             break;
                     };
                     logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
@@ -132,13 +132,13 @@ router.post('/:lang/login', async(req, res) => {
                 } else if (!cryptoPassChek) {
                     switch (language) {
                         case 'en':
-                            responseMessage = `<<Password>> don't match.`
+                            responseMessage = `«Password» don't match.`
                             break;
                         case 'ru':
-                            responseMessage = `<<Пароль>> не совпадает.`
+                            responseMessage = `«Пароль» не совпадает.`
                             break;
                         default:
-                            responseMessage = `<<סיסמה>> אינם תואמים.`
+                            responseMessage = `«סיסמה» אינם תואמים.`
                             break;
                     };
                     logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage} ${email}`);
@@ -147,13 +147,13 @@ router.post('/:lang/login', async(req, res) => {
             } else {
                 switch (language) {
                     case 'en':
-                        responseMessage = `User <<${email}>> don't exist.`
+                        responseMessage = `User «${email}» don't exist.`
                         break;
                     case 'ru':
-                        responseMessage = `Пользователь <<${email}>> не существует.`
+                        responseMessage = `Пользователь «${email}» не существует.`
                         break;
                     default:
-                        responseMessage = `משתמש <<${email}>> לא קיים.`
+                        responseMessage = `משתמש «${email}» לא קיים.`
                         break;
                 };
                 logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
@@ -193,13 +193,13 @@ router.post("/:lang/update/:id", async(req, res) => {
             // ------------------------------------------------------CHOOSING LANGUAGE for response-------------------------
             switch (language) {
                 case 'en':
-                    responseMessage = `Updates to <<Personal information>> has been saved successfully.`
+                    responseMessage = `Updates to «Personal information» has been saved successfully.`
                     break;
                 case 'ru':
-                    responseMessage = `Обновления для <<Личной информации>> успешно сохранены.`
+                    responseMessage = `Обновления для «Личной информации» успешно сохранены.`
                     break;
                 default:
-                    responseMessage = `עדכונים ל <<מידע אישי>> נשמרו בהצלחה.`
+                    responseMessage = `עדכונים ל «מידע אישי» נשמרו בהצלחה.`
                     break;
             };
             logger.info(`${moment().format(`h:mm:ss a`)} - ID ${id} ${responseMessage}`);
@@ -209,13 +209,13 @@ router.post("/:lang/update/:id", async(req, res) => {
         else {
             switch (language) {
                 case 'en':
-                    responseMessage = `Something went wrong. <<Personal information>> hasn't been updated.`
+                    responseMessage = `Something went wrong. «Personal information» hasn't been updated.`
                     break;
                 case 'ru':
-                    responseMessage = `Что-то пошло не так. <<Личная информация>> не была обновлена.`
+                    responseMessage = `Что-то пошло не так. «Личная информация» не была обновлена.`
                     break;
                 default:
-                    responseMessage = `משהו השתבש. <<מידע אישי>> לא עודכן.`
+                    responseMessage = `משהו השתבש. «מידע אישי» לא עודכן.`
                     break;
             };
             logger.error(`${moment().format(`h:mm:ss a`)} - ID ${id} ${responseMessage}`);
@@ -251,13 +251,13 @@ router.post("/:lang/newpass/:email", async(req, res) => {
                     // ------------------------------------------------------CHOOSING LANGUAGE for response-------------------------
                     switch (language) {
                         case 'en':
-                            responseMessage = `<<New password>> has been saved successfully.`
+                            responseMessage = `«New password» has been saved successfully.`
                             break;
                         case 'ru':
-                            responseMessage = `<<Новый пароль>> Сохранено успешно.`
+                            responseMessage = `«Новый пароль» Сохранено успешно.`
                             break;
                         default:
-                            responseMessage = `<< סיסמה חדשה >> נשמרה בהצלחה.`
+                            responseMessage = `« סיסמה חדשה» נשמרה בהצלחה.`
                             break;
                     };
                     logger.info(`${moment().format(`h:mm:ss a`)} - ID ${User._id} ${responseMessage}`);
@@ -267,13 +267,13 @@ router.post("/:lang/newpass/:email", async(req, res) => {
                 else {
                     switch (language) {
                         case 'en':
-                            responseMessage = `Something went wrong. <<Password>> wasn't changed.`
+                            responseMessage = `Something went wrong. «Password» wasn't changed.`
                             break;
                         case 'ru':
-                            responseMessage = `Что-то пошло не так. <<Пароль>> не был изменен.`
+                            responseMessage = `Что-то пошло не так. «Пароль» не был изменен.`
                             break;
                         default:
-                            responseMessage = `משהו השתבש. <<סיסמה>> לא שונה.`
+                            responseMessage = `משהו השתבש. «סיסמה» לא שונה.`
                             break;
                     };
                     logger.error(`${moment().format(`h:mm:ss a`)} - ID ${User._id} ${responseMessage}`);
@@ -282,13 +282,13 @@ router.post("/:lang/newpass/:email", async(req, res) => {
             } else {
                 switch (language) {
                     case 'en':
-                        responseMessage = `<<Old password>> don't match.`
+                        responseMessage = `«Old password» don't match.`
                         break;
                     case 'ru':
-                        responseMessage = `<<Старый пароль>> не совпадает.`
+                        responseMessage = `«Старый пароль» не совпадает.`
                         break;
                     default:
-                        responseMessage = `<< סיסמה ישנה >> אינה תואמת.`
+                        responseMessage = `« סיסמה ישנה» אינה תואמת.`
                         break;
                 };
                 logger.info(`${moment().format(`h:mm:ss a`)} - ID ${User._id} ${responseMessage}`);
@@ -297,13 +297,13 @@ router.post("/:lang/newpass/:email", async(req, res) => {
         } else {
             switch (language) {
                 case 'en':
-                    responseMessage = `User with email <<${email}>> not found.`
+                    responseMessage = `User with email «${email}» not found.`
                     break;
                 case 'ru':
-                    responseMessage = `Пользователь с адресом электронной почты <<${email}>> не найден.`
+                    responseMessage = `Пользователь с адресом электронной почты «${email}» не найден.`
                     break;
                 default:
-                    responseMessage = `משתמש עם דוא"ל <<${email}>> לא נמצא.`
+                    responseMessage = `משתמש עם דוא"ל «${email}» לא נמצא.`
                     break;
             };
             logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
@@ -316,20 +316,45 @@ router.post("/:lang/newpass/:email", async(req, res) => {
 });
 
 // ------------------------------------------------------------------------- USER UPDATING IMAGE ------------------------------
-router.post("/new-image", async(req, res) => {
+router.post("/:lang/new-image", async(req, res) => {
     // -------------------------------------------------- requested parameters -----
     const { _id, photo_link } = req.body;
+    const language = req.params.lang;
     //--------------------------------------------------- update users image -------------
     try {
-        const imgToSave = await UserSchema.update({ "_id": _id }, { $set: { "photo_link": photo_link } });
+        const imgToSave = await UserSchema.updateOne({ "_id": _id }, { $set: { "photo_link": photo_link } });
         if (imgToSave.nModified === 1) {
-            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${_id} Image saved successfully.`);
-            return res.json([{ status: true, message: `Image saved successfully.` }]);
+            // ---------------------CHOOSING LANGUAGE for response-------------------------
+            switch (language) {
+            case 'en':
+                responseMessage = `Image saved successfully.`
+                break;
+            case 'ru':
+                responseMessage = `Изображение успешно сохранено.`
+                break;
+            default:
+                 responseMessage = `התמונה נשמרה בהצלחה.`
+                break;
+            };
+            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
+            return res.json([{ status: true, message: responseMessage }]);
         }
         // --------------------------------------------------------------------------------- ERRORS --
         else {
-            logger.error(`${moment().format(`h:mm:ss a`)} - ID ${_id} Something went wrong. Image wasn't save.`);
-            return res.json([{ status: false, message: `Something went wrong. Image wasn't save.` }]);
+            // ---------------------CHOOSING LANGUAGE for response-------------------------
+            switch (language) {
+                case 'en':
+                    responseMessage = `Something went wrong. Image wasn't save.`
+                    break;
+                case 'ru':
+                    responseMessage = `Что-то пошло не так. Изображение не было сохранено.`
+                    break;
+                default:
+                    responseMessage = `משהו השתבש. התמונה לא נשמרה.`
+                    break;
+                };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
+            return res.json([{ status: false, message: responseMessage }]);
         }
     } catch (err) {
         logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
@@ -338,20 +363,45 @@ router.post("/new-image", async(req, res) => {
 });
 
 // ------------------------------------------------------------------------- USER UPDATING CART ------------------------------
-router.post("/new-cart", async(req, res) => {
+router.post("/:lang/new-cart", async(req, res) => {
     // -------------------------------------------------- requested parameters -----
     const { _id, cart } = req.body;
+    const language = req.params.lang;
     //--------------------------------------------------- update users cart -------------
     try {
-        const cartToSave = await UserSchema.update({ "_id": _id }, { $set: { "cart": cart } });
+        const cartToSave = await UserSchema.updateOne({ "_id": _id }, { $set: { "cart": cart } });
         if (cartToSave.nModified === 1) {
-            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${_id} Updates to <<Cart>> has been saved successfully.`);
-            return res.json([{ status: true, message: `Updates to <<Cart>> has been saved successfully.` }]);
+                                    // ---------------------CHOOSING LANGUAGE for response-------------------------
+                        switch (language) {
+                            case 'en':
+                                responseMessage = `Updates to «Cart» has been saved successfully.`
+                                break;
+                            case 'ru':
+                                responseMessage = `Обновления в «Корзине» успешно сохранены.`
+                                break;
+                            default:
+                                responseMessage = `עדכונים ב"סל המיחזור "נשמרו בהצלחה.`
+                                break;
+                        };
+            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
+            return res.json([{ status: true, message: responseMessage }]);
         }
         // --------------------------------------------------------------------------------- ERRORS --
         else {
-            logger.error(`${moment().format(`h:mm:ss a`)} - ID ${_id} Something went wrong. <<Cart>> hasn't been updated.`);
-            return res.json([{ status: false, message: `Something went wrong. <<Cart>> hasn't been updated.` }]);
+                        // ---------------------CHOOSING LANGUAGE for response-------------------------
+                        switch (language) {
+                            case 'en':
+                                responseMessage = `Something went wrong. «Cart» hasn't been updated.`
+                                break;
+                            case 'ru':
+                                responseMessage = `Что-то пошло не так. Обновления в «Корзине» не были сохранены.`
+                                break;
+                            default:
+                                responseMessage = `משהו השתבש. עדכונים ב"אשפה "לא נשמרו.`
+                                break;
+                        };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
+            return res.json([{ status: false, message: responseMessage }]);
         }
     } catch (err) {
         logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
@@ -360,19 +410,93 @@ router.post("/new-cart", async(req, res) => {
 });
 
 // ------------------------------------------------------------------------- USER UPDATING FAVORITES ------------------------------
-router.post("/new-favorites", async(req, res) => {
+router.post("/:lang/new-favorites", async(req, res) => {
     const { _id, favorites } = req.body;
+    const language = req.params.lang;
     //--------------------------------------------------- update users favorites -------------
     try {
         const favoritesToSave = await UserSchema.update({ "_id": _id }, { $set: { "favorites": favorites } });
         if (favoritesToSave.nModified === 1) {
-            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${_id} Updates to <<Favorites>> has been saved successfully.`);
-            return res.json([{ status: true, message: `Updates to <<Favorites>> has been saved successfully.` }]);
+                        // ---------------------CHOOSING LANGUAGE for response-------------------------
+                        switch (language) {
+                            case 'en':
+                                responseMessage = `Updates to «Favorites» has been saved successfully.`
+                                break;
+                            case 'ru':
+                                responseMessage = `Обновления в «Избранное» успешно сохранены.`
+                                break;
+                            default:
+                                responseMessage = `עדכונים ל- «מועדפים» נשמרו בהצלחה.`
+                                break;
+                        };
+            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
+            return res.json([{ status: true, message: responseMessage }]);
         }
         // --------------------------------------------------------------------------------- ERRORS --
         else {
-            logger.error(`${moment().format(`h:mm:ss a`)} - ID ${_id} Something went wrong. <<Favorites>> hasn't been updated.`);
-            return res.json([{ status: false, message: `Something went wrong. <<Favorites>> hasn't been updated.` }]);
+                        // ---------------------CHOOSING LANGUAGE for response-------------------------
+                        switch (language) {
+                            case 'en':
+                                responseMessage = `Something went wrong. «Favorites» hasn't been updated.`
+                                break;
+                            case 'ru':
+                                responseMessage = `Что-то пошло не так. Обновления в «Избранное» не были сохранены.`
+                                break;
+                            default:
+                                responseMessage = `משהו השתבש. «המועדפים» לא עודכן.`
+                                break;
+                        };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
+            return res.json([{ status: false, message: responseMessage }]);
+        }
+    } catch (err) {
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+        return res.json([{ status: false, message: err.message }]);
+    }
+});
+
+// ------------------------------------------------------------------------- USER UPDATING special Set ------------------------------
+router.post("/:lang/new-special", async(req, res) => {
+    // -------------------------------------------------- requested parameters -----
+    const { _id, set_id, newSet } = req.body; // newSet = [...]
+    const language = req.params.lang;
+    let setObj = { set_id : set_id , set_price : 585 , set : newSet }
+    //--------------------------------------------------- update users cart -------------
+    try {
+        const setToSave = await UserSchema.updateOne({ "_id": _id }, { $push: { "specialSet": setObj } });
+        if (setToSave.nModified === 1) {
+            const user = await UserSchema.find({ "_id": _id });
+                        // ---------------------CHOOSING LANGUAGE for response-------------------------
+                        switch (language) {
+                            case 'en':
+                                responseMessage = `New «Promotional Set» has been saved successfully.`
+                                break;
+                            case 'ru':
+                                responseMessage = `Новый «Акционный Набор» успешно сохранён.`
+                                break;
+                            default:
+                                responseMessage = `"סט הקידום" החדש נשמר בהצלחה.`
+                                break;
+                        };
+            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
+            return res.json([{ status: true, message: responseMessage , newSet:user[0].specialSet }]);
+        }
+        // --------------------------------------------------------------------------------- ERRORS --
+        else {
+                                    // ---------------------CHOOSING LANGUAGE for response-------------------------
+                                    switch (language) {
+                                        case 'en':
+                                            responseMessage = `Something went wrong. «Promotional Set» hasn't been updated.`
+                                            break;
+                                        case 'ru':
+                                            responseMessage = `Что-то пошло не так. «Акционный Набор» не был сохранён.`
+                                            break;
+                                        default:
+                                            responseMessage = `משהו השתבש. «ערכת הקידום» לא עודכנה.`
+                                            break;
+                                    };
+            logger.error(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
+            return res.json([{ status: false, message: responseMessage }]);
         }
     } catch (err) {
         logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);

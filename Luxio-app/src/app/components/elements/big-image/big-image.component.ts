@@ -125,7 +125,7 @@ export class BigImageComponent implements OnInit {
   }
 
   addToFavorites(obj) {
-    this.user_service.saveToFavorites(obj);
+    this.user_service.saveToFavorites(obj, this.languege);
     this.selectedProd_inFavorites = !this.selectedProd_inFavorites;
   }
 
@@ -152,7 +152,7 @@ export class BigImageComponent implements OnInit {
     }
     this.selectedProd_inCart = !this.selectedProd_inCart;
     setTimeout(() => {
-      this.user_service.saveToCart(item_toCart);
+      this.user_service.saveToCart(item_toCart, this.languege);
     }, 1000);
   }
 

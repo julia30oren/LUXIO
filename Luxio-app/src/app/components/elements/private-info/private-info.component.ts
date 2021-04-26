@@ -120,7 +120,7 @@ export class PrivateInfoComponent implements OnInit {
   }
 
   savePhoto() {
-    this.cert_service.insertPhotoDetails(this.selectedImg, this.infoTemplate.value._id);
+    this.cert_service.insertPhotoDetails(this.selectedImg, this.infoTemplate.value._id, this.languege);
     // hide "SAVE"button
     this.showButton = false;
   }

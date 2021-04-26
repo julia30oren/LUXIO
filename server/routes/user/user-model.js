@@ -67,6 +67,11 @@ const UserSchema = new Schema({
         default: [],
         require: true
     },
+    specialSet: {
+        type: Array,
+        default: [],
+        require: true
+    },
     date: {
         type: Date,
         default: Date.now(),

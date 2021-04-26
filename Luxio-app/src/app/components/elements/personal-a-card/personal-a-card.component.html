@@ -1,33 +1,61 @@
+<!-- if cart or favorites are empty -->
 <div class="container-fluid">
     <div class="row" *ngIf="!personalArea_products">
         <div class="col-12">
-            <h2 class="empty" *ngIf="what_to_show === 'cart'" [ngClass]="{Hebrew: languege==='iv'}">
+            <p class="empty main-txt" *ngIf="what_to_show === 'cart'" [ngClass]="{Hebrew: languege==='iv'}">
                 <span>{{ 'PERSONAL-AREA.CARD.empty-cart' | translate}}</span>
-            </h2>
-            <h2 class="empty" *ngIf="what_to_show === 'wishlist'" [ngClass]="{Hebrew: languege==='iv'}">
+            </p>
+            <p class="empty main-txt" *ngIf="what_to_show === 'wishlist'" [ngClass]="{Hebrew: languege==='iv'}">
                 <span>{{'PERSONAL-AREA.CARD.empty-wishlist' | translate}}</span>
-            </h2>
+            </p>
         </div>
     </div>
+</div>
+<!-- -----------------Promotional Sets -->
+<div class="container-fluid" *ngIf="what_to_show === 'cart' && specialOrder">
+    <div class="row justify-content-between specialSetRow marginTop50" *ngFor="let specialSet of specialOrder">
+        <div class="col-lg-8 col-12">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr *ngFor="let item of specialSet.set">
+                        <td><img src={{item.img_link_1}} alt={{item.name}} width="50px" /></td>
+                        <td>
+                            <p class="card-title">{{item.prod_class}} <span>{{item.name}}</span></p><small *ngIf="item.total_price===0">{{ 'PERSONAL-AREA.CARD.free' | translate}}</small>
+                        </td>
+                        <td>
+                            <p>{{item.amount}}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-3 col-md-4 col-12 align-self-end" [ngClass]="{Hebrew: languege==='iv'}">
+            <p (click)="deleteSet(specialSet.set_id)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.remove' | translate}} «{{ 'PERSONAL-AREA.CARD.promotional-set' | translate}}» {{ 'PERSONAL-AREA.CARD.from-cart' | translate}}</small></p>
+            <p (click)="pay_onlyThisSet(specialSet.set_id)" class="option-buttons" *ngIf="userAuthorized"><small>{{ 'PERSONAL-AREA.CARD.pay-only' | translate}} «{{ 'PERSONAL-AREA.CARD.promotional-set' | translate}}»</small></p>
+            <p class="Promotional-title" style="text-align: right;">{{ 'PERSONAL-AREA.CARD.total-price' | translate}} {{ specialSet.set_price}} &#8362;</p>
+        </div>
+    </div>
+</div>
 
-    <div class="row" *ngIf="personalArea_products">
+<div class="container-fluid">
+    <div class="row marginTop50" *ngIf="personalArea_products">
         <div class="col-12" *ngFor="let item of personalArea_products">
-            <hr/>
             <div class="row">
-                <div class="col-3" (click)="select(item.burcode_id)">
+                <!-- image -->
+                <div class="col-lg-3 col-4" (click)="select(item.burcode_id)">
                     <div class="card-img img-cover" (click)="select(item.burcode_id)"></div>
                     <img class="card-img" src={{item.img_link_1}} alt="Product image" />
                 </div>
-
-                <div class="col-6">
-                    <h5 class="main-title">{{item.prod_class}} {{item.name}}</h5>
+                <!-- amount -->
+                <div class="col-lg-6 col-8">
+                    <p class="card-title">{{item.prod_class}} <span>{{item.name}}</span></p>
                     <div *ngIf="what_to_show === 'wishlist'">
                         <p>{{item.amount_1}} {{item.price_1}}&#8362;</p>
                         <p *ngIf="item.amount_2">{{item.amount_2}} {{item.price_2}}&#8362;</p>
                     </div>
                     <div *ngIf="what_to_show === 'cart'">
                         <form>
-                            <div class="form-group" style="width: 70%;">
+                            <div class="form-group" style="max-width: 220px;">
                                 <select class="form-control" (change)="amount_change(item,$event.target.value)">
                                     <option value="{{item.amount_1}}" *ngIf="item.amount===item.amount_1">{{item.amount_1}} {{item.price_1}}&#8362;</option>
                                     <option value="{{item.amount_2}}" *ngIf="item.amount_2 && item.amount===item.amount_1" >{{item.amount_2}} {{item.price_2}}&#8362;</option>
@@ -36,21 +64,22 @@
                                     <option value="{{item.amount_1}}" *ngIf="item.amount===item.amount_2">{{item.amount_1}} {{item.price_1}}&#8362;</option>
                                 </select>
                             </div>
-                            <div class="form-group" style="width: 20%;" #hkh>
+                            <div class="form-group" style="width: 70px;" #hkh>
                                 <input type="number" class="form-control" value="{{item.quantity}}" min="1" (change)="quantity_change(item,$event.target.value)">
                             </div>
                         </form>
-                        <div>{{ 'PERSONAL-AREA.CARD.total-price' | translate}} {{item.total_price}} &#8362;</div>
                     </div>
                 </div>
 
-                <div class="col-3" [ngClass]="{Hebrew: languege==='iv'}">
+                <div class="col-lg-3 col-12 align-self-end" [ngClass]="{Hebrew: languege==='iv'}">
                     <div *ngIf="what_to_show === 'cart'">
                         <p (click)="delete_fromCart(item)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.remove' | translate}} {{item.name}} {{ 'PERSONAL-AREA.CARD.from-cart' | translate}}</small></p>
                         <p (click)="pay_onlyThis(item)" class="option-buttons" *ngIf="userAuthorized"><small>{{ 'PERSONAL-AREA.CARD.pay-only' | translate}} {{item.name}}</small></p>
+                        <p class="Promotional-title" style="text-align: right;">{{ 'PERSONAL-AREA.CARD.total-price' | translate}} {{item.total_price}} &#8362;</p>
                     </div>
                     <div *ngIf="what_to_show === 'wishlist'">
-                        <p (click)="add_toCart(item._id)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.add' | translate}} {{item.name}} {{ 'PERSONAL-AREA.CARD.to-cart' | translate}}</small></p>
+                        <p *ngIf="item.label && item.label==='Out of stock'" class="outOfStock"><small>{{ 'PERSONAL-AREA.out-of-stock' | translate}}</small></p>
+                        <p *ngIf="!item.label || item.label!=='Out of stock'" (click)="add_toCart(item._id)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.add' | translate}} {{item.name}} {{ 'PERSONAL-AREA.CARD.to-cart' | translate}}</small></p>
                         <p (click)="remove_fromWishlist(item)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.remove' | translate}} {{item.name}} {{ 'PERSONAL-AREA.CARD.from-wishlist' | translate}}</small></p>
                     </div>
                 </div>
@@ -66,10 +95,6 @@
                     <tr>
                         <td>{{ 'PERSONAL-AREA.shipping' | translate }}:</td>
                         <td>{{ shipping }}.00 &#8362;</td>
-                    </tr>
-                    <tr>
-                        <td>{{ 'PERSONAL-AREA.discount' | translate }}:</td>
-                        <td>{{ discount }}.00 &#8362;</td>
                     </tr>
                     <tr>
                         <td><span>{{ 'PERSONAL-AREA.order-total' | translate }}:</span></td>

@@ -35,8 +35,8 @@ export class SaveUserService {
     });
   }
 
-  saveUserPhoto(info: object) {
-    return this.http.post(`${this.DB_url}/new-image`, info).subscribe(res => {
+  saveUserPhoto(info: object, lang: string) {
+    return this.http.post(`${this.DB_url}/${lang}/new-image`, info).subscribe(res => {
       this.respond_Service.saveRespond(res);
     });
   }

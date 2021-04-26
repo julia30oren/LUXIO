@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LanguageService } from 'src/app/services/language.service';
 import { ShopService } from 'src/app/services/shop/shop.service';
 import { UserService } from 'src/app/services/user-servise/user.service';
 
@@ -10,6 +11,7 @@ import { UserService } from 'src/app/services/user-servise/user.service';
 export class ShopCardsComponent implements OnInit {
 
   public selectedProd: boolean;
+  public languege: string;
   public shop: Array<any>;
   public my_cart: Array<any>;
   public my_favorites: Array<any>;
@@ -17,6 +19,7 @@ export class ShopCardsComponent implements OnInit {
 
   constructor(
     private shop_service: ShopService,
+    private lang_service: LanguageService,
     private user_service: UserService
   ) { }
 
@@ -26,6 +29,11 @@ export class ShopCardsComponent implements OnInit {
         if (date[0]) {
           this.shop = date[0];
         }
+      });
+
+    this.lang_service._selected_from_service
+      .subscribe(date => {
+        this.languege = date;
       });
 
     this.shop_service.shop_products_sorted_from_service
@@ -62,7 +70,7 @@ export class ShopCardsComponent implements OnInit {
   }
 
   addToFavorites(item) {
-    this.user_service.saveToFavorites(item);
+    this.user_service.saveToFavorites(item, this.languege);
   }
 
   addToCart(item) {
@@ -71,7 +79,7 @@ export class ShopCardsComponent implements OnInit {
     item.price = item.price_1;
     item.total_price = item.price_1;
     //sending on service to save
-    this.user_service.saveToCart(item);
+    this.user_service.saveToCart(item, this.languege);
   }
 
   select(id: number) {

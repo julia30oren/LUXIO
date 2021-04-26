@@ -24,10 +24,10 @@ export class PersonalACardComponent implements OnInit {
   public languege: string;
   public allProd: Array<any>;
   public personalArea_products: Array<any>;
+  public specialOrder: Array<any>;
   public what_to_show: string;
   public message: string;
   public TOTAL_PRICE: number = 0;
-  public discount: number = 0;
   public shipping: number = 0;
   public do_checkout: boolean;
   public Checkout_Payments: Array<any>;
@@ -44,6 +44,12 @@ export class PersonalACardComponent implements OnInit {
     this.shop_service.shop_products_from_service
       .subscribe(date => {
         this.allProd = date[0];
+      });
+    // ------------subscribe to special order from service------
+    this.shop_service.my_special_from_service
+      .subscribe(date => {
+        this.specialOrder = date;
+        this.getTotalPrice();
       });
 
     this.user_service.getUser(localStorage.getItem('u324_3i_25d'), this.languege);
@@ -66,6 +72,7 @@ export class PersonalACardComponent implements OnInit {
           this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_f'));
         }
         else this.personalArea_products = null;
+        this.checkForDiscount();
       });
 
     this.shop_service.orderToPay_from_service
@@ -97,32 +104,41 @@ export class PersonalACardComponent implements OnInit {
     );
   }
 
-  getTotalPrice() {
-    this.TOTAL_PRICE = 0;
-    this.discount = 0;
-    let x = 0;
-    if (this.personalArea_products) {
-      this.personalArea_products.forEach(element => {
-        if (element.price === 117 || element.price === 112) {
-          x = x + element.quantity;
-        }
-        this.TOTAL_PRICE = this.TOTAL_PRICE + element.total_price;
-      });
-      this.discount = Math.trunc(x / 6) * 117;
-      this.TOTAL_PRICE = this.TOTAL_PRICE - this.discount;
-      if (this.TOTAL_PRICE < 1000) {
-        this.shipping = 40;
-        this.TOTAL_PRICE = this.TOTAL_PRICE + this.shipping;
-      } else this.shipping = 0;
+  checkForDiscount() {
+    if (!this.personalArea_products.length || this.personalArea_products.length < 1) {
+      this.personalArea_products = null;
+    } else {
+      if (this.what_to_show === 'cart') { this.getTotalPrice(); }
     }
   }
 
+  getTotalPrice() {
+    this.specialOrder.length ? this.TOTAL_PRICE = this.specialOrder.length * 585 : this.TOTAL_PRICE = 0;
+
+    this.personalArea_products.forEach(element => {
+      this.TOTAL_PRICE = this.TOTAL_PRICE + element.total_price;
+    });
+
+    if (this.TOTAL_PRICE < 1000) {
+      this.shipping = 40;
+      this.TOTAL_PRICE = this.TOTAL_PRICE + this.shipping;
+    } else this.shipping = 0;
+  }
+
+  deleteSet(setId) {
+    console.log(setId);
+  }
+
+  pay_onlyThisSet(setId) {
+    console.log(setId);
+  }
+
   delete_fromCart(item) {
-    this.user_service.saveToCart(item);
+    this.user_service.saveToCart(item, this.languege);
 
     setTimeout(() => {
       this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_ct'));
-      this.getTotalPrice();
+      this.checkForDiscount();
     }, 1000);
   }
 
@@ -137,16 +153,17 @@ export class PersonalACardComponent implements OnInit {
         element.price = element.price_1;
         element.quantity = 1;
         element.total_price = element.price_1;
-        this.user_service.saveToCart(element);
+        this.user_service.saveToCart(element, this.languege);
       }
     });
   }
 
   remove_fromWishlist(item) {
-    this.user_service.saveToFavorites(item);
+    this.user_service.saveToFavorites(item, this.languege);
 
     setTimeout(() => {
       this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_f'));
+      this.checkForDiscount();
     }, 1000);
   }
 
@@ -157,22 +174,22 @@ export class PersonalACardComponent implements OnInit {
         element.total_price = element.quantity * element.price;
       }
     });
-    this.user_service.saveCart_toDB(this.personalArea_products);
+    this.user_service.saveCart_toDB(this.personalArea_products, this.languege);
     this.getTotalPrice();
   }
 
   amount_change(item, val) {
     item.amount = val;
-    this.user_service.saveToCart(item);
+    this.user_service.saveToCart(item, this.languege);
 
     if (item.amount === item.amount_1) {
       item.price = item.price_1;
       item.total_price = item.quantity * item.price;
-      this.user_service.saveToCart(item);
+      this.user_service.saveToCart(item, this.languege);
     } else if (item.amount === item.amount_2) {
       item.price = item.price_2;
       item.total_price = item.quantity * item.price;
-      this.user_service.saveToCart(item);
+      this.user_service.saveToCart(item, this.languege);
     }
     this.getTotalPrice();
   }
@@ -188,10 +205,9 @@ export class PersonalACardComponent implements OnInit {
     let Checkout_ForAllCart = {
       allCart: true,
       item: '',
-      price: this.TOTAL_PRICE - this.shipping + this.discount,
+      price: this.TOTAL_PRICE - this.shipping,
       totalPrice: this.TOTAL_PRICE,
       shipping: this.shipping,
-      discount: this.discount
     };
     this.personalArea_products.forEach(element => {
       let name = element.prod_class + ' ' + element.name + ' x' + element.amount + ' x' + element.quantity;

@@ -4,6 +4,12 @@
     margin-top: 200px;
 }
 
+.outOfStock {
+    width: 100%;
+    text-align: right;
+    color: gray;
+}
+
 .option-buttons {
     cursor: pointer;
     width: 100%;
@@ -26,12 +32,26 @@
     position: absolute;
 }
 
-.main-title {
+.card-title {
     font-family: Verdana, Geneva, sans-serif;
-    font-size: 14px;
-    letter-spacing: 3px;
-    word-spacing: -0.5px;
+    font-size: 16px;
+    letter-spacing: 1px;
     text-transform: uppercase;
+    font-weight: 700;
+}
+
+.Promotional-title {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 12px;
+    /* text-transform: uppercase; */
+    font-weight: 700;
+}
+
+@media screen and (max-width: 900px) {
+    .card-title {
+        font-size: 12px;
+        letter-spacing: 0px;
+    }
 }
 
 
@@ -110,4 +130,11 @@
     /* for "disabled" effect */
     opacity: 0.5;
     background: rgba(255, 255, 255, 0.596);
+}
+
+
+/* ---------------------- */
+
+.specialSetRow {
+    border-bottom: brown 1px solid;
 }

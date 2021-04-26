@@ -1,0 +1,80 @@
+<div id="commertial" class="container-fluid">
+
+    <form [formGroup]="formTemplate" (submit)="addSetToCard(formTemplate.value)" (change)="checkForm()">
+
+        <div class="row justify-content-center">
+            <div class="col-lg col-12">
+                <select class="form-control" formControlName="luxio_1" [ngClass]="{error: isSubmitted && formControls.luxio_1.errors?.required}">
+                    <option value="">{{ 'COMMERCIAL.bottle-1' | translate}}</option>
+                    <option *ngFor="let luxio of luxios" value={{luxio._id}}>{{luxio.prod_class}} {{luxio.name}}</option>
+                </select>
+            </div>
+            <div class="pluss">+</div>
+            <div class="col-lg col-12">
+                <select class="form-control" formControlName="luxio_2" [ngClass]="{error: isSubmitted && formControls.luxio_2.errors?.required}">
+                    <option value="" disabled>{{ 'COMMERCIAL.bottle-2' | translate}}</option>
+                    <option *ngFor="let luxio of luxios" value={{luxio._id}}>{{luxio.prod_class}} {{luxio.name}}</option>
+                </select>
+            </div>
+            <div class="pluss">+</div>
+            <div class="col-lg col-12">
+                <select class="form-control" formControlName="luxio_3" [ngClass]="{error: isSubmitted && formControls.luxio_3.errors?.required}">
+                    <option value="" disabled>{{ 'COMMERCIAL.bottle-3' | translate}}</option>
+                    <option *ngFor="let luxio of luxios" value={{luxio._id}}>{{luxio.prod_class}} {{luxio.name}}</option>
+                </select>
+            </div>
+            <div class="pluss">+</div>
+            <div class="col-lg col-12">
+                <select class="form-control" formControlName="luxio_4" [ngClass]="{error: isSubmitted && formControls.luxio_4.errors?.required}">
+                    <option value="" disabled>{{ 'COMMERCIAL.bottle-4' | translate}}</option>
+                    <option *ngFor="let luxio of luxios" value={{luxio._id}}>{{luxio.prod_class}} {{luxio.name}}</option>
+                </select>
+            </div>
+            <div class="pluss">+</div>
+            <div class="col-lg col-12">
+                <select class="form-control" formControlName="luxio_5" [ngClass]="{error: isSubmitted && formControls.luxio_5.errors?.required}">
+                    <option value="" disabled>{{ 'COMMERCIAL.bottle-5' | translate}}</option>
+                    <option *ngFor="let luxio of luxios"  value={{luxio._id}}>{{luxio.prod_class}} {{luxio.name}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-7 col-12">
+                <img src="https://i.pinimg.com/originals/55/b9/e9/55b9e99616aca5755569683f92ac423e.png" width="100%" />
+                <p id="commertial-title"><span>{{ 'PERSONAL-AREA.CARD.promotional-set' | translate}}</span></p>
+            </div>
+            <div class="col-lg-5 col-12">
+                <div class="row">
+                    <div class="pluss">+</div>
+                    <div class="col">
+                        <select class="form-control" formControlName="forFree" [ngClass]="{error: isSubmitted && formControls.forFree.errors?.required}">
+                    <option value="" disabled>{{ 'COMMERCIAL.bottle-6-free' | translate}}</option>
+                    <option *ngFor="let luxio of present" value={{luxio._id}}>{{luxio.prod_class}} {{luxio.name}}</option>
+                </select>
+                    </div>
+                    <div class="pluss">= 585 &#8362;</div>
+                </div>
+
+                <div class="row align-items-end" style="height: 50%;" *ngIf="showButton" [ngClass]="{Hebrew: languege==='iv'}">
+                    <div class="col pluss">{{ 'COMMERCIAL.add-set' | translate}}</div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-outline-dark" style="width: 100%;">{{ 'ADMIN.CERTIFICATES.WARNINGS.button-yes' | translate}}</button>
+                    </div>
+                </div>
+                <div class="row" *ngIf="loader">
+                    <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

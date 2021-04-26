@@ -115,7 +115,7 @@ export class NewComponent implements OnInit {
   }
 
   addToFavorites(item) {
-    this.user_service.saveToFavorites(item);
+    this.user_service.saveToFavorites(item, this.languege);
   }
 
   addToCart(item) {
@@ -134,7 +134,7 @@ export class NewComponent implements OnInit {
       price: item.price_1,
       total_price: item.price_1
     };
-    this.user_service.saveToCart(item_toCart); //sending on service to save
+    this.user_service.saveToCart(item_toCart, this.languege); //sending on service to save
   }
 
   select(id: number) {

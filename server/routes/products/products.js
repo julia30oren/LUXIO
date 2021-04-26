@@ -72,13 +72,13 @@ router.post("/:lang/save", async(req, res, next) => {
                     // ----------------------depending on language -  different response:
                     switch (language) {
                         case 'en':
-                            responseMessage = `Product <<${prod_class} ${name}>> was added successfully.`
+                            responseMessage = `Product «${prod_class} ${name}» was added successfully.`
                             break;
                         case 'ru':
-                            responseMessage = `Товар <<${prod_class} ${name}>> был успешно добавлен.`
+                            responseMessage = `Товар «${prod_class} ${name}» был успешно добавлен.`
                             break;
                         default:
-                            responseMessage = `המוצר <<${prod_class} ${name}>> נוסף בהצלחה.`
+                            responseMessage = `המוצר «${prod_class} ${name}» נוסף בהצלחה.`
                     };
                     logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
                     return res.json([{ status: true, message: responseMessage }]);
@@ -87,13 +87,13 @@ router.post("/:lang/save", async(req, res, next) => {
                 else {
                     switch (language) {
                         case 'en':
-                            responseMessage = `Product <<${prod_class} ${name}>> wasn't added.`
+                            responseMessage = `Product «${prod_class} ${name}» wasn't added.`
                             break;
                         case 'ru':
-                            responseMessage = `Товар <<${prod_class} ${name}>> не был добавлен.`
+                            responseMessage = `Товар «${prod_class} ${name}» не был добавлен.`
                             break;
                         default:
-                            responseMessage = `המוצר <<${prod_class} ${name}>> לא נוסף.`
+                            responseMessage = `המוצר «${prod_class} ${name}» לא נוסף.`
                     };
                     logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
                     return res.json([{ status: false, message: responseMessage }]);
@@ -141,13 +141,13 @@ router.post("/:lang/save", async(req, res, next) => {
                 // ----------------------depending on language -  different response:
                 switch (language) {
                     case 'en':
-                        responseMessage = `Changes to <<${prod_class} ${name}>> has been saved successfully.`
+                        responseMessage = `Changes to «${prod_class} ${name}» has been saved successfully.`
                         break;
                     case 'ru':
-                        responseMessage = `Изменения в <<${prod_class} ${name}>> успешно сохранены.`
+                        responseMessage = `Изменения в «${prod_class} ${name}» успешно сохранены.`
                         break;
                     default:
-                        responseMessage = `שינויים ב- <<${prod_class} ${name}>> נשמרו בהצלחה.`
+                        responseMessage = `שינויים ב- «${prod_class} ${name}» נשמרו בהצלחה.`
                 };
                 logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
                 return res.json([{ status: true, message: responseMessage }]);
@@ -157,13 +157,13 @@ router.post("/:lang/save", async(req, res, next) => {
                 // ----------------------depending on language -  different response:
                 switch (language) {
                     case 'en':
-                        responseMessage = `Changes to <<${prod_class} ${name}>> hasn't been saved. Please, try again.`
+                        responseMessage = `Changes to «${prod_class} ${name}» hasn't been saved. Please, try again.`
                         break;
                     case 'ru':
-                        responseMessage = `Изменения в <<${prod_class} ${name}>> не были сохранены. Пожалуйста, попробуйте еще раз.`
+                        responseMessage = `Изменения в «${prod_class} ${name}» не были сохранены. Пожалуйста, попробуйте еще раз.`
                         break;
                     default:
-                        responseMessage = `שינויים ב- <<${prod_class} ${name}>> לא נשמרו. בבקשה נסה שוב.`
+                        responseMessage = `שינויים ב- «${prod_class} ${name}» לא נשמרו. בבקשה נסה שוב.`
                 };
                 logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
                 return res.json([{ status: false, message: responseMessage }]);

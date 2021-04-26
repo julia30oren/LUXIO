@@ -210,16 +210,16 @@
 <div class="container-fluid RESPOND" *ngFor="let item of respond">
     <div class="row justify-content-center" [ngClass]="{infoMessage: item.status===true, errorMessage: item.status===false}">
         <div class="col-10 col-lg-4 inner-message">
-            <p class="main-txt" [ngClass]="{H: languege==='iv'}"><span>{{item.message}}</span></p>
+            <p class="main-txt" [ngClass]="{HebrewDirection: languege==='iv'}"><span>{{item.message}}</span></p>
         </div>
     </div>
 </div>
 <!--  -->
 
 <!-- --------------------------------------------------ADVERTISEMENT-------- ------ -->
-<div class="container-fluid" *ngIf="advertisement" style="position: fixed; z-index: 10; top: 160px;">
+<div *ngIf="advertisement" class="container-fluid Advertisement">
     <div class="row justify-content-center">
-        <div class="col-10 col-lg-3 adv" style="text-align: center;" [ngClass]="{HebrewDirection: languege==='iv'}">
+        <div class="col-10 col-lg-3 inerAdvertisement" style="text-align: center;" [ngClass]="{HebrewDirection: languege==='iv'}">
             <p class="main-title"> {{ 'SIGN-IN.OPEN-FORM.line-1' | translate }}</p>
             <img src="https://i.pinimg.com/originals/8a/c6/19/8ac619815ba0e122065b704e46781e72.jpg" alt="Woow!" width="100%">
             <p class="main-txt">{{ 'SIGN-IN.OPEN-FORM.line-2' | translate }}</p>
@@ -246,36 +246,29 @@
     </div>
 
     <!-- ------------------------------------------COOKIES------ -->
-    <div *ngIf="!cookies && !admin && !user" id="cookies" [ngClass]="{H: languege==='iv'}">
+    <div *ngIf="!cookies && !admin && !user" id="cookies" [ngClass]="{HebrewDirection: languege==='iv'}">
         <div id="cookies-in">
             <a class="cookies-button" href="/cookies">{{ 'COOKIES.option1' | translate}}</a>
             <p>{{ 'COOKIES.message' | translate}}</p>
             <button class="cookies-button" (click)="agreeToCookiesPolicy()">{{ 'COOKIES.option2' | translate}}</button>
         </div>
     </div>
-    <!-- --------------------->
-
-
-
-    <!-- --------------------------------------- -->
 
     <!---------------------------------------------------------------- REGISTRATION FORM -->
-    <div id="reg-f-back" *ngIf="regForm_Open">
-        <div class="container RegForm" [ngClass]="{Hebrew: languege==='iv'}">
-            <div class="row justify-content-end">
-                <div class="col-2">
-                    <button class="btn btn-link" (click)="closeForm()" type="button"><i class="fas fa-times"></i></button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
+    <div *ngIf="regForm_Open" id="registrationFormBlock">
+        <div class="container registrationForm" [ngClass]="{Hebrew: languege==='iv'}">
+            <div class="row justify-content-between">
+                <div class="col-lg-11 col-10">
                     <p class="main-title" *ngIf="formOne_Open">{{ 'SIGN-IN.REGISTRATION-FORM.title' | translate}}</p>
                     <p class="main-title" *ngIf="formLogin_Open">{{ 'SIGN-IN.LOGIN-FORM.title' | translate}}</p>
                     <p class="main-title" *ngIf="formPasswodRestore_Open">{{ 'SIGN-IN.PASSWORD-RESTORE-FORM.title' | translate}}</p>
                 </div>
+                <div class="col-lg-1 col-2">
+                    <button class="btn btn-link" (click)="closeForm()" type="button"><i class="fas fa-times"></i></button>
+                </div>
             </div>
 
-            <div class="formOne" *ngIf="formOne_Open" [ngClass]="{Hebrew: languege==='iv'}">
+            <div *ngIf="formOne_Open" class="formOne">
                 <app-reg-form-one></app-reg-form-one>
             </div>
 
@@ -310,6 +303,8 @@
         <router-outlet></router-outlet>
     </div>
 
+    <!-- ------------------------------------------ COMMERCIAL -->
+    <app-commertial></app-commertial>
     <!-- ------------------------------------------------FOOTER -->
     <app-footer></app-footer>
 </div>

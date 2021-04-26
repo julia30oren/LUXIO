@@ -104,20 +104,23 @@ option {
     background-color: rgb(0, 0, 0);
 }
 
-#reg-f-back {
+
+/* ---------------------------------registration------ */
+
+#registrationFormBlock {
     height: 100%;
     width: 100%;
-    background: #CECECE;
-    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff88 50%, #ffffff26 100%);
-    background: -webkit-linear-gradient(top, #ffffff 0%, #ffffff88 50%, #ffffff26 100%);
-    background: linear-gradient(to bottom, #ffffff 0%, #ffffff88 50%, #ffffff26 100%);
     position: fixed;
     top: 0;
     left: 0;
     z-index: 6;
+    background: #CECECE;
+    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff88 50%, #ffffff26 100%);
+    background: -webkit-linear-gradient(top, #ffffff 0%, #ffffff88 50%, #ffffff26 100%);
+    background: linear-gradient(to bottom, #ffffff 0%, #ffffff88 50%, #ffffff26 100%);
 }
 
-.RegForm {
+.registrationForm {
     width: 1200px;
     max-height: 80%;
     margin: auto;
@@ -135,7 +138,7 @@ option {
 }
 
 @media screen and (max-width: 990px) {
-    .RegForm {
+    .registrationForm {
         width: 98%;
         margin-top: 100px;
     }
@@ -151,14 +154,6 @@ option {
     height: 80%;
     width: 50%;
     overflow: auto;
-}
-
-.closeButton {
-    color: black;
-}
-
-.form-row {
-    margin-top: 10px;
 }
 
 
@@ -187,13 +182,13 @@ option {
 
 /*--------------------- MESSAGE TO USER FOR REGISTRATION */
 
-.advertis {
+.Advertisement {
     position: fixed;
     z-index: 10;
-    top: 170px;
+    top: 160px;
 }
 
-.adv {
+.inerAdvertisement {
     background-color: white;
     border: rgb(58, 58, 58) 0.5px solid;
     -webkit-box-shadow: 2px 5px 16px 0px #000000, 0px 2px 25px 29px rgba(0, 0, 0, 0.19);
@@ -214,8 +209,17 @@ option {
     color: rgb(0, 90, 192);
 }
 
+@media screen and (max-width: 1200px) {
+    .Advertisement {
+        top: 100px;
+    }
+    .message-link {
+        font-size: smaller;
+    }
+}
 
-/* HEADER */
+
+/*------------------------------- HEADER */
 
 #Header {
     width: 100%;
@@ -291,33 +295,26 @@ option {
     }
 }
 
+.dropdown-menu,
+.dropdown-menu-bottom,
+.dropdown-menu-lang,
+.lang-nav {
+    text-align: center;
+}
+
 @media screen and (min-width: 990px) {
     .navbar-nav {
         width: 80%;
     }
-    .dropdown-menu {
-        width: 250px;
-        border: solid black 2px;
-    }
-    .dropdown-menu-bottom {
-        width: 550px;
-        border: solid black 2px;
-    }
+    .dropdown-menu,
+    .dropdown-menu-bottom,
     .dropdown-menu-lang {
-        width: 50px;
         border: solid black 2px;
-    }
-    .dropdown-menu>li,
-    .dropdown-menu-bottom>li,
-    .dropdown-menu-lang>li {
-        padding-left: 3%;
-        padding-right: 3%;
     }
     .dropdown-item:hover {
         color: brown;
     }
     .lang-nav {
-        text-align: center;
         cursor: pointer;
     }
 }
@@ -347,6 +344,7 @@ option {
     letter-spacing: 1px;
     word-spacing: 2px;
     margin-left: 10px;
+    text-transform: capitalize;
 }
 
 

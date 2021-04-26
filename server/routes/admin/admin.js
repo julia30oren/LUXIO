@@ -82,7 +82,7 @@ router.post("/:lang/create", async(req, res) => {
                     break;
             };
             emailToLuxio(newAdmin_toSave.admin_name, true, language);
-            logger.info(`${moment().format(`h:mm:ss a`)} - New Admin was created <<${newAdmin_toSave.admin_name}>> `);
+            logger.info(`${moment().format(`h:mm:ss a`)} - New Admin was created «${newAdmin_toSave.admin_name}» `);
             return res.json([{ status: true, message: responseMessage }]);
         }
         // -------------------------ERRORS--------------
@@ -145,7 +145,7 @@ router.get('/:lang/remove/:id', async(req, res) => {
                     break;
             };
             emailToLuxio(admin.admin_name, false, language);
-            logger.info(`${moment().format(`h:mm:ss a`)} - <<${admin.admin_name}>> ${responseMessage}`);
+            logger.info(`${moment().format(`h:mm:ss a`)} - «${admin.admin_name}» ${responseMessage}`);
             return res.json([{ status: true, message: responseMessage }]);
         }
         // -------------------------ERRORS--------------
@@ -194,13 +194,13 @@ router.post('/:lang/login', async(req, res) => {
                 // ---------------------CHOOSING LANGUAGE for response-------------------------
                 switch (language) {
                     case 'en':
-                        responseMessage = `Admin <<${adminName}>> loged in.`
+                        responseMessage = `Admin «${adminName}» loged in.`
                         break;
                     case 'ru':
-                        responseMessage = `Админ <<${adminName}>> авторизовался.`
+                        responseMessage = `Админ «${adminName}» авторизовался.`
                         break;
                     default:
-                        responseMessage = `מנהל מערכת <<${adminName}>> התחבר.`
+                        responseMessage = `מנהל מערכת «${adminName}» התחבר.`
                         break;
                 };
                 logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
@@ -210,13 +210,13 @@ router.post('/:lang/login', async(req, res) => {
             else {
                 switch (language) {
                     case 'en':
-                        responseMessage = `Admin wasn't loged in. Please, check <<Main password>> and your <<Personal password>>.`
+                        responseMessage = `Admin wasn't loged in. Please, check «Main passwor» and your «Personal passwor».`
                         break;
                     case 'ru':
-                        responseMessage = `Администратор не авторизовался. Пожалуйста, проверьте << Основной пароль >> и ваш << Персональный пароль >>.`
+                        responseMessage = `Администратор не авторизовался. Пожалуйста, проверьте «Основной пароль» и ваш «Персональный пароль».`
                         break;
                     default:
-                        responseMessage = `מנהל המערכת לא התחבר. אנא בדוק << סיסמה ראשית >> ואת << סיסמה אישית >> שלך.`
+                        responseMessage = `מנהל המערכת לא התחבר. אנא בדוק «סיסמה ראשית» ואת «סיסמה אישית» שלך.`
                         break;
                 };
                 logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
@@ -225,13 +225,13 @@ router.post('/:lang/login', async(req, res) => {
         } else {
             switch (language) {
                 case 'en':
-                    responseMessage = `Admin <<${admin_name}>> don't exist.`
+                    responseMessage = `Admin «${admin_name}» don't exist.`
                     break;
                 case 'ru':
-                    responseMessage = `Админа <<${admin_name}>> не существует.`
+                    responseMessage = `Админа «${admin_name}» не существует.`
                     break;
                 default:
-                    responseMessage = `מנהל  <<${admin_name}>> לא קיים.`
+                    responseMessage = `מנהל  «${admin_name}» לא קיים.`
                     break;
             };
             logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
@@ -240,13 +240,13 @@ router.post('/:lang/login', async(req, res) => {
     } else {
         switch (language) {
             case 'en':
-                responseMessage = `<<Main email>> don't match.`
+                responseMessage = `«Main email» don't match.`
                 break;
             case 'ru':
-                responseMessage = `<<Основной адрес электронной почты>> не соответствует.`
+                responseMessage = `«Основной адрес электронной почты» не соответствует.`
                 break;
             default:
-                responseMessage = `<< דוא"ל ראשי >> אינם תואמים.`
+                responseMessage = `« דוא"ל ראשי» אינם תואמים.`
                 break;
         };
         logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);

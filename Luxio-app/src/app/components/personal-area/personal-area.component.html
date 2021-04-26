@@ -1,9 +1,17 @@
 <div class="container-fluid">
     <div class="row">
-        <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getMyWishlist()" [ngClass]="{butve: what_to_show==='wishlist'}">{{ 'PERSONAL-AREA.wishlist' | translate }}</button>
-        <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getMyCart()" [ngClass]="{butve: what_to_show==='cart'}">{{ 'PERSONAL-AREA.cart' | translate }}</button>
-        <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getPurchaseHistory()" [ngClass]="{butve: what_to_show==='purchase-history'}" *ngIf="userAuthorized">{{ 'PERSONAL-AREA.purchase-history' | translate }}</button>
-        <button type="button" class="btn btn-outline-dark s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getPrivateInfo()" [ngClass]="{butve: what_to_show==='private-info'}" *ngIf="userAuthorized">{{ 'PERSONAL-AREA.personal-information' | translate }}</button>
+        <div class="col-3">
+            <button type="button" class="s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getMyWishlist()" [ngClass]="{butve: what_to_show==='wishlist'}">{{ 'PERSONAL-AREA.wishlist' | translate }}</button>
+        </div>
+        <div class="col-3">
+            <button type="button" class="s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getMyCart()" [ngClass]="{butve: what_to_show==='cart'}">{{ 'PERSONAL-AREA.cart' | translate }}</button>
+        </div>
+        <div class="col-3">
+            <button type="button" class="s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getPurchaseHistory()" [ngClass]="{butve: what_to_show==='purchase-history'}" *ngIf="userAuthorized">{{ 'PERSONAL-AREA.purchase-history' | translate }}</button>
+        </div>
+        <div class="col-3">
+            <button type="button" class="s-button animate__animated animate__zoomIn animate__delay-0.5s animate__slow wow" (click)="getPrivateInfo()" [ngClass]="{butve: what_to_show==='private-info'}" *ngIf="userAuthorized">{{ 'PERSONAL-AREA.personal-information' | translate }}</button>
+        </div>
     </div>
     <div class="row">
         <div class="col-12 col-lg-8">
