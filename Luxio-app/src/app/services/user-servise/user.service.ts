@@ -308,7 +308,7 @@ export class UserService {
         let res = date[0];
         if (res.status) {
           this.saveNewSet_localy(res.newSet);
-          // ----------------------------------------saving new favorites to service----------------
+          // ----------------------------------------saving new special set to service----------------
           this.shop_Service.special(res.newSet);
         }
       });
@@ -317,6 +317,20 @@ export class UserService {
   saveNewSet_localy(newSet) {
     localStorage.removeItem('special_set');
     localStorage.setItem('special_set', JSON.stringify(newSet))
+  }
+
+  deleteSpecialSet_fromDB(user_id: string, set_id: string) {
+    return this.http.post(`${this.user_URL}/delete-special`, { _id: user_id, set_id: set_id })
+      .subscribe(date => {
+        console.log(date)
+        this.respond_Service.saveRespond(date)
+        let res = date[0];
+        if (res.status) {
+          this.saveNewSet_localy(res.newSet);
+          // ----------------------------------------saving new special set to service----------------
+          this.shop_Service.special(res.newSet);
+        }
+      });
   }
 
   // ----------------------------------------------

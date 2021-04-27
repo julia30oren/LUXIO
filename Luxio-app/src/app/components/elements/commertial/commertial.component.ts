@@ -70,7 +70,7 @@ export class CommertialComponent implements OnInit {
     return this.formTemplate['controls'];
   }
 
-  DDD(x, price) {
+  createItem(x, price) {
     let itemYoSave = {
       _id: x._id,
       burcode_id: x.burcode_id,
@@ -87,13 +87,13 @@ export class CommertialComponent implements OnInit {
     this.isSubmitted = true;
     let { luxio_1, luxio_2, luxio_3, luxio_4, luxio_5, forFree } = this.formTemplate.value;
     this.Tarray = [];
-    this.luxios.filter(x => { x._id === luxio_1 ? this.DDD(x, 117) : null });
-    this.luxios.filter(x => { x._id === luxio_2 ? this.DDD(x, 117) : null });
-    this.luxios.filter(x => { x._id === luxio_3 ? this.DDD(x, 117) : null });
-    this.luxios.filter(x => { x._id === luxio_4 ? this.DDD(x, 117) : null });
-    this.luxios.filter(x => { x._id === luxio_5 ? this.DDD(x, 117) : null });
-    this.luxios.filter(x => { x._id === forFree ? this.DDD(x, 0) : null });
-
+    this.luxios.filter(x => { x._id === luxio_1 ? this.createItem(x, 117) : null });
+    this.luxios.filter(x => { x._id === luxio_2 ? this.createItem(x, 117) : null });
+    this.luxios.filter(x => { x._id === luxio_3 ? this.createItem(x, 117) : null });
+    this.luxios.filter(x => { x._id === luxio_4 ? this.createItem(x, 117) : null });
+    this.luxios.filter(x => { x._id === luxio_5 ? this.createItem(x, 117) : null });
+    this.present.filter(x => { x._id === forFree ? this.createItem(x, 0) : null });
+    // console.log(this.Tarray);
     let set_id = Math.floor(Math.random() * 999) + '-a' + Math.floor(Math.random() * 999);
     let userId = localStorage.getItem('u324_3i_25d');
     this.user_service.saveSpecialSet_toDB(userId, set_id, this.Tarray, this.languege); // send to DB

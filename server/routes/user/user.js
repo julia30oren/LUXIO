@@ -504,5 +504,25 @@ router.post("/:lang/new-special", async(req, res) => {
     }
 });
 
+router.post("/delete-special", async(req, res) => {
+    // -------------------------------------------------- requested parameters -----
+    const { _id, set_id } = req.body;
+    try {
+        const setToDelete = await UserSchema.update({ "_id": _id }, { $pull: { "specialSet": { "set_id" : set_id } } });
+        if (setToDelete.nModified === 1) {
+            const user = await UserSchema.find({ "_id": _id });
+            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${_id} «Promotional Set» has been deleted successfully.`);
+            return res.json([{ status: true, message: `«Promotional Set» has been deleted successfully.` , newSet: user[0].specialSet }]);
+        }
+        // --------------------------------------------------------------------------------- ERRORS --
+        else {
+            logger.error(`${moment().format(`h:mm:ss a`)} - ID ${_id} Something went wrong. «Promotional Set» hasn't been deleted.`);
+            return res.json([{ status: false, message: `Something went wrong. «Promotional Set» hasn't been deleted.` }]);
+                                }
+    } catch (err){
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+        return res.json([{ status: false, message: err.message }]);
+    }
+})
 
 module.exports = router;

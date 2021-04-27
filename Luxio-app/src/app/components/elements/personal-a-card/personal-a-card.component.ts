@@ -115,10 +115,11 @@ export class PersonalACardComponent implements OnInit {
   getTotalPrice() {
     this.specialOrder.length ? this.TOTAL_PRICE = this.specialOrder.length * 585 : this.TOTAL_PRICE = 0;
 
-    this.personalArea_products.forEach(element => {
-      this.TOTAL_PRICE = this.TOTAL_PRICE + element.total_price;
-    });
-
+    if (this.personalArea_products) {
+      this.personalArea_products.forEach(element => {
+        this.TOTAL_PRICE = this.TOTAL_PRICE + element.total_price;
+      });
+    }
     if (this.TOTAL_PRICE < 1000) {
       this.shipping = 40;
       this.TOTAL_PRICE = this.TOTAL_PRICE + this.shipping;
@@ -126,7 +127,7 @@ export class PersonalACardComponent implements OnInit {
   }
 
   deleteSet(setId) {
-    console.log(setId);
+    this.user_service.deleteSpecialSet_fromDB(this.user[0]._id, setId);
   }
 
   pay_onlyThisSet(setId) {
@@ -247,7 +248,7 @@ export class PersonalACardComponent implements OnInit {
   PAY() {
     this.isSubmited = true;
     if (this.frmShipment.valid) { //Delivery address:
-      this.frmShipment.value._id = this.user[0]._id
+      this.frmShipment.value._id = this.user[0]._id;
       this.frmShipment.value.first_name = this.user[0].first_name;
       this.frmShipment.value.second_name = this.user[0].second_name;
       this.frmShipment.value.email = this.user[0].email;
