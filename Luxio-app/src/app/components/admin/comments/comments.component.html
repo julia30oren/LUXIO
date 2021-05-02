@@ -6,8 +6,7 @@
                 <h5 class="card-title">{{item.user_name}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{item.date | date:'mediumDate'}}</h6>
                 <p class="card-text">{{item.comment}}</p>
-                <a href="#" class="card-link" click="deleteThisComment(item._id);">Delete comment</a>
-                <!-- <a href="#" class="card-link">Another link</a> -->
+                <button class="message-link" (click)="deleteThisComment(item._id);">Delete comment</button>
             </div>
         </div>
     </div>

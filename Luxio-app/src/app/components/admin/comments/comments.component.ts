@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user-servise/user.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { Router } from '@angular/router';
+import { AdminServiceService } from 'src/app/services/admin/admin-service.service';
 
 @Component({
   selector: 'app-comments',
@@ -13,7 +14,8 @@ export class CommentsComponent implements OnInit {
   constructor(
     private router: Router,
     private user_service: UserService,
-    private lang_service: LanguageService
+    private lang_service: LanguageService,
+    private admin_service: AdminServiceService
   ) { }
 
   public languege: string;
@@ -49,9 +51,9 @@ export class CommentsComponent implements OnInit {
     } else this.router.navigate(['/**']);
   }
 
-  //function to delete comments by ID
+  //to delete comments by ID
   deleteThisComment(commentId) {
-    console.log(commentId);
+    this.admin_service.deleteCommentByID(this.languege, commentId);
   }
 
 }

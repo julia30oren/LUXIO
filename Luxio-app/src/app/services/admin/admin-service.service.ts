@@ -12,6 +12,7 @@ export class AdminServiceService {
 
   public admin_URL: string = `${environment.hostURL}:${environment.DBport}/admin`;
   private orders_URL: string = `${environment.hostURL}:${environment.DBport}/order`;
+  private comments_URL: string = `${environment.hostURL}:${environment.DBport}/comments`;
 
   private admins = new BehaviorSubject<Array<any>>([]);
   public admins_from_service = this.admins.asObservable();
@@ -76,7 +77,7 @@ export class AdminServiceService {
   }
 
   deleteCommentByID(lang: string, comment_id: string) {
-    return this.http.get(`${this.orders_URL}/${lang}/remove/${comment_id}`).subscribe(res => {
+    return this.http.get(`${this.comments_URL}/${lang}/remove/${comment_id}`).subscribe(res => {
       this.respond_Service.saveRespond(res);
       if (res[0].status) { // save new comments
         this.user_Service.saveCommentsOnService(res[0].newComments);
