@@ -92,7 +92,8 @@ export class PrivateInfoComponent implements OnInit {
     let email = this.user[0].email
     if (this.formTemplate_password.valid && formValue.new_pass === formValue.conf_new) {
       this.conf_new = true;
-      this.user_Service.saveNewPassword(email, formValue, this.languege);
+      let toSave = { old_pass: formValue.old_pass, new_pass: formValue.new_pass };
+      this.user_Service.saveNewPassword(email, toSave, this.languege);
     } else {
       this.conf_new = false;
     }

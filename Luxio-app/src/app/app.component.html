@@ -172,7 +172,6 @@
                         <ul class="dropdown-menu dropdown-menu-bottom" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item nav-txt" href="admin/registration">{{ 'NAVIGATION.REGISTER-ADMIN.title' | translate }}</a></li>
                             <li><a class="dropdown-item nav-txt" href="admin/remove">{{ 'NAVIGATION.DELETE-ADMIN.title' | translate }}</a></li>
-                            <li><a class="dropdown-item nav-txt" href="new" (click)="logOut()">{{'NAVIGATION.sign-out'| translate}}</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -217,7 +216,7 @@
 <!--  -->
 
 <!-- --------------------------------------------------ADVERTISEMENT-------- ------ -->
-<div *ngIf="advertisement" class="container-fluid Advertisement">
+<div *ngIf="advertisement && !admin" class="container-fluid Advertisement">
     <div class="row justify-content-center">
         <div class="col-10 col-lg-3 inerAdvertisement" style="text-align: center;" [ngClass]="{HebrewDirection: languege==='iv'}">
             <p class="main-title"> {{ 'SIGN-IN.OPEN-FORM.line-1' | translate }}</p>
@@ -304,13 +303,15 @@
     </div>
 
     <!-- ------------------------------------------ COMMERCIAL -->
-    <app-commertial></app-commertial>
+    <div *ngIf="!admin">
+        <app-commertial></app-commertial>
+    </div>
     <!-- ------------------------------------------------FOOTER -->
     <app-footer></app-footer>
 </div>
 
 <!-- ------------------------------------WHATSAPP BUTTON -->
-<div id="whatsapp-button" class="animate__animated animate__fadeInDownBig animate__delay-0.5s animate__slow">
+<div *ngIf="!admin" id="whatsapp-button" class="animate__animated animate__fadeInDownBig animate__delay-0.5s animate__slow">
     <a class="social-icons" target="_blank" href="https://api.whatsapp.com/send?phone=972559519777">
         <img id="whatsapp-img" src="https://i.pinimg.com/originals/02/1a/be/021abebe8f67a7b50c5d29ac0f846886.png" alt="whatsapp">
     </a>

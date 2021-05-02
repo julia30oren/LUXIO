@@ -170,10 +170,15 @@ export class UserService {
     return this.http.get(`${this.comment_URL}`).subscribe(res => {
       let comments = res[0].allComments;
       if (comments) {
-        this.comments.next([comments]);
+        this.saveCommentsOnService(comments);
       } else console.error('no comments came from server');
     });
   }
+
+  saveCommentsOnService(comments) {
+    this.comments.next([comments]);
+  }
+
   // ---------------------------------------------------- LEAVE COMMENT ------------------------------
   leaveAcomment(comment: object, languege: string) {
     return this.http.post(`${this.comment_URL}/${languege}/save`, comment)
@@ -181,13 +186,6 @@ export class UserService {
         this.respond_Service.saveRespond(res);
       });
   }
-  // ---------------------------------------------------- DELETE COMMENT ------------------------------
-  // no connected function----
-  deleteAcomment(comment_id: string, languege: string) {
-    return this.http.get(`${this.comment_URL}/${languege}/remove/${comment_id}`);
-  }
-
-
 
   // --------------------------------------------------------------------------------FUNCTIONS-----------------
   // ----to save user on service----------

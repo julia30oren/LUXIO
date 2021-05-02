@@ -2,12 +2,12 @@
 <div class="container-fluid">
     <div class="row">
         <div class="card col-3 col-lg-6" style="width: 100%" *ngFor="let item of comments">
-            <div class="card-body" [ngClass]="{Hebrew: item.user_languege === 'iv'}">
+            <div class="card-body" [ngClass]="{HebrewDirection: item.user_languege === 'iv'}">
                 <h5 class="card-title">{{item.user_name}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{item.date | date:'mediumDate'}}</h6>
                 <p class="card-text">{{item.comment}}</p>
-                <a href="#" class="card-link">Delete comment</a>
-                <a href="#" class="card-link">Another link</a>
+                <a href="#" class="card-link" click="deleteThisComment(item._id);">Delete comment</a>
+                <!-- <a href="#" class="card-link">Another link</a> -->
             </div>
         </div>
     </div>

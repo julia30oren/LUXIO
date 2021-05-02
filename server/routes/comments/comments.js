@@ -77,7 +77,9 @@ router.get("/:lang/remove/:id", async(req, res) => {
         // -------------------------------------DELETING--------------------------
         let comment_toDelete = await CommentSchema.findByIdAndRemove({ "_id": commentID });
         if (comment_toDelete !== null) {
+            const allComments = await CommentSchema.find();
             switch (language) {
+                
                 case 'en':
                     responseMessage = `Comment was deleted.`
                     break;
@@ -88,7 +90,7 @@ router.get("/:lang/remove/:id", async(req, res) => {
                     responseMessage = `התגובה נמחקה.`
             };
             logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
-            return res.json([{ status: true, message: responseMessage }]);
+            return res.json([{ status: true, message: responseMessage, newComments: allComments }]);
         }
         // -------------------------ERRORS--------------
         else {

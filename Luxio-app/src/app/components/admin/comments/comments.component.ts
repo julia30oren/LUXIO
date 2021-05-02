@@ -49,6 +49,9 @@ export class CommentsComponent implements OnInit {
     } else this.router.navigate(['/**']);
   }
 
-  // need a function to delete comments by ID
+  //function to delete comments by ID
+  deleteThisComment(commentId) {
+    console.log(commentId);
+  }
 
 }

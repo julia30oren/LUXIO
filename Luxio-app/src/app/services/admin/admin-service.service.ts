@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { RespondService } from '../respond/respond.service';
 import { environment } from '../../../environments/environment'
+import { UserService } from '../user-servise/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class AdminServiceService {
 
   constructor(
     private http: HttpClient,
-    private respond_Service: RespondService
+    private respond_Service: RespondService,
+    private user_Service: UserService
   ) { }
 
   getAdmins_fromDB() {
@@ -56,7 +58,7 @@ export class AdminServiceService {
     });
   }
 
-  getOrders_ofUser(user_id) {
+  getOrders_ofUser(user_id: string) {
     return this.http.get(`${this.orders_URL}/${user_id}`).subscribe(res => {
       if (res[0].status) {
         this.orders.next(res[0].userOrders);
@@ -66,10 +68,19 @@ export class AdminServiceService {
     });
   }
 
-  changeOrdersStatuse(lang, order_id) {
+  changeOrdersStatuse(lang: string, order_id: string) {
     return this.http.get(`${this.orders_URL}/${lang}/status/${order_id}/${true}`).subscribe(res => {
       this.respond_Service.saveRespond(res);
       this.getOrders();
+    });
+  }
+
+  deleteCommentByID(lang: string, comment_id: string) {
+    return this.http.get(`${this.orders_URL}/${lang}/remove/${comment_id}`).subscribe(res => {
+      this.respond_Service.saveRespond(res);
+      if (res[0].status) { // save new comments
+        this.user_Service.saveCommentsOnService(res[0].newComments);
+      }
     });
   }
 }
