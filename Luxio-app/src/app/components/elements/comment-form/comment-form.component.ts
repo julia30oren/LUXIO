@@ -33,8 +33,6 @@ export class CommentFormComponent implements OnInit {
       formValue.user_name = localStorage.getItem('u324_n4325e');
       this.user_Service.leaveAcomment(formValue, this.language);
       this.resetForm();
-    } else {
-      alert('denied');
     }
   }
 

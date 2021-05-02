@@ -30,14 +30,14 @@ const validSchema = Joi.object({
     business: Joi.any(),
     photo_link: Joi.any(),
     old_pass: Joi.any(),
-    new_pass: Joi.string().min(6).message('PASSWORD is to short. It must contain at least 6 letters and/or numbers.').pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).message('PASSWORD is not valid.'),
+    new_pass: Joi.string().min(6),
     city: Joi.any(),
     street: Joi.any(),
     home: Joi.any(),
     apartment: Joi.any(),
     zip: Joi.any(),
     tempPass: Joi.any(),
-    newPass: Joi.string().min(6).message('PASSWORD is to short. It must contain at least 6 letters and/or numbers.').pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).message('PASSWORD is not valid.'),
+    newPass: Joi.string().min(6),
 })
 
 function userValidation(req, res, next) {

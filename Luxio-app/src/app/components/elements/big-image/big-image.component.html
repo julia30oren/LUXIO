@@ -56,7 +56,7 @@
                         <input type="number" class="form-control" value="1" min="1" (change)="quantity_change($event.target.value)">
                     </div>
                     <div class="col-lg-6 col-12">
-                        <button type="button" class="button-link" (click)="addToCart()">
+                        <button type="button" class="button-link" (click)="addToCart()" *ngIf="!item.label||item.label!=='Out of stock'">
                             <p *ngIf="!selectedProd_inCart">{{'PROD_DESCRIPTION.add_to_cart' | translate}}</p>
                             <p *ngIf="selectedProd_inCart" style="color: rgb(212, 99, 99);">{{'PROD_DESCRIPTION.remove_from_cart' | translate}}</p>
                         </button>

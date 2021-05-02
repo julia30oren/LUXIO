@@ -1,6 +1,7 @@
 #commertial {
     width: 1200px;
-    background-color: rgba(128, 128, 128, 0.561);
+    background-color: rgba(78, 78, 78, 0.239);
+    border-top: black solid 1px;
 }
 
 #commertial-title {

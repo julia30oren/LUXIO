@@ -95,7 +95,6 @@ export class PrivateInfoComponent implements OnInit {
       this.user_Service.saveNewPassword(email, formValue, this.languege);
     } else {
       this.conf_new = false;
-      alert('denied');
     }
   }
   get formControlsPassword() {
