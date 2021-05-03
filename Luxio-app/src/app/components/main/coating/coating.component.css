@@ -11,3 +11,11 @@
     font-size: 20px;
     text-transform: uppercase;
 }
+
+.marginL50px {
+    margin-left: 50px;
+}
+
+.marginR50px {
+    margin-right: 50px;
+}

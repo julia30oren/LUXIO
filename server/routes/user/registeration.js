@@ -92,9 +92,9 @@ router.post("/:lang/save", async(req, res) => {
                             break;
                     }
                     // Send message to Luxio----------------------
-                    emailToAdmin(userToSave,userToSave);
+                    emailToAdmin(userToSave);
                     // Send message in different languages----------------------
-                    emailToUser_Info(language);
+                    emailToUser_Info(language, email);
                     logger.info(`${moment().format(`h:mm:ss a`)} - ID ${userToSave._id} ${responseMessage}`);
             return res.json([{ status: true, message: responseMessage }]);
         }
@@ -439,7 +439,7 @@ function emailToAdmin(user) {
 };
 
 // Send message to user in different languages-------------------------------
-function emailToUser_Info(langueg, user) {
+function emailToUser_Info(langueg, userEmail) {
     const main = async() => {
         // ------------------------------------------CHOOSING LANGUAGE-------------------------
         switch (langueg) {
@@ -477,7 +477,7 @@ function emailToUser_Info(langueg, user) {
         // ------------------------------------------------sending------------
         let info = await transporter.sendMail({
             from: process.env.SMTPHOSTEMAILUSER, // sender address
-            to: user.email, // list of receivers
+            to: userEmail, // list of receivers
             subject: subject, // Subject line
             html: mainText //main text
         });

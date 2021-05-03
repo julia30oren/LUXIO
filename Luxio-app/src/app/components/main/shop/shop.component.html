@@ -59,3 +59,45 @@
 </div>
 
 <button style="width: 100%; margin:auto;" *ngIf="moreButtonVisible" class="btn btn-link marginTop50" [ngClass]="{H: languege==='iv'}" type="button" (click)="moreProducts();">{{ 'SHOP.button' | translate }}</button>
+
+<!-- <div>
+    <form>
+
+        <select class="form-control form-control-sm" [(ngModel)]="filterClass" [ngModelOptions]="{standalone: true}" #class (change)="getFillter(class.value,color.value, tint.value)">
+            <option value=''>{{ 'SEARCH.line' | translate }} {{ 'SEARCH.not-selected' | translate }}</option>
+            <option value="basics">{{ 'SEARCH.OPTIONS.basics' | translate }}</option>
+            <option value="Luxio" selected>{{ 'SEARCH.OPTIONS.Luxio' | translate }}</option>
+            <option value="Options">{{ 'SEARCH.OPTIONS.Options' | translate }}</option>
+            <option value="Gel Play">{{ 'SEARCH.OPTIONS.Gel-Play' | translate }}</option>
+            <option value="Hard GEL">{{ 'SEARCH.OPTIONS.Hard-GEL' | translate }}</option>
+            <option value="materials">{{ 'SEARCH.OPTIONS.materials' | translate }}</option>
+            <option value="accessories">{{ 'SEARCH.OPTIONS.accessories' | translate }}</option>
+        </select>
+
+        <select class="form-control form-control-sm" [(ngModel)]="filterColor" [ngModelOptions]="{standalone: true}" #color (change)="getFillter(class.value,color.value, tint.value)">
+            <option value='' >{{ 'SEARCH.color' | translate }} {{ 'SEARCH.not-selected' | translate }}</option>
+            <option value='white'selected>{{ 'SEARCH.OPTIONS.white' | translate }}</option>
+            <option value='black'>{{ 'SEARCH.OPTIONS.black' | translate }}</option>
+            <option value='pink'>{{ 'SEARCH.OPTIONS.pink' | translate }}</option>
+            <option value='beige'>{{ 'SEARCH.OPTIONS.beige' | translate }}</option>
+            <option value='red'>{{ 'SEARCH.OPTIONS.red' | translate }}</option>
+            <option value='оrange'>{{ 'SEARCH.OPTIONS.оrange' | translate }}</option>
+            <option value='yellow'>{{ 'SEARCH.OPTIONS.yellow' | translate }}</option>
+            <option value='green'>{{ 'SEARCH.OPTIONS.green' | translate }}</option>
+            <option value='blue'>{{ 'SEARCH.OPTIONS.blue' | translate }}</option>
+            <option value='violet'>{{ 'SEARCH.OPTIONS.violet' | translate }}</option>
+            <option value='brown'>{{ 'SEARCH.OPTIONS.brown' | translate }}</option>
+            <option value='gray'>{{ 'SEARCH.OPTIONS.gray' | translate }}</option>
+    </select>
+
+        <select class="form-control form-control-sm" #tint (change)="getFillter(class.value,color.value, tint.value)">
+        <option value="" selected>{{ 'SEARCH.tint' | translate }} {{ 'SEARCH.not-selected' | translate }}</option>
+        <option value='light'>{{ 'SEARCH.OPTIONS.light' | translate }}</option>
+        <option value='dark'>{{ 'SEARCH.OPTIONS.dark' | translate }}</option>
+        <option value='bright'>{{ 'SEARCH.OPTIONS.bright' | translate }}</option>
+</select>
+    </form>
+    <li class="list-group-item" *ngFor="let c of shop | appFilter: itemsFilter">
+        <small style="cursor: pointer;" *ngIf="c.name">{{c.prod_class}} {{c.name}}</small>
+    </li>
+</div> -->

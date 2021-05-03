@@ -16,7 +16,7 @@
                                 <input type="email" class="form-control" id="search-text" aria-describedby="search-text" [(ngModel)]="searchText" placeholder="Enter text to search" autofocus>
                             </li>
                             <br>
-                            <li class="list-group-item" *ngFor="let c of shop | appFilter: searchText">
+                            <li class="list-group-item" *ngFor="let c of shop | searchFilter: searchText">
                                 <small style="cursor: pointer;" *ngIf="c.name" (click)="doSearch(c._id)">{{c.prod_class}} {{c.name}}</small>
                             </li>
                         </ul>
@@ -130,7 +130,7 @@
                                 <input type="email" class="form-control" id="search-text" aria-describedby="search-text" [(ngModel)]="searchText" placeholder="Enter text to search" autofocus>
                             </li>
                             <br>
-                            <li class="list-group-item" *ngFor="let c of shop | appFilter: searchText">
+                            <li class="list-group-item" *ngFor="let c of shop | searchFilter: searchText">
                                 <small style="cursor: pointer;" *ngIf="c.name" (click)="doSearch(c._id)">{{c.prod_class}} {{c.name}}</small>
                             </li>
                         </ul>

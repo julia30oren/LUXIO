@@ -7,7 +7,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { FilterPipe } from './filter.pipe';
+import { SearchPipe } from './pipes/search.pipe';
 
 import { AppComponent } from './app.component';
 
@@ -44,7 +44,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    FilterPipe,
+    SearchPipe,
     RegFormOneComponent,
     LogFormComponent,
     PasswordRestoreFormComponent,

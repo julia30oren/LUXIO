@@ -10,6 +10,11 @@ import { LanguageService } from 'src/app/services/language.service';
 })
 export class ShopComponent implements OnInit {
 
+  public filterClass = '';
+  public filterColor = '';
+
+  itemsFilter = {};
+
   public languege: string;
   public doSortState: boolean = false;
   public moreButtonVisible: boolean = true;
@@ -48,31 +53,34 @@ export class ShopComponent implements OnInit {
     this.doSortState = !this.doSortState
   }
 
-  getSorted(by_class, by_color, by_tint, by_transparency) {
+  getSorted(classVal, colorVal, tintVal, transparencyVal) {
     let newAr = [];
-    if (by_class === 'accessories') {
-      this.shop.forEach(element => {
-        if (element.prod_class.includes(by_class)) {
-          newAr.push(element);
+    if (classVal === 'accessories') {
+      newAr = this.shop.filter(item => {
+        if (item.prod_class.includes('accessories')) {
+          return item;
         }
-      });
-      if (newAr.length < 1) {
-        this.noneFound = true;
-      } else this.noneFound = false;
-      this.shopToShow = newAr;
-      this.shop_service.getProducts_sorted(newAr);
+      })
     } else {
-      this.shop.forEach(element => {
-        if (element.prod_class.includes(by_class) && element.color.includes(by_color) && element.tint.includes(by_tint) && element.transparency.includes(by_transparency)) {
-          newAr.push(element);
+      let itemsFilter = {
+        prod_class: classVal ? classVal : '',
+        color: colorVal ? colorVal : '',
+        tint: tintVal ? tintVal : '',
+        transparency: transparencyVal ? transparencyVal : ''
+      };
+
+      newAr = this.shop.filter(item => {
+        if (item.prod_class.includes(itemsFilter.prod_class)
+          && item.color.includes(itemsFilter.color)
+          && item.tint.includes(itemsFilter.tint)
+          && item.transparency.includes(itemsFilter.transparency)) {
+          return item;
         }
-      });
-      if (newAr.length < 1) {
-        this.noneFound = true;
-      } else this.noneFound = false;
-      this.shopToShow = newAr;
-      this.shop_service.getProducts_sorted(newAr);
+      })
     }
+    newAr.length < 1 ? this.noneFound = true : this.noneFound = false;
+    this.shopToShow = newAr;
+    this.shop_service.getProducts_sorted(newAr);
   }
 
   getAll() {
@@ -98,5 +106,15 @@ export class ShopComponent implements OnInit {
       } else this.shop_service.getProducts_sorted(this.shop);
     }
   }
+
+  // getFillter(classVal, colorVal, tintVal) {
+
+  //   this.itemsFilter = {
+  //     prod_class: classVal ? classVal : '',
+  //     color: colorVal ? colorVal : '',
+  //     tint: tintVal ? tintVal : ''
+  //   };
+
+  // }
 
 }
