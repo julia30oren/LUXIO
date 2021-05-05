@@ -207,7 +207,7 @@ router.get('/:lang/delete/user/:id', async(req, res) => {
     const language = req.params.lang;
     const id = req.params.id;
     try {
-        let user_toDelete = await UserSchema.remove({ "_id": id });
+        let user_toDelete = await UserSchema.deleteOne({ "_id": id });
         if (user_toDelete !== null) {
             // ------------------------------------------------------CHOOSING LANGUAGE for response-------------------------
             switch (language) {
@@ -402,8 +402,10 @@ router.post('/:lang/password/restore/new/:email', async(req, res) => {
 // create reusable transporter object using the default SMTP transport
 let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
+    port: 465,
+    secure: true,
+    // port: 587,
+    // secure: false, // true for 465, false for other ports
     auth: {
         user: process.env.SMTPHOSTEMAILUSER,
         pass: process.env.SMTPHOSTEMAILPASSWORD,
@@ -465,7 +467,7 @@ function emailToUser_Info(langueg, userEmail) {
                 break;
             default:
                 subject = `ציפורניים מושלמות רק מבית AKZENTZ`;
-                mainText = `<div style="padding: 5%; text-align: right; direction: rtl;">
+                mainText = `<div style="padding: 5%; text-align: right; direction: rtl; text-align: right; direction: rtl;">
                             <h3> תודה שביקשתם חשבון אישי. </h3>
                             <h3>אנחנו כלום בלי לקוחות! הנוכחות שלך היא המוטיבציה שלנו לעשות טוב יותר!</h3>
                             <p> לקבלת מידע נוסף, צרו קשר עם נציג החברה במספר:</p>
@@ -508,7 +510,7 @@ function emailToUser_Deny(langueg, user) {
                 break;
             default:
                 subject = `בקשה נדחה`;
-                mainText = `<div style="border: red 1px solid; padding: 5%; text-align: right; direction: rtl;">
+                mainText = `<div style="border: red 1px solid; padding: 5%; text-align: right; direction: rtl; text-align: right; direction: rtl;">
                             <p> בקשתך לקבל חשבון אישי לרכישות מקוונות מ<a href="https://www.luxiobyakzentz.com/">Luxio</a> נדחה.</p>
                             <p> לקבלת מידע נוסף, צרו קשר עם נציג החברה במספר:</p>
                             <p> 054-8785521 / 055-9519777 </p>
@@ -551,12 +553,12 @@ function emailToUser_Confirm(langueg, user) {
                 break;
             default:
                 subject = `הבקשה אושרה`;
-                mainText = `<div style="border: green 1px solid; padding: 5%; text-align: right; direction: rtl;">
+                mainText = `<div style="border: green 1px solid; padding: 5%; text-align: right; direction: rtl; text-align: right; direction: rtl;">
                             <p> בקשתך לקבל חשבון אישי לרכישות מקוונות מ <a href="https://www.luxiobyakzentz.com/">Luxio</a> אושרה.</p>
                             <p> עכשיו אתה יכול להזמין כל סחורה ישירות מהאתר שלנו. </p>
                             <p> לקבלת מידע נוסף, צרו קשר עם נציג החברה במספר:</p>
                             <p> 054-8785521 / 055-9519777 </p>
-                        </div>`;
+                            </div>`;
                 break;
         }
         // ------------------------------------------------sending------------
@@ -577,15 +579,15 @@ function newPassEmail(email, randomPass, language) {
         switch (language) {
             case 'en':
                 subject = `From Luxio website`;
-                mainText = `<p>Temporary password: ${randomPass}</p>`;
+                mainText = `<p>Temporary password:<br/>${randomPass}</p>`;
                 break;
             case 'ru':
                 subject = `С сайта Luxio`;
-                mainText = `<p>Временный пароль: ${randomPass}`;
+                mainText = `<p>Временный пароль:<br/>${randomPass}`;
                 break;
             default:
                 subject = `מאתר Luxio`;
-                mainText = `<p>סיסמא זמנית: ${randomPass}</p>`;
+                mainText = `<p style="text-align: right; direction: rtl;">סיסמא זמנית:<br/>${randomPass}</p>`;
                 break;
         }
         // ------------------------------------------------sending------------

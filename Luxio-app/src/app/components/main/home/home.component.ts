@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('comersial', { static: false }) public comersial: ElementRef;
   public languege: string;
   public play: boolean = true;
-  public sound: boolean = true;
+  public sound: boolean = false;
 
   constructor(
     private lang_service: LanguageService,

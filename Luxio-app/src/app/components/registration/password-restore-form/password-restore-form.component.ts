@@ -70,8 +70,9 @@ export class PasswordRestoreFormComponent implements OnInit {
   onSubmit2(formValue, email) {
     this.isSubmitted2 = true;
     if (formValue.newPass && formValue.newPass === formValue.repeatPass) {
+      let toSend = { tempPass: formValue.tempPass, newPass: formValue.newPass }
       this.passValid = true;
-      this.saveUser_Service.setNewPassword(formValue, email.email.toLowerCase(), this.language);
+      this.saveUser_Service.setNewPassword(toSend, email.email.toLowerCase(), this.language);
     } else {
       this.passValid = false;
     }
