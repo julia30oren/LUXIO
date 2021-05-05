@@ -335,18 +335,6 @@ option {
     color: brown;
 }
 
-#welcome {
-    height: 100%;
-    color: brown;
-    font-weight: 500;
-    font-family: Georgia, serif;
-    font-size: 20px;
-    letter-spacing: 1px;
-    word-spacing: 2px;
-    margin-left: 10px;
-    text-transform: capitalize;
-}
-
 
 /* ----whatsapp */
 
@@ -369,4 +357,15 @@ option {
     #whatsapp-img {
         width: 50px;
     }
+}
+
+.welcome {
+    height: 100%;
+    font-weight: 500;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    margin-left: 10px;
+    text-transform: capitalize;
 }

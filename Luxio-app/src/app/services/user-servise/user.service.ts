@@ -190,7 +190,6 @@ export class UserService {
   // --------------------------------------------------------------------------------FUNCTIONS-----------------
   // ----to save user on service----------
   seveUser_onService(userFullInfo) {
-    console.log('userFullInfo')
 
     // geting user and token:
     let user = userFullInfo[0].user;

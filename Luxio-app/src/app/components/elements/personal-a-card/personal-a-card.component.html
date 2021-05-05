@@ -1,6 +1,6 @@
 <!-- if cart or favorites are empty -->
 <div class="container-fluid">
-    <div class="row" *ngIf="!personalArea_products">
+    <div class="row" *ngIf="!personalArea_products && !specialOrder">
         <div class="col-12">
             <p class="empty main-txt" *ngIf="what_to_show === 'cart'" [ngClass]="{Hebrew: languege==='iv'}">
                 <span>{{ 'PERSONAL-AREA.CARD.empty-cart' | translate}}</span>

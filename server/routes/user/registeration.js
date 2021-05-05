@@ -39,7 +39,7 @@ router.post("/upload-certificate", upload.array('image'), async(req, res) => {
 // ---------------------------------------------CREATE A NEW USER--------------------category, certificate_link-----
 router.post("/:lang/save", async(req, res) => {
     const language = req.params.lang;
-    const { conditionsСonfirmation, phoneN, state, password, cart, favorites, business } = req.body;
+    const { conditionsСonfirmation, phoneN, state, password, cart, favorites,specialSet, business } = req.body;
     const name= req.body.first_name.charAt(0).toUpperCase() + req.body.first_name.slice(1).toLowerCase();
     const surname= req.body.second_name.charAt(0).toUpperCase() + req.body.second_name.slice(1).toLowerCase();
     const email= req.body.email.toLowerCase();
@@ -73,6 +73,7 @@ router.post("/:lang/save", async(req, res) => {
                 password: passwordHash,
                 cart: cart,
                 favorites: favorites,
+                specialSet: specialSet,
                 business: business,
                 langueg: language
             });
