@@ -33,68 +33,69 @@ router.get('/:id', async(req, res) => {
 
 // ------------------------------------------------------SAVE NEW ORDER-------------------------------
 router.post("/:lang/save", async(req, res, next) => {
-    const language = req.params.lang;
-    const { order, payments, shipping_details } = req.body;
-    // creating new product-----------------------
-    try {
-        // ----------------------------we are creating new ORDER:
-        const newOrder = new OrderSchema({
-            order: order,
-            payments: {
-                type:'PayPal',
-                orderID:payments.orderID,
-                payerID:payments.payerID,
-                totalPrice : payments.totalPrice,
-                shipping : payments.shipping,
-                discount : payments.discount
-            },
-            shipping_details: shipping_details
-        });
-        // ---------------------------SAVING NEW---------------------
-        try {
-            const orderToSave = await newOrder.save();
-            if (orderToSave._id) {
-                let user_id = shipping_details._id;
-                // ----------------------depending on language -  different response:
-                switch (language) {
-                    case 'en':
-                        responseMessage = `The order was placed successfully.`
-                        break;
-                    case 'ru':
-                        responseMessage = `Заказ был размещен успешно.`
-                        break;
-                    default:
-                        responseMessage = `ההזמנה בוצעה בהצלחה.`
-                };
-                const cartRestart = await UserSchema.update({ "_id": user_id }, { $set: { "cart": [] } });  
-                //payments.description => email sent to Ann
-                emailToLuxio(payments, orderToSave.shipping_details);
-                logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage} Order id ${orderToSave._id}`);
-                return res.json([{ status: true, message: responseMessage }]);
-            }
-            //-------------------------------ERRORS-------
-            else {
-                switch (language) {
-                    case 'en':
-                        responseMessage = `The order was not placed.`
-                        break;
-                    case 'ru':
-                        responseMessage = `Заказ не размещен.`
-                        break;
-                    default:
-                        responseMessage = `ההזמנה לא בוצעה.`
-                };
-                logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
-                return res.json([{ status: false, message: responseMessage }]);
-            }
-        } catch (err) {
-            logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
-            return res.json([{ status: false, message: err.message }]);
-        }
-    } catch (err) {
-        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
-        return res.json([{ status: false, message: err.message }]);
-    }
+    console.log(req.body);
+    // // const language = req.params.lang;
+    // // const { order, payments, shipping_details } = req.body;
+    // // creating new product-----------------------
+    // try {
+    //     // ----------------------------we are creating new ORDER:
+    //     // const newOrder = new OrderSchema({
+    //     //     order: order,
+    //     //     payments: {
+    //     //         type:'PayPal',
+    //     //         orderID:payments.orderID,
+    //     //         payerID:payments.payerID,
+    //     //         totalPrice : payments.totalPrice,
+    //     //         shipping : payments.shipping,
+    //     //         discount : payments.discount
+    //     //     },
+    //     //     shipping_details: shipping_details
+    //     // });
+    //     // ---------------------------SAVING NEW---------------------
+    //     // try {
+    //     //     const orderToSave = await newOrder.save();
+    //     //     if (orderToSave._id) {
+    //     //         let user_id = shipping_details._id;
+    //     //         // ----------------------depending on language -  different response:
+    //     //         switch (language) {
+    //     //             case 'en':
+    //     //                 responseMessage = `The order was placed successfully.`
+    //     //                 break;
+    //     //             case 'ru':
+    //     //                 responseMessage = `Заказ был размещен успешно.`
+    //     //                 break;
+    //     //             default:
+    //     //                 responseMessage = `ההזמנה בוצעה בהצלחה.`
+    //     //         };
+    //     //         const cartRestart = await UserSchema.update({ "_id": user_id }, { $set: { "cart": [] } });  
+    //     //         //payments.description => email sent to Ann
+    //     //         emailToLuxio(payments, orderToSave.shipping_details);
+    //     //         logger.info(`${moment().format(`h:mm:ss a`)} - ${responseMessage} Order id ${orderToSave._id}`);
+    //     //         return res.json([{ status: true, message: responseMessage }]);
+    //     //     }
+    //     //     //-------------------------------ERRORS-------
+    //     //     else {
+    //     //         switch (language) {
+    //     //             case 'en':
+    //     //                 responseMessage = `The order was not placed.`
+    //     //                 break;
+    //     //             case 'ru':
+    //     //                 responseMessage = `Заказ не размещен.`
+    //     //                 break;
+    //     //             default:
+    //     //                 responseMessage = `ההזמנה לא בוצעה.`
+    //     //         };
+    //     //         logger.error(`${moment().format(`h:mm:ss a`)} - ${responseMessage}`);
+    //     //         return res.json([{ status: false, message: responseMessage }]);
+    //     //     }
+    //     // } catch (err) {
+    //     //     logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+    //     //     return res.json([{ status: false, message: err.message }]);
+    //     // }
+    // } catch (err) {
+    //     logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+    //     return res.json([{ status: false, message: err.message }]);
+    // }
 });
 
 // ----------------------------------------------------DELETE ORDER-------------------

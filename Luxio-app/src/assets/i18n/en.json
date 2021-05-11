@@ -289,7 +289,7 @@
             "title": "DISCOVER THE PERFECT MANUCURE",
             "text-1": "Luxio by AKZÉNTZ is a 100% gel that provides a durable, long-lasting, beautiful polish, protects the nail from external damage and gives a bright glossy shine!",
             "text-12": "Assortment",
-            "text-2": "- it is more than 180 luxurious shades, as well as professional products that provide easy and convenient use. Without smell. Does not cause allergies. Does not contain varnish component. Safe and easy removal by dissolving with AKZÉNTZ Soak Off within 10 minutes.",
+            "text-2": "- it is more than 180 luxurious shades, as well as professional products that provide easy and convenient use. Without smell. Does not cause allergies. Does not contain varnish component. Safe and easy removal by dissolving with AKZÉNTZ Soak Off within 10minutes.",
             "pure-gel": "100% PURE GEL FORMULA"
         },
         "paragraf-2": {
@@ -302,22 +302,21 @@
 
     "GEL-PLAY": {
         "paragraf-1": {
-            "title": "6 UNIQUE DESIGNS",
-            "text-1": " – 18 shades of densely pigmented color gel. Ideal for nail art, including for drawing fine lines, small or voluminous details.",
-            "text-2": " - 6 shades of iridescent gel with micro-glitter.",
-            "text-3": " - 6 shades of iridescent gel with micro-gloss.",
-            "text-4": " – 6 iridescent gel shades that change their tone depending on the base color (3D effect, mermaid effect).",
-            "text-5": " - 9 shades of densely pigmented color shimmery gel with high gloss (foil effect). Suitable as a stand alone coating and for selective designs.",
-            "text-6": " – 6 shades of densely pigmented hexagonal sequins of different sizes.",
-            "text-7": " - 6 shades of densely pigmented gel with very fine colored glitters. Suitable as a stand alone coating and for selective designs.",
-            "text-8": " – 3 flake effect gel shade.",
+            "text-1": " - densely pigmented color gel. Ideal for nail art, including for drawing fine lines, small or voluminous details.",
+            "text-2": " - bright, dense pigmented iridescent glitter.",
+            "text-3": " - iridescent gel with micro sparkles.",
+            "text-4": " - iridescent gels that change their tone depending on the base color (3D effect or mermaid effect).",
+            "text-5": " - densely pigmented color shimmery gel with a bright shine (foil effect). Suitable as a stand alone coating and for selective designs.",
+            "text-6": " - densely pigmented hexagonal sequins of different sizes.",
+            "text-7": " - pigmented gel with very fine colored glitters. Suitable as a stand alone coating and for selective designs.",
+            "text-8": " - gel with the effect of flakes.",
             "text-9": " –  colorless transparent gel base for adding glitter and creating new shades.",
             "text-10": " - gel of dense consistency and extra strong hold for rhinestones, stones and other details. It is applied after the top coat, directly under the design detail.",
-            "text-11": " - 6 shades of the most pigmented gel without a sticky layer. Suitable for design and drawing very thin lines."
+            "text-11": " - the most pigmented gel without a sticky layer. Suitable for design and drawing very thin lines."
         },
         "paragraf-2": {
             "title": "UNLEASH YOUR CREATIVITY",
-            "text-1": " – a 100% gel line designed specifically for nail art and design. The GEL PLAY line assortment consists of 11 collections of densely pigmented gels and glitters. All GEL PLAY gels dissolve easily and are removed with AKZÉNTZ Soak Off."
+            "text-1": " – a 100% gel line designed specifically for nail art and design. The GEL PLAY line assortment consists of collections of densely pigmented gels and glitters. All GEL PLAY gels dissolve easily and are removed with AKZÉNTZ Soak Off."
         }
     },
 
@@ -520,7 +519,7 @@
         "order-total": "Order total",
         "save-shipping-address": "Save shipping address",
         "CARD": {
-            "promotional-set": "Promotional Set",
+            "promotional-set": "Promotion 5+1",
             "free": "(for free)",
             "total-price": "Total price:",
             "remove": "Remove",

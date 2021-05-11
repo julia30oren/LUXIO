@@ -22,20 +22,21 @@ export class PersonalACardComponent implements OnInit {
   ) { this.frmShipment = this.createSignupForm(); }
 
   public languege: string;
+  public user: Array<any>;
+  public userAuthorized: boolean;
+  public what_to_show: string;
+
   public allProd: Array<any>;
   public personalArea_products: Array<any>;
   public specialOrder: Array<any>;
-  public what_to_show: string;
-  public message: string;
+
   public TOTAL_PRICE: number = 0;
   public shipping: number = 0;
+  public orderToPay: Array<any>; //final order from "cart"and"special" / item / spesial
+
   public do_checkout: boolean;
-  public Checkout_Payments: Array<any>;
-  public order: Array<any>;
-  public user: Array<any>;
   public isSubmited: boolean;
   public paypalButtonsDisabled: boolean = true;
-  public userAuthorized: boolean;
 
   ngOnInit() {
     this.language_Service._selected_from_service
@@ -48,7 +49,7 @@ export class PersonalACardComponent implements OnInit {
     // ------------subscribe to special order from service------
     this.shop_service.my_special_from_service
       .subscribe(date => {
-        this.specialOrder = date;
+        this.specialOrder = date || null;
         this.getTotalPrice();
       });
 
@@ -72,12 +73,6 @@ export class PersonalACardComponent implements OnInit {
           this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_f'));
         }
         else this.personalArea_products = null;
-        this.checkForDiscount();
-      });
-
-    this.shop_service.orderToPay_from_service
-      .subscribe(date => {
-        this.order = date;
       });
 
     this.paypal_service.NEWcheckout_fromService
@@ -103,50 +98,48 @@ export class PersonalACardComponent implements OnInit {
       }
     );
   }
-
-  checkForDiscount() {
-    if (!this.personalArea_products.length || this.personalArea_products.length < 1) {
-      this.personalArea_products = null;
-    } else {
-      if (this.what_to_show === 'cart') { this.getTotalPrice(); }
-    }
+  // --------------------------------------open big
+  select(id: number) {
+    let index = this.personalArea_products.findIndex((element) => element.burcode_id === id); //geting index of item by id
+    this.shop_service.selectProd(index, true); //sending index to server and seting big-image-component open(true)
   }
-
+  // --------------------------------------------changing quantity of item in cart
+  quantity_change(item, val) {
+    this.personalArea_products.forEach(element => {
+      if (element._id === item._id) {
+        element.quantity = JSON.parse(val);
+        element.total_price = element.quantity * element.price;
+      }
+    });
+    this.user_service.saveCart_toDB(this.personalArea_products, this.languege);
+    this.getTotalPrice();
+  }
+  // ----------------------------------------------
+  amount_change(item, val) {
+    let newValuse = JSON.parse(val);
+    item.amount = newValuse.amount;
+    item.price = JSON.parse(newValuse.price);
+    item.total_price = item.quantity * item.price;
+    this.user_service.saveToCart(item, this.languege);
+    this.getTotalPrice();
+  }
+  // ------------------------------------get total price for all in cart
   getTotalPrice() {
-    this.specialOrder.length ? this.TOTAL_PRICE = this.specialOrder.length * 585 : this.TOTAL_PRICE = 0;
+    this.specialOrder ?
+      this.TOTAL_PRICE = this.specialOrder.length * 585 :
+      this.TOTAL_PRICE = 0;
 
     if (this.personalArea_products) {
       this.personalArea_products.forEach(element => {
         this.TOTAL_PRICE = this.TOTAL_PRICE + element.total_price;
       });
     }
-    if (this.TOTAL_PRICE < 1000) {
+    if (0 < this.TOTAL_PRICE && this.TOTAL_PRICE < 1000) {
       this.shipping = 40;
       this.TOTAL_PRICE = this.TOTAL_PRICE + this.shipping;
     } else this.shipping = 0;
   }
-
-  deleteSet(setId) {
-    this.user_service.deleteSpecialSet_fromDB(this.user[0]._id, setId);
-  }
-
-  pay_onlyThisSet(setId) {
-    console.log(setId);
-  }
-
-  delete_fromCart(item) {
-    this.user_service.saveToCart(item, this.languege);
-
-    setTimeout(() => {
-      this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_ct'));
-      this.checkForDiscount();
-    }, 1000);
-  }
-
-  closePaimentForm() {
-    this.paypal_service.endCheckout();
-  }
-
+  // ------------------------------------add item from favorites to cart
   add_toCart(item_id) {
     this.allProd.forEach(element => {
       if (element._id === item_id) {
@@ -158,94 +151,84 @@ export class PersonalACardComponent implements OnInit {
       }
     });
   }
-
+  // -------------------------------------delete item from favorites
   remove_fromWishlist(item) {
     this.user_service.saveToFavorites(item, this.languege);
-
     setTimeout(() => {
       this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_f'));
-      this.checkForDiscount();
     }, 1000);
   }
-
-  quantity_change(item, val) {
-    this.personalArea_products.forEach(element => {
-      if (element._id === item._id) {
-        element.quantity = JSON.parse(val);
-        element.total_price = element.quantity * element.price;
-      }
-    });
-    this.user_service.saveCart_toDB(this.personalArea_products, this.languege);
-    this.getTotalPrice();
+  // --------------------------------------delete set from cart
+  deleteSet(setId) {
+    this.user_service.deleteSpecialSet_fromDB(this.user[0]._id, setId);
   }
-
-  amount_change(item, val) {
-    item.amount = val;
+  // --------------------------------------delete item from cart
+  delete_fromCart(item) {
     this.user_service.saveToCart(item, this.languege);
+    setTimeout(() => {
+      this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_ct'));
+      this.getTotalPrice()
+    }, 1000);
+  }
+  // -----------------------------------pay only for 1 item ore set
+  pay_onlyThis(setOrItem: object) {
+    let Checkout_ForOneItem = {
+      allCart: false,
+      description: '',
+      order: setOrItem,
+      price: 'set_price' in setOrItem[0] ? setOrItem[0].set_price : setOrItem[0].total_price,
+      totalPrice: 0,
+      shipping: 40
+    };
+    Checkout_ForOneItem.shipping = Checkout_ForOneItem.price < 1000 ? 40 : 0;
+    Checkout_ForOneItem.totalPrice = Checkout_ForOneItem.price + Checkout_ForOneItem.shipping;
 
-    if (item.amount === item.amount_1) {
-      item.price = item.price_1;
-      item.total_price = item.quantity * item.price;
-      this.user_service.saveToCart(item, this.languege);
-    } else if (item.amount === item.amount_2) {
-      item.price = item.price_2;
-      item.total_price = item.quantity * item.price;
-      this.user_service.saveToCart(item, this.languege);
+    if ('set_price' in setOrItem[0]) {
+      Checkout_ForOneItem.description = 'Set (5+1): ';
+      setOrItem[0].set.forEach(element => {
+        Checkout_ForOneItem.description = Checkout_ForOneItem.description + element.prod_class + ' ' + element.name + ' x1 ; ';
+      });
+    } else {
+      Checkout_ForOneItem.description = setOrItem[0].prod_class + ' ' + setOrItem[0].name + ' x' + setOrItem[0].quantity
     }
-    this.getTotalPrice();
+
+    this.orderToPay = [Checkout_ForOneItem];// saving final order
+    this.paypal_service.changeCheckoutState(true);
   }
 
-  select(id: number) {
-    let index = this.personalArea_products.findIndex((element) => element.burcode_id === id); //geting index of item by id
-    this.shop_service.selectProd(index, true); //sending index to server and seting big-image-component open(true)
+  closePaimentForm() {
+    this.paypal_service.endCheckout();
   }
 
   goToBill() {
-    this.shop_service.createOreder(this.personalArea_products);
-    this.paypal_service.changeCheckoutState(true);
     let Checkout_ForAllCart = {
       allCart: true,
-      item: '',
+      order: [],
+      description: '',
       price: this.TOTAL_PRICE - this.shipping,
       totalPrice: this.TOTAL_PRICE,
       shipping: this.shipping,
     };
     this.personalArea_products.forEach(element => {
-      let name = element.prod_class + ' ' + element.name + ' x' + element.amount + ' x' + element.quantity;
-      Checkout_ForAllCart.item = Checkout_ForAllCart.item + name + '; '
+      let name = element.prod_class + ' ' + element.name + ' (' + element.amount + ') x' + element.quantity;
+      Checkout_ForAllCart.description = Checkout_ForAllCart.description + name + ' ; '
+      Checkout_ForAllCart.order.push(element);
     });
-    this.Checkout_Payments = [Checkout_ForAllCart];
-    this.paypal_service.plaseOrderDetails([Checkout_ForAllCart]);
-  }
+    this.specialOrder.forEach(element => {
+      element.name = 'Set (5+1): ';
+      element.total_price = element.set_price;
+      element.set.forEach(item => {
+        element.name = element.name + item.prod_class + ' ' + item.name + ' x1 ; ';
+      });
+      Checkout_ForAllCart.description = Checkout_ForAllCart.description + ' ' + element.name;
+      Checkout_ForAllCart.order.push(element);
+    });
 
-  pay_onlyThis(item) {
-    this.shop_service.createOreder([item]);
-    this.getTotalPriceForOneItem(item);
+    this.orderToPay = [Checkout_ForAllCart];// saving final order
     this.paypal_service.changeCheckoutState(true);
   }
 
-  getTotalPriceForOneItem(itemToOrder) {
-    let Checkout_ForOneItem = {
-      item: itemToOrder.prod_class + ' ' + itemToOrder.name + ' x' + itemToOrder.quantity,
-      price: itemToOrder.total_price,
-      totalPrice: itemToOrder.total_price,
-      shipping: 40,
-      discount: 0
-    };
-    let x = 0;
-    if (itemToOrder.price === 117 || itemToOrder.price === 112) { x = itemToOrder.quantity; }
-    Checkout_ForOneItem.discount = Math.trunc(x / 6) * 117;
-    Checkout_ForOneItem.totalPrice = Checkout_ForOneItem.totalPrice - Checkout_ForOneItem.discount;
-    if (Checkout_ForOneItem.totalPrice < 1000) {
-      Checkout_ForOneItem.shipping = 40;
-      Checkout_ForOneItem.totalPrice = Checkout_ForOneItem.totalPrice + Checkout_ForOneItem.shipping;
-    } else Checkout_ForOneItem.shipping = 0;
-    this.Checkout_Payments = [Checkout_ForOneItem];
-    // send data to paypal service:
-    this.paypal_service.plaseOrderDetails(this.Checkout_Payments);
-  }
-
-  PAY() {
+  checkAllDate() {
     this.isSubmited = true;
     if (this.frmShipment.valid) { //Delivery address:
       this.frmShipment.value._id = this.user[0]._id;
@@ -254,16 +237,13 @@ export class PersonalACardComponent implements OnInit {
       this.frmShipment.value.email = this.user[0].email;
       this.frmShipment.value.state = this.user[0].state;
       // --------------------------------------------------------------------------!!!!!!!!!!!!! do payment! & save order to DB
-      let order = {
-        order: this.order,
-        payments: this.Checkout_Payments[0],
-        shipping_details: this.frmShipment.value
-      }
-      // ende of checkout = payment sent to DB and PayPal
-      this.paypal_service.plaseOrderDetails_forDB(order);
+      this.orderToPay[0].shipping_details = this.frmShipment.value;
+      this.orderToPay[0].order_id = Math.floor(Math.random() * 9999) + '-order-' + Math.floor(Math.random() * 9999) + Math.floor(Math.random() * 9999);
       this.paypalButtonsDisabled = false;
+      // --------------------------------ende of checkout = payment sent to DB and PayPal
+      console.log(this.orderToPay);
+      this.paypal_service.plaseOrderDetails(this.orderToPay);
     }
   }
-
 
 }

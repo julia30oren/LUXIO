@@ -36,11 +36,10 @@ export class OrderService {
     });
   }
 
-  createOrder(order: object, lang: string) {
+  createOrder(order: object, lang: string) { //---------------------------------save new order to db
     return this.http.post(`${this.order_URL}/${lang}/save`, order).subscribe(res => {
-      // if (res[0].status) {
-      //   localStorage.setItem('my_764528_ct', '[]')
-      // }
+      console.log(res);
+      // if responce "ok" save new cart "[]" to lochalstorege
       this.respond_Service.saveRespond(res);
     });
   }

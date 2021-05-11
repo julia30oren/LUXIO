@@ -14,13 +14,11 @@ export class PaypaltestComponent implements OnInit {
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
 
   public languege: string;
-  public product = {
-    price: null,
-    description: ''
-  }
-  public fullOrder: object;
+  public fullOrder: Array<any>;
+
   public paidFor: boolean = false;
   public canceled: boolean = false;
+
   public cleanCart: boolean = false;
   public resPayPal: string;
 
@@ -31,20 +29,16 @@ export class PaypaltestComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.paypal_service.paypal_orderDetails_fromService
+    this.language_Service._selected_from_service//----------------language
+      .subscribe(date => { this.languege = date; console.log(date) });
+
+    this.paypal_service.paypal_orderDetails_fromService // subscribing for full order 
       .subscribe(date => {
-        if (date[0]) {
-          this.product.price = date[0].totalPrice;
-          this.product.description = date[0].item;
-          if (date[0].allCart) {
-            this.cleanCart = true;
-          } else this.cleanCart = false;
-        }
+        console.log("1 spep on paypal ", date);
+        this.fullOrder = date;
+        console.log("2 spep on paypal ", this.fullOrder);
       });
-    this.paypal_service.fullorderDetails_fromService
-      .subscribe(date => { this.fullOrder = date; });
-    this.language_Service._selected_from_service
-      .subscribe(date => { this.languege = date });
+
     // --------------PAYPAL DUTTONS
     paypal
       .Buttons({
@@ -52,9 +46,9 @@ export class PaypaltestComponent implements OnInit {
           return action.order.create({
             purchase_units: [
               {
-                description: 'Luxio products : ' + this.product.description,
+                description: this.fullOrder[0].description,
                 amount: {
-                  value: this.product.price
+                  value: this.fullOrder[0].totalPrice
                 }
               }
             ]
@@ -74,8 +68,6 @@ export class PaypaltestComponent implements OnInit {
               break;
           }
           this.paidFor = true;
-          this.fullOrder['payments']['orderID'] = date.orderID;
-          this.fullOrder['payments']['payerID'] = date.payerID;
           this.order_service.createOrder(this.fullOrder, this.languege);
           this.endPayment();
         },
@@ -115,10 +107,15 @@ export class PaypaltestComponent implements OnInit {
   }
 
   endPayment() {
-    localStorage.removeItem('my_764528_ct');
-    setTimeout(() => {
-      this.paypal_service.endCheckout();
-      window.location.reload();
-    }, 1500)
+    // IF ORDER PAYED SACCSESSFULY:
+    // NEED TO SEND ORDER TO DB
+    // AND CLEAR CART ON localStorage
+
+
+    // localStorage.setItem('my_764528_ct', '[]');
+    // setTimeout(() => {
+    this.paypal_service.endCheckout();
+    //   window.location.reload();
+    // }, 1500)
   }
 }

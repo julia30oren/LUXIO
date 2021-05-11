@@ -1,11 +1,11 @@
 <!-- if cart or favorites are empty -->
 <div class="container-fluid">
-    <div class="row" *ngIf="!personalArea_products && !specialOrder">
+    <div class="row">
         <div class="col-12">
-            <p class="empty main-txt" *ngIf="what_to_show === 'cart'" [ngClass]="{Hebrew: languege==='iv'}">
+            <p class="empty main-txt" *ngIf="what_to_show === 'cart' && TOTAL_PRICE===0 && shipping===0" [ngClass]="{Hebrew: languege==='iv'}">
                 <span>{{ 'PERSONAL-AREA.CARD.empty-cart' | translate}}</span>
             </p>
-            <p class="empty main-txt" *ngIf="what_to_show === 'wishlist'" [ngClass]="{Hebrew: languege==='iv'}">
+            <p class="empty main-txt" *ngIf="what_to_show === 'wishlist' && !personalArea_products" [ngClass]="{Hebrew: languege==='iv'}">
                 <span>{{'PERSONAL-AREA.CARD.empty-wishlist' | translate}}</span>
             </p>
         </div>
@@ -31,7 +31,7 @@
         </div>
         <div class="col-lg-3 col-md-4 col-12 align-self-end" [ngClass]="{Hebrew: languege==='iv'}">
             <p (click)="deleteSet(specialSet.set_id)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.remove' | translate}} «{{ 'PERSONAL-AREA.CARD.promotional-set' | translate}}» {{ 'PERSONAL-AREA.CARD.from-cart' | translate}}</small></p>
-            <p (click)="pay_onlyThisSet(specialSet.set_id)" class="option-buttons" *ngIf="userAuthorized"><small>{{ 'PERSONAL-AREA.CARD.pay-only' | translate}} «{{ 'PERSONAL-AREA.CARD.promotional-set' | translate}}»</small></p>
+            <p (click)="pay_onlyThis([specialSet])" class="option-buttons" *ngIf="userAuthorized"><small>{{ 'PERSONAL-AREA.CARD.pay-only' | translate}} «{{ 'PERSONAL-AREA.CARD.promotional-set' | translate}}»</small></p>
             <p class="Promotional-title" style="text-align: right;">{{ 'PERSONAL-AREA.CARD.total-price' | translate}} {{ specialSet.set_price}} &#8362;</p>
         </div>
     </div>
@@ -60,13 +60,13 @@
                     <div *ngIf="what_to_show === 'cart'">
                         <form>
                             <div class="form-group" style="max-width: 220px;">
-                                <select class="form-control" (change)="amount_change(item,$event.target.value)">
-                                    <option value="{{item.amount_1}}">{{item.amount_1}} {{item.price_1}}&#8362;</option>
-                                    <option value="{{item.amount_2}}" *ngIf="item.amount_2" >{{item.amount_2}} {{item.price_2}}&#8362;</option>
-                                    <option value="{{item.amount_3}}" *ngIf="item.amount_3" >{{item.amount_3}} {{item.price_3}}&#8362;</option>
-                                    <option value="{{item.amount_4}}" *ngIf="item.amount_4" >{{item.amount_4}} {{item.price_4}}&#8362;</option>
-                                    <option value="{{item.amount_5}}" *ngIf="item.amount_5" >{{item.amount_5}} {{item.price_5}}&#8362;</option>
-                                    <option value="{{item.amount_6}}" *ngIf="item.amount_6" >{{item.amount_6}} {{item.price_6}}&#8362;</option>
+                                <select class="form-control" (change)="amount_change(item, $event.target.value)">
+                                    <option value='{"amount":"{{item.amount_1}}", "price":"{{item.price_1}}"}'>{{item.amount_1}} {{item.price_1}}&#8362;</option>
+                                    <option value='{"amount":"{{item.amount_2}}", "price":"{{item.price_2}}"}' *ngIf="item.amount_2">{{item.amount_2}} {{item.price_2}}&#8362;</option>
+                                    <option value='{"amount":"{{item.amount_3}}", "price":"{{item.price_3}}"}' *ngIf="item.amount_3">{{item.amount_3}} {{item.price_3}}&#8362;</option>
+                                    <option value='{"amount":"{{item.amount_4}}", "price":"{{item.price_4}}"}' *ngIf="item.amount_4">{{item.amount_4}} {{item.price_4}}&#8362;</option>
+                                    <option value='{"amount":"{{item.amount_5}}", "price":"{{item.price_5}}"}' *ngIf="item.amount_5">{{item.amount_5}} {{item.price_5}}&#8362;</option>
+                                    <option value='{"amount":"{{item.amount_6}}", "price":"{{item.price_6}}"}' *ngIf="item.amount_6">{{item.amount_6}} {{item.price_6}}&#8362;</option>
                                 </select>
                             </div>
                             <div class="form-group" style="width: 70px;" #hkh>
@@ -79,7 +79,7 @@
                 <div class="col-lg-3 col-12 align-self-end" [ngClass]="{Hebrew: languege==='iv'}">
                     <div *ngIf="what_to_show === 'cart'">
                         <p (click)="delete_fromCart(item)" class="option-buttons"><small>{{ 'PERSONAL-AREA.CARD.remove' | translate}} {{item.name}} {{ 'PERSONAL-AREA.CARD.from-cart' | translate}}</small></p>
-                        <p (click)="pay_onlyThis(item)" class="option-buttons" *ngIf="userAuthorized"><small>{{ 'PERSONAL-AREA.CARD.pay-only' | translate}} {{item.name}}</small></p>
+                        <p (click)="pay_onlyThis([item])" class="option-buttons" *ngIf="userAuthorized"><small>{{ 'PERSONAL-AREA.CARD.pay-only' | translate}} {{item.name}}</small></p>
                         <p class="Promotional-title" style="text-align: right;">{{ 'PERSONAL-AREA.CARD.total-price' | translate}} {{item.total_price}} &#8362;</p>
                     </div>
                     <div *ngIf="what_to_show === 'wishlist'">
@@ -93,7 +93,7 @@
         </div>
     </div>
 
-    <div class="row" *ngIf="personalArea_products && what_to_show === 'cart'">
+    <div class="row" *ngIf="what_to_show === 'cart' && TOTAL_PRICE!==0 && shipping!==0">
         <div class="col-12">
             <table class="table" style="width: 40%; margin-left: 60%;" [ngClass]="{Hebrew: languege==='iv'}">
                 <tbody>
@@ -124,7 +124,7 @@
                 <h5 class="marginTop">{{ 'SIGN-IN.REGISTRATION-FORM.delivery-address' | translate}}</h5>
                 <small class="marginTop">{{user[0].first_name}} {{user[0].second_name}}</small><br>
                 <small>{{user[0].email}}</small>
-                <form [formGroup]="frmShipment" (submit)="PAY();">
+                <form [formGroup]="frmShipment" (submit)="checkAllDate();">
                     <div class="form-row marginTop">
                         <div class="col">
                             <label for="phoneN" [ngClass]="frmShipment.controls['phoneN'].hasError('required') && isSubmited ? 'text-danger' : ''">{{ 'SIGN-IN.REGISTRATION-FORM.phoneN' | translate}}<span >*</span></label>
@@ -168,40 +168,23 @@
             </div>
 
             <div class="col-10 col-lg-4 paiment-info order-lg-2 order-1">
-                <div class="row" style="padding: 1%;" *ngFor="let item of order">
-                    <div class="col-3">
-                        <small>{{item.prod_class}}</small>
-                    </div>
-                    <div class="col-4">
-                        <small>{{item.name}}</small>
-                    </div>
-                    <div class="col-3">
-                        <small>{{item.price}}.00 &#8362;</small>
-                    </div>
-                    <div class="col-2">
-                        <small>X {{item.quantity}}</small>
+                <div *ngFor="let item of orderToPay[0].order">
+                    <div class="row">
+                        <div class="col-9">
+                            <p *ngIf="item.prod_class"><small>{{item.prod_class}}</small> <small> {{item.name}} </small> <small *ngIf="item.quantity">x{{item.quantity}}</small></p>
+                            <p *ngIf="item.set"><small>{{item.name}}</small></p>
+                        </div>
+                        <div class="col-3"><small>{{item.total_price}}.00 &#8362;</small></div>
                     </div>
                 </div>
 
-                <div class="row" style="padding: 1%;">
-                    <div class="col-12">
-                        <table class="table" style="width: 70%; margin-left: 30%;" [ngClass]="{Hebrew: languege==='iv'}">
-                            <tbody *ngFor="let item of Checkout_Payments">
-                                <tr>
-                                    <td>{{ 'PERSONAL-AREA.shipping' | translate }}:</td>
-                                    <td>{{ item.shipping }}.00 &#8362;</td>
-                                </tr>
-                                <tr>
-                                    <td>{{ 'PERSONAL-AREA.discount' | translate }}:</td>
-                                    <td>{{ item.discount }}.00 &#8362;</td>
-                                </tr>
-                                <tr>
-                                    <td><span>{{ 'PERSONAL-AREA.order-total' | translate }}:</span></td>
-                                    <td><span>{{ item.totalPrice }}.00 &#8362;</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="row">
+                    <div class="col-6"><small>{{ 'PERSONAL-AREA.shipping' | translate }}:</small></div>
+                    <div class="col-6"><small>{{ orderToPay[0].shipping }}.00 &#8362;</small></div>
+                </div>
+                <div class="row">
+                    <div class="col-6"><small><span>{{ 'PERSONAL-AREA.order-total' | translate }}:</span></small></div>
+                    <div class="col-6"><small><span>{{ orderToPay[0].totalPrice }}.00 &#8362;</span></small></div>
                 </div>
 
                 <!-- -----------------PAYPALL BUTTONS -->

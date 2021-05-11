@@ -299,7 +299,7 @@ export class UserService {
 
   // ---------------------------------------------------special order-----
   saveSpecialSet_toDB(user_id: string, set_id: string, specialSet: Array<any>, lang: string) {
-    return this.http.post(`${this.user_URL}/${lang}/new-special`, { _id: user_id, set_id: set_id, newSet: specialSet })
+    return this.http.post(`${this.user_URL}/${lang}/newspecial`, { _id: user_id, set_id: set_id, newSet: specialSet })
       .subscribe(date => {
         this.respond_Service.saveRespond(date)
         let res = date[0];
@@ -317,9 +317,8 @@ export class UserService {
   }
 
   deleteSpecialSet_fromDB(user_id: string, set_id: string) {
-    return this.http.post(`${this.user_URL}/delete-special`, { _id: user_id, set_id: set_id })
+    return this.http.post(`${this.user_URL}/deletespecial`, { _id: user_id, set_id: set_id })
       .subscribe(date => {
-        console.log(date)
         this.respond_Service.saveRespond(date)
         let res = date[0];
         if (res.status) {

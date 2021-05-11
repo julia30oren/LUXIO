@@ -36,7 +36,7 @@ export class PersonalAreaComponent implements OnInit {
     this.user_Service.user_to_show_from_service
       .subscribe(date => {
         this.what_to_show = date || 'cart';
-        let cart = JSON.parse(localStorage.getItem('my_764528_ct'));
+        let cart = localStorage.getItem('my_764528_ct') ? JSON.parse(localStorage.getItem('my_764528_ct')) : null;
         this.shop_Service.getProducts_sorted(cart);
       });
   }

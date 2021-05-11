@@ -456,7 +456,7 @@ router.post("/:lang/new-favorites", async(req, res) => {
 });
 
 // ------------------------------------------------------------------------- USER UPDATING special Set ------------------------------
-router.post("/:lang/new-special", async(req, res) => {
+router.post("/:lang/newspecial", async(req, res) => {
     // -------------------------------------------------- requested parameters -----
     const { _id, set_id, newSet } = req.body; // newSet = [...]
     const language = req.params.lang;
@@ -469,13 +469,13 @@ router.post("/:lang/new-special", async(req, res) => {
                         // ---------------------CHOOSING LANGUAGE for response-------------------------
                         switch (language) {
                             case 'en':
-                                responseMessage = `New «Promotional Set» has been saved successfully.`
+                                responseMessage = `New «Promotional Set (5+1)» has been saved successfully.`
                                 break;
                             case 'ru':
-                                responseMessage = `Новый «Акционный Набор» успешно сохранён.`
+                                responseMessage = `Новый «Акционный Набор (5+1)» успешно сохранён.`
                                 break;
                             default:
-                                responseMessage = `"סט הקידום" החדש נשמר בהצלחה.`
+                                responseMessage = `»סט הקידום (5 + 1)« החדש נשמר בהצלחה.`
                                 break;
                         };
             logger.info(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
@@ -486,13 +486,13 @@ router.post("/:lang/new-special", async(req, res) => {
                                     // ---------------------CHOOSING LANGUAGE for response-------------------------
                                     switch (language) {
                                         case 'en':
-                                            responseMessage = `Something went wrong. «Promotional Set» hasn't been updated.`
+                                            responseMessage = `Something went wrong. «Promotional Set  (5+1)» hasn't been updated.`
                                             break;
                                         case 'ru':
-                                            responseMessage = `Что-то пошло не так. «Акционный Набор» не был сохранён.`
+                                            responseMessage = `Что-то пошло не так. «Акционный Набор (5+1)» не был сохранён.`
                                             break;
                                         default:
-                                            responseMessage = `משהו השתבש. «ערכת הקידום» לא עודכנה.`
+                                            responseMessage = `משהו השתבש. «ערכת הקידום (5+1)» לא עודכנה.`
                                             break;
                                     };
             logger.error(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
@@ -503,8 +503,8 @@ router.post("/:lang/new-special", async(req, res) => {
         return res.json([{ status: false, message: err.message }]);
     }
 });
-
-router.post("/delete-special", async(req, res) => {
+// ------------------------------------------------------------------------- USER DELETE special Set ------------------------------
+router.post("/deletespecial", async(req, res) => {
     // -------------------------------------------------- requested parameters -----
     const { _id, set_id } = req.body;
     try {
