@@ -30,9 +30,6 @@ export class UserService {
   private user_name = new BehaviorSubject<string>(localStorage.getItem('u324_n4325e') ? localStorage.getItem('u324_n4325e') : localStorage.getItem('ad34_n746773e'));
   public user_name_from_service = this.user_name.asObservable();
 
-  private cart = new BehaviorSubject<Array<any>>([]);
-  public cart_from_service = this.cart.asObservable();
-
   private user_to_show = new BehaviorSubject<string>('cart');
   public user_to_show_from_service = this.user_to_show.asObservable();
 
@@ -46,8 +43,88 @@ export class UserService {
     private register_Service: RegistrationService,
     private shop_Service: ShopService
   ) { }
-
-
+  // ---------------------------------------------------CART
+  // ----------------------------------------------------------------------- ADD ITEM TO CART --------------------
+  saveItemToCart(item: object, languege: string) {
+    let userID = localStorage.getItem('u324_3i_25d'); //check if user loged in
+    if (userID) {
+      let toDB = { _id: userID, item: item };
+      return this.http.post(`${this.user_URL}/${languege}/addtocart`, toDB)
+        .subscribe(res => {
+          if (res[0].status) {
+            localStorage.setItem('my_764528_ct', JSON.stringify(res[0].newCart)); // save new cart to localStorage
+            this.shop_Service.cart(res[0].newCart); //save new cart on service
+          } else this.respond_Service.saveRespond(res); // if failed -> send negative response to user
+        });
+    } else {
+      let cart = JSON.parse(localStorage.getItem('my_764528_ct'));
+      cart ? cart.push(item) : cart = [item];
+      localStorage.setItem('my_764528_ct', JSON.stringify(cart)); // save new cart to localStorage
+      this.shop_Service.cart(cart); //save new cart on service
+    }
+  }
+  // ----------------------------------------------------------------------- REMOVE ITEM FROM CART --------------------
+  deleteItemFromCart(item_id: string, languege: string) {
+    let userID = localStorage.getItem('u324_3i_25d'); //check if user loged in
+    if (userID) {
+      let toDB = { _id: userID, item_id: item_id };
+      return this.http.post(`${this.user_URL}/${languege}/deletefromcart`, toDB)
+        .subscribe(res => {
+          // console.log(res)
+          if (res[0].status) {
+            localStorage.setItem('my_764528_ct', JSON.stringify(res[0].newCart)); // save new cart to localStorage
+            this.shop_Service.cart(res[0].newCart); //save new cart on service
+          } else this.respond_Service.saveRespond(res); // if failed -> send negative response to user
+        });
+    } else {
+      let cart = JSON.parse(localStorage.getItem('my_764528_ct')); // []
+      var removeIndex = cart.map(function (item) { return item.id; }).indexOf(item_id);
+      cart.splice(removeIndex, 1); // remove item from cart
+      localStorage.setItem('my_764528_ct', JSON.stringify(cart)); // save new cart to localStorage
+      this.shop_Service.cart(cart); //save new cart on service
+    }
+  }
+  // ---------------------------------------------------FAVORITES
+  // ----------------------------------------------------------------------- ADD ITEM TO FAVORITES --------------------
+  saveItemToFavorites(item: object, languege: string) {
+    let userID = localStorage.getItem('u324_3i_25d'); //check if user loged in
+    if (userID) {
+      let toDB = { _id: userID, item: item };
+      return this.http.post(`${this.user_URL}/${languege}/addtofavorites`, toDB)
+        .subscribe(res => {
+          console.log(res);
+          if (res[0].status) {
+            localStorage.setItem('my_764528_f', JSON.stringify(res[0].newFavorites)); // save new favorites to localStorage
+            this.shop_Service.favorites(res[0].newFavorites); //save new cart on service
+          } else this.respond_Service.saveRespond(res); // if failed -> send negative response to user
+        });
+    } else {
+      let favorites = JSON.parse(localStorage.getItem('my_764528_f')); // []
+      favorites ? favorites.push(item) : favorites = [item];
+      localStorage.setItem('my_764528_f', JSON.stringify(favorites)); // save new favorites to localStorage
+      this.shop_Service.favorites(favorites); //save new cart on service
+    }
+  }
+  // --------------------------------------------------
+  deleteItemFromFavorites(item_id: string, languege: string) {
+    let userID = localStorage.getItem('u324_3i_25d'); //check if user loged in
+    if (userID) {
+      let toDB = { _id: userID, item_id: item_id };
+      return this.http.post(`${this.user_URL}/${languege}/deletefromfavorites`, toDB)
+        .subscribe(res => {
+          if (res[0].status) {
+            localStorage.setItem('my_764528_f', JSON.stringify(res[0].newFavorites)); // save new favotites to localStorage
+            this.shop_Service.favorites(res[0].newFavorites); //save new favorites on service
+          } else this.respond_Service.saveRespond(res); // if failed -> send negative response to user
+        });
+    } else {
+      let favorites = JSON.parse(localStorage.getItem('my_764528_f')); // []
+      var removeIndex = favorites.map(function (item) { return item.id; }).indexOf(item_id);
+      favorites.splice(removeIndex, 1); // remove item from cart
+      localStorage.setItem('my_764528_f', JSON.stringify(favorites)); // save new cart to localStorage
+      this.shop_Service.favorites(favorites); //save new favorites on service
+    }
+  }
   // -----------------------------get all users-------------------
   adminTokenCheck(token: any) {
     return this.http.get(`${this.admin_url}/check/${token}`).subscribe(res => {
@@ -86,7 +163,6 @@ export class UserService {
       } else { //if user
         this.respond_Service.saveRespond(res);
         if (res[0].status) {
-          // localStorage.clear();
           this.seveUser_onService(res);
           this.register_Service.close_RegistrationForm();
         }
@@ -151,18 +227,6 @@ export class UserService {
       .subscribe(date => this.respond_Service.saveRespond(date));
   }
 
-  // -----------------------------------------------SAVING NEW CART----------------------
-  saveCart_toDB(newCart: Array<any>, lang: string) {
-    let userLog = localStorage.getItem('u324_3i_25d');
-    let toSend = { _id: userLog, cart: newCart };
-    // ----------------------------------------saving new cart to service----------------
-    this.shop_Service.cart(newCart);
-    localStorage.setItem('my_764528_ct', JSON.stringify(newCart));  // save new cart to localStorage
-    // -----------------------------------------saving new cart to DB----------------
-    return this.http.post(`${this.user_URL}/${lang}/new-cart`, toSend)
-      .subscribe(date => this.respond_Service.saveRespond(date));
-  }
-
 
   // ---------------------------------------------------COMMENTS----------------------------
   // ---------------------------------------------------- GET COMMENTS ------------------------------
@@ -190,7 +254,9 @@ export class UserService {
   // --------------------------------------------------------------------------------FUNCTIONS-----------------
   // ----to save user on service----------
   seveUser_onService(userFullInfo) {
-
+    let cookieAgree = JSON.parse(localStorage.getItem('cookies_rep_hash'));
+    localStorage.clear();
+    localStorage.setItem('cookies_rep_hash', JSON.stringify(cookieAgree));
     // geting user and token:
     let user = userFullInfo[0].user;
     let token = userFullInfo[0].token;
@@ -200,101 +266,9 @@ export class UserService {
     localStorage.setItem('u324_3i_25d', user._id);
     localStorage.setItem('u324_n4325e', user.first_name + ' ' + user.second_name);
     localStorage.setItem('token', token);
-    localStorage.setItem('my_764528_f', JSON.stringify(user.favorites));
-    localStorage.setItem('my_764528_ct', JSON.stringify(user.cart));
-    localStorage.setItem('special_set', JSON.stringify(user.specialSet))
-  }
-
-
-  // ----------------------------------------------------NEW WISHLIST---------
-  saveToFavorites(newToFavorites: object, lang: string) {
-    // ----geting wishlist from localStorage
-    let localWishlist = JSON.parse(localStorage.getItem('my_764528_f')) || [];
-
-    if (localWishlist.length < 1) { //---------if wishlist is EMPTY:
-      localWishlist.push(newToFavorites);
-    } else { //-------------------------------if wishlist NOT EMPTY:
-      // ------------remove from favorites or add:
-      let itemAr = [];// creating temporary array
-      itemAr.push(newToFavorites);
-      var index = localWishlist.findIndex(x => x._id === itemAr[0]._id);// find index of item
-
-      if (index === -1) { //if item don't exist in wishlist:
-        localWishlist.push(newToFavorites);  // add item
-      } else localWishlist.splice(index, 1); // delete item
-
-    }
-
-    setTimeout(() => {
-      this.saveWishlist_toDB(localWishlist, lang);  // save new wishlist to DB
-      localStorage.setItem('my_764528_f', JSON.stringify(localWishlist));  // save new wishlist to localStorage
-    }, 500);
-  }
-  // ---------------------------after user logd in
-  usersFavorites(newToFavorites, lang: string) {
-    // ----geting wishlist from localStorage
-    let localWishlist = JSON.parse(localStorage.getItem('my_764528_f')) || [];
-
-    if (localWishlist.length < 1) { //---------if wishlist is EMPTY:
-      localWishlist.push(newToFavorites);
-    } else { //-------------------------------if wishlist NOT EMPTY:
-      // ------------ add:
-      let itemAr = [];// creating temporary array
-      itemAr.push(newToFavorites);
-      var index = localWishlist.findIndex(x => x._id === itemAr[0]._id);// find index of item
-      if (index === -1) {
-        localWishlist.push(newToFavorites);  // add item
-      } else return;
-    }
-
-    setTimeout(() => {
-      this.saveWishlist_toDB(localWishlist, lang);  // save new wishlist to DB
-      localStorage.setItem('my_764528_f', JSON.stringify(localWishlist));  // save new wishlist to localStorage
-    }, 500);
-  }
-
-
-  // ----------------------------------------------------NEW CART---------
-  saveToCart(newToCart: object, lang: string) {
-    // ----geting cart from localStorage
-    let localCart = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
-
-    if (localCart.length < 1) { //---------if cart is EMPTY:
-      localCart.push(newToCart);
-    } else { //-------------------------------if cart NOT EMPTY:
-      let itemAr = []; // creating temporary array
-      itemAr.push(newToCart);
-      var index = localCart.findIndex(x => x._id === itemAr[0]._id); // find index of item
-
-      if (index === -1) {
-        localCart.push(newToCart); // add item
-      } else localCart.splice(index, 1); // remove item
-    }
-
-    setTimeout(() => {
-      this.saveCart_toDB(localCart, lang);  // save new cart to DB
-    }, 500);
-  }
-  // ---------------------------after user loged in
-  usersCart(newToCart, lang: string) {
-    // ----geting cart from localStorage
-    let localCart = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
-
-    if (localCart.length < 1) { //---------if cart is EMPTY:
-      localCart.push(newToCart);
-    } else { //-------------------------------if cart NOT EMPTY:
-      // ------------ add:
-      let itemAr = [];// creating temporary array
-      itemAr.push(newToCart);
-      var index = localCart.findIndex(x => x._id === itemAr[0]._id);// find index of item
-      if (index === -1) {
-        localCart.push(newToCart);  // add item
-      } else return;
-    }
-
-    setTimeout(() => {
-      this.saveCart_toDB(localCart, lang);  // save new cart to DB
-    }, 500);
+    user.favorites ? localStorage.setItem('my_764528_f', JSON.stringify(user.favorites)) : localStorage.setItem('my_764528_f', JSON.stringify([]));
+    user.cart ? localStorage.setItem('my_764528_ct', JSON.stringify(user.cart)) : localStorage.setItem('my_764528_ct', JSON.stringify([]));
+    user.specialSet ? localStorage.setItem('special_set', JSON.stringify(user.specialSet)) : localStorage.setItem('special_set', JSON.stringify([]));
   }
 
   // ---------------------------------------------------special order-----

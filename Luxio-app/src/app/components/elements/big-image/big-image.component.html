@@ -9,15 +9,18 @@
                 </div>
                 <div class="row justify-content-end">
                     <div class="col">
-                        <button class="next-prev left" type="button" (click)="getPrev();"><i class="fas fa-long-arrow-alt-left fa-2x"></i></button>
+                        <button class="next-prev left" type="button" (click)="getPrev();"><i
+                                class="fas fa-long-arrow-alt-left fa-2x"></i></button>
                     </div>
                     <div class="col-6">
                         <button class="btn btn-link btn-block" type="button" *ngIf=" item.prod_class==='Luxio' ">
-                            <a href="https://www.instagram.com/explore/tags/{{item.prod_class}}_{{item.name}}/ " target="_blank "> {{ 'PROD_DESCRIPTION.more-img' | translate }} </a>
+                            <a href="https://www.instagram.com/explore/tags/{{item.prod_class}}_{{item.name}}/ "
+                                target="_blank "> {{ 'PROD_DESCRIPTION.more-img' | translate }} </a>
                         </button>
                     </div>
                     <div class="col">
-                        <button class="next-prev right" type="button" (click)="getNext();"><i class="fas fa-long-arrow-alt-right fa-2x"></i></button>
+                        <button class="next-prev right" type="button" (click)="getNext();"><i
+                                class="fas fa-long-arrow-alt-right fa-2x"></i></button>
                     </div>
                 </div>
                 <div class="row justify-content-between">
@@ -29,40 +32,44 @@
                         <img class="thumbnail" *ngIf="item.img_link_5" src={{item.img_link_5}} alt={{item.name}} (click)="selectImage(item.img_link_5)" />
                         <img class="thumbnail" *ngIf="item.img_link_6" src={{item.img_link_6}} alt={{item.name}} (click)="selectImage(item.img_link_6)" />
                     </div>
-                    <div class="col-10 zoom-area">
-                        <!-- It's container of the magnify glass -->
-                        <!-- <div id="glass"></div>
-                        <div (mousemove)="mouseMove($event);"> -->
+                    <div class="col-10">
                         <img id="bigImage" src={{selectedProd_Img}} alt={{item.name}} class="big-img" />
-                        <!-- </div> -->
                     </div>
                 </div>
             </div>
             <div class="col-lg-5 col-12" [ngClass]="{Hebrew: languege==='iv'}">
-                <p style="padding: 5px;" *ngIf="item.prod_class==='Luxio' "><small>&#x00023;</small>{{item.burcode_id}}</p>
+                <p style="padding: 5px;" *ngIf="item.prod_class==='Luxio' "><small>&#x00023;</small>{{item.burcode_id}}
+                </p>
                 <p class="main-title">{{item.prod_class}} <span>{{item.name}}</span></p>
                 <div class="row">
                     <div class="col-lg-4 col-8">
                         <select class="form-control" (change)="amount_change($event.target.value)">
-                                <option value="{{item.amount_1}}">{{item.amount_1}} {{item.price_1}}&#8362;</option>
-                                <option value="{{item.amount_2}}" *ngIf="item.amount_2" >{{item.amount_2}} {{item.price_2}}&#8362;</option>
-                                <option value="{{item.amount_3}}" *ngIf="item.amount_3" >{{item.amount_3}} {{item.price_3}}&#8362;</option>
-                                <option value="{{item.amount_4}}" *ngIf="item.amount_4" >{{item.amount_4}} {{item.price_4}}&#8362;</option>
-                                <option value="{{item.amount_5}}" *ngIf="item.amount_5" >{{item.amount_5}} {{item.price_5}}&#8362;</option>
-                                <option value="{{item.amount_6}}" *ngIf="item.amount_6" >{{item.amount_6}} {{item.price_6}}&#8362;</option>
-                            </select>
+                            <option value='[{"amount":"{{item.amount_1}}","price":{{item.price_1}}}]'>{{item.amount_1}} {{item.price_1}}&#8362;</option>
+                            <option value='[{"amount":"{{item.amount_2}}","price":{{item.price_2}}}]' *ngIf="item.amount_2">{{item.amount_2}}
+                                {{item.price_2}}&#8362;</option>
+                            <option value='[{"amount":"{{item.amount_3}}","price":{{item.price_3}}}]' *ngIf="item.amount_3">{{item.amount_3}}
+                                {{item.price_3}}&#8362;</option>
+                            <option value='[{"amount":"{{item.amount_4}}","price":{{item.price_4}}}]' *ngIf="item.amount_4">{{item.amount_4}}
+                                {{item.price_4}}&#8362;</option>
+                            <option value='[{"amount":"{{item.amount_5}}","price":{{item.price_5}}}]' *ngIf="item.amount_5">{{item.amount_5}}
+                                {{item.price_5}}&#8362;</option>
+                            <option value='[{"amount":"{{item.amount_6}}","price":{{item.price_6}}}]' *ngIf="item.amount_6">{{item.amount_6}}
+                                {{item.price_6}}&#8362;</option>
+                        </select>
                     </div>
                     <div class="col-lg-2 col-4">
                         <input type="number" class="form-control" value="1" min="1" (change)="quantity_change($event.target.value)">
                     </div>
                     <div class="col-lg-6 col-12">
-                        <button type="button" class="button-link" (click)="addToCart()" *ngIf="!item.label||item.label!=='Out of stock'">
+                        <button type="button" class="button-link" (click)="addToCart_orDelete(item)" *ngIf="!item.label||item.label!=='Out of stock'">
                             <p *ngIf="!selectedProd_inCart">{{'PROD_DESCRIPTION.add_to_cart' | translate}}</p>
-                            <p *ngIf="selectedProd_inCart" style="color: rgb(212, 99, 99);">{{'PROD_DESCRIPTION.remove_from_cart' | translate}}</p>
+                            <p *ngIf="selectedProd_inCart" style="color: rgb(212, 99, 99);">
+                                {{'PROD_DESCRIPTION.remove_from_cart' | translate}}</p>
                         </button>
-                        <button type="button" class="button-link" (click)="addToFavorites(item)">
+                        <button type="button" class="button-link" (click)="addToFavorites_orDelete(item)">
                             <p *ngIf="!selectedProd_inFavorites">{{'PROD_DESCRIPTION.add_to_favorites' | translate}}</p>
-                            <p *ngIf="selectedProd_inFavorites" style="color: rgb(212, 99, 99);">{{'PROD_DESCRIPTION.remove_from_favorites' | translate}}</p>
+                            <p *ngIf="selectedProd_inFavorites" style="color: rgb(212, 99, 99);">
+                                {{'PROD_DESCRIPTION.remove_from_favorites' | translate}}</p>
                         </button>
                     </div>
                 </div>
@@ -115,7 +122,8 @@
                     <!-- shipment -->
                     <div class="box">
                         <p>{{ 'PROD_DESCRIPTION.extra-1' | translate }}</p>
-                        <p>{{ 'PROD_DESCRIPTION.extra-2' | translate }}&#8362; {{ 'PROD_DESCRIPTION.extra-3' | translate }}</p>
+                        <p>{{ 'PROD_DESCRIPTION.extra-2' | translate }}&#8362; {{ 'PROD_DESCRIPTION.extra-3' | translate }}
+                        </p>
                     </div>
                     <!-- return conditions -->
                     <div class="box">

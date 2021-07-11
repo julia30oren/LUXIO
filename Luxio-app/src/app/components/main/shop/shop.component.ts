@@ -29,6 +29,7 @@ export class ShopComponent implements OnInit {
 
 
   ngOnInit() {
+
     this.shop_service.getProducts_fromDB();
 
     this.shop_service.shop_products_from_service

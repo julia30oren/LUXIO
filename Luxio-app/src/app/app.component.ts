@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistrationService } from './services/registation/registration.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from "@angular/router"
+import { NavigationEnd, Router } from "@angular/router"
 import { LanguageService } from './services/language.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from './services/user-servise/user.service';
@@ -10,6 +10,9 @@ import { RespondService } from './services/respond/respond.service';
 import * as bcrypt from 'bcryptjs';
 import { environment } from 'src/environments/environment';
 import { HostListener } from '@angular/core';
+
+import { filter } from 'rxjs/operators';
+declare var gtag;
 
 @Component({
   selector: 'app-root',
@@ -58,14 +61,21 @@ export class AppComponent implements OnInit {
     translate.setDefaultLang('en');
     let browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/en|ru|iv/) ? browserLang : 'en');
+
+    const navEndEvents = router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    );
+    navEndEvents.subscribe((event: NavigationEnd) => {
+      gtag('config', 'G-3107EMMZ2X', {
+        'page_path': event.urlAfterRedirects
+      });
+    });
   }
 
 
   ngOnInit() {
-    this.language_Service.setInitialAppLanguage();
-    //------------------------------------detecting location for navbar--------
-    this.location = window.location.pathname.substring(1);
-    // 
+    localStorage.clear(); //temerory!!!!
+
     this.user_Service.user_name_from_service
       .subscribe(date => {
         this.user = date;
@@ -82,7 +92,6 @@ export class AppComponent implements OnInit {
       prevScrollpos = currentScrollPos;
     }
     // --------checking cookies agreement--------
-    this.respond_Service.agreementCheck();
     this.respond_Service.userAgreementPolicy_service
       .subscribe(date => {
         this.cookies = date;
@@ -110,9 +119,7 @@ export class AppComponent implements OnInit {
         window.setTimeout(() => {
           this.respond = [];
         }, 5000);
-
       })
-
 
     // -------------------------------------------REGISTRATION SETINGS-----------
     this.regestration_Service.regestrationForm_from_service
@@ -134,11 +141,6 @@ export class AppComponent implements OnInit {
     this.regestration_Service.passwordRestore_form_from_service
       .subscribe(data => {
         this.formPasswodRestore_Open = data;
-      });
-    // -----------------------------
-    this.user_Service.user_name_from_service
-      .subscribe(date => {
-        this.user = date
       });
 
 
@@ -184,9 +186,9 @@ export class AppComponent implements OnInit {
   }
 
   logOut() {
-    let hush = localStorage.getItem('cookies_rep_hash');
+    let cookieAgree = JSON.parse(localStorage.getItem('cookies_rep_hash'));
     localStorage.clear();
-    localStorage.setItem('cookies_rep_hash', hush);
+    localStorage.setItem('cookies_rep_hash', JSON.stringify(cookieAgree));
   }
 
   agreeToCookiesPolicy() {

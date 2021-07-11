@@ -74,7 +74,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
 
     IonicStorageModule.forRoot(),
 

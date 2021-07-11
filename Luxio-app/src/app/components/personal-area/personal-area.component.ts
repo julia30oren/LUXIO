@@ -36,7 +36,7 @@ export class PersonalAreaComponent implements OnInit {
     this.user_Service.user_to_show_from_service
       .subscribe(date => {
         this.what_to_show = date || 'cart';
-        let cart = localStorage.getItem('my_764528_ct') ? JSON.parse(localStorage.getItem('my_764528_ct')) : null;
+        let cart = localStorage.getItem('my_764528_ct') ? JSON.parse(localStorage.getItem('my_764528_ct')) : [];
         this.shop_Service.getProducts_sorted(cart);
       });
   }
@@ -49,13 +49,13 @@ export class PersonalAreaComponent implements OnInit {
 
   getMyCart() {
     this.user_Service.set_showForUser('cart');
-    let cart = JSON.parse(localStorage.getItem('my_764528_ct'));
+    let cart = localStorage.getItem('my_764528_ct') ? JSON.parse(localStorage.getItem('my_764528_ct')) : [];
     this.shop_Service.getProducts_sorted(cart);
   }
 
   getMyWishlist() {
     this.user_Service.set_showForUser('wishlist');
-    let wishlist = JSON.parse(localStorage.getItem('my_764528_f'));
+    let wishlist = localStorage.getItem('my_764528_f') ? JSON.parse(localStorage.getItem('my_764528_f')) : [];
     this.shop_Service.getProducts_sorted(wishlist);
   }
 

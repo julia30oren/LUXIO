@@ -9,15 +9,17 @@
                         <p class="sm-card-title" *ngIf="item.prod_class!=='basics' && item.prod_class!=='materials' && item.prod_class!=='accessories' ">{{item.prod_class}}<br>{{item.name}}</p>
                         <p class="sm-card-title" *ngIf="item.prod_class==='basics' || item.prod_class==='materials' || item.prod_class==='accessories' "> {{item.name}}</p>
                         <div class="phoneButtons">
-                            <button *ngIf="!item.label || item.label!=='Out of stock'" [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket"></i></button>
-                            <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart"></i></button>
+                            <button class="cart-button" *ngIf="!item.label || item.label!=='Out of stock'" [ngClass]="getCartClasse(item._id) " (click)="addToCart_orDelete($event, item)" title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket"></i></button>
+                            <button class="cart-button" [ngClass]="getClasses(item._id)" (click)="addToFavorites_orDelete($event, item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart"></i></button>
                         </div>
                     </div>
                     <div class="flip-card-back">
                         <img class="small-card-img" src={{item.img_link_2||item.img_link_1}} alt="{{item.name}} image not evaluable " (click)="select(item.burcode_id)" />
                         <p><small>{{item.amount_1}} {{item.price_1}} &#8362;</small><small *ngIf="item.amount_2 "> / {{item.amount_2}} {{item.price_2}} &#8362;</small></p>
-                        <button *ngIf="!item.label || item.label!=='Out of stock'" [ngClass]="getCartClasse(item._id) " (click)="addToCart(item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} "><i class="fas fa-shopping-basket"></i></button>
-                        <button [ngClass]="getClasses(item._id) " (click)="addToFavorites(item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart"></i></button>
+                        <button class="cart-button" *ngIf="!item.label || item.label!=='Out of stock'" (click)="addToCart_orDelete($event, item) " title="{{ 'PROD_DESCRIPTION.add_to_cart' | translate}} ">
+                            <i class="fas fa-shopping-basket" [ngClass]="getCartClasse(item._id) "></i>
+                        </button>
+                        <button class="cart-button" [ngClass]="getClasses(item._id) " (click)="addToFavorites_orDelete($event, item) " title="{{ 'PROD_DESCRIPTION.add_to_favorites' | translate}} "><i class="fas fa-heart"></i></button>
                     </div>
                 </div>
             </div>

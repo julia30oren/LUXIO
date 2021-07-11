@@ -65,14 +65,14 @@ export class PersonalACardComponent implements OnInit {
     this.user_service.user_to_show_from_service
       .subscribe(date => {
         this.what_to_show = date;
-        if (this.what_to_show === 'cart' && JSON.parse(localStorage.getItem('my_764528_ct'))) {
-          this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_ct'));
+        if (this.what_to_show === 'cart') {
+          this.personalArea_products = localStorage.getItem('my_764528_ct') ? JSON.parse(localStorage.getItem('my_764528_ct')) : [];
           this.getTotalPrice();
         }
-        else if (this.what_to_show === 'wishlist' && JSON.parse(localStorage.getItem('my_764528_f'))) {
-          this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_f'));
+        else if (this.what_to_show === 'wishlist') {
+          this.personalArea_products = localStorage.getItem('my_764528_f') ? JSON.parse(localStorage.getItem('my_764528_f')) : [];
         }
-        else this.personalArea_products = null;
+        else this.personalArea_products = [];
       });
 
     this.paypal_service.NEWcheckout_fromService
@@ -111,7 +111,7 @@ export class PersonalACardComponent implements OnInit {
         element.total_price = element.quantity * element.price;
       }
     });
-    this.user_service.saveCart_toDB(this.personalArea_products, this.languege);
+    // this.user_service.saveCart_toDB(this.personalArea_products, this.languege);
     this.getTotalPrice();
   }
   // ----------------------------------------------
@@ -120,7 +120,7 @@ export class PersonalACardComponent implements OnInit {
     item.amount = newValuse.amount;
     item.price = JSON.parse(newValuse.price);
     item.total_price = item.quantity * item.price;
-    this.user_service.saveToCart(item, this.languege);
+    // this.user_service.saveToCart(item, this.languege);
     this.getTotalPrice();
   }
   // ------------------------------------get total price for all in cart
@@ -147,15 +147,15 @@ export class PersonalACardComponent implements OnInit {
         element.price = element.price_1;
         element.quantity = 1;
         element.total_price = element.price_1;
-        this.user_service.saveToCart(element, this.languege);
+        // this.user_service.saveToCart(element, this.languege);
       }
     });
   }
   // -------------------------------------delete item from favorites
   remove_fromWishlist(item) {
-    this.user_service.saveToFavorites(item, this.languege);
+    // this.user_service.saveToFavorites(item, this.languege);
     setTimeout(() => {
-      this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_f'));
+      this.personalArea_products = localStorage.getItem('my_764528_f') ? JSON.parse(localStorage.getItem('my_764528_f')) : null;
     }, 1000);
   }
   // --------------------------------------delete set from cart
@@ -164,9 +164,9 @@ export class PersonalACardComponent implements OnInit {
   }
   // --------------------------------------delete item from cart
   delete_fromCart(item) {
-    this.user_service.saveToCart(item, this.languege);
+    // this.user_service.saveToCart(item, this.languege);
     setTimeout(() => {
-      this.personalArea_products = JSON.parse(localStorage.getItem('my_764528_ct'));
+      this.personalArea_products = localStorage.getItem('my_764528_ct') ? JSON.parse(localStorage.getItem('my_764528_ct')) : null;
       this.getTotalPrice()
     }, 1000);
   }

@@ -95,7 +95,8 @@ router.post('/:lang/login', async(req, res) => {
                             first_name: User.first_name,
                             second_name: User.second_name,
                             favorites: User.favorites,
-                            cart: User.cart
+                            cart: User.cart,
+                            specialSet: User.specialSet||[]
                         }
                     }]);
                 }
@@ -361,54 +362,7 @@ router.post("/:lang/new-image", async(req, res) => {
         return res.json([{ status: false, message: err.message }]);
     }
 });
-
-// ------------------------------------------------------------------------- USER UPDATING CART ------------------------------
-router.post("/:lang/new-cart", async(req, res) => {
-    // -------------------------------------------------- requested parameters -----
-    const { _id, cart } = req.body;
-    const language = req.params.lang;
-    //--------------------------------------------------- update users cart -------------
-    try {
-        const cartToSave = await UserSchema.updateOne({ "_id": _id }, { $set: { "cart": cart } });
-        if (cartToSave.nModified === 1) {
-                                    // ---------------------CHOOSING LANGUAGE for response-------------------------
-                        switch (language) {
-                            case 'en':
-                                responseMessage = `Updates to «Cart» has been saved successfully.`
-                                break;
-                            case 'ru':
-                                responseMessage = `Обновления в «Корзине» успешно сохранены.`
-                                break;
-                            default:
-                                responseMessage = `עדכונים ב"סל המיחזור "נשמרו בהצלחה.`
-                                break;
-                        };
-            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
-            return res.json([{ status: true, message: responseMessage }]);
-        }
-        // --------------------------------------------------------------------------------- ERRORS --
-        else {
-                        // ---------------------CHOOSING LANGUAGE for response-------------------------
-                        switch (language) {
-                            case 'en':
-                                responseMessage = `Something went wrong. «Cart» hasn't been updated.`
-                                break;
-                            case 'ru':
-                                responseMessage = `Что-то пошло не так. Обновления в «Корзине» не были сохранены.`
-                                break;
-                            default:
-                                responseMessage = `משהו השתבש. עדכונים ב"אשפה "לא נשמרו.`
-                                break;
-                        };
-            logger.error(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
-            return res.json([{ status: false, message: responseMessage }]);
-        }
-    } catch (err) {
-        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
-        return res.json([{ status: false, message: err.message }]);
-    }
-});
-
+// -------------------------------------------------------------------------------
 // ------------------------------------------------------------------------- USER UPDATING FAVORITES ------------------------------
 router.post("/:lang/new-favorites", async(req, res) => {
     const { _id, favorites } = req.body;
@@ -503,6 +457,7 @@ router.post("/:lang/newspecial", async(req, res) => {
         return res.json([{ status: false, message: err.message }]);
     }
 });
+
 // ------------------------------------------------------------------------- USER DELETE special Set ------------------------------
 router.post("/deletespecial", async(req, res) => {
     // -------------------------------------------------- requested parameters -----
@@ -525,4 +480,183 @@ router.post("/deletespecial", async(req, res) => {
     }
 })
 
+// ------------------
+// -----------------------
+// ---------------------------------------------------------------------------FAVORITES----
+router.post("/:lang/addtofavorites", async(req, res)=>{ //save to favorites
+    const { _id, item} = req.body;
+    const language = req.params.lang;
+
+    try{
+        const saveItemRes = await UserSchema.updateOne({ "_id": _id }, { $push: { "favorites": item } });
+        if(saveItemRes.nModified===1){
+            const findUser = await UserSchema.findById({ "_id": _id });
+            let newFavorites = findUser.favorites;
+            // ---------------------CHOOSING LANGUAGE for response-------------------------
+            switch (language) {
+                case 'en':
+                    responseMessage = `Updates to «Favorites» has been saved successfully.`
+                    break;
+                case 'ru':
+                    responseMessage = `Обновления в «Избранном» успешно сохранены.`
+                    break;
+                default:
+                    responseMessage = `עדכונים ל- «מועדפים» נשמרו בהצלחה.`
+                    break;
+            };
+            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
+            return res.json([{ status: true, message: responseMessage, newFavorites }]);
+        } else {
+        // ---------------------CHOOSING LANGUAGE for response-------------------------
+        switch (language) {
+             case 'en':
+                responseMessage = `Something went wrong. «Favorites» hasn't been updated.`
+                break;
+            case 'ru':
+                responseMessage = `Что-то пошло не так. «Избранное» не обновлялось.`
+                break;
+            default:
+                responseMessage = `משהו השתבש. «המועדפים» לא עודכן.`
+                break;
+        };
+        logger.error(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
+        return res.json([{ status: false, message: responseMessage }]);
+        }
+    } catch (err) {
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+        return res.json([{ status: false, message: err.message }]);
+    }
+});
+// -------------------------------------------------------------------------------
+router.post("/:lang/deletefromfavorites", async(req, res)=>{ //delete from cart
+    const { _id, item_id} = req.body;
+    const language = req.params.lang;
+
+    try{
+        const removeItemRes = await UserSchema.updateOne({ "_id": _id }, { $pull: { "favorites": { "_id" : item_id } } });
+        if(removeItemRes.nModified===1){
+            const findUser = await UserSchema.findById({ "_id": _id });
+            let newFavorites = findUser.favorites;
+            // ---------------------CHOOSING LANGUAGE for response-------------------------
+            switch (language) {
+                case 'en':
+                    responseMessage = `Updates to «Favorites» has been saved successfully.`
+                    break;
+                case 'ru':
+                    responseMessage = `Обновления в «Избранном» успешно сохранены.`
+                    break;
+                default:
+                    responseMessage = `עדכונים ל- «מועדפים» נשמרו בהצלחה.`
+                    break;
+            };
+            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
+            return res.json([{ status: true, message: responseMessage, newFavorites }]);
+        } else {
+        // ---------------------CHOOSING LANGUAGE for response-------------------------
+        switch (language) {
+            case 'en':
+                responseMessage = `Something went wrong. «Favorites» hasn't been updated.`
+                break;
+            case 'ru':
+                responseMessage = `Что-то пошло не так. «Избранное» не обновлялось.`
+                break;
+            default:
+                responseMessage = `משהו השתבש. «המועדפים» לא עודכן.`
+                break;
+            };
+        }   
+    }catch{
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+        return res.json([{ status: false, message: err.message }]);
+    }
+});
+// ---------------------------------------------------------------------------CART----
+router.post("/:lang/addtocart", async(req, res)=>{ //save to cart
+    const { _id, item} = req.body;
+    const language = req.params.lang;
+
+    try{
+        const saveItemRes = await UserSchema.updateOne({ "_id": _id }, { $push: { "cart": item } });
+        if(saveItemRes.nModified===1){
+            const findUser = await UserSchema.findById({ "_id": _id });
+            let newCart = findUser.cart;
+            // ---------------------CHOOSING LANGUAGE for response-------------------------
+            switch (language) {
+                case 'en':
+                    responseMessage = `Updates to «Cart» has been saved successfully.`
+                    break;
+                case 'ru':
+                    responseMessage = `Обновления в «Корзине» успешно сохранены.`
+                    break;
+                default:
+                    responseMessage = `עדכונים ב"סל המיחזור "נשמרו בהצלחה.`
+                    break;
+            };
+            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
+            return res.json([{ status: true, message: responseMessage, newCart }]);
+        } else {
+        // ---------------------CHOOSING LANGUAGE for response-------------------------
+        switch (language) {
+             case 'en':
+                responseMessage = `Something went wrong. «Cart» hasn't been updated.`
+                break;
+            case 'ru':
+                responseMessage = `Что-то пошло не так. Обновления в «Корзине» не были сохранены.`
+                break;
+            default:
+                responseMessage = `משהו השתבש. עדכונים ב"אשפה "לא נשמרו.`
+                break;
+        };
+        logger.error(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
+        return res.json([{ status: false, message: responseMessage }]);
+        }
+    } catch (err) {
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+        return res.json([{ status: false, message: err.message }]);
+    }
+});
+// -------------------------------------------------------------------------------
+router.post("/:lang/deletefromcart", async(req, res)=>{ //delete from cart
+    const { _id, item_id} = req.body;
+    const language = req.params.lang;
+
+    try{
+        const removeItemRes = await UserSchema.updateOne({ "_id": _id }, { $pull: { "cart": { "_id" : item_id } } });
+        if(removeItemRes.nModified===1){
+            const findUser = await UserSchema.findById({ "_id": _id });
+            let newCart = findUser.cart;
+            // ---------------------CHOOSING LANGUAGE for response-------------------------
+            switch (language) {
+                case 'en':
+                    responseMessage = `Updates to «Cart» has been saved successfully.`
+                    break;
+                case 'ru':
+                    responseMessage = `Обновления в «Корзине» успешно сохранены.`
+                    break;
+                default:
+                    responseMessage = `עדכונים ב"סל המיחזור "נשמרו בהצלחה.`
+                    break;
+            };
+            logger.info(`${moment().format(`h:mm:ss a`)} - ID ${_id} ${responseMessage}`);
+            return res.json([{ status: true, message: responseMessage, newCart }]);
+        } else {
+        // ---------------------CHOOSING LANGUAGE for response-------------------------
+        switch (language) {
+             case 'en':
+                responseMessage = `Something went wrong. «Cart» hasn't been updated.`
+                break;
+            case 'ru':
+                responseMessage = `Что-то пошло не так. Обновления в «Корзине» не были сохранены.`
+                break;
+            default:
+                responseMessage = `משהו השתבש. עדכונים ב"אשפה "לא נשמרו.`
+                break;
+            };
+        }   
+    }catch{
+        logger.error(`${moment().format(`h:mm:ss a`)} - ${err.message}`);
+        return res.json([{ status: false, message: err.message }]);
+    }
+});
+// -------------------------------------------------------------------------------
 module.exports = router;

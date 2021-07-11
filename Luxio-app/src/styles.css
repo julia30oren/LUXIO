@@ -118,32 +118,11 @@ i {
 }
 
 .active {
-    color: green;
+    color: brown;
 }
 
 .not-active {
     color: rgba(128, 128, 128, 0.5);
-}
-
-.red-hart {
-    color: rgb(194, 0, 0);
-}
-
-.red-hart:hover {
-    color: rgba(128, 128, 128, 0.5);
-}
-
-.grey-hart {
-    color: rgba(128, 128, 128, 0.5);
-}
-
-.grey-hart:hover,
-.cart-button:hover {
-    color: rgb(194, 0, 0);
-}
-
-.hart-button:hover {
-    color: rgb(194, 0, 0);
 }
 
 .main-font {

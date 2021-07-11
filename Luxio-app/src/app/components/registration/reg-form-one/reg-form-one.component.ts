@@ -155,21 +155,16 @@ export class RegFormOneComponent implements OnInit {
     if (this.frmSignup.valid && this.business && this.agreement && !this.closeToNahariyya && !this.closeToAsdod) {
       if (this.business === 'salon representative' && this.salonName) {
         this.frmSignup.value.business = [{ type: this.business, salon: this.salonName }];
-        this.frmSignup.value.cart = JSON.parse(localStorage.getItem('my_764528_ct'));
-        this.frmSignup.value.favorites = JSON.parse(localStorage.getItem('my_764528_f'));
-        this.frmSignup.value.specialSet = JSON.parse(localStorage.getItem('special_set'));
-        this.user_service.saveUser_toDB(this.frmSignup.value, this.languege);
       }
       else if (this.business === 'self employed' && this.selectedImg_link) {
         this.frmSignup.value.business = [{ type: this.business, certifikate: this.selectedImg_link }];
-        this.frmSignup.value.cart = JSON.parse(localStorage.getItem('my_764528_ct'));
-        this.frmSignup.value.favorites = JSON.parse(localStorage.getItem('my_764528_f'));
-        this.frmSignup.value.specialSet = JSON.parse(localStorage.getItem('special_set'));
-        this.user_service.saveUser_toDB(this.frmSignup.value, this.languege);
       }
+      this.frmSignup.value.cart = localStorage.getItem('my_764528_ct') ? JSON.parse(localStorage.getItem('my_764528_ct')) : [];
+      this.frmSignup.value.favorites = localStorage.getItem('my_764528_f') ? JSON.parse(localStorage.getItem('my_764528_f')) : [];
+      this.frmSignup.value.specialSet = localStorage.getItem('special_set') ? JSON.parse(localStorage.getItem('special_set')) : [];
+      this.user_service.saveUser_toDB(this.frmSignup.value, this.languege);
       // close form
       this.reg_service.close_RegistrationForm();
     } else this.frmSignup.value.conditionsСonfirmation = false;
-
   }
 }

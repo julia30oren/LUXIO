@@ -71,9 +71,9 @@ router.post("/:lang/save", async(req, res) => {
                 state: state,
                 email: email,
                 password: passwordHash,
-                cart: cart,
-                favorites: favorites,
-                specialSet: specialSet,
+                cart: cart||[],
+                favorites: favorites||[],
+                specialSet: specialSet||[],
                 business: business,
                 langueg: language
             });

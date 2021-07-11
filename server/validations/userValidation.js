@@ -11,6 +11,8 @@ const validSchema = Joi.object({
     // FOR USER    
     id: Joi.string().min(10),
     _id: Joi.string().min(10),
+    item: Joi.any(),
+    item_id: Joi.string().min(10),
     first_name: Joi.string().min(2).max(30),
     second_name: Joi.any(),
     phoneN: Joi.any(),

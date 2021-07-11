@@ -11,8 +11,8 @@ import { UserService } from 'src/app/services/user-servise/user.service';
 export class NewComponent implements OnInit {
 
   public languege: string;
-  public my_cart: Array<any> = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
-  public my_favorites: Array<any> = JSON.parse(localStorage.getItem('my_764528_f')) || [];
+  public my_cart: Array<any> | null = localStorage.getItem('my_764528_ct') ? JSON.parse(localStorage.getItem('my_764528_ct')) : null;
+  public my_favorites: Array<any> | null = localStorage.getItem('my_764528_f') ? JSON.parse(localStorage.getItem('my_764528_f')) : null;
   public shop: Array<any> = [];
   public selectedProd: boolean;
 
@@ -115,7 +115,7 @@ export class NewComponent implements OnInit {
   }
 
   addToFavorites(item) {
-    this.user_service.saveToFavorites(item, this.languege);
+    // this.user_service.saveToFavorites(item, this.languege);
   }
 
   addToCart(item) {
@@ -134,7 +134,7 @@ export class NewComponent implements OnInit {
       price: item.price_1,
       total_price: item.price_1
     };
-    this.user_service.saveToCart(item_toCart, this.languege); //sending on service to save
+    // this.user_service.saveToCart(item_toCart, this.languege); //sending on service to save
   }
 
   select(id: number) {

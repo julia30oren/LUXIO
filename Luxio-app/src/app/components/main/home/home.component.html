@@ -1,7 +1,8 @@
 <div class="container-fluid">
 
     <div class="row justify-content-between animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
-        <div class="col-lg-6 col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">
+        <div class="col-lg-6 col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow"
+            [ngClass]="{Hebrew: languege==='iv'}">
             <p class="main-txt" [ngClass]="{Hebrew: languege==='iv'}">{{'HOME.title-2' | translate}}</p>
             <dl class="marginTop50 main-txt" [ngClass]="{margRight100: languege==='iv', margLeft100: languege!=='iv'}">
                 <dd>{{'HOME.title-3' | translate}}</dd>
@@ -12,11 +13,13 @@
         </div>
 
         <div class="col-lg-6 col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
-            <img src="https://i.pinimg.com/originals/ac/e3/ff/ace3ff6a326bf1eef407d4935e740127.png" alt="AKZÉNTZ" style="width: 100%;" />
+            <img src="https://i.pinimg.com/originals/ac/e3/ff/ace3ff6a326bf1eef407d4935e740127.png" alt="AKZÉNTZ"
+                style="width: 100%;" />
         </div>
     </div>
 
-    <div class="row marginTop50 justify-content-end animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
+    <div
+        class="row marginTop50 justify-content-end animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
         <div class="col-9 slogan" [ngClass]="{HebrewDirection: languege==='iv'}">
             <p>&rdquo;<span style="margin: 20px;">{{'HOME.title-01' | translate}}</span></p>
             <p style="margin-top: -30px;"><span>{{'HOME.title-02' | translate}}</span></p>
@@ -25,11 +28,14 @@
 
     <div class="row justify-content-between marginTop50 marginBottom50">
         <div class="col-lg-6 col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
-            <img src="https://i.pinimg.com/564x/06/8d/3a/068d3a55a97a78b616ca861c1d1b2b4e.jpg" alt="AKZÉNTZ model" width="100%" />
+            <img src="https://i.pinimg.com/564x/06/8d/3a/068d3a55a97a78b616ca861c1d1b2b4e.jpg" alt="AKZÉNTZ model"
+                width="100%" />
         </div>
 
-        <div class="col-lg-6 col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">
-            <p class="main-txt" [ngClass]="{Hebrew: languege==='iv'}">{{'HOME.title-5' | translate}}<br>{{'HOME.title-6' | translate}}</p>
+        <div class="col-lg-6 col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow"
+            [ngClass]="{Hebrew: languege==='iv'}">
+            <p class="main-txt" [ngClass]="{Hebrew: languege==='iv'}">{{'HOME.title-5' | translate}}<br>{{'HOME.title-6'
+                | translate}}</p>
             <dl class="marginTop50 main-txt" [ngClass]="{margRight100: languege==='iv', margLeft100: languege!=='iv'}">
                 <dd>{{'HOME.title-4' | translate}}</dd>
                 <dd>- <a href="products/luxio">{{ 'HOME.par-4' | translate }}</a></dd>
@@ -40,20 +46,25 @@
             </dl>
         </div>
     </div>
-    <hr/>
+    <hr />
     <div class="row marginTop50">
         <div class="col-lg-3 col-5 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
-            <img src="https://i.pinimg.com/originals/dd/d6/34/ddd63477383f6fcaad0446ecde7e2405.png" style="margin-top: 10px;" alt="Avant Garde">
+            <img src="https://i.pinimg.com/originals/dd/d6/34/ddd63477383f6fcaad0446ecde7e2405.png"
+                style="margin-top: 10px;" alt="Avant Garde">
         </div>
-        <div class="col-lg-9 col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow" [ngClass]="{Hebrew: languege==='iv'}">
+        <div class="col-lg-9 col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow"
+            [ngClass]="{Hebrew: languege==='iv'}">
             <p class="main-txt" [ngClass]="{Hebrew: languege==='iv'}">{{ 'HOME.par-9' | translate }}</p>
-            <p class="main-txt" [ngClass]="{Hebrew: languege==='iv'}">{{ 'HOME.par-10' | translate }}<em>{{ 'HOME.par-11' | translate }}</em>{{ 'HOME.par-12' | translate }}</p>
+            <p class="main-txt" [ngClass]="{Hebrew: languege==='iv'}">{{ 'HOME.par-10' | translate }}<em>{{
+                    'HOME.par-11' | translate }}</em>{{ 'HOME.par-12' | translate }}</p>
             <p class="main-txt" [ngClass]="{Hebrew: languege==='iv'}">{{ 'HOME.par-13' | translate }}</p>
         </div>
 
         <div class="col-12 animate__animated animate__fadeIn animate__delay-0.5s animate__slow wow">
-            <video width="100%" autoplay loop #comersial muted>
-                <source src="https://res.cloudinary.com/luxio/video/upload/v1617005151/2_5366311918363479121_1_fkvcon.mp4" type="video/mp4">
+            <video muted width="100%" autoplay loop #comersial>
+                <source
+                    src="https://res.cloudinary.com/luxio/video/upload/v1617005151/2_5366311918363479121_1_fkvcon.mp4"
+                    type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <button type="button" class="play" (click)="playPause()">
@@ -61,11 +72,12 @@
                 <i *ngIf="!play" class="fas fa-play"></i>
             </button>
             <button type="button" class="sound" (click)="soundOnOff()">
-                <i  *ngIf="sound" class="fas fa-volume-mute"></i>
+                <i *ngIf="sound" class="fas fa-volume-mute"></i>
                 <i *ngIf="!sound" class="fas fa-volume-up"></i>
             </button>
         </div>
 
-        <a href="new" class="linkToNew" [ngClass]="{Hebrew: languege==='iv'}">{{'HOME.title-7' | translate}} <i class="fas fa-caret-right"></i></a>
+        <a href="new" class="linkToNew" [ngClass]="{Hebrew: languege==='iv'}">{{'HOME.title-7' | translate}} <i
+                class="fas fa-caret-right"></i></a>
     </div>
 </div>

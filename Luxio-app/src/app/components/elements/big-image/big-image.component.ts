@@ -18,10 +18,11 @@ export class BigImageComponent implements OnInit {
   public selectedProd_inCart: boolean;
 
   public languege: string;
-  public my_cart: Array<any> = JSON.parse(localStorage.getItem('my_764528_ct')) || [];
-  public my_favorites: Array<any> = JSON.parse(localStorage.getItem('my_764528_f')) || [];
+  public my_cart: Array<any> = localStorage.getItem('my_764528_ct') ? JSON.parse(localStorage.getItem('my_764528_ct')) : [];
+  public my_favorites: Array<any> = localStorage.getItem('my_764528_f') ? JSON.parse(localStorage.getItem('my_764528_f')) : [];
   public amount: string;
   public quantity: number = 1;
+  public price: number;
 
   constructor(
     private shop_service: ShopService,
@@ -61,57 +62,35 @@ export class BigImageComponent implements OnInit {
 
   getSelected() {
     let i = this.selectedIndex;
-
+    this.selectedProd_inCart = false;
+    this.selectedProd_inFavorites = false;
     this.selectedProd = [this.allProducts[i]];
     this.selectedProd_Img = this.selectedProd[0].img_link_1;
     this.amount = this.selectedProd[0].amount_1;
+    this.quantity = this.selectedProd[0].quantity;
+    this.price = this.selectedProd[0].price;
 
     if (this.my_favorites !== null) {
       this.my_favorites.forEach(element => { // check if selected item is in user wishlist
-        if (element._id === this.allProducts[i]._id) {
-          this.selectedProd_inFavorites = true;
-        } else this.selectedProd_inFavorites = false;
+        if (element._id === this.allProducts[i]._id) this.selectedProd_inFavorites = true;
       });
     } else this.selectedProd_inFavorites = false;
-    if (this.my_cart !== null) {
-      this.my_cart.forEach(element => { // check if selected item is in user cart
-        if (element._id === this.allProducts[i]._id) {
-          this.selectedProd_inCart = true;
-        } else this.selectedProd_inCart = false;
+    if (this.my_cart !== null) { // check if selected item is in user cart
+      this.my_cart.forEach(element => {
+        if (element._id === this.selectedProd[0]._id) this.selectedProd_inCart = true;
       });
     } else this.selectedProd_inCart = false;
   }
 
-  // mouseMove(event) {
-  //   event.preventDefault();
-  //   var img, glass, w, h, bw;
-  //   img = document.getElementById("bigImage");
-  //   glass = document.getElementById("glass");
-  //   // -------------
-  //   glass.style.display = 'block';
-  //   glass.style.backgroundImage = "url('" + this.selectedProd_Img + "')";
-  //   glass.style.backgroundRepeat = "no-repeat";
-  //   glass.style.backgroundSize = (img.width * 3) + "px " + (img.height * 3) + "px";
-  //   bw = 3;
-  //   w = glass.offsetWidth / 2;
-  //   h = glass.offsetHeight / 2;
-  //   // 
-  //   var x, y;
-  //   x = event.offsetX;
-  //   y = event.offsetY;
-  //   /* Set the position of the magnifier glass: */
-  //   glass.style.left = (x - w) + "px";
-  //   glass.style.top = (y - h) + "px";
-  //   // /* Display what the magnifier glass "sees":
-  //   glass.style.backgroundPosition = "-" + ((x * 3) - w + bw) + "px -" + ((y * 3) - h + bw) + "px";
-  // }
-
   amount_change(target) {
-    this.amount = target;
+    target = JSON.parse(target);
+    this.amount = target[0].amount;
+    this.price = target[0].price;
+    console.log(this.amount, this.price)
   }
 
   quantity_change(target) {
-    this.quantity = target;
+    this.quantity = parseInt(target);
   }
 
   selectImage(link: string) {
@@ -124,36 +103,28 @@ export class BigImageComponent implements OnInit {
     this.shop_service.selectProd(null, false);
   }
 
-  addToFavorites(obj) {
-    this.user_service.saveToFavorites(obj, this.languege);
-    this.selectedProd_inFavorites = !this.selectedProd_inFavorites;
+  addToFavorites_orDelete(item: any) {
+    if (this.selectedProd_inFavorites) {
+      this.user_service.deleteItemFromFavorites(item._id, this.languege);
+    } else {
+      //sending on service to save
+      this.user_service.saveItemToFavorites(item, this.languege);
+    }
   }
 
-  addToCart() {
-    let item_toCart = { // creating item with needed properties:
-      _id: this.selectedProd[0]._id,
-      burcode_id: this.selectedProd[0].burcode_id,
-      name: this.selectedProd[0].name,
-      prod_class: this.selectedProd[0].prod_class,
-      img_link_1: this.selectedProd[0].img_link_1,
-      amount: this.amount,
-      amount_1: this.selectedProd[0].amount_1,
-      amount_2: this.selectedProd[0].amount_2,
-      quantity: this.quantity,
-      price_1: this.selectedProd[0].price_1,
-      price_2: this.selectedProd[0].price_2,
-      price: this.selectedProd[0].price_1,
-      total_price: this.quantity * this.selectedProd[0].price_1
-    };
-
-    if (this.amount === this.selectedProd[0].amount_2) {
-      item_toCart.price = this.selectedProd[0].price_2;
-      item_toCart.total_price = this.quantity * this.selectedProd[0].price_2;
+  addToCart_orDelete(item: any) {
+    if (this.selectedProd_inCart) {
+      this.user_service.deleteItemFromCart(item._id, this.languege); // to delete from cart
+    } else {
+      // edding nessesory properties
+      item.amount = this.amount;
+      item.quantity = this.quantity;
+      item.price = this.price;
+      item.total_price = this.quantity * this.price;
+      //sending on service to save
+      this.user_service.saveItemToCart(item, this.languege);
     }
     this.selectedProd_inCart = !this.selectedProd_inCart;
-    setTimeout(() => {
-      this.user_service.saveToCart(item_toCart, this.languege);
-    }, 1000);
   }
 
   getPrev() {

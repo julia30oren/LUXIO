@@ -29,8 +29,9 @@ export class SaveUserService {
     return this.http.post(`${this.registeration_URL}/${language}/save`, info).subscribe(res => {
       this.respond_Service.saveRespond(res);
       if (res[0].statuse) {
-        localStorage.removeItem('my_764528_ct');
-        localStorage.removeItem('my_764528_f');
+        let cookieAgree = JSON.parse(localStorage.getItem('cookies_rep_hash'));
+        localStorage.clear();
+        localStorage.setItem('cookies_rep_hash', JSON.stringify(cookieAgree));
       }
     });
   }
